@@ -1,0 +1,4 @@
+Automation\StepDefinitions\Hooks.class
+Automation\StepDefinitions\LoginStepDef.class
+Automation\TestRunner\FailedTestRunner.class
+Automation\TestRunner\JUnitTestRunnerTest.class
