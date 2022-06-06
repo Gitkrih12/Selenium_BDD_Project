@@ -1,7 +1,8 @@
-reports/
+HELP.md
+TestReports/
 screenshots/
 test-output/
-
+Logs/
 ##############################
 ## Java
 ##############################
@@ -31,8 +32,8 @@ buildNumber.properties
 ## IntelliJ
 ##############################
 out/
-.idea/
-.idea_modules/
+*.idea/
+*.idea_modules/
 *.iml
 *.ipr
 *.iws
