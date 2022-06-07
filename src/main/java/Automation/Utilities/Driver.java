@@ -27,21 +27,24 @@ public class Driver {
     private static DesiredCapabilities capabilities;
     private static ThreadLocal<WebDriver> threadDriver = new ThreadLocal<WebDriver>();
 
-    public static Properties prop;
+    public static PropertyReader prop;
+    protected static String environment;
 
-    public Properties readConfig() throws IOException
+    public void readConfig() throws IOException
     {
         try
         {
-            prop = new Properties();
-            String propPath = ".//src/test/resources/Config.properties";
-            FileInputStream fis = new FileInputStream(propPath);
-            prop.load(fis);
-            return prop;
+            environment = System.getProperty("Environment");
+            if (environment == null)
+            {
+                environment = "test";
+            }
+            String propPath = ".//src/test/resources/Config/" +environment+".properties";
+            System.out.println("Environment path : " + propPath);
+            prop = new PropertyReader(propPath);
         }catch (Exception e)
         {
             Assert.fail("Error in loading properties: " + e);
-            return null;
         }
     }
 

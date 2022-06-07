@@ -7,18 +7,18 @@ import org.openqa.selenium.WebElement;
 
 public class LoginPage extends SeleniumUtils {
 
-    String Title_HomePage = "Welcome: Mercury Tours";
-    String name_UserName = "userName";
-    String name_Password = "password";
-    String name_Submit = "submit";
+    String titleHomePage = "Welcome: Mercury Tours";
+    String txtUsername = "userName";  //name
+    String txtPassword = "password"; //name
+    String txtSubmit = "submit";  //name
 
-    String Title_Login = "Login: Mercury Tours";
+    String titleLogin = "Login: Mercury Tours";
 
-    public void Application_HomePage_Validation()
+    public void applicationHomePageValidation()
     {
         log = LogManager.getLogger(LoginPage.class.getName());
 
-        if(getTitle().equals(Title_HomePage))
+        if(getTitle().equals(titleHomePage))
         {
             log.info("URL launched");
             Assert.assertTrue(true);
@@ -30,22 +30,22 @@ public class LoginPage extends SeleniumUtils {
         }
 
     }
-    public void Application_Login_Validation(String UName, String pwd)
+    public void applicationLoginValidation(String UName, String pwd)
     {
         log.info("User name is entered");
-        WebElement userName = findElementByName(name_UserName); //convert it to element using existing methods
+        WebElement userName = findElementByName(txtUsername); //convert it to element using existing methods
         explicitVisibilityOfWait(userName,5); //pass the element to wait method
         userName.sendKeys(UName);  //perform action
 
         log.info("Password is entered");
-        findElementByName(name_Password).sendKeys(pwd);
+        findElementByName(txtPassword).sendKeys(pwd);
         log.info("Clicked on Submit button");
-        findElementByName(name_Submit).click();
+        findElementByName(txtSubmit).click();
 
     }
-    public void Application_SignIn_Validation()
+    public void applicationSignInValidation()
     {
-        if(getTitle().equals(Title_Login))
+        if(getTitle().equals(titleLogin))
         {
             Assert.assertTrue(true);
         }
@@ -53,21 +53,6 @@ public class LoginPage extends SeleniumUtils {
         {
             Assert.assertTrue(false);
         }
-    }
-    public void Application_Logout_Validation()
-    {
-        clickElement("//a[contains(text(), 'SIGN-OFF')]");
-
-        if(getTitle().equals("Welcome: Mercury Tours1"))
-        {
-            Assert.assertTrue(true);
-        }
-        else
-        {
-            log.error("Failed to log out from application");
-            Assert.assertTrue(false);
-        }
-
     }
 
 }
