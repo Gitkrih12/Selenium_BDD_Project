@@ -30,12 +30,12 @@ public class LoginPage extends SeleniumUtils {
         }
 
     }
-    public void applicationLoginValidation(String UName, String pwd)
+    public void applicationLoginValidation(String name, String pwd)
     {
         log.info("User name is entered");
-        WebElement userName = findElementByName(txtUsername); //convert it to element using existing methods
-        explicitVisibilityOfWait(userName,5); //pass the element to wait method
-        userName.sendKeys(UName);  //perform action
+        WebElement username = findElementByName(txtUsername); //convert it to element using existing methods
+        explicitVisibilityOfWait(username,5); //pass the element to wait method
+        username.sendKeys(name);  //perform action
 
         log.info("Password is entered");
         findElementByName(txtPassword).sendKeys(pwd);

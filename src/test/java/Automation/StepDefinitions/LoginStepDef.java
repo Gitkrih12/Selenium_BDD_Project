@@ -15,9 +15,9 @@ public class LoginStepDef extends LoginPage {
     }
 
     @When("User enters UserName as {string} and Password as {string}")
-    public void user_enters_user_name_as_and_password_as(String UName, String pwd) {
+    public void user_enters_user_name_as_and_password_as(String username, String pwd) {
 
-        applicationLoginValidation(UName, pwd);
+        applicationLoginValidation(username, pwd);
 
     }
 
