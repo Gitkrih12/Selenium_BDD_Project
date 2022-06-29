@@ -45,6 +45,7 @@ public class Hooks extends Driver {
             if (isFailed) {
                 SStatus = "Fail";
                 System.out.println(" !!!!! Scenario Name: " + scenario.getName() + "  Status -- " + SStatus + " !!!!!!! ");
+                driver.quit();
             } else {
                 SStatus = "Pass";
                 System.out.println(" !!!!! Scenario Name: " + scenario.getName() + "  Status -- " + SStatus + " !!!!!!! ");

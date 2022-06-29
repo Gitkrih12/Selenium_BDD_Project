@@ -175,6 +175,34 @@ public class SeleniumUtils extends Driver {
         }
     }
 
+    public Actions moveToElement(String xpath)
+    {
+        try
+        {
+            WebElement element = driver.findElement(By.xpath(xpath));
+            Actions act = new Actions(driver);
+            Actions ele = act.moveToElement(element);
+            return ele;
+        }catch (Exception e)
+        {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public Actions moveToElement(WebElement element)
+    {
+        try
+        {
+            Actions act = new Actions(driver);
+            Actions ele = act.moveToElement(element);
+            return ele;
+        }catch (Exception e)
+        {
+            e.printStackTrace();
+            return null;
+        }
+    }
 
     public void dragAndDrop(String srcxpath, String destxpath) {
         try {
