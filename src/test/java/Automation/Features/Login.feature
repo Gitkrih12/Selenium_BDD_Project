@@ -1,6 +1,5 @@
 Feature: Login
 
-  @abc
   Scenario: Verify the "Welcome to Claims Adjudication" text along with NG in Login page screen
     Given the user is in CA Login screen
     When user navigates to the Login page UI

@@ -72,7 +72,8 @@ public class LoginPage extends SeleniumUtils {
     //      Scenario: Verify the hospital pictography along with the texts displayed in Login Screen
     public void verifyHospitalImage()
     {
-        boolean imageStatus = isDisplayed(imgHospital);
+        WebElement imageElement = explicitElementClickableWaitByXpath(imgHospital, 10);
+        boolean imageStatus = isDisplayed(imageElement);
         log.info("User sees hospital image on home page");
         Assert.assertTrue(imageStatus);
         System.out.println("Image status is : " + imageStatus);
@@ -84,7 +85,8 @@ public class LoginPage extends SeleniumUtils {
         findElementByXpath(txtUsername).sendKeys(prop.getProperty("dsnpAdjUsername"));
         findElementByXpath(txtPassword).sendKeys(prop.getProperty("dsnpAdjPassword"));
         findElementByXpath(btnLogin).click();
-        String username = findElementByID(lnkUsername).getText();
+        String username = explicitElementClickableWaitByID(lnkUsername, 5).getText();
+//        String username = findElementByID(lnkUsername).getText();
         System.out.println("User logged in as : " + username);
         Assert.assertEquals(dsnpAdjExp, username);
     }
