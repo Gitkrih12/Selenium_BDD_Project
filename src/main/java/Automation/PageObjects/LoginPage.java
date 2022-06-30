@@ -246,7 +246,7 @@ public class LoginPage extends SeleniumUtils {
         System.out.println("Change password button status is : " + isDisplayed(btnChangePassword));
 
         moveToElement(btnLogOut).perform();
-        Assert.assertTrue(isDisplayed(btnLogOut));
+        Assert.assertTrue(isDisplayed(btnLogOut+1));
         System.out.println("Log Out button status is : " + isDisplayed(btnLogOut));
     }
 }
