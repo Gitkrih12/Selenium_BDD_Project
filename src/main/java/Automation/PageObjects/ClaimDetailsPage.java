@@ -8,19 +8,18 @@ import org.openqa.selenium.WebElement;
 
 public class ClaimDetailsPage extends SeleniumUtils {
 
-    String titleFFSProfessionalPage = "FFS Professional";
+    String FFSProfessional = "//*[contains(text(), 'FFS Professional')]";
     String claimNumber = "//*[@id='pendGrid']//div[3]/div[1]/div[1]/div[2]";
-    String actualClaimSummaryTitle = "Claim Summary";
+    String claimSummaryTitle = "//*[contains(text(), 'Claim Summary')]";
+    String hideOption = "//*[contains(text(), '(Hide)')]";
+    String viewClaimButton = "//*[contains(text(), 'View Claim in CMS 1500')]";
+    String selfAssignButton = "//*[contains(text(), 'Self-Assign')]";
 
 
     //  Scenario: Verify user able to navigate to claim summary screen on clicking claim number
     public void accessFFSProfessionalPage() {
-        explicitVisibilityOfWait(driver.findElement(By.xpath(titleFFSProfessionalPage)), 1000);
-        clickElement(titleFFSProfessionalPage);
-        log.info("User is on FFS Professional page");
-
-        boolean ffsProfessionalPageTitle = getTitle().equals(titleFFSProfessionalPage);
-        Assert.assertTrue(ffsProfessionalPageTitle);
+        explicitVisibilityOfWait(driver.findElement(By.xpath(FFSProfessional)), 1000);
+        clickElement(FFSProfessional);
     }
 
     //  Scenario: Verify user able to navigate to claim summary screen on clicking claim number
@@ -30,12 +29,27 @@ public class ClaimDetailsPage extends SeleniumUtils {
 
     //  Scenario: Verify user able to navigate to claim summary screen on clicking claim number
     public void userNavigatesToClaimSummaryPage() {
-        boolean claimSummaryTitle = getTitle().equals(actualClaimSummaryTitle);
-        Assert.assertTrue(claimSummaryTitle);
+        explicitVisibilityOfWait(driver.findElement(By.xpath(claimSummaryTitle)), 1000);
+        Assert.assertEquals("Claim Summary page is displayed", driver.findElement(
+                By.xpath(claimSummaryTitle)).getText(), "Claim Summary");
     }
 
     //  Scenario: Verify user able to navigate to claim summary screen on clicking claim number
     public void userViewsHideOptionBesideClaimSummary(){
-        Assert.assertEquals("Hide option is displayed", driver.findElement(By.linkText("Hide")), "Hide");
+        explicitVisibilityOfWait(driver.findElement(By.xpath(hideOption)), 1000);
+        Assert.assertEquals("Hide option is displayed", driver.findElement(By.xpath(hideOption)).getText(), "(Hide)");
+    }
+
+    //  Scenario: Verify View Claim in CMS 1500 and Self Assign buttons in Claim Summary details page
+    public void userViewsSelfAssignAndCMSButtons(){
+        explicitVisibilityOfWait(driver.findElement(By.xpath(viewClaimButton)),1000);
+        Assert.assertEquals("View Claim in CMS 1500 button should display", driver.findElement(
+                By.xpath(viewClaimButton)).getText(), "View Claim in CMS 1500");
+        Assert.assertEquals("Self-Assign button should display", driver.findElement(
+                By.xpath(selfAssignButton)).getText(), "Self-Assign");
+    }
+
+    public void userViewsAllColumnFieldsInClaimSummaryDetails(){
+
     }
 }
