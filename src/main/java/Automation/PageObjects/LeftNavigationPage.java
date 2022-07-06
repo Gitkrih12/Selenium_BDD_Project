@@ -14,7 +14,7 @@ public class LeftNavigationPage extends SeleniumUtils {
     String expandedExpText = "rotate(180deg)";
     String collapsedExpText = "rotate(0deg)";
     String mnuMainItems = "//div[@class='menuitemsnames']/../..//following::span[1]";
-    String mnuAccountManagement = "//span[@class='mat-content ng-tns-c183-12']";
+    String mnuAccountManagement = "//div[contains(text(),'Account Management')]";
     String mnuArLedger = "//div[contains(text(),'A/R Ledger')]";
     String mnuAdjudicationList = "(//div[contains(@class,'mat-expansion-panel-body')])[1]//div[@class='menuitemschaild']";
     String mnuCheckManagement = "//div[contains(text(),'Check Management')]";
