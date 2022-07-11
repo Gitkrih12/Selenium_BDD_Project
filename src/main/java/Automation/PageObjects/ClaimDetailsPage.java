@@ -38,7 +38,7 @@ public class ClaimDetailsPage extends SeleniumUtils {
 
     //  Scenario: Verify user able to navigate to claim summary screen on clicking claim number
     public void userClicksOnClaimNumber() {
-        explicitVisibilityOfWait(driver.findElement(By.xpath(claimNumber)), 2000);
+        explicitVisibilityOfWait(driver.findElement(By.xpath(claimNumber)), 5000);
         clickElement(claimNumber);
     }
 

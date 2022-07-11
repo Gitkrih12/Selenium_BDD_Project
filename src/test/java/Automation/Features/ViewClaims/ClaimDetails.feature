@@ -3,6 +3,7 @@ Feature: Claim Details
   Background:
     Given the user enters the valid username and password and click on login button for admin role
     When user lands directly to the page
+    Then user should navigate to the DSNP admin page after successful login
 
   @37332
   Scenario: Verify user able to navigate to claim summary screen on clicking claim number
