@@ -28,6 +28,11 @@ public class ClaimDetailsPage extends SeleniumUtils {
     String memberInformationFields = "//*[@id='nav-claim-details']/div[5]/div[1]/div | //*[@id='nav-claim-details']/div[6]/div[1]/div | " +
             "//*[@id='nav-claim-details']/div[7]/div[1]/div | //*[@id='nav-claim-details']/div[8]/div[1]/div";
     String renderingProviderInformationFields = "//*[@id='nav-claim-details']/div[9]/div[1]/div";
+    String billingProviderInformationFields = "//*[@id='nav-claim-details']/div[10]/div[1]/div | //*[@id='nav-claim-details']/div[11]" +
+            "/div[1]/div | //*[@id='nav-claim-details']/div[12]/div[1]/div";
+    String payerFields = "//*[@id='nav-claim-details']/div[13]/div[1]/div | //*[@id='nav-claim-details']/div[14]/div[1]/div";
+    String dateOfServiceFields = "//*[@id='nav-claim-details']/div[15]/div[1]/div[1]/div";
+    String isPatientConditionRelatedToField = "//*[@id='nav-claim-details']/div[15]/div[2]/div/div";
 
 
     //  Scenario: Verify user able to navigate to claim summary screen on clicking claim number
@@ -90,7 +95,7 @@ public class ClaimDetailsPage extends SeleniumUtils {
         for (WebElement column : ActTabsList) {
             scrollIntoView(column, getWebDriver());
             String text = column.getText();
-            System.out.println("Column Fields in Claim Summary page  : " + text);
+            System.out.println("Tabs list in Claim Summary page  : " + text);
             tabsListForCompare.add(text);
         }
         if (tabsListForCompare.equals(tabsListExp)) {
@@ -131,7 +136,7 @@ public class ClaimDetailsPage extends SeleniumUtils {
         for (WebElement column : ActSections) {
             scrollIntoView(column, getWebDriver());
             String text = column.getText();
-            System.out.println("Footer fields in Claim Summary page :" + text);
+            System.out.println("Fields in Claim Details section page :" + text);
             sectionsForCompare.add(text);
         }
         if (sectionsForCompare.equals(claimDetailsSectionsExp)) {
@@ -148,7 +153,7 @@ public class ClaimDetailsPage extends SeleniumUtils {
         for (WebElement column : ActFields) {
             scrollIntoView(column, getWebDriver());
             String text = column.getText();
-            System.out.println("Footer fields in Claim Summary page :" + text);
+            System.out.println("Fields in Claim Information section :" + text);
             fieldsForCompare.add(text);
         }
         if (fieldsForCompare.equals(claimInfoFieldsExp)) {
@@ -165,7 +170,7 @@ public class ClaimDetailsPage extends SeleniumUtils {
         for (WebElement column : ActFields) {
             scrollIntoView(column, getWebDriver());
             String text = column.getText();
-            System.out.println("Footer fields in Claim Summary page :" + text);
+            System.out.println("Fields in Payment Information section :" + text);
             fieldsForCompare.add(text);
         }
         if (fieldsForCompare.equals(paymentInfoFieldsExp)) {
@@ -194,7 +199,7 @@ public class ClaimDetailsPage extends SeleniumUtils {
         for (WebElement column : ActFields) {
             scrollIntoView(column, getWebDriver());
             String text = column.getText();
-            System.out.println("Footer fields in Claim Summary page :" + text);
+            System.out.println("Fields in Member Information section :" + text);
             fieldsForCompare.add(text);
         }
         if (fieldsForCompare.equals(memberInfoFieldsExp)) {
@@ -211,7 +216,7 @@ public class ClaimDetailsPage extends SeleniumUtils {
         for (WebElement column : ActFields) {
             scrollIntoView(column, getWebDriver());
             String text = column.getText();
-            System.out.println("Footer fields in Claim Summary page :" + text);
+            System.out.println("Fields in Rendering Provider Information section :" + text);
             fieldsForCompare.add(text);
         }
         if (fieldsForCompare.equals(renderingProviderInfoFieldsExp)) {
