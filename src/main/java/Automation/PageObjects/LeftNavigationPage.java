@@ -18,7 +18,7 @@ public class LeftNavigationPage extends SeleniumUtils {
     String mnuArLedger = "//div[contains(text(),'A/R Ledger')]";
     String mnuAdjudicationList = "(//div[contains(@class,'mat-expansion-panel-body')])[1]//div[@class='menuitemschaild']";
     String mnuCheckManagement = "//div[contains(text(),'Check Management')]";
-    String mnuCheckManagementList = "//div[@class='mat-expansion-panel-body ng-tns-c181-13']//div[@class='menuitemschaild']";
+    String mnuCheckManagementList = "(//div[contains(@class,'mat-expansion-panel-body')])[6]//div[@class='menuitemschaild']";
     String mnuFeeSchedule = "//div[contains(text(),'Fee Schedule')]";
     String mnuMedicare = "//div[contains(text(),'Medicare')]";
     String mnuMedicaid = "//div[contains(text(),'Medicaid')]";
@@ -121,13 +121,50 @@ public class LeftNavigationPage extends SeleniumUtils {
         System.out.println("AR Ledger menu status is : " + isDisplayed(mnuArLedger));
     }
 
+    //    Scenario: Validate Adjudication Menu for admin role
+    public void validateAdjudicationSubMenusForAdmin(DataTable adjList)
+    {
+        List<String> adjListExp = adjList.asList();
+        List<WebElement> adjSubMenusList = findElementsByXpath(mnuAdjudicationList);
+        List<String> adjListAct = new ArrayList<>();
 
+        for (WebElement list:adjSubMenusList)
+        {
+            String text = list.getText();
+            adjListAct.add(text);
+        }
+        System.out.println("Actual adjudication list : " + adjListAct);
+        System.out.println("Expected adjudication list : " + adjListExp);
 
-//    List<String> adjList = adjudicationList.asList();
-//        for (String list:adjList)
-//    {
-//        System.out.println(list);
-//    }
+        if (adjListAct.equals(adjListExp))
+        {
+            Assert.assertTrue(true);
+        }
+
+    }
+
+    //    Scenario: Validate Check Management Menu for admin role
+    public void validateCheckManagementSubMenus(DataTable checkManagementList) throws InterruptedException {
+
+        List<String> checkManagementListExp = checkManagementList.asList();
+        findElementByXpath(mnuCheckManagement).click();
+        List<WebElement> checkMngmtSubMenusList = findElementsByXpath(mnuCheckManagementList);
+        List<String> checkManagementListAct = new ArrayList<>();
+
+        for (WebElement checkList: checkMngmtSubMenusList)
+        {
+            moveToElement(checkList).perform();
+            String text = checkList.getText();
+            checkManagementListAct.add(text);
+        }
+        System.out.println("Actual check management list is : " + checkManagementListAct);
+        System.out.println("Expected check management list is : " + checkManagementListExp);
+
+        if (checkManagementListAct.equals(checkManagementListExp))
+        {
+            Assert.assertTrue(true);
+        }
+    }
 
 
 }

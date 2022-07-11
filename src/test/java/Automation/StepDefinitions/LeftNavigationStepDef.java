@@ -23,4 +23,18 @@ public class LeftNavigationStepDef extends LeftNavigationPage {
         validateARLedgerMenu();
     }
 
+    //    Scenario: Validate Adjudication Menu for admin role
+    @Then("user should able to view the Home, Global Search, Claim Reprocess, Claims Assignment Menu under Adjudication Menu")
+    public void user_should_able_to_view_the_home_global_search_claim_reprocess_claims_assignment_menu_under_adjudication_menu(DataTable adjList) {
+        validateAdjudicationSubMenusForAdmin(adjList);
+    }
+
+    //    Scenario: Validate Check Management Menu for admin role
+    @Then("user should able to view the Check Refund, Check Void, Check Reissue, Check Register Menu's under Check Management Menu")
+    public void user_should_able_to_view_the_check_refund_check_void_check_reissue_check_register_menu_s_under_check_management_menu(DataTable checkManagementList) throws InterruptedException {
+        validateCheckManagementSubMenus(checkManagementList);
+    }
+
+
+
 }

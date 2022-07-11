@@ -16,3 +16,20 @@ Feature: Left Navigation
     When left navigation loaded
     Then user should able to view the AR Ledger Menu under Account Management Menu
 
+  @34864
+  Scenario: Validate Adjudication Menu for admin role
+    When left navigation loaded
+    Then user should able to view the Home, Global Search, Claim Reprocess, Claims Assignment Menu under Adjudication Menu
+      |Home|
+      |Global Search|
+      |Claims Reprocess|
+      |Claims Assignment|
+
+  @34891
+  Scenario: Validate Check Management Menu for admin role
+    When left navigation loaded
+    Then user should able to view the Check Refund, Check Void, Check Reissue, Check Register Menu's under Check Management Menu
+      |Check Refund|
+      |Check Void|
+      |Check Reissue|
+      |Check Register|
