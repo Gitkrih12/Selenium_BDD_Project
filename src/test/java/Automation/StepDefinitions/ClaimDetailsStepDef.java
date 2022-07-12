@@ -80,25 +80,25 @@ public class ClaimDetailsStepDef extends ClaimDetailsPage {
         userViewsPaymentInformationFields(paymentInfoFields);
     }
 
-    //  Validate Clean status
+    //  Scenario: Validate Clean status
     @Then("user can check the claim status as Clean")
     public void user_can_check_the_claim_status_as_clean() {
         verifyClaimStatusAsClean();
     }
 
-    //  Validate Unclean status
+    //  Scenario: Validate Unclean status
     @Then("user claim status as Un-Clean is unchecked by default")
     public void user_claim_status_as_un_clean_is_unchecked_by_default() {
         verifyClaimStatusforUncleanIsUnchecked();
     }
 
-    //  Validate Member Information section
+    //  Scenario: Validate Member Information section
     @Then("user able to view the below fields under Member Information section")
     public void user_able_to_view_the_below_fields_under_member_information_section(DataTable memberInfoSection) {
         verifyFieldsUnderMemberInformationSection(memberInfoSection);
     }
 
-    //  Validate Rendering Provider Information section
+    //  Scenario: Validate Rendering Provider Information section
     @Then("user able to view the below fields under Rendering Provider information section")
     public void user_able_to_view_the_below_fields_under_rendering_provider_information_section(DataTable renderingProviderInfoSection) {
         verifyFieldsUnderRenderingProviderInformationSection(renderingProviderInfoSection);

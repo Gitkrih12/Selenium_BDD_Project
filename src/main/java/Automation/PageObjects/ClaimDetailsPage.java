@@ -33,6 +33,7 @@ public class ClaimDetailsPage extends SeleniumUtils {
     String payerFields = "//*[@id='nav-claim-details']/div[13]/div[1]/div | //*[@id='nav-claim-details']/div[14]/div[1]/div";
     String dateOfServiceFields = "//*[@id='nav-claim-details']/div[15]/div[1]/div[1]/div";
     String isPatientConditionRelatedToField = "//*[@id='nav-claim-details']/div[15]/div[2]/div/div";
+    String showOption = "//*[contains(text(), '(Show)')]";
 
 
     //  Scenario: Verify user able to navigate to claim summary screen on clicking claim number
@@ -178,19 +179,19 @@ public class ClaimDetailsPage extends SeleniumUtils {
         }
     }
 
-    //  Validate Clean status
+    //  Scenario: Validate Clean status
     public void verifyClaimStatusAsClean() {
         boolean cleanStatus = driver.findElement(By.xpath("//*[@ng-reflect-model = 'true']")).isSelected();
         Assert.assertTrue(cleanStatus);
     }
 
-    //  Validate Unclean status
+    //  Scenario: Validate Unclean status
     public void verifyClaimStatusforUncleanIsUnchecked() {
         boolean uncleanStatus = driver.findElement(By.xpath("( //*[@ng-reflect-model = 'false'])[1]")).isSelected();
         Assert.assertFalse(uncleanStatus);
     }
 
-    //  Validate Member Information section
+    //  Scenario: Validate Member Information section
     public void verifyFieldsUnderMemberInformationSection(DataTable memberInfoSection) {
         List<String> memberInfoFieldsExp = memberInfoSection.asList();
         List<WebElement> ActFields = findElementsByXpath(memberInformationFields);
@@ -207,7 +208,7 @@ public class ClaimDetailsPage extends SeleniumUtils {
         }
     }
 
-    //  Validate Rendering Provider Information section
+    //  Scenario: Validate Rendering Provider Information section
     public void verifyFieldsUnderRenderingProviderInformationSection(DataTable renderingProviderInfoSection) {
         List<String> renderingProviderInfoFieldsExp = renderingProviderInfoSection.asList();
         List<WebElement> ActFields = findElementsByXpath(renderingProviderInformationFields);
