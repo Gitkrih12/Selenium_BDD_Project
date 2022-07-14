@@ -17,14 +17,18 @@ public class ProviderDetailsPage extends SeleniumUtils {
     String groupRenderingProviderDetailsFields = "//*[@class='table table-striped']//tr//th";
     String footerSectionBtn = "//*[@class='button-padding-left footer']//button";
 
+
+    // Scenario: Verify user able to navigate to the Provider details tab in the View Claims Form page
     public void clickOnProviderDetails(){
         clickElement(providerDetailsTab);
     }
 
+    // Scenario: Verify user able to navigate to the Provider details tab in the View Claims Form page
     public void userNavigatedToProvideDetails(){
         Assert.assertEquals("Provider Details", driver.findElement(By.xpath(providerDetailsTab)).getText());
     }
 
+    //  Scenario: Verify user able to view the Pay to Provider Details and Group/Rendering Provider Details section under Provider Details tab
     public void userShouldViewProviderDetailsSection(DataTable providerDetailsSection){
         List<String> sectionsExp = providerDetailsSection.asList();
         List<WebElement> ActSections = findElementsByXpath(providerDetailsSections);
@@ -41,6 +45,7 @@ public class ProviderDetailsPage extends SeleniumUtils {
         }
     }
 
+    //  Scenario: Verify user able to view all the fields under Pay to Provider Details section
     public void userViewsFieldsUnderPayToProviderDetailsSection(DataTable fieldsUnderPayToProviderDetails){
         List<String> fieldsExp = fieldsUnderPayToProviderDetails.asList();
         List<WebElement> ActFields = findElementsByXpath(payToProviderDetailsFields);
@@ -57,6 +62,7 @@ public class ProviderDetailsPage extends SeleniumUtils {
         }
     }
 
+    //  Scenario: Verify user able to view all the fields under Group/Rendering Provider Details section
     public void userViewsFieldsUnderGroupRenderingProviderDetailsSection(DataTable fieldsUnderGroupRendering){
         List<String> fieldsExp = fieldsUnderGroupRendering.asList();
         List<WebElement> ActFields = findElementsByXpath(groupRenderingProviderDetailsFields);
@@ -73,6 +79,7 @@ public class ProviderDetailsPage extends SeleniumUtils {
         }
     }
 
+    //  Scenario: Validate all the buttons available at the footer section under Provider Details tab
     public void userViewsFooterSectionInServiceDetails(DataTable footerSection){
         List<String> footerSectionExp = footerSection.asList();
         List<WebElement> ActFooterSection = findElementsByXpath(footerSectionBtn);
