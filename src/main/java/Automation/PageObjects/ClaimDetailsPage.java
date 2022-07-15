@@ -69,7 +69,7 @@ public class ClaimDetailsPage extends SeleniumUtils {
         List<String> columnListExp = columnList.asList();
         List<WebElement> ActColumnFields = findElementsByXpath(columnFields);
         List<String> columnFieldsForCompare = new ArrayList<>();
-        System.out.println("Size " + columnFieldsForCompare.size());
+        System.out.println("Size " + ActColumnFields.size());
         for (WebElement column : ActColumnFields) {
             scrollIntoView(column, driver);
             String text = column.getText();
@@ -86,7 +86,7 @@ public class ClaimDetailsPage extends SeleniumUtils {
         List<String> tabsListExp = tabsList.asList();
         List<WebElement> ActTabsList = findElementsByXpath(lstClaimSummaryTab);
         List<String> tabsListForCompare = new ArrayList<>();
-        System.out.println("Size " + tabsListForCompare.size());
+        System.out.println("Size " + ActTabsList.size());
         for (WebElement column : ActTabsList) {
             scrollIntoView(column, driver);
             String text = column.getText();
@@ -103,7 +103,7 @@ public class ClaimDetailsPage extends SeleniumUtils {
         List<String> footerFieldsExp = footerFields.asList();
         List<WebElement> ActFooterFields = findElementsByXpath(btnFooterFields);
         List<String> fieldsForCompare = new ArrayList<>();
-        System.out.println("Size" + fieldsForCompare.size());
+        System.out.println("Size" + ActFooterFields.size());
         for (WebElement column : ActFooterFields) {
             scrollIntoView(column, driver);
             String text = column.getText();
@@ -125,7 +125,7 @@ public class ClaimDetailsPage extends SeleniumUtils {
         List<String> claimDetailsSectionsExp = claimDetailsSections.asList();
         List<WebElement> ActSections = findElementsByXpath(eleClaimDetailsSection);
         List<String> sectionsForCompare = new ArrayList<>();
-        System.out.println("Size" + sectionsForCompare.size());
+        System.out.println("Size" + ActSections.size());
         for (WebElement column : ActSections) {
             scrollIntoView(column, driver);
             String text = column.getText();
@@ -142,7 +142,7 @@ public class ClaimDetailsPage extends SeleniumUtils {
         List<String> claimInfoFieldsExp = claimInfoFields.asList();
         List<WebElement> ActFields = findElementsByXpath(claimInformationFields);
         List<String> fieldsForCompare = new ArrayList<>();
-        System.out.println("Size" + fieldsForCompare.size());
+        System.out.println("Size" + ActFields.size());
         for (WebElement column : ActFields) {
             scrollIntoView(column, driver);
             String text = column.getText();
@@ -159,7 +159,7 @@ public class ClaimDetailsPage extends SeleniumUtils {
         List<String> paymentInfoFieldsExp = paymentInfoFields.asList();
         List<WebElement> ActFields = findElementsByXpath(paymentInformationFields);
         List<String> fieldsForCompare = new ArrayList<>();
-        System.out.println("Size" + fieldsForCompare.size());
+        System.out.println("Size" + ActFields.size());
         for (WebElement column : ActFields) {
             scrollIntoView(column, driver);
             String text = column.getText();
@@ -188,7 +188,7 @@ public class ClaimDetailsPage extends SeleniumUtils {
         List<String> memberInfoFieldsExp = memberInfoSection.asList();
         List<WebElement> ActFields = findElementsByXpath(memberInformationFields);
         List<String> fieldsForCompare = new ArrayList<>();
-        System.out.println("Size" + fieldsForCompare.size());
+        System.out.println("Size" + ActFields.size());
         for (WebElement column : ActFields) {
             scrollIntoView(column, driver);
             String text = column.getText();
@@ -205,7 +205,7 @@ public class ClaimDetailsPage extends SeleniumUtils {
         List<String> renderingProviderInfoFieldsExp = renderingProviderInfoSection.asList();
         List<WebElement> ActFields = findElementsByXpath(renderingProviderInformationFields);
         List<String> fieldsForCompare = new ArrayList<>();
-        System.out.println("Size" + fieldsForCompare.size());
+        System.out.println("Size" + ActFields.size());
         for (WebElement column : ActFields) {
             scrollIntoView(column, driver);
             String text = column.getText();
