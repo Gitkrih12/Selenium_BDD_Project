@@ -43,4 +43,18 @@ public class ProviderDetailsStepDef extends ProviderDetailsPage {
         userViewsFooterSectionInServiceDetails(footerSection);
     }
 
+    @When("clicking on Vendor ID in Provider Details")
+    public void clicking_on_vendor_id_in_provider_details() {
+        clickOnVendorId();
+    }
+
+    @Then("user navigates to the AR Transactions page")
+    public void user_navigates_to_the_a_r_transactions_page() {
+        userNavigatesToARTransactionsPage();
+    }
+
+    @Then("user able to view Credit Overpaid and Debit Underpaid status")
+    public void user_able_to_view_credit_overpaid_and_debit_underpaid_status() {
+        userViewsCreditOverPaidAndDebitUnderPaidStatus();
+    }
 }

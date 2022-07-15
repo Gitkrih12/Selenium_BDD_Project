@@ -61,3 +61,17 @@ Feature: Provider Details
       | Deny              |
       | Approve           |
       | Update Auth       |
+
+  @48990
+  Scenario: Verify the user able to navigate to the A/R Transactions page on clicking Vendor ID in Provider details tab view
+    When user clicking on Claim Number "P0020021100018" in Global Search page
+    And user clicks on the Provider Details tab
+    When clicking on Vendor ID in Provider Details
+    Then user navigates to the AR Transactions page
+
+  @47008
+  Scenario: Verify user able to view the Credit/Overpaid and Debit/Underpaid status at the middle of the A/R Ledger
+    When user clicking on Claim Number "P0020021100018" in Global Search page
+    And user clicks on the Provider Details tab
+    When clicking on Vendor ID in Provider Details
+    Then user able to view Credit Overpaid and Debit Underpaid status

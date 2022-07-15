@@ -16,6 +16,8 @@ public class ProviderDetailsPage extends SeleniumUtils {
     String payToProviderDetailsFields = "//*[contains(text(), 'Pay to Provider details')]//following::div[@class = 'row']//div";
     String groupRenderingProviderDetailsFields = "//*[@class='table table-striped']//tr//th";
     String footerSectionBtn = "//*[@class='button-padding-left footer']//button";
+    String vendorId = "(//*[@id='nav-claim-details']//a)[3]";
+    String arTransactionsTitle = "//*[@class='claims-list']";
 
 
     // Scenario: Verify user able to navigate to the Provider details tab in the View Claims Form page
@@ -94,5 +96,19 @@ public class ProviderDetailsPage extends SeleniumUtils {
         if (fieldsForCompare.equals(footerSectionExp)) {
             Assert.assertEquals(footerSectionExp, fieldsForCompare);
         }
+    }
+
+    public void clickOnVendorId(){
+        explicitVisibilityOfWait(findElementByLinkText("V0000000256"), 1000);
+        findElementByLinkText("V0000000256").click();
+    }
+
+    public void userNavigatesToARTransactionsPage(){
+        String ARTransactionTitleActual[] = findElementByXpath(arTransactionsTitle).getText().split(" ");
+        Assert.assertEquals("A/RLedger", ARTransactionTitleActual[0]+ARTransactionTitleActual[1]);
+    }
+
+    public void userViewsCreditOverPaidAndDebitUnderPaidStatus(){
+
     }
 }
