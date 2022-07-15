@@ -11,17 +11,17 @@ import java.util.List;
 
 public class ClaimDetailsPage extends SeleniumUtils {
 
-    String FFSProfessional = "//*[contains(text(), 'FFS Professional')]";
-    String claimNumber = "(//*[@id='pendGrid']//app-view-claim-render/a)[1]";
-    String claimSummaryTitle = "//*[contains(text(), 'Claim Summary')]";
-    String hideOption = "//*[contains(text(), '(Hide)')]";
-    String viewClaimButton = "//*[contains(text(), 'View Claim in CMS 1500')]";
-    String selfAssignButton = "//*[contains(text(), 'Self-Assign')]";
-    String columnFields = "//*[@id='mat-tab-content-0-2']//app-claimdetails//div[2]//div/table/thead/tr";
-    String claimSummaryTabList = "//*[@id='nav-tab']";
-    String footerFieldsButton = "//*[@id='mat-tab-content-0-2']//app-claimdetails/div/div[3]/div[2]";
-    String claimDetailsTab = "//*[contains(text(), 'Claim Details (EDI)')]";
-    String claimDetailsSection = "//*[@id='nav-claim-details']//h6";
+    String lnkFFSProfessional = "(//*[contains(text(), 'FFS Professional')])[1]";
+    String lnkClaimNumber = "(//*[@id='pendGrid']//app-view-claim-render/a)[1]";
+    String titleClaimSummary = "//*[contains(text(), 'Claim Summary')]";
+    String lnkHideOption = "//*[contains(text(), '(Hide)')]";
+    String btnViewClaim = "//*[contains(text(), 'View Claim in CMS 1500')]";
+    String btnSelfAssign = "//*[contains(text(), 'Self-Assign')]";
+    String columnFields = "//table[@class='table table-borderless']//thead//tr//th";
+    String lstClaimSummaryTab = "//*[@id='nav-tab']";
+    String btnFooterFields = "//*[@id='mat-tab-content-0-2']//app-claimdetails/div/div[3]/div[2]";
+    String eleClaimDetailsTab = "//*[contains(text(), 'Claim Details (EDI)')]";
+    String eleClaimDetailsSection = "//*[@id='nav-claim-details']//h6";
     String claimInformationFields = "//*[@id='nav-claim-details']/div[1]//div";
     String paymentInformationFields = "//*[@id='nav-claim-details']/div[2]/div[1]/div | //*[@id='nav-claim-details']/div[3]/div[1]/div | " +
             "//*[@id='nav-claim-details']/div[4]/div[1]/div";
@@ -38,36 +38,30 @@ public class ClaimDetailsPage extends SeleniumUtils {
 
     //  Scenario: Verify user able to navigate to claim summary screen on clicking claim number
     public void accessFFSProfessionalPage() {
-        explicitVisibilityOfWait(driver.findElement(By.xpath(FFSProfessional)), 1000);
-        clickElement(FFSProfessional);
+        explicitVisibilityOfWait(findElementByXpath(lnkFFSProfessional), 10);
+        clickElement(lnkFFSProfessional);
     }
 
-    //  Scenario: Verify user able to navigate to claim summary screen on clicking claim number
     public void userClicksOnClaimNumber() {
-        explicitVisibilityOfWait(driver.findElement(By.xpath(claimNumber)), 5000);
-        clickElement(claimNumber);
+        explicitVisibilityOfWait(findElementByXpath(lnkClaimNumber), 10);
+        clickElement(lnkClaimNumber);
     }
 
-    //  Scenario: Verify user able to navigate to claim summary screen on clicking claim number
     public void userNavigatesToClaimSummaryPage() {
-        explicitVisibilityOfWait(driver.findElement(By.xpath(claimSummaryTitle)), 1000);
-        Assert.assertEquals("Claim Summary page is displayed", driver.findElement(
-                By.xpath(claimSummaryTitle)).getText(), "Claim Summary");
+        explicitVisibilityOfWait(findElementByXpath(titleClaimSummary), 10);
+        Assert.assertEquals("Claim Summary", findElementByXpath(titleClaimSummary).getText());
     }
 
-    //  Scenario: Verify user able to navigate to claim summary screen on clicking claim number
     public void userViewsHideOptionBesideClaimSummary() {
-        explicitVisibilityOfWait(driver.findElement(By.xpath(hideOption)), 1000);
-        Assert.assertEquals("Hide option is displayed", driver.findElement(By.xpath(hideOption)).getText(), "(Hide)");
+        explicitVisibilityOfWait(findElementByXpath(lnkHideOption), 10);
+        Assert.assertEquals("(Hide)", findElementByXpath(lnkHideOption).getText());
     }
 
     //  Scenario: Verify View Claim in CMS 1500 and Self Assign buttons in Claim Summary details page
     public void userViewsSelfAssignAndCMSButtons() {
-        explicitVisibilityOfWait(driver.findElement(By.xpath(viewClaimButton)), 1000);
-        Assert.assertEquals("View Claim in CMS 1500 button should display", driver.findElement(
-                By.xpath(viewClaimButton)).getText(), "View Claim in CMS 1500");
-        Assert.assertEquals("Self-Assign button should display", driver.findElement(
-                By.xpath(selfAssignButton)).getText(), "Self-Assign");
+        explicitVisibilityOfWait(driver.findElement(By.xpath(btnViewClaim)), 10);
+        Assert.assertEquals("View Claim in CMS 1500", findElementByXpath(btnViewClaim).getText());
+        Assert.assertEquals("Self-Assign", findElementByXpath(btnSelfAssign).getText());
     }
 
     //  Scenario: Verify column fields in Claim Summary details page
@@ -75,9 +69,9 @@ public class ClaimDetailsPage extends SeleniumUtils {
         List<String> columnListExp = columnList.asList();
         List<WebElement> ActColumnFields = findElementsByXpath(columnFields);
         List<String> columnFieldsForCompare = new ArrayList<>();
-        System.out.println("Size " + ActColumnFields.size());
+        System.out.println("Size " + columnFieldsForCompare.size());
         for (WebElement column : ActColumnFields) {
-            scrollIntoView(column, getWebDriver());
+            scrollIntoView(column, driver);
             String text = column.getText();
             System.out.println("Column Fields in Claim Summary page  : " + text);
             columnFieldsForCompare.add(text);
@@ -90,11 +84,11 @@ public class ClaimDetailsPage extends SeleniumUtils {
     //  Scenario: Verify Claim Information section
     public void userViewsClaimSummaryTabList(DataTable tabsList) {
         List<String> tabsListExp = tabsList.asList();
-        List<WebElement> ActTabsList = findElementsByXpath(claimSummaryTabList);
+        List<WebElement> ActTabsList = findElementsByXpath(lstClaimSummaryTab);
         List<String> tabsListForCompare = new ArrayList<>();
-        System.out.println("Size " + ActTabsList.size());
+        System.out.println("Size " + tabsListForCompare.size());
         for (WebElement column : ActTabsList) {
-            scrollIntoView(column, getWebDriver());
+            scrollIntoView(column, driver);
             String text = column.getText();
             System.out.println("Tabs list in Claim Summary page  : " + text);
             tabsListForCompare.add(text);
@@ -107,11 +101,11 @@ public class ClaimDetailsPage extends SeleniumUtils {
     //  Scenario: Verify footer section in Claim Summary details page
     public void userViewsFooterSectionInClaimSummaryDetails(DataTable footerFields) {
         List<String> footerFieldsExp = footerFields.asList();
-        List<WebElement> ActFooterFields = findElementsByXpath(footerFieldsButton);
+        List<WebElement> ActFooterFields = findElementsByXpath(btnFooterFields);
         List<String> fieldsForCompare = new ArrayList<>();
-        System.out.println("Size" + ActFooterFields.size());
+        System.out.println("Size" + fieldsForCompare.size());
         for (WebElement column : ActFooterFields) {
-            scrollIntoView(column, getWebDriver());
+            scrollIntoView(column, driver);
             String text = column.getText();
             System.out.println("Footer fields in Claim Summary page :" + text);
             fieldsForCompare.add(text);
@@ -123,19 +117,17 @@ public class ClaimDetailsPage extends SeleniumUtils {
 
     //  Scenario: Verify Claim Details sections
     public void userViewClaimDetailsByDefault() {
-        explicitVisibilityOfWait(driver.findElement(By.xpath(claimDetailsTab)), 1000);
-        Assert.assertEquals("By default Claim Details tab is displayed",
-                driver.findElement(By.xpath(claimDetailsTab)).getText(), "Claim Details (EDI)");
+        explicitVisibilityOfWait(findElementByXpath(eleClaimDetailsTab), 10);
+        Assert.assertEquals("Claim Details (EDI)", findElementByXpath(eleClaimDetailsTab).getText());
     }
 
-    //  Scenario: Verify Claim Details sections
     public void userViewsClaimDetailsSections(DataTable claimDetailsSections) {
         List<String> claimDetailsSectionsExp = claimDetailsSections.asList();
-        List<WebElement> ActSections = findElementsByXpath(claimDetailsSection);
+        List<WebElement> ActSections = findElementsByXpath(eleClaimDetailsSection);
         List<String> sectionsForCompare = new ArrayList<>();
-        System.out.println("Size" + ActSections.size());
+        System.out.println("Size" + sectionsForCompare.size());
         for (WebElement column : ActSections) {
-            scrollIntoView(column, getWebDriver());
+            scrollIntoView(column, driver);
             String text = column.getText();
             System.out.println("Fields in Claim Details section page :" + text);
             sectionsForCompare.add(text);
@@ -150,9 +142,9 @@ public class ClaimDetailsPage extends SeleniumUtils {
         List<String> claimInfoFieldsExp = claimInfoFields.asList();
         List<WebElement> ActFields = findElementsByXpath(claimInformationFields);
         List<String> fieldsForCompare = new ArrayList<>();
-        System.out.println("Size" + ActFields.size());
+        System.out.println("Size" + fieldsForCompare.size());
         for (WebElement column : ActFields) {
-            scrollIntoView(column, getWebDriver());
+            scrollIntoView(column, driver);
             String text = column.getText();
             System.out.println("Fields in Claim Information section :" + text);
             fieldsForCompare.add(text);
@@ -167,9 +159,9 @@ public class ClaimDetailsPage extends SeleniumUtils {
         List<String> paymentInfoFieldsExp = paymentInfoFields.asList();
         List<WebElement> ActFields = findElementsByXpath(paymentInformationFields);
         List<String> fieldsForCompare = new ArrayList<>();
-        System.out.println("Size" + ActFields.size());
+        System.out.println("Size" + fieldsForCompare.size());
         for (WebElement column : ActFields) {
-            scrollIntoView(column, getWebDriver());
+            scrollIntoView(column, driver);
             String text = column.getText();
             System.out.println("Fields in Payment Information section :" + text);
             fieldsForCompare.add(text);
@@ -181,13 +173,13 @@ public class ClaimDetailsPage extends SeleniumUtils {
 
     //  Scenario: Validate Clean status
     public void verifyClaimStatusAsClean() {
-        boolean cleanStatus = driver.findElement(By.xpath("//*[@ng-reflect-model = 'true']")).isSelected();
+        boolean cleanStatus = findElementByXpath("//*[@ng-reflect-model = 'true']").isSelected();
         Assert.assertTrue(cleanStatus);
     }
 
     //  Scenario: Validate Unclean status
-    public void verifyClaimStatusforUncleanIsUnchecked() {
-        boolean uncleanStatus = driver.findElement(By.xpath("( //*[@ng-reflect-model = 'false'])[1]")).isSelected();
+    public void verifyClaimStatusForUncleanIsUnchecked() {
+        boolean uncleanStatus = findElementByXpath("( //*[@ng-reflect-model = 'false'])[1]").isSelected();
         Assert.assertFalse(uncleanStatus);
     }
 
@@ -196,9 +188,9 @@ public class ClaimDetailsPage extends SeleniumUtils {
         List<String> memberInfoFieldsExp = memberInfoSection.asList();
         List<WebElement> ActFields = findElementsByXpath(memberInformationFields);
         List<String> fieldsForCompare = new ArrayList<>();
-        System.out.println("Size" + ActFields.size());
+        System.out.println("Size" + fieldsForCompare.size());
         for (WebElement column : ActFields) {
-            scrollIntoView(column, getWebDriver());
+            scrollIntoView(column, driver);
             String text = column.getText();
             System.out.println("Fields in Member Information section :" + text);
             fieldsForCompare.add(text);
@@ -213,9 +205,9 @@ public class ClaimDetailsPage extends SeleniumUtils {
         List<String> renderingProviderInfoFieldsExp = renderingProviderInfoSection.asList();
         List<WebElement> ActFields = findElementsByXpath(renderingProviderInformationFields);
         List<String> fieldsForCompare = new ArrayList<>();
-        System.out.println("Size" + ActFields.size());
+        System.out.println("Size" + fieldsForCompare.size());
         for (WebElement column : ActFields) {
-            scrollIntoView(column, getWebDriver());
+            scrollIntoView(column, driver);
             String text = column.getText();
             System.out.println("Fields in Rendering Provider Information section :" + text);
             fieldsForCompare.add(text);

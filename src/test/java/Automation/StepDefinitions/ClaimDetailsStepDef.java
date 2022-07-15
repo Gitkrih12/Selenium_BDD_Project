@@ -14,27 +14,24 @@ public class ClaimDetailsStepDef extends ClaimDetailsPage {
         accessFFSProfessionalPage();
     }
 
-    //  Scenario: Verify user able to navigate to claim summary screen on clicking claim number
     @When("user clicks on the Claim Number")
     public void user_clicks_on_the_claim_number() {
         userClicksOnClaimNumber();
     }
 
-    //  Scenario: Verify user able to navigate to claim summary screen on clicking claim number
     @Then("user navigates to the Claim Summary page")
     public void user_navigates_to_the_claim_summary_page() {
         userNavigatesToClaimSummaryPage();
     }
 
-    //  Scenario: Verify user able to navigate to claim summary screen on clicking claim number
     @Then("user should view hide option besides Claim Summary")
     public void user_should_view_hide_option_besides_claim_summary() {
         userViewsHideOptionBesideClaimSummary();
     }
 
     //  Scenario: Verify View Claim in CMS 1500 and Self Assign buttons in Claim Summary details page
-    @Then("user should view CMS {int} and Self Assign buttons in Claim Summary details page")
-    public void user_should_view_cms_and_self_assign_buttons_in_claim_summary_details_page(Integer int1) {
+    @Then("user should view CMS 1500 and Self Assign buttons in Claim Summary details page")
+    public void user_should_view_cms_and_self_assign_buttons_in_claim_summary_details_page() {
         userViewsSelfAssignAndCMSButtons();
     }
 
@@ -62,7 +59,6 @@ public class ClaimDetailsStepDef extends ClaimDetailsPage {
         userViewClaimDetailsByDefault();
     }
 
-    //  Scenario: Verify Claim Details sections
     @Then("user view Claim Details sections as below")
     public void user_view_claim_details_sections_as_below(DataTable claimDetailsSections) {
         userViewsClaimDetailsSections(claimDetailsSections);
@@ -89,7 +85,7 @@ public class ClaimDetailsStepDef extends ClaimDetailsPage {
     //  Scenario: Validate Unclean status
     @Then("user claim status as Un-Clean is unchecked by default")
     public void user_claim_status_as_un_clean_is_unchecked_by_default() {
-        verifyClaimStatusforUncleanIsUnchecked();
+        verifyClaimStatusForUncleanIsUnchecked();
     }
 
     //  Scenario: Validate Member Information section
