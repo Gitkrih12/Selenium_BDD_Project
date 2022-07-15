@@ -49,7 +49,7 @@ public class ServiceDetailsPage extends SeleniumUtils {
         List<String> columnListExp = columnList.asList();
         List<WebElement> ActColumnFields = findElementsByXpath(serviceDetailsColumnFields);
         List<String> columnFieldsForCompare = new ArrayList<>();
-        System.out.println("Size " + columnFieldsForCompare.size());
+        System.out.println("Size " + ActColumnFields.size());
         for (WebElement column : ActColumnFields) {
             scrollIntoView(column, driver);
             String text = column.getText();
@@ -66,7 +66,7 @@ public class ServiceDetailsPage extends SeleniumUtils {
         List<String> serviceLineFieldsExp = serviceLineFields.asList();
         List<WebElement> ActColumnFields = findElementsByXpath(serviceLineFieldsTable);
         List<String> columnFieldsForCompare = new ArrayList<>();
-        System.out.println("Size " + columnFieldsForCompare.size());
+        System.out.println("Size " + ActColumnFields.size());
         for (WebElement column : ActColumnFields) {
             scrollIntoView(column, driver);
             String text = column.getText();
@@ -83,7 +83,7 @@ public class ServiceDetailsPage extends SeleniumUtils {
         List<String> footerFieldsExp = footerFields.asList();
         List<WebElement> ActFooterFields = findElementsByXpath(btnFooterFields);
         List<String> fieldsForCompare = new ArrayList<>();
-        System.out.println("Size" + fieldsForCompare.size());
+        System.out.println("Size" + ActFooterFields.size());
         for (WebElement column : ActFooterFields) {
             scrollIntoView(column, driver);
             String text = column.getText();
