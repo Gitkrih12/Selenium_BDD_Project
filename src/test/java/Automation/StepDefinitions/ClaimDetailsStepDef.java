@@ -19,20 +19,21 @@ public class ClaimDetailsStepDef extends ClaimDetailsPage {
         userClicksOnClaimNumber();
     }
 
-    @Then("user navigates to the Claim Summary page")
-    public void user_navigates_to_the_claim_summary_page() {
-        userNavigatesToClaimSummaryPage();
+    @Then("user navigates to the {string} page")
+    public void user_navigates_to_the_page(String expPageTitle) {
+        userNavigatesToClaimSummaryPage(expPageTitle);
     }
 
-    @Then("user should view hide option besides Claim Summary")
-    public void user_should_view_hide_option_besides_claim_summary() {
-        userViewsHideOptionBesideClaimSummary();
+    @Then("user should view {string} option besides Claim Summary")
+    public void user_should_view_option_besides_claim_summary(String expOption) {
+        userViewsHideOptionBesideClaimSummary(expOption);
     }
 
     //  Scenario: Verify View Claim in CMS 1500 and Self Assign buttons in Claim Summary details page
-    @Then("user should view CMS 1500 and Self Assign buttons in Claim Summary details page")
-    public void user_should_view_cms_and_self_assign_buttons_in_claim_summary_details_page() {
-        userViewsSelfAssignAndCMSButtons();
+    @Then("user should view {string} and {string} buttons in Claim Summary details page")
+    public void user_should_view_and_buttons_in_claim_summary_details_page(String expViewClaimValue, String expSelfAssignValue) {
+        userViewsCMSButton(expViewClaimValue);
+        userViewsSelfAssignButton(expSelfAssignValue);
     }
 
     //  Scenario: Verify column fields in Claim Summary details page
@@ -54,9 +55,9 @@ public class ClaimDetailsStepDef extends ClaimDetailsPage {
     }
 
     //  Scenario: Verify Claim Details sections
-    @Then("user views Claim Details by default")
-    public void user_views_claim_details_by_default() {
-        userViewClaimDetailsByDefault();
+    @Then("user views Claim Details by default should be {string}")
+    public void user_views_claim_details_by_default_should_be(String expTabState) {
+        userViewClaimDetailsByDefault(expTabState);
     }
 
     @Then("user view Claim Details sections as below")
