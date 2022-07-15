@@ -62,6 +62,7 @@ public class GlobalSearchPage extends SeleniumUtils {
     private static String expDOSTo = "";
     private static String expBillingProvider = "";
 
+    //Scenario: Verify user should get no result by default on Global search page
     public void clickOnGlobalSearch() {
         explicitVisibilityOfWait(findElementByXpath(lnkGlobalSearch), 5);
         clickElement(lnkGlobalSearch);
@@ -80,6 +81,7 @@ public class GlobalSearchPage extends SeleniumUtils {
         }
     }
 
+    //Scenario: Verify Filter and Customize Columns buttons in Global search page
     public void verifyFilterButton() {
         explicitVisibilityOfWait(findElementByXpath(btnFilter), 5);
         boolean value = isDisplayed(btnFilter);
@@ -91,6 +93,7 @@ public class GlobalSearchPage extends SeleniumUtils {
         Assert.assertTrue(value);
     }
 
+    //Scenario: Verify column fields in grid level on Global Search
     public void verifyGlobalSearchColumnFields(DataTable columnList) {
         List<String> columnListExp = columnList.asList();
         List<WebElement> ActColumnFields = findElementsByXpath(columnFeilds);
@@ -107,6 +110,7 @@ public class GlobalSearchPage extends SeleniumUtils {
         }
     }
 
+    //Scenario: Verify search field displayed under each column except follow up column
     public void verifySearchFieldsUnderEachCoulmn() {
         List<WebElement> ActCSearchFields = findElementsByXpath(inputSearchFields);
         for (WebElement column : ActCSearchFields) {
@@ -116,11 +120,13 @@ public class GlobalSearchPage extends SeleniumUtils {
         }
     }
 
+    //Scenario: Verify adjudicator should land on Global Search Page
     public void verifyAdjudicatorLandsOnGlobalSearchPage() {
         boolean value = isDisplayed(activeGlobalSearch);
         Assert.assertTrue(value);
     }
 
+    //Scenario: Verify user enters the Claim Number in the Search field
     public void enterClaimNumberInSearchField(String claimNumber) throws InterruptedException {
         expClaimNumber = claimNumber;
         findElementAndSendKeys(findElementByXpath(inputClaimNumber), claimNumber);
@@ -135,6 +141,7 @@ public class GlobalSearchPage extends SeleniumUtils {
         Assert.assertEquals(expClaimNumber, actClaimNumber);
     }
 
+    //Scenario: Verify user enters the Member ID in the Search field
     public void enterMemberIdInSearchField(String memberId) throws InterruptedException {
         expMemberId = memberId;
         findElementAndSendKeys(findElementByXpath(inputMemberId), memberId);
@@ -150,6 +157,7 @@ public class GlobalSearchPage extends SeleniumUtils {
         Assert.assertEquals(expMemberId, actMemberId);
     }
 
+    //Scenario: Verify user enters the Patient Name in the Search field
     public void enterPatientNameInSearchField(String patientName) throws InterruptedException {
         expPatientName = patientName;
         findElementAndSendKeys(findElementByXpath(inputPatientName), patientName);
@@ -165,6 +173,7 @@ public class GlobalSearchPage extends SeleniumUtils {
         Assert.assertEquals(expPatientName, actPatientName);
     }
 
+    // Scenario: Verify user enters the Billing Provider details in the Search field
     public void enterBillingProviderInSearchField(String BillingProvider) throws InterruptedException {
         expBillingProvider = BillingProvider;
         findElementAndSendKeys(findElementByXpath(inputBillingProvider), BillingProvider);
@@ -180,6 +189,7 @@ public class GlobalSearchPage extends SeleniumUtils {
         Assert.assertEquals(expBillingProvider, actBillingProvider);
     }
 
+    //Scenario: Verify user enters the State name in the Search field
     public void enterStateInSearchField(String state) throws InterruptedException {
         expState = state;
         scrollIntoView(findElementByXpath(inputState), driver);
@@ -196,6 +206,7 @@ public class GlobalSearchPage extends SeleniumUtils {
         Assert.assertEquals(expState, actState);
     }
 
+    //Scenario: Verify user enters the Category value in the Search field
     public void enterCategoryInSearchField(String category) throws InterruptedException {
         expCategory = category;
         scrollIntoView(findElementByXpath(inputCategory), driver);
@@ -212,6 +223,7 @@ public class GlobalSearchPage extends SeleniumUtils {
         Assert.assertEquals(expCategory, actCategory);
     }
 
+    //Scenario: Verify user enters the DOS From details in the Search field
     public void enterDOSFromInSearchField(String DOSFrom) throws InterruptedException {
         expDOSFrom = DOSFrom;
         scrollIntoView(findElementByXpath(inputDOSFrom), driver);
