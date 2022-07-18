@@ -3,6 +3,7 @@ package Automation.Utilities;
 import org.junit.Assert;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.Color;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
@@ -1331,6 +1332,17 @@ public class SeleniumUtils extends Driver {
         } catch (Exception e) {
             System.out.println("Unable to get title");
             return "Unable to get title";
+        }
+    }
+
+    public String getColorCodeForBackground(String xpath){
+        try {
+            String cssValue = findElementByXpath(xpath).getCssValue("background-color");
+            String colorCode = Color.fromString(cssValue).asHex().toUpperCase(Locale.ROOT);
+            return colorCode;
+        }catch(Exception e) {
+            System.out.println("Element not found " + xpath + "|Error - " + e);
+            return null;
         }
     }
     // ************** End of Get related methods **************** //
