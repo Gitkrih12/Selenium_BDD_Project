@@ -95,19 +95,24 @@ public class GlobalSearchPage extends SeleniumUtils {
 
     //Scenario: Verify column fields in grid level on Global Search
     public void verifyGlobalSearchColumnFields(DataTable columnList) {
-        List<String> columnListExp = columnList.asList();
-        List<WebElement> ActColumnFields = findElementsByXpath(columnFeilds);
-        List<String> columnFieldsForCompare = new ArrayList<>();
-        System.out.println("Size " + ActColumnFields.size());
-        for (WebElement column : ActColumnFields) {
+        List<String> expColumnList = columnList.asList();
+        List<WebElement> actColumnFields = findElementsByXpath(columnFeilds);
+        List<String> actualColumnFieldsForCompare = new ArrayList<>();
+
+        for (WebElement column : actColumnFields) {
             scrollIntoView(column, driver);
             String text = column.getText();
-            columnFieldsForCompare.add(text);
+            actualColumnFieldsForCompare.add(text);
         }
-        System.out.println("Column Fields in Global Search : " + columnFieldsForCompare);
-        if (columnFieldsForCompare.equals(columnListExp)) {
-            Assert.assertEquals(columnListExp, columnFieldsForCompare);
-        }
+        System.out.println("actual column fields " + actualColumnFieldsForCompare);
+            for(String expColumn:expColumnList){
+                if(actualColumnFieldsForCompare.contains(expColumn)){
+                    Assert.assertTrue(true);
+                }
+                else{
+                    Assert.fail(expColumn + " column is not as expected");
+                }
+            }
     }
 
     //Scenario: Verify search field displayed under each column except follow up column
@@ -350,11 +355,7 @@ public class GlobalSearchPage extends SeleniumUtils {
         Assert.assertTrue(value);
         String actClaimNumber = findElementByXpath(eleViewclaimTab).getText();
         System.out.println("actual claim number " + actClaimNumber);
-        if (actClaimNumber.contains(expClaimNumber)) {
-            Assert.assertTrue(true);
-        } else {
-            Assert.assertTrue(false);
-        }
+        Assert.assertTrue(actClaimNumber.contains(expClaimNumber));
     }
 
     public void verifyErrorMessage(String expErrorMessage) {
