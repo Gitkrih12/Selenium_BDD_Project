@@ -54,7 +54,7 @@ public class GlobalSearchStepDef extends GlobalSearchPage {
         enterClaimNumberInSearchField(claimNumber);
     }
 
-    @Then("user able to view the exact claim details.")
+    @Then("user able to view the exact claim details")
     public void user_able_to_view_the_exact_claim_details() {
         validateClaimNumberResult();
     }
@@ -77,7 +77,7 @@ public class GlobalSearchStepDef extends GlobalSearchPage {
         enterMemberIdInSearchField(memberId);
     }
 
-    @Then("user able to view the claim details for given member id.")
+    @Then("user able to view the claim details for given member id")
     public void user_able_to_view_the_exact_member_details() {
         validateMemberIDResult();
     }
@@ -99,7 +99,7 @@ public class GlobalSearchStepDef extends GlobalSearchPage {
         enterStateInSearchField(State);
     }
 
-    @Then("user able to view the claim details for given State.")
+    @Then("user able to view the claim details for given State")
     public void user_able_to_view_the_claim_details_for_given_state() {
         validateStateResult();
     }
@@ -110,7 +110,7 @@ public class GlobalSearchStepDef extends GlobalSearchPage {
         enterCategoryInSearchField(category);
     }
 
-    @Then("user able to view the claim details for given Category.")
+    @Then("user able to view the claim details for given Category")
     public void user_able_to_view_the_claim_details_for_given_category() {
         validateCategoryResult();
     }
@@ -143,7 +143,7 @@ public class GlobalSearchStepDef extends GlobalSearchPage {
         enterBillingProviderInSearchField(BillingProvider);
     }
 
-    @Then("user able to view the claim details for given Billing Provider.")
+    @Then("user able to view the claim details for given Billing Provider")
     public void user_able_to_view_the_claim_details_for_given_billing_provider() {
         validateBillingProviderResult();
     }
