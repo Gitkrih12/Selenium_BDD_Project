@@ -52,6 +52,9 @@ public class GlobalSearchPage extends SeleniumUtils {
     String eleCircleWithColorCode = "((//div[@col-id='status']//span[@class='ag-cell-value'])[1]//span//span)[1]";
     String eleVerticalColorforUnclean = "(//div[@col-id='IsClean']//span)[6]";
     String eleUncleanInfoTopGrid = "//div//span[@class='ColorBall']//following::span[contains(text(),'Un-clean')]";
+    String eleCustomizeColumnWindow = "//div[contains(@class,'offcanvas offcanvas-end show')]";
+
+
 
     private static String expClaimNumber = "";
     private static String expMemberId = "";
@@ -94,12 +97,13 @@ public class GlobalSearchPage extends SeleniumUtils {
     }
 
     //Scenario: Verify column fields in grid level on Global Search
-    public void verifyGlobalSearchColumnFields(DataTable columnList) {
+    public void verifyGlobalSearchColumnFields(DataTable columnList) throws InterruptedException {
         List<String> expColumnList = columnList.asList();
         List<WebElement> actColumnFields = findElementsByXpath(columnFeilds);
         List<String> actualColumnFieldsForCompare = new ArrayList<>();
 
         for (WebElement column : actColumnFields) {
+            threadSleep(1000);
             scrollIntoView(column, driver);
             String text = column.getText();
             actualColumnFieldsForCompare.add(text);
@@ -152,7 +156,7 @@ public class GlobalSearchPage extends SeleniumUtils {
         findElementAndSendKeys(findElementByXpath(inputMemberId), memberId);
         threadSleep(1000);
         sendKeysUsingKeyboardInput(inputMemberId);
-        threadSleep(3000);
+        threadSleep(5000);
     }
 
     public void validateMemberIDResult() {
@@ -197,6 +201,7 @@ public class GlobalSearchPage extends SeleniumUtils {
     //Scenario: Verify user enters the State name in the Search field
     public void enterStateInSearchField(String state) throws InterruptedException {
         expState = state;
+        threadSleep(3000);
         scrollIntoView(findElementByXpath(inputState), driver);
         findElementAndSendKeys(findElementByXpath(inputState), state);
         threadSleep(1000);
