@@ -29,7 +29,6 @@ Feature: Global Search
     Then the user should navigate to the Global Search page
     And user should able to see column fields in global Search page
       | Claim Number     |
-      | Follow Up        |
       | Member Id        |
       | Patient          |
       | Billing Provider |
