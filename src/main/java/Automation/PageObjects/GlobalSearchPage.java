@@ -104,11 +104,12 @@ public class GlobalSearchPage extends SeleniumUtils {
 
         for (WebElement column : actColumnFields) {
             threadSleep(1000);
-            //scrollIntoView(column, driver);
+            scrollIntoView(column, driver);
             String text = column.getText();
             actualColumnFieldsForCompare.add(text);
         }
         System.out.println("actual column fields " + actualColumnFieldsForCompare);
+        System.out.println("expected column fields " + expColumnList);
             for(String expColumn:expColumnList){
                 if(actualColumnFieldsForCompare.contains(expColumn)){
                     Assert.assertTrue(true);
