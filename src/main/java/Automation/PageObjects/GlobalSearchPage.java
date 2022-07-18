@@ -202,6 +202,7 @@ public class GlobalSearchPage extends SeleniumUtils {
     public void enterStateInSearchField(String state) throws InterruptedException {
         expState = state;
         threadSleep(3000);
+        scrollIntoView(findElementByXpath(inputCategory), driver);
         scrollIntoView(findElementByXpath(inputState), driver);
         findElementAndSendKeys(findElementByXpath(inputState), state);
         threadSleep(1000);
