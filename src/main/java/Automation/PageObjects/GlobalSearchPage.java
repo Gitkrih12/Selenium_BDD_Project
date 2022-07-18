@@ -104,7 +104,7 @@ public class GlobalSearchPage extends SeleniumUtils {
 
         for (WebElement column : actColumnFields) {
             threadSleep(1000);
-            scrollIntoView(column, driver);
+            //scrollIntoView(column, driver);
             String text = column.getText();
             actualColumnFieldsForCompare.add(text);
         }
@@ -201,9 +201,7 @@ public class GlobalSearchPage extends SeleniumUtils {
     //Scenario: Verify user enters the State name in the Search field
     public void enterStateInSearchField(String state) throws InterruptedException {
         expState = state;
-        threadSleep(3000);
-        scrollIntoView(findElementByXpath(inputCategory), driver);
-        scrollIntoView(findElementByXpath(inputState), driver);
+        //scrollIntoView(findElementByXpath(inputState), driver);
         findElementAndSendKeys(findElementByXpath(inputState), state);
         threadSleep(1000);
         sendKeysUsingKeyboardInput(inputState);
