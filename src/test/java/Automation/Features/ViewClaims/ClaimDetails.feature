@@ -154,6 +154,7 @@ Feature: Claim Details
       | Insured Name                      |
       | Patient's Relationship to Insured |
       | Insured's Unique Identifier       |
+      | Insured's Group Name              |
       | Insured's Group Number            |
 
   @37414
