@@ -32,7 +32,7 @@ public class GlobalSearchStepDef extends GlobalSearchPage {
 
     //Scenario: Verify column fields in grid level on Global Search
     @Then("user should able to see column fields in global Search page")
-    public void user_should_able_to_see_column_fields(DataTable columnList) {
+    public void user_should_able_to_see_column_fields(DataTable columnList) throws InterruptedException {
         verifyGlobalSearchColumnFields(columnList);
     }
 
@@ -88,7 +88,7 @@ public class GlobalSearchStepDef extends GlobalSearchPage {
         enterPatientNameInSearchField(patientName);
     }
 
-    @Then("user able to view the claim details for given Patient name.")
+    @Then("user able to view the claim details for given Patient name")
     public void user_able_to_view_the_exact_patient_details() {
         validatePatientNameResult();
     }
