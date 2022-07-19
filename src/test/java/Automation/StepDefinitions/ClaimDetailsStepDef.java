@@ -44,7 +44,7 @@ public class ClaimDetailsStepDef extends ClaimDetailsPage {
 
     //  Scenario: Verify Claim Information section
     @Then("user views the Claim Summary Tab list")
-    public void user_views_the_claim_summary_tab_list(DataTable fieldList) {
+    public void user_views_the_claim_summary_tab_list(DataTable fieldList) throws InterruptedException {
         userViewsClaimSummaryTabList(fieldList);
     }
 
@@ -61,7 +61,7 @@ public class ClaimDetailsStepDef extends ClaimDetailsPage {
     }
 
     @Then("user view Claim Details sections as below")
-    public void user_view_claim_details_sections_as_below(DataTable claimDetailsSections) {
+    public void user_view_claim_details_sections_as_below(DataTable claimDetailsSections) throws InterruptedException {
         userViewsClaimDetailsSections(claimDetailsSections);
     }
 

@@ -83,7 +83,7 @@ Feature: Claim Details
       | Rendering Provider Information  |
       | Billing Provider Information    |
       | Payer                           |
-      | Date Of Service                 |
+      | Date of Service                 |
       | Is Patient Condition Related To |
 
   @37403
@@ -118,7 +118,7 @@ Feature: Claim Details
       | Copay           |
       | Recovery Amount |
       | Payment Amount  |
-      | Mailing Date    |
+      | Mailing date    |
       | Payment Type    |
       | Payment ID      |
 
@@ -150,7 +150,7 @@ Feature: Claim Details
       | Country                           |
       | Zip Code                          |
       | Gender                            |
-      | Date Of Birth                     |
+      | Date of Birth                     |
       | Insured Name                      |
       | Patient's Relationship to Insured |
       | Insured's Unique Identifier       |

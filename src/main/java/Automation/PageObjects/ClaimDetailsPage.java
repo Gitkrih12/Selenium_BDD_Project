@@ -47,7 +47,7 @@ public class ClaimDetailsPage extends SeleniumUtils {
 
     public void userClicksOnClaimNumber() {
         explicitElementClickableWaitByXpath(lnkClaimNumber, 30);
-       // explicitVisibilityOfWait(findElementByXpath(eleClaimNumber), 30);
+        // explicitVisibilityOfWait(findElementByXpath(eleClaimNumber), 30);
         clickElement(lnkClaimNumber);
     }
 
@@ -96,13 +96,15 @@ public class ClaimDetailsPage extends SeleniumUtils {
     }
 
     //  Scenario: Verify Claim Information section
-    public void userViewsClaimSummaryTabList(DataTable tabsList) {
-        List<String> tabsListExp = tabsList.asList();
+    public void userViewsClaimSummaryTabList(DataTable fieldList) throws InterruptedException {
+        List<String> tabsListExp = fieldList.asList();
         List<WebElement> ActTabsList = findElementsByXpath(lstClaimSummaryTab);
         List<String> tabsListForCompare = new ArrayList<>();
         System.out.println("Size " + ActTabsList.size());
         for (WebElement column : ActTabsList) {
-            moveToElement(column).perform();
+            threadSleep(30);
+            scrollIntoView(column, driver);
+//            moveToElement(column).perform();
             String text = column.getText();
             tabsListForCompare.add(text);
         }
@@ -141,16 +143,21 @@ public class ClaimDetailsPage extends SeleniumUtils {
 
     //  Scenario: Verify Claim Details sections
     public void userViewClaimDetailsByDefault(String expTabState) {
-        explicitVisibilityOfWait(findElementByXpath(eleClaimDetailsTab), 20);
+        explicitElementClickableWaitByXpath(eleClaimDetailsTab, 30);
         String actualValue = findElementByXpath(eleClaimDetailsTab).getAttribute("class");
-        Assert.assertTrue(actualValue.contains(expTabState));
+        if (actualValue.contains(expTabState)) {
+            Assert.assertTrue(true);
+        } else {
+            Assert.assertTrue(false);
+        }
     }
 
-    public void userViewsClaimDetailsSections(DataTable claimDetailsSections) {
+    public void userViewsClaimDetailsSections(DataTable claimDetailsSections) throws InterruptedException {
         List<String> claimDetailsSectionsExp = claimDetailsSections.asList();
         List<WebElement> ActSections = findElementsByXpath(eleClaimDetailsSection);
         List<String> sectionsForCompare = new ArrayList<>();
         System.out.println("Size" + ActSections.size());
+        threadSleep(20);
         for (WebElement column : ActSections) {
             scrollIntoView(column, driver);
             String text = column.getText();
