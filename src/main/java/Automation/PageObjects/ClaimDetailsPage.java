@@ -17,7 +17,7 @@ public class ClaimDetailsPage extends SeleniumUtils {
     String btnViewClaim = "//*[contains(text(), 'View Claim in CMS 1500')]";
     String btnSelfAssign = "//*[contains(text(), 'Self-Assign')]";
     String columnFields = "//table[@class='table table-borderless']//thead//tr//th";
-    String lstClaimSummaryTab = "(//nav//div[@role='tablist'])[1]//button";
+    String lstClaimSummaryTab = "//button[@id='nav-claim-details-tab']/..//button";
     String btnFooterFields = "//div[@class='button-padding-left footer']//button";
     String eleClaimDetailsTab = "//button[@class='nav-link active']";
     String eleClaimDetailsSection = "(//*[@id='nav-claim-details'])[1]//h6";
