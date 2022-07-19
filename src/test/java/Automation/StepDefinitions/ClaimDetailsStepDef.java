@@ -132,7 +132,6 @@ public class ClaimDetailsStepDef extends ClaimDetailsPage {
         userClicksOnHideLink();
     }
 
-    //  Scenario: Validate Hide action for claim summary section
     @Then("user should hide the claim summary section")
     public void user_should_hide_the_claim_summary_section() {
         verifyClaimSummarySectionShouldHide();
@@ -144,13 +143,11 @@ public class ClaimDetailsStepDef extends ClaimDetailsPage {
         verifyShowLinkIsDisplayed();
     }
 
-    //  Scenario: Validate Show action for claim summary section
     @When("user clicks on Show link")
     public void user_clicks_on_show_link() {
         userClicksOnShowLink();
     }
 
-    //  Scenario: Validate Show action for claim summary section
     @Then("user able to view the Claim Summary section")
     public void user_able_to_view_the_claim_summary_section() {
         verifyUserViewsClaimSummarySection();
