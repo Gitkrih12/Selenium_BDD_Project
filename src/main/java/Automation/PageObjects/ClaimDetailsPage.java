@@ -3,7 +3,6 @@ package Automation.PageObjects;
 import Automation.Utilities.SeleniumUtils;
 import io.cucumber.datatable.DataTable;
 import org.junit.Assert;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
 import java.util.ArrayList;
@@ -13,7 +12,6 @@ public class ClaimDetailsPage extends SeleniumUtils {
 
     String lnkFFSProfessional = "(//*[contains(text(), 'FFS Professional')])[1]";
     String lnkClaimNumber = "(//div[@class='ag-cell-wrapper']//a)[1]";
-    String eleClaimNumber = "(//*[@id='pendGrid']//app-view-claim-render/a)[1]";
     String titleClaimSummary = "//*[contains(text(), 'Claim Summary')]";
     String lnkHideOption = "//*[contains(text(), '(Hide)')]";
     String btnViewClaim = "//*[contains(text(), 'View Claim in CMS 1500')]";
@@ -23,7 +21,7 @@ public class ClaimDetailsPage extends SeleniumUtils {
     String btnFooterFields = "//div[@class='button-padding-left footer']//button";
     String eleClaimDetailsTab = "//button[@class='nav-link active']";
     String eleClaimDetailsSection = "(//*[@id='nav-claim-details'])[1]//h6";
-    String claimInformationFields = "(//div[@class='container'])[3]//div[text()]";
+    String claimInformationFields = "(//div[@id='nav-claim-details']//div)[1]//div[text()]";
     String paymentInformationFields = "//*[@id='nav-claim-details']/div[2]/div[1]/div | //*[@id='nav-claim-details']/div[3]/div[1]/div | " +
             "//*[@id='nav-claim-details']/div[4]/div[1]/div";
     String memberInformationFields = "//*[@id='nav-claim-details']/div[5]/div[1]/div | //*[@id='nav-claim-details']/div[6]/div[1]/div | " +
@@ -47,7 +45,6 @@ public class ClaimDetailsPage extends SeleniumUtils {
 
     public void userClicksOnClaimNumber() {
         explicitElementClickableWaitByXpath(lnkClaimNumber, 30);
-        // explicitVisibilityOfWait(findElementByXpath(eleClaimNumber), 30);
         clickElement(lnkClaimNumber);
     }
 
@@ -104,7 +101,6 @@ public class ClaimDetailsPage extends SeleniumUtils {
         for (WebElement column : ActTabsList) {
             threadSleep(30);
             scrollIntoView(column, driver);
-//            moveToElement(column).perform();
             String text = column.getText();
             tabsListForCompare.add(text);
         }
