@@ -22,14 +22,14 @@ public class ClaimDetailsPage extends SeleniumUtils {
     String lstClaimSummaryTab = "(//nav//div[@role='tablist'])[1]//button";
     String btnFooterFields = "//div[@class='button-padding-left footer']//button";
     String eleClaimDetailsTab = "//button[@class='nav-link active']";
-    String eleClaimDetailsSection = " (//*[@id='nav-claim-details'])[1]//h6";
+    String eleClaimDetailsSection = "(//*[@id='nav-claim-details'])[1]//h6";
     String claimInformationFields = "(//div[@class='container'])[3]//div[text()]";
     String paymentInformationFields = "//*[@id='nav-claim-details']/div[2]/div[1]/div | //*[@id='nav-claim-details']/div[3]/div[1]/div | " +
             "//*[@id='nav-claim-details']/div[4]/div[1]/div";
     String memberInformationFields = "//*[@id='nav-claim-details']/div[5]/div[1]/div | //*[@id='nav-claim-details']/div[6]/div[1]/div | " +
             "//*[@id='nav-claim-details']/div[7]/div[1]/div | //*[@id='nav-claim-details']/div[8]/div[1]/div";
     String renderingProviderInformationFields = "//*[@id='nav-claim-details']/div[9]/div[1]/div";
-    String eleCleanStatus = " (//*[@ng-reflect-model = 'true'])[1]";
+    String eleCleanStatus = "(//*[@ng-reflect-model = 'true'])[1]";
     String eleUncleanStatus = "(//*[@ng-reflect-model = 'false'])[1]";
     String billingProviderInformationFields = "//*[@id='nav-claim-details']/div[10]/div[1]/div | //*[@id='nav-claim-details']/div[11]" +
             "/div[1]/div | //*[@id='nav-claim-details']/div[12]/div[1]/div";
