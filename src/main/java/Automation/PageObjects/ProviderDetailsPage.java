@@ -11,23 +11,23 @@ import java.util.List;
 
 public class ProviderDetailsPage extends SeleniumUtils {
 
-    String providerDetailsTab = "//*[contains(text(), 'Provider Details') and @type = 'button']";
+    String tabProviderDetails = "//*[contains(text(), 'Provider Details') and @type = 'button']";
     String providerDetailsSections = "//*[contains(text(), 'Group/Rendering Provider Details') or contains(text(),'Pay to Provider details')]";
     String payToProviderDetailsFields = "//*[contains(text(), 'Pay to Provider details')]//following::div[@class = 'row']//div";
     String groupRenderingProviderDetailsFields = "//*[@class='table table-striped']//tr//th";
-    String footerSectionBtn = "//*[@class='button-padding-left footer']//button";
-    String vendorId = "(//*[@id='nav-claim-details']//a)[3]";
-    String arTransactionsTitle = "//*[@class='claims-list']";
+    String btnFooterSection = "//*[@class='button-padding-left footer']//button";
+    String lnkVendorId = "(//*[@id='nav-claim-details']//a)[3]";
+    String titleArTransactions = "//*[@class='claims-list']";
 
 
     // Scenario: Verify user able to navigate to the Provider details tab in the View Claims Form page
     public void clickOnProviderDetails(){
-        clickElement(providerDetailsTab);
+        clickElement(tabProviderDetails);
     }
 
     // Scenario: Verify user able to navigate to the Provider details tab in the View Claims Form page
     public void userNavigatedToProvideDetails(){
-        Assert.assertEquals("Provider Details", driver.findElement(By.xpath(providerDetailsTab)).getText());
+        Assert.assertEquals("Provider Details", driver.findElement(By.xpath(tabProviderDetails)).getText());
     }
 
     //  Scenario: Verify user able to view the Pay to Provider Details and Group/Rendering Provider Details section under Provider Details tab
@@ -84,7 +84,7 @@ public class ProviderDetailsPage extends SeleniumUtils {
     //  Scenario: Validate all the buttons available at the footer section under Provider Details tab
     public void userViewsFooterSectionInServiceDetails(DataTable footerSection){
         List<String> footerSectionExp = footerSection.asList();
-        List<WebElement> ActFooterSection = findElementsByXpath(footerSectionBtn);
+        List<WebElement> ActFooterSection = findElementsByXpath(btnFooterSection);
         List<String> fieldsForCompare = new ArrayList<>();
         System.out.println("Size" + ActFooterSection.size());
         for (WebElement column : ActFooterSection) {
@@ -99,16 +99,15 @@ public class ProviderDetailsPage extends SeleniumUtils {
     }
 
     public void clickOnVendorId(){
-        explicitVisibilityOfWait(findElementByLinkText("V0000000256"), 1000);
-        findElementByLinkText("V0000000256").click();
+        explicitVisibilityOfWait(findElementByLinkText(lnkVendorId), 1000);
+        findElementByLinkText(lnkVendorId).click();
     }
 
     public void userNavigatesToARTransactionsPage(){
-        String ARTransactionTitleActual[] = findElementByXpath(arTransactionsTitle).getText().split(" ");
+        String ARTransactionTitleActual[] = findElementByXpath(titleArTransactions).getText().split(" ");
         Assert.assertEquals("A/RLedger", ARTransactionTitleActual[0]+ARTransactionTitleActual[1]);
     }
 
     public void userViewsCreditOverPaidAndDebitUnderPaidStatus(){
-
     }
 }
