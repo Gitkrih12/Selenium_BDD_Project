@@ -136,9 +136,17 @@ public class LeftNavigationPage extends SeleniumUtils {
         System.out.println("Actual adjudication list : " + adjListAct);
         System.out.println("Expected adjudication list : " + adjListExp);
 
-        if (adjListAct.equals(adjListExp))
+        for (String exp: adjListExp)
         {
-            Assert.assertTrue(true);
+            if (adjListAct.contains(exp))
+            {
+                Assert.assertTrue(true);
+            }
+            else
+            {
+                Assert.fail(exp + " is not listed in actual list");
+            }
+
         }
 
     }
@@ -160,9 +168,16 @@ public class LeftNavigationPage extends SeleniumUtils {
         System.out.println("Actual check management list is : " + checkManagementListAct);
         System.out.println("Expected check management list is : " + checkManagementListExp);
 
-        if (checkManagementListAct.equals(checkManagementListExp))
+        for (String exp: checkManagementListExp)
         {
-            Assert.assertTrue(true);
+            if (checkManagementListAct.contains(exp))
+            {
+                Assert.assertTrue(true);
+            }
+            else
+            {
+                Assert.fail(exp + " value is not listed in actual list");
+            }
         }
     }
 
