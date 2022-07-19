@@ -11,7 +11,7 @@ import org.junit.runner.RunWith;
                 glue = "Automation/StepDefinitions",
                 dryRun = false,
                 monochrome = true,
-                tags = "@37414",
+                tags = "@37403",
                 plugin = {"pretty", "html:TestReports/TestResults.html",
                           "json:TestReports/TestResults.json",
                           "junit:TestReports/TestResults.xml",
