@@ -55,8 +55,8 @@ public class ClaimDetailsStepDef extends ClaimDetailsPage {
     }
 
     //  Scenario: Verify Claim Details sections
-    @Then("user views Claim Details by default should be {string}")
-    public void user_views_claim_details_by_default_should_be(String expTabState) {
+    @Then("user views Claim Details by default should be active {string}")
+    public void user_views_claim_details_by_default_should_be_active(String expTabState) {
         userViewClaimDetailsByDefault(expTabState);
     }
 

@@ -129,7 +129,7 @@ public class ClaimDetailsPage extends SeleniumUtils {
         System.out.println("Footer fields in Claim Summary page :" + fieldsForCompare);
         System.out.println("Expected fields are : " + footerFieldsExp);
         for (String exp : footerFieldsExp) {
-            if (footerFieldsExp.contains(exp)) {
+            if (fieldsForCompare.contains(exp)) {
                 Assert.assertTrue(true);
             } else {
                 Assert.fail(exp + " is not listed in actual list");

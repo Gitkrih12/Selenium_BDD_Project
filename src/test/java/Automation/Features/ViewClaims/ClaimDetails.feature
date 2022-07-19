@@ -75,7 +75,7 @@ Feature: Claim Details
     Given the user is in FFS Professional page
     When user clicks on the Claim Number
     Then user navigates to the "Claim Summary" page
-    And user views Claim Details by default should be "active"
+    And user views Claim Details by default should be active "active"
     Then user view Claim Details sections as below
       | Claim Information               |
       | Payment Information             |
