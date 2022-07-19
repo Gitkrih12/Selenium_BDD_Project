@@ -48,8 +48,13 @@ public class LeftNavigationPage extends SeleniumUtils {
         try {
             for (int i = 0; i < 2; i++) {
                 actualText = menuList.get(i).getAttribute("style");
-                if (actualText.contains(expandedExpText)) {
+                if (actualText.contains(expandedExpText))
+                {
                     Assert.assertTrue(true);
+                }
+                else
+                {
+                    Assert.assertTrue(false);
                 }
             }
             System.out.println("Expanded status for Adjudication & Queue management is : " + actualText.contains(expandedExpText));
@@ -69,6 +74,10 @@ public class LeftNavigationPage extends SeleniumUtils {
                 if (actualText.contains(collapsedExpText)) {
                     Assert.assertTrue(true);
                 }
+                else
+                {
+                    Assert.assertTrue(false);
+                }
             }
             System.out.println("Collapsed status for Adjudication & Queue management is: " + actualText.contains(collapsedExpText));
         }catch (Exception e)
@@ -84,6 +93,10 @@ public class LeftNavigationPage extends SeleniumUtils {
                 actualText = menuList.get(i).getAttribute("style");
                 if (actualText.contains(collapsedExpText)) {
                     Assert.assertTrue(true);
+                }
+                else
+                {
+                    Assert.assertTrue(false);
                 }
             }
             System.out.println("Collapsed status for other menus is : " + actualText.contains(collapsedExpText));
@@ -103,6 +116,10 @@ public class LeftNavigationPage extends SeleniumUtils {
                 if (actualText.contains(expandedExpText))
                 {
                     Assert.assertTrue(true);
+                }
+                else
+                {
+                    Assert.assertTrue(false);
                 }
             }
             System.out.println("Expanded status for other menus is : " + actualText.contains(expandedExpText));
