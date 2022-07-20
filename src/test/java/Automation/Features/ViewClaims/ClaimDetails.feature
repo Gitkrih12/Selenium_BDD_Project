@@ -1,29 +1,29 @@
 Feature: Claim Details
 
   Background:
-    Given the user enters the valid username and password and click on login button for admin role
-    When user lands directly to the page
-    Then user should navigate to the DSNP admin page after successful login
+    Given the user is in CA Login screen
+    When the user enters the valid username and password and click on login button
+    Then user should be able to login to the CA screen successfully
 
   @37332
   Scenario: Verify user able to navigate to claim summary screen on clicking claim number
     Given the user is in FFS Professional page
     When user clicks on the Claim Number
-    Then user navigates to the Claim Summary page
-    And user should view hide option besides Claim Summary
+    Then user navigates to the "Claim Summary" page
+    And user should view "(Hide)" option besides Claim Summary
 
   @37392
   Scenario: Verify View Claim in CMS 1500 and Self Assign buttons in Claim Summary details page
     Given the user is in FFS Professional page
     When user clicks on the Claim Number
-    Then user navigates to the Claim Summary page
-    And user should view CMS 1500 and Self Assign buttons in Claim Summary details page
+    Then user navigates to the "Claim Summary" page
+    And user should view Claim in CMS "View Claim in CMS 1500" and self assign "Self-Assign" buttons in Claim Summary details page
 
   @37393
   Scenario: Verify column fields in Claim Summary details page
     Given the user is in FFS Professional page
     When user clicks on the Claim Number
-    Then user navigates to the Claim Summary page
+    Then user navigates to the "Claim Summary" page
     And user should be able to view all the column fields in Claim Summary Details page
       | Claim Number      |
       | Patient           |
@@ -43,7 +43,7 @@ Feature: Claim Details
   Scenario: Verify Claim Summary Tab List
     Given the user is in FFS Professional page
     When user clicks on the Claim Number
-    Then user navigates to the Claim Summary page
+    Then user navigates to the "Claim Summary" page
     And user views the Claim Summary Tab list
       | Claim Details (EDI) |
       | Service Details     |
@@ -61,7 +61,7 @@ Feature: Claim Details
   Scenario: Verify footer section in Claim Summary details page
     Given the user is in FFS Professional page
     When user clicks on the Claim Number
-    Then user navigates to the Claim Summary page
+    Then user navigates to the "Claim Summary" page
     And user views the footer section in Claim Summary details page
       | On Hold           |
       | Payer Review      |
@@ -74,8 +74,8 @@ Feature: Claim Details
   Scenario: Verify Claim Details sections
     Given the user is in FFS Professional page
     When user clicks on the Claim Number
-    Then user navigates to the Claim Summary page
-    And user views Claim Details by default
+    Then user navigates to the "Claim Summary" page
+    And user views Claim Details by default should be "active"
     Then user view Claim Details sections as below
       | Claim Information               |
       | Payment Information             |
@@ -83,14 +83,14 @@ Feature: Claim Details
       | Rendering Provider Information  |
       | Billing Provider Information    |
       | Payer                           |
-      | Date Of Service                 |
+      | Date of Service                 |
       | Is Patient Condition Related To |
 
   @37403
   Scenario: Validate Claim Information section
     Given the user is in FFS Professional page
     When user clicks on the Claim Number
-    Then user navigates to the Claim Summary page
+    Then user navigates to the "Claim Summary" page
     And user able to view the below fields under claim information section
       | Claim Number         |
       | Reference Number     |
@@ -105,7 +105,7 @@ Feature: Claim Details
   Scenario: Validate Payment Information section
     Given the user is in FFS Professional page
     When user clicks on the Claim Number
-    Then user navigates to the Claim Summary page
+    Then user navigates to the "Claim Summary" page
     And user able to view the below fields under Payment Information section
       | OK Pay Date     |
       | Paid Date       |
@@ -118,7 +118,7 @@ Feature: Claim Details
       | Copay           |
       | Recovery Amount |
       | Payment Amount  |
-      | Mailing Date    |
+      | Mailing date    |
       | Payment Type    |
       | Payment ID      |
 
@@ -126,21 +126,21 @@ Feature: Claim Details
   Scenario: Validate Clean status
     Given the user is in FFS Professional page
     When user clicks on the Claim Number
-    Then user navigates to the Claim Summary page
+    Then user navigates to the "Claim Summary" page
     And user can check the claim status as Clean
 
   @37407
   Scenario: Validate Unclean status
     Given the user is in FFS Professional page
     When user clicks on the Claim Number
-    Then user navigates to the Claim Summary page
+    Then user navigates to the "Claim Summary" page
     And user claim status as Un-Clean is unchecked by default
 
   @37413
   Scenario: Validate Member Information section
     Given the user is in FFS Professional page
     When user clicks on the Claim Number
-    Then user navigates to the Claim Summary page
+    Then user navigates to the "Claim Summary" page
     And user able to view the below fields under Member Information section
       | Patient Name                      |
       | Address Line 1                    |
@@ -150,17 +150,18 @@ Feature: Claim Details
       | Country                           |
       | Zip Code                          |
       | Gender                            |
-      | Date Of Birth                     |
+      | Date of Birth                     |
       | Insured Name                      |
       | Patient's Relationship to Insured |
       | Insured's Unique Identifier       |
+      | Insured's Group Name              |
       | Insured's Group Number            |
 
   @37414
   Scenario: Validate Rendering Provider Information section
     Given the user is in FFS Professional page
     When user clicks on the Claim Number
-    Then user navigates to the Claim Summary page
+    Then user navigates to the "Claim Summary" page
     And user able to view the below fields under Rendering Provider information section
       | Rendering Provider Name |
       | Rendering Provider NPI  |
