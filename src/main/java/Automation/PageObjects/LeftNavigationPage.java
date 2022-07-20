@@ -11,6 +11,8 @@ import java.util.List;
 public class LeftNavigationPage extends SeleniumUtils {
 
     String mnuLeftNavigation = "//mat-nav-list[@class='mat-nav-list mat-list-base']";
+    String btnAdjudicationExpansion = "//div[contains(text(),'Adjudication')]//following::span[1]";
+    String btnQueueManagementExpansion = "//div[contains(text(),'Queue Management')]//following::span[1]";
     String expandedExpText = "rotate(180deg)";
     String collapsedExpText = "rotate(0deg)";
     String mnuMainItems = "//div[@class='menuitemsnames']/../..//following::span[1]";
@@ -38,6 +40,37 @@ public class LeftNavigationPage extends SeleniumUtils {
         System.out.println("Left navigation section status is : " + leftNavigationStatus);
         Assert.assertTrue(leftNavigationStatus);
     }
+
+    //    Verify Adjudication section should be in expanded mode by default in left navigation mode for Admin role
+    public void verifyAdjudicationMenuByDefaultInExpandableMode()
+    {
+        String expandActText = findElementByXpath(btnAdjudicationExpansion).getAttribute("style");
+        System.out.println("Adjudication expanded menu attribute value is... " + expandActText);
+        if (expandActText.contains(expandedExpText))
+        {
+            Assert.assertTrue(true);
+        }
+        else
+        {
+            Assert.fail("Adjudication menu is not in expanded mode");
+        }
+    }
+
+    //    Scenario: Verify Queue Management section should be expanded mode by default in left navigation mode for Admin role
+    public void verifyQueueManagementMenuByDefaultInExpandableMode()
+    {
+        String expandActText = findElementByXpath(btnQueueManagementExpansion).getAttribute("style");
+        System.out.println("Queue management expanded menu attribute value is... " + expandActText);
+        if (expandActText.contains(expandedExpText))
+        {
+            Assert.assertTrue(true);
+        }
+        else
+        {
+            Assert.fail("Queue management menu is not in expanded mode");
+        }
+    }
+
 
     //    Scenario:  Validate expanding collapsing action for all menu's in left navigation for admin role
     public void validateExpandAndCollapseActionsForAllLeftNavigationMenus() {

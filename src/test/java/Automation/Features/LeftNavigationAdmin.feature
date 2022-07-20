@@ -6,6 +6,17 @@ Feature: Left Navigation
     When user lands directly to the page
     Then user should navigate to the DSNP admin page after successful login
 
+  @Sanity @Smoke @38675
+  Scenario: Verify Adjudication section should be in expanded mode by default in left navigation mode for Admin role
+    When left navigation loaded
+    Then user can able to see the Adjudication section expandable mode by default
+
+  @Sanity @Smoke @38682
+  Scenario: Verify Queue Management section should be expanded mode by default in left navigation mode for Admin role
+    When left navigation loaded
+    Then user can able to see the Queue Management section expandable mode by default
+
+
   @Sanity @Smoke @39436
   Scenario:  Validate expanding collapsing action for all menu's in left navigation for admin role
     When left navigation loaded

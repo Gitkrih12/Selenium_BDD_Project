@@ -11,6 +11,19 @@ public class LeftNavigationStepDef extends LeftNavigationPage {
         leftNavigationValidation();
     }
 
+    //    Verify Adjudication section should be in expanded mode by default in left navigation mode for Admin role
+    @Then("user can able to see the Adjudication section expandable mode by default")
+    public void user_can_able_to_see_the_adjudication_section_expandable_mode_by_default() {
+        verifyAdjudicationMenuByDefaultInExpandableMode();
+    }
+
+    //    Scenario: Verify Queue Management section should be expanded mode by default in left navigation mode for Admin role
+    @Then("user can able to see the Queue Management section expandable mode by default")
+    public void user_can_able_to_see_the_queue_management_section_expandable_mode_by_default() {
+        verifyQueueManagementMenuByDefaultInExpandableMode();
+    }
+
+
     //    Scenario:  Validate expanding collapsing action for all menu's in left navigation for admin role
     @Then("user should be able to perform expanding and collapsing actions for all menus")
     public void user_should_be_able_to_perform_expanding_and_collapsing_actions_for_all_menus() {
