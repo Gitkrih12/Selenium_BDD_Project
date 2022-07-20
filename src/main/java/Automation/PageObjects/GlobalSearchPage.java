@@ -53,7 +53,15 @@ public class GlobalSearchPage extends SeleniumUtils {
     String eleVerticalColorforUnclean = "(//div[@col-id='IsClean']//span)[6]";
     String eleUncleanInfoTopGrid = "//div//span[@class='ColorBall']//following::span[contains(text(),'Un-clean')]";
     String eleCustomizeColumnWindow = "//div[contains(@class,'offcanvas offcanvas-end show')]";
-
+    String eleCustomizeColumnHeader = "//div[@class='offcanvas-header']";
+    String eleCustomizeColumnFields = "//div[@class='form-check ng-star-inserted']//label";
+    String btnSave = "//button[text()='Save']";
+    String btnClose = "//button[@aria-label='Close']";
+    String eleClaimNumberDisabled = "//input[@disabled]";
+    String eleClaimNumberColumnOrder = "(//div[@class='offcanvas-header']//following::label)[1]";
+    String inputClaimNumberCheckBox = "//input[@id='claimNumber']";
+    String inputProviderCheckBox = "//input[@id='providerFullName']";
+    String inputProvider = "//input[@aria-label='Provider Filter Input']";
 
 
     private static String expClaimNumber = "";
@@ -202,7 +210,7 @@ public class GlobalSearchPage extends SeleniumUtils {
     //Scenario: Verify user enters the State name in the Search field
     public void enterStateInSearchField(String state) throws InterruptedException {
         expState = state;
-        //scrollIntoView(findElementByXpath(inputState), driver);
+        scrollIntoView(findElementByXpath(inputState), driver);
         findElementAndSendKeys(findElementByXpath(inputState), state);
         threadSleep(1000);
         sendKeysUsingKeyboardInput(inputState);
@@ -397,5 +405,102 @@ public class GlobalSearchPage extends SeleniumUtils {
         boolean value = isDisplayed(eleUncleanInfoTopGrid);
         Assert.assertTrue(value);
     }
+
+    //Scenario: Verify user should navigate to Customized Columns window when we click on Customized columns in Global Search page
+    public void clickOnCustomiseColumn(){
+        clickElement(btnCustomisedColumns);
+    }
+
+    public void verifyCustomizeColumnWindow(){
+        explicitVisibilityOfWait(findElementByXpath(eleCustomizeColumnWindow), 5);
+        boolean value=isDisplayed(eleCustomizeColumnWindow);
+        Assert.assertTrue(value);
+    }
+
+    //Scenario:Verify user should able to see the mentioned column fields in the 'Customize Columns' window
+    public void verifyCustomizeColumnHeader(String expCustomizeColumnHeader){
+        explicitVisibilityOfWait(findElementByXpath(eleCustomizeColumnHeader), 5);
+        String actCustomizeColumnHeader=findElementByXpath(eleCustomizeColumnHeader).getText();
+        System.out.println("Actual Header : "+actCustomizeColumnHeader);
+        Assert.assertEquals(expCustomizeColumnHeader,actCustomizeColumnHeader);
+    }
+
+    public void verifyCustomizeColumnFields(DataTable customizeColumnList) throws InterruptedException {
+        List<String> expCustomizeColumnList = customizeColumnList.asList();
+        List<WebElement> actCustomizeColumnFields = findElementsByXpath(eleCustomizeColumnFields);
+        List<String> actualColumnFieldsForCompare = new ArrayList<>();
+
+        for (WebElement column : actCustomizeColumnFields) {
+            threadSleep(1000);
+            scrollIntoView(column, driver);
+            String text = column.getText();
+            actualColumnFieldsForCompare.add(text);
+        }
+        System.out.println("actual customize column fields " + actualColumnFieldsForCompare);
+        System.out.println("expected customize column fields " + expCustomizeColumnList);
+        for(String expCustomizeColumn:expCustomizeColumnList){
+            if(actualColumnFieldsForCompare.contains(expCustomizeColumn)){
+                Assert.assertTrue(true);
+            }
+            else{
+                Assert.fail(expCustomizeColumn + " column is not as expected");
+            }
+        }
+    }
+
+    public void verifySaveButton(){
+        boolean value = isDisplayed(btnSave);
+        Assert.assertTrue(value);
+    }
+    public void verifyCloseButton(){
+        boolean value = isDisplayed(btnClose);
+        Assert.assertTrue(value);
+    }
+
+    //  Scenario: Verify claim number order and check box should be selected by default
+    public void verifyClaimNumberColumnOrder(){
+        explicitVisibilityOfWait(findElementByXpath(eleClaimNumberColumnOrder), 5);
+        boolean value= isDisplayed(eleClaimNumberColumnOrder);
+        Assert.assertTrue(value);
+    }
+
+    public void verifyClaimNumberInDisbaledMode(){
+        boolean value= isDisplayed(eleClaimNumberDisabled);
+        Assert.assertTrue(value);
+    }
+
+    public void verifyClaimNumberCheckBox(){
+        boolean actchkValue= findElementByXpath(inputClaimNumberCheckBox).isSelected();
+        Assert.assertTrue(actchkValue);
+    }
+
+    //Scenario: Verify user should able to see saved/updated fields the Global Search page
+    public void clickProviderCheckBox(){
+        explicitVisibilityOfWait(findElementByXpath(inputProviderCheckBox), 5);
+        clickElement(inputProviderCheckBox);
+        boolean actChkValue= findElementByXpath(inputProviderCheckBox).isSelected();
+        Assert.assertTrue(actChkValue);
+        clickElement(btnClose);
+    }
+    public void unSelectProviderCheckBox() {
+        explicitVisibilityOfWait(findElementByXpath(inputProviderCheckBox), 5);
+        clickElement(inputProviderCheckBox);
+        boolean actChkValue= findElementByXpath(inputProviderCheckBox).isSelected();
+        Assert.assertFalse(actChkValue);
+        clickElement(btnClose);
+    }
+
+    public void verifyProviderColumnDisplayInGlobalSearch() throws InterruptedException {
+        scrollIntoView(findElementByXpath(inputProvider),driver);
+        boolean value = isDisplayed(inputProvider);
+        Assert.assertTrue(value);
+        threadSleep(1000);
+    }
+    public void verifyProviderColumnNotDisplayedInGlobalSearch(){
+        scrollIntoView(findElementByXpath(inputState),driver);
+        boolean value = isDisplayed(inputProvider);
+        Assert.assertFalse(value);
+    }
+
 
 }
