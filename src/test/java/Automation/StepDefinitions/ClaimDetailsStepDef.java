@@ -14,29 +14,28 @@ public class ClaimDetailsStepDef extends ClaimDetailsPage {
         accessFFSProfessionalPage();
     }
 
-    //  Scenario: Verify user able to navigate to claim summary screen on clicking claim number
     @When("user clicks on the Claim Number")
     public void user_clicks_on_the_claim_number() {
         userClicksOnClaimNumber();
     }
 
-    //  Scenario: Verify user able to navigate to claim summary screen on clicking claim number
-    @Then("user navigates to the Claim Summary page")
-    public void user_navigates_to_the_claim_summary_page() {
-        userNavigatesToClaimSummaryPage();
+    @Then("user navigates to the {string} page")
+    public void user_navigates_to_the_page(String expPageTitle) {
+        userNavigatesToClaimSummaryPage(expPageTitle);
     }
 
-    //  Scenario: Verify user able to navigate to claim summary screen on clicking claim number
-    @Then("user should view hide option besides Claim Summary")
-    public void user_should_view_hide_option_besides_claim_summary() {
-        userViewsHideOptionBesideClaimSummary();
+    @Then("user should view {string} option besides Claim Summary")
+    public void user_should_view_option_besides_claim_summary(String expOption) {
+        userViewsHideOptionBesideClaimSummary(expOption);
     }
 
     //  Scenario: Verify View Claim in CMS 1500 and Self Assign buttons in Claim Summary details page
-    @Then("user should view CMS {int} and Self Assign buttons in Claim Summary details page")
-    public void user_should_view_cms_and_self_assign_buttons_in_claim_summary_details_page(Integer int1) {
-        userViewsSelfAssignAndCMSButtons();
+    @Then("user should view Claim in CMS {string} and self assign {string} buttons in Claim Summary details page")
+    public void user_should_view_claim_in_cms_and_self_assign_buttons_in_claim_summary_details_page(String expViewClaimValue, String expSelfAssignValue) {
+        userViewsCMSButton(expViewClaimValue);
+        userViewsSelfAssignButton(expSelfAssignValue);
     }
+
 
     //  Scenario: Verify column fields in Claim Summary details page
     @Then("user should be able to view all the column fields in Claim Summary Details page")
@@ -46,7 +45,7 @@ public class ClaimDetailsStepDef extends ClaimDetailsPage {
 
     //  Scenario: Verify Claim Information section
     @Then("user views the Claim Summary Tab list")
-    public void user_views_the_claim_summary_tab_list(DataTable fieldList) {
+    public void user_views_the_claim_summary_tab_list(DataTable fieldList) throws InterruptedException {
         userViewsClaimSummaryTabList(fieldList);
     }
 
@@ -57,14 +56,13 @@ public class ClaimDetailsStepDef extends ClaimDetailsPage {
     }
 
     //  Scenario: Verify Claim Details sections
-    @Then("user views Claim Details by default")
-    public void user_views_claim_details_by_default() {
-        userViewClaimDetailsByDefault();
+    @Then("user views Claim Details by default should be {string}")
+    public void user_views_claim_details_by_default_should_be(String expTabState) {
+        userViewClaimDetailsByDefault(expTabState);
     }
 
-    //  Scenario: Verify Claim Details sections
     @Then("user view Claim Details sections as below")
-    public void user_view_claim_details_sections_as_below(DataTable claimDetailsSections) {
+    public void user_view_claim_details_sections_as_below(DataTable claimDetailsSections) throws InterruptedException {
         userViewsClaimDetailsSections(claimDetailsSections);
     }
 
@@ -89,7 +87,7 @@ public class ClaimDetailsStepDef extends ClaimDetailsPage {
     //  Scenario: Validate Unclean status
     @Then("user claim status as Un-Clean is unchecked by default")
     public void user_claim_status_as_un_clean_is_unchecked_by_default() {
-        verifyClaimStatusforUncleanIsUnchecked();
+        verifyClaimStatusForUncleanIsUnchecked();
     }
 
     //  Scenario: Validate Member Information section
