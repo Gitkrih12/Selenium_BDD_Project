@@ -53,11 +53,16 @@ public class ServiceDetailsPage extends SeleniumUtils {
         for (WebElement column : ActColumnFields) {
             scrollIntoView(column, driver);
             String text = column.getText();
-            System.out.println("Column Fields in Service Details page  : " + text);
             columnFieldsForCompare.add(text);
         }
-        if (columnFieldsForCompare.equals(columnListExp)) {
-            Assert.assertEquals(columnListExp, columnFieldsForCompare);
+        System.out.println("Fields in Service Details section :" + columnFieldsForCompare);
+        System.out.println("Expected fields are : " + columnListExp);
+        for (String exp : columnListExp) {
+            if (columnFieldsForCompare.contains(exp)) {
+                Assert.assertTrue(true);
+            } else {
+                Assert.fail(exp + " is not listed in actual list");
+            }
         }
     }
 
@@ -73,8 +78,14 @@ public class ServiceDetailsPage extends SeleniumUtils {
             System.out.println("Service Line Fields should display  : " + text);
             columnFieldsForCompare.add(text);
         }
-        if (columnFieldsForCompare.equals(serviceLineFieldsExp)) {
-            Assert.assertEquals(serviceLineFieldsExp, columnFieldsForCompare);
+        System.out.println("Fields in Service Line Fields section :" + columnFieldsForCompare);
+        System.out.println("Expected fields are : " + serviceLineFieldsExp);
+        for (String exp : serviceLineFieldsExp) {
+            if (columnFieldsForCompare.contains(exp)) {
+                Assert.assertTrue(true);
+            } else {
+                Assert.fail(exp + " is not listed in actual list");
+            }
         }
     }
 
@@ -90,8 +101,14 @@ public class ServiceDetailsPage extends SeleniumUtils {
             System.out.println("Footer fields in Service Details page :" + text);
             fieldsForCompare.add(text);
         }
-        if (fieldsForCompare.equals(footerFieldsExp)) {
-            Assert.assertEquals(footerFieldsExp, fieldsForCompare);
+        System.out.println("Fields in Service Details section :" + fieldsForCompare);
+        System.out.println("Expected fields are : " + footerFieldsExp);
+        for (String exp : footerFieldsExp) {
+            if (fieldsForCompare.contains(exp)) {
+                Assert.assertTrue(true);
+            } else {
+                Assert.fail(exp + " is not listed in actual list");
+            }
         }
     }
 
