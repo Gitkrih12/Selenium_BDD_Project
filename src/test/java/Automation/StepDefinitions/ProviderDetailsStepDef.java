@@ -53,8 +53,14 @@ public class ProviderDetailsStepDef extends ProviderDetailsPage {
         userNavigatesToARTransactionsPage();
     }
 
-    @Then("user able to view Credit Overpaid and Debit Underpaid status")
-    public void user_able_to_view_credit_overpaid_and_debit_underpaid_status() {
-        userViewsCreditOverPaidAndDebitUnderPaidStatus();
+    @Then("user able to view Credit Overpaid and Debit Underpaid status as {string} {string}")
+    public void user_able_to_view_credit_overpaid_and_debit_underpaid_status_as(String expCreditStatus, String expOverpaidStatus) {
+        userViewsCreditOverPaidStatus(expCreditStatus);
+        userViewsDebitUnderPaidStatus(expOverpaidStatus);
+    }
+
+    @Then("user able to view all the below mentioned columns in Account Review Transactions page")
+    public void user_able_to_view_all_the_below_mentioned_columns_in_account_review_transactions_page(DataTable dataTable) {
+
     }
 }

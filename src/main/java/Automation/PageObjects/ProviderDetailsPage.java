@@ -16,10 +16,10 @@ public class ProviderDetailsPage extends SeleniumUtils {
     String payToProviderDetailsFields = "//*[contains(text(), 'Pay to Provider details')]//following::div[@class = 'row']//div";
     String groupRenderingProviderDetailsFields = "//*[@class='table table-striped']//tr//th";
     String btnFooterSection = "//*[@class='button-padding-left footer']//button";
-    String lnkVendorId = "(//*[@id='nav-claim-details']//a)[3]";
+    String lnkVendorId = "//a[contains(text(),'V0000000256')]";
     String titleArTransactions = "//*[@class='claims-list']";
-    String eleCreditOVerPaidStatus = "//mat-tab-body/div[1]/app-ar-transaction[1]/div[1]/div[2]";
-    String eleDebitUnderPaidStatus = "//mat-tab-body//app-ar-transaction[1]/div[1]/div[3]";
+    String eleCreditOVerPaidStatus = "//*[@class='row']/div[2]/span";
+    String eleDebitUnderPaidStatus = "//*[@class='row']/div[3]/span";
 
 
     // Scenario: Verify user able to navigate to the Provider details tab in the View Claims Form page
@@ -101,8 +101,8 @@ public class ProviderDetailsPage extends SeleniumUtils {
     }
 
     public void clickOnVendorId(){
-        explicitVisibilityOfWait(findElementByLinkText("V0000000332"), 20);
-        findElementByLinkText("V0000000332").click();
+        explicitElementClickableWaitByXpath((lnkVendorId), 20);
+        clickElement(lnkVendorId);
     }
 
     public void userNavigatesToARTransactionsPage(){
@@ -110,8 +110,11 @@ public class ProviderDetailsPage extends SeleniumUtils {
         Assert.assertEquals("A/RLedger", ARTransactionTitleActual[0]+ARTransactionTitleActual[1]);
     }
 
-    public void userViewsCreditOverPaidAndDebitUnderPaidStatus(){
-        Assert.assertEquals(findElementByXpath(eleCreditOVerPaidStatus).getText(), " Credit/Overpaid - ");
-        Assert.assertEquals(findElementByXpath(eleDebitUnderPaidStatus).getText(), " Debit/Underpaid - ");
+    public void userViewsCreditOverPaidStatus(String expCreditStatus){
+        Assert.assertEquals(expCreditStatus , findElementByXpath(eleCreditOVerPaidStatus).getText());
+    }
+
+    public void userViewsDebitUnderPaidStatus(String expOverpaidStatus) {
+        Assert.assertEquals(expOverpaidStatus , findElementByXpath(eleDebitUnderPaidStatus).getText());
     }
 }

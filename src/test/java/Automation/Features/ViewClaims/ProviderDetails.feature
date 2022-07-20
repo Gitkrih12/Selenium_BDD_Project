@@ -74,4 +74,19 @@ Feature: Provider Details
     When user clicking on Claim Number "P0020021100018" in Global Search page
     And user clicks on the Provider Details tab
     When clicking on Vendor ID in Provider Details
-    Then user able to view Credit Overpaid and Debit Underpaid status
+    Then user able to view Credit Overpaid and Debit Underpaid status as "Added to Account Receivable" "deducted to Account Receivable"
+
+  @47013
+  Scenario: Verify user able to view the available Account Review Transactions and all the columns in the A/R transaction details page
+    When user clicking on Claim Number "P0020021100018" in Global Search page
+    And user clicks on the Provider Details tab
+    When clicking on Vendor ID in Provider Details
+    Then user able to view all the below mentioned columns in Account Review Transactions page
+      | Transaction Type       |
+      | Transaction Date       |
+      | Transaction Amount ($) |
+      | Running Balance ($)    |
+      | Transacted By          |
+      | Claim Number           |
+      | Recovery Claim Number  |
+      | Remarks                |
