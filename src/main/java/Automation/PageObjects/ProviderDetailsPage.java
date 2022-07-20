@@ -18,6 +18,8 @@ public class ProviderDetailsPage extends SeleniumUtils {
     String btnFooterSection = "//*[@class='button-padding-left footer']//button";
     String lnkVendorId = "(//*[@id='nav-claim-details']//a)[3]";
     String titleArTransactions = "//*[@class='claims-list']";
+    String eleCreditOVerPaidStatus = "//mat-tab-body/div[1]/app-ar-transaction[1]/div[1]/div[2]";
+    String eleDebitUnderPaidStatus = "//mat-tab-body//app-ar-transaction[1]/div[1]/div[3]";
 
 
     // Scenario: Verify user able to navigate to the Provider details tab in the View Claims Form page
@@ -27,7 +29,7 @@ public class ProviderDetailsPage extends SeleniumUtils {
 
     // Scenario: Verify user able to navigate to the Provider details tab in the View Claims Form page
     public void userNavigatedToProvideDetails(){
-        Assert.assertEquals("Provider Details", driver.findElement(By.xpath(tabProviderDetails)).getText());
+        Assert.assertEquals("Provider Details", findElementByXpath(tabProviderDetails).getText());
     }
 
     //  Scenario: Verify user able to view the Pay to Provider Details and Group/Rendering Provider Details section under Provider Details tab
@@ -99,8 +101,8 @@ public class ProviderDetailsPage extends SeleniumUtils {
     }
 
     public void clickOnVendorId(){
-        explicitVisibilityOfWait(findElementByLinkText(lnkVendorId), 1000);
-        findElementByLinkText(lnkVendorId).click();
+        explicitVisibilityOfWait(findElementByLinkText("V0000000332"), 20);
+        findElementByLinkText("V0000000332").click();
     }
 
     public void userNavigatesToARTransactionsPage(){
@@ -109,5 +111,7 @@ public class ProviderDetailsPage extends SeleniumUtils {
     }
 
     public void userViewsCreditOverPaidAndDebitUnderPaidStatus(){
+        Assert.assertEquals(findElementByXpath(eleCreditOVerPaidStatus).getText(), " Credit/Overpaid - ");
+        Assert.assertEquals(findElementByXpath(eleDebitUnderPaidStatus).getText(), " Debit/Underpaid - ");
     }
 }
