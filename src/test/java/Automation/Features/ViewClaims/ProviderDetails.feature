@@ -1,9 +1,8 @@
 Feature: Provider Details
 
   Background:
-    Given the user enters the valid username and password and click on login button for admin role
-    When user lands directly to the page
-    Then user should navigate to the DSNP admin page after successful login
+    Given the user is in CA Login screen
+    When the user enters the valid username and password and click on login button
 
   @39950
   Scenario: Verify user able to navigate to the Provider details tab in the View Claims Form page
@@ -16,7 +15,7 @@ Feature: Provider Details
     When user clicking on Claim Number "P0020021100018" in Global Search page
     And user clicks on the Provider Details tab
     Then user able to view the below sections under Provider Details tab
-      | Pay to Provider Details          |
+      | Pay to Provider details          |
       | Group/Rendering Provider Details |
 
   @39958
