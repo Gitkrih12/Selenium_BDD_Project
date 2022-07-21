@@ -3,9 +3,7 @@ package Automation.PageObjects;
 import Automation.Utilities.SeleniumUtils;
 import io.cucumber.datatable.DataTable;
 import org.junit.Assert;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,7 +23,7 @@ public class ProviderDetailsPage extends SeleniumUtils {
 
 
     // Scenario: Verify user able to navigate to the Provider details tab in the View Claims Form page
-    public void clickOnProviderDetails() throws InterruptedException{
+    public void clickOnProviderDetails() throws InterruptedException {
         clickElement(tabProviderDetails);
         threadSleep(1000);
     }
