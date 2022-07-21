@@ -30,11 +30,12 @@ public class ClaimDetailsStepDef extends ClaimDetailsPage {
     }
 
     //  Scenario: Verify View Claim in CMS 1500 and Self Assign buttons in Claim Summary details page
-    @Then("user should view {string} and {string} buttons in Claim Summary details page")
-    public void user_should_view_and_buttons_in_claim_summary_details_page(String expViewClaimValue, String expSelfAssignValue) {
+    @Then("user should view Claim in CMS {string} and self assign {string} buttons in Claim Summary details page")
+    public void user_should_view_claim_in_cms_and_self_assign_buttons_in_claim_summary_details_page(String expViewClaimValue, String expSelfAssignValue) {
         userViewsCMSButton(expViewClaimValue);
         userViewsSelfAssignButton(expSelfAssignValue);
     }
+
 
     //  Scenario: Verify column fields in Claim Summary details page
     @Then("user should be able to view all the column fields in Claim Summary Details page")

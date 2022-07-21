@@ -17,7 +17,7 @@ Feature: Claim Details
     Given the user is in FFS Professional page
     When user clicks on the Claim Number
     Then user navigates to the "Claim Summary" page
-    And user should view "View Claim in CMS 1500" and "Self-Assign" buttons in Claim Summary details page
+    And user should view Claim in CMS "View Claim in CMS 1500" and self assign "Self-Assign" buttons in Claim Summary details page
 
   @37393
   Scenario: Verify column fields in Claim Summary details page
