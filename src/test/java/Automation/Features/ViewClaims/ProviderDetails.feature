@@ -15,7 +15,7 @@ Feature: Provider Details
     When user clicking on Claim Number "P0020021100018" in Global Search page
     And user clicks on the Provider Details tab
     Then user able to view the below sections under Provider Details tab
-      | Pay to Provider Details          |
+      | Pay to Provider details          |
       | Group/Rendering Provider Details |
 
   @39958

@@ -15,12 +15,13 @@ public class ProviderDetailsPage extends SeleniumUtils {
     String providerDetailsSections = "//*[contains(text(), 'Group/Rendering Provider Details') or contains(text(),'Pay to Provider details')]";
     String payToProviderDetailsFields = "//*[contains(text(), 'Pay to Provider details')]//following::div[@class = 'row']//div";
     String groupRenderingProviderDetailsFields = "//*[@class='table table-striped']//tr//th";
-    String footerSectionBtn = "//*[@class='button-padding-left footer']//button";
+    String btnFooterSection = "//*[@class='button-padding-left footer']//button";
 
 
     // Scenario: Verify user able to navigate to the Provider details tab in the View Claims Form page
-    public void clickOnProviderDetails(){
+    public void clickOnProviderDetails() throws InterruptedException{
         clickElement(providerDetailsTab);
+        threadSleep(1000);
     }
 
     // Scenario: Verify user able to navigate to the Provider details tab in the View Claims Form page
@@ -35,13 +36,18 @@ public class ProviderDetailsPage extends SeleniumUtils {
         List<String> fieldsForCompare = new ArrayList<>();
         System.out.println("Size" + ActSections.size());
         for (WebElement column : ActSections) {
-            scrollIntoView(column, getWebDriver());
+            scrollIntoView(column, driver);
             String text = column.getText();
-            System.out.println("Pay to Provider details and Group/Rendering Provider details are displayed :" + text);
             fieldsForCompare.add(text);
         }
-        if (fieldsForCompare.equals(sectionsExp)) {
-            Assert.assertEquals(sectionsExp, fieldsForCompare);
+        System.out.println("Pay to Provider details and Group/Rendering Provider details are displayed :" + fieldsForCompare);
+        System.out.println("Expected fields are : " + sectionsExp);
+        for (String exp : sectionsExp) {
+            if (fieldsForCompare.contains(exp)) {
+                Assert.assertTrue(true);
+            } else {
+                Assert.fail(exp + " is not listed in actual list");
+            }
         }
     }
 
@@ -52,13 +58,18 @@ public class ProviderDetailsPage extends SeleniumUtils {
         List<String> fieldsForCompare = new ArrayList<>();
         System.out.println("Size" + ActFields.size());
         for (WebElement column : ActFields) {
-            scrollIntoView(column, getWebDriver());
+            scrollIntoView(column, driver);
             String text = column.getText();
-            System.out.println("Pay to Provider Fields should display:" + text);
             fieldsForCompare.add(text);
         }
-        if (fieldsForCompare.equals(fieldsExp)) {
-            Assert.assertEquals(fieldsExp, fieldsForCompare);
+        System.out.println("Pay to Provider Fields should display:" + fieldsForCompare);
+        System.out.println("Expected fields are : " + fieldsExp);
+        for (String exp : fieldsExp) {
+            if (fieldsForCompare.contains(exp)) {
+                Assert.assertTrue(true);
+            } else {
+                Assert.fail(exp + " is not listed in actual list");
+            }
         }
     }
 
@@ -69,30 +80,40 @@ public class ProviderDetailsPage extends SeleniumUtils {
         List<String> fieldsForCompare = new ArrayList<>();
         System.out.println("Size" + ActFields.size());
         for (WebElement column : ActFields) {
-            scrollIntoView(column, getWebDriver());
+            scrollIntoView(column, driver);
             String text = column.getText();
-            System.out.println("Group/Rendering Provider Details Fields should display:" + text);
             fieldsForCompare.add(text);
         }
-        if (fieldsForCompare.equals(fieldsExp)) {
-            Assert.assertEquals(fieldsExp, fieldsForCompare);
+        System.out.println("Group/Rendering Provider Details Fields should display:" + fieldsForCompare);
+        System.out.println("Expected fields are : " + fieldsExp);
+        for (String exp : fieldsExp) {
+            if (fieldsForCompare.contains(exp)) {
+                Assert.assertTrue(true);
+            } else {
+                Assert.fail(exp + " is not listed in actual list");
+            }
         }
     }
 
     //  Scenario: Validate all the buttons available at the footer section under Provider Details tab
     public void userViewsFooterSectionInServiceDetails(DataTable footerSection){
         List<String> footerSectionExp = footerSection.asList();
-        List<WebElement> ActFooterSection = findElementsByXpath(footerSectionBtn);
+        List<WebElement> ActFooterSection = findElementsByXpath(btnFooterSection);
         List<String> fieldsForCompare = new ArrayList<>();
         System.out.println("Size" + ActFooterSection.size());
         for (WebElement column : ActFooterSection) {
-            scrollIntoView(column, getWebDriver());
+            scrollIntoView(column, driver);
             String text = column.getText();
-            System.out.println("Footer section should display:" + text);
             fieldsForCompare.add(text);
         }
-        if (fieldsForCompare.equals(footerSectionExp)) {
-            Assert.assertEquals(footerSectionExp, fieldsForCompare);
+        System.out.println("Footer section should display:" + fieldsForCompare);
+        System.out.println("Expected fields are : " + footerSectionExp);
+        for (String exp : footerSectionExp) {
+            if (fieldsForCompare.contains(exp)) {
+                Assert.assertTrue(true);
+            } else {
+                Assert.fail(exp + " is not listed in actual list");
+            }
         }
     }
 }
