@@ -90,3 +90,10 @@ Feature: Provider Details
       | Claim Number           |
       | Recovery Claim Number  |
       | Remarks                |
+
+  @47017
+  Scenario: Verify Search box should display for all the columns on the A/R Transactions grid
+    When user clicking on Claim Number "P0020021100018" in Global Search page
+    And user clicks on the Provider Details tab
+    When clicking on Vendor ID in Provider Details
+    Then user able to view the search box for all the column on AR Transactions grid

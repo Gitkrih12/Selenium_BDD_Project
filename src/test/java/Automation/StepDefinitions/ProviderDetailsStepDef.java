@@ -27,7 +27,7 @@ public class ProviderDetailsStepDef extends ProviderDetailsPage {
 
     //  Scenario: Verify user able to view all the fields under Pay to Provider Details section
     @Then("user able to view all the fields under Pay to Provider Details section")
-    public void user_able_to_view_all_the_fields_under_pay_to_provider_details_section(DataTable fieldsUnderPayToProviderDetails){
+    public void user_able_to_view_all_the_fields_under_pay_to_provider_details_section(DataTable fieldsUnderPayToProviderDetails) {
         userViewsFieldsUnderPayToProviderDetailsSection(fieldsUnderPayToProviderDetails);
     }
 
@@ -44,7 +44,7 @@ public class ProviderDetailsStepDef extends ProviderDetailsPage {
     }
 
     @When("clicking on Vendor ID in Provider Details")
-    public void clicking_on_vendor_id_in_provider_details() {
+    public void clicking_on_vendor_id_in_provider_details() throws InterruptedException {
         clickOnVendorId();
     }
 
@@ -60,7 +60,12 @@ public class ProviderDetailsStepDef extends ProviderDetailsPage {
     }
 
     @Then("user able to view all the below mentioned columns in Account Review Transactions page")
-    public void user_able_to_view_all_the_below_mentioned_columns_in_account_review_transactions_page(DataTable dataTable) {
+    public void user_able_to_view_all_the_below_mentioned_columns_in_account_review_transactions_page(DataTable arTransactionFields) {
+        userViewsAccountReviewTransactionColumns(arTransactionFields);
+    }
 
+    @Then("user able to view the search box for all the column on AR Transactions grid")
+    public void user_able_to_view_the_search_box_for_all_the_column_on_ar_transactions_grid() {
+        verifySearchFieldsUnderEachColumn();
     }
 }
