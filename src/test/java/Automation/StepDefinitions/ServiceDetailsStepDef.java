@@ -16,7 +16,7 @@ public class ServiceDetailsStepDef extends ServiceDetailsPage {
     }
 
     @When("user clicks on Service Details tab")
-    public void user_clicks_on_service_details_tab() {
+    public void user_clicks_on_service_details_tab() throws InterruptedException {
         clickOnServiceDetails();
     }
 

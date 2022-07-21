@@ -16,8 +16,8 @@ public class ServiceDetailsPage extends SeleniumUtils {
     String lnkServiceDetails = "//*[contains(text(), 'Service Details')]";
     String serviceDetailsColumnFields = "//*[@class='tab-pane fade show active']/div[1]/div | " +
             "//*[@id='nav-claim-details']/div[3]/div | //*[@id='nav-claim-details']/div[5]/div";
-    String serviceLineFieldsTable = "//*[@id='nav-service-details']/div/app-servicedetails/table/thead/tr[1]/th | " +
-            "//*[@id='nav-service-details']/div/app-servicedetails/table/thead/tr[2]/th";
+    String serviceLineFieldsTable = "(//*[contains(text(),'DOS')])[3] | //*[contains(text(),'Modifiers')] | " +
+            "//*[contains(text(),'Diagnosis Pointer')] | //*[@id='nav-service-details']/div/app-servicedetails/table/thead/tr[2]/th";
     String btnFooterFields = "//*[@class='button-padding-left footer']/button";
     String lnkLineNumber = "(//*[@class='gridData ng-star-inserted']//a)[1]";
     String menuPricingTab = "//*[contains(text(),'Pricing')]";
@@ -41,8 +41,9 @@ public class ServiceDetailsPage extends SeleniumUtils {
         clickElement(eleClaimNumber);
     }
 
-    public void clickOnServiceDetails() {
+    public void clickOnServiceDetails() throws InterruptedException {
         clickElement(lnkServiceDetails);
+        threadSleep(1000);
     }
 
     public void userViewsAllColumnFieldsInServiceDetails(DataTable columnList) {
@@ -75,7 +76,6 @@ public class ServiceDetailsPage extends SeleniumUtils {
         for (WebElement column : ActColumnFields) {
             scrollIntoView(column, driver);
             String text = column.getText();
-            System.out.println("Service Line Fields should display  : " + text);
             columnFieldsForCompare.add(text);
         }
         System.out.println("Fields in Service Line Fields section :" + columnFieldsForCompare);
@@ -98,10 +98,9 @@ public class ServiceDetailsPage extends SeleniumUtils {
         for (WebElement column : ActFooterFields) {
             scrollIntoView(column, driver);
             String text = column.getText();
-            System.out.println("Footer fields in Service Details page :" + text);
             fieldsForCompare.add(text);
         }
-        System.out.println("Fields in Service Details section :" + fieldsForCompare);
+        System.out.println("Footer fields in Service Details page :" + fieldsForCompare);
         System.out.println("Expected fields are : " + footerFieldsExp);
         for (String exp : footerFieldsExp) {
             if (fieldsForCompare.contains(exp)) {
