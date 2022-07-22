@@ -10,7 +10,7 @@ import java.util.List;
 
 public class LeftNavigationPage extends SeleniumUtils {
 
-    String mnuLeftNavigation = "//mat-nav-list[@class='mat-nav-list mat-list-base']";
+    String mnuLeftNavigation = "//div[@class='menu']";
     String btnAdjudicationExpansion = "//div[contains(text(),'Adjudication')]//following::span[1]";
     String btnQueueManagementExpansion = "//div[contains(text(),'Queue Management')]//following::span[1]";
     String expandedExpText = "rotate(180deg)";
@@ -307,6 +307,35 @@ public class LeftNavigationPage extends SeleniumUtils {
         for (String exp: fileManagementListExp)
         {
             if(fileManagementListAct.contains(exp))
+            {
+                Assert.assertTrue(true);
+            }
+            else
+            {
+                Assert.fail(exp + " value is not listed in actual list");
+            }
+        }
+    }
+
+    //    Scenario: Validate Member Management Menu for admin role
+    public void validateMemberManagementSubMenus(DataTable memberManagementList)
+    {
+        List<String> memberManagementListExp = memberManagementList.asList();
+        clickElement(mnuMemberManagement);
+        List<WebElement> memberManagementSubMenus = findElementsByXpath(mnuMemberManagementList);
+        List<String> memberManagementListAct = new ArrayList<>();
+
+        for (WebElement memberList: memberManagementSubMenus)
+        {
+            moveToElement(memberList).perform();
+            String text = memberList.getText();
+            memberManagementListAct.add(text);
+        }
+        System.out.println("Member management actual list: " + memberManagementListAct);
+        System.out.println("Member management expected list: " + memberManagementListExp);
+        for (String exp: memberManagementListExp)
+        {
+            if (memberManagementListAct.contains(exp))
             {
                 Assert.assertTrue(true);
             }

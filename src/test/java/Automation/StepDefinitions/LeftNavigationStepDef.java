@@ -78,5 +78,11 @@ public class LeftNavigationStepDef extends LeftNavigationPage {
         validateFileManagementSubMenus(fileManagementList);
     }
 
+    //    Scenario: Validate Member Management Menu for admin role
+    @Then("user should be able to view the following sub menus under Member Management main Menu")
+    public void user_should_be_able_to_view_the_following_sub_menus_under_member_management_main_menu(DataTable memberManagementList) {
+        validateMemberManagementSubMenus(memberManagementList);
+    }
+
 
 }

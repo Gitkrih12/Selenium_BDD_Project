@@ -67,3 +67,11 @@ Feature: Left Navigation
       | Upload Files    |
       | Great Plains    |
       | Encounter Files |
+
+  @34888
+  Scenario: Validate Member Management Menu for admin role
+    When left navigation loaded
+    Then user should be able to view the following sub menus under Member Management main Menu
+      | Members List        |
+      | MOOP Ledger         |
+      | Prior Authorization |
