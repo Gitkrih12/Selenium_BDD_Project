@@ -39,8 +39,9 @@ public class ServiceDetailsPage extends SeleniumUtils {
     }
 
     //  Scenario: Verify Adjudicator able to Navigate Service Details from Global Search and validate the fields
-    public void clickOnClaimNumber() {
+    public void clickOnClaimNumber() throws InterruptedException{
         clickElement(eleClaimNumber);
+        threadSleep(1000);
     }
 
     //  Scenario: Verify Adjudicator able to Navigate Service Details from Global Search and validate the fields
