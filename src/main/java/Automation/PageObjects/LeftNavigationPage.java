@@ -15,25 +15,34 @@ public class LeftNavigationPage extends SeleniumUtils {
     String btnQueueManagementExpansion = "//div[contains(text(),'Queue Management')]//following::span[1]";
     String expandedExpText = "rotate(180deg)";
     String collapsedExpText = "rotate(0deg)";
+    String tglClaimsAdj = "//div[@class='menu']//img";
+    String attClaimsAdj = "//*[@class='mat-drawer-content']";
+    String attClaimsAdjCollapsedExpStatus = "25px";
+    String tglClaimsAdjCollapsed = "//span[contains(@class, 'hamburger-icon')]//img";
+    String attClaimsAdjExpandedExpStatus = "271px";
     String mnuMainItems = "//div[@class='menuitemsnames']/../..//following::span[1]";
     String mnuAccountManagement = "//div[contains(text(),'Account Management')]";
     String mnuArLedger = "//div[contains(text(),'A/R Ledger')]";
     String mnuAdjudicationList = "(//div[contains(@class,'mat-expansion-panel-body')])[1]//div[@class='menuitemschaild']";
     String mnuCheckManagement = "//div[contains(text(),'Check Management')]";
-    String mnuCheckManagementList = "(//div[contains(@class,'mat-expansion-panel-body')])[6]//div[@class='menuitemschaild']";
+    String mnuCheckManagementList = "(//div[contains(@class,'mat-expansion-panel-content')])[6]//div[@class='menuitemschaild']";
     String mnuFeeSchedule = "//div[contains(text(),'Fee Schedule')]";
     String mnuMedicare = "//div[contains(text(),'Medicare')]";
     String mnuMedicaid = "//div[contains(text(),'Medicaid')]";
     String mnuFileManagement = "//div[contains(text(),'File Management')]";
-    String mnuFileManagementList = "//div[@class='mat-expansion-panel-body ng-tns-c181-7']//div[@class='menuitemschaild']";
+    String mnuFileManagementList = "(//div[contains(@class,'mat-expansion-panel-body')])[3]//div[@class='menuitemschaild']";
     String mnuMemberManagement = "//div[normalize-space()='Member Management']";
-    String mnuMemberManagementList = "//div[@class='mat-expansion-panel-body ng-tns-c181-15']//div[@class='menuitemschaild']";
-    String mnuQueueManagementList = "//div[@class='mat-expansion-panel-body ng-tns-c181-5']//div[@class='menuitemschaild']";
+    String mnuMemberManagementList = "(//div[contains(@class,'mat-expansion-panel-body')])[7]//div[@class='menuitemschaild']";
+    String mnuQueueManagementList = "(//div[contains(@class,'mat-expansion-panel-body')])[2]//div[@class='menuitemschaild']";
     String mnuReports = "//div[normalize-space()='Reports']";
     String mnuReportsList = "//div[contains(text(),'SSRS Reports')]";
     String mnuSettings = "//div[normalize-space()='Settings']";
     String mnuPlainLanguage = "//div[contains(text(),'Plain Language')]";
     String mnuInstructions = "//div[contains(text(),'Instructions')]";
+    String mnuUserManagement = "//div[contains(text(),'User Management')]";
+    String mnuManageUsers = "//div[contains(text(),'Manage Users')]";
+    String mnuManageRole = "//div[contains(text(),'Manage Role')]";
+
 
     public void leftNavigationValidation() {
         boolean leftNavigationStatus = isDisplayed(mnuLeftNavigation);
@@ -165,7 +174,7 @@ public class LeftNavigationPage extends SeleniumUtils {
     //    Scenario: Validate Account Management Menu for admin role
     public void validateARLedgerMenu()
     {
-        findElementByXpath(mnuAccountManagement).click();
+        clickElement(mnuAccountManagement);
         moveToElement(mnuArLedger).perform();
         Assert.assertTrue(isDisplayed(mnuArLedger));
         System.out.println("AR Ledger menu status is : " + isDisplayed(mnuArLedger));
@@ -205,7 +214,7 @@ public class LeftNavigationPage extends SeleniumUtils {
     public void validateCheckManagementSubMenus(DataTable checkManagementList) throws InterruptedException {
 
         List<String> checkManagementListExp = checkManagementList.asList();
-        findElementByXpath(mnuCheckManagement).click();
+        clickElement(mnuCheckManagement);
         List<WebElement> checkMngmtSubMenusList = findElementsByXpath(mnuCheckManagementList);
         List<String> checkManagementListAct = new ArrayList<>();
 
@@ -230,6 +239,84 @@ public class LeftNavigationPage extends SeleniumUtils {
             }
         }
     }
+
+    //    Scenario: Validate expanding collapsing left navigation menu on clicking Menu Toggle for admin role
+    public void clickOnClaimsAdjudicationToggleMenu()
+    {
+        clickElement(tglClaimsAdj);
+    }
+    public void verifyCollapsedStatusForClaimsAdjudicationToggleMenu()
+    {
+        String claimsAdjCollapsedAttAct = getAttribute(attClaimsAdj, "style");
+        System.out.println("Claims Adjudication toggle attribute value in collapsed mode: " + claimsAdjCollapsedAttAct);
+        if (claimsAdjCollapsedAttAct.contains(attClaimsAdjCollapsedExpStatus))
+        {
+            Assert.assertTrue(true);
+        }
+        else
+        {
+            Assert.fail("Claims Adjudication toggle menu is not in collapsed mode");
+        }
+
+    }
+    public void clickOnClaimsAdjudicationToggleMenuInCollapsableMode()
+    {
+        clickElement(tglClaimsAdjCollapsed);
+    }
+    public void verifyExpandedStatusForClaimsAdjudicationToggleMenu()
+    {
+        String claimsAdjExpandedAttAct = getAttribute(attClaimsAdj, "style");
+        System.out.println("Claims Adjudication toggle attribute value in collapsed mode: " + claimsAdjExpandedAttAct);
+        if (claimsAdjExpandedAttAct.contains(attClaimsAdjExpandedExpStatus))
+        {
+            Assert.assertTrue(true);
+        }
+        else
+        {
+            Assert.fail("Claims Adjudication toggle menu is not in expanded mode");
+        }
+    }
+
+    //    Scenario: Validate Fee Schedule Menu for admin role
+    public void validateFeeScheduleSubMenus()
+    {
+        clickElement(mnuFeeSchedule);
+        moveToElement(mnuMedicare).perform();
+        Assert.assertTrue(isDisplayed(mnuMedicare));
+        moveToElement(mnuMedicaid).perform();
+        Assert.assertTrue(isDisplayed(mnuMedicaid));
+        System.out.println("Fee Schedules sub menus status is : " + (isDisplayed(mnuMedicare) && isDisplayed(mnuMedicaid)));
+    }
+
+    //    Scenario: Validate File Management Menu for admin role
+    public void validateFileManagementSubMenus(DataTable fileManagementList)
+    {
+        List<String> fileManagementListExp = fileManagementList.asList();
+        clickElement(mnuFileManagement);
+        List <WebElement> fileManagementSubMenusList = findElementsByXpath(mnuFileManagementList);
+        List<String> fileManagementListAct = new ArrayList<>();
+
+        for (WebElement fileList : fileManagementSubMenusList)
+        {
+            moveToElement(fileList).perform();
+            String text = fileList.getText();
+            fileManagementListAct.add(text);
+        }
+        System.out.println("Actual file management list:  " + fileManagementListAct);
+        System.out.println("Expected file management list: " + fileManagementListExp);
+        for (String exp: fileManagementListExp)
+        {
+            if(fileManagementListAct.contains(exp))
+            {
+                Assert.assertTrue(true);
+            }
+            else
+            {
+                Assert.fail(exp + " value is not listed in actual list");
+            }
+        }
+    }
+
 
 
 }

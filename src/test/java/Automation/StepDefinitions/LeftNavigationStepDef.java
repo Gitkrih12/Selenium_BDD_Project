@@ -48,6 +48,35 @@ public class LeftNavigationStepDef extends LeftNavigationPage {
         validateCheckManagementSubMenus(checkManagementList);
     }
 
+    //    Scenario: Validate expanding collapsing left navigation menu on clicking Menu Toggle for admin role
+    @When("user clicks on Menu Toggle in left navigation menu")
+    public void user_clicks_on_menu_toggle_in_left_navigation_menu() {
+        clickOnClaimsAdjudicationToggleMenu();
+    }
+    @Then("left navigation menu should be changed to Collapsible mode")
+    public void left_navigation_menu_should_be_changed_to_collapsible_mode() {
+        verifyCollapsedStatusForClaimsAdjudicationToggleMenu();
+    }
+    @Then("user clicks on Menu Toggle when left navigation menu in collapsible mode")
+    public void user_clicks_on_menu_toggle_when_left_navigation_menu_in_collapsible_mode() {
+        clickOnClaimsAdjudicationToggleMenuInCollapsableMode();
+    }
+    @Then("Left navigation menu should be changed to expandable mode")
+    public void left_navigation_menu_should_be_changed_to_expandable_mode() {
+        verifyExpandedStatusForClaimsAdjudicationToggleMenu();
+    }
+
+    //    Scenario: Validate Fee Schedule Menu for admin role
+    @Then("user should able to view the Medicare and Medicaid Menu's under Fee Schedule Menu")
+    public void user_should_able_to_view_the_medicare_and_medicaid_menu_s_under_fee_schedule_menu() {
+        validateFeeScheduleSubMenus();
+    }
+
+    //    Scenario: Validate File Management Menu for admin role
+    @Then("user should be able to view the following sub menus under File Management main menu")
+    public void user_should_be_able_to_view_the_following_sub_menus_under_file_management_main_menu(DataTable fileManagementList) {
+        validateFileManagementSubMenus(fileManagementList);
+    }
 
 
 }
