@@ -167,6 +167,7 @@ Feature: Claim Details
       | Rendering Provider NPI  |
       | Taxonomy                |
 
+  @abc
   @37415
   Scenario: Validate Billing Provider Information section
     Given the user is in FFS Professional page
@@ -185,6 +186,7 @@ Feature: Claim Details
       | Telephone             |
       | Network Affiliation   |
 
+  @abc
   @37416
   Scenario: Validate Payer section
     Given the user is in FFS Professional page
@@ -199,6 +201,7 @@ Feature: Claim Details
       | State          |
       | Zip Code       |
 
+  @abc
   @37418
   Scenario: Validate Date of Service section
     Given the user is in FFS Professional page
@@ -210,6 +213,7 @@ Feature: Claim Details
       | Prior Auth             |
       | Patient Control Number |
 
+  @abc
   @37421
   Scenario: Validate Is Patient Condition Related To section
     Given the user is in FFS Professional page
@@ -223,6 +227,7 @@ Feature: Claim Details
       | Date of Onset / Current Illness |
     And user should be able to view checkboxes for Employment Auto Accident and Other Accident fields
 
+  @abc
   @40613
   Scenario: Validate Hide action for claim summary section
     Given the user is in FFS Professional page
@@ -231,6 +236,7 @@ Feature: Claim Details
     When user clicks on Hide link
     Then user should hide the claim summary section
 
+  @abc
   @40618
   Scenario: Validate Show action for claim summary section
     Given the user is in FFS Professional page
