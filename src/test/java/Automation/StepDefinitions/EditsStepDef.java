@@ -28,4 +28,24 @@ public class EditsStepDef extends EditsPage {
     public void user_views_the_footer_section_in_edits_page(DataTable footerSection) {
         userViewsFooterSectionInEditsPage(footerSection);
     }
+
+    @Then("user should be able to view below columns in Service Level Edits")
+    public void user_should_be_able_to_view_below_columns_in_service_level_edits(DataTable columnFields) {
+        userViewsServiceLevelEditsTab(columnFields);
+    }
+
+    @Then("user should be able to view Delete action item highlighted in blue color")
+    public void user_should_be_able_to_view_delete_action_item_highlighted_in_blue_color() {
+        userViewsDeleteButtonHighlightedInBlue();
+    }
+
+    @Then("user should be able to view below columns in Claim Level Edits")
+    public void user_should_be_able_to_view_below_columns_in_claim_level_edits(DataTable editLevelColumnFields) {
+        userViewsClaimLevelEditsTab(editLevelColumnFields);
+    }
+
+    @Then("user should be able to view Edit action item highlighted in red color")
+    public void user_should_be_able_to_view_edit_action_item_highlighted_in_red_color() {
+       userViewsEditButtonHighlightedInRed();
+    }
 }

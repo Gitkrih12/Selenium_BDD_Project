@@ -24,12 +24,34 @@ Feature: Edits
       | Update Auth       |
 
   @44553
-  Scenario: Verify "Service Level Edits" Sub-tab functionality
+  Scenario: Verify Service Level Edits Sub tab functionality
     When user clicking on Claim Number "P0020021100018" in Global Search page
     And user clicks on Edits tab
     Then user should be able to view below columns in Service Level Edits
       | Line Number   |
+      | Overridden By |
+      | Description   |
+      | Workaround    |
+      | Resolution    |
+      | Status        |
+      | Category      |
+      | Added By      |
       | Edit Number   |
+
+  @44556
+  Scenario: Verify Edit & Delete functionality in Service Level Edits Sub tab
+    When user clicking on Claim Number "P0020021100018" in Global Search page
+    And user clicks on Edits tab
+    Then user should be able to view Delete action item highlighted in blue color
+    And user should be able to view Edit action item highlighted in red color
+
+  @44558
+  Scenario: Verify "Claim Level Edits" Sub-tab
+    When user clicking on Claim Number "P0020021100018" in Global Search page
+    And user clicks on Edits tab
+    Then user should be able to view below columns in Claim Level Edits
+      | Edit Number   |
+      | Reason Code   |
       | Description   |
       | Workaround    |
       | Resolution    |
