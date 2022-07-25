@@ -221,6 +221,7 @@ Feature: Claim Details
       | Other Accident                  |
       | Accident Date                   |
       | Date of Onset / Current Illness |
+    And user should be able to view checkboxes for Employment Auto Accident and Other Accident fields
 
   @40613
   Scenario: Validate Hide action for claim summary section

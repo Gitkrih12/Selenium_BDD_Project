@@ -33,9 +33,10 @@ public class ClaimDetailsPage extends SeleniumUtils {
             "/div[1]/div | //*[@id='nav-claim-details']/div[12]/div[1]/div";
     String payerFields = "//*[@id='nav-claim-details']/div[13]/div[1]/div | //*[@id='nav-claim-details']/div[14]/div[1]/div";
     String dateOfServiceFields = "//*[@id='nav-claim-details']/div[15]/div[1]/div[1]/div";
-    String isPatientConditionRelatedToField = "//*[@id='nav-claim-details']/div[15]/div[2]/div/div";
-    String showOption = "//*[contains(text(), '(Show)')]";
+    String isPatientConditionRelatedToField = "//*[@id='nav-claim-details']/div[15]/div[2]/div/div/b";
+    String lnkshowOption = "//*[contains(text(), '(Show)')]";
     String eleClaimNumber = "(//*[contains(text(), 'Claim Number')])[1]";
+    String checkboxFields = "//*[@id='nav-claim-details']/div[15]/div[2]//input";
 
 
     //  Scenario: Verify user able to navigate to claim summary screen on clicking claim number
@@ -359,6 +360,17 @@ public class ClaimDetailsPage extends SeleniumUtils {
         }
     }
 
+    public void verifyCheckBoxesForFields() {
+        List<WebElement> ActFields = findElementsByXpath(checkboxFields);
+        for (WebElement checkbox : ActFields) {
+            if (checkbox.isDisplayed()) {
+                Assert.assertTrue(true);
+            } else {
+                Assert.fail(checkbox + "checkboxes were not displayed");
+            }
+        }
+    }
+
     //  Scenario: Validate Hide action for claim summary section
     public void userClicksOnHideLink() {
         clickElement(lnkHideOption);
@@ -371,12 +383,12 @@ public class ClaimDetailsPage extends SeleniumUtils {
 
     //  Scenario: Validate Show action for claim summary section
     public void verifyShowLinkIsDisplayed() {
-        boolean showLink = findElementByXpath(showOption).isDisplayed();
+        boolean showLink = findElementByXpath(lnkshowOption).isDisplayed();
         Assert.assertTrue(showLink);
     }
 
     public void userClicksOnShowLink() {
-        clickElement(showOption);
+        clickElement(lnkshowOption);
     }
 
     public void verifyUserViewsClaimSummarySection() {

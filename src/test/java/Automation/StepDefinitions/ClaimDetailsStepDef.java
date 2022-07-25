@@ -127,6 +127,11 @@ public class ClaimDetailsStepDef extends ClaimDetailsPage {
         verifyFieldsUnderIsPatientConditionRelatedToSection(isPatientConditionRelatedToSection);
     }
 
+    @Then("user should be able to view checkboxes for Employment Auto Accident and Other Accident fields")
+    public void user_should_be_able_to_view_checkboxes_for_Employment_Auto_Accident_and_Other_Accident_fields() {
+        verifyCheckBoxesForFields();
+    }
+
     //  Scenario: Validate Hide action for claim summary section
     @When("user clicks on Hide link")
     public void user_clicks_on_hide_link() {
