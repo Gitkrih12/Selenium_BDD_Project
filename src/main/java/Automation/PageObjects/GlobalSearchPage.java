@@ -18,28 +18,28 @@ public class GlobalSearchPage extends SeleniumUtils {
     String expHeight = "1px";
     String btnFilter = "//button[text()='Filter']";
     String btnCustomisedColumns = "//button[text()='Customize Columns']";
-    String columnFeilds = "//div[@class='ag-header-cell-label']//span[text()]";
-    String inputSearchFields = "//div[@class='ag-header-cell-label']//span[text()]//following::div//input[@class='ag-input-field-input ag-text-field-input']";
-    String activeGlobalSearch = "//div[@class='col active-tab ng-star-inserted']";
-    String inputClaimNumber = "//input[@aria-label='Claim Number Filter Input']";
-    String inputMemberId = "//input[@aria-label='Member Id Filter Input']";
+    String lstColumnFeilds = "//div[@class='ag-header-cell-label']//span[text()]";
+    String txtSearchFields = "//div[@class='ag-header-cell-label']//span[text()]//following::div//input[@class='ag-input-field-input ag-text-field-input']";
+    String tabActiveGlobalSearch = "//div[@class='col active-tab ng-star-inserted']";
+    String txtClaimNumber = "//input[@aria-label='Claim Number Filter Input']";
+    String txtMemberId = "//input[@aria-label='Member Id Filter Input']";
     String eleClaimNumber = "//div[@class='ag-pinned-left-cols-container']//a";
     String eleMemberId = "(//div[@col-id='subscriberId']//span[@class='ag-cell-value'])[1]";
-    String inputPatientName = "//input[@aria-label='Patient Filter Input']";
+    String txtPatientName = "//input[@aria-label='Patient Filter Input']";
     String elePatientName = "(//div[@col-id='memberFullName']//span[@class='ag-cell-value'])[1]";
-    String inputBillingProvider = "//input[@aria-label='Billing Provider Filter Input']";
+    String txtBillingProvider = "//input[@aria-label='Billing Provider Filter Input']";
     String eleBillingProvider = "(//div[@col-id='billingProviderFullName']//span[@class='ag-cell-value'])[1]";
-    String inputState = "//input[@aria-label='State Filter Input']";
-    String eleState = "(//div[@col-id='status']//span[@class='ag-cell-value'])[1]";
-    String inputCategory = "//input[@aria-label='Category Filter Input']";
+    String txtState = "//input[@aria-label='State Filter Input']";
+    String eleState = "(//div[@col-id='status']//span[@class='ag-cell-value']//span[2])[1]";
+    String txtCategory = "//input[@aria-label='Category Filter Input']";
     String eleCategory = "(//div[@col-id='category']//span[@class='ag-cell-value'])[1]";
-    String inputDOSFrom = " //input[@aria-label='DOS From Filter Input']";
+    String txtDOSFrom = " //input[@aria-label='DOS From Filter Input']";
     String eleDOSFrom = "(//div[@col-id='dosFrom']//span[@class='ag-cell-value'])[1]";
-    String inputDOSTo = "//input[@aria-label='DOS To Filter Input']";
+    String txtDOSTo = "//input[@aria-label='DOS To Filter Input']";
     String eleDOSTo = "(//div[@col-id='dosTo']//span[@class='ag-cell-value'])[1]";
     String btnExportResult = "//button[text()='Export Result']";
     String btnReprocess = "(//button[@title='Reprocess']//img)[1]";
-    String inputUniversalSearchBar = "//input[@type='text' and @formcontrolname='searchName']";
+    String txtUniversalSearchBar = "//input[@type='text' and @formcontrolname='searchName']";
     String imgSearchIcon = "//a//img[@class='SearchIcon']";
     String eleViewclaimTab = "//div[contains(@class,'active-tab')]";
     String eleInvalidIcon = "//span//em[@class='bi bi-info-circle']";
@@ -56,9 +56,9 @@ public class GlobalSearchPage extends SeleniumUtils {
     String btnClose = "//button[@aria-label='Close']";
     String eleClaimNumberDisabled = "//input[@disabled]";
     String eleClaimNumberColumnOrder = "(//div[@class='offcanvas-header']//following::label)[1]";
-    String inputClaimNumberCheckBox = "//input[@id='claimNumber']";
-    String inputProviderCheckBox = "//input[@id='providerFullName']";
-    String inputProvider = "//input[@aria-label='Provider Filter Input']";
+    String chkClaimNumber = "//input[@id='claimNumber']";
+    String chkProvider = "//input[@id='providerFullName']";
+    String txtProvider = "//input[@aria-label='Provider Filter Input']";
     String elePagination = "//div[@class='ag-paging-panel ag-unselectable']";
     String eleTotalMemberIdRecords = "//div[@col-id='subscriberId']//span[@class='ag-cell-value']";
     String eleTotalResults = "//span[@class='ag-paging-row-summary-panel']";
@@ -101,6 +101,8 @@ public class GlobalSearchPage extends SeleniumUtils {
         System.out.println("actHeight" + actHeight);
         if (actHeight.contains(expHeight)) {
             Assert.assertTrue(true);
+        }else{
+            Assert.assertTrue(false);
         }
     }
 
@@ -119,7 +121,7 @@ public class GlobalSearchPage extends SeleniumUtils {
     //Scenario: Verify column fields in grid level on Global Search
     public void verifyGlobalSearchColumnFields(DataTable columnList) throws InterruptedException {
         List<String> expColumnList = columnList.asList();
-        List<WebElement> actColumnFields = findElementsByXpath(columnFeilds);
+        List<WebElement> actColumnFields = findElementsByXpath(lstColumnFeilds);
         List<String> actualColumnFieldsForCompare = new ArrayList<>();
 
         for (WebElement column : actColumnFields) {
@@ -142,7 +144,7 @@ public class GlobalSearchPage extends SeleniumUtils {
 
     //Scenario: Verify search field displayed under each column except follow up column
     public void verifySearchFieldsUnderEachCoulmn() {
-        List<WebElement> ActCSearchFields = findElementsByXpath(inputSearchFields);
+        List<WebElement> ActCSearchFields = findElementsByXpath(txtSearchFields);
         for (WebElement column : ActCSearchFields) {
             scrollIntoView(column, driver);
             boolean value = column.isDisplayed();
@@ -152,16 +154,16 @@ public class GlobalSearchPage extends SeleniumUtils {
 
     //Scenario: Verify adjudicator should land on Global Search Page
     public void verifyAdjudicatorLandsOnGlobalSearchPage() {
-        boolean value = isDisplayed(activeGlobalSearch);
+        boolean value = isDisplayed(tabActiveGlobalSearch);
         Assert.assertTrue(value);
     }
 
     //Scenario: Verify user enters the Claim Number in the Search field
     public void enterClaimNumberInSearchField(String claimNumber) throws InterruptedException {
         expClaimNumber = claimNumber;
-        findElementAndSendKeys(findElementByXpath(inputClaimNumber), claimNumber);
+        findElementAndSendKeys(findElementByXpath(txtClaimNumber), claimNumber);
         threadSleep(1000);
-        sendKeysUsingKeyboardInput(inputClaimNumber);
+        sendKeysUsingKeyboardInput(txtClaimNumber);
     }
 
     public void validateClaimNumberResult() {
@@ -174,9 +176,9 @@ public class GlobalSearchPage extends SeleniumUtils {
     //Scenario: Verify user enters the Member ID in the Search field
     public void enterMemberIdInSearchField(String memberId) throws InterruptedException {
         expMemberId = memberId;
-        findElementAndSendKeys(findElementByXpath(inputMemberId), memberId);
+        findElementAndSendKeys(findElementByXpath(txtMemberId), memberId);
         threadSleep(1000);
-        sendKeysUsingKeyboardInput(inputMemberId);
+        sendKeysUsingKeyboardInput(txtMemberId);
         threadSleep(5000);
     }
 
@@ -190,9 +192,9 @@ public class GlobalSearchPage extends SeleniumUtils {
     //Scenario: Verify user enters the Patient Name in the Search field
     public void enterPatientNameInSearchField(String patientName) throws InterruptedException {
         expPatientName = patientName;
-        findElementAndSendKeys(findElementByXpath(inputPatientName), patientName);
+        findElementAndSendKeys(findElementByXpath(txtPatientName), patientName);
         threadSleep(1000);
-        sendKeysUsingKeyboardInput(inputPatientName);
+        sendKeysUsingKeyboardInput(txtPatientName);
         threadSleep(3000);
     }
 
@@ -204,11 +206,11 @@ public class GlobalSearchPage extends SeleniumUtils {
     }
 
     // Scenario: Verify user enters the Billing Provider details in the Search field
-    public void enterBillingProviderInSearchField(String BillingProvider) throws InterruptedException {
-        expBillingProvider = BillingProvider;
-        findElementAndSendKeys(findElementByXpath(inputBillingProvider), BillingProvider);
+    public void enterBillingProviderInSearchField(String billingProvider) throws InterruptedException {
+        expBillingProvider = billingProvider;
+        findElementAndSendKeys(findElementByXpath(txtBillingProvider), billingProvider);
         threadSleep(1000);
-        sendKeysUsingKeyboardInput(inputBillingProvider);
+        sendKeysUsingKeyboardInput(txtBillingProvider);
         threadSleep(3000);
     }
 
@@ -222,10 +224,10 @@ public class GlobalSearchPage extends SeleniumUtils {
     //Scenario: Verify user enters the State name in the Search field
     public void enterStateInSearchField(String state) throws InterruptedException {
         expState = state;
-        scrollIntoView(findElementByXpath(inputState), driver);
-        findElementAndSendKeys(findElementByXpath(inputState), state);
+        scrollIntoView(findElementByXpath(txtState), driver);
+        findElementAndSendKeys(findElementByXpath(txtState), state);
         threadSleep(1000);
-        sendKeysUsingKeyboardInput(inputState);
+        sendKeysUsingKeyboardInput(txtState);
         threadSleep(3000);
     }
 
@@ -239,10 +241,10 @@ public class GlobalSearchPage extends SeleniumUtils {
     //Scenario: Verify user enters the Category value in the Search field
     public void enterCategoryInSearchField(String category) throws InterruptedException {
         expCategory = category;
-        scrollIntoView(findElementByXpath(inputCategory), driver);
-        findElementAndSendKeys(findElementByXpath(inputCategory), category);
+        scrollIntoView(findElementByXpath(txtCategory), driver);
+        findElementAndSendKeys(findElementByXpath(txtCategory), category);
         threadSleep(1000);
-        sendKeysUsingKeyboardInput(inputCategory);
+        sendKeysUsingKeyboardInput(txtCategory);
         threadSleep(3000);
     }
 
@@ -256,10 +258,10 @@ public class GlobalSearchPage extends SeleniumUtils {
     //Scenario: Verify user enters the DOS From details in the Search field
     public void enterDOSFromInSearchField(String DOSFrom) throws InterruptedException {
         expDOSFrom = DOSFrom;
-        scrollIntoView(findElementByXpath(inputDOSFrom), driver);
-        findElementAndSendKeys(findElementByXpath(inputDOSFrom), DOSFrom);
+        scrollIntoView(findElementByXpath(txtDOSFrom), driver);
+        findElementAndSendKeys(findElementByXpath(txtDOSFrom), DOSFrom);
         threadSleep(1000);
-        sendKeysUsingKeyboardInput(inputDOSFrom);
+        sendKeysUsingKeyboardInput(txtDOSFrom);
         threadSleep(3000);
     }
 
@@ -273,10 +275,10 @@ public class GlobalSearchPage extends SeleniumUtils {
     //Scenario: Verify user enters the DOS To details in the Search field
     public void enterDOSToInSearchField(String DOSTo) throws InterruptedException {
         expDOSTo = DOSTo;
-        scrollIntoView(findElementByXpath(inputDOSTo), driver);
-        findElementAndSendKeys(findElementByXpath(inputDOSTo), DOSTo);
+        scrollIntoView(findElementByXpath(txtDOSTo), driver);
+        findElementAndSendKeys(findElementByXpath(txtDOSTo), DOSTo);
         threadSleep(1000);
-        sendKeysUsingKeyboardInput(inputDOSTo);
+        sendKeysUsingKeyboardInput(txtDOSTo);
         threadSleep(3000);
     }
 
@@ -367,12 +369,12 @@ public class GlobalSearchPage extends SeleniumUtils {
     }
 
     public void verifyUniversalSearchBar() {
-        boolean value = isDisplayed(inputUniversalSearchBar);
+        boolean value = isDisplayed(txtUniversalSearchBar);
         Assert.assertTrue(value);
     }
 
     public void verifyPlaceHolderForUniversalSearch(String expPlaceholderValue) {
-        String actPlaceholder = getAttribute(inputUniversalSearchBar, "placeholder");
+        String actPlaceholder = getAttribute(txtUniversalSearchBar, "placeholder");
         System.out.println("actual place holder value is :  " + actPlaceholder);
         if (expPlaceholderValue.contains(actPlaceholder)) {
             Assert.assertTrue(true);
@@ -384,7 +386,7 @@ public class GlobalSearchPage extends SeleniumUtils {
 
     public void enterClaimNumberInUniversalSearch(String claimNumber) {
         expClaimNumber = claimNumber;
-        findElementAndSendKeys(findElementByXpath(inputUniversalSearchBar), claimNumber);
+        findElementAndSendKeys(findElementByXpath(txtUniversalSearchBar), claimNumber);
         clickElement(imgSearchIcon);
     }
 
@@ -393,7 +395,11 @@ public class GlobalSearchPage extends SeleniumUtils {
         Assert.assertTrue(value);
         String actClaimNumber = findElementByXpath(eleViewclaimTab).getText();
         System.out.println("actual claim number " + actClaimNumber);
-        Assert.assertTrue(actClaimNumber.contains(expClaimNumber));
+        if(actClaimNumber.contains(expClaimNumber)){
+            Assert.assertTrue(true);
+        }else{
+            Assert.assertTrue(false);
+        }
     }
 
     public void verifyErrorMessage(String expErrorMessage) {
@@ -495,35 +501,35 @@ public class GlobalSearchPage extends SeleniumUtils {
     }
 
     public void verifyClaimNumberCheckBox(){
-        boolean actchkValue= findElementByXpath(inputClaimNumberCheckBox).isSelected();
+        boolean actchkValue= findElementByXpath(chkClaimNumber).isSelected();
         Assert.assertTrue(actchkValue);
     }
 
     //Scenario: Verify user should able to see saved/updated fields the Global Search page
     public void clickProviderCheckBox(){
-        explicitVisibilityOfWait(findElementByXpath(inputProviderCheckBox), 5);
-        clickElement(inputProviderCheckBox);
-        boolean actChkValue= findElementByXpath(inputProviderCheckBox).isSelected();
+        explicitVisibilityOfWait(findElementByXpath(chkProvider), 5);
+        clickElement(chkProvider);
+        boolean actChkValue= findElementByXpath(chkProvider).isSelected();
         Assert.assertTrue(actChkValue);
         clickElement(btnClose);
     }
     public void unSelectProviderCheckBox() {
-        explicitVisibilityOfWait(findElementByXpath(inputProviderCheckBox), 5);
-        clickElement(inputProviderCheckBox);
-        boolean actChkValue= findElementByXpath(inputProviderCheckBox).isSelected();
+        explicitVisibilityOfWait(findElementByXpath(chkProvider), 5);
+        clickElement(chkProvider);
+        boolean actChkValue= findElementByXpath(chkProvider).isSelected();
         Assert.assertFalse(actChkValue);
         clickElement(btnClose);
     }
 
     public void verifyProviderColumnDisplayInGlobalSearch() throws InterruptedException {
-        scrollIntoView(findElementByXpath(inputProvider),driver);
-        boolean value = isDisplayed(inputProvider);
+        scrollIntoView(findElementByXpath(txtProvider),driver);
+        boolean value = isDisplayed(txtProvider);
         Assert.assertTrue(value);
         threadSleep(1000);
     }
     public void verifyProviderColumnNotDisplayedInGlobalSearch(){
-        scrollIntoView(findElementByXpath(inputState),driver);
-        boolean value = isDisplayed(inputProvider);
+        scrollIntoView(findElementByXpath(txtState),driver);
+        boolean value = isDisplayed(txtProvider);
         Assert.assertFalse(value);
     }
 
