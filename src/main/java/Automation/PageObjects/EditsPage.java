@@ -4,7 +4,6 @@ import Automation.Utilities.SeleniumUtils;
 import io.cucumber.datatable.DataTable;
 import org.junit.Assert;
 import org.openqa.selenium.WebElement;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,6 +15,8 @@ public class EditsPage extends SeleniumUtils {
     String btnFooterSection = "//*[@class='button-padding-left footer']//button";
     String serviceLevelEditsFields = "(//*[@id='resultsGrid']//div[1]/div[2]/div[1])[1]//div[3]//span[@class='ag-header-cell-text']";
     String claimLevelEditsFields = "(//*[@id='resultsGrid1']//div[1]/div[2]/div[1])[1]//div[3]//span[@class='ag-header-cell-text']";
+    String btnDelete = "//button[@title = 'Delete']/img";
+    String btnEdit = "//button[@title = 'Edit']/img";
 
 
     //  Scenario: Verify user able to navigate to Edits tab from Global Search and validate the fields
@@ -40,6 +41,7 @@ public class EditsPage extends SeleniumUtils {
         Assert.assertEquals(expSubTab2, actualTab2[0]+actualTab2[1]+actualTab2[2]);
     }
 
+    //  Scenario: Validate buttons functionality of Edits tab
     public void userViewsFooterSectionInEditsPage(DataTable footerSection){
         List<String> footerSectionExp = footerSection.asList();
         List<WebElement> ActFooterSection = findElementsByXpath(btnFooterSection);
@@ -61,6 +63,7 @@ public class EditsPage extends SeleniumUtils {
         }
     }
 
+    //  Scenario: Verify Service Level Edits Sub tab functionality
     public void userViewsServiceLevelEditsTab(DataTable columnFields){
         List<String> columnFieldsExp = columnFields.asList();
         List<WebElement> ActColumnFields = findElementsByXpath(serviceLevelEditsFields);
@@ -82,12 +85,34 @@ public class EditsPage extends SeleniumUtils {
         }
     }
 
-    public void userViewsDeleteButtonHighlightedInBlue(){
-
+    //  Scenario: Verify Edit & Delete functionality in Service Level Edits Sub tab
+    public void userViewsDeleteButtonHighlightedInRed(){
+        List<WebElement> deleteExp = findElementsByXpath(btnDelete);
+        for(WebElement button : deleteExp){
+            if(button.isEnabled()){
+                Assert.assertTrue(true);
+            }
+            else {
+                Assert.fail(button + "delete buttons are not displayed");
+            }
+        }
     }
 
-    public void userViewsEditButtonHighlightedInRed(){
+    public void userViewsEditButtonHighlightedInBlue(){
+        List<WebElement> editExp = findElementsByXpath(btnEdit);
+        for(WebElement button : editExp){
+            if(button.isEnabled()){
+                Assert.assertTrue(true);
+            }
+            else {
+                Assert.fail(button + "edit buttons are not displayed");
+            }
+        }
+    }
 
+    // Scenario: Verify Claim Level Edits Sub-tab
+    public void userClicksOnClaimLevelEditsTab(){
+        clickElement(eleClaimLevelSubTab);
     }
 
     public void userViewsClaimLevelEditsTab(DataTable editLevelColumnFields){

@@ -24,28 +24,37 @@ public class EditsStepDef extends EditsPage {
         verifyUserViewsClaimLevelSubTab(expSubTab2);
     }
 
+    //  Scenario: Validate buttons functionality of Edits tab
     @Then("user views the footer section in Edits page")
     public void user_views_the_footer_section_in_edits_page(DataTable footerSection) {
         userViewsFooterSectionInEditsPage(footerSection);
     }
 
+    //  Scenario: Verify Service Level Edits Sub tab functionality
     @Then("user should be able to view below columns in Service Level Edits")
     public void user_should_be_able_to_view_below_columns_in_service_level_edits(DataTable columnFields) {
         userViewsServiceLevelEditsTab(columnFields);
     }
 
-    @Then("user should be able to view Delete action item highlighted in blue color")
-    public void user_should_be_able_to_view_delete_action_item_highlighted_in_blue_color() {
-        userViewsDeleteButtonHighlightedInBlue();
+    //  Scenario: Verify Edit & Delete functionality in Service Level Edits Sub tab
+    @Then("user should be able to view Delete action item highlighted in red color")
+    public void user_should_be_able_to_view_delete_action_item_highlighted_in_red_color() {
+        userViewsDeleteButtonHighlightedInRed();
+    }
+
+    @Then("user should be able to view Edit action item highlighted in blue color")
+    public void user_should_be_able_to_view_edit_action_item_highlighted_in_blue_color() {
+        userViewsEditButtonHighlightedInBlue();
+    }
+
+    // Scenario: Verify Claim Level Edits Sub-tab
+    @When("user clicks on Claim Level Edits tab")
+    public void user_clicks_on_claim_level_edits_tab() {
+        userClicksOnClaimLevelEditsTab();
     }
 
     @Then("user should be able to view below columns in Claim Level Edits")
     public void user_should_be_able_to_view_below_columns_in_claim_level_edits(DataTable editLevelColumnFields) {
         userViewsClaimLevelEditsTab(editLevelColumnFields);
-    }
-
-    @Then("user should be able to view Edit action item highlighted in red color")
-    public void user_should_be_able_to_view_edit_action_item_highlighted_in_red_color() {
-       userViewsEditButtonHighlightedInRed();
     }
 }
