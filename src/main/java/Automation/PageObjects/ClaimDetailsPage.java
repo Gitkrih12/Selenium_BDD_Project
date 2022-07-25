@@ -34,7 +34,7 @@ public class ClaimDetailsPage extends SeleniumUtils {
     String payerFields = "//*[@id='nav-claim-details']/div[13]/div[1]/div | //*[@id='nav-claim-details']/div[14]/div[1]/div";
     String dateOfServiceFields = "//*[@id='nav-claim-details']/div[15]/div[1]/div[1]/div";
     String isPatientConditionRelatedToField = "//*[@id='nav-claim-details']/div[15]/div[2]/div/div/b";
-    String lnkshowOption = "//*[contains(text(), '(Show)')]";
+    String lnkShowOption = "//*[contains(text(), '(Show)')]";
     String eleClaimNumber = "(//*[contains(text(), 'Claim Number')])[1]";
     String checkboxFields = "//*[@id='nav-claim-details']/div[15]/div[2]//input";
 
@@ -366,7 +366,7 @@ public class ClaimDetailsPage extends SeleniumUtils {
             if (checkbox.isDisplayed()) {
                 Assert.assertTrue(true);
             } else {
-                Assert.fail(checkbox + "checkboxes were not displayed");
+                Assert.fail(checkbox + "checkbox is not displayed");
             }
         }
     }
@@ -383,12 +383,12 @@ public class ClaimDetailsPage extends SeleniumUtils {
 
     //  Scenario: Validate Show action for claim summary section
     public void verifyShowLinkIsDisplayed() {
-        boolean showLink = findElementByXpath(lnkshowOption).isDisplayed();
+        boolean showLink = findElementByXpath(lnkShowOption).isDisplayed();
         Assert.assertTrue(showLink);
     }
 
     public void userClicksOnShowLink() {
-        clickElement(lnkshowOption);
+        clickElement(lnkShowOption);
     }
 
     public void verifyUserViewsClaimSummarySection() {
