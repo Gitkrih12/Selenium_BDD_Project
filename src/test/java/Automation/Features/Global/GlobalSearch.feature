@@ -96,7 +96,7 @@ Feature: Global Search
     When user enters the DOS From "01/03/2021" in the Search field
     Then user able to view the claim details for given DOS From
 
-  @TC_37891  @37309_PR2
+  @TC_37891
   Scenario: Verify user enters the DOS To details in the Search field
     When user clicks on Global Search in left navigation menu
     Then the user should navigate to the Global Search page
@@ -104,7 +104,7 @@ Feature: Global Search
     When user enters the DOS To "01/12/2021" in the Search field
     Then user able to view the claim details for given DOS To
 
-  @TC_34927 @37309_PR2
+  @TC_34927
   Scenario: Validate Export Result button should display when the search results are displayed
     When user clicks on Global Search in left navigation menu
     Then the user should navigate to the Global Search page
@@ -113,7 +113,7 @@ Feature: Global Search
     Then user able to view the exact claim details
     And user able to view the Export Result button when search results are displayed
 
-  @TC_34939  @37309_PR2
+  @TC_34939
   Scenario: Verify multiple fields for the Search criteria in Global Search page
     When user clicks on Global Search in left navigation menu
     Then the user should navigate to the Global Search page
@@ -121,7 +121,7 @@ Feature: Global Search
     When user enters the Patient Name "dbkgmdc vskq" in the Search field
     Then user able to view the claim details for given Patient name
 
-  @TC_38126  @37309_PR2
+  @TC_38126
   Scenario: Verify Reprocess button should be available when Paid state is filtered in Global Search page
     When user clicks on Global Search in left navigation menu
     Then the user should navigate to the Global Search page
@@ -131,14 +131,14 @@ Feature: Global Search
     And user should be able view the Reprocess button for Paid state record
 
     #48151-As an Adjudicator, When I search with more than 6 characters in the Claim Number filter, the application should be able to display claim records in a Global search.
-  @TC_49496 @37309_PR2
+  @TC_49496
   Scenario: Verify user should get records when he search with more than 6 characters in claim number field in Global Search page
     When user clicks on Global Search in left navigation menu
     Then the user should navigate to the Global Search page
     When user enters the Claim Number "P002002" in the Search field
     Then user able to view the claim details for given filter criteria
 
-  @TC_49500 @37309_PR2
+  @TC_49500
   Scenario: Verify user should not get records when he search with less than 7 characters in claim number field in Global Search page
     When user clicks on Global Search in left navigation menu
     Then the user should navigate to the Global Search page
@@ -146,28 +146,28 @@ Feature: Global Search
     Then user not able to view the claim details for given filter criteria.
 
     #48152-As an Adjudicator, When I search with more than 2 characters in other than Claim Number filter, the application should be able to display claim records in a Global search.
-  @TC_50701 @37309_PR2
+  @TC_50701
   Scenario: Verify user able to search more than 2 characters in Member Id field
     When user clicks on Global Search in left navigation menu
     Then the user should navigate to the Global Search page
     When user searches more than two characters in Member Id "218" field
     Then user should be able to display the claim records in a Global Search for given Member Id criteria
 
-  @TC_50702 @37309_PR2
+  @TC_50702
   Scenario: Verify user able to search more than 2 characters in Patient field
     When user clicks on Global Search in left navigation menu
     Then the user should navigate to the Global Search page
     When user searches more than two characters in Patient "dbk" field
     Then user should be able to display the claim records in a Global Search for given Patient criteria
 
-  @TC_50703  @37309_PR2
+  @TC_50703
   Scenario: Verify user able to search more than 2 characters in Billing Provider field
     When user clicks on Global Search in left navigation menu
     Then the user should navigate to the Global Search page
     When user searches more than two characters in Billing Provider "MXS COMSDMKBZ" field
     Then user should be able to display the claim records in a Global Search for given Billing Provider criteria
 
-  @TC_50704 @37309_PR2
+  @TC_50704
   Scenario: Verify user able to search more than 2 characters in any two fields
     When user clicks on Global Search in left navigation menu
     Then the user should navigate to the Global Search page
