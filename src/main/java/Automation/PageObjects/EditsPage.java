@@ -17,6 +17,7 @@ public class EditsPage extends SeleniumUtils {
     String claimLevelEditsFields = "(//*[@id='resultsGrid1']//div[1]/div[2]/div[1])[1]//div[3]//span[@class='ag-header-cell-text']";
     String btnDelete = "//button[@title = 'Delete']/img";
     String btnEdit = "//button[@title = 'Edit']/img";
+    String lnkInvertedExclamatory = "(//i[@class='bi bi-info-circle'])[1]";
 
 
     //  Scenario: Verify user able to navigate to Edits tab from Global Search and validate the fields
@@ -134,5 +135,11 @@ public class EditsPage extends SeleniumUtils {
                 Assert.fail(exp + " is not listed in actual list");
             }
         }
+    }
+
+    public void userHoverOverInvertedExclamationIcon(){
+            moveToElement(lnkInvertedExclamatory).perform();
+            String actErrorMessage = findElementByXpath(lnkInvertedExclamatory).getText();
+            System.out.println("actual error message " + actErrorMessage);
     }
 }

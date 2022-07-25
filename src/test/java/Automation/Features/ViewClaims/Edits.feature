@@ -62,9 +62,15 @@ Feature: Edits
       | Overridden By |
 
   @44561
-  Scenario: Verify Edit & Delete functionality in Claim Level Edits Sub-tab
+  Scenario: Verify Edit & Delete functionality in Claim Level Edits Sub tab
     When user clicking on Claim Number "P0020021100018" in Global Search page
     And user clicks on Edits tab
     And user clicks on Claim Level Edits tab
     Then user should be able to view Delete action item highlighted in red color
     And user should be able to view Edit action item highlighted in blue color
+
+  @45372
+  Scenario: Validate Mouse hovering on the Inverted Exclamation Mark in Service Level Edits sub tab in the Edits tab
+    When user clicking on Claim Number "P0020021100018" in Global Search page
+    And user clicks on Edits tab
+    And user hovers over Inverted Exclamation mark in Service Level Edits in Edits tab

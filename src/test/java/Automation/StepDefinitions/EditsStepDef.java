@@ -57,4 +57,9 @@ public class EditsStepDef extends EditsPage {
     public void user_should_be_able_to_view_below_columns_in_claim_level_edits(DataTable editLevelColumnFields) {
         userViewsClaimLevelEditsTab(editLevelColumnFields);
     }
+
+    @When("user hovers over Inverted Exclamation mark in Service Level Edits in Edits tab")
+    public void user_hovers_over_inverted_exclamation_mark_in_service_level_edits_in_edits_tab() {
+        userHoverOverInvertedExclamationIcon();
+    }
 }
