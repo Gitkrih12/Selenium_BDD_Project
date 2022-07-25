@@ -148,4 +148,65 @@ public class GlobalSearchStepDef extends GlobalSearchPage {
         validateBillingProviderResult();
     }
 
+    //Scenario: Validate Export Result button should display when the search results are displayed
+    @Then("user not able to view Export Result button when search results are not displayed")
+    public void user_not_able_to_view_export_result_button_when_search_results_are_not_displayed() {
+        verifyExportResultButtonWhenNoSearchResultsDisplayed();
+    }
+
+    @Then("user able to view the Export Result button when search results are displayed")
+    public void user_able_to_view_the_export_result_button_when_search_results_are_displayed() {
+        verifyExportResultButtonWhenSearchResultsDisplayed();
+    }
+
+    //Scenario: Verify Reprocess button should be available when Paid state is filtered in Global Search page
+    @Then("user should be able view the Reprocess button for Paid state record")
+    public void user_should_be_able_view_the_reprocess_button_for_paid_state_record() throws InterruptedException {
+        verifyReprocessButton();
+    }
+
+    // Scenario: Verify user able to search more than 2 characters in Member Id field
+    @When("user searches more than two characters in Member Id {string} field")
+    public void user_searches_more_than_two_characters_in_field(String memberID) throws InterruptedException {
+        enterMemberIdInSearchField(memberID);
+    }
+
+    @Then("user should be able to display the claim records in a Global Search for given Member Id criteria")
+    public void user_should_be_able_to_display_the_claim_records_in_a_global_search_for_given_Member_criteria() {
+        validateMemberIDResultForCharacterLimit();
+    }
+
+    //Scenario: Verify user able to search more than 2 characters in Patient field
+    @When("user searches more than two characters in Patient {string} field")
+    public void user_searches_more_than_two_characters_in_patient_field(String PatientName) throws InterruptedException {
+        enterPatientNameInSearchField(PatientName);
+    }
+
+    @Then("user should be able to display the claim records in a Global Search for given Patient criteria")
+    public void user_should_be_able_to_display_the_claim_records_in_a_global_search_for_given_patient_criteria() {
+        validatePatientResultForCharacterLimit();
+    }
+
+    //Scenario: Verify user able to search more than 2 characters in Billing Provider field
+    @When("user searches more than two characters in Billing Provider {string} field")
+    public void user_searches_more_than_two_characters_in_billing_provider_field(String BillingProvider) throws InterruptedException {
+        enterBillingProviderInSearchField(BillingProvider);
+    }
+
+    @Then("user should be able to display the claim records in a Global Search for given Billing Provider criteria")
+    public void user_should_be_able_to_display_the_claim_records_in_a_global_search_for_given_billing_provider_criteria() {
+        validateBillingProviderResultForCharacterLimit();
+    }
+
+    //  Scenario: Verify user able to search more than 2 characters in any two fields
+    @When("user searches more than two characters in State {string} field")
+    public void user_searches_more_than_two_characters_in_state_field(String state) throws InterruptedException {
+        enterStateInSearchField(state);
+    }
+
+    @Then("user should be able to display the claim records in a Global Search")
+    public void user_should_be_able_to_display_the_claim_records_in_a_global_search() {
+        validateStateResultForCharacterLimit();
+    }
+
 }

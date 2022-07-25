@@ -9,10 +9,7 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.Color;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Locale;
+import java.util.*;
 
 public class GlobalSearchPage extends SeleniumUtils {
     String lnkGlobalSearch = "(//div[contains(text(),'Global Search')])[1]";
@@ -62,6 +59,15 @@ public class GlobalSearchPage extends SeleniumUtils {
     String inputClaimNumberCheckBox = "//input[@id='claimNumber']";
     String inputProviderCheckBox = "//input[@id='providerFullName']";
     String inputProvider = "//input[@aria-label='Provider Filter Input']";
+    String elePagination = "//div[@class='ag-paging-panel ag-unselectable']";
+    String eleTotalMemberIdRecords = "//div[@col-id='subscriberId']//span[@class='ag-cell-value']";
+    String eleTotalResults = "//span[@class='ag-paging-row-summary-panel']";
+    String elePaginationDescription = "//span[@class='ag-paging-description']";
+    String eleSortIcon = "(//div//span[text()='DOS From']//following::span[@ref='eSortAsc'])[1]";
+    String eleTotalDOSFromRecords = "//div[@col-id='dosFrom']//span[@class='ag-cell-value']";
+    String eleTotalDOSFromRecordsAfterSorting = "//div[@col-id='dosFrom']//span[@class='ag-cell-value']";
+    String btnNextPage = "//span[@class='ag-icon ag-icon-next']";
+    String btnPreviousPage = "//span[@class='ag-icon ag-icon-previous']";
 
 
     private static String expClaimNumber = "";
@@ -72,6 +78,11 @@ public class GlobalSearchPage extends SeleniumUtils {
     private static String expDOSFrom = "";
     private static String expDOSTo = "";
     private static String expBillingProvider = "";
+    private static int totalRecords=0;
+    private static ArrayList<String> sortedList;
+    private static int pageNumber=0;
+    private static int pageNumberNextNavigation=0;
+
 
     //Scenario: Verify user should get no result by default on Global search page
     public void clickOnGlobalSearch() {
@@ -84,6 +95,7 @@ public class GlobalSearchPage extends SeleniumUtils {
         Assert.assertTrue(value);
     }
 
+    //Scenario: Verify user should not get records when he search with less than 7 characters in claim number field in Global Search page
     public void verifyNoDataDisplayMessage() {
         String actHeight = findElementByXpath(lblNoDataDisplay).getAttribute("style");
         System.out.println("actHeight" + actHeight);
@@ -258,6 +270,7 @@ public class GlobalSearchPage extends SeleniumUtils {
         Assert.assertEquals(expDOSFrom, actDOSFrom);
     }
 
+    //Scenario: Verify user enters the DOS To details in the Search field
     public void enterDOSToInSearchField(String DOSTo) throws InterruptedException {
         expDOSTo = DOSTo;
         scrollIntoView(findElementByXpath(inputDOSTo), driver);
@@ -274,16 +287,18 @@ public class GlobalSearchPage extends SeleniumUtils {
         Assert.assertEquals(expDOSTo, actDOSTo);
     }
 
-    public void verifyExportResultButtonWhenSearchResultsDisplayed() {
-        boolean value = isDisplayed(btnExportResult);
-        Assert.assertTrue(value);
-    }
-
+    //Scenario: Validate Export Result button should display when the search results are displayed
     public void verifyExportResultButtonWhenNoSearchResultsDisplayed() {
         boolean value = isDisplayed(btnExportResult);
         Assert.assertFalse(value);
     }
 
+    public void verifyExportResultButtonWhenSearchResultsDisplayed() {
+        boolean value = isDisplayed(btnExportResult);
+        Assert.assertTrue(value);
+    }
+
+    //Scenario: Verify Reprocess button should be available when Paid state is filtered in Global Search page
     public void verifyReprocessButton() throws InterruptedException {
         threadSleep(1000);
         scrollIntoView(findElementByXpath(eleState), driver);
@@ -291,6 +306,7 @@ public class GlobalSearchPage extends SeleniumUtils {
         Assert.assertTrue(value);
     }
 
+    //Scenario: Verify user should get records when he search with more than 6 characters in claim number field in Global Search page
     public void validateClaimNumberResultForCharacterLimit() {
         explicitVisibilityOfWait(findElementByXpath(eleClaimNumber), 5);
         String actClaimNumber = getText(eleClaimNumber);
@@ -302,6 +318,7 @@ public class GlobalSearchPage extends SeleniumUtils {
         }
     }
 
+    // Scenario: Verify user able to search more than 2 characters in Member Id field
     public void validateMemberIDResultForCharacterLimit() {
         explicitVisibilityOfWait(findElementByXpath(eleMemberId), 5);
         String actMemberId = getText(eleMemberId);
@@ -313,6 +330,7 @@ public class GlobalSearchPage extends SeleniumUtils {
         }
     }
 
+    //Scenario: Verify user able to search more than 2 characters in Patient field
     public void validatePatientResultForCharacterLimit() {
         explicitVisibilityOfWait(findElementByXpath(elePatientName), 5);
         String actPatientName = getText(elePatientName);
@@ -324,6 +342,7 @@ public class GlobalSearchPage extends SeleniumUtils {
         }
     }
 
+    //Scenario: Verify user able to search more than 2 characters in Billing Provider field
     public void validateBillingProviderResultForCharacterLimit() {
         explicitVisibilityOfWait(findElementByXpath(eleBillingProvider), 5);
         String actPatientName = getText(eleBillingProvider);
@@ -335,6 +354,7 @@ public class GlobalSearchPage extends SeleniumUtils {
         }
     }
 
+    //  Scenario: Verify user able to search more than 2 characters in any two fields
     public void validateStateResultForCharacterLimit() {
         explicitVisibilityOfWait(findElementByXpath(eleState), 5);
         String actState = getText(eleState);
@@ -354,7 +374,12 @@ public class GlobalSearchPage extends SeleniumUtils {
     public void verifyPlaceHolderForUniversalSearch(String expPlaceholderValue) {
         String actPlaceholder = getAttribute(inputUniversalSearchBar, "placeholder");
         System.out.println("actual place holder value is :  " + actPlaceholder);
-        Assert.assertEquals(expPlaceholderValue, actPlaceholder);
+        if (expPlaceholderValue.contains(actPlaceholder)) {
+            Assert.assertTrue(true);
+        } else {
+            Assert.assertTrue(false);
+        }
+
     }
 
     public void enterClaimNumberInUniversalSearch(String claimNumber) {
@@ -501,6 +526,117 @@ public class GlobalSearchPage extends SeleniumUtils {
         boolean value = isDisplayed(inputProvider);
         Assert.assertFalse(value);
     }
+
+    //Scenario: Validate pagination in global Search page
+    public void getAllMemberIdResults(){
+        List<WebElement> memberIDResults = findElementsByXpath(eleTotalMemberIdRecords);
+        totalRecords = memberIDResults.size();
+        System.out.println("Total records "+memberIDResults.size());
+    }
+
+    public void verifyTotalResultsForGivenSearch(){
+        String paginationText = findElementByXpath(eleTotalResults).getText();
+        System.out.println("Pagination text "+paginationText);
+        String [] totalResultsCount=paginationText.split(" ");
+        System.out.println(totalResultsCount[4]);
+        if(totalRecords==Integer.parseInt(totalResultsCount[4])){
+            Assert.assertTrue(true);
+            System.out.println("Pagination text is having the total no of records in the grid");
+        }else{
+            Assert.assertTrue(false);
+        }
+    }
+    public void verifyPageNumbersAtBottomOfPage(){
+        String pagination=findElementByXpath(elePaginationDescription).getText();
+        String [] paginationCount=pagination.split(" ");
+        System.out.println("Page count "+Integer.parseInt(paginationCount[3]));
+        pageNumber=Integer.parseInt(paginationCount[1]);
+        if(Integer.parseInt(paginationCount[3])>=1){
+            Assert.assertTrue(true);
+        }
+    }
+    public void clickOnNextButton(){
+        clickElement(btnNextPage);
+    }
+
+    public void verifyUserNavigatesToNextPage(){
+        String pagination=findElementByXpath(elePaginationDescription).getText();
+        String [] paginationCount=pagination.split(" ");
+       pageNumberNextNavigation= Integer.parseInt(paginationCount[1]);
+        System.out.println("Page number "+pageNumberNextNavigation);
+        if(pageNumberNextNavigation>pageNumber){
+            Assert.assertTrue(true);
+        }else{
+            Assert.assertTrue(false);
+        }
+
+    }
+
+    public void clickOnPreviousButton(){
+        clickElement(btnPreviousPage);
+    }
+
+    public void verifyUserNavigatesToPreviousPage(){
+        String pagination=findElementByXpath(elePaginationDescription).getText();
+        String [] paginationCount=pagination.split(" ");
+        int pageNumberPreviousNavigation= Integer.parseInt(paginationCount[1]);
+        System.out.println("Page number "+pageNumberPreviousNavigation);
+        if(pageNumberNextNavigation>pageNumberPreviousNavigation){
+            Assert.assertTrue(true);
+        }else{
+            Assert.assertTrue(false);
+        }
+    }
+
+    public void verifyPageSizeDividedByNoOfRecordsInTheGrid(){
+        String pagination=findElementByXpath(elePaginationDescription).getText();
+        String [] paginationCount=pagination.split(" ");
+        System.out.println("Page count "+paginationCount[3]);
+        if(totalRecords<=50){
+            Assert.assertEquals(1,Integer.parseInt(paginationCount[3]));
+            System.out.println("Page count defined as per no of records : "+Integer.parseInt(paginationCount[3]));
+        }
+    }
+
+    //  Scenario: Verify the user should perform sorting for DOS From field to ascending order
+    public void getAllDOSFromRecordsBeforeSort(){
+        ArrayList<String> dosFromRecordsBeforeSort = new ArrayList<>();
+        List<WebElement> elementList= findElementsByXpath(eleTotalDOSFromRecords);
+        for(WebElement dosFromValue:elementList){
+            dosFromRecordsBeforeSort.add(dosFromValue.getText());
+        }
+        System.out.println("DOS From records befor sort "+dosFromRecordsBeforeSort);
+        //Sorting for the list which are stored before applying Sorting technique
+         sortedList = new ArrayList<>();
+        for(String s:dosFromRecordsBeforeSort){
+            sortedList.add(s);
+        }
+        Collections.sort(sortedList);
+        System.out.println("Sorted list :"+sortedList);
+    }
+    public void clickSortIconDOSFrom(){
+        clickOnElementByJS(findElementByXpath(eleSortIcon),driver);
+    }
+
+    public void verifyDOSFromInSortedOrder(){
+        ArrayList<String> dosFromRecordsAfterSort = new ArrayList<>();
+        List<WebElement> elementsList= findElementsByXpath(eleTotalDOSFromRecordsAfterSorting);
+        for(WebElement dosFromValue:elementsList){
+            dosFromRecordsAfterSort.add(dosFromValue.getText());
+        }
+        System.out.println("DOS records after sorting :"+dosFromRecordsAfterSort);
+        //Sorting for the list which are stored after applying Sorting technique
+        ArrayList<String> sortedListAfterSorting = new ArrayList<>();
+        for(String s:dosFromRecordsAfterSort){
+            sortedListAfterSorting.add(s);
+        }
+        Collections.sort(sortedListAfterSorting);
+        System.out.println("Sorted list after sorting :"+sortedListAfterSorting);
+
+        Assert.assertTrue(sortedList.equals(sortedListAfterSorting));
+
+    }
+
 
 
 }
