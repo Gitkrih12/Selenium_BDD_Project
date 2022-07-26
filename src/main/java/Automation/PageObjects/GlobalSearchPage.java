@@ -18,12 +18,12 @@ public class GlobalSearchPage extends SeleniumUtils {
     String expHeight = "1px";
     String btnFilter = "//button[text()='Filter']";
     String btnCustomisedColumns = "//button[text()='Customize Columns']";
-    String lstColumnFeilds = "//div[@class='ag-header-cell-label']//span[text()]";
+    String lstColumnFields = "//div[@class='ag-header-cell-label']//span[text()]";
     String txtSearchFields = "//div[@class='ag-header-cell-label']//span[text()]//following::div//input[@class='ag-input-field-input ag-text-field-input']";
     String tabActiveGlobalSearch = "//div[@class='col active-tab ng-star-inserted']";
     String txtClaimNumber = "//input[@aria-label='Claim Number Filter Input']";
     String txtMemberId = "//input[@aria-label='Member Id Filter Input']";
-    String eleClaimNumber = "//div[@class='ag-pinned-left-cols-container']//a";
+    String eleClaimNumber = "(//div[@class='ag-pinned-left-cols-container']//a)[1]";
     String eleMemberId = "(//div[@col-id='subscriberId']//span[@class='ag-cell-value'])[1]";
     String txtPatientName = "//input[@aria-label='Patient Filter Input']";
     String elePatientName = "(//div[@col-id='memberFullName']//span[@class='ag-cell-value'])[1]";
@@ -41,13 +41,13 @@ public class GlobalSearchPage extends SeleniumUtils {
     String btnReprocess = "(//button[@title='Reprocess']//img)[1]";
     String txtUniversalSearchBar = "//input[@type='text' and @formcontrolname='searchName']";
     String imgSearchIcon = "//a//img[@class='SearchIcon']";
-    String eleViewclaimTab = "//div[contains(@class,'active-tab')]";
+    String eleViewClaimTab = "//div[contains(@class,'active-tab')]";
     String eleInvalidIcon = "//span//em[@class='bi bi-info-circle']";
     String eleInvalidTooltip = "//span[@class='tooltiptext']";
-    String eleVerticalColorforCorrected = "(//div[@col-id='isCorrected']//span)[6]";
+    String eleVerticalColorForCorrected = "(//div[@col-id='isCorrected']//span)[6]";
     String eleCorrectedInfoTopGrid = "//div//span[@class='ColorBall']//following::span[contains(text(),'Corrected')]";
     String eleCircleWithColorCode = "((//div[@col-id='status']//span[@class='ag-cell-value'])[1]//span//span)[1]";
-    String eleVerticalColorforUnclean = "(//div[@col-id='IsClean']//span)[6]";
+    String eleVerticalColorForUnclean = "(//div[@col-id='IsClean']//span)[6]";
     String eleUncleanInfoTopGrid = "//div//span[@class='ColorBall']//following::span[contains(text(),'Un-clean')]";
     String eleCustomizeColumnWindow = "//div[contains(@class,'offcanvas offcanvas-end show')]";
     String eleCustomizeColumnHeader = "//div[@class='offcanvas-header']";
@@ -121,7 +121,7 @@ public class GlobalSearchPage extends SeleniumUtils {
     //Scenario: Verify column fields in grid level on Global Search
     public void verifyGlobalSearchColumnFields(DataTable columnList) throws InterruptedException {
         List<String> expColumnList = columnList.asList();
-        List<WebElement> actColumnFields = findElementsByXpath(lstColumnFeilds);
+        List<WebElement> actColumnFields = findElementsByXpath(lstColumnFields);
         List<String> actualColumnFieldsForCompare = new ArrayList<>();
 
         for (WebElement column : actColumnFields) {
@@ -391,9 +391,9 @@ public class GlobalSearchPage extends SeleniumUtils {
     }
 
     public void verifyViewClaimDetailsAnotherTab() {
-        boolean value = isDisplayed(eleViewclaimTab);
+        boolean value = isDisplayed(eleViewClaimTab);
         Assert.assertTrue(value);
-        String actClaimNumber = findElementByXpath(eleViewclaimTab).getText();
+        String actClaimNumber = findElementByXpath(eleViewClaimTab).getText();
         System.out.println("actual claim number " + actClaimNumber);
         if(actClaimNumber.contains(expClaimNumber)){
             Assert.assertTrue(true);
@@ -410,7 +410,7 @@ public class GlobalSearchPage extends SeleniumUtils {
     }
 
     public void verifyVerticalColorIndicationForCorrectedClaim(String expColorIndication) {
-        String actColorCode = getColorCodeForBackground(eleVerticalColorforCorrected);
+        String actColorCode = getColorCodeForBackground(eleVerticalColorForCorrected);
         System.out.println("actual color code :" + actColorCode);
         Assert.assertEquals(expColorIndication, actColorCode);
     }
@@ -427,7 +427,7 @@ public class GlobalSearchPage extends SeleniumUtils {
     }
 
     public void verifyVerticalColorIndicationForUncleanClaim(String expColorIndication) {
-        String actColorCode = getColorCodeForBackground(eleVerticalColorforUnclean);
+        String actColorCode = getColorCodeForBackground(eleVerticalColorForUnclean);
         System.out.println("actual color code :" + actColorCode);
         Assert.assertEquals(expColorIndication, actColorCode);
     }
