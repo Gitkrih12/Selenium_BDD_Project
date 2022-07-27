@@ -10,6 +10,8 @@ import java.util.List;
 
 public class LeftNavigationPage extends SeleniumUtils {
 
+    String lblClaimsAdj = "//div[@class='menu']//p";
+    String mnuLeftNavList = "//div[@class='menuitemsnames']";
     String mnuLeftNavigation = "//div[@class='menu']";
     String btnAdjudicationExpansion = "//div[contains(text(),'Adjudication')]//following::span[1]";
     String btnQueueManagementExpansion = "//div[contains(text(),'Queue Management')]//following::span[1]";
@@ -406,6 +408,49 @@ public class LeftNavigationPage extends SeleniumUtils {
         System.out.println("Admin home page default status is: " + isDisplayed(tabAdminHomePage));
     }
 
+    //    Scenario: Verify left navigation loaded for admin and non admin roles
+    public void verifyLeftNavigation()
+    {
+        boolean leftNavigationStatus = isDisplayed(mnuLeftNavigation);
+        System.out.println("Left navigation section status is : " + leftNavigationStatus);
+        Assert.assertTrue(leftNavigationStatus);
+    }
 
+    //    Scenario: Verify left navigation menu for admin role
+    public void verifyClaimsAdjudicationLabelAndMenuToggleOnLeftNavigation(String lblClaimsAdjExp)
+    {
+        String lblClaimsAdjAct = getText(lblClaimsAdj);
+        System.out.println("Claims Adjudication label name is : " + lblClaimsAdjAct);
+        Assert.assertEquals(lblClaimsAdjExp, lblClaimsAdjAct);
+        Assert.assertTrue(isDisplayed(tglClaimsAdj));
+        System.out.println("Menu toggle status is :" + isDisplayed(tglClaimsAdj));
+    }
+
+    public void verifyMainMenuItemsFromLeftNavigationForAdmin(DataTable leftNavMainMenusList)
+    {
+        List <String> leftNavMainMenusListExp = leftNavMainMenusList.asList();
+        List<WebElement> leftNavMainMenuList = findElementsByXpath(mnuLeftNavList);
+        List<String> leftNavMainMenusListAct = new ArrayList<>();
+        System.out.println("Left Navigation main menus actual list size: " + leftNavMainMenusListExp.size());
+        System.out.println("Left Navigation main menus expected list size: " + leftNavMainMenuList.size());
+        for (WebElement list: leftNavMainMenuList)
+        {
+            String text = list.getText();
+            leftNavMainMenusListAct.add(text);
+        }
+        System.out.println("Left Navigation main menus actual list is: " + leftNavMainMenusListAct);
+        System.out.println("Left Navigation main menus Expected list is: "+ leftNavMainMenusListExp);
+        for (String exp: leftNavMainMenusListExp)
+        {
+            if (leftNavMainMenusListAct.contains(exp))
+            {
+                Assert.assertTrue(true);
+            }
+            else
+            {
+                Assert.fail(exp + " value is not listed in actual list");
+            }
+        }
+    }
 
 }

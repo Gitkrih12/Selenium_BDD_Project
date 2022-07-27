@@ -105,3 +105,23 @@ Feature: Left Navigation
   Scenario: Verify admin should land on Home/Dashboard page
     When left navigation loaded
     Then user should land on Home and Dashboard page
+
+  @34860
+  Scenario: Verify left navigation loaded for admin role
+    Then user should be able to view the left navigation for his role
+
+  @34863
+  Scenario: Verify left navigation menu for admin role
+    When left navigation loaded
+    Then user should be able to view the "Claims Adjudication" Label, Menu toggle on the top view
+    And user should be able to view the following menu items under left navigation panel
+      | Adjudication       |
+      | Queue Management   |
+      | File Management    |
+      | Reports            |
+      | Account Management |
+      | Check Management   |
+      | Member Management  |
+      | Fee Schedule       |
+      | Settings           |
+      | User Management    |

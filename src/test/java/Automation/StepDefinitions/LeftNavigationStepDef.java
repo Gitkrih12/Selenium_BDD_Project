@@ -114,6 +114,22 @@ public class LeftNavigationStepDef extends LeftNavigationPage {
         verifyUserIsOnAdminHomePageByDefault();
     }
 
+    //    Scenario: Verify left navigation loaded for admin role
+    @Then("user should be able to view the left navigation for his role")
+    public void user_should_be_able_to_view_the_left_navigation_for_his_role() {
+        verifyLeftNavigation();
+    }
+
+    //    Scenario: Verify left navigation menu for admin role
+    @Then("user should be able to view the {string} Label, Menu toggle on the top view")
+    public void user_should_be_able_to_view_the_claims_adjudication_label_menu_toggle_on_the_top_view(String lblClaimsAdjExp) {
+        verifyClaimsAdjudicationLabelAndMenuToggleOnLeftNavigation(lblClaimsAdjExp);
+    }
+    @Then("user should be able to view the following menu items under left navigation panel")
+    public void user_should_be_able_to_view_the_following_menu_items_under_left_navigation_panel(DataTable leftNavMainMenusList) {
+        verifyMainMenuItemsFromLeftNavigationForAdmin(leftNavMainMenusList);
+    }
+
 
 
 }
