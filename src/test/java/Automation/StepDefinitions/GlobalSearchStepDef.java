@@ -95,8 +95,8 @@ public class GlobalSearchStepDef extends GlobalSearchPage {
 
     // Scenario: Verify user enters the State name in the Search field
     @When("user enters the State {string} in the Search field")
-    public void user_enters_the_state_in_the_search_field(String State) throws InterruptedException {
-        enterStateInSearchField(State);
+    public void user_enters_the_state_in_the_search_field(String state) throws InterruptedException {
+        enterStateInSearchField(state);
     }
 
     @Then("user able to view the claim details for given State")
@@ -117,8 +117,8 @@ public class GlobalSearchStepDef extends GlobalSearchPage {
 
     //  Scenario: Verify user enters the DOS From details in the Search field
     @When("user enters the DOS From {string} in the Search field")
-    public void user_enters_the_dos_from_in_the_search_field(String DOSFrom) throws InterruptedException {
-        enterDOSFromInSearchField(DOSFrom);
+    public void user_enters_the_dos_from_in_the_search_field(String dOSFrom) throws InterruptedException {
+        enterDOSFromInSearchField(dOSFrom);
     }
 
     @Then("user able to view the claim details for given DOS From")
@@ -128,8 +128,8 @@ public class GlobalSearchStepDef extends GlobalSearchPage {
 
     //Scenario: Verify user enters the DOS To details in the Search field
     @When("user enters the DOS To {string} in the Search field")
-    public void user_enters_the_dos_to_in_the_search_field(String DOSTo) throws InterruptedException {
-        enterDOSToInSearchField(DOSTo);
+    public void user_enters_the_dos_to_in_the_search_field(String dOSTo) throws InterruptedException {
+        enterDOSToInSearchField(dOSTo);
     }
 
     @Then("user able to view the claim details for given DOS To")
@@ -139,13 +139,74 @@ public class GlobalSearchStepDef extends GlobalSearchPage {
 
     // Scenario: Verify user enters the Billing Provider details in the Search field
     @When("user enters the Billing Provider {string} in the Search field")
-    public void user_enters_the_billing_provider_in_the_search_field(String BillingProvider) throws InterruptedException {
-        enterBillingProviderInSearchField(BillingProvider);
+    public void user_enters_the_billing_provider_in_the_search_field(String billingProvider) throws InterruptedException {
+        enterBillingProviderInSearchField(billingProvider);
     }
 
     @Then("user able to view the claim details for given Billing Provider")
     public void user_able_to_view_the_claim_details_for_given_billing_provider() {
         validateBillingProviderResult();
+    }
+
+    //Scenario: Validate Export Result button should display when the search results are displayed
+    @Then("user not able to view Export Result button when search results are not displayed")
+    public void user_not_able_to_view_export_result_button_when_search_results_are_not_displayed() {
+        verifyExportResultButtonWhenNoSearchResultsDisplayed();
+    }
+
+    @Then("user able to view the Export Result button when search results are displayed")
+    public void user_able_to_view_the_export_result_button_when_search_results_are_displayed() {
+        verifyExportResultButtonWhenSearchResultsDisplayed();
+    }
+
+    //Scenario: Verify Reprocess button should be available when Paid state is filtered in Global Search page
+    @Then("user should be able view the Reprocess button for Paid state record")
+    public void user_should_be_able_view_the_reprocess_button_for_paid_state_record() throws InterruptedException {
+        verifyReprocessButton();
+    }
+
+    // Scenario: Verify user able to search more than 2 characters in Member Id field
+    @When("user searches more than two characters in Member Id {string} field")
+    public void user_searches_more_than_two_characters_in_field(String memberID) throws InterruptedException {
+        enterMemberIdInSearchField(memberID);
+    }
+
+    @Then("user should be able to display the claim records in a Global Search for given Member Id criteria")
+    public void user_should_be_able_to_display_the_claim_records_in_a_global_search_for_given_Member_criteria() {
+        validateMemberIDResultForCharacterLimit();
+    }
+
+    //Scenario: Verify user able to search more than 2 characters in Patient field
+    @When("user searches more than two characters in Patient {string} field")
+    public void user_searches_more_than_two_characters_in_patient_field(String patientName) throws InterruptedException {
+        enterPatientNameInSearchField(patientName);
+    }
+
+    @Then("user should be able to display the claim records in a Global Search for given Patient criteria")
+    public void user_should_be_able_to_display_the_claim_records_in_a_global_search_for_given_patient_criteria() {
+        validatePatientResultForCharacterLimit();
+    }
+
+    //Scenario: Verify user able to search more than 2 characters in Billing Provider field
+    @When("user searches more than two characters in Billing Provider {string} field")
+    public void user_searches_more_than_two_characters_in_billing_provider_field(String billingProvider) throws InterruptedException {
+        enterBillingProviderInSearchField(billingProvider);
+    }
+
+    @Then("user should be able to display the claim records in a Global Search for given Billing Provider criteria")
+    public void user_should_be_able_to_display_the_claim_records_in_a_global_search_for_given_billing_provider_criteria() {
+        validateBillingProviderResultForCharacterLimit();
+    }
+
+    //  Scenario: Verify user able to search more than 2 characters in any two fields
+    @When("user searches more than two characters in State {string} field")
+    public void user_searches_more_than_two_characters_in_state_field(String state) throws InterruptedException {
+        enterStateInSearchField(state);
+    }
+
+    @Then("user should be able to display the claim records in a Global Search")
+    public void user_should_be_able_to_display_the_claim_records_in_a_global_search() {
+        validateStateResultForCharacterLimit();
     }
 
 }
