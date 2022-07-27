@@ -75,3 +75,33 @@ Feature: Left Navigation
       | Members List        |
       | MOOP Ledger         |
       | Prior Authorization |
+
+  @34884
+  Scenario: Validate Queue Management Menu for admin role
+    When left navigation loaded
+    Then user should be able to view the following sub menus under Queue Management main menu
+      | FFS Professional  |
+      | CAP Professional  |
+      | FFS Institutional |
+      | CAP Institutional |
+      | Dental            |
+
+  @34928
+  Scenario: Validate Reports Menu for admin role
+    When left navigation loaded
+    Then user should able to view the SSRS Reports Menu under Reports Menu
+
+  @34894
+  Scenario: Validate Settings Menu for admin role
+    When left navigation loaded
+    Then user should able to view the Plain Language and Instructions Menus under Settings Menu
+
+  @34896
+  Scenario: Validate User Management Menu for admin role
+    When left navigation loaded
+    Then user should be able to view the Manage Users, Manage Role menus under User Management Menu
+
+  @39530
+  Scenario: Verify admin should land on Home/Dashboard page
+    When left navigation loaded
+    Then user should land on Home and Dashboard page

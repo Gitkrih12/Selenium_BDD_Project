@@ -16,10 +16,8 @@ public class LeftNavigationPage extends SeleniumUtils {
     String expandedExpText = "rotate(180deg)";
     String collapsedExpText = "rotate(0deg)";
     String tglClaimsAdj = "//div[@class='menu']//img";
-    String attClaimsAdj = "//*[@class='mat-drawer-content']";
-    String attClaimsAdjCollapsedExpStatus = "25px";
+    String spanClaimsAdj = "(//span[@class='ng-star-inserted'])[1]";
     String tglClaimsAdjCollapsed = "//span[contains(@class, 'hamburger-icon')]//img";
-    String attClaimsAdjExpandedExpStatus = "271px";
     String mnuMainItems = "//div[@class='menuitemsnames']/../..//following::span[1]";
     String mnuAccountManagement = "//div[contains(text(),'Account Management')]";
     String mnuArLedger = "//div[contains(text(),'A/R Ledger')]";
@@ -42,7 +40,11 @@ public class LeftNavigationPage extends SeleniumUtils {
     String mnuUserManagement = "//div[contains(text(),'User Management')]";
     String mnuManageUsers = "//div[contains(text(),'Manage Users')]";
     String mnuManageRole = "//div[contains(text(),'Manage Role')]";
+    String tabAdminHomePage = "//div[@class='col active-tab ng-star-inserted']";
 
+
+
+    boolean claimAdjSpanStatus;
 
     public void leftNavigationValidation() {
         boolean leftNavigationStatus = isDisplayed(mnuLeftNavigation);
@@ -50,7 +52,7 @@ public class LeftNavigationPage extends SeleniumUtils {
         Assert.assertTrue(leftNavigationStatus);
     }
 
-    //    Verify Adjudication section should be in expanded mode by default in left navigation mode for Admin role
+    //    Verify Adjudication section should be in expanded mode by default in left navigation pane for both admin and non admin roles
     public void verifyAdjudicationMenuByDefaultInExpandableMode()
     {
         String expandActText = findElementByXpath(btnAdjudicationExpansion).getAttribute("style");
@@ -65,7 +67,7 @@ public class LeftNavigationPage extends SeleniumUtils {
         }
     }
 
-    //    Scenario: Verify Queue Management section should be expanded mode by default in left navigation mode for Admin role
+    //    Scenario: Verify Queue Management section should be expanded mode by default in left navigation pane for admin and non admin roles
     public void verifyQueueManagementMenuByDefaultInExpandableMode()
     {
         String expandActText = findElementByXpath(btnQueueManagementExpansion).getAttribute("style");
@@ -81,7 +83,7 @@ public class LeftNavigationPage extends SeleniumUtils {
     }
 
 
-    //    Scenario:  Validate expanding collapsing action for all menu's in left navigation for admin role
+    //    Scenario:  Validate expanding collapsing action for all menu's in left navigation for admin and non admin roles
     public void validateExpandAndCollapseActionsForAllLeftNavigationMenus() {
         List<WebElement> menuList = findElementsByXpath(mnuMainItems);
         String actualText = null;
@@ -171,7 +173,7 @@ public class LeftNavigationPage extends SeleniumUtils {
         }
     }
 
-    //    Scenario: Validate Account Management Menu for admin role
+    //    Scenario: Validate Account Management Menu for admin and non admin roles
     public void validateARLedgerMenu()
     {
         clickElement(mnuAccountManagement);
@@ -186,6 +188,8 @@ public class LeftNavigationPage extends SeleniumUtils {
         List<String> adjListExp = adjList.asList();
         List<WebElement> adjSubMenusList = findElementsByXpath(mnuAdjudicationList);
         List<String> adjListAct = new ArrayList<>();
+        System.out.println("Adjudication sub menus actual list size: " + adjSubMenusList.size());
+        System.out.println("Adjudication sub menus expected list size: " + adjListExp.size());
 
         for (WebElement list:adjSubMenusList)
         {
@@ -211,14 +215,16 @@ public class LeftNavigationPage extends SeleniumUtils {
     }
 
     //    Scenario: Validate Check Management Menu for admin role
-    public void validateCheckManagementSubMenus(DataTable checkManagementList) throws InterruptedException {
+    public void validateCheckManagementSubMenusForAdminRole(DataTable checkManagementList) throws InterruptedException {
 
         List<String> checkManagementListExp = checkManagementList.asList();
         clickElement(mnuCheckManagement);
-        List<WebElement> checkMngmtSubMenusList = findElementsByXpath(mnuCheckManagementList);
+        List<WebElement> checkManagementSubMenusList = findElementsByXpath(mnuCheckManagementList);
         List<String> checkManagementListAct = new ArrayList<>();
+        System.out.println("Check Management sub menus actual size :" + checkManagementSubMenusList.size());
+        System.out.println("Check Management sub menus expected size :" + checkManagementListExp.size());
 
-        for (WebElement checkList: checkMngmtSubMenusList)
+        for (WebElement checkList: checkManagementSubMenusList)
         {
             moveToElement(checkList).perform();
             String text = checkList.getText();
@@ -240,44 +246,28 @@ public class LeftNavigationPage extends SeleniumUtils {
         }
     }
 
-    //    Scenario: Validate expanding collapsing left navigation menu on clicking Menu Toggle for admin role
+    //    Scenario: Validate expanding collapsing left navigation menu on clicking Menu Toggle for admin & non admin roles
     public void clickOnClaimsAdjudicationToggleMenu()
     {
         clickElement(tglClaimsAdj);
     }
     public void verifyCollapsedStatusForClaimsAdjudicationToggleMenu()
     {
-        String claimsAdjCollapsedAttAct = getAttribute(attClaimsAdj, "style");
-        System.out.println("Claims Adjudication toggle attribute value in collapsed mode: " + claimsAdjCollapsedAttAct);
-        if (claimsAdjCollapsedAttAct.contains(attClaimsAdjCollapsedExpStatus))
-        {
-            Assert.assertTrue(true);
-        }
-        else
-        {
-            Assert.fail("Claims Adjudication toggle menu is not in collapsed mode");
-        }
-
+        claimAdjSpanStatus = isDisplayed(spanClaimsAdj);
+        System.out.println("Claim adjudication toggle expanded status is: " + claimAdjSpanStatus);
+        Assert.assertFalse(claimAdjSpanStatus);
     }
-    public void clickOnClaimsAdjudicationToggleMenuInCollapsableMode()
-    {
+    public void clickOnClaimsAdjudicationToggleMenuInCollapsableMode() {
         clickElement(tglClaimsAdjCollapsed);
     }
-    public void verifyExpandedStatusForClaimsAdjudicationToggleMenu()
-    {
-        String claimsAdjExpandedAttAct = getAttribute(attClaimsAdj, "style");
-        System.out.println("Claims Adjudication toggle attribute value in collapsed mode: " + claimsAdjExpandedAttAct);
-        if (claimsAdjExpandedAttAct.contains(attClaimsAdjExpandedExpStatus))
-        {
-            Assert.assertTrue(true);
-        }
-        else
-        {
-            Assert.fail("Claims Adjudication toggle menu is not in expanded mode");
-        }
+    public void verifyExpandedStatusForClaimsAdjudicationToggleMenu() {
+        explicitElementClickableWaitByXpath(spanClaimsAdj,10);
+        claimAdjSpanStatus = isDisplayed(spanClaimsAdj);
+        System.out.println("Claims Adjudication toggle menu expanded status is: " + claimAdjSpanStatus);
+        Assert.assertTrue(claimAdjSpanStatus);
     }
 
-    //    Scenario: Validate Fee Schedule Menu for admin role
+    //    Scenario: Validate Fee Schedule Menu for admin and non admin roles
     public void validateFeeScheduleSubMenus()
     {
         clickElement(mnuFeeSchedule);
@@ -288,13 +278,15 @@ public class LeftNavigationPage extends SeleniumUtils {
         System.out.println("Fee Schedules sub menus status is : " + (isDisplayed(mnuMedicare) && isDisplayed(mnuMedicaid)));
     }
 
-    //    Scenario: Validate File Management Menu for admin role
+    //    Scenario: Validate File Management Menu for admin and non admin roles
     public void validateFileManagementSubMenus(DataTable fileManagementList)
     {
         List<String> fileManagementListExp = fileManagementList.asList();
         clickElement(mnuFileManagement);
         List <WebElement> fileManagementSubMenusList = findElementsByXpath(mnuFileManagementList);
         List<String> fileManagementListAct = new ArrayList<>();
+        System.out.println("File management sub menus actual size: " + fileManagementSubMenusList.size());
+        System.out.println("File management sub menus expected size: " + fileManagementListExp.size());
 
         for (WebElement fileList : fileManagementSubMenusList)
         {
@@ -318,12 +310,14 @@ public class LeftNavigationPage extends SeleniumUtils {
     }
 
     //    Scenario: Validate Member Management Menu for admin role
-    public void validateMemberManagementSubMenus(DataTable memberManagementList)
+    public void validateMemberManagementSubMenusForAdminRole(DataTable memberManagementList)
     {
         List<String> memberManagementListExp = memberManagementList.asList();
         clickElement(mnuMemberManagement);
         List<WebElement> memberManagementSubMenus = findElementsByXpath(mnuMemberManagementList);
         List<String> memberManagementListAct = new ArrayList<>();
+        System.out.println("Member management sub menus actual size: "+ memberManagementSubMenus.size());
+        System.out.println("Member management sub menus expected size: "+ memberManagementListExp.size());
 
         for (WebElement memberList: memberManagementSubMenus)
         {
@@ -344,6 +338,72 @@ public class LeftNavigationPage extends SeleniumUtils {
                 Assert.fail(exp + " value is not listed in actual list");
             }
         }
+    }
+
+    //    Scenario: Validate Queue Management Menu for admin and non admin roles
+    public void validateQueueManagementSubMenus(DataTable queueManagementList)
+    {
+        List <String> queueManagementListExp = queueManagementList.asList();
+        List<WebElement> queueManagementSubMenus = findElementsByXpath(mnuQueueManagementList);
+        List <String> queueManagementListAct = new ArrayList<>();
+        System.out.println("Queue management sub menus actual size: " + queueManagementSubMenus.size());
+        System.out.println("Queue management sub menus expected size: " + queueManagementListExp.size());
+
+        for (WebElement queueList:queueManagementSubMenus)
+        {
+            String text = queueList.getText();
+            queueManagementListAct.add(text);
+        }
+        System.out.println("Queue management actual list is : " + queueManagementListAct);
+        System.out.println("Queue management expected list is : " + queueManagementListExp);
+        for (String exp: queueManagementListExp)
+        {
+            if (queueManagementListAct.contains(exp))
+            {
+                Assert.assertTrue(true);
+            }
+            else
+            {
+                Assert.fail(exp + " value is not listed in actual list");
+            }
+        }
+    }
+
+    //    Scenario: Validate Reports Menu for admin role
+    public void validateReportsSubMenu() {
+        clickElement(mnuReports);
+        moveToElement(mnuReportsList).perform();
+        Assert.assertTrue(isDisplayed(mnuReportsList));
+        System.out.println("Reports sub menu status is : " + isDisplayed(mnuReportsList));
+    }
+
+    //    Scenario: Validate Settings Menu for admin and non admin roles
+    public void validateSettingsSubMenus()
+    {
+        clickElement(mnuSettings);
+        moveToElement(mnuPlainLanguage).perform();
+        Assert.assertTrue(isDisplayed(mnuPlainLanguage));
+        moveToElement(mnuInstructions).perform();
+        Assert.assertTrue(isDisplayed(mnuInstructions));
+        System.out.println("Settings menus status is : " + (isDisplayed(mnuPlainLanguage) && isDisplayed(mnuInstructions)));
+    }
+
+    //    Validate User Management Menu for admin role
+    public void validateUserManagementSubMenus()
+    {
+        clickElement(mnuUserManagement);
+        moveToElement(mnuManageUsers).perform();
+        Assert.assertTrue(isDisplayed(mnuManageUsers));
+        moveToElement(mnuManageRole).perform();
+        Assert.assertTrue(isDisplayed(mnuManageRole));
+        System.out.println("User management sub menus status is : " + (isDisplayed(mnuManageUsers) && isDisplayed(mnuManageRole)));
+    }
+
+    //    Scenario: Verify admin should land on Home/Dashboard page
+    public void verifyUserIsOnAdminHomePageByDefault()
+    {
+        Assert.assertTrue(isDisplayed(tabAdminHomePage));
+        System.out.println("Admin home page default status is: " + isDisplayed(tabAdminHomePage));
     }
 
 

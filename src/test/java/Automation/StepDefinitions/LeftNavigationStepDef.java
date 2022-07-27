@@ -11,26 +11,26 @@ public class LeftNavigationStepDef extends LeftNavigationPage {
         leftNavigationValidation();
     }
 
-    //    Verify Adjudication section should be in expanded mode by default in left navigation mode for Admin role
+    //    Verify Adjudication section should be in expanded mode by default in left navigation pane for both admin and non admin roles
     @Then("user can able to see the Adjudication section expandable mode by default")
     public void user_can_able_to_see_the_adjudication_section_expandable_mode_by_default() {
         verifyAdjudicationMenuByDefaultInExpandableMode();
     }
 
-    //    Scenario: Verify Queue Management section should be expanded mode by default in left navigation mode for Admin role
+    //    Scenario: Verify Queue Management section should be expanded mode by default in left navigation pane for admin and non admin roles
     @Then("user can able to see the Queue Management section expandable mode by default")
     public void user_can_able_to_see_the_queue_management_section_expandable_mode_by_default() {
         verifyQueueManagementMenuByDefaultInExpandableMode();
     }
 
 
-    //    Scenario:  Validate expanding collapsing action for all menu's in left navigation for admin role
+    //    Scenario:  Validate expanding collapsing action for all menu's in left navigation for admin and non admin roles
     @Then("user should be able to perform expanding and collapsing actions for all menus")
     public void user_should_be_able_to_perform_expanding_and_collapsing_actions_for_all_menus() {
         validateExpandAndCollapseActionsForAllLeftNavigationMenus();
     }
 
-    //    Scenario: Validate Account Management Menu for admin role
+    //    Scenario: Validate Account Management Menu for admin and non admin roles
     @Then("user should able to view the AR Ledger Menu under Account Management Menu")
     public void user_should_able_to_view_the_AR_ledger_menu_under_account_management_menu() {
         validateARLedgerMenu();
@@ -45,10 +45,10 @@ public class LeftNavigationStepDef extends LeftNavigationPage {
     //    Scenario: Validate Check Management Menu for admin role
     @Then("user should able to view the Check Refund, Check Void, Check Reissue, Check Register Menu's under Check Management Menu")
     public void user_should_able_to_view_the_check_refund_check_void_check_reissue_check_register_menu_s_under_check_management_menu(DataTable checkManagementList) throws InterruptedException {
-        validateCheckManagementSubMenus(checkManagementList);
+        validateCheckManagementSubMenusForAdminRole(checkManagementList);
     }
 
-    //    Scenario: Validate expanding collapsing left navigation menu on clicking Menu Toggle for admin role
+    //    Scenario: Validate expanding collapsing left navigation menu on clicking Menu Toggle for admin and non admin roles
     @When("user clicks on Menu Toggle in left navigation menu")
     public void user_clicks_on_menu_toggle_in_left_navigation_menu() {
         clickOnClaimsAdjudicationToggleMenu();
@@ -66,13 +66,13 @@ public class LeftNavigationStepDef extends LeftNavigationPage {
         verifyExpandedStatusForClaimsAdjudicationToggleMenu();
     }
 
-    //    Scenario: Validate Fee Schedule Menu for admin role
+    //    Scenario: Validate Fee Schedule Menu for admin and non admin roles
     @Then("user should able to view the Medicare and Medicaid Menu's under Fee Schedule Menu")
     public void user_should_able_to_view_the_medicare_and_medicaid_menu_s_under_fee_schedule_menu() {
         validateFeeScheduleSubMenus();
     }
 
-    //    Scenario: Validate File Management Menu for admin role
+    //    Scenario: Validate File Management Menu for admin and non admin roles
     @Then("user should be able to view the following sub menus under File Management main menu")
     public void user_should_be_able_to_view_the_following_sub_menus_under_file_management_main_menu(DataTable fileManagementList) {
         validateFileManagementSubMenus(fileManagementList);
@@ -81,8 +81,39 @@ public class LeftNavigationStepDef extends LeftNavigationPage {
     //    Scenario: Validate Member Management Menu for admin role
     @Then("user should be able to view the following sub menus under Member Management main Menu")
     public void user_should_be_able_to_view_the_following_sub_menus_under_member_management_main_menu(DataTable memberManagementList) {
-        validateMemberManagementSubMenus(memberManagementList);
+        validateMemberManagementSubMenusForAdminRole(memberManagementList);
     }
+
+    //    Scenario: Validate Queue Management Menu for admin and non admin roles
+    @Then("user should be able to view the following sub menus under Queue Management main menu")
+    public void user_should_be_able_to_view_the_following_sub_menus_under_queue_management_main_menu(DataTable queueManagementList) {
+        validateQueueManagementSubMenus(queueManagementList);
+    }
+
+    //    Scenario: Validate Reports Menu for admin role
+    @Then("user should able to view the SSRS Reports Menu under Reports Menu")
+    public void user_should_able_to_view_the_ssrs_reports_menu_under_reports_menu() {
+        validateReportsSubMenu();
+    }
+
+    //    Scenario: Validate Settings Menu for admin and non admin roles
+    @Then("user should able to view the Plain Language and Instructions Menus under Settings Menu")
+    public void user_should_able_to_view_the_plain_language_and_instructions_menus_under_settings_menu() {
+        validateSettingsSubMenus();
+    }
+
+    //    Validate User Management Menu for admin role
+    @Then("user should be able to view the Manage Users, Manage Role menus under User Management Menu")
+    public void user_should_be_able_to_view_the_manage_users_manage_role_menus_under_user_management_menu() {
+        validateUserManagementSubMenus();
+    }
+
+    //    Scenario: Verify admin should land on Home/Dashboard page
+    @Then("user should land on Home and Dashboard page")
+    public void user_should_land_on_home_and_dashboard_page() {
+        verifyUserIsOnAdminHomePageByDefault();
+    }
+
 
 
 }
