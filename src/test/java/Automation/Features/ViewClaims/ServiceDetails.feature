@@ -53,7 +53,8 @@ Feature: Service Details
 
   @37695
   Scenario: Verify footer section available in Service details tab
-    When user clicking on Claim Number "P0020021100018" in Global Search page
+    Given the user is in FFS Professional page
+    When user clicks on the Claim Number
     And user clicks on Service Details tab
     Then user views the footer section in Service Details page
       | On Hold           |
