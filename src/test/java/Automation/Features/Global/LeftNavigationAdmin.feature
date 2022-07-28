@@ -101,16 +101,16 @@ Feature: Left Navigation
     When left navigation loaded
     Then user should be able to view the Manage Users, Manage Role menus under User Management Menu
 
-  @39530
+  @Sanity @39530
   Scenario: Verify admin should land on Home/Dashboard page
     When left navigation loaded
     Then user should land on Home and Dashboard page
 
-  @34860
+  @Sanity @34860
   Scenario: Verify left navigation loaded for admin role
     Then user should be able to view the left navigation for his role
 
-  @34863
+  @Sanity @34863
   Scenario: Verify left navigation menu for admin role
     When left navigation loaded
     Then user should be able to view the "Claims Adjudication" Label, Menu toggle on the top view
