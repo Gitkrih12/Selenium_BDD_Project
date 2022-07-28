@@ -13,7 +13,8 @@ Feature: Edits
 
   @44550
   Scenario: Validate buttons functionality of Edits tab
-    When user clicking on Claim Number "P0020021100018" in Global Search page
+    Given the user is in FFS Professional page
+    When user clicks on the Claim Number
     And user clicks on Edits tab
     Then user views the footer section in Edits page
       | On Hold           |
