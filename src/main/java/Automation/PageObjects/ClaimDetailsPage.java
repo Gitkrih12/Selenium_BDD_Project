@@ -33,8 +33,10 @@ public class ClaimDetailsPage extends SeleniumUtils {
             "/div[1]/div | //*[@id='nav-claim-details']/div[12]/div[1]/div";
     String payerFields = "//*[@id='nav-claim-details']/div[13]/div[1]/div | //*[@id='nav-claim-details']/div[14]/div[1]/div";
     String dateOfServiceFields = "//*[@id='nav-claim-details']/div[15]/div[1]/div[1]/div";
-    String isPatientConditionRelatedToField = "//*[@id='nav-claim-details']/div[15]/div[2]/div/div";
-    String showOption = "//*[contains(text(), '(Show)')]";
+    String isPatientConditionRelatedToField = "//*[@id='nav-claim-details']/div[15]/div[2]/div/div/b";
+    String lnkShowOption = "//*[contains(text(), '(Show)')]";
+    String eleClaimNumber = "(//*[contains(text(), 'Claim Number')])[1]";
+    String checkboxFields = "//*[@id='nav-claim-details']/div[15]/div[2]//input";
 
 
     //  Scenario: Verify user able to navigate to claim summary screen on clicking claim number
@@ -268,5 +270,129 @@ public class ClaimDetailsPage extends SeleniumUtils {
                 Assert.fail(exp + " is not listed in actual list");
             }
         }
+    }
+
+    //   Scenario: Validate Billing Provider Information section
+    public void verifyFieldsUnderBillingProviderInformationSection(DataTable billingProviderInfoSection) {
+        List<String> billingProviderInfoFieldsExp = billingProviderInfoSection.asList();
+        List<WebElement> ActFields = findElementsByXpath(billingProviderInformationFields);
+        List<String> fieldsForCompare = new ArrayList<>();
+        System.out.println("Size" + ActFields.size());
+        for (WebElement column : ActFields) {
+            scrollIntoView(column, driver);
+            String text = column.getText();
+            fieldsForCompare.add(text);
+        }
+        System.out.println("Fields in Billing Provider Information section :" + fieldsForCompare);
+        System.out.println("Expected fields are : " + billingProviderInfoFieldsExp);
+        for (String exp : billingProviderInfoFieldsExp) {
+            if (fieldsForCompare.contains(exp)) {
+                Assert.assertTrue(true);
+            } else {
+                Assert.fail(exp + " is not listed in actual list");
+            }
+        }
+    }
+
+    //   Scenario: Validate Payer section
+    public void verifyFieldsUnderPayerSection(DataTable payerSection) {
+        List<String> payerFieldsExp = payerSection.asList();
+        List<WebElement> ActFields = findElementsByXpath(payerFields);
+        List<String> fieldsForCompare = new ArrayList<>();
+        System.out.println("Size" + ActFields.size());
+        for (WebElement column : ActFields) {
+            scrollIntoView(column, driver);
+            String text = column.getText();
+            fieldsForCompare.add(text);
+        }
+        System.out.println("Fields in Payer section :" + fieldsForCompare);
+        System.out.println("Expected fields are : " + payerFieldsExp);
+        for (String exp : payerFieldsExp) {
+            if (fieldsForCompare.contains(exp)) {
+                Assert.assertTrue(true);
+            } else {
+                Assert.fail(exp + " is not listed in actual list");
+            }
+        }
+    }
+
+    //  Scenario: Validate Date of Service section
+    public void verifyFieldsUnderDateOfServiceSection(DataTable dateOfServiceSection) {
+        List<String> dateOfServiceFieldsExp = dateOfServiceSection.asList();
+        List<WebElement> ActFields = findElementsByXpath(dateOfServiceFields);
+        List<String> fieldsForCompare = new ArrayList<>();
+        System.out.println("Size" + ActFields.size());
+        for (WebElement column : ActFields) {
+            scrollIntoView(column, driver);
+            String text = column.getText();
+            fieldsForCompare.add(text);
+        }
+        System.out.println("Fields in Date of Service section :" + fieldsForCompare);
+        System.out.println("Expected fields are : " + dateOfServiceFieldsExp);
+        for (String exp : dateOfServiceFieldsExp) {
+            if (fieldsForCompare.contains(exp)) {
+                Assert.assertTrue(true);
+            } else {
+                Assert.fail(exp + " is not listed in actual list");
+            }
+        }
+    }
+
+    //  Scenario: Validate Is Patient Condition Related To section
+    public void verifyFieldsUnderIsPatientConditionRelatedToSection(DataTable isPatientConditionRelatedToSection) {
+        List<String> isPatientConditionRelatedToFieldsExp = isPatientConditionRelatedToSection.asList();
+        List<WebElement> ActFields = findElementsByXpath(isPatientConditionRelatedToField);
+        List<String> fieldsForCompare = new ArrayList<>();
+        System.out.println("Size" + ActFields.size());
+        for (WebElement column : ActFields) {
+            scrollIntoView(column, driver);
+            String text = column.getText();
+            fieldsForCompare.add(text);
+        }
+        System.out.println("Fields in Is Patient Condition Related To section :" + fieldsForCompare);
+        System.out.println("Expected fields are : " + isPatientConditionRelatedToFieldsExp);
+        for (String exp : isPatientConditionRelatedToFieldsExp) {
+            if (fieldsForCompare.contains(exp)) {
+                Assert.assertTrue(true);
+            } else {
+                Assert.fail(exp + " is not listed in actual list");
+            }
+        }
+    }
+
+    public void verifyCheckBoxesForFields() {
+        List<WebElement> ActFields = findElementsByXpath(checkboxFields);
+        for (WebElement checkbox : ActFields) {
+            if (checkbox.isDisplayed()) {
+                Assert.assertTrue(true);
+            } else {
+                Assert.fail(checkbox + "checkbox is not displayed");
+            }
+        }
+    }
+
+    //  Scenario: Validate Hide action for claim summary section
+    public void userClicksOnHideLink() {
+        clickElement(lnkHideOption);
+    }
+
+    public void verifyClaimSummarySectionShouldHide() {
+        boolean claimSummarySection = findElementByXpath(eleClaimNumber).isDisplayed();
+        Assert.assertFalse(claimSummarySection);
+    }
+
+    //  Scenario: Validate Show action for claim summary section
+    public void verifyShowLinkIsDisplayed() {
+        boolean showLink = findElementByXpath(lnkShowOption).isDisplayed();
+        Assert.assertTrue(showLink);
+    }
+
+    public void userClicksOnShowLink() {
+        clickElement(lnkShowOption);
+    }
+
+    public void verifyUserViewsClaimSummarySection() {
+        boolean claimSummarySection = findElementByXpath(eleClaimNumber).isDisplayed();
+        Assert.assertTrue(claimSummarySection);
     }
 }

@@ -166,3 +166,77 @@ Feature: Claim Details
       | Rendering Provider Name |
       | Rendering Provider NPI  |
       | Taxonomy                |
+
+  @37415
+  Scenario: Validate Billing Provider Information section
+    Given the user is in FFS Professional page
+    When user clicks on the Claim Number
+    Then user navigates to the "Claim Summary" page
+    And user able to view the below fields under Billing Provider Information section
+      | Billing Provider Name |
+      | Tax ID                |
+      | Address Line 1        |
+      | Address Line 2        |
+      | City                  |
+      | State                 |
+      | Zip                   |
+      | Taxonomy              |
+      | SSN                   |
+      | Telephone             |
+      | Network Affiliation   |
+
+  @37416
+  Scenario: Validate Payer section
+    Given the user is in FFS Professional page
+    When user clicks on the Claim Number
+    Then user navigates to the "Claim Summary" page
+    And user able to view the below fields under Payer section
+      | Payer name     |
+      | Payer ID       |
+      | Address Line 1 |
+      | Address Line 2 |
+      | City           |
+      | State          |
+      | Zip Code       |
+
+  @37418
+  Scenario: Validate Date of Service section
+    Given the user is in FFS Professional page
+    When user clicks on the Claim Number
+    Then user navigates to the "Claim Summary" page
+    And user able to view the below fields under Date of Service section
+      | From Date              |
+      | To Date                |
+      | Prior Auth             |
+      | Patient Control Number |
+
+  @37421
+  Scenario: Validate Is Patient Condition Related To section
+    Given the user is in FFS Professional page
+    When user clicks on the Claim Number
+    Then user navigates to the "Claim Summary" page
+    And user able to view the below fields under Is Patient Condition Related To section
+      | Employment                      |
+      | Auto Accident                   |
+      | Other Accident                  |
+      | Accident Date                   |
+      | Date of Onset / Current Illness |
+    And user should be able to view checkboxes for Employment Auto Accident and Other Accident fields
+
+  @40613
+  Scenario: Validate Hide action for claim summary section
+    Given the user is in FFS Professional page
+    When user clicks on the Claim Number
+    Then user navigates to the "Claim Summary" page
+    When user clicks on Hide link
+    Then user should hide the claim summary section
+
+  @40618
+  Scenario: Validate Show action for claim summary section
+    Given the user is in FFS Professional page
+    When user clicks on the Claim Number
+    Then user navigates to the "Claim Summary" page
+    When user clicks on Hide link
+    Then user able to view the show link
+    When user clicks on Show link
+    Then user able to view the Claim Summary section
