@@ -7,7 +7,7 @@ import org.junit.runner.RunWith;
 @RunWith(Cucumber.class)
 @CucumberOptions
         (
-                features = ".//src/test/java/Automation/Features/",
+                features = ".//src/test/java/Automation/Features/Global/LeftNavigationAdmin.feature",
                 glue = "Automation/StepDefinitions",
                 dryRun = false,
                 monochrome = true,
