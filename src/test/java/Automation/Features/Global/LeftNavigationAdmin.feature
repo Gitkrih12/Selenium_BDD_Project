@@ -1,4 +1,4 @@
-Feature: Left Navigation
+Feature: Left Navigation Admin
 
   Background:
     #  DSNP Admin login

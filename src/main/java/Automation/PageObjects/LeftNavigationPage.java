@@ -243,7 +243,7 @@ public class LeftNavigationPage extends SeleniumUtils {
             }
             else
             {
-                Assert.fail(exp + " value is not listed in actual list");
+                Assert.fail(exp + " is not listed in actual list");
             }
         }
     }
@@ -306,7 +306,7 @@ public class LeftNavigationPage extends SeleniumUtils {
             }
             else
             {
-                Assert.fail(exp + " value is not listed in actual list");
+                Assert.fail(exp + " is not listed in actual list");
             }
         }
     }
@@ -337,7 +337,7 @@ public class LeftNavigationPage extends SeleniumUtils {
             }
             else
             {
-                Assert.fail(exp + " value is not listed in actual list");
+                Assert.fail(exp + " is not listed in actual list");
             }
         }
     }
@@ -366,7 +366,7 @@ public class LeftNavigationPage extends SeleniumUtils {
             }
             else
             {
-                Assert.fail(exp + " value is not listed in actual list");
+                Assert.fail(exp + " is not listed in actual list");
             }
         }
     }
@@ -448,7 +448,7 @@ public class LeftNavigationPage extends SeleniumUtils {
             }
             else
             {
-                Assert.fail(exp + " value is not listed in actual list");
+                Assert.fail(exp + " is not listed in actual list");
             }
         }
     }
