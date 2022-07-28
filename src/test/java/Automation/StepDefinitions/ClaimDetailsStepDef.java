@@ -101,4 +101,61 @@ public class ClaimDetailsStepDef extends ClaimDetailsPage {
     public void user_able_to_view_the_below_fields_under_rendering_provider_information_section(DataTable renderingProviderInfoSection) {
         verifyFieldsUnderRenderingProviderInformationSection(renderingProviderInfoSection);
     }
+
+
+    //  Scenario: Validate Billing Provider Information section
+    @Then("user able to view the below fields under Billing Provider Information section")
+    public void user_able_to_view_the_below_fields_under_billing_provider_information_section(DataTable billingProviderInfoSection) {
+        verifyFieldsUnderBillingProviderInformationSection(billingProviderInfoSection);
+    }
+
+    //  Scenario: Validate Payer section
+    @Then("user able to view the below fields under Payer section")
+    public void user_able_to_view_the_below_fields_under_payer_section(DataTable payerSection) {
+        verifyFieldsUnderPayerSection(payerSection);
+    }
+
+    //  Scenario: Validate Date of Service section
+    @Then("user able to view the below fields under Date of Service section")
+    public void user_able_to_view_the_below_fields_under_date_of_service_section(DataTable dateOfServiceSection) {
+        verifyFieldsUnderDateOfServiceSection(dateOfServiceSection);
+    }
+
+    // Scenario: Validate Is Patient Condition Related To section
+    @Then("user able to view the below fields under Is Patient Condition Related To section")
+    public void user_able_to_view_the_below_fields_under_is_patient_condition_related_to_section(DataTable isPatientConditionRelatedToSection) {
+        verifyFieldsUnderIsPatientConditionRelatedToSection(isPatientConditionRelatedToSection);
+    }
+
+    @Then("user should be able to view checkboxes for Employment Auto Accident and Other Accident fields")
+    public void user_should_be_able_to_view_checkboxes_for_Employment_Auto_Accident_and_Other_Accident_fields() {
+        verifyCheckBoxesForFields();
+    }
+
+    //  Scenario: Validate Hide action for claim summary section
+    @When("user clicks on Hide link")
+    public void user_clicks_on_hide_link() {
+        userClicksOnHideLink();
+    }
+
+    @Then("user should hide the claim summary section")
+    public void user_should_hide_the_claim_summary_section() {
+        verifyClaimSummarySectionShouldHide();
+    }
+
+    //  Scenario: Validate Show action for claim summary section
+    @Then("user able to view the show link")
+    public void user_able_to_view_the_show_link() {
+        verifyShowLinkIsDisplayed();
+    }
+
+    @When("user clicks on Show link")
+    public void user_clicks_on_show_link() {
+        userClicksOnShowLink();
+    }
+
+    @Then("user able to view the Claim Summary section")
+    public void user_able_to_view_the_claim_summary_section() {
+        verifyUserViewsClaimSummarySection();
+    }
 }
