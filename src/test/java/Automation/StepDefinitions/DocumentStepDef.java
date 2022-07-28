@@ -8,7 +8,7 @@ import io.cucumber.java.en.When;
 public class DocumentStepDef extends DocumentsPage {
 
     @When("user clicks on the Documents tab")
-    public void user_clicks_on_the_documents_tab() {
+    public void user_clicks_on_the_documents_tab() throws InterruptedException {
         userClicksOnDocumentsTab();
     }
 

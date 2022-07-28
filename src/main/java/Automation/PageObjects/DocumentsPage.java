@@ -19,8 +19,9 @@ public class DocumentsPage extends SeleniumUtils {
 
 
 
-    public void userClicksOnDocumentsTab() {
+    public void userClicksOnDocumentsTab() throws InterruptedException {
         clickElement(tabDocument);
+        threadSleep(1000);
     }
 
     public void verifyUserNavigatesToDocumentsTab(String expTab){

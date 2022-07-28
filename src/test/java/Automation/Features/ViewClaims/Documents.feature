@@ -13,7 +13,8 @@ Feature: Claim Details
 
   @47240
   Scenario: Verify user should able to see footer section buttons
-    When user clicking on Claim Number "P0020021100018" in Global Search page
+    Given the user is in FFS Professional page
+    When user clicks on the Claim Number
     And user clicks on the Documents tab
     Then user views the footer section in Documents page
       | On Hold           |
