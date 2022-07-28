@@ -47,7 +47,7 @@ Feature: Provider Details
       | Timely Filling   |
       | Sequestration    |
       | ProviderID       |
-      | Contact Name     |
+      | Contract Name     |
 
   @39974
   Scenario: Validate all the buttons available at the footer section under Provider Details tab
