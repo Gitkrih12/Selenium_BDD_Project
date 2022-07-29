@@ -17,8 +17,9 @@ public class MoopPage extends SeleniumUtils {
 
 
     //  Scenario: Verify user should be able to navigate to the MOOP page through view claims from Global Search page
-    public void userClicksOnMoopTab() {
+    public void userClicksOnMoopTab() throws InterruptedException {
         clickElement(tabMoop);
+        threadSleep(1000);
     }
 
     public void verifyUserNavigatesToMoop(String expTab) {

@@ -24,7 +24,8 @@ Feature: MOOP
 
   @46286
   Scenario: Verify the footer section should display in MOOP page
-    When user clicking on Claim Number "P0020021100018" in Global Search page
+    Given the user is in FFS Professional page
+    When user clicks on the Claim Number
     And user clicks on Moop tab
     Then user views the footer section in Moop page
       | On Hold           |
@@ -36,6 +37,7 @@ Feature: MOOP
 
   @46287
   Scenario: Verify Deny button should highlight in Red color in footer section
-    When user clicking on Claim Number "P0020021100018" in Global Search page
+    Given the user is in FFS Professional page
+    When user clicks on the Claim Number
     And user clicks on Moop tab
     Then Deny button should highlight in Red color "#FFFFFF" in footer section

@@ -9,7 +9,7 @@ public class MoopStepDef extends MoopPage {
 
     //  Scenario: Verify user should be able to navigate to the MOOP page through view claims from Global Search page
     @When("user clicks on Moop tab")
-    public void user_clicks_on_moop_tab() {
+    public void user_clicks_on_moop_tab() throws InterruptedException {
         userClicksOnMoopTab();
     }
 
