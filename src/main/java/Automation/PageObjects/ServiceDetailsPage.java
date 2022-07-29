@@ -13,14 +13,14 @@ public class ServiceDetailsPage extends SeleniumUtils {
     String lnkGlobalSearch = "//div[contains(text(),'Global Search')]";
     String inputClaimNumber = "//input[@aria-label='Claim Number Filter Input']";
     String eleClaimNumber = "//div[@class='ag-pinned-left-cols-container']//a";
-    String lnkServiceDetails = "//*[contains(text(), 'Service Details')]";
-    String serviceDetailsColumnFields = "//*[@class='tab-pane fade show active']/div[1]/div | " +
-            "//*[@id='nav-claim-details']/div[3]/div | //*[@id='nav-claim-details']/div[5]/div";
-    String serviceLineFieldsTable = "(//*[contains(text(),'DOS')])[3] | //*[contains(text(),'Modifiers')] | " +
-            "//*[contains(text(),'Diagnosis Pointer')] | //*[@id='nav-service-details']/div/app-servicedetails/table/thead/tr[2]/th";
+    String tabServiceDetails = "//*[contains(text(), 'Service Details')]";
+    String lstServiceDetailsColumnFields = "//*[@id='nav-claim-details']/div[1]/div[contains(@class, 'col')] | " +
+            "//*[@id='nav-claim-details']/div[3]/div[contains(@class, 'columnFont')] | //*[@id='nav-claim-details']/" +
+            "div[5]/div[contains(@class, 'columnFont')]";
+    String tblServiceLineFields = "//table[@class='table table-striped ng-star-inserted']//tr//th[(node())]";
     String btnFooterFields = "//*[@class='button-padding-left footer']/button";
     String lnkLineNumber = "(//*[@class='gridData ng-star-inserted']//a)[1]";
-    String menuPricingTab = "//*[contains(text(),'Pricing')]";
+    String tabPricing = "//*[contains(text(),'Pricing')]";
 
 
     //  Scenario: Verify Adjudicator able to Navigate Service Details from Global Search and validate the fields
@@ -30,8 +30,7 @@ public class ServiceDetailsPage extends SeleniumUtils {
     }
 
     //  Scenario: Verify Adjudicator able to Navigate Service Details from Global Search and validate the fields
-    public void enterClaimNumberInSearchfield(String claimNumber) throws InterruptedException {
-        clickElement(inputClaimNumber);
+    public void enterClaimNumberInSearchField(String claimNumber) throws InterruptedException {
         findElementAndSendKeys(findElementByXpath(inputClaimNumber), claimNumber);
         threadSleep(1000);
         sendKeysUsingKeyboardInput(inputClaimNumber);
@@ -42,13 +41,13 @@ public class ServiceDetailsPage extends SeleniumUtils {
     }
 
     public void clickOnServiceDetails() throws InterruptedException {
-        clickElement(lnkServiceDetails);
+        clickElement(tabServiceDetails);
         threadSleep(1000);
     }
 
     public void userViewsAllColumnFieldsInServiceDetails(DataTable columnList) {
         List<String> columnListExp = columnList.asList();
-        List<WebElement> ActColumnFields = findElementsByXpath(serviceDetailsColumnFields);
+        List<WebElement> ActColumnFields = findElementsByXpath(lstServiceDetailsColumnFields);
         List<String> columnFieldsForCompare = new ArrayList<>();
         System.out.println("Size " + ActColumnFields.size());
         for (WebElement column : ActColumnFields) {
@@ -70,7 +69,7 @@ public class ServiceDetailsPage extends SeleniumUtils {
     //  Scenario: Verify Service Lines fields
     public void userViewsServiceLineFields(DataTable serviceLineFields) {
         List<String> serviceLineFieldsExp = serviceLineFields.asList();
-        List<WebElement> ActColumnFields = findElementsByXpath(serviceLineFieldsTable);
+        List<WebElement> ActColumnFields = findElementsByXpath(tblServiceLineFields);
         List<String> columnFieldsForCompare = new ArrayList<>();
         System.out.println("Size " + ActColumnFields.size());
         for (WebElement column : ActColumnFields) {
@@ -117,7 +116,7 @@ public class ServiceDetailsPage extends SeleniumUtils {
     }
 
     public void userNavigatesToPricingPage() {
-        String actualValue[] = findElementByXpath(menuPricingTab).getText().split(" ");
+        String actualValue[] = findElementByXpath(tabPricing).getText().split(" ");
         Assert.assertEquals("Pricing-#P0020021100018", actualValue[0] + actualValue[1] + actualValue[2]);
     }
 }

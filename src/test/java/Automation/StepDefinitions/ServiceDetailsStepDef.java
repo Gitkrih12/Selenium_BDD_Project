@@ -11,7 +11,7 @@ public class ServiceDetailsStepDef extends ServiceDetailsPage {
     @When("user clicking on Claim Number {string} in Global Search page")
     public void user_clicking_on_claim_number_in_global_search_page(String claimNumber) throws InterruptedException {
         clickOnGlobalSearch();
-        enterClaimNumberInSearchfield(claimNumber);
+        enterClaimNumberInSearchField(claimNumber);
         clickOnClaimNumber();
     }
 
