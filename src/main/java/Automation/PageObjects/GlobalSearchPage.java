@@ -45,10 +45,10 @@ public class GlobalSearchPage extends SeleniumUtils {
     String eleInvalidIcon = "//span//em[@class='bi bi-info-circle']";
     String eleInvalidTooltip = "//span[@class='tooltiptext']";
     String eleVerticalColorForCorrected = "(//div[@col-id='isCorrected']//span)[6]";
-    String eleCorrectedInfoTopGrid = "//div//span[@class='ColorBall']//following::span[contains(text(),'Corrected')]";
+    String eleCorrectedInfoTopGrid = "//div//span[@class='ColorBall']//following::h6[contains(text(),'Corrected')]";
     String eleCircleWithColorCode = "((//div[@col-id='status']//span[@class='ag-cell-value'])[1]//span//span)[1]";
     String eleVerticalColorForUnclean = "(//div[@col-id='IsClean']//span)[6]";
-    String eleUncleanInfoTopGrid = "//div//span[@class='ColorBall']//following::span[contains(text(),'Un-clean')]";
+    String eleUncleanInfoTopGrid = "//div//span[@class='ColorBall_UnClean']//following::h6[contains(text(),'Un-clean')]";
     String eleCustomizeColumnWindow = "//div[contains(@class,'offcanvas offcanvas-end show')]";
     String eleCustomizeColumnHeader = "//div[@class='offcanvas-header']";
     String eleCustomizeColumnFields = "//div[@class='form-check ng-star-inserted']//label";
@@ -63,14 +63,25 @@ public class GlobalSearchPage extends SeleniumUtils {
     String eleTotalMemberIdRecords = "//div[@col-id='subscriberId']//span[@class='ag-cell-value']";
     String eleTotalResults = "//span[@class='ag-paging-row-summary-panel']";
     String elePaginationDescription = "//span[@class='ag-paging-description']";
-    String eleSortIcon = "(//div//span[text()='DOS From']//following::span[@ref='eSortAsc'])[1]";
-    String eleTotalDOSFromRecords = "//div[@col-id='dosFrom']//span[@class='ag-cell-value']";
-    String eleTotalDOSFromRecordsAfterSorting = "//div[@col-id='dosFrom']//span[@class='ag-cell-value']";
     String btnNextPage = "//span[@class='ag-icon ag-icon-next']";
     String btnPreviousPage = "//span[@class='ag-icon ag-icon-previous']";
-
+    String eleDOSFromSortIcon = "(//div//span[text()='DOS From']//following::span[@ref='eSortAsc'])[1]";
+    String eleTotalDOSFromRecords = "//div[@col-id='dosFrom']//span[@class='ag-cell-value']";
+    String eleDOSToSortIcon = "(//div//span[text()='DOS To']//following::span[@ref='eSortAsc'])[1]";
+    String eleTotalDOSToRecords = "//div[@col-id='dosTo']//span[@class='ag-cell-value']";
+    String eleClaimNumberSortIcon = "(//div//span[text()='Claim Number']//following::span[@ref='eSortAsc'])[1]";
+    String eleTotalClaimNumberRecords = "//div[@class='ag-pinned-left-cols-container']//a";
+    String eleBillingProviderSortIcon = "(//div//span[text()='Billing Provider']//following::span[@ref='eSortAsc'])[1]";
+    String eleTotalBillingProviderRecords = "//div[@col-id='billingProviderFullName']//span[@class='ag-cell-value']";
+    String elePatientSortIcon = "(//div//span[text()='Patient']//following::span[@ref='eSortAsc'])[1]";
+    String eleTotalPatientRecords = "//div[@col-id='memberFullName']//span[@class='ag-cell-value']";
+    String eleCategorySortIcon = "(//div//span[text()='Category']//following::span[@ref='eSortAsc'])[1]";
+    String eleTotalCategoryRecords = "//div[@col-id='category']//span[@class='ag-cell-value']";
+    String eleStateSortIcon = "(//div//span[text()='State']//following::span[@ref='eSortAsc'])[1]";
+    String eleTotalStateRecords = "//div[@col-id='status']//span[@class='ag-cell-value']";
 
     private static String expClaimNumber = "";
+    private static String expCorrectedClaimNumber = "";
     private static String expMemberId = "";
     private static String expPatientName = "";
     private static String expState = "";
@@ -78,11 +89,11 @@ public class GlobalSearchPage extends SeleniumUtils {
     private static String expDOSFrom = "";
     private static String expDOSTo = "";
     private static String expBillingProvider = "";
-    private static int totalRecords=0;
+    private static int totalRecords = 0;
     private static ArrayList<String> sortedList;
-    private static int pageNumber=0;
-    private static int pageNumberNextNavigation=0;
-
+    private static int pageNumber = 0;
+    private static int pageNumberNextNavigation = 0;
+    private static String expPaginationMemberId = "";
 
     //Scenario: Verify user should get no result by default on Global search page
     public void clickOnGlobalSearch() {
@@ -96,12 +107,19 @@ public class GlobalSearchPage extends SeleniumUtils {
     }
 
     //Scenario: Verify user should not get records when he search with less than 7 characters in claim number field in Global Search page
+    public void enterSixCharactersInClaimNumberSearchField() throws InterruptedException {
+        expClaimNumber = prop.getProperty("SixCharactersClaimNumber");
+        findElementAndSendKeys(findElementByXpath(txtClaimNumber), expClaimNumber);
+        threadSleep(1000);
+        sendKeysUsingKeyboardInput(txtClaimNumber);
+    }
+
     public void verifyNoDataDisplayMessage() {
         String actHeight = findElementByXpath(lblNoDataDisplay).getAttribute("style");
         System.out.println("actHeight" + actHeight);
         if (actHeight.contains(expHeight)) {
             Assert.assertTrue(true);
-        }else{
+        } else {
             Assert.assertTrue(false);
         }
     }
@@ -123,7 +141,6 @@ public class GlobalSearchPage extends SeleniumUtils {
         List<String> expColumnList = columnList.asList();
         List<WebElement> actColumnFields = findElementsByXpath(lstColumnFields);
         List<String> actualColumnFieldsForCompare = new ArrayList<>();
-
         for (WebElement column : actColumnFields) {
             threadSleep(1000);
             scrollIntoView(column, driver);
@@ -132,14 +149,13 @@ public class GlobalSearchPage extends SeleniumUtils {
         }
         System.out.println("actual column fields " + actualColumnFieldsForCompare);
         System.out.println("expected column fields " + expColumnList);
-            for(String expColumn:expColumnList){
-                if(actualColumnFieldsForCompare.contains(expColumn)){
-                    Assert.assertTrue(true);
-                }
-                else{
-                    Assert.fail(expColumn + " column is not as expected");
-                }
+        for (String expColumn : expColumnList) {
+            if (actualColumnFieldsForCompare.contains(expColumn)) {
+                Assert.assertTrue(true);
+            } else {
+                Assert.fail(expColumn + " column is not as expected");
             }
+        }
     }
 
     //Scenario: Verify search field displayed under each column except follow up column
@@ -159,9 +175,9 @@ public class GlobalSearchPage extends SeleniumUtils {
     }
 
     //Scenario: Verify user enters the Claim Number in the Search field
-    public void enterClaimNumberInSearchField(String claimNumber) throws InterruptedException {
-        expClaimNumber = claimNumber;
-        findElementAndSendKeys(findElementByXpath(txtClaimNumber), claimNumber);
+    public void enterClaimNumberInSearchField() throws InterruptedException {
+        expClaimNumber = prop.getProperty("GlobalSearchClaimNumber");
+        findElementAndSendKeys(findElementByXpath(txtClaimNumber), expClaimNumber);
         threadSleep(1000);
         sendKeysUsingKeyboardInput(txtClaimNumber);
     }
@@ -173,10 +189,44 @@ public class GlobalSearchPage extends SeleniumUtils {
         Assert.assertEquals(expClaimNumber, actClaimNumber);
     }
 
+    //Scenario: Verify color code for corrected claims in Global Search page
+    public void enterCorrectedClaimNumberInSearchField() throws InterruptedException {
+        expClaimNumber = prop.getProperty("CorrectedClaimNumber");
+        findElementAndSendKeys(findElementByXpath(txtClaimNumber), expClaimNumber);
+        threadSleep(1000);
+        sendKeysUsingKeyboardInput(txtClaimNumber);
+    }
+
+    //Scenario: Verify colour coding for Unclean status professional claims in Global Search page
+    public void enterUnCleanProfessionalClaimNumberInSearchField() throws InterruptedException {
+        expClaimNumber = prop.getProperty("ProfessionalUnCleanClaimNumber");
+        findElementAndSendKeys(findElementByXpath(txtClaimNumber), expClaimNumber);
+        threadSleep(1000);
+        sendKeysUsingKeyboardInput(txtClaimNumber);
+    }
+
+    //Scenario: Verify colour coding for Unclean status Institutional claims in Global Search page
+    public void enterUnCleanInstitutionalClaimNumberInSearchField() throws InterruptedException {
+        expClaimNumber = prop.getProperty("InstitutionalUnCleanClaimNumber");
+        findElementAndSendKeys(findElementByXpath(txtClaimNumber), expClaimNumber);
+        threadSleep(1000);
+        sendKeysUsingKeyboardInput(txtClaimNumber);
+    }
+    public void verifyVerticalColorIndicationForUncleanClaim(String expColorIndication) {
+        String actColorCode = getColorCodeForBackground(eleVerticalColorForUnclean);
+        System.out.println("actual color code :" + actColorCode);
+        Assert.assertEquals(expColorIndication, actColorCode);
+    }
+
+    public void verifyUncleanInformationOnTopOfGrid() {
+        boolean value = isDisplayed(eleUncleanInfoTopGrid);
+        Assert.assertTrue(value);
+    }
+
     //Scenario: Verify user enters the Member ID in the Search field
-    public void enterMemberIdInSearchField(String memberId) throws InterruptedException {
-        expMemberId = memberId;
-        findElementAndSendKeys(findElementByXpath(txtMemberId), memberId);
+    public void enterMemberIdInSearchField() throws InterruptedException {
+        expMemberId = prop.getProperty("MemberID");
+        findElementAndSendKeys(findElementByXpath(txtMemberId), expMemberId);
         threadSleep(1000);
         sendKeysUsingKeyboardInput(txtMemberId);
         threadSleep(5000);
@@ -190,9 +240,9 @@ public class GlobalSearchPage extends SeleniumUtils {
     }
 
     //Scenario: Verify user enters the Patient Name in the Search field
-    public void enterPatientNameInSearchField(String patientName) throws InterruptedException {
-        expPatientName = patientName;
-        findElementAndSendKeys(findElementByXpath(txtPatientName), patientName);
+    public void enterPatientNameInSearchField() throws InterruptedException {
+        expPatientName = prop.getProperty("PatientName");
+        findElementAndSendKeys(findElementByXpath(txtPatientName), expPatientName);
         threadSleep(1000);
         sendKeysUsingKeyboardInput(txtPatientName);
         threadSleep(3000);
@@ -206,9 +256,9 @@ public class GlobalSearchPage extends SeleniumUtils {
     }
 
     // Scenario: Verify user enters the Billing Provider details in the Search field
-    public void enterBillingProviderInSearchField(String billingProvider) throws InterruptedException {
-        expBillingProvider = billingProvider;
-        findElementAndSendKeys(findElementByXpath(txtBillingProvider), billingProvider);
+    public void enterBillingProviderInSearchField() throws InterruptedException {
+        expBillingProvider = prop.getProperty("BillingProvider");
+        findElementAndSendKeys(findElementByXpath(txtBillingProvider), expBillingProvider);
         threadSleep(1000);
         sendKeysUsingKeyboardInput(txtBillingProvider);
         threadSleep(3000);
@@ -222,10 +272,10 @@ public class GlobalSearchPage extends SeleniumUtils {
     }
 
     //Scenario: Verify user enters the State name in the Search field
-    public void enterStateInSearchField(String state) throws InterruptedException {
-        expState = state;
+    public void enterStateInSearchField() throws InterruptedException {
+        expState = prop.getProperty("ClaimState");
         scrollIntoView(findElementByXpath(txtState), driver);
-        findElementAndSendKeys(findElementByXpath(txtState), state);
+        findElementAndSendKeys(findElementByXpath(txtState), expState);
         threadSleep(1000);
         sendKeysUsingKeyboardInput(txtState);
         threadSleep(3000);
@@ -239,10 +289,10 @@ public class GlobalSearchPage extends SeleniumUtils {
     }
 
     //Scenario: Verify user enters the Category value in the Search field
-    public void enterCategoryInSearchField(String category) throws InterruptedException {
-        expCategory = category;
+    public void enterCategoryInSearchField() throws InterruptedException {
+        expCategory = prop.getProperty("Category");
         scrollIntoView(findElementByXpath(txtCategory), driver);
-        findElementAndSendKeys(findElementByXpath(txtCategory), category);
+        findElementAndSendKeys(findElementByXpath(txtCategory), expCategory);
         threadSleep(1000);
         sendKeysUsingKeyboardInput(txtCategory);
         threadSleep(3000);
@@ -256,10 +306,10 @@ public class GlobalSearchPage extends SeleniumUtils {
     }
 
     //Scenario: Verify user enters the DOS From details in the Search field
-    public void enterDOSFromInSearchField(String DOSFrom) throws InterruptedException {
-        expDOSFrom = DOSFrom;
+    public void enterDOSFromInSearchField() throws InterruptedException {
+        expDOSFrom = prop.getProperty("DOSFrom");
         scrollIntoView(findElementByXpath(txtDOSFrom), driver);
-        findElementAndSendKeys(findElementByXpath(txtDOSFrom), DOSFrom);
+        findElementAndSendKeys(findElementByXpath(txtDOSFrom), expDOSFrom);
         threadSleep(1000);
         sendKeysUsingKeyboardInput(txtDOSFrom);
         threadSleep(3000);
@@ -273,10 +323,10 @@ public class GlobalSearchPage extends SeleniumUtils {
     }
 
     //Scenario: Verify user enters the DOS To details in the Search field
-    public void enterDOSToInSearchField(String DOSTo) throws InterruptedException {
-        expDOSTo = DOSTo;
+    public void enterDOSToInSearchField() throws InterruptedException {
+        expDOSTo = prop.getProperty("DOSTo");
         scrollIntoView(findElementByXpath(txtDOSTo), driver);
-        findElementAndSendKeys(findElementByXpath(txtDOSTo), DOSTo);
+        findElementAndSendKeys(findElementByXpath(txtDOSTo), expDOSTo);
         threadSleep(1000);
         sendKeysUsingKeyboardInput(txtDOSTo);
         threadSleep(3000);
@@ -309,6 +359,13 @@ public class GlobalSearchPage extends SeleniumUtils {
     }
 
     //Scenario: Verify user should get records when he search with more than 6 characters in claim number field in Global Search page
+    public void enterSevenCharactersInClaimNumberSearchField() throws InterruptedException {
+        expClaimNumber = prop.getProperty("SevenCharactersClaimNumber");
+        findElementAndSendKeys(findElementByXpath(txtClaimNumber), expClaimNumber);
+        threadSleep(1000);
+        sendKeysUsingKeyboardInput(txtClaimNumber);
+    }
+
     public void validateClaimNumberResultForCharacterLimit() {
         explicitVisibilityOfWait(findElementByXpath(eleClaimNumber), 5);
         String actClaimNumber = getText(eleClaimNumber);
@@ -321,6 +378,14 @@ public class GlobalSearchPage extends SeleniumUtils {
     }
 
     // Scenario: Verify user able to search more than 2 characters in Member Id field
+    public void enterThreeCharMemberIdInSearchField() throws InterruptedException {
+        expMemberId = prop.getProperty("ThreeCharMemberID");
+        findElementAndSendKeys(findElementByXpath(txtMemberId), expMemberId);
+        threadSleep(1000);
+        sendKeysUsingKeyboardInput(txtMemberId);
+        threadSleep(5000);
+    }
+
     public void validateMemberIDResultForCharacterLimit() {
         explicitVisibilityOfWait(findElementByXpath(eleMemberId), 5);
         String actMemberId = getText(eleMemberId);
@@ -333,6 +398,14 @@ public class GlobalSearchPage extends SeleniumUtils {
     }
 
     //Scenario: Verify user able to search more than 2 characters in Patient field
+    public void enterThreeCharPatientNameInSearchField() throws InterruptedException {
+        expPatientName = prop.getProperty("ThreeCharPatientName");
+        findElementAndSendKeys(findElementByXpath(txtPatientName), expPatientName);
+        threadSleep(1000);
+        sendKeysUsingKeyboardInput(txtPatientName);
+        threadSleep(3000);
+    }
+
     public void validatePatientResultForCharacterLimit() {
         explicitVisibilityOfWait(findElementByXpath(elePatientName), 5);
         String actPatientName = getText(elePatientName);
@@ -345,6 +418,14 @@ public class GlobalSearchPage extends SeleniumUtils {
     }
 
     //Scenario: Verify user able to search more than 2 characters in Billing Provider field
+    public void enterMoreThanTwoCharactersInBillingProviderSearchField() throws InterruptedException {
+        expBillingProvider = prop.getProperty("MoreThanTwoCharBillingProvider");
+        findElementAndSendKeys(findElementByXpath(txtBillingProvider), expBillingProvider);
+        threadSleep(1000);
+        sendKeysUsingKeyboardInput(txtBillingProvider);
+        threadSleep(3000);
+    }
+
     public void validateBillingProviderResultForCharacterLimit() {
         explicitVisibilityOfWait(findElementByXpath(eleBillingProvider), 5);
         String actPatientName = getText(eleBillingProvider);
@@ -357,6 +438,15 @@ public class GlobalSearchPage extends SeleniumUtils {
     }
 
     //  Scenario: Verify user able to search more than 2 characters in any two fields
+    public void enterThreeCharStateInSearchField() throws InterruptedException {
+        expState = prop.getProperty("ThreeCharState");
+        scrollIntoView(findElementByXpath(txtState), driver);
+        findElementAndSendKeys(findElementByXpath(txtState), expState);
+        threadSleep(1000);
+        sendKeysUsingKeyboardInput(txtState);
+        threadSleep(3000);
+    }
+
     public void validateStateResultForCharacterLimit() {
         explicitVisibilityOfWait(findElementByXpath(eleState), 5);
         String actState = getText(eleState);
@@ -368,6 +458,7 @@ public class GlobalSearchPage extends SeleniumUtils {
         }
     }
 
+    //Scenario: Verify user able to search claims by using universal search
     public void verifyUniversalSearchBar() {
         boolean value = isDisplayed(txtUniversalSearchBar);
         Assert.assertTrue(value);
@@ -384,9 +475,9 @@ public class GlobalSearchPage extends SeleniumUtils {
 
     }
 
-    public void enterClaimNumberInUniversalSearch(String claimNumber) {
-        expClaimNumber = claimNumber;
-        findElementAndSendKeys(findElementByXpath(txtUniversalSearchBar), claimNumber);
+    public void enterClaimNumberInUniversalSearch() {
+        expClaimNumber = prop.getProperty("GlobalSearchClaimNumber");
+        findElementAndSendKeys(findElementByXpath(txtUniversalSearchBar), expClaimNumber);
         clickElement(imgSearchIcon);
     }
 
@@ -395,14 +486,28 @@ public class GlobalSearchPage extends SeleniumUtils {
         Assert.assertTrue(value);
         String actClaimNumber = findElementByXpath(eleViewClaimTab).getText();
         System.out.println("actual claim number " + actClaimNumber);
-        if(actClaimNumber.contains(expClaimNumber)){
+        if (actClaimNumber.contains(expClaimNumber)) {
             Assert.assertTrue(true);
-        }else{
+        } else {
             Assert.assertTrue(false);
         }
     }
 
-    public void verifyErrorMessage(String expErrorMessage) {
+    //Scenario: Verify user able to see error message If the wrong Claim Number is entered in universal search
+    public void enterLessThanTenCharClaimNumberInUniversalSearch() {
+        expClaimNumber = prop.getProperty("LessThanTenCharClaimNumber");
+        findElementAndSendKeys(findElementByXpath(txtUniversalSearchBar), expClaimNumber);
+        clickElement(imgSearchIcon);
+    }
+
+    //  Scenario: Verify user able to see error message when search with invalid claim number
+    public void enterInvalidCharClaimNumberInUniversalSearch() {
+        expClaimNumber = prop.getProperty("InvalidCharClaimNumber");
+        findElementAndSendKeys(findElementByXpath(txtUniversalSearchBar), expClaimNumber);
+        clickElement(imgSearchIcon);
+    }
+    public void verifyErrorMessage(String expErrorMessage) throws InterruptedException {
+        threadSleep(3000);
         moveToElement(eleInvalidIcon).perform();
         String actErrorMessage = findElementByXpath(eleInvalidTooltip).getText();
         System.out.println("actual error message " + actErrorMessage);
@@ -420,40 +525,46 @@ public class GlobalSearchPage extends SeleniumUtils {
         Assert.assertTrue(value);
     }
 
+    public void enterStateInSearchField(String state) throws InterruptedException {
+        expState = state;
+        scrollIntoView(findElementByXpath(txtState), driver);
+        findElementAndSendKeys(findElementByXpath(txtState), expState);
+        threadSleep(3000);
+    }
+
+    //Scenario Outline: Verify color code for Pend On Hold Payer Review Management Review Approved Deny Prebatch Batch To Pay Paid Rejected state claim number
     public void verifyCircleWithColorCodeForState(String expColorCode) {
         String actColorCode = getColorCodeForBackground(eleCircleWithColorCode);
         System.out.println("actual color code :" + actColorCode);
         Assert.assertEquals(expColorCode, actColorCode);
     }
 
-    public void verifyVerticalColorIndicationForUncleanClaim(String expColorIndication) {
-        String actColorCode = getColorCodeForBackground(eleVerticalColorForUnclean);
-        System.out.println("actual color code :" + actColorCode);
-        Assert.assertEquals(expColorIndication, actColorCode);
-    }
-
-    public void verifyUncleanInformationOnTopOfGrid() {
-        boolean value = isDisplayed(eleUncleanInfoTopGrid);
-        Assert.assertTrue(value);
+    //Scenario: Verify color code for voided state claim number
+    public void enterMemberIdInSearchFieldForVoid() throws InterruptedException {
+        expMemberId = prop.getProperty("MemberIdForVoid");
+        findElementAndSendKeys(findElementByXpath(txtMemberId), expMemberId);
+        threadSleep(1000);
+        sendKeysUsingKeyboardInput(txtMemberId);
+        threadSleep(5000);
     }
 
     //Scenario: Verify user should navigate to Customized Columns window when we click on Customized columns in Global Search page
-    public void clickOnCustomiseColumn(){
+    public void clickOnCustomiseColumn() {
         clickElement(btnCustomisedColumns);
     }
 
-    public void verifyCustomizeColumnWindow(){
+    public void verifyCustomizeColumnWindow() {
         explicitVisibilityOfWait(findElementByXpath(eleCustomizeColumnWindow), 5);
-        boolean value=isDisplayed(eleCustomizeColumnWindow);
+        boolean value = isDisplayed(eleCustomizeColumnWindow);
         Assert.assertTrue(value);
     }
 
     //Scenario:Verify user should able to see the mentioned column fields in the 'Customize Columns' window
-    public void verifyCustomizeColumnHeader(String expCustomizeColumnHeader){
+    public void verifyCustomizeColumnHeader(String expCustomizeColumnHeader) {
         explicitVisibilityOfWait(findElementByXpath(eleCustomizeColumnHeader), 5);
-        String actCustomizeColumnHeader=findElementByXpath(eleCustomizeColumnHeader).getText();
-        System.out.println("Actual Header : "+actCustomizeColumnHeader);
-        Assert.assertEquals(expCustomizeColumnHeader,actCustomizeColumnHeader);
+        String actCustomizeColumnHeader = findElementByXpath(eleCustomizeColumnHeader).getText();
+        System.out.println("Actual Header : " + actCustomizeColumnHeader);
+        Assert.assertEquals(expCustomizeColumnHeader, actCustomizeColumnHeader);
     }
 
     public void verifyCustomizeColumnFields(DataTable customizeColumnList) throws InterruptedException {
@@ -469,180 +580,435 @@ public class GlobalSearchPage extends SeleniumUtils {
         }
         System.out.println("actual customize column fields " + actualColumnFieldsForCompare);
         System.out.println("expected customize column fields " + expCustomizeColumnList);
-        for(String expCustomizeColumn:expCustomizeColumnList){
-            if(actualColumnFieldsForCompare.contains(expCustomizeColumn)){
+        for (String expCustomizeColumn : expCustomizeColumnList) {
+            if (actualColumnFieldsForCompare.contains(expCustomizeColumn)) {
                 Assert.assertTrue(true);
-            }
-            else{
+            } else {
                 Assert.fail(expCustomizeColumn + " column is not as expected");
             }
         }
     }
 
-    public void verifySaveButton(){
+    public void verifySaveButton() {
         boolean value = isDisplayed(btnSave);
         Assert.assertTrue(value);
     }
-    public void verifyCloseButton(){
+
+    public void verifyCloseButton() {
         boolean value = isDisplayed(btnClose);
         Assert.assertTrue(value);
     }
 
     //  Scenario: Verify claim number order and check box should be selected by default
-    public void verifyClaimNumberColumnOrder(){
+    public void verifyClaimNumberColumnOrder() {
         explicitVisibilityOfWait(findElementByXpath(eleClaimNumberColumnOrder), 5);
-        boolean value= isDisplayed(eleClaimNumberColumnOrder);
+        boolean value = isDisplayed(eleClaimNumberColumnOrder);
         Assert.assertTrue(value);
     }
 
-    public void verifyClaimNumberInDisbaledMode(){
-        boolean value= isDisplayed(eleClaimNumberDisabled);
+    public void verifyClaimNumberInDisbaledMode() {
+        boolean value = isDisplayed(eleClaimNumberDisabled);
         Assert.assertTrue(value);
     }
 
-    public void verifyClaimNumberCheckBox(){
-        boolean actchkValue= findElementByXpath(chkClaimNumber).isSelected();
+    public void verifyClaimNumberCheckBox() {
+        boolean actchkValue = findElementByXpath(chkClaimNumber).isSelected();
         Assert.assertTrue(actchkValue);
     }
 
     //Scenario: Verify user should able to see saved/updated fields the Global Search page
-    public void clickProviderCheckBox(){
+    public void clickProviderCheckBox() {
         explicitVisibilityOfWait(findElementByXpath(chkProvider), 5);
         clickElement(chkProvider);
-        boolean actChkValue= findElementByXpath(chkProvider).isSelected();
+        boolean actChkValue = findElementByXpath(chkProvider).isSelected();
         Assert.assertTrue(actChkValue);
         clickElement(btnClose);
     }
-    public void unSelectProviderCheckBox() {
-        explicitVisibilityOfWait(findElementByXpath(chkProvider), 5);
+
+    public void unSelectProviderCheckBox() throws InterruptedException {
+        threadSleep(3000);
         clickElement(chkProvider);
-        boolean actChkValue= findElementByXpath(chkProvider).isSelected();
+        boolean actChkValue = findElementByXpath(chkProvider).isSelected();
         Assert.assertFalse(actChkValue);
         clickElement(btnClose);
     }
 
     public void verifyProviderColumnDisplayInGlobalSearch() throws InterruptedException {
-        scrollIntoView(findElementByXpath(txtProvider),driver);
+        scrollIntoView(findElementByXpath(txtProvider), driver);
         boolean value = isDisplayed(txtProvider);
         Assert.assertTrue(value);
         threadSleep(1000);
     }
-    public void verifyProviderColumnNotDisplayedInGlobalSearch(){
-        scrollIntoView(findElementByXpath(txtState),driver);
+
+    public void verifyProviderColumnNotDisplayedInGlobalSearch() {
+        scrollIntoView(findElementByXpath(txtState), driver);
         boolean value = isDisplayed(txtProvider);
         Assert.assertFalse(value);
     }
 
     //Scenario: Validate pagination in global Search page
-    public void getAllMemberIdResults(){
-        List<WebElement> memberIDResults = findElementsByXpath(eleTotalMemberIdRecords);
-        totalRecords = memberIDResults.size();
-        System.out.println("Total records "+memberIDResults.size());
+    public void enterMemberIdInSearchFieldForPagination() throws InterruptedException {
+        expMemberId = prop.getProperty("PaginationMemberId");
+        findElementAndSendKeys(findElementByXpath(txtMemberId), expMemberId);
+        threadSleep(1000);
+        sendKeysUsingKeyboardInput(txtMemberId);
+        threadSleep(5000);
     }
 
-    public void verifyTotalResultsForGivenSearch(){
+    public void getAllMemberIdResults() {
+        List<WebElement> memberIDResults = findElementsByXpath(eleTotalMemberIdRecords);
+        totalRecords = memberIDResults.size();
+        System.out.println("Total records " + memberIDResults.size());
+    }
+
+    public void verifyTotalResultsForGivenSearch() {
         String paginationText = findElementByXpath(eleTotalResults).getText();
-        System.out.println("Pagination text "+paginationText);
-        String [] totalResultsCount=paginationText.split(" ");
+        System.out.println("Pagination text " + paginationText);
+        String[] totalResultsCount = paginationText.split(" ");
         System.out.println(totalResultsCount[4]);
-        if(totalRecords==Integer.parseInt(totalResultsCount[4])){
+        if (totalRecords == Integer.parseInt(totalResultsCount[4])) {
             Assert.assertTrue(true);
             System.out.println("Pagination text is having the total no of records in the grid");
-        }else{
+        } else {
             Assert.assertTrue(false);
         }
     }
-    public void verifyPageNumbersAtBottomOfPage(){
-        String pagination=findElementByXpath(elePaginationDescription).getText();
-        String [] paginationCount=pagination.split(" ");
-        System.out.println("Page count "+Integer.parseInt(paginationCount[3]));
-        pageNumber=Integer.parseInt(paginationCount[1]);
-        if(Integer.parseInt(paginationCount[3])>=1){
+
+    public void verifyPageNumbersAtBottomOfPage() {
+        String pagination = findElementByXpath(elePaginationDescription).getText();
+        String[] paginationCount = pagination.split(" ");
+        System.out.println("Page count " + Integer.parseInt(paginationCount[3]));
+        pageNumber = Integer.parseInt(paginationCount[1]);
+        if (Integer.parseInt(paginationCount[3]) >= 1) {
             Assert.assertTrue(true);
         }
     }
-    public void clickOnNextButton(){
+
+    //Scenario: Verify user should allow to navigate to other pages
+    public void clickOnNextButton() {
         clickElement(btnNextPage);
     }
 
-    public void verifyUserNavigatesToNextPage(){
-        String pagination=findElementByXpath(elePaginationDescription).getText();
-        String [] paginationCount=pagination.split(" ");
-       pageNumberNextNavigation= Integer.parseInt(paginationCount[1]);
-        System.out.println("Page number "+pageNumberNextNavigation);
-        if(pageNumberNextNavigation>pageNumber){
+    public void verifyUserNavigatesToNextPage() {
+        String pagination = findElementByXpath(elePaginationDescription).getText();
+        String[] paginationCount = pagination.split(" ");
+        pageNumberNextNavigation = Integer.parseInt(paginationCount[1]);
+        System.out.println("Page number " + pageNumberNextNavigation);
+        if (pageNumberNextNavigation > pageNumber) {
             Assert.assertTrue(true);
-        }else{
+        } else {
             Assert.assertTrue(false);
         }
 
     }
 
-    public void clickOnPreviousButton(){
+    public void clickOnPreviousButton() {
         clickElement(btnPreviousPage);
     }
 
-    public void verifyUserNavigatesToPreviousPage(){
-        String pagination=findElementByXpath(elePaginationDescription).getText();
-        String [] paginationCount=pagination.split(" ");
-        int pageNumberPreviousNavigation= Integer.parseInt(paginationCount[1]);
-        System.out.println("Page number "+pageNumberPreviousNavigation);
-        if(pageNumberNextNavigation>pageNumberPreviousNavigation){
+    public void verifyUserNavigatesToPreviousPage() {
+        String pagination = findElementByXpath(elePaginationDescription).getText();
+        String[] paginationCount = pagination.split(" ");
+        int pageNumberPreviousNavigation = Integer.parseInt(paginationCount[1]);
+        System.out.println("Page number " + pageNumberPreviousNavigation);
+        if (pageNumberNextNavigation > pageNumberPreviousNavigation) {
             Assert.assertTrue(true);
-        }else{
+        } else {
             Assert.assertTrue(false);
         }
     }
 
-    public void verifyPageSizeDividedByNoOfRecordsInTheGrid(){
-        String pagination=findElementByXpath(elePaginationDescription).getText();
-        String [] paginationCount=pagination.split(" ");
-        System.out.println("Page count "+paginationCount[3]);
-        if(totalRecords<=50){
-            Assert.assertEquals(1,Integer.parseInt(paginationCount[3]));
-            System.out.println("Page count defined as per no of records : "+Integer.parseInt(paginationCount[3]));
+    //Scenario: Verify user see the page numbers as per the no of data divided by pages size
+    public void verifyPageSizeDividedByNoOfRecordsInTheGrid() {
+        String pagination = findElementByXpath(elePaginationDescription).getText();
+        String[] paginationCount = pagination.split(" ");
+        System.out.println("Page count " + paginationCount[3]);
+        if (totalRecords <= 50) {
+            Assert.assertEquals(1, Integer.parseInt(paginationCount[3]));
+            System.out.println("Page count defined as per no of records : " + Integer.parseInt(paginationCount[3]));
         }
     }
 
     //  Scenario: Verify the user should perform sorting for DOS From field to ascending order
-    public void getAllDOSFromRecordsBeforeSort(){
+    public void enterMemberIdInSearchFieldForSorting() throws InterruptedException {
+        expMemberId = prop.getProperty("SortingMemberId");
+        findElementAndSendKeys(findElementByXpath(txtMemberId), expMemberId);
+        threadSleep(1000);
+        sendKeysUsingKeyboardInput(txtMemberId);
+        threadSleep(5000);
+    }
+    public void getAllDOSFromRecordsBeforeSort() {
         ArrayList<String> dosFromRecordsBeforeSort = new ArrayList<>();
-        List<WebElement> elementList= findElementsByXpath(eleTotalDOSFromRecords);
-        for(WebElement dosFromValue:elementList){
+        List<WebElement> elementList = findElementsByXpath(eleTotalDOSFromRecords);
+        for (WebElement dosFromValue : elementList) {
             dosFromRecordsBeforeSort.add(dosFromValue.getText());
         }
-        System.out.println("DOS From records befor sort "+dosFromRecordsBeforeSort);
+        System.out.println("DOS From records befor sort " + dosFromRecordsBeforeSort);
         //Sorting for the list which are stored before applying Sorting technique
-         sortedList = new ArrayList<>();
-        for(String s:dosFromRecordsBeforeSort){
+        sortedList = new ArrayList<>();
+        for (String s : dosFromRecordsBeforeSort) {
             sortedList.add(s);
         }
         Collections.sort(sortedList);
-        System.out.println("Sorted list :"+sortedList);
-    }
-    public void clickSortIconDOSFrom(){
-        clickOnElementByJS(findElementByXpath(eleSortIcon),driver);
+        System.out.println("Sorted list :" + sortedList);
     }
 
-    public void verifyDOSFromInSortedOrder(){
+    public void clickSortIconDOSFrom() {
+        clickOnElementByJS(findElementByXpath(eleDOSFromSortIcon), driver);
+    }
+
+    public void verifyDOSFromInSortedAscendingOrder() {
         ArrayList<String> dosFromRecordsAfterSort = new ArrayList<>();
-        List<WebElement> elementsList= findElementsByXpath(eleTotalDOSFromRecordsAfterSorting);
-        for(WebElement dosFromValue:elementsList){
+        List<WebElement> elementsList = findElementsByXpath(eleTotalDOSFromRecords);
+        for (WebElement dosFromValue : elementsList) {
             dosFromRecordsAfterSort.add(dosFromValue.getText());
         }
-        System.out.println("DOS records after sorting :"+dosFromRecordsAfterSort);
+        System.out.println("DOS From records after sorting :" + dosFromRecordsAfterSort);
         //Sorting for the list which are stored after applying Sorting technique
         ArrayList<String> sortedListAfterSorting = new ArrayList<>();
-        for(String s:dosFromRecordsAfterSort){
+        for (String s : dosFromRecordsAfterSort) {
             sortedListAfterSorting.add(s);
         }
         Collections.sort(sortedListAfterSorting);
-        System.out.println("Sorted list after sorting :"+sortedListAfterSorting);
+        System.out.println("Sorted list after sorting :" + sortedListAfterSorting);
 
         Assert.assertTrue(sortedList.equals(sortedListAfterSorting));
 
     }
 
+    //Scenario: Verify the user should perform sorting for DOS To field to ascending order
+    public void getAllDOSToRecordsBeforeSort() {
+        ArrayList<String> dosToRecordsBeforeSort = new ArrayList<>();
+        List<WebElement> elementList = findElementsByXpath(eleTotalDOSToRecords);
+        for (WebElement dosFromValue : elementList) {
+            dosToRecordsBeforeSort.add(dosFromValue.getText());
+        }
+        System.out.println("DOS To records befor sort " + dosToRecordsBeforeSort);
+        //Sorting for the list which are stored before applying Sorting technique
+        sortedList = new ArrayList<>();
+        for (String s : dosToRecordsBeforeSort) {
+            sortedList.add(s);
+        }
+        Collections.sort(sortedList);
+        System.out.println("Sorted list :" + sortedList);
+    }
 
+    public void clickSortIconDOSTo() {
+        clickOnElementByJS(findElementByXpath(eleDOSToSortIcon), driver);
+    }
+
+    public void verifyDOSToInSortedAscendingOrder() {
+        ArrayList<String> dosToRecordsAfterSort = new ArrayList<>();
+        List<WebElement> elementsList = findElementsByXpath(eleTotalDOSToRecords);
+        for (WebElement dosToValue : elementsList) {
+            dosToRecordsAfterSort.add(dosToValue.getText());
+        }
+        System.out.println("DOS To records after sorting :" + dosToRecordsAfterSort);
+        //Sorting for the list which are stored after applying Sorting technique
+        ArrayList<String> sortedListAfterSorting = new ArrayList<>();
+        for (String s : dosToRecordsAfterSort) {
+            sortedListAfterSorting.add(s);
+        }
+        Collections.sort(sortedListAfterSorting);
+        System.out.println("Sorted list after sorting :" + sortedListAfterSorting);
+
+        Assert.assertTrue(sortedList.equals(sortedListAfterSorting));
+
+    }
+
+    //Scenario: Verify the user should perform sorting for Claim Number field to ascending order
+    public void getAllClaimNumberRecordsBeforeSort() {
+        ArrayList<String> claimNumberRecordsBeforeSort = new ArrayList<>();
+        List<WebElement> elementList = findElementsByXpath(eleTotalClaimNumberRecords);
+        for (WebElement claimNumberValue : elementList) {
+            claimNumberRecordsBeforeSort.add(claimNumberValue.getText());
+        }
+        System.out.println("ClaimNumbers records befor sort " + claimNumberRecordsBeforeSort);
+        //Sorting for the list which are stored before applying Sorting technique
+        sortedList = new ArrayList<>();
+        for (String s : claimNumberRecordsBeforeSort) {
+            sortedList.add(s);
+        }
+        Collections.sort(sortedList);
+        System.out.println("Sorted list :" + sortedList);
+    }
+
+    public void clickSortIconClaimNumber() {
+        clickOnElementByJS(findElementByXpath(eleClaimNumberSortIcon), driver);
+    }
+
+    public void verifyClaimNumbersInSortedAscendingOrder() {
+        ArrayList<String> claimNumberRecordsAfterSort = new ArrayList<>();
+        List<WebElement> elementsList = findElementsByXpath(eleTotalClaimNumberRecords);
+        for (WebElement claimNumberValue : elementsList) {
+            claimNumberRecordsAfterSort.add(claimNumberValue.getText());
+        }
+        System.out.println("ClaimNumber records after sorting :" + claimNumberRecordsAfterSort);
+        //Sorting for the list which are stored after applying Sorting technique
+        ArrayList<String> sortedListAfterSorting = new ArrayList<>();
+        for (String s : claimNumberRecordsAfterSort) {
+            sortedListAfterSorting.add(s);
+        }
+        Collections.sort(sortedListAfterSorting);
+        System.out.println("Sorted list after sorting :" + sortedListAfterSorting);
+        Assert.assertTrue(sortedList.equals(sortedListAfterSorting));
+
+    }
+
+    //Scenario: Verify the user should perform sorting for Billing Provider field to ascending order
+    public void getAllBillingProviderRecordsBeforeSort() {
+        ArrayList<String> billingProviderRecordsBeforeSort = new ArrayList<>();
+        List<WebElement> elementList = findElementsByXpath(eleTotalBillingProviderRecords);
+        for (WebElement billingProviderValue : elementList) {
+            billingProviderRecordsBeforeSort.add(billingProviderValue.getText());
+        }
+        System.out.println("BillingProvider records befor sort " + billingProviderRecordsBeforeSort);
+        //Sorting for the list which are stored before applying Sorting technique
+        sortedList = new ArrayList<>();
+        for (String s : billingProviderRecordsBeforeSort) {
+            sortedList.add(s);
+        }
+        Collections.sort(sortedList);
+        System.out.println("Sorted list :" + sortedList);
+    }
+
+    public void clickSortIconBillingProvider() {
+        clickOnElementByJS(findElementByXpath(eleBillingProviderSortIcon), driver);
+    }
+
+    public void verifyBillingProviderInSortedAscendingOrder() {
+        ArrayList<String> billingProviderRecordsAfterSort = new ArrayList<>();
+        List<WebElement> elementsList = findElementsByXpath(eleTotalBillingProviderRecords);
+        for (WebElement billingProviderValue : elementsList) {
+            billingProviderRecordsAfterSort.add(billingProviderValue.getText());
+        }
+        System.out.println("BillingProvider records after sorting :" + billingProviderRecordsAfterSort);
+        //Sorting for the list which are stored after applying Sorting technique
+        ArrayList<String> sortedListAfterSorting = new ArrayList<>();
+        for (String s : billingProviderRecordsAfterSort) {
+            sortedListAfterSorting.add(s);
+        }
+        Collections.sort(sortedListAfterSorting);
+        System.out.println("Sorted list after sorting :" + sortedListAfterSorting);
+        Assert.assertTrue(sortedList.equals(sortedListAfterSorting));
+
+    }
+
+    //Scenario: Verify the user should perform sorting for Patient field to ascending order
+    public void getAllPatientRecordsBeforeSort() {
+        ArrayList<String> patientRecordsBeforeSort = new ArrayList<>();
+        List<WebElement> elementList = findElementsByXpath(eleTotalPatientRecords);
+        for (WebElement patientValue : elementList) {
+            patientRecordsBeforeSort.add(patientValue.getText());
+        }
+        System.out.println("Patient records befor sort " + patientRecordsBeforeSort);
+        //Sorting for the list which are stored before applying Sorting technique
+        sortedList = new ArrayList<>();
+        for (String s : patientRecordsBeforeSort) {
+            sortedList.add(s);
+        }
+        Collections.sort(sortedList);
+        System.out.println("Sorted list :" + sortedList);
+    }
+
+    public void clickSortIconPatient() {
+        clickOnElementByJS(findElementByXpath(elePatientSortIcon), driver);
+    }
+
+    public void verifyPatientInSortedAscendingOrder() {
+        ArrayList<String> patientRecordsAfterSort = new ArrayList<>();
+        List<WebElement> elementsList = findElementsByXpath(eleTotalPatientRecords);
+        for (WebElement patientValue : elementsList) {
+            patientRecordsAfterSort.add(patientValue.getText());
+        }
+        System.out.println("Patient records after sorting :" + patientRecordsAfterSort);
+        //Sorting for the list which are stored after applying Sorting technique
+        ArrayList<String> sortedListAfterSorting = new ArrayList<>();
+        for (String s : patientRecordsAfterSort) {
+            sortedListAfterSorting.add(s);
+        }
+        Collections.sort(sortedListAfterSorting);
+        System.out.println("Sorted list after sorting :" + sortedListAfterSorting);
+        Assert.assertTrue(sortedList.equals(sortedListAfterSorting));
+
+    }
+
+    //Scenario: Verify the user should perform sorting for Category field to ascending order
+    public void getAllCategoryRecordsBeforeSort() {
+        ArrayList<String> patientRecordsBeforeSort = new ArrayList<>();
+        List<WebElement> elementList = findElementsByXpath(eleTotalCategoryRecords);
+        for (WebElement patientValue : elementList) {
+            patientRecordsBeforeSort.add(patientValue.getText());
+        }
+        System.out.println("Category records befor sort " + patientRecordsBeforeSort);
+        //Sorting for the list which are stored before applying Sorting technique
+        sortedList = new ArrayList<>();
+        for (String s : patientRecordsBeforeSort) {
+            sortedList.add(s);
+        }
+        Collections.sort(sortedList);
+        System.out.println("Sorted list :" + sortedList);
+    }
+
+    public void clickSortIconCategory() {
+        clickOnElementByJS(findElementByXpath(eleCategorySortIcon), driver);
+    }
+
+    public void verifyCategoryInSortedAscendingOrder() {
+        ArrayList<String> patientRecordsAfterSort = new ArrayList<>();
+        List<WebElement> elementsList = findElementsByXpath(eleTotalCategoryRecords);
+        for (WebElement patientValue : elementsList) {
+            patientRecordsAfterSort.add(patientValue.getText());
+        }
+        System.out.println("Category records after sorting :" + patientRecordsAfterSort);
+        //Sorting for the list which are stored after applying Sorting technique
+        ArrayList<String> sortedListAfterSorting = new ArrayList<>();
+        for (String s : patientRecordsAfterSort) {
+            sortedListAfterSorting.add(s);
+        }
+        Collections.sort(sortedListAfterSorting);
+        System.out.println("Sorted list after sorting :" + sortedListAfterSorting);
+        Assert.assertTrue(sortedList.equals(sortedListAfterSorting));
+
+    }
+
+    //Scenario: Verify the user should perform sorting for State field to ascending order
+    public void getAllStateRecordsBeforeSort() {
+        ArrayList<String> patientRecordsBeforeSort = new ArrayList<>();
+        List<WebElement> elementList = findElementsByXpath(eleTotalStateRecords);
+        for (WebElement patientValue : elementList) {
+            patientRecordsBeforeSort.add(patientValue.getText());
+        }
+        System.out.println("State records befor sort " + patientRecordsBeforeSort);
+        //Sorting for the list which are stored before applying Sorting technique
+        sortedList = new ArrayList<>();
+        for (String s : patientRecordsBeforeSort) {
+            sortedList.add(s);
+        }
+        Collections.sort(sortedList);
+        System.out.println("Sorted list :" + sortedList);
+    }
+
+    public void clickSortIconState() {
+        clickOnElementByJS(findElementByXpath(eleStateSortIcon), driver);
+    }
+
+    public void verifyStateInSortedAscendingOrder() {
+        ArrayList<String> patientRecordsAfterSort = new ArrayList<>();
+        List<WebElement> elementsList = findElementsByXpath(eleTotalStateRecords);
+        for (WebElement patientValue : elementsList) {
+            patientRecordsAfterSort.add(patientValue.getText());
+        }
+        System.out.println("State records after sorting :" + patientRecordsAfterSort);
+        //Sorting for the list which are stored after applying Sorting technique
+        ArrayList<String> sortedListAfterSorting = new ArrayList<>();
+        for (String s : patientRecordsAfterSort) {
+            sortedListAfterSorting.add(s);
+        }
+        Collections.sort(sortedListAfterSorting);
+        System.out.println("Sorted list after sorting :" + sortedListAfterSorting);
+        Assert.assertTrue(sortedList.equals(sortedListAfterSorting));
+
+    }
 
 }
