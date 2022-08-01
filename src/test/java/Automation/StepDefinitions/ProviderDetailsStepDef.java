@@ -16,7 +16,7 @@ public class ProviderDetailsStepDef extends ProviderDetailsPage {
     // Scenario: Verify user able to navigate to the Provider details tab in the View Claims Form page
     @Then("user navigates to the Provider Details tab")
     public void user_navigates_to_the_provider_details_tab() {
-        userNavigatedToProvideDetails();
+        userNavigatedToProviderDetails();
     }
 
     //  Scenario: Verify user able to view the Pay to Provider Details and Group/Rendering Provider Details section under Provider Details tab
@@ -48,15 +48,15 @@ public class ProviderDetailsStepDef extends ProviderDetailsPage {
         clickOnVendorId();
     }
 
-    @Then("user navigates to the AR Transactions page")
-    public void user_navigates_to_the_a_r_transactions_page() {
-        userNavigatesToARTransactionsPage();
+    @Then("user navigates to the AR Transactions page and views {string}")
+    public void user_navigates_to_the_ar_transactions_page_and_views(String expVendorID) {
+        userNavigatesToARTransactionsPage(expVendorID);
     }
 
     @Then("user able to view Credit Overpaid and Debit Underpaid status as {string} {string}")
-    public void user_able_to_view_credit_overpaid_and_debit_underpaid_status_as(String expCreditStatus, String expOverpaidStatus) {
+    public void user_able_to_view_credit_overpaid_and_debit_underpaid_status_as(String expCreditStatus, String expDebitStatus) {
         userViewsCreditOverPaidStatus(expCreditStatus);
-        userViewsDebitUnderPaidStatus(expOverpaidStatus);
+        userViewsDebitUnderPaidStatus(expDebitStatus);
     }
 
     @Then("user able to view all the below mentioned columns in Account Review Transactions page")

@@ -20,19 +20,20 @@ Feature: Provider Details
 
   @39958
   Scenario: Verify user able to view all the fields under Pay to Provider Details section
-    When user clicking on Claim Number "P0020021100018" in Global Search page
+    When user clicking on Claim Number "P00MR22072112F" in Global Search page
     And user clicks on the Provider Details tab
     Then user able to view all the fields under Pay to Provider Details section
-      | Pay to Provider ID   |
-      | Pay to Provider Name |
-      | Tax ID/SSN           |
-      | NPI                  |
-      | Vendor ID            |
-      | Vendor Validated     |
-      | Address Line 1       |
-      | City                 |
-      | State                |
-      | Zipcode              |
+      | Pay to Provider ID   | VEN00001579                 |
+      | Pay to Provider Name | ST. ANTHONYS HOSPITAL, INC. |
+      | Tax ID/SSN           | 592043026                   |
+      | NPI                  | 7118299964                  |
+      | Vendor ID            | V0000000724                 |
+      | Vendor Validated     | Validated                   |
+      | Address Line 1       | PO Box 403746               |
+      | Address Line 2       | -                           |
+      | City                 | Atlanta                     |
+      | State                | GA                          |
+      | Zipcode              | 303843746                   |
 
   @39961
   Scenario: Verify user able to view all the fields under Group/Rendering Provider Details section
@@ -47,7 +48,7 @@ Feature: Provider Details
       | Timely Filling   |
       | Sequestration    |
       | ProviderID       |
-      | Contract Name     |
+      | Contract Name    |
 
   @39974
   Scenario: Validate all the buttons available at the footer section under Provider Details tab
@@ -64,17 +65,17 @@ Feature: Provider Details
 
   @48990
   Scenario: Verify the user able to navigate to the A/R Transactions page on clicking Vendor ID in Provider details tab view
-    When user clicking on Claim Number "P0020021100018" in Global Search page
+    When user clicking on Claim Number "P00MR220210002" in Global Search page
     And user clicks on the Provider Details tab
     When clicking on Vendor ID in Provider Details
-    Then user navigates to the AR Transactions page
+    Then user navigates to the AR Transactions page and views "A/R Ledger - V0000000002"
 
   @47008
   Scenario: Verify user able to view the Credit/Overpaid and Debit/Underpaid status at the middle of the A/R Ledger
     When user clicking on Claim Number "P0020021100018" in Global Search page
     And user clicks on the Provider Details tab
     When clicking on Vendor ID in Provider Details
-    Then user able to view Credit Overpaid and Debit Underpaid status as "Added to Account Receivable" "deducted to Account Receivable"
+    Then user able to view Credit Overpaid and Debit Underpaid status as "Credit/Overpaid - Added to Account Receivable" "Debit/Underpaid - deducted to Account Receivable"
 
   @47013
   Scenario: Verify user able to view the available Account Review Transactions and all the columns in the A/R transaction details page
