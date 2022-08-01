@@ -108,7 +108,7 @@ public class GlobalSearchPage extends SeleniumUtils {
 
     //Scenario: Verify user should not get records when he search with less than 7 characters in claim number field in Global Search page
     public void enterSixCharactersInClaimNumberSearchField() throws InterruptedException {
-        expClaimNumber = prop.getProperty("SixCharactersClaimNumber");
+        expClaimNumber = prop.getProperty("sixCharactersClaimNumber");
         findElementAndSendKeys(findElementByXpath(txtClaimNumber), expClaimNumber);
         threadSleep(1000);
         sendKeysUsingKeyboardInput(txtClaimNumber);
@@ -176,7 +176,7 @@ public class GlobalSearchPage extends SeleniumUtils {
 
     //Scenario: Verify user enters the Claim Number in the Search field
     public void enterClaimNumberInSearchField() throws InterruptedException {
-        expClaimNumber = prop.getProperty("GlobalSearchClaimNumber");
+        expClaimNumber = prop.getProperty("globalSearchClaimNumber");
         findElementAndSendKeys(findElementByXpath(txtClaimNumber), expClaimNumber);
         threadSleep(1000);
         sendKeysUsingKeyboardInput(txtClaimNumber);
@@ -191,7 +191,7 @@ public class GlobalSearchPage extends SeleniumUtils {
 
     //Scenario: Verify color code for corrected claims in Global Search page
     public void enterCorrectedClaimNumberInSearchField() throws InterruptedException {
-        expClaimNumber = prop.getProperty("CorrectedClaimNumber");
+        expClaimNumber = prop.getProperty("correctedClaimNumber");
         findElementAndSendKeys(findElementByXpath(txtClaimNumber), expClaimNumber);
         threadSleep(1000);
         sendKeysUsingKeyboardInput(txtClaimNumber);
@@ -199,7 +199,7 @@ public class GlobalSearchPage extends SeleniumUtils {
 
     //Scenario: Verify colour coding for Unclean status professional claims in Global Search page
     public void enterUnCleanProfessionalClaimNumberInSearchField() throws InterruptedException {
-        expClaimNumber = prop.getProperty("ProfessionalUnCleanClaimNumber");
+        expClaimNumber = prop.getProperty("professionalUnCleanClaimNumber");
         findElementAndSendKeys(findElementByXpath(txtClaimNumber), expClaimNumber);
         threadSleep(1000);
         sendKeysUsingKeyboardInput(txtClaimNumber);
@@ -207,7 +207,7 @@ public class GlobalSearchPage extends SeleniumUtils {
 
     //Scenario: Verify colour coding for Unclean status Institutional claims in Global Search page
     public void enterUnCleanInstitutionalClaimNumberInSearchField() throws InterruptedException {
-        expClaimNumber = prop.getProperty("InstitutionalUnCleanClaimNumber");
+        expClaimNumber = prop.getProperty("institutionalUnCleanClaimNumber");
         findElementAndSendKeys(findElementByXpath(txtClaimNumber), expClaimNumber);
         threadSleep(1000);
         sendKeysUsingKeyboardInput(txtClaimNumber);
@@ -225,7 +225,7 @@ public class GlobalSearchPage extends SeleniumUtils {
 
     //Scenario: Verify user enters the Member ID in the Search field
     public void enterMemberIdInSearchField() throws InterruptedException {
-        expMemberId = prop.getProperty("MemberID");
+        expMemberId = prop.getProperty("memberID");
         findElementAndSendKeys(findElementByXpath(txtMemberId), expMemberId);
         threadSleep(1000);
         sendKeysUsingKeyboardInput(txtMemberId);
@@ -241,7 +241,7 @@ public class GlobalSearchPage extends SeleniumUtils {
 
     //Scenario: Verify user enters the Patient Name in the Search field
     public void enterPatientNameInSearchField() throws InterruptedException {
-        expPatientName = prop.getProperty("PatientName");
+        expPatientName = prop.getProperty("patientName");
         findElementAndSendKeys(findElementByXpath(txtPatientName), expPatientName);
         threadSleep(1000);
         sendKeysUsingKeyboardInput(txtPatientName);
@@ -257,7 +257,7 @@ public class GlobalSearchPage extends SeleniumUtils {
 
     // Scenario: Verify user enters the Billing Provider details in the Search field
     public void enterBillingProviderInSearchField() throws InterruptedException {
-        expBillingProvider = prop.getProperty("BillingProvider");
+        expBillingProvider = prop.getProperty("billingProvider");
         findElementAndSendKeys(findElementByXpath(txtBillingProvider), expBillingProvider);
         threadSleep(1000);
         sendKeysUsingKeyboardInput(txtBillingProvider);
@@ -273,7 +273,7 @@ public class GlobalSearchPage extends SeleniumUtils {
 
     //Scenario: Verify user enters the State name in the Search field
     public void enterStateInSearchField() throws InterruptedException {
-        expState = prop.getProperty("ClaimState");
+        expState = prop.getProperty("claimState");
         scrollIntoView(findElementByXpath(txtState), driver);
         findElementAndSendKeys(findElementByXpath(txtState), expState);
         threadSleep(1000);
@@ -290,7 +290,7 @@ public class GlobalSearchPage extends SeleniumUtils {
 
     //Scenario: Verify user enters the Category value in the Search field
     public void enterCategoryInSearchField() throws InterruptedException {
-        expCategory = prop.getProperty("Category");
+        expCategory = prop.getProperty("category");
         scrollIntoView(findElementByXpath(txtCategory), driver);
         findElementAndSendKeys(findElementByXpath(txtCategory), expCategory);
         threadSleep(1000);
@@ -307,7 +307,7 @@ public class GlobalSearchPage extends SeleniumUtils {
 
     //Scenario: Verify user enters the DOS From details in the Search field
     public void enterDOSFromInSearchField() throws InterruptedException {
-        expDOSFrom = prop.getProperty("DOSFrom");
+        expDOSFrom = prop.getProperty("dosFrom");
         scrollIntoView(findElementByXpath(txtDOSFrom), driver);
         findElementAndSendKeys(findElementByXpath(txtDOSFrom), expDOSFrom);
         threadSleep(1000);
@@ -324,7 +324,7 @@ public class GlobalSearchPage extends SeleniumUtils {
 
     //Scenario: Verify user enters the DOS To details in the Search field
     public void enterDOSToInSearchField() throws InterruptedException {
-        expDOSTo = prop.getProperty("DOSTo");
+        expDOSTo = prop.getProperty("dosTo");
         scrollIntoView(findElementByXpath(txtDOSTo), driver);
         findElementAndSendKeys(findElementByXpath(txtDOSTo), expDOSTo);
         threadSleep(1000);
@@ -360,7 +360,7 @@ public class GlobalSearchPage extends SeleniumUtils {
 
     //Scenario: Verify user should get records when he search with more than 6 characters in claim number field in Global Search page
     public void enterSevenCharactersInClaimNumberSearchField() throws InterruptedException {
-        expClaimNumber = prop.getProperty("SevenCharactersClaimNumber");
+        expClaimNumber = prop.getProperty("sevenCharactersClaimNumber");
         findElementAndSendKeys(findElementByXpath(txtClaimNumber), expClaimNumber);
         threadSleep(1000);
         sendKeysUsingKeyboardInput(txtClaimNumber);
@@ -379,7 +379,7 @@ public class GlobalSearchPage extends SeleniumUtils {
 
     // Scenario: Verify user able to search more than 2 characters in Member Id field
     public void enterThreeCharMemberIdInSearchField() throws InterruptedException {
-        expMemberId = prop.getProperty("ThreeCharMemberID");
+        expMemberId = prop.getProperty("threeCharMemberID");
         findElementAndSendKeys(findElementByXpath(txtMemberId), expMemberId);
         threadSleep(1000);
         sendKeysUsingKeyboardInput(txtMemberId);
@@ -399,7 +399,7 @@ public class GlobalSearchPage extends SeleniumUtils {
 
     //Scenario: Verify user able to search more than 2 characters in Patient field
     public void enterThreeCharPatientNameInSearchField() throws InterruptedException {
-        expPatientName = prop.getProperty("ThreeCharPatientName");
+        expPatientName = prop.getProperty("threeCharPatientName");
         findElementAndSendKeys(findElementByXpath(txtPatientName), expPatientName);
         threadSleep(1000);
         sendKeysUsingKeyboardInput(txtPatientName);
@@ -419,7 +419,7 @@ public class GlobalSearchPage extends SeleniumUtils {
 
     //Scenario: Verify user able to search more than 2 characters in Billing Provider field
     public void enterMoreThanTwoCharactersInBillingProviderSearchField() throws InterruptedException {
-        expBillingProvider = prop.getProperty("MoreThanTwoCharBillingProvider");
+        expBillingProvider = prop.getProperty("moreThanTwoCharBillingProvider");
         findElementAndSendKeys(findElementByXpath(txtBillingProvider), expBillingProvider);
         threadSleep(1000);
         sendKeysUsingKeyboardInput(txtBillingProvider);
@@ -439,7 +439,7 @@ public class GlobalSearchPage extends SeleniumUtils {
 
     //  Scenario: Verify user able to search more than 2 characters in any two fields
     public void enterThreeCharStateInSearchField() throws InterruptedException {
-        expState = prop.getProperty("ThreeCharState");
+        expState = prop.getProperty("threeCharState");
         scrollIntoView(findElementByXpath(txtState), driver);
         findElementAndSendKeys(findElementByXpath(txtState), expState);
         threadSleep(1000);
@@ -476,7 +476,7 @@ public class GlobalSearchPage extends SeleniumUtils {
     }
 
     public void enterClaimNumberInUniversalSearch() {
-        expClaimNumber = prop.getProperty("GlobalSearchClaimNumber");
+        expClaimNumber = prop.getProperty("globalSearchClaimNumber");
         findElementAndSendKeys(findElementByXpath(txtUniversalSearchBar), expClaimNumber);
         clickElement(imgSearchIcon);
     }
@@ -495,14 +495,14 @@ public class GlobalSearchPage extends SeleniumUtils {
 
     //Scenario: Verify user able to see error message If the wrong Claim Number is entered in universal search
     public void enterLessThanTenCharClaimNumberInUniversalSearch() {
-        expClaimNumber = prop.getProperty("LessThanTenCharClaimNumber");
+        expClaimNumber = prop.getProperty("lessThanTenCharClaimNumber");
         findElementAndSendKeys(findElementByXpath(txtUniversalSearchBar), expClaimNumber);
         clickElement(imgSearchIcon);
     }
 
     //  Scenario: Verify user able to see error message when search with invalid claim number
     public void enterInvalidCharClaimNumberInUniversalSearch() {
-        expClaimNumber = prop.getProperty("InvalidCharClaimNumber");
+        expClaimNumber = prop.getProperty("invalidCharClaimNumber");
         findElementAndSendKeys(findElementByXpath(txtUniversalSearchBar), expClaimNumber);
         clickElement(imgSearchIcon);
     }
@@ -541,7 +541,7 @@ public class GlobalSearchPage extends SeleniumUtils {
 
     //Scenario: Verify color code for voided state claim number
     public void enterMemberIdInSearchFieldForVoid() throws InterruptedException {
-        expMemberId = prop.getProperty("MemberIdForVoid");
+        expMemberId = prop.getProperty("memberIdForVoid");
         findElementAndSendKeys(findElementByXpath(txtMemberId), expMemberId);
         threadSleep(1000);
         sendKeysUsingKeyboardInput(txtMemberId);
@@ -648,7 +648,7 @@ public class GlobalSearchPage extends SeleniumUtils {
 
     //Scenario: Validate pagination in global Search page
     public void enterMemberIdInSearchFieldForPagination() throws InterruptedException {
-        expMemberId = prop.getProperty("PaginationMemberId");
+        expMemberId = prop.getProperty("paginationMemberId");
         findElementAndSendKeys(findElementByXpath(txtMemberId), expMemberId);
         threadSleep(1000);
         sendKeysUsingKeyboardInput(txtMemberId);
@@ -731,7 +731,7 @@ public class GlobalSearchPage extends SeleniumUtils {
 
     //  Scenario: Verify the user should perform sorting for DOS From field to ascending order
     public void enterMemberIdInSearchFieldForSorting() throws InterruptedException {
-        expMemberId = prop.getProperty("SortingMemberId");
+        expMemberId = prop.getProperty("sortingMemberId");
         findElementAndSendKeys(findElementByXpath(txtMemberId), expMemberId);
         threadSleep(1000);
         sendKeysUsingKeyboardInput(txtMemberId);
