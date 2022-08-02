@@ -58,7 +58,7 @@ public class GlobalSearchPage extends SeleniumUtils {
     String eleClaimNumberColumnOrder = "(//div[@class='offcanvas-header']//following::label)[1]";
     String chkClaimNumber = "//input[@id='claimNumber']";
     String chkProvider = "//input[@id='providerFullName']";
-    String txtProvider = "//input[@aria-label='Provider Filter Input']";
+    String lblProviderColumn = "//div[@class='ag-header-cell-label']//span[text()='Provider']";
     String elePagination = "//div[@class='ag-paging-panel ag-unselectable']";
     String eleTotalMemberIdRecords = "//div[@col-id='subscriberId']//span[@class='ag-cell-value']";
     String eleTotalResults = "//span[@class='ag-paging-row-summary-panel']";
@@ -66,19 +66,19 @@ public class GlobalSearchPage extends SeleniumUtils {
     String btnNextPage = "//span[@class='ag-icon ag-icon-next']";
     String btnPreviousPage = "//span[@class='ag-icon ag-icon-previous']";
     String eleDOSFromSortIcon = "(//div//span[text()='DOS From']//following::span[@ref='eSortAsc'])[1]";
-    String eleTotalDOSFromRecords = "//div[@col-id='dosFrom']//span[@class='ag-cell-value']";
+    String lstTotalDOSFromRecords = "//div[@col-id='dosFrom']//span[@class='ag-cell-value']";
     String eleDOSToSortIcon = "(//div//span[text()='DOS To']//following::span[@ref='eSortAsc'])[1]";
-    String eleTotalDOSToRecords = "//div[@col-id='dosTo']//span[@class='ag-cell-value']";
+    String lstTotalDOSToRecords = "//div[@col-id='dosTo']//span[@class='ag-cell-value']";
     String eleClaimNumberSortIcon = "(//div//span[text()='Claim Number']//following::span[@ref='eSortAsc'])[1]";
-    String eleTotalClaimNumberRecords = "//div[@class='ag-pinned-left-cols-container']//a";
+    String lstTotalClaimNumberRecords = "//div[@class='ag-pinned-left-cols-container']//a";
     String eleBillingProviderSortIcon = "(//div//span[text()='Billing Provider']//following::span[@ref='eSortAsc'])[1]";
-    String eleTotalBillingProviderRecords = "//div[@col-id='billingProviderFullName']//span[@class='ag-cell-value']";
+    String lstTotalBillingProviderRecords = "//div[@col-id='billingProviderFullName']//span[@class='ag-cell-value']";
     String elePatientSortIcon = "(//div//span[text()='Patient']//following::span[@ref='eSortAsc'])[1]";
-    String eleTotalPatientRecords = "//div[@col-id='memberFullName']//span[@class='ag-cell-value']";
+    String lstTotalPatientRecords = "//div[@col-id='memberFullName']//span[@class='ag-cell-value']";
     String eleCategorySortIcon = "(//div//span[text()='Category']//following::span[@ref='eSortAsc'])[1]";
-    String eleTotalCategoryRecords = "//div[@col-id='category']//span[@class='ag-cell-value']";
+    String lstTotalCategoryRecords = "//div[@col-id='category']//span[@class='ag-cell-value']";
     String eleStateSortIcon = "(//div//span[text()='State']//following::span[@ref='eSortAsc'])[1]";
-    String eleTotalStateRecords = "//div[@col-id='status']//span[@class='ag-cell-value']";
+    String lstTotalStateRecords = "//div[@col-id='status']//span[@class='ag-cell-value']";
 
     private static String expClaimNumber = "";
     private static String expCorrectedClaimNumber = "";
@@ -91,6 +91,13 @@ public class GlobalSearchPage extends SeleniumUtils {
     private static String expBillingProvider = "";
     private static int totalRecords = 0;
     private static ArrayList<String> sortedList;
+    private static ArrayList<String> dosFromRecordsBeforeSort;
+    private static ArrayList<String> dosToRecordsBeforeSort;
+    private static ArrayList<String> claimNumberRecordsBeforeSort;
+    private static ArrayList<String> billingProviderRecordsBeforeSort;
+    private static ArrayList<String> patientRecordsBeforeSort;
+    private static ArrayList<String> categoryRecordsBeforeSort;
+    private static ArrayList<String> stateRecordsBeforeSort;
     private static int pageNumber = 0;
     private static int pageNumberNextNavigation = 0;
     private static String expPaginationMemberId = "";
@@ -158,8 +165,8 @@ public class GlobalSearchPage extends SeleniumUtils {
         }
     }
 
-    //Scenario: Verify search field displayed under each column except follow up column
-    public void verifySearchFieldsUnderEachCoulmn() {
+    //Scenario: Verify search field displayed under each column
+    public void verifySearchFieldsUnderEachColumn() {
         List<WebElement> ActCSearchFields = findElementsByXpath(txtSearchFields);
         for (WebElement column : ActCSearchFields) {
             scrollIntoView(column, driver);
@@ -467,12 +474,7 @@ public class GlobalSearchPage extends SeleniumUtils {
     public void verifyPlaceHolderForUniversalSearch(String expPlaceholderValue) {
         String actPlaceholder = getAttribute(txtUniversalSearchBar, "placeholder");
         System.out.println("actual place holder value is :  " + actPlaceholder);
-        if (expPlaceholderValue.contains(actPlaceholder)) {
-            Assert.assertTrue(true);
-        } else {
-            Assert.assertTrue(false);
-        }
-
+        Assert.assertEquals(expPlaceholderValue,actPlaceholder);
     }
 
     public void enterClaimNumberInUniversalSearch() {
@@ -606,9 +608,9 @@ public class GlobalSearchPage extends SeleniumUtils {
         Assert.assertTrue(value);
     }
 
-    public void verifyClaimNumberInDisbaledMode() {
-        boolean value = isDisplayed(eleClaimNumberDisabled);
-        Assert.assertTrue(value);
+    public void verifyClaimNumberInDisabledMode() {
+        boolean value = isEnabled(eleClaimNumberDisabled);
+        Assert.assertFalse(value);
     }
 
     public void verifyClaimNumberCheckBox() {
@@ -616,7 +618,7 @@ public class GlobalSearchPage extends SeleniumUtils {
         Assert.assertTrue(actchkValue);
     }
 
-    //Scenario: Verify user should able to see saved/updated fields the Global Search page
+    //Scenario: Verify user should able to see saved/updated fields under Global Search page
     public void clickProviderCheckBox() {
         explicitVisibilityOfWait(findElementByXpath(chkProvider), 5);
         clickElement(chkProvider);
@@ -634,15 +636,15 @@ public class GlobalSearchPage extends SeleniumUtils {
     }
 
     public void verifyProviderColumnDisplayInGlobalSearch() throws InterruptedException {
-        scrollIntoView(findElementByXpath(txtProvider), driver);
-        boolean value = isDisplayed(txtProvider);
+        scrollIntoView(findElementByXpath(lblProviderColumn), driver);
+        boolean value = isDisplayed(lblProviderColumn);
         Assert.assertTrue(value);
         threadSleep(1000);
     }
 
     public void verifyProviderColumnNotDisplayedInGlobalSearch() {
         scrollIntoView(findElementByXpath(txtState), driver);
-        boolean value = isDisplayed(txtProvider);
+        boolean value = isDisplayed(lblProviderColumn);
         Assert.assertFalse(value);
     }
 
@@ -738,19 +740,15 @@ public class GlobalSearchPage extends SeleniumUtils {
         threadSleep(5000);
     }
     public void getAllDOSFromRecordsBeforeSort() {
-        ArrayList<String> dosFromRecordsBeforeSort = new ArrayList<>();
-        List<WebElement> elementList = findElementsByXpath(eleTotalDOSFromRecords);
+        dosFromRecordsBeforeSort = new ArrayList<>();
+        List<WebElement> elementList = findElementsByXpath(lstTotalDOSFromRecords);
         for (WebElement dosFromValue : elementList) {
             dosFromRecordsBeforeSort.add(dosFromValue.getText());
         }
-        System.out.println("DOS From records befor sort " + dosFromRecordsBeforeSort);
-        //Sorting for the list which are stored before applying Sorting technique
-        sortedList = new ArrayList<>();
-        for (String s : dosFromRecordsBeforeSort) {
-            sortedList.add(s);
-        }
-        Collections.sort(sortedList);
-        System.out.println("Sorted list :" + sortedList);
+        System.out.println("DOS From records before sort " + dosFromRecordsBeforeSort);
+        //Sorting the list
+        Collections.sort(dosFromRecordsBeforeSort);
+        System.out.println("Sorted list :" + dosFromRecordsBeforeSort);
     }
 
     public void clickSortIconDOSFrom() {
@@ -759,7 +757,7 @@ public class GlobalSearchPage extends SeleniumUtils {
 
     public void verifyDOSFromInSortedAscendingOrder() {
         ArrayList<String> dosFromRecordsAfterSort = new ArrayList<>();
-        List<WebElement> elementsList = findElementsByXpath(eleTotalDOSFromRecords);
+        List<WebElement> elementsList = findElementsByXpath(lstTotalDOSFromRecords);
         for (WebElement dosFromValue : elementsList) {
             dosFromRecordsAfterSort.add(dosFromValue.getText());
         }
@@ -771,26 +769,21 @@ public class GlobalSearchPage extends SeleniumUtils {
         }
         Collections.sort(sortedListAfterSorting);
         System.out.println("Sorted list after sorting :" + sortedListAfterSorting);
-
-        Assert.assertTrue(sortedList.equals(sortedListAfterSorting));
+        Assert.assertTrue(dosFromRecordsBeforeSort.equals(sortedListAfterSorting));
 
     }
 
     //Scenario: Verify the user should perform sorting for DOS To field to ascending order
     public void getAllDOSToRecordsBeforeSort() {
-        ArrayList<String> dosToRecordsBeforeSort = new ArrayList<>();
-        List<WebElement> elementList = findElementsByXpath(eleTotalDOSToRecords);
+        dosToRecordsBeforeSort = new ArrayList<>();
+        List<WebElement> elementList = findElementsByXpath(lstTotalDOSToRecords);
         for (WebElement dosFromValue : elementList) {
             dosToRecordsBeforeSort.add(dosFromValue.getText());
         }
-        System.out.println("DOS To records befor sort " + dosToRecordsBeforeSort);
-        //Sorting for the list which are stored before applying Sorting technique
-        sortedList = new ArrayList<>();
-        for (String s : dosToRecordsBeforeSort) {
-            sortedList.add(s);
-        }
-        Collections.sort(sortedList);
-        System.out.println("Sorted list :" + sortedList);
+        System.out.println("DOS To records before sort " + dosToRecordsBeforeSort);
+        //Sorting the list
+        Collections.sort(dosToRecordsBeforeSort);
+        System.out.println("Sorted list :" + dosToRecordsBeforeSort);
     }
 
     public void clickSortIconDOSTo() {
@@ -799,7 +792,7 @@ public class GlobalSearchPage extends SeleniumUtils {
 
     public void verifyDOSToInSortedAscendingOrder() {
         ArrayList<String> dosToRecordsAfterSort = new ArrayList<>();
-        List<WebElement> elementsList = findElementsByXpath(eleTotalDOSToRecords);
+        List<WebElement> elementsList = findElementsByXpath(lstTotalDOSToRecords);
         for (WebElement dosToValue : elementsList) {
             dosToRecordsAfterSort.add(dosToValue.getText());
         }
@@ -812,25 +805,21 @@ public class GlobalSearchPage extends SeleniumUtils {
         Collections.sort(sortedListAfterSorting);
         System.out.println("Sorted list after sorting :" + sortedListAfterSorting);
 
-        Assert.assertTrue(sortedList.equals(sortedListAfterSorting));
+        Assert.assertTrue(dosToRecordsBeforeSort.equals(sortedListAfterSorting));
 
     }
 
     //Scenario: Verify the user should perform sorting for Claim Number field to ascending order
     public void getAllClaimNumberRecordsBeforeSort() {
-        ArrayList<String> claimNumberRecordsBeforeSort = new ArrayList<>();
-        List<WebElement> elementList = findElementsByXpath(eleTotalClaimNumberRecords);
+        claimNumberRecordsBeforeSort = new ArrayList<>();
+        List<WebElement> elementList = findElementsByXpath(lstTotalClaimNumberRecords);
         for (WebElement claimNumberValue : elementList) {
             claimNumberRecordsBeforeSort.add(claimNumberValue.getText());
         }
-        System.out.println("ClaimNumbers records befor sort " + claimNumberRecordsBeforeSort);
-        //Sorting for the list which are stored before applying Sorting technique
-        sortedList = new ArrayList<>();
-        for (String s : claimNumberRecordsBeforeSort) {
-            sortedList.add(s);
-        }
-        Collections.sort(sortedList);
-        System.out.println("Sorted list :" + sortedList);
+        System.out.println("ClaimNumbers records before sort " + claimNumberRecordsBeforeSort);
+        //Sorting the list
+        Collections.sort(claimNumberRecordsBeforeSort);
+        System.out.println("Sorted list :" + claimNumberRecordsBeforeSort);
     }
 
     public void clickSortIconClaimNumber() {
@@ -839,7 +828,7 @@ public class GlobalSearchPage extends SeleniumUtils {
 
     public void verifyClaimNumbersInSortedAscendingOrder() {
         ArrayList<String> claimNumberRecordsAfterSort = new ArrayList<>();
-        List<WebElement> elementsList = findElementsByXpath(eleTotalClaimNumberRecords);
+        List<WebElement> elementsList = findElementsByXpath(lstTotalClaimNumberRecords);
         for (WebElement claimNumberValue : elementsList) {
             claimNumberRecordsAfterSort.add(claimNumberValue.getText());
         }
@@ -851,25 +840,21 @@ public class GlobalSearchPage extends SeleniumUtils {
         }
         Collections.sort(sortedListAfterSorting);
         System.out.println("Sorted list after sorting :" + sortedListAfterSorting);
-        Assert.assertTrue(sortedList.equals(sortedListAfterSorting));
+        Assert.assertTrue(claimNumberRecordsBeforeSort.equals(sortedListAfterSorting));
 
     }
 
     //Scenario: Verify the user should perform sorting for Billing Provider field to ascending order
     public void getAllBillingProviderRecordsBeforeSort() {
-        ArrayList<String> billingProviderRecordsBeforeSort = new ArrayList<>();
-        List<WebElement> elementList = findElementsByXpath(eleTotalBillingProviderRecords);
+        billingProviderRecordsBeforeSort = new ArrayList<>();
+        List<WebElement> elementList = findElementsByXpath(lstTotalBillingProviderRecords);
         for (WebElement billingProviderValue : elementList) {
             billingProviderRecordsBeforeSort.add(billingProviderValue.getText());
         }
-        System.out.println("BillingProvider records befor sort " + billingProviderRecordsBeforeSort);
-        //Sorting for the list which are stored before applying Sorting technique
-        sortedList = new ArrayList<>();
-        for (String s : billingProviderRecordsBeforeSort) {
-            sortedList.add(s);
-        }
-        Collections.sort(sortedList);
-        System.out.println("Sorted list :" + sortedList);
+        System.out.println("BillingProvider records before sort " + billingProviderRecordsBeforeSort);
+        //Sorting the list
+        Collections.sort(billingProviderRecordsBeforeSort);
+        System.out.println("Sorted list :" + billingProviderRecordsBeforeSort);
     }
 
     public void clickSortIconBillingProvider() {
@@ -878,7 +863,7 @@ public class GlobalSearchPage extends SeleniumUtils {
 
     public void verifyBillingProviderInSortedAscendingOrder() {
         ArrayList<String> billingProviderRecordsAfterSort = new ArrayList<>();
-        List<WebElement> elementsList = findElementsByXpath(eleTotalBillingProviderRecords);
+        List<WebElement> elementsList = findElementsByXpath(lstTotalBillingProviderRecords);
         for (WebElement billingProviderValue : elementsList) {
             billingProviderRecordsAfterSort.add(billingProviderValue.getText());
         }
@@ -890,25 +875,21 @@ public class GlobalSearchPage extends SeleniumUtils {
         }
         Collections.sort(sortedListAfterSorting);
         System.out.println("Sorted list after sorting :" + sortedListAfterSorting);
-        Assert.assertTrue(sortedList.equals(sortedListAfterSorting));
+        Assert.assertTrue(billingProviderRecordsBeforeSort.equals(sortedListAfterSorting));
 
     }
 
     //Scenario: Verify the user should perform sorting for Patient field to ascending order
     public void getAllPatientRecordsBeforeSort() {
-        ArrayList<String> patientRecordsBeforeSort = new ArrayList<>();
-        List<WebElement> elementList = findElementsByXpath(eleTotalPatientRecords);
+        patientRecordsBeforeSort = new ArrayList<>();
+        List<WebElement> elementList = findElementsByXpath(lstTotalPatientRecords);
         for (WebElement patientValue : elementList) {
             patientRecordsBeforeSort.add(patientValue.getText());
         }
-        System.out.println("Patient records befor sort " + patientRecordsBeforeSort);
-        //Sorting for the list which are stored before applying Sorting technique
-        sortedList = new ArrayList<>();
-        for (String s : patientRecordsBeforeSort) {
-            sortedList.add(s);
-        }
-        Collections.sort(sortedList);
-        System.out.println("Sorted list :" + sortedList);
+        System.out.println("Patient records before sort " + patientRecordsBeforeSort);
+        //Sorting the list
+        Collections.sort(patientRecordsBeforeSort);
+        System.out.println("Sorted list :" + patientRecordsBeforeSort);
     }
 
     public void clickSortIconPatient() {
@@ -917,7 +898,7 @@ public class GlobalSearchPage extends SeleniumUtils {
 
     public void verifyPatientInSortedAscendingOrder() {
         ArrayList<String> patientRecordsAfterSort = new ArrayList<>();
-        List<WebElement> elementsList = findElementsByXpath(eleTotalPatientRecords);
+        List<WebElement> elementsList = findElementsByXpath(lstTotalPatientRecords);
         for (WebElement patientValue : elementsList) {
             patientRecordsAfterSort.add(patientValue.getText());
         }
@@ -929,25 +910,21 @@ public class GlobalSearchPage extends SeleniumUtils {
         }
         Collections.sort(sortedListAfterSorting);
         System.out.println("Sorted list after sorting :" + sortedListAfterSorting);
-        Assert.assertTrue(sortedList.equals(sortedListAfterSorting));
+        Assert.assertTrue(patientRecordsBeforeSort.equals(sortedListAfterSorting));
 
     }
 
     //Scenario: Verify the user should perform sorting for Category field to ascending order
     public void getAllCategoryRecordsBeforeSort() {
-        ArrayList<String> patientRecordsBeforeSort = new ArrayList<>();
-        List<WebElement> elementList = findElementsByXpath(eleTotalCategoryRecords);
+        categoryRecordsBeforeSort = new ArrayList<>();
+        List<WebElement> elementList = findElementsByXpath(lstTotalCategoryRecords);
         for (WebElement patientValue : elementList) {
-            patientRecordsBeforeSort.add(patientValue.getText());
+            categoryRecordsBeforeSort.add(patientValue.getText());
         }
-        System.out.println("Category records befor sort " + patientRecordsBeforeSort);
-        //Sorting for the list which are stored before applying Sorting technique
-        sortedList = new ArrayList<>();
-        for (String s : patientRecordsBeforeSort) {
-            sortedList.add(s);
-        }
-        Collections.sort(sortedList);
-        System.out.println("Sorted list :" + sortedList);
+        System.out.println("Category records before sort " + categoryRecordsBeforeSort);
+        //Sorting the list
+        Collections.sort(categoryRecordsBeforeSort);
+        System.out.println("Sorted list :" + categoryRecordsBeforeSort);
     }
 
     public void clickSortIconCategory() {
@@ -955,38 +932,34 @@ public class GlobalSearchPage extends SeleniumUtils {
     }
 
     public void verifyCategoryInSortedAscendingOrder() {
-        ArrayList<String> patientRecordsAfterSort = new ArrayList<>();
-        List<WebElement> elementsList = findElementsByXpath(eleTotalCategoryRecords);
+        ArrayList<String> categoryRecordsAfterSort = new ArrayList<>();
+        List<WebElement> elementsList = findElementsByXpath(lstTotalCategoryRecords);
         for (WebElement patientValue : elementsList) {
-            patientRecordsAfterSort.add(patientValue.getText());
+            categoryRecordsAfterSort.add(patientValue.getText());
         }
-        System.out.println("Category records after sorting :" + patientRecordsAfterSort);
+        System.out.println("Category records after sorting :" + categoryRecordsAfterSort);
         //Sorting for the list which are stored after applying Sorting technique
         ArrayList<String> sortedListAfterSorting = new ArrayList<>();
-        for (String s : patientRecordsAfterSort) {
+        for (String s : categoryRecordsAfterSort) {
             sortedListAfterSorting.add(s);
         }
         Collections.sort(sortedListAfterSorting);
         System.out.println("Sorted list after sorting :" + sortedListAfterSorting);
-        Assert.assertTrue(sortedList.equals(sortedListAfterSorting));
+        Assert.assertTrue(categoryRecordsBeforeSort.equals(sortedListAfterSorting));
 
     }
 
     //Scenario: Verify the user should perform sorting for State field to ascending order
     public void getAllStateRecordsBeforeSort() {
-        ArrayList<String> patientRecordsBeforeSort = new ArrayList<>();
-        List<WebElement> elementList = findElementsByXpath(eleTotalStateRecords);
+        stateRecordsBeforeSort = new ArrayList<>();
+        List<WebElement> elementList = findElementsByXpath(lstTotalStateRecords);
         for (WebElement patientValue : elementList) {
-            patientRecordsBeforeSort.add(patientValue.getText());
+            stateRecordsBeforeSort.add(patientValue.getText());
         }
-        System.out.println("State records befor sort " + patientRecordsBeforeSort);
-        //Sorting for the list which are stored before applying Sorting technique
-        sortedList = new ArrayList<>();
-        for (String s : patientRecordsBeforeSort) {
-            sortedList.add(s);
-        }
-        Collections.sort(sortedList);
-        System.out.println("Sorted list :" + sortedList);
+        System.out.println("State records before sort " + stateRecordsBeforeSort);
+        //Sorting the list
+        Collections.sort(stateRecordsBeforeSort);
+        System.out.println("Sorted list :" + stateRecordsBeforeSort);
     }
 
     public void clickSortIconState() {
@@ -995,7 +968,7 @@ public class GlobalSearchPage extends SeleniumUtils {
 
     public void verifyStateInSortedAscendingOrder() {
         ArrayList<String> patientRecordsAfterSort = new ArrayList<>();
-        List<WebElement> elementsList = findElementsByXpath(eleTotalStateRecords);
+        List<WebElement> elementsList = findElementsByXpath(lstTotalStateRecords);
         for (WebElement patientValue : elementsList) {
             patientRecordsAfterSort.add(patientValue.getText());
         }
@@ -1007,7 +980,7 @@ public class GlobalSearchPage extends SeleniumUtils {
         }
         Collections.sort(sortedListAfterSorting);
         System.out.println("Sorted list after sorting :" + sortedListAfterSorting);
-        Assert.assertTrue(sortedList.equals(sortedListAfterSorting));
+        Assert.assertTrue(stateRecordsBeforeSort.equals(sortedListAfterSorting));
 
     }
 

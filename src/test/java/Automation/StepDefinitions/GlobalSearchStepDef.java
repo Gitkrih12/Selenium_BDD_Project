@@ -36,10 +36,10 @@ public class GlobalSearchStepDef extends GlobalSearchPage {
         verifyGlobalSearchColumnFields(columnList);
     }
 
-    //Scenario: Verify search field displayed under each column except follow up column
-    @Then("user able to view the Search fields under each column except follow up column")
-    public void user_able_to_view_the_search_fields_under_each_column_except_follow_up_column() {
-        verifySearchFieldsUnderEachCoulmn();
+    //Scenario: Verify search field displayed under each column
+    @Then("user able to view the Search fields under each column")
+    public void user_able_to_view_the_search_fields_under_each_column() {
+        verifySearchFieldsUnderEachColumn();
     }
 
     //Scenario: Verify adjudicator should land on Global Search Page
@@ -65,8 +65,8 @@ public class GlobalSearchStepDef extends GlobalSearchPage {
     }
 
     //Scenario: Verify user should get records when he search with more than 6 characters in claim number field in Global Search page
-    @When("user enters more than seven characters in the Claim Number Search field")
-    public void user_enters_more_than_seven_characters_in_the_claim_number_search_field() throws InterruptedException {
+    @When("user enters more than six characters in the Claim Number Search field")
+    public void user_enters_more_than_six_characters_in_the_claim_number_search_field() throws InterruptedException {
         enterSevenCharactersInClaimNumberSearchField();
     }
 
@@ -76,10 +76,11 @@ public class GlobalSearchStepDef extends GlobalSearchPage {
     }
 
     //Scenario: Verify user should not get records when he search with less than 7 characters in claim number field in Global Search page
-    @When("user enters more than six characters in the Claim Number Search field")
-    public void user_enters_more_than_six_characters_in_the_claim_number_search_field() throws InterruptedException {
+    @When("user enters less than seven characters in the Claim Number Search field")
+    public void user_enters_less_than_seven_characters_in_the_claim_number_search_field() throws InterruptedException {
         enterSixCharactersInClaimNumberSearchField();
     }
+
     @Then("user not able to view the claim details for given filter criteria.")
     public void user_not_able_to_view_the_claim_details_for_given_filter_criteria() {
         verifyNoDataDisplayMessage();
@@ -358,7 +359,7 @@ public class GlobalSearchStepDef extends GlobalSearchPage {
     @Then("claim number column should be first and disabled mode")
     public void claim_number_column_should_be_first_and_disabled_mode() {
         verifyClaimNumberColumnOrder();
-        verifyClaimNumberInDisbaledMode();
+        verifyClaimNumberInDisabledMode();
     }
 
     @Then("claim number check box should be selected by default")
@@ -366,7 +367,7 @@ public class GlobalSearchStepDef extends GlobalSearchPage {
         verifyClaimNumberCheckBox();
     }
 
-    //Scenario: Verify user should able to see saved/updated fields the Global Search page
+    //Scenario: Verify user should able to see saved/updated fields under Global Search page
     @When("user select check box for the Provider field")
     public void user_select_check_box_for_the_provider_field() {
         clickProviderCheckBox();

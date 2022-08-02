@@ -102,14 +102,14 @@ Feature: Global Search
   Scenario: Verify user should get records when he search with more than 6 characters in claim number field in Global Search page
     When user clicks on Global Search in left navigation menu
     Then the user should navigate to the Global Search page
-    When user enters more than seven characters in the Claim Number Search field
+    When user enters more than six characters in the Claim Number Search field
     Then user able to view the claim details for given filter criteria
 
   @TC_49500
   Scenario: Verify user should not get records when he search with less than 7 characters in claim number field in Global Search page
     When user clicks on Global Search in left navigation menu
     Then the user should navigate to the Global Search page
-    When user enters more than six characters in the Claim Number Search field
+    When user enters less than seven characters in the Claim Number Search field
     Then user not able to view the claim details for given filter criteria.
 
   #48152-As an Adjudicator, When I search with more than 2 characters in other than Claim Number filter, the application should be able to display claim records in a Global search.
@@ -243,6 +243,7 @@ Feature: Global Search
       | Category         |
       | State            |
       | Provider         |
+      | Provider NPI     |
       | BPNPI            |
       | Tax ID           |
       | Total Charge     |
@@ -261,7 +262,7 @@ Feature: Global Search
     And claim number check box should be selected by default
 
   @TC_48814
-  Scenario: Verify user should able to see saved/updated fields the Global Search page
+  Scenario: Verify user should able to see saved/updated fields under Global Search page
     When user clicks on Global Search in left navigation menu
     Then the user should navigate to the Global Search page
     When the user clicks Customize Columns option
@@ -300,10 +301,10 @@ Feature: Global Search
       | State            |
 
   @TC_37663
-  Scenario: Verify search field displayed under each column except follow up column
+  Scenario: Verify search field displayed under each column
     When user clicks on Global Search in left navigation menu
     Then the user should navigate to the Global Search page
-    And user able to view the Search fields under each column except follow up column
+    And user able to view the Search fields under each column
 
   @TC_37754
   Scenario: Validate pagination in global Search page
