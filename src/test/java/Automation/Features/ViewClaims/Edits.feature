@@ -23,6 +23,7 @@ Feature: Edits
       | Deny              |
       | Approve           |
       | Update Auth       |
+      | Deactivate        |
 
   @44553
   Scenario: Verify Service Level Edits Sub tab functionality
@@ -30,21 +31,21 @@ Feature: Edits
     And user clicks on Edits tab
     Then user should be able to view below columns in Service Level Edits
       | Line Number   |
-      | Overridden By |
+      | Edit Number   |
       | Description   |
       | Workaround    |
       | Resolution    |
       | Status        |
       | Category      |
       | Added By      |
-      | Edit Number   |
+      | Overridden By |
 
   @44556
   Scenario: Verify Edit & Delete functionality in Service Level Edits Sub tab
     When user clicking on Claim Number "P0020021100018" in Global Search page
     And user clicks on Edits tab
-    Then user should be able to view Delete action item highlighted in red color
-    And user should be able to view Edit action item highlighted in blue color
+    Then user should be able to view Delete action item
+    And user should be able to view Edit action item
 
   @44558
   Scenario: Verify Claim Level Edits Sub-tab
@@ -67,8 +68,8 @@ Feature: Edits
     When user clicking on Claim Number "P0020021100018" in Global Search page
     And user clicks on Edits tab
     And user clicks on Claim Level Edits tab
-    Then user should be able to view Delete action item highlighted in red color
-    And user should be able to view Edit action item highlighted in blue color
+    Then user should be able to view Delete action item
+    And user should be able to view Edit action item
 
   @45372
   Scenario: Validate Mouse hovering on the Inverted Exclamation Mark in Service Level Edits sub tab in the Edits tab

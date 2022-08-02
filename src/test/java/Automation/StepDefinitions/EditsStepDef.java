@@ -37,14 +37,14 @@ public class EditsStepDef extends EditsPage {
     }
 
     //  Scenario: Verify Edit & Delete functionality in Service Level Edits Sub tab
-    @Then("user should be able to view Delete action item highlighted in red color")
-    public void user_should_be_able_to_view_delete_action_item_highlighted_in_red_color() {
-        userViewsDeleteButtonHighlightedInRed();
+    @Then("user should be able to view Delete action item")
+    public void user_should_be_able_to_view_delete_action_item() {
+        userViewsDeleteButton();
     }
 
-    @Then("user should be able to view Edit action item highlighted in blue color")
-    public void user_should_be_able_to_view_edit_action_item_highlighted_in_blue_color() {
-        userViewsEditButtonHighlightedInBlue();
+    @Then("user should be able to view Edit action item")
+    public void user_should_be_able_to_view_edit_action_item() {
+        userViewsEditButton();
     }
 
     // Scenario: Verify Claim Level Edits Sub-tab
