@@ -32,3 +32,4 @@ Feature: Notes
       | Deny              |
       | Approve           |
       | Update Auth       |
+      | Deactivate        |
