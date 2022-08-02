@@ -6,15 +6,16 @@ import org.junit.Assert;
 import org.openqa.selenium.WebElement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class EditsPage extends SeleniumUtils {
 
     String tabEdits = "//*[@id = 'nav-edits-tab']";
     String tabServiceLevel = "//*[@id = 'nav-edit-details-tab']";
-    String tabClaimLevel = "//*[@id = 'nav-edit-service-details-tab']";
+    String tabClaimLevel = "//button[contains(text(), 'Claim Level Edits')]";
     String btnFooterSection = "//*[@class='button-padding-left footer']//button";
     String lstServiceLevelEdits = "//app-edits//*[@id = 'resultsGrid']//div//span[@ref='eText']";
-    String lstclaimLevelEdits = "(//*[@id='resultsGrid1']//div[1]/div[2]/div[1])[1]//div[3]//span[@class='ag-header-cell-text']";
+    String lstClaimLevelEdits = "//app-edits//*[@id = 'resultsGrid']//div//span[@ref='eText']";
     String btnDelete = "//button[@title = 'Delete']/img";
     String btnEdit = "//button[@title = 'Edit']/img";
     String lnkInvertedExclamatory = "(//i[@class='bi bi-info-circle'])[1]";
@@ -44,46 +45,22 @@ public class EditsPage extends SeleniumUtils {
 
     //  Scenario: Validate buttons functionality of Edits tab
     public void userViewsFooterSectionInEditsPage(DataTable footerSection){
-        List<String> footerSectionExp = footerSection.asList();
-        List<WebElement> ActFooterSection = findElementsByXpath(btnFooterSection);
-        List<String> fieldsForCompare = new ArrayList<>();
-        System.out.println("Size" + ActFooterSection.size());
-        for (WebElement column : ActFooterSection) {
-            scrollIntoView(column, driver);
-            String text = column.getText();
-            fieldsForCompare.add(text);
-        }
-        System.out.println("Footer section should display:" + fieldsForCompare);
-        System.out.println("Expected fields are : " + footerSectionExp);
-        for (String exp : footerSectionExp) {
-            if (fieldsForCompare.contains(exp)) {
-                Assert.assertTrue(true);
-            } else {
-                Assert.fail(exp + " is not listed in actual list");
-            }
-        }
+        List<String> fieldsExp = footerSection.asList();
+        List<String> ActFields = findElementsByXpath(btnFooterSection)
+                .stream().map((e) -> e.getText().trim()).collect(Collectors.toList());
+        System.out.println("Footer fields should display:" + ActFields);
+        System.out.println("Expected fields are: " + fieldsExp);
+        Assert.assertEquals(ActFields, fieldsExp);
     }
 
     //  Scenario: Verify Service Level Edits Sub tab functionality
     public void userViewsServiceLevelEditsTab(DataTable columnFields){
-        List<String> columnFieldsExp = columnFields.asList();
-        List<WebElement> ActColumnFields = findElementsByXpath(lstServiceLevelEdits);
-        List<String> fieldsForCompare = new ArrayList<>();
-        System.out.println("Size" + ActColumnFields.size());
-        for (WebElement column : ActColumnFields) {
-            scrollIntoView(column, driver);
-            String text = column.getText();
-            fieldsForCompare.add(text);
-        }
-        System.out.println("Service Level Edit fields should display:" + fieldsForCompare);
-        System.out.println("Expected fields are : " + columnFieldsExp);
-        for (String exp : columnFieldsExp) {
-            if (fieldsForCompare.contains(exp)) {
-                Assert.assertTrue(true);
-            } else {
-                Assert.fail(exp + " is not listed in actual list");
-            }
-        }
+        List<String> fieldsExp = columnFields.asList();
+        List<String> ActFields = findElementsByXpath(lstServiceLevelEdits)
+                .stream().map((e) -> e.getText().trim()).collect(Collectors.toList());
+        System.out.println("Service Level Edit fields should display:" + ActFields);
+        System.out.println("Expected fields are: " + fieldsExp);
+        Assert.assertEquals(ActFields, fieldsExp);
     }
 
     //  Scenario: Verify Edit & Delete functionality in Service Level Edits Sub tab
@@ -112,34 +89,17 @@ public class EditsPage extends SeleniumUtils {
     }
 
     // Scenario: Verify Claim Level Edits Sub-tab
-    public void userClicksOnClaimLevelEditsTab(){
-        clickElement(lstclaimLevelEdits);
+    public void userClicksOnClaimLevelEditsTab() throws InterruptedException{
+        clickElement(tabClaimLevel);
+        threadSleep(1000);
     }
 
     public void userViewsClaimLevelEditsTab(DataTable editLevelColumnFields){
-        List<String> columnFieldsExp = editLevelColumnFields.asList();
-        List<WebElement> ActColumnFields = findElementsByXpath(lstclaimLevelEdits);
-        List<String> fieldsForCompare = new ArrayList<>();
-        System.out.println("Size" + ActColumnFields.size());
-        for (WebElement column : ActColumnFields) {
-            scrollIntoView(column, driver);
-            String text = column.getText();
-            fieldsForCompare.add(text);
-        }
-        System.out.println("Claim Level Edit fields should display:" + fieldsForCompare);
-        System.out.println("Expected fields are : " + columnFieldsExp);
-        for (String exp : columnFieldsExp) {
-            if (fieldsForCompare.contains(exp)) {
-                Assert.assertTrue(true);
-            } else {
-                Assert.fail(exp + " is not listed in actual list");
-            }
-        }
-    }
-
-    public void userHoverOverInvertedExclamationIcon(){
-            moveToElement(lnkInvertedExclamatory).perform();
-            String actErrorMessage = findElementByXpath(lnkInvertedExclamatory).getText();
-            System.out.println("actual error message " + actErrorMessage);
+        List<String> fieldsExp = editLevelColumnFields.asList();
+        List<String> ActFields = findElementsByXpath(lstClaimLevelEdits)
+                .stream().map((e) -> e.getText().trim()).collect(Collectors.toList());
+        System.out.println("Claim Level Edit fields should display:" + ActFields);
+        System.out.println("Expected fields are: " + fieldsExp);
+        Assert.assertEquals(ActFields, fieldsExp);
     }
 }
