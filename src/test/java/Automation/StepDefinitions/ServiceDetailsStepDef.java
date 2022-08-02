@@ -11,17 +11,15 @@ public class ServiceDetailsStepDef extends ServiceDetailsPage {
     @When("user clicking on Claim Number {string} in Global Search page")
     public void user_clicking_on_claim_number_in_global_search_page(String claimNumber) throws InterruptedException {
         clickOnGlobalSearch();
-        enterClaimNumberInSearchfield(claimNumber);
+        enterClaimNumberInSearchField(claimNumber);
         clickOnClaimNumber();
     }
 
-    //  Scenario: Verify Adjudicator able to Navigate Service Details from Global Search and validate the fields
     @When("user clicks on Service Details tab")
-    public void user_clicks_on_service_details_tab() {
+    public void user_clicks_on_service_details_tab() throws InterruptedException {
         clickOnServiceDetails();
     }
 
-    // Scenario: Verify Adjudicator able to Navigate Service Details from Global Search and validate the fields
     @Then("user should view all the column fields in Service Details page")
     public void user_should_view_all_the_column_fields_in_service_details_page(DataTable columnList) {
         userViewsAllColumnFieldsInServiceDetails(columnList);
@@ -45,7 +43,6 @@ public class ServiceDetailsStepDef extends ServiceDetailsPage {
         clickOnLineNumber();
     }
 
-    //  Scenario: Verify user able to navigate to Pricing page upon clicking Line number
     @Then("user able to navigate to the Pricing page")
     public void user_able_to_navigate_to_the_pricing_page() {
         userNavigatesToPricingPage();
