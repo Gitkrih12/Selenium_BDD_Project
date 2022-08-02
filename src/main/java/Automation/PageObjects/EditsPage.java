@@ -4,6 +4,7 @@ import Automation.Utilities.SeleniumUtils;
 import io.cucumber.datatable.DataTable;
 import org.junit.Assert;
 import org.openqa.selenium.WebElement;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -22,29 +23,29 @@ public class EditsPage extends SeleniumUtils {
 
 
     //  Scenario: Verify user able to navigate to Edits tab from Global Search and validate the fields
-    public void clickOnEditsTab() throws InterruptedException{
+    public void clickOnEditsTab() throws InterruptedException {
         clickElement(tabEdits);
         threadSleep(1000);
     }
 
-    public void verifyUserNavigatesToEditsTab(String expTab){
+    public void verifyUserNavigatesToEditsTab(String expTab) {
         Assert.assertEquals(expTab, findElementByXpath(tabEdits).getText());
     }
 
-    public void verifyUserViewsServiceLevelSubTab(String expSubTab1){
-        String actualValue1 = findElementByXpath(tabServiceLevel).getText().replace("("," ").replace(")","");
+    public void verifyUserViewsServiceLevelSubTab(String expSubTab1) {
+        String actualValue1 = findElementByXpath(tabServiceLevel).getText().replace("(", " ").replace(")", "");
         String actualTab1[] = actualValue1.split(" ");
-        Assert.assertEquals(expSubTab1, actualTab1[0]+actualTab1[1]+actualTab1[2]);
+        Assert.assertEquals(expSubTab1, actualTab1[0] + actualTab1[1] + actualTab1[2]);
     }
 
-    public void verifyUserViewsClaimLevelSubTab(String expSubTab2){
-        String actualValue2 = findElementByXpath(tabClaimLevel).getText().replace("("," ").replace(")","");
+    public void verifyUserViewsClaimLevelSubTab(String expSubTab2) {
+        String actualValue2 = findElementByXpath(tabClaimLevel).getText().replace("(", " ").replace(")", "");
         String actualTab2[] = actualValue2.split(" ");
-        Assert.assertEquals(expSubTab2, actualTab2[0]+actualTab2[1]+actualTab2[2]);
+        Assert.assertEquals(expSubTab2, actualTab2[0] + actualTab2[1] + actualTab2[2]);
     }
 
     //  Scenario: Validate buttons functionality of Edits tab
-    public void userViewsFooterSectionInEditsPage(DataTable footerSection){
+    public void userViewsFooterSectionInEditsPage(DataTable footerSection) {
         List<String> fieldsExp = footerSection.asList();
         List<String> ActFields = findElementsByXpath(btnFooterSection)
                 .stream().map((e) -> e.getText().trim()).collect(Collectors.toList());
@@ -54,7 +55,7 @@ public class EditsPage extends SeleniumUtils {
     }
 
     //  Scenario: Verify Service Level Edits Sub tab functionality
-    public void userViewsServiceLevelEditsTab(DataTable columnFields){
+    public void userViewsServiceLevelEditsTab(DataTable columnFields) {
         List<String> fieldsExp = columnFields.asList();
         List<String> ActFields = findElementsByXpath(lstServiceLevelEdits)
                 .stream().map((e) -> e.getText().trim()).collect(Collectors.toList());
@@ -64,37 +65,35 @@ public class EditsPage extends SeleniumUtils {
     }
 
     //  Scenario: Verify Edit & Delete functionality in Service Level Edits Sub tab
-    public void userViewsDeleteButton(){
+    public void userViewsDeleteButton() {
         List<WebElement> deleteExp = findElementsByXpath(btnDelete);
-        for(WebElement button : deleteExp){
-            if(button.isEnabled()){
+        for (WebElement button : deleteExp) {
+            if (button.isEnabled()) {
                 Assert.assertTrue(true);
-            }
-            else {
+            } else {
                 Assert.fail(button + "delete buttons are not displayed");
             }
         }
     }
 
-    public void userViewsEditButton(){
+    public void userViewsEditButton() {
         List<WebElement> editExp = findElementsByXpath(btnEdit);
-        for(WebElement button : editExp){
-            if(button.isEnabled()){
+        for (WebElement button : editExp) {
+            if (button.isEnabled()) {
                 Assert.assertTrue(true);
-            }
-            else {
+            } else {
                 Assert.fail(button + "edit buttons are not displayed");
             }
         }
     }
 
     // Scenario: Verify Claim Level Edits Sub-tab
-    public void userClicksOnClaimLevelEditsTab() throws InterruptedException{
+    public void userClicksOnClaimLevelEditsTab() throws InterruptedException {
         clickElement(tabClaimLevel);
         threadSleep(1000);
     }
 
-    public void userViewsClaimLevelEditsTab(DataTable editLevelColumnFields){
+    public void userViewsClaimLevelEditsTab(DataTable editLevelColumnFields) {
         List<String> fieldsExp = editLevelColumnFields.asList();
         List<String> ActFields = findElementsByXpath(lstClaimLevelEdits)
                 .stream().map((e) -> e.getText().trim()).collect(Collectors.toList());
