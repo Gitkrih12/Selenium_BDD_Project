@@ -26,8 +26,9 @@ public class LeftNavigationStepDef extends LeftNavigationPage {
 
     //    Scenario:  Validate expanding collapsing action for all menu's in left navigation for admin and non admin roles
     @Then("user should be able to perform expanding and collapsing actions for all menus")
-    public void user_should_be_able_to_perform_expanding_and_collapsing_actions_for_all_menus() {
-        validateExpandAndCollapseActionsForAllLeftNavigationMenus();
+    public void user_should_be_able_to_perform_expanding_and_collapsing_actions_for_all_menus() throws InterruptedException {
+        validateExpandActionsForAllLeftNavigationMenus();
+        validateCollapseActionsForAllLeftNavigationMenus();
     }
 
     //    Scenario: Validate Account Management Menu for admin and non admin roles

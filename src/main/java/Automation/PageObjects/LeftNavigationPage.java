@@ -46,7 +46,9 @@ public class LeftNavigationPage extends SeleniumUtils {
 
 
 
-    boolean claimAdjSpanStatus;
+    private static boolean claimAdjSpanStatus;
+    private static List<WebElement> menuList;
+    private static String actualText;
 
     public void leftNavigationValidation() {
         boolean leftNavigationStatus = isDisplayed(mnuLeftNavigation);
@@ -86,13 +88,12 @@ public class LeftNavigationPage extends SeleniumUtils {
 
 
     //    Scenario:  Validate expanding collapsing action for all menu's in left navigation for admin and non admin roles
-    public void validateExpandAndCollapseActionsForAllLeftNavigationMenus() {
-        List<WebElement> menuList = findElementsByXpath(mnuMainItems);
-        String actualText = null;
-
-        //Expand validation for Adjudication and Queue management menus
-        try {
-            for (int i = 0; i < 2; i++) {
+    public void validateExpandActionsForAllLeftNavigationMenus() throws InterruptedException {
+        menuList = findElementsByXpath(mnuMainItems);
+        for (int i=0; i<menuList.size();i++)
+        {
+            if (i == 0 || i == 1)
+            {
                 actualText = menuList.get(i).getAttribute("style");
                 if (actualText.contains(expandedExpText))
                 {
@@ -103,58 +104,7 @@ public class LeftNavigationPage extends SeleniumUtils {
                     Assert.assertTrue(false);
                 }
             }
-            System.out.println("Expanded status for Adjudication & Queue management is : " + actualText.contains(expandedExpText));
-        } catch (Exception e) {
-            System.out.println("Exception in validating Adjudication & Queue management expanded menus " + e);
-        }
-
-        //Collapse validation for Adjudication and Queue management menus
-        try
-        {
-            for (int i = 0; i<2; i++)
-            {
-                menuList.get(i).click();
-                threadSleep(500);
-
-                actualText = menuList.get(i).getAttribute("style");
-                if (actualText.contains(collapsedExpText)) {
-                    Assert.assertTrue(true);
-                }
-                else
-                {
-                    Assert.assertTrue(false);
-                }
-            }
-            System.out.println("Collapsed status for Adjudication & Queue management is: " + actualText.contains(collapsedExpText));
-        }catch (Exception e)
-        {
-            System.out.println("Exception in validating Adjudication & Queue management collapsed menus " + e);
-        }
-
-        //Collapse validation for other menus except Adjudication and Queue management menus
-        try
-        {
-            for (int i = 2; i<menuList.size(); i++)
-            {
-                actualText = menuList.get(i).getAttribute("style");
-                if (actualText.contains(collapsedExpText)) {
-                    Assert.assertTrue(true);
-                }
-                else
-                {
-                    Assert.assertTrue(false);
-                }
-            }
-            System.out.println("Collapsed status for other menus is : " + actualText.contains(collapsedExpText));
-        }catch (Exception e)
-        {
-            Assert.fail("Exception in validating collapsed menus " + e);
-        }
-
-        //Expand validation for other menus Adjudication and Queue management menus
-        try
-        {
-            for (int i = 2; i<menuList.size(); i++)
+            else if (i>=2)
             {
                 menuList.get(i).click();
                 threadSleep(500);
@@ -168,12 +118,39 @@ public class LeftNavigationPage extends SeleniumUtils {
                     Assert.assertTrue(false);
                 }
             }
-            System.out.println("Expanded status for other menus is : " + actualText.contains(expandedExpText));
-        }catch (Exception e)
-        {
-            Assert.fail("Exception in expanding menus " + e);
         }
     }
+
+    public void validateCollapseActionsForAllLeftNavigationMenus() throws InterruptedException {
+
+        for (int i = 0; i < menuList.size(); i++)
+        {
+            if (i == 0 || i == 1) {
+                menuList.get(i).click();
+                threadSleep(1000);
+
+                actualText = menuList.get(i).getAttribute("style");
+                if (actualText.contains(collapsedExpText)) {
+                    Assert.assertTrue(true);
+                } else
+                {
+                    Assert.assertTrue(false);
+                }
+            } else if (i >= 2) {
+                menuList.get(i).click();
+                threadSleep(500);
+                actualText = menuList.get(i).getAttribute("style");
+                if (actualText.contains(collapsedExpText))
+                {
+                    Assert.assertTrue(true);
+                } else
+                {
+                    Assert.assertTrue(false);
+                }
+            }
+        }
+    }
+
 
     //    Scenario: Validate Account Management Menu for admin and non admin roles
     public void validateARLedgerMenu()
