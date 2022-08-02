@@ -23,6 +23,7 @@ Feature: Claim Details
       | Deny              |
       | Approve           |
       | Update Auth       |
+      | Deactivate        |
 
   @49610
   Scenario: Verify column fields in Attachments sub tab

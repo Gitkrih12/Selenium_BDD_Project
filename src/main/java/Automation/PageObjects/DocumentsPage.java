@@ -7,6 +7,7 @@ import org.openqa.selenium.WebElement;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class DocumentsPage extends SeleniumUtils {
 
@@ -14,8 +15,8 @@ public class DocumentsPage extends SeleniumUtils {
     String tabEdiFile = "//*[@id = 'nav-edifiles-details-tab']";
     String tabAttachments = "//*[@id = 'nav-attachments-details-tab']";
     String btnFooterSection = "//*[@class='button-padding-left footer']//button";
-    String lstEdiFiles = "(//*[@id='resultsGrid']/div/div[1]/div[2]/div[1]/div[2]/div)[2]//div[1]//span[@class='ag-header-cell-text']";
-    String lstAttachments = "(//*[@id='resultsGrid1']/div/div[1]/div[2]/div[1]/div[2]/div/div)[4]//div[1]//span[@class='ag-header-cell-text']";
+    String lstEdiFiles = "//app-documents//*[@id = 'resultsGrid']//div//span[@ref = 'eText']";
+    String lstAttachments = "//app-documents//*[@id = 'resultsGrid1']//div//span[@ref = 'eText']";
 
 
 
@@ -41,65 +42,29 @@ public class DocumentsPage extends SeleniumUtils {
     }
 
     public void verifyFooterSectionInDocumentsPage(DataTable footerSection){
-        List<String> footerSectionExp = footerSection.asList();
-        List<WebElement> ActFooterSection = findElementsByXpath(btnFooterSection);
-        List<String> fieldsForCompare = new ArrayList<>();
-        System.out.println("Size" + ActFooterSection.size());
-        for (WebElement column : ActFooterSection) {
-            scrollIntoView(column, driver);
-            String text = column.getText();
-            fieldsForCompare.add(text);
-        }
-        System.out.println("Footer section should display:" + fieldsForCompare);
-        System.out.println("Expected fields are : " + footerSectionExp);
-        for (String exp : footerSectionExp) {
-            if (fieldsForCompare.contains(exp)) {
-                Assert.assertTrue(true);
-            } else {
-                Assert.fail(exp + " is not listed in actual list");
-            }
-        }
+        List<String> fieldsExp = footerSection.asList();
+        List<String> ActFields = findElementsByXpath(btnFooterSection)
+                .stream().map((e) -> e.getText().trim()).collect(Collectors.toList());
+        System.out.println("Footer fields should display:" + ActFields);
+        System.out.println("Expected fields are: " + fieldsExp);
+        Assert.assertEquals(ActFields, fieldsExp);
     }
 
     public void verifyUserViewsColumnsUnderAttachmentsSection(DataTable columnsUnderAttachments){
-        List<String> columnFieldsExp = columnsUnderAttachments.asList();
-        List<WebElement> ActColumns = findElementsByXpath(lstAttachments);
-        List<String> fieldsForCompare = new ArrayList<>();
-        System.out.println("Size" + ActColumns.size());
-        for (WebElement column : ActColumns) {
-            scrollIntoView(column, driver);
-            String text = column.getText();
-            fieldsForCompare.add(text);
-        }
-        System.out.println("Attachments Columns should display:" + fieldsForCompare);
-        System.out.println("Expected fields are : " + columnFieldsExp);
-        for (String exp : columnFieldsExp) {
-            if (fieldsForCompare.contains(exp)) {
-                Assert.assertTrue(true);
-            } else {
-                Assert.fail(exp + " is not listed in actual list");
-            }
-        }
+        List<String> fieldsExp = columnsUnderAttachments.asList();
+        List<String> ActFields = findElementsByXpath(lstAttachments)
+                .stream().map((e) -> e.getText().trim()).collect(Collectors.toList());
+        System.out.println("Attachments Columns should display:" + ActFields);
+        System.out.println("Expected fields are: " + fieldsExp);
+        Assert.assertEquals(ActFields, fieldsExp);
     }
 
-    public void verifyUserViewsColumnsUnderEdiFilesSection(DataTable columnFields){
-        List<String> columnFieldsExp = columnFields.asList();
-        List<WebElement> ActColumns = findElementsByXpath(lstEdiFiles);
-        List<String> fieldsForCompare = new ArrayList<>();
-        System.out.println("Size" + ActColumns.size());
-        for (WebElement column : ActColumns) {
-            scrollIntoView(column, driver);
-            String text = column.getText();
-            fieldsForCompare.add(text);
-        }
-        System.out.println("EDI Files Columns should display:" + fieldsForCompare);
-        System.out.println("Expected fields are : " + columnFieldsExp);
-        for (String exp : columnFieldsExp) {
-            if (fieldsForCompare.contains(exp)) {
-                Assert.assertTrue(true);
-            } else {
-                Assert.fail(exp + " is not listed in actual list");
-            }
-        }
+    public void verifyUserViewsColumnsUnderEdiFilesSection(DataTable columnFields) {
+        List<String> fieldsExp = columnFields.asList();
+        List<String> ActFields = findElementsByXpath(lstEdiFiles)
+                .stream().map((e) -> e.getText().trim()).collect(Collectors.toList());
+        System.out.println("EDI Files Columns should display:" + ActFields);
+        System.out.println("Expected fields are: " + fieldsExp);
+        Assert.assertEquals(ActFields, fieldsExp);
     }
 }
