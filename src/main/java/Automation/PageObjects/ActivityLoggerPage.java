@@ -3,7 +3,9 @@ package Automation.PageObjects;
 import Automation.Utilities.SeleniumUtils;
 import io.cucumber.datatable.DataTable;
 import org.junit.Assert;
+import org.openqa.selenium.WebElement;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -27,14 +29,26 @@ public class ActivityLoggerPage extends SeleniumUtils {
 
     public void userViewsActivityLoggerFields(DataTable expFields){
         List<String> fieldsExp = expFields.asList();
-        List<String> ActFields = findElementsByXpath(lstActivityLogger)
-                .stream().map((e) -> e.getText().trim()).collect(Collectors.toList());
-        System.out.println("Size" + ActFields.size());
-        System.out.println("Activity Logger Fields should display:" + ActFields);
-        System.out.println("Expected fields are: " + fieldsExp);
-        Assert.assertEquals(ActFields, fieldsExp);
+        List<WebElement> ActColumnFields = findElementsByXpath(lstActivityLogger);
+        List<String> columnFieldsForCompare = new ArrayList<>();
+        System.out.println("Size " + ActColumnFields.size());
+        for (WebElement column : ActColumnFields) {
+            scrollIntoView(column, driver);
+            String text = column.getText();
+            columnFieldsForCompare.add(text);
+        }
+        System.out.println("Activity Logger Fields should display:" + columnFieldsForCompare);
+        System.out.println("Expected fields are : " + fieldsExp);
+        for (String exp : fieldsExp) {
+            if (columnFieldsForCompare.contains(exp)) {
+                Assert.assertTrue(true);
+            } else {
+                Assert.fail(exp + " is not listed in actual list");
+            }
+        }
     }
 
+    //  Scenario: Verify user able to navigate to Activity Logger tab and validated the buttons
     public void userViewsFooterSectionInActivityLogger(DataTable expFooterSection){
         List<String> fieldsExp = expFooterSection.asList();
         List<String> ActFields = findElementsByXpath(btnFooterSection)

@@ -1,4 +1,4 @@
-Feature: Provider Details
+Feature: Activity Logger
 
   Background:
     Given the user is in CA Login screen
