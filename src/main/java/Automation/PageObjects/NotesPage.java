@@ -7,61 +7,39 @@ import org.openqa.selenium.WebElement;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class NotesPage extends SeleniumUtils {
 
     String tabNotes = "//*[@id = 'nav-notes-tab']";
-    String lstNotesColumns = "(//*[@class='ag-header-viewport'])[7]//div[@class='ag-header-cell-label']/span[1]";
+    String lstNotesColumns = "//app-notes//*[contains(@class, 'ag-theme-alpine')]//span[@ref = 'eText']";
     String btnFooterFields = "//*[@class='button-padding-left footer']/button";
 
 
-    public void userClicksOnNotesTab() {
+    public void userClicksOnNotesTab() throws InterruptedException {
         clickElement(tabNotes);
+        threadSleep(1000);
     }
 
     public void verifyUserNavigatedToNotesTab(String expTab) {
         Assert.assertEquals(expTab, findElementByXpath(tabNotes).getText());
     }
 
-    public void verifyColumnsUnderNotesTab(DataTable columnfields) {
-        List<String> columnListExp = columnfields.asList();
-        List<WebElement> ActColumnFields = findElementsByXpath(lstNotesColumns);
-        List<String> columnFieldsForCompare = new ArrayList<>();
-        System.out.println("Size " + ActColumnFields.size());
-        for (WebElement column : ActColumnFields) {
-            scrollIntoView(column, driver);
-            String text = column.getText();
-            columnFieldsForCompare.add(text);
-        }
-        System.out.println("Fields in Notes tab :" + columnFieldsForCompare);
-        System.out.println("Expected fields are : " + columnListExp);
-        for (String exp : columnListExp) {
-            if (columnFieldsForCompare.contains(exp)) {
-                Assert.assertTrue(true);
-            } else {
-                Assert.fail(exp + " is not listed in actual list");
-            }
-        }
+    public void verifyColumnsUnderNotesTab(DataTable columnFields) {
+        List<String> columnListExp = columnFields.asList();
+        List<String> ActFields = findElementsByXpath(lstNotesColumns)
+                .stream().map((e) -> e.getText().trim()).collect(Collectors.toList());
+        System.out.println("Notes Fields should display:" + ActFields);
+        System.out.println("Expected fields are: " + columnListExp);
+        Assert.assertEquals(ActFields, columnListExp);
     }
 
     public void userViewsFooterSectionInNotesTab(DataTable footerFields) {
-        List<String> footerFieldsExp = footerFields.asList();
-        List<WebElement> ActFooterFields = findElementsByXpath(btnFooterFields);
-        List<String> fieldsForCompare = new ArrayList<>();
-        System.out.println("Size" + ActFooterFields.size());
-        for (WebElement column : ActFooterFields) {
-            scrollIntoView(column, driver);
-            String text = column.getText();
-            fieldsForCompare.add(text);
-        }
-        System.out.println("Footer fields in Service Details page :" + fieldsForCompare);
-        System.out.println("Expected fields are : " + footerFieldsExp);
-        for (String exp : footerFieldsExp) {
-            if (fieldsForCompare.contains(exp)) {
-                Assert.assertTrue(true);
-            } else {
-                Assert.fail(exp + " is not listed in actual list");
-            }
-        }
+        List<String> fieldsExp = footerFields.asList();
+        List<String> ActFields = findElementsByXpath(btnFooterFields)
+                .stream().map((e) -> e.getText().trim()).collect(Collectors.toList());
+        System.out.println("Footer fields should display:" + ActFields);
+        System.out.println("Expected fields are: " + fieldsExp);
+        Assert.assertEquals(ActFields, fieldsExp);
     }
 }

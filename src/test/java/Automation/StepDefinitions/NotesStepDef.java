@@ -8,7 +8,7 @@ import io.cucumber.java.en.When;
 public class NotesStepDef extends NotesPage {
 
     @When("user clicks on the Notes tab")
-    public void user_clicks_on_the_notes_tab() {
+    public void user_clicks_on_the_notes_tab() throws InterruptedException {
         userClicksOnNotesTab();
     }
 
@@ -18,8 +18,8 @@ public class NotesStepDef extends NotesPage {
     }
 
     @Then("user should be able to view the below column fields")
-    public void user_should_be_able_to_view_the_below_column_fields(DataTable columnfields) {
-        verifyColumnsUnderNotesTab(columnfields);
+    public void user_should_be_able_to_view_the_below_column_fields(DataTable columnFields) {
+        verifyColumnsUnderNotesTab(columnFields);
     }
 
     @Then("user views the footer section in Notes tab")
