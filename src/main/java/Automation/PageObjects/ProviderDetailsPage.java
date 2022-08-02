@@ -1,12 +1,20 @@
 package Automation.PageObjects;
 
 import Automation.Utilities.SeleniumUtils;
+import cucumber.deps.com.thoughtworks.xstream.core.util.Fields;
+import io.cucumber.core.gherkin.messages.internal.gherkin.AstNode;
 import io.cucumber.datatable.DataTable;
+import lombok.experimental.FieldDefaults;
+import org.apache.velocity.util.ArrayListWrapper;
 import org.junit.Assert;
 import org.openqa.selenium.WebElement;
 
+import java.awt.print.Book;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
+import java.util.stream.Collectors;
 
 public class ProviderDetailsPage extends SeleniumUtils {
 
@@ -23,6 +31,7 @@ public class ProviderDetailsPage extends SeleniumUtils {
     String txtSearchFieldsForAR = "//*[@class = 'ag-floating-filter-input']";
 
 
+
     // Scenario: Verify user able to navigate to the Provider details tab in the View Claims Form page
     public void clickOnProviderDetails() throws InterruptedException {
         clickElement(tabProviderDetails);
@@ -36,89 +45,41 @@ public class ProviderDetailsPage extends SeleniumUtils {
     //  Scenario: Verify user able to view the Pay to Provider Details and Group/Rendering Provider Details section under Provider Details tab
     public void userShouldViewProviderDetailsSection(DataTable providerDetailsSection) {
         List<String> sectionsExp = providerDetailsSection.asList();
-        List<WebElement> ActSections = findElementsByXpath(lstProviderDetails);
-        List<String> fieldsForCompare = new ArrayList<>();
-        System.out.println("Size" + ActSections.size());
-        for (WebElement column : ActSections) {
-            scrollIntoView(column, driver);
-            String text = column.getText();
-            fieldsForCompare.add(text);
-        }
-        System.out.println("Pay to Provider details and Group/Rendering Provider details are displayed :" + fieldsForCompare);
-        System.out.println("Expected fields are : " + sectionsExp);
-        for (String exp : sectionsExp) {
-            if (fieldsForCompare.contains(exp)) {
-                Assert.assertTrue(true);
-            } else {
-                Assert.fail(exp + " is not listed in actual list");
-            }
-        }
+        List<String> ActFields = findElementsByXpath(lstProviderDetails)
+                .stream().map((e) -> e.getText().trim()).collect(Collectors.toList());
+        System.out.println("Pay to Provider fields and Group/Rendering Provider details are displayed:" + ActFields);
+        System.out.println("Expected fields are: " + sectionsExp);
+        Assert.assertEquals(ActFields, sectionsExp);
     }
 
     //  Scenario: Verify user able to view all the fields under Pay to Provider Details section
     public void userViewsFieldsUnderPayToProviderDetailsSection(DataTable fieldsUnderPayToProviderDetails) {
-        List<String> fieldsExp = fieldsUnderPayToProviderDetails.asList();
-        List<WebElement> ActFields = findElementsByXpath(lstPayToProviderDetails);
-        List<String> fieldsForCompare = new ArrayList<>();
-        System.out.println("Size" + ActFields.size());
-        for (WebElement column : ActFields) {
-            scrollIntoView(column, driver);
-            String text = column.getText();
-            fieldsForCompare.add(text);
-        }
-        System.out.println("Pay to Provider Fields should display:" + fieldsForCompare);
-        System.out.println("Expected fields are : " + fieldsExp);
-        for (String exp : fieldsExp) {
-            if (fieldsForCompare.contains(exp)) {
-                Assert.assertTrue(true);
-            } else {
-                Assert.fail(exp + " is not listed in actual list");
-            }
-        }
+        List<Map<String, String>> rows = fieldsUnderPayToProviderDetails.asMaps(String.class, String.class);
+        List<String> ActFields = findElementsByXpath(lstPayToProviderDetails)
+                .stream().map((e) -> e.getText().trim()).collect(Collectors.toList());
+        System.out.println("Pay to Provider fields are displayed:" + ActFields);
+        System.out.println("Expected fields are: " + rows);
+        Assert.assertEquals(ActFields, rows);
     }
 
     //  Scenario: Verify user able to view all the fields under Group/Rendering Provider Details section
     public void userViewsFieldsUnderGroupRenderingProviderDetailsSection(DataTable fieldsUnderGroupRendering) {
         List<String> fieldsExp = fieldsUnderGroupRendering.asList();
-        List<WebElement> ActFields = findElementsByXpath(lstGroupRenderingProviderDetails);
-        List<String> fieldsForCompare = new ArrayList<>();
-        System.out.println("Size" + ActFields.size());
-        for (WebElement column : ActFields) {
-            scrollIntoView(column, driver);
-            String text = column.getText();
-            fieldsForCompare.add(text);
-        }
-        System.out.println("Group/Rendering Provider Details Fields should display:" + fieldsForCompare);
-        System.out.println("Expected fields are : " + fieldsExp);
-        for (String exp : fieldsExp) {
-            if (fieldsForCompare.contains(exp)) {
-                Assert.assertTrue(true);
-            } else {
-                Assert.fail(exp + " is not listed in actual list");
-            }
-        }
+        List<String> ActFields = findElementsByXpath(lstGroupRenderingProviderDetails)
+                .stream().map((e) -> e.getText().trim()).collect(Collectors.toList());
+        System.out.println("Group/Rendering Provider Details Fields should display:" + ActFields);
+        System.out.println("Expected fields are: " + fieldsExp);
+        Assert.assertEquals(ActFields, fieldsExp);
     }
 
     //  Scenario: Validate all the buttons available at the footer section under Provider Details tab
     public void userViewsFooterSectionInServiceDetails(DataTable footerSection) {
-        List<String> footerSectionExp = footerSection.asList();
-        List<WebElement> ActFooterSection = findElementsByXpath(btnFooterSection);
-        List<String> fieldsForCompare = new ArrayList<>();
-        System.out.println("Size" + ActFooterSection.size());
-        for (WebElement column : ActFooterSection) {
-            scrollIntoView(column, driver);
-            String text = column.getText();
-            fieldsForCompare.add(text);
-        }
-        System.out.println("Footer section should display:" + fieldsForCompare);
-        System.out.println("Expected fields are : " + footerSectionExp);
-        for (String exp : footerSectionExp) {
-            if (fieldsForCompare.contains(exp)) {
-                Assert.assertTrue(true);
-            } else {
-                Assert.fail(exp + " is not listed in actual list");
-            }
-        }
+        List<String> fieldsExp = footerSection.asList();
+        List<String> ActFields = findElementsByXpath(btnFooterSection)
+                .stream().map((e) -> e.getText().trim()).collect(Collectors.toList());
+        System.out.println("Footer fields should display:" + ActFields);
+        System.out.println("Expected fields are: " + fieldsExp);
+        Assert.assertEquals(ActFields, fieldsExp);
     }
 
     public void clickOnVendorId() throws InterruptedException {
@@ -141,23 +102,11 @@ public class ProviderDetailsPage extends SeleniumUtils {
 
     public void userViewsAccountReviewTransactionColumns(DataTable arTransactionFields) {
         List<String> arTransactionFieldsExp = arTransactionFields.asList();
-        List<WebElement> ActFields = findElementsByXpath(lstArTransactionFields);
-        List<String> fieldsForCompare = new ArrayList<>();
-        System.out.println("Size" + ActFields.size());
-        for (WebElement column : ActFields) {
-            scrollIntoView(column, driver);
-            String text = column.getText();
-            fieldsForCompare.add(text);
-        }
-        System.out.println("Fields in Claim Information section :" + fieldsForCompare);
-        System.out.println("Expected fields are : " + arTransactionFieldsExp);
-        for (String exp : arTransactionFieldsExp) {
-            if (fieldsForCompare.contains(exp)) {
-                Assert.assertTrue(true);
-            } else {
-                Assert.fail(exp + " is not listed in actual list");
-            }
-        }
+        List<String> ActFields = findElementsByXpath(lstArTransactionFields)
+                .stream().map((e) -> e.getText().trim()).collect(Collectors.toList());
+        System.out.println("AR Transaction should display:" + ActFields);
+        System.out.println("Expected fields are: " + arTransactionFieldsExp);
+        Assert.assertEquals(ActFields, arTransactionFieldsExp);
     }
 
     public void verifySearchFieldsUnderEachColumn() {

@@ -23,6 +23,7 @@ Feature: Provider Details
     When user clicking on Claim Number "P00MR22072112F" in Global Search page
     And user clicks on the Provider Details tab
     Then user able to view all the fields under Pay to Provider Details section
+      | Fields               | Values                      |
       | Pay to Provider ID   | VEN00001579                 |
       | Pay to Provider Name | ST. ANTHONYS HOSPITAL, INC. |
       | Tax ID/SSN           | 592043026                   |
