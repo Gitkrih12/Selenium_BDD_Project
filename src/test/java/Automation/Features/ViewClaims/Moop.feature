@@ -34,6 +34,7 @@ Feature: MOOP
       | Deny              |
       | Approve           |
       | Update Auth       |
+      | Deactivate        |
 
   @46287
   Scenario: Verify Deny button should highlight in Red color in footer section
