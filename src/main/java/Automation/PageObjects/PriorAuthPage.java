@@ -7,6 +7,7 @@ import org.openqa.selenium.WebElement;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class PriorAuthPage extends SeleniumUtils {
 
@@ -26,24 +27,12 @@ public class PriorAuthPage extends SeleniumUtils {
     }
 
     public void verifyUserViewsColumnFieldsUnderPriorAuth(DataTable columnFields){
-        List<String> priorAuthFieldsExp = columnFields.asList();
-        List<WebElement> ActColumnFields = findElementsByXpath(lstPriorAuth);
-        List<String> columnFieldsForCompare = new ArrayList<>();
-        System.out.println("Size " + ActColumnFields.size());
-        for (WebElement column : ActColumnFields) {
-            scrollIntoView(column, driver);
-            String text = column.getText();
-            columnFieldsForCompare.add(text);
-        }
-        System.out.println("Fields in Prior Authorization tab :" + columnFieldsForCompare);
-        System.out.println("Expected fields are : " + priorAuthFieldsExp);
-        for (String exp : priorAuthFieldsExp) {
-            if (columnFieldsForCompare.contains(exp)) {
-                Assert.assertTrue(true);
-            } else {
-                Assert.fail(exp + " is not listed in actual list");
-            }
-        }
+        List<String> fieldsExp = columnFields.asList();
+        List<String> ActFields = findElementsByXpath(lstPriorAuth)
+                .stream().map((e) -> e.getText().trim()).collect(Collectors.toList());
+        System.out.println("Fields in Prior Authorization tab :" + ActFields);
+        System.out.println("Expected fields are: " + fieldsExp);
+        Assert.assertEquals(ActFields, fieldsExp);
     }
 
     public void verifySearchFieldsUnderEachColumn(){
@@ -56,23 +45,11 @@ public class PriorAuthPage extends SeleniumUtils {
     }
 
     public void userViewsFooterSectionInPriorAuth(DataTable footerFields) {
-        List<String> footerFieldsExp = footerFields.asList();
-        List<WebElement> ActFooterFields = findElementsByXpath(btnFooterFields);
-        List<String> fieldsForCompare = new ArrayList<>();
-        System.out.println("Size" + ActFooterFields.size());
-        for (WebElement column : ActFooterFields) {
-            scrollIntoView(column, driver);
-            String text = column.getText();
-            fieldsForCompare.add(text);
-        }
-        System.out.println("Footer fields in Prior Auth page :" + fieldsForCompare);
-        System.out.println("Expected fields are : " + footerFieldsExp);
-        for (String exp : footerFieldsExp) {
-            if (fieldsForCompare.contains(exp)) {
-                Assert.assertTrue(true);
-            } else {
-                Assert.fail(exp + " is not listed in actual list");
-            }
-        }
+        List<String> fieldsExp = footerFields.asList();
+        List<String> ActFields = findElementsByXpath(btnFooterFields)
+                .stream().map((e) -> e.getText().trim()).collect(Collectors.toList());
+        System.out.println("Footer fields should display:" + ActFields);
+        System.out.println("Expected fields are: " + fieldsExp);
+        Assert.assertEquals(ActFields, fieldsExp);
     }
 }
