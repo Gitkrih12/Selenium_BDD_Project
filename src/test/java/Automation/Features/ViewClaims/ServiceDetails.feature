@@ -1,10 +1,8 @@
 Feature: Service Details
 
   Background:
-    Given the user enters the valid username and password and click on login button for admin role
-    When user lands directly to the page
-    Then user should navigate to the DSNP admin page after successful login
-
+    Given the user is in CA Login screen
+    When the user enters the valid username and password and click on login button
 
   @37693
   Scenario: Verify Adjudicator able to Navigate Service Details from Global Search and validate the fields
@@ -55,7 +53,8 @@ Feature: Service Details
 
   @37695
   Scenario: Verify footer section available in Service details tab
-    When user clicking on Claim Number "P0020021100018" in Global Search page
+    Given the user is in FFS Professional page
+    When user clicks on the Claim Number
     And user clicks on Service Details tab
     Then user views the footer section in Service Details page
       | On Hold           |
