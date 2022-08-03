@@ -8,7 +8,7 @@ Feature: Edits
   Scenario: Verify user able to navigate to Edits tab from Global Search and validate the fields
     When user clicking on Claim Number "P0020021100018" in Global Search page
     And user clicks on Edits tab
-    Then user navigates to the "Edits" tab
+    Then user navigates to the respective "Edits" tab
     And user able to view two sub tabs as "ServiceLevelEdits" and "ClaimLevelEdits"
 
   @44550

@@ -13,8 +13,8 @@ public class NotesStepDef extends NotesPage {
         userClicksOnNotesTab();
     }
 
-    @Then("user navigates to the {string} tab")
-    public void user_navigates_to_the_tab(String expTab) {
+    @Then("user navigates to the {string} tab successfully")
+    public void user_navigates_to_the_tab_successfully(String expTab) {
         verifyUserNavigatedToNotesTab(expTab);
     }
 

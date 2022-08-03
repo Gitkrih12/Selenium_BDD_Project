@@ -13,8 +13,8 @@ public class EditsStepDef extends EditsPage {
         clickOnEditsTab();
     }
 
-    @Then("user navigates to the {string} tab")
-    public void user_navigates_to_the_tab(String expTab) {
+    @Then("user navigates to the respective {string} tab")
+    public void user_navigates_to_the_respective_tab(String expTab) {
         verifyUserNavigatesToEditsTab(expTab);
     }
 

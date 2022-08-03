@@ -8,7 +8,7 @@ Feature: Notes
   Scenario: Verify user should navigate to Notes page on clicking claim number from Global Search page
     When user clicking on Claim Number "P0020021100018" in Global Search page
     And user clicks on the Notes tab
-    Then user navigates to the "Notes" tab
+    Then user navigates to the "Notes" tab successfully
 
   @46154
   Scenario: Verify column fields in Notes tab
