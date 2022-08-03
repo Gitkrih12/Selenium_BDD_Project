@@ -13,9 +13,10 @@ public class ActivityLoggerStepDef extends ActivityLoggerPage {
     public void user_clicks_on_the_activity_logger_tab() throws InterruptedException {
         userClicksOnActivityLogger();
     }
+
     @Then("user able to navigate to the {string} tab")
     public void user_able_to_navigate_to_the_tab(String expTab) {
-       verifyUserNavigatesToActivityLogger(expTab);
+        verifyUserNavigatesToActivityLogger(expTab);
     }
 
     @Then("user able to view the below mentioned fields in Activity Logger tab")

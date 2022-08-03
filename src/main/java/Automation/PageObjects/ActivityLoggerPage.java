@@ -13,8 +13,7 @@ public class ActivityLoggerPage extends SeleniumUtils {
 
     String tabActivityLogger = "//button[@id ='nav-activity-logger-tab']";
     String lstActivityLogger = "//app-activity-logger//*[@id = 'resultsGrid']//span[@ref = 'eText']";
-    String btnFooterSection = "//*[@class='button-padding-left footer']//button";
-
+    String btnFooterSection = "//*[@class='footer footer-flex']/button";
 
 
     //  Scenario: Verify user able to navigate to Activity Logger tab
@@ -23,11 +22,11 @@ public class ActivityLoggerPage extends SeleniumUtils {
         threadSleep(1000);
     }
 
-    public void verifyUserNavigatesToActivityLogger(String expTab){
+    public void verifyUserNavigatesToActivityLogger(String expTab) {
         Assert.assertEquals(expTab, findElementByXpath(tabActivityLogger).getText());
     }
 
-    public void userViewsActivityLoggerFields(DataTable expFields){
+    public void userViewsActivityLoggerFields(DataTable expFields) {
         List<String> fieldsExp = expFields.asList();
         List<WebElement> ActColumnFields = findElementsByXpath(lstActivityLogger);
         List<String> columnFieldsForCompare = new ArrayList<>();
@@ -49,7 +48,7 @@ public class ActivityLoggerPage extends SeleniumUtils {
     }
 
     //  Scenario: Verify user able to navigate to Activity Logger tab and validated the buttons
-    public void userViewsFooterSectionInActivityLogger(DataTable expFooterSection){
+    public void userViewsFooterSectionInActivityLogger(DataTable expFooterSection) {
         List<String> fieldsExp = expFooterSection.asList();
         List<String> ActFields = findElementsByXpath(btnFooterSection)
                 .stream().map((e) -> e.getText().trim()).collect(Collectors.toList());
