@@ -29,6 +29,7 @@ public class MoopPage extends SeleniumUtils {
         List<String> fieldsExp = columnFields.asList();
         List<String> ActFields = findElementsByXpath(lstMoopColumns)
                 .stream().map((e) -> e.getText().trim()).collect(Collectors.toList());
+        System.out.println("Size :" + ActFields.size());
         System.out.println("Fields in Moop should display:" + ActFields);
         System.out.println("Expected fields are: " + fieldsExp);
         Assert.assertEquals(ActFields, fieldsExp);
