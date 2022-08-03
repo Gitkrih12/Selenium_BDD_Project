@@ -10,7 +10,7 @@ public class MoopPage extends SeleniumUtils {
 
     String tabMoop = "//*[@id ='nav-moop-tab']";
     String lstMoopColumns = "//app-moop//*[contains(@class, 'ag-theme-alpine')]//span[@ref='eText']";
-    String btnFooterFields = "//*[@class='button-padding-left footer']/button";
+    String btnFooterFields = "//*[@class='footer footer-flex']/button";
     String eleDeny = "//button[contains(text(),'Deny')]";
 
 
