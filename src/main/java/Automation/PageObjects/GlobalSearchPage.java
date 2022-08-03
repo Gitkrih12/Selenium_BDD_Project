@@ -762,14 +762,10 @@ public class GlobalSearchPage extends SeleniumUtils {
             dosFromRecordsAfterSort.add(dosFromValue.getText());
         }
         System.out.println("DOS From records after sorting :" + dosFromRecordsAfterSort);
-        //Sorting for the list which are stored after applying Sorting technique
-        ArrayList<String> sortedListAfterSorting = new ArrayList<>();
-        for (String s : dosFromRecordsAfterSort) {
-            sortedListAfterSorting.add(s);
-        }
-        Collections.sort(sortedListAfterSorting);
-        System.out.println("Sorted list after sorting :" + sortedListAfterSorting);
-        Assert.assertTrue(dosFromRecordsBeforeSort.equals(sortedListAfterSorting));
+        //Sorting the list
+        Collections.sort(dosFromRecordsAfterSort);
+        System.out.println("Sorted list after sorting :" + dosFromRecordsAfterSort);
+        Assert.assertTrue(dosFromRecordsBeforeSort.equals(dosFromRecordsAfterSort));
 
     }
 
@@ -797,15 +793,11 @@ public class GlobalSearchPage extends SeleniumUtils {
             dosToRecordsAfterSort.add(dosToValue.getText());
         }
         System.out.println("DOS To records after sorting :" + dosToRecordsAfterSort);
-        //Sorting for the list which are stored after applying Sorting technique
-        ArrayList<String> sortedListAfterSorting = new ArrayList<>();
-        for (String s : dosToRecordsAfterSort) {
-            sortedListAfterSorting.add(s);
-        }
-        Collections.sort(sortedListAfterSorting);
-        System.out.println("Sorted list after sorting :" + sortedListAfterSorting);
+        //Sorting the list
+        Collections.sort(dosToRecordsAfterSort);
+        System.out.println("Sorted list after sorting :" + dosToRecordsAfterSort);
 
-        Assert.assertTrue(dosToRecordsBeforeSort.equals(sortedListAfterSorting));
+        Assert.assertTrue(dosToRecordsBeforeSort.equals(dosToRecordsAfterSort));
 
     }
 
@@ -833,14 +825,10 @@ public class GlobalSearchPage extends SeleniumUtils {
             claimNumberRecordsAfterSort.add(claimNumberValue.getText());
         }
         System.out.println("ClaimNumber records after sorting :" + claimNumberRecordsAfterSort);
-        //Sorting for the list which are stored after applying Sorting technique
-        ArrayList<String> sortedListAfterSorting = new ArrayList<>();
-        for (String s : claimNumberRecordsAfterSort) {
-            sortedListAfterSorting.add(s);
-        }
-        Collections.sort(sortedListAfterSorting);
-        System.out.println("Sorted list after sorting :" + sortedListAfterSorting);
-        Assert.assertTrue(claimNumberRecordsBeforeSort.equals(sortedListAfterSorting));
+        //Sorting the list
+        Collections.sort(claimNumberRecordsAfterSort);
+        System.out.println("Sorted list after sorting :" + claimNumberRecordsAfterSort);
+        Assert.assertTrue(claimNumberRecordsBeforeSort.equals(claimNumberRecordsAfterSort));
 
     }
 
@@ -868,14 +856,10 @@ public class GlobalSearchPage extends SeleniumUtils {
             billingProviderRecordsAfterSort.add(billingProviderValue.getText());
         }
         System.out.println("BillingProvider records after sorting :" + billingProviderRecordsAfterSort);
-        //Sorting for the list which are stored after applying Sorting technique
-        ArrayList<String> sortedListAfterSorting = new ArrayList<>();
-        for (String s : billingProviderRecordsAfterSort) {
-            sortedListAfterSorting.add(s);
-        }
-        Collections.sort(sortedListAfterSorting);
-        System.out.println("Sorted list after sorting :" + sortedListAfterSorting);
-        Assert.assertTrue(billingProviderRecordsBeforeSort.equals(sortedListAfterSorting));
+        //Sorting the list
+        Collections.sort(billingProviderRecordsAfterSort);
+        System.out.println("Sorted list after sorting :" + billingProviderRecordsAfterSort);
+        Assert.assertTrue(billingProviderRecordsBeforeSort.equals(billingProviderRecordsAfterSort));
 
     }
 
@@ -903,14 +887,10 @@ public class GlobalSearchPage extends SeleniumUtils {
             patientRecordsAfterSort.add(patientValue.getText());
         }
         System.out.println("Patient records after sorting :" + patientRecordsAfterSort);
-        //Sorting for the list which are stored after applying Sorting technique
-        ArrayList<String> sortedListAfterSorting = new ArrayList<>();
-        for (String s : patientRecordsAfterSort) {
-            sortedListAfterSorting.add(s);
-        }
-        Collections.sort(sortedListAfterSorting);
-        System.out.println("Sorted list after sorting :" + sortedListAfterSorting);
-        Assert.assertTrue(patientRecordsBeforeSort.equals(sortedListAfterSorting));
+        //Sorting the list
+        Collections.sort(patientRecordsAfterSort);
+        System.out.println("Sorted list after sorting :" + patientRecordsAfterSort);
+        Assert.assertTrue(patientRecordsBeforeSort.equals(patientRecordsAfterSort));
 
     }
 
@@ -938,14 +918,10 @@ public class GlobalSearchPage extends SeleniumUtils {
             categoryRecordsAfterSort.add(patientValue.getText());
         }
         System.out.println("Category records after sorting :" + categoryRecordsAfterSort);
-        //Sorting for the list which are stored after applying Sorting technique
-        ArrayList<String> sortedListAfterSorting = new ArrayList<>();
-        for (String s : categoryRecordsAfterSort) {
-            sortedListAfterSorting.add(s);
-        }
-        Collections.sort(sortedListAfterSorting);
-        System.out.println("Sorted list after sorting :" + sortedListAfterSorting);
-        Assert.assertTrue(categoryRecordsBeforeSort.equals(sortedListAfterSorting));
+        //Sorting the list
+        Collections.sort(categoryRecordsAfterSort);
+        System.out.println("Sorted list after sorting :" + categoryRecordsAfterSort);
+        Assert.assertTrue(categoryRecordsBeforeSort.equals(categoryRecordsAfterSort));
 
     }
 
@@ -973,14 +949,10 @@ public class GlobalSearchPage extends SeleniumUtils {
             patientRecordsAfterSort.add(patientValue.getText());
         }
         System.out.println("State records after sorting :" + patientRecordsAfterSort);
-        //Sorting for the list which are stored after applying Sorting technique
-        ArrayList<String> sortedListAfterSorting = new ArrayList<>();
-        for (String s : patientRecordsAfterSort) {
-            sortedListAfterSorting.add(s);
-        }
-        Collections.sort(sortedListAfterSorting);
-        System.out.println("Sorted list after sorting :" + sortedListAfterSorting);
-        Assert.assertTrue(stateRecordsBeforeSort.equals(sortedListAfterSorting));
+        //Sorting the list
+        Collections.sort(patientRecordsAfterSort);
+        System.out.println("Sorted list after sorting :" + patientRecordsAfterSort);
+        Assert.assertTrue(stateRecordsBeforeSort.equals(patientRecordsAfterSort));
 
     }
 
