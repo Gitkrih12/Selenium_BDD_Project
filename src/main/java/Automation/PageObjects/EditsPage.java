@@ -14,12 +14,11 @@ public class EditsPage extends SeleniumUtils {
     String tabEdits = "//*[@id = 'nav-edits-tab']";
     String tabServiceLevel = "//*[@id = 'nav-edit-details-tab']";
     String tabClaimLevel = "//button[contains(text(), 'Claim Level Edits')]";
-    String btnFooterSection = "//*[@class='button-padding-left footer']//button";
+    String btnFooterSection = "//*[@class='footer footer-flex']/button";
     String lstServiceLevelEdits = "//app-edits//*[@id = 'resultsGrid']//div//span[@ref='eText']";
     String lstClaimLevelEdits = "//app-edits//*[@id = 'resultsGrid']//div//span[@ref='eText']";
     String btnDelete = "//button[@title = 'Delete']/img";
     String btnEdit = "//button[@title = 'Edit']/img";
-    String lnkInvertedExclamatory = "(//i[@class='bi bi-info-circle'])[1]";
 
 
     //  Scenario: Verify user able to navigate to Edits tab from Global Search and validate the fields
@@ -49,6 +48,7 @@ public class EditsPage extends SeleniumUtils {
         List<String> fieldsExp = footerSection.asList();
         List<String> ActFields = findElementsByXpath(btnFooterSection)
                 .stream().map((e) -> e.getText().trim()).collect(Collectors.toList());
+        System.out.println("Size :" + ActFields.size());
         System.out.println("Footer fields should display:" + ActFields);
         System.out.println("Expected fields are: " + fieldsExp);
         Assert.assertEquals(ActFields, fieldsExp);
@@ -59,6 +59,7 @@ public class EditsPage extends SeleniumUtils {
         List<String> fieldsExp = columnFields.asList();
         List<String> ActFields = findElementsByXpath(lstServiceLevelEdits)
                 .stream().map((e) -> e.getText().trim()).collect(Collectors.toList());
+        System.out.println("Size :" + ActFields.size());
         System.out.println("Service Level Edit fields should display:" + ActFields);
         System.out.println("Expected fields are: " + fieldsExp);
         Assert.assertEquals(ActFields, fieldsExp);
@@ -97,6 +98,7 @@ public class EditsPage extends SeleniumUtils {
         List<String> fieldsExp = editLevelColumnFields.asList();
         List<String> ActFields = findElementsByXpath(lstClaimLevelEdits)
                 .stream().map((e) -> e.getText().trim()).collect(Collectors.toList());
+        System.out.println("Size :" + ActFields.size());
         System.out.println("Claim Level Edit fields should display:" + ActFields);
         System.out.println("Expected fields are: " + fieldsExp);
         Assert.assertEquals(ActFields, fieldsExp);
