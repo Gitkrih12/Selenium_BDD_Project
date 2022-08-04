@@ -45,10 +45,10 @@ public class GlobalSearchPage extends SeleniumUtils {
     String eleInvalidIcon = "//span//em[@class='bi bi-info-circle']";
     String eleInvalidTooltip = "//span[@class='tooltiptext']";
     String eleVerticalColorForCorrected = "(//div[@col-id='isCorrected']//span)[6]";
-    String eleCorrectedInfoTopGrid = "//div//span[@class='ColorBall']//following::h6[contains(text(),'Corrected')]";
+    String eleCorrectedInfoTopGrid = "//div//span[@class='ColorBall']//following::*[contains(text(),'Corrected')]";
     String eleCircleWithColorCode = "((//div[@col-id='status']//span[@class='ag-cell-value'])[1]//span//span)[1]";
     String eleVerticalColorForUnclean = "(//div[@col-id='IsClean']//span)[6]";
-    String eleUncleanInfoTopGrid = "//div//span[@class='ColorBall_UnClean']//following::h6[contains(text(),'Un-clean')]";
+    String eleUncleanInfoTopGrid = "//div//span[@class='ColorBall_UnClean']//following::*[contains(text(),'Un-clean')]";
     String eleCustomizeColumnWindow = "//div[contains(@class,'offcanvas offcanvas-end show')]";
     String eleCustomizeColumnHeader = "//div[@class='offcanvas-header']";
     String eleCustomizeColumnFields = "//div[@class='form-check ng-star-inserted']//label";
@@ -539,6 +539,14 @@ public class GlobalSearchPage extends SeleniumUtils {
         String actColorCode = getColorCodeForBackground(eleCircleWithColorCode);
         System.out.println("actual color code :" + actColorCode);
         Assert.assertEquals(expColorCode, actColorCode);
+    }
+
+    public void enterMemberIdInSearchFieldForPayerReview() throws InterruptedException {
+        expMemberId = prop.getProperty("memberIdForPayerReview");
+        findElementAndSendKeys(findElementByXpath(txtMemberId), expMemberId);
+        threadSleep(1000);
+        sendKeysUsingKeyboardInput(txtMemberId);
+        threadSleep(5000);
     }
 
     //Scenario: Verify color code for voided state claim number

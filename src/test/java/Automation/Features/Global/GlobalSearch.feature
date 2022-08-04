@@ -170,7 +170,7 @@ Feature: Global Search
     And user should able to see vertical line beside claim number with color code "#AD71FF"
     And color indication information should be available on top of grid
 
-  @TC_42013 @TC_42026 @TC_42027 @TC_42031 @TC_42032 @TC_42044 @TC_42045 @TC_42047 @TC_42048 @TC_42049 @TC_42050
+  @TC_42013 @TC_42026 @TC_42031 @TC_42032 @TC_42044 @TC_42045 @TC_42047 @TC_42048 @TC_42049 @TC_42050
     @Sanity
   Scenario Outline: Verify color code for Pend On Hold Payer Review Management Review Approved Deny Prebatch Batch To Pay Paid Rejected state claim number
     When user clicks on Global Search in left navigation menu
@@ -183,7 +183,6 @@ Feature: Global Search
       | State             | Color Code |
       | Pend              | #FFAB57    |
       | On Hold           | #E7BD09    |
-      | Payer Review      | #5AB0FF    |
       | Management Review | #1059E3    |
       | Approved          | #14C600    |
       | Deny              | #ED0303    |
@@ -191,6 +190,15 @@ Feature: Global Search
       | Batch To Pay      | #03C0ED    |
       | Paid              | #0E8D00    |
       | Rejected          | #BA0000    |
+
+  @TC_42027  @Sanity
+  Scenario: Verify color code for Payer Review state claim number
+    When user clicks on Global Search in left navigation menu
+    Then the user should navigate to the Global Search page
+    When user enters the Member Id in the Search field for Payer Review State
+    When user enters the State "Payer Review" in the Search field
+    Then user able to view the claim details for given State
+    And user should able to see the circle with color code "#5AB0FF" for given State
 
   @TC_42053  @Sanity
   Scenario: Verify color code for voided state claim number

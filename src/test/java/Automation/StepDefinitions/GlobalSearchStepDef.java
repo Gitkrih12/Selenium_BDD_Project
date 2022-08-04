@@ -296,6 +296,12 @@ public class GlobalSearchStepDef extends GlobalSearchPage {
         verifyCircleWithColorCodeForState(colorCode);
     }
 
+    // Scenario: Verify color code for voided state claim number
+    @When("user enters the Member Id in the Search field for Payer Review State")
+    public void user_enters_the_member_id_in_the_search_field_for_payer_review_state() throws InterruptedException {
+        enterMemberIdInSearchFieldForPayerReview();
+    }
+
     //Scenario: Verify color code for voided state claim number
     @When("user enters the Member Id in the Search field for Voided State")
     public void user_enters_the_member_id_in_the_search_field_for_voided_state() throws InterruptedException {
