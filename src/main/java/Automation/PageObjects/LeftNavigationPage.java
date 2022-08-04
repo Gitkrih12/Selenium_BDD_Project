@@ -22,13 +22,13 @@ public class LeftNavigationPage extends SeleniumUtils {
     String tglClaimsAdjCollapsed = "//span[contains(@class, 'hamburger-icon')]//img";
     String mnuMainItems = "//div[@class='menuitemsnames']/../..//following::span[1]";
     String mnuAccountManagement = "//div[contains(text(),'Account Management')]";
-    String mnuArLedger = "//div[contains(text(),'A/R Ledger')]";
+    String mnuArLedger = "//div[contains(text(),'Account Management')]//following::div[text()=' A/R Ledger ']";
     String mnuAdjudicationList = "(//div[contains(@class,'mat-expansion-panel-body')])[1]//div[@class='menuitemschaild']";
     String mnuCheckManagement = "//div[contains(text(),'Check Management')]";
     String mnuCheckManagementList = "(//div[contains(@class,'mat-expansion-panel-content')])[6]//div[@class='menuitemschaild']";
     String mnuFeeSchedule = "//div[contains(text(),'Fee Schedule')]";
-    String mnuMedicare = "//div[contains(text(),'Medicare')]";
-    String mnuMedicaid = "//div[contains(text(),'Medicaid')]";
+    String mnuMedicare = "//div[contains(text(),'Fee Schedule')]//following::div[contains(text(),'Medicare')]";
+    String mnuMedicaid = "//div[contains(text(),'Fee Schedule')]//following::div[contains(text(),'Medicaid')]";
     String mnuFileManagement = "//div[contains(text(),'File Management')]";
     String mnuFileManagementList = "(//div[contains(@class,'mat-expansion-panel-body')])[3]//div[@class='menuitemschaild']";
     String mnuMemberManagement = "//div[normalize-space()='Member Management']";
