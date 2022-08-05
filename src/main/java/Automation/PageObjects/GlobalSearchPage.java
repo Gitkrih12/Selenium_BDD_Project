@@ -255,7 +255,8 @@ public class GlobalSearchPage extends SeleniumUtils {
         threadSleep(3000);
     }
 
-    public void validatePatientNameResult() {
+    public void validatePatientNameResult() throws InterruptedException {
+        threadSleep(10000);
         explicitVisibilityOfWait(findElementByXpath(elePatientName), 5);
         String actPatientName = getText(elePatientName);
         System.out.println("actual patient name :" + actPatientName);
@@ -373,7 +374,8 @@ public class GlobalSearchPage extends SeleniumUtils {
         sendKeysUsingKeyboardInput(txtClaimNumber);
     }
 
-    public void validateClaimNumberResultForCharacterLimit() {
+    public void validateClaimNumberResultForCharacterLimit() throws InterruptedException {
+        threadSleep(10000);
         explicitVisibilityOfWait(findElementByXpath(eleClaimNumber), 5);
         String actClaimNumber = getText(eleClaimNumber);
         System.out.println("actual claimNumber :" + actClaimNumber);
@@ -644,6 +646,7 @@ public class GlobalSearchPage extends SeleniumUtils {
     }
 
     public void verifyProviderColumnDisplayInGlobalSearch() throws InterruptedException {
+        threadSleep(10000);
         scrollIntoView(findElementByXpath(lblProviderColumn), driver);
         boolean value = isDisplayed(lblProviderColumn);
         Assert.assertTrue(value);

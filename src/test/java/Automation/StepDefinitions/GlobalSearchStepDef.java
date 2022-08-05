@@ -71,7 +71,7 @@ public class GlobalSearchStepDef extends GlobalSearchPage {
     }
 
     @Then("user able to view the claim details for given filter criteria")
-    public void user_able_to_view_the_claim_details_for_given_filter_criteria() {
+    public void user_able_to_view_the_claim_details_for_given_filter_criteria() throws InterruptedException {
         validateClaimNumberResultForCharacterLimit();
     }
 
@@ -104,7 +104,7 @@ public class GlobalSearchStepDef extends GlobalSearchPage {
     }
 
     @Then("user able to view the claim details for given Patient name")
-    public void user_able_to_view_the_exact_patient_details() {
+    public void user_able_to_view_the_exact_patient_details() throws InterruptedException {
         validatePatientNameResult();
     }
 
