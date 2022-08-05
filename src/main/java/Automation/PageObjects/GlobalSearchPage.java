@@ -647,6 +647,7 @@ public class GlobalSearchPage extends SeleniumUtils {
 
     public void verifyProviderColumnDisplayInGlobalSearch() throws InterruptedException {
         threadSleep(10000);
+        scrollIntoView(findElementByXpath(txtState), driver);
         scrollIntoView(findElementByXpath(lblProviderColumn), driver);
         boolean value = isDisplayed(lblProviderColumn);
         Assert.assertTrue(value);
