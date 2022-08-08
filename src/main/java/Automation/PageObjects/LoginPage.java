@@ -19,7 +19,6 @@ public class LoginPage extends SeleniumUtils {
     String txtPassword = "//input[@type='password']";
     String btnLogin = "(//button/img)//preceding::b";
     String lnkUsername = "navbarDropdownMenuLink"; //id
-    String dsnpAdjExp = "CLAIMSADJUDICATOR";
     String imgMirra = "(//p[@class='loginUser']//following::img)[1]";
     String imgValorHealthPln = "//body/div[1]/div[2]/span[1]/img[1]";
     String imgValorHealthPlnExp = "valorlogo";
@@ -118,6 +117,7 @@ public class LoginPage extends SeleniumUtils {
 
     public void verifyLoginWithValidUsernameAndPasswordForDsnpAdjudicator()
     {
+        String dsnpAdjExp = prop.getProperty("dsnpAdjExp");
         Assert.assertEquals(dsnpAdjExp, username);
     }
 
