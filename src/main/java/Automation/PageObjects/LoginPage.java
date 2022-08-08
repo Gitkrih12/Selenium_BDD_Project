@@ -36,7 +36,7 @@ public class LoginPage extends SeleniumUtils {
     String txtUniversalSearch = "ip1"; //Id
     String attUniversalSearchBoxExp = "Enter Valid Claim Number";
     String mnuDrawer = "//div[@class='bento-menu']";
-    String icnNotification = "//app-header/nav[1]/div[1]/form[1]/mat-icon[1]/a[1]/*[1]";
+    String icnNotification = "//a//*[@class='bi bi-bell bellicon']";
     String ddlUserOptions = "//a[@id='navbarDropdownMenuLink']/img[2]";
     String btnChangePassword = "//button[contains(text(), 'Change Password')]";
     String btnLogOut = "//button[contains(text(), 'Log Out')]";

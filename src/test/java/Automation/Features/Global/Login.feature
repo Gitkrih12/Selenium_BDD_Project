@@ -19,28 +19,28 @@ Feature: Login
     Then user should be able to view the hospital pictography and Hospital, Claim Form texts displayed
 
 #  DSNP Adjudicator login
-  @34750
+  @Sanity @34750
   Scenario: Verify user able to login with valid username and password for DSNP adjudicator role
     Given the user is in CA Login screen
     When the user enters the valid username and password and click on login button
     Then user should be able to login to the CA screen successfully
 
 #  DSNP Admin login
-  @37649
+  @Sanity @37649
   Scenario: Verify user able to login with valid username and password for DSNP admin role
     Given the user enters the valid username and password and click on login button for admin role
     When user lands directly to the page
     Then user should navigate to the DSNP admin page after successful login
 
 #  Non DSNP Adjudicator login
-  @51207
+  @Sanity @51207
   Scenario: Verify user able to login with valid username and password for non DSNP adjudicator role
     Given the user is in CA Login screen
     When the user enters the valid username and password and click on login button for Non DSNP adjudicator role
     Then User should be able to login to application successfully with Non DSNP adjudicator credentials
 
 #  Non DSNP Admin login
-  @51208
+  @Sanity @51208
   Scenario: Verify user able to login with valid username and password for non DSNP admin role
     Given the user is in CA Login screen
     When the user enters the valid username and password and click on login button for Non DSNP admin role
@@ -53,7 +53,7 @@ Feature: Login
     Then user should be able to view the Mirra logo besides the User Login text
 
 
-  @37674
+  @Sanity @37674
   Scenario: Verify user should be able to view the "Valor Health Plan", "Insurance focused on you." texts one after the other in Login screen
     Given the user is in CA Login screen
     When user views the Valor Health Plan, Insurance focused on you. texts one after the other
@@ -92,7 +92,7 @@ Feature: Login
     When user directly lands to the home page
     Then user should land to home page by default
 
-  @38695
+  @Sanity @38695
   Scenario: Verify user should be able to view the Universal Search Place holder in home page view
     Given the user is in Home page view
     When user views the Universal Search place holder at the top right corner
@@ -111,7 +111,7 @@ Feature: Login
     When user views the notification icon
     Then user should view the Notification icon in the home page screen
 
-  @38709
+  @Sanity @38709
   Scenario: Verify user views the User Options on clicking username dropdown in the home page screen
     Given the user is in Home page view
     When user views User options under username dropdown
