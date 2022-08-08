@@ -47,10 +47,19 @@ public class FFSProfessionalPage extends SeleniumUtils {
     String txtPreBatchClaimNumber = "(//input[@aria-label='Claim Number Filter Input'])[7]";
     String elePreBatchClaimNumber="//*[@id='prebatchdGrid']//div[contains(@class,'ag-cell-last-left-pinned')]//a";
     String eleVerticalColorForUncleanPreBatchClaim = "(//*[@id='prebatchdGrid']//div[contains(@class,'ag-cell-normal-height')]//span)[4]";
+    String tabViewClaim = "//div[@class='col ng-star-inserted active-tab']";
+    String eleClaimSummary = "//div[@class='claim-summary']";
+    String tabFFSProfessionalDefault = "//div[@class='col ng-star-inserted default-tab' and contains(text(),'FFS Professional')]";
+    String tabViewClaimDefault = "//div[@class='col ng-star-inserted default-tab' and contains(text(),'View')]";
+
+
+
+
 
 
 
     private static String expClaimNumber = "";
+
 
 
 
@@ -118,6 +127,52 @@ public class FFSProfessionalPage extends SeleniumUtils {
     public void verifyCOBNotInMemberHouseInformationOnTopOfGrid() {
         boolean value = isDisplayed(eleCOBNotInMemberHouseInfoTopGrid);
         Assert.assertTrue(value);
+    }
+
+    //Scenario:Verify user able to navigate to claim summary screen on clicking claim number in FFS Professional Queue page
+    public void clickOnFFSProfessionalClaim() throws InterruptedException {
+        threadSleep(20000);
+        clickElement(eleClaimNumber);
+    }
+    public void clickOnFFSProfessionalDefaultTab(){
+        clickElement(tabFFSProfessionalDefault);
+    }
+    public void verifyViewClaimDetailsTab(){
+        Assert.assertTrue(isDisplayed(tabViewClaim));
+    }
+    public void verifyClaimSummaryOption(String expOption){
+        String actOption=findElementByXpath(eleClaimSummary).getText();
+        System.out.println("actOption "+actOption);
+        if(actOption.contains(expOption)){
+            Assert.assertTrue(true);
+        }else{
+            Assert.assertTrue(false);
+        }
+
+    }
+    public void getOpenedClaimNumber(){
+        String viewClaimNumberText=findElementByXpath(tabViewClaim).getText();
+        String[] claimData=viewClaimNumberText.split(" ");
+        expClaimNumber=claimData[2].substring(1);
+        System.out.println("claim number "+expClaimNumber);
+
+    }
+    public void verifyUserShouldSeeAlreadyOpenedClaimNumber(){
+        clickElement(tabViewClaimDefault);
+        String viewClaimNumberTextOnSecondClick=findElementByXpath(tabViewClaim).getText();
+        String[] claimData=viewClaimNumberTextOnSecondClick.split(" ");
+        String actClaimNumber=claimData[2].substring(1);
+        System.out.println("act claim number "+actClaimNumber);
+        Assert.assertEquals(expClaimNumber,actClaimNumber);
+    }
+
+    //Scenario: Verify user able to navigate to claim summary screen only once when performed multiple clicks on Claim number
+    public void enterClaimNumberInPendFFSProfessionalSearchField() throws InterruptedException {
+        threadSleep(30000);
+        expClaimNumber = prop.getProperty("ffsProfessionalClaimNumber");
+        findElementAndSendKeys(findElementByXpath(txtClaimNumber), expClaimNumber);
+        threadSleep(1000);
+        sendKeysUsingKeyboardInput(txtClaimNumber);
     }
 
     //Scenario:Verify colour coding for Unclean status claims under Pend bucket in FFS professional page

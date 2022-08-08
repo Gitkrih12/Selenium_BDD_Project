@@ -65,6 +65,47 @@ public class FFSProfessionalStepDef extends FFSProfessionalPage {
         verifyCOBNotInMemberHouseInformationOnTopOfGrid();
     }
 
+    //Scenario:Verify user able to navigate to claim summary screen on clicking claim number in FFS Professional Queue page
+    @When("user clicks on claim number in FFS Professional page")
+    public void user_clicks_on_claim_number_in_ffs_professional_page() throws InterruptedException {
+       clickOnFFSProfessionalClaim();
+    }
+
+    @Then("user should be able to navigate to View Claim Details page")
+    public void user_should_be_able_to_navigate_to_view_claim_details_page() {
+        verifyViewClaimDetailsTab();
+    }
+
+    @Then("User should see {string} option with Claim summary")
+    public void user_should_see_option_with_claim_summary(String option) {
+        verifyClaimSummaryOption(option);
+    }
+
+    //Scenario: Verify user able to navigate to claim summary screen only once when performed multiple clicks on Claim number
+    @When("user searches for claim number in pend bucket")
+    public void user_searches_for_claim_number_in_pend_bucket() throws InterruptedException {
+        enterClaimNumberInPendFFSProfessionalSearchField();
+    }
+    @When("user clicks on claim number")
+    public void user_clicks_on_claim_number() throws InterruptedException {
+        clickOnFFSProfessionalClaim();
+    }
+    @Then("user should be able to navigate to View Claim Details page and get the claim details")
+    public void user_should_be_able_to_navigate_to_view_claim_details_page_and_get_the_claim_details() {
+        verifyViewClaimDetailsTab();
+        getOpenedClaimNumber();
+    }
+    @When("user clicks on the same claim number again in pend bucket")
+    public void user_clicks_on_the_same_claim_number_again_in_pend_bucket() throws InterruptedException {
+        clickOnFFSProfessionalDefaultTab();
+        clickOnFFSProfessionalClaim();
+    }
+    @Then("user should be able to see already opened claim details")
+    public void user_should_be_able_to_see_already_opened_claim_details() {
+        verifyUserShouldSeeAlreadyOpenedClaimNumber();
+    }
+
+
     //Scenario:Verify colour coding for Unclean status claims under Pend bucket in FFS professional page
     @When("user enters Unclean status claim in search criteria in Pend bucket")
     public void user_enters_unclean_status_claim_in_search_criteria_in_pend_bucket() throws InterruptedException {
