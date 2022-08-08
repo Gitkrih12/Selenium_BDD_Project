@@ -119,4 +119,49 @@ public class MemberDetailsStepDef extends MemberDetailsPage {
     public void user_able_to_view_the_following_fields_under_cob_subtab(DataTable expFields) {
         verifyCOBFields(expFields);
     }
+
+    @When("user clicks on MOOP subtab")
+    public void user_clicks_on_moop_subtab() throws InterruptedException {
+        userClicksOnMOOPSubtab();
+    }
+
+    @Then("user navigates to the {string} subtab under Member Details page")
+    public void user_navigates_to_the_subtab_under_member_details_page(String expSubtab) {
+        userNavigatesToMOOPSubtab(expSubtab);
+    }
+
+    @Then("user able to view the below mentioned fields under MOOP subtab")
+    public void user_able_to_view_the_below_mentioned_fields_under_moop_subtab(DataTable expFields) {
+        verifyFieldsUnderMOOPSubtab(expFields);
+    }
+
+    @When("user clicks on Instructions subtab")
+    public void user_clicks_on_instructions_subtab() throws InterruptedException {
+        userClicksOnInstructionsSubtab();
+    }
+
+    @Then("user navigates successfully to the {string} subtab")
+    public void user_navigates_successfully_to_the_subtab(String expSubtab) {
+        verifyUserNavigatesToInstructions(expSubtab);
+    }
+
+    @Then("user able to view the below mentioned fields under Instructions subtab")
+    public void user_able_to_view_the_below_mentioned_fields_under_instructions_subtab(DataTable expColumns) {
+        verifyColumnsUnderInstructions(expColumns);
+    }
+
+    @When("user clicks on Hospice subtab")
+    public void user_clicks_on_hospice_subtab() throws InterruptedException {
+        userClicksOnHospiceSubtab();
+    }
+
+    @Then("user navigates to the {string} subtab under Member Details")
+    public void user_navigates_to_the_subtab_under_member_details(String expSubtab) {
+        userNavigatesToHospiceSubtab(expSubtab);
+    }
+
+    @Then("user able to view the below mentioned columns under Hospice subtab")
+    public void user_able_to_view_the_below_mentioned_columns_under_hospice_subtab(DataTable expFields) {
+        verifyFieldsUnderHospice(expFields);
+    }
 }

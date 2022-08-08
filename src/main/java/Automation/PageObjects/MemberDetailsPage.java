@@ -2,9 +2,11 @@ package Automation.PageObjects;
 
 import Automation.Utilities.SeleniumUtils;
 import io.cucumber.datatable.DataTable;
+import io.cucumber.java.bs.A;
 import org.junit.Assert;
 import org.openqa.selenium.WebElement;
 
+import java.sql.ClientInfoStatus;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -28,6 +30,12 @@ public class MemberDetailsPage extends SeleniumUtils {
     String txtSearchFields = "//*[@id = 'resultsGrid']//input[@type = 'text']";
     String tabCOB = "//*[@id = 'nav-cob-details-tab']";
     String lstCOBFields = "//*[@id = 'nav-cob-details']//span[@ref = 'eText']";
+    String tabMOOP = "//*[@id = 'nav-moop-details-tab']";
+    String lstMoopFields = "(//*[contains(@class, 'ag-theme-alpine')])[7]//span[@ref = 'eText']";
+    String tabInstructions = "//*[@id = 'nav-adjudicatorInstructions-details-tab']";
+    String lstInstructionFields = "//*[@id = 'nav-adjudicatorInstructions-details']//span[@ref = 'eText']";
+    String tabHospice = "//*[@id = 'nav-hospice-details-tab']";
+    String lstHospiceFields = "//*[@id = 'nav-hospice-details']//span[@ref = 'eText']";
 
 
     //  Scenario: Verify user should navigates to Member Details screen on clicking Patient ID/MBR ID
@@ -233,6 +241,85 @@ public class MemberDetailsPage extends SeleniumUtils {
     public void verifyCOBFields(DataTable expFields) {
         List<String> fieldsExp = expFields.asList();
         List<WebElement> ActColumnFields = findElementsByXpath(lstCOBFields);
+        List<String> columnFieldsForCompare = new ArrayList<>();
+        System.out.println("Size " + ActColumnFields.size());
+        for (WebElement column : ActColumnFields) {
+            scrollIntoView(column, driver);
+            String text = column.getText();
+            columnFieldsForCompare.add(text);
+        }
+        System.out.println("All the columns should display:" + columnFieldsForCompare);
+        System.out.println("Expected fields are : " + fieldsExp);
+        for (String exp : fieldsExp) {
+            if (columnFieldsForCompare.contains(exp)) {
+                Assert.assertTrue(true);
+            } else {
+                Assert.fail(exp + " is not listed in actual list");
+            }
+        }
+    }
+
+    public void userClicksOnMOOPSubtab() throws InterruptedException {
+        clickElement(tabMOOP);
+        threadSleep(1000);
+    }
+
+    public void userNavigatesToMOOPSubtab(String expSubtab){
+        Assert.assertEquals(expSubtab, findElementByXpath(tabMOOP).getText());
+    }
+
+    public void verifyFieldsUnderMOOPSubtab(DataTable expFields){
+        List<String> fieldsExp = expFields.asList();
+        List<String> ActFields = findElementsByXpath(lstMoopFields)
+                .stream().map((e) -> e.getText().trim()).collect(Collectors.toList());
+        System.out.println("Size :" + ActFields.size());
+        System.out.println("Moop Fields should display:" + ActFields);
+        System.out.println("Expected fields are: " + fieldsExp);
+        Assert.assertEquals(ActFields, fieldsExp);
+    }
+
+    public void userClicksOnInstructionsSubtab() throws InterruptedException {
+        clickElement(tabInstructions);
+        threadSleep(1000);
+    }
+
+    public void verifyUserNavigatesToInstructions(String expSubtab){
+        Assert.assertEquals(expSubtab, findElementByXpath(tabInstructions).getText());
+    }
+
+    public void verifyColumnsUnderInstructions(DataTable expColumns) {
+        List<String> fieldsExp = expColumns.asList();
+        List<WebElement> ActColumnFields = findElementsByXpath(lstInstructionFields);
+        List<String> columnFieldsForCompare = new ArrayList<>();
+        System.out.println("Size " + ActColumnFields.size());
+        for (WebElement column : ActColumnFields) {
+            scrollIntoView(column, driver);
+            String text = column.getText();
+            columnFieldsForCompare.add(text);
+        }
+        System.out.println("All the columns should display:" + columnFieldsForCompare);
+        System.out.println("Expected fields are : " + fieldsExp);
+        for (String exp : fieldsExp) {
+            if (columnFieldsForCompare.contains(exp)) {
+                Assert.assertTrue(true);
+            } else {
+                Assert.fail(exp + " is not listed in actual list");
+            }
+        }
+    }
+
+    public void userClicksOnHospiceSubtab() throws InterruptedException {
+        clickElement(tabHospice);
+        threadSleep(1000);
+    }
+
+    public void userNavigatesToHospiceSubtab(String expSubtab){
+        Assert.assertEquals(expSubtab, findElementByXpath(tabHospice).getText());
+    }
+
+    public void verifyFieldsUnderHospice(DataTable expFields){
+        List<String> fieldsExp = expFields.asList();
+        List<WebElement> ActColumnFields = findElementsByXpath(lstHospiceFields);
         List<String> columnFieldsForCompare = new ArrayList<>();
         System.out.println("Size " + ActColumnFields.size());
         for (WebElement column : ActColumnFields) {

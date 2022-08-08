@@ -185,3 +185,47 @@ Feature: Member Details
       | Termination Date |
       | Policy ID        |
       | Carrier          |
+
+  @52454
+  Scenario: Verify user should navigate to MOOP tab and view column fields in Member Details page
+    When user clicking on Claim Number "P0020021100018" in Global Search page
+    And user clicks on the Patient ID or MBR ID
+    When user clicks on MOOP subtab
+    Then user navigates to the "MOOP" subtab under Member Details page
+    And user able to view the below mentioned fields under MOOP subtab
+      | Year            |
+      | Co-pay($)       |
+      | Co-Insurance($) |
+      | Deductible($)   |
+      | Total($)        |
+      | Max Limit($)    |
+
+  @52589
+  Scenario: Verify user should navigate to Instructions tab and view column fields in Member Details page
+    When user clicking on Claim Number "P0020021100018" in Global Search page
+    And user clicks on the Patient ID or MBR ID
+    When user clicks on Instructions subtab
+    Then user navigates successfully to the "Instructions" subtab
+    And user able to view the below mentioned fields under Instructions subtab
+      | DOS From     |
+      | DOS To       |
+      | Tax Number   |
+      | NPI          |
+      | Member ID    |
+      | Code         |
+      | Modifiers    |
+      | Bill Type    |
+      | Revenue Code |
+      | Notes        |
+
+  @52592
+  Scenario: Verify user should navigate to HOSPICE tab and view column fields in Member Details page
+    When user clicking on Claim Number "P0020021100018" in Global Search page
+    And user clicks on the Patient ID or MBR ID
+    When user clicks on Hospice subtab
+    Then user navigates to the "HOSPICE" subtab under Member Details
+    And user able to view the below mentioned columns under Hospice subtab
+      | Member ID          |
+      | Member Death Date  |
+      | Hospice Begin Date |
+      | Hospice End Date   |

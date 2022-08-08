@@ -377,7 +377,7 @@ public class ClaimDetailsPage extends SeleniumUtils {
     }
 
     public void verifyClaimSummarySectionShouldHide() {
-        boolean claimSummarySection = findElementByXpath(eleClaimNumber).isDisplayed();
+        boolean claimSummarySection = explicitElementClickableWaitByXpath(eleClaimNumber, 30).isDisplayed();
         Assert.assertFalse(claimSummarySection);
     }
 
