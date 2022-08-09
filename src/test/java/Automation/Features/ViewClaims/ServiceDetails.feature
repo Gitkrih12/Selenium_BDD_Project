@@ -67,7 +67,6 @@ Feature: Service Details
       | Deny              |
       | Approve           |
       | Update Auth       |
-      | Deactivate        |
 
   @38099
   @Service
