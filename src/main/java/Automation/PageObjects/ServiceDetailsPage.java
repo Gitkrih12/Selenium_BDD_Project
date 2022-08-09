@@ -5,8 +5,7 @@ import io.cucumber.datatable.DataTable;
 import org.junit.Assert;
 import org.openqa.selenium.WebElement;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class ServiceDetailsPage extends SeleniumUtils {
 
@@ -80,6 +79,11 @@ public class ServiceDetailsPage extends SeleniumUtils {
             String text = column.getText();
             columnFieldsForCompare.add(text);
         }
+        int expValue = 2;
+        Assert.assertEquals(expValue, Collections.frequency(columnFieldsForCompare, "A"));
+        Assert.assertEquals(expValue, Collections.frequency(columnFieldsForCompare, "B"));
+        Assert.assertEquals(expValue, Collections.frequency(columnFieldsForCompare,"C"));
+        Assert.assertEquals(expValue, Collections.frequency(columnFieldsForCompare, "D"));
         System.out.println("Fields in Service Line Fields section :" + columnFieldsForCompare);
         System.out.println("Expected fields are : " + serviceLineFieldsExp);
         for (String exp : serviceLineFieldsExp) {
