@@ -1,22 +1,20 @@
 Feature: Service Details
 
   Background:
-    Given the user enters the valid username and password and click on login button for admin role
-    When user lands directly to the page
-    Then user should navigate to the DSNP admin page after successful login
-
+    Given the user is in CA Login screen
+    When the user enters the valid username and password and click on login button
 
   @37693
   Scenario: Verify Adjudicator able to Navigate Service Details from Global Search and validate the fields
-    When user clicking on Claim Number "P0020021100018" in Global Search page
+    When user clicking on Claim Number in Global Search page
     And user clicks on Service Details tab
     Then user should view all the column fields in Service Details page
       | Adjustment             |
       | Deductible             |
       | Coinsurance            |
       | Copay                  |
-      | Total Payment Amt      |
-      | Net payment ammount    |
+      | Total Payment Amount   |
+      | Net Payment Amount     |
       | Recovery Amount        |
       | Interest Paid          |
       | Is A/R Amount Eligible |
@@ -27,7 +25,7 @@ Feature: Service Details
 
   @37694
   Scenario: Verify Service Lines fields
-    When user clicking on Claim Number "P0020021100018" in Global Search page
+    When user clicking on Claim Number in Global Search page
     And user clicks on Service Details tab
     Then user able to view the below Service Line Fields
       | DOS                 |
@@ -55,7 +53,7 @@ Feature: Service Details
 
   @37695
   Scenario: Verify footer section available in Service details tab
-    When user clicking on Claim Number "P0020021100018" in Global Search page
+    When user clicks on the Pend Claim Number
     And user clicks on Service Details tab
     Then user views the footer section in Service Details page
       | On Hold           |
@@ -64,10 +62,11 @@ Feature: Service Details
       | Deny              |
       | Approve           |
       | Update Auth       |
+      | Deactivate        |
 
   @38099
   Scenario: Verify user able to navigate to Pricing page upon clicking Line number
-    When user clicking on Claim Number "P0020021100018" in Global Search page
+    When user clicking on Claim Number in Global Search page
     And user clicks on Service Details tab
     And user clicking on Line number
     Then user able to navigate to the Pricing page
