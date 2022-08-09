@@ -96,14 +96,6 @@ public class ServiceDetailsPage extends SeleniumUtils {
     }
 
     //  Scenario: Verify footer section available in Service details tab
-    public void enterPendClaimNumberInSearchField() throws InterruptedException {
-        threadSleep(1000);
-        expClaimNumber = prop.getProperty("pendClaimNumber");
-        findElementAndSendKeys(findElementByXpath(inputClaimNumber), expClaimNumber);
-        threadSleep(1000);
-        sendKeysUsingKeyboardInput(inputClaimNumber);
-    }
-
     public void userViewsFooterSectionInServiceDetails(DataTable footerFields) {
         List<String> footerFieldsExp = footerFields.asList();
         List<WebElement> ActFooterFields = findElementsByXpath(btnFooterFields);
