@@ -5,6 +5,7 @@ Feature: Service Details
     When the user enters the valid username and password and click on login button
 
   @37693
+  @Service
   Scenario: Verify Adjudicator able to Navigate Service Details from Global Search and validate the fields
     When user clicking on Claim Number in Global Search page
     And user clicks on Service Details tab
@@ -25,6 +26,7 @@ Feature: Service Details
 
   @37694
   @Sanity
+  @Service
   Scenario: Verify Service Lines fields
     When user clicking on Claim Number in Global Search page
     And user clicks on Service Details tab
@@ -53,6 +55,7 @@ Feature: Service Details
       | PBP                 |
 
   @37695
+  @Service
   Scenario: Verify footer section available in Service details tab
     Given the user is in FFS Professional page
     When user clicks on the Claim Number
@@ -67,6 +70,7 @@ Feature: Service Details
       | Deactivate        |
 
   @38099
+  @Service
   Scenario: Verify user able to navigate to Pricing page upon clicking Line number
     When user clicking on Claim Number in Global Search page
     And user clicks on Service Details tab
