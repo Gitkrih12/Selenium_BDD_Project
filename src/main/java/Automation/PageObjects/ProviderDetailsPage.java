@@ -91,6 +91,7 @@ public class ProviderDetailsPage extends SeleniumUtils {
         Assert.assertEquals(expVendorID, findElementByXpath(labelVendorId).getText());
     }
 
+    //  Scenario: Verify user able to view the Credit/Overpaid and Debit/Underpaid status at the middle of the A/R Ledger
     public void userViewsCreditOverPaidStatus(String expCreditStatus) {
         Assert.assertEquals(expCreditStatus, findElementByXpath(labelCreditOverPaidStatus).getText());
     }
@@ -99,6 +100,7 @@ public class ProviderDetailsPage extends SeleniumUtils {
         Assert.assertEquals(expDebitStatus, findElementByXpath(labelDebitUnderPaidStatus).getText());
     }
 
+    //  Scenario: Verify user able to view the available Account Review Transactions and all the columns in the A/R transaction details page
     public void userViewsAccountReviewTransactionColumns(DataTable arTransactionFields) {
         List<String> arTransactionFieldsExp = arTransactionFields.asList();
         List<WebElement> ActFooterFields = findElementsByXpath(lstArTransactionFields);
@@ -120,6 +122,7 @@ public class ProviderDetailsPage extends SeleniumUtils {
         }
     }
 
+    //  Scenario: Verify Search box should display for all the columns on the A/R Transactions grid
     public void verifySearchFieldsUnderEachColumn() {
         List<WebElement> ActSearchFields = findElementsByXpath(txtSearchFieldsForAR);
         for (WebElement column : ActSearchFields) {
