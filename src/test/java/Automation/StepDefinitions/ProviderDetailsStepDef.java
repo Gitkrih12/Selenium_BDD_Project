@@ -48,9 +48,9 @@ public class ProviderDetailsStepDef extends ProviderDetailsPage {
         clickOnVendorId();
     }
 
-    @Then("user navigates to the AR Transactions page and views {string}")
-    public void user_navigates_to_the_ar_transactions_page_and_views(String expVendorID) {
-        userNavigatesToARTransactionsPage(expVendorID);
+    @Then("user navigates to the AR Transactions page")
+    public void user_navigates_to_the_ar_transactions_page() {
+        userNavigatesToARTransactionsPage();
     }
 
     @Then("user able to view Credit Overpaid and Debit Underpaid status as {string} {string}")
