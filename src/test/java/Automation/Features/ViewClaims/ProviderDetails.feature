@@ -23,18 +23,17 @@ Feature: Provider Details
     When user clicking on Claim Number "P00MR22072112F" in Global Search page
     And user clicks on the Provider Details tab
     Then user able to view all the fields under Pay to Provider Details section
-      | Fields               | Values                      |
-      | Pay to Provider ID   | VEN00001579                 |
-      | Pay to Provider Name | ST. ANTHONYS HOSPITAL, INC. |
-      | Tax ID/SSN           | 592043026                   |
-      | NPI                  | 7118299964                  |
-      | Vendor ID            | V0000000724                 |
-      | Vendor Validated     | Validated                   |
-      | Address Line 1       | PO Box 403746               |
-      | Address Line 2       | -                           |
-      | City                 | Atlanta                     |
-      | State                | GA                          |
-      | Zipcode              | 303843746                   |
+      | Pay to Provider ID   |
+      | Pay to Provider Name |
+      | Tax ID/SSN           |
+      | NPI                  |
+      | Vendor ID            |
+      | Vendor Validated     |
+      | Address Line 1       |
+      | Address Line 2       |
+      | City                 |
+      | State                |
+      | Zipcode              |
 
   @39961
   Scenario: Verify user able to view all the fields under Group/Rendering Provider Details section
