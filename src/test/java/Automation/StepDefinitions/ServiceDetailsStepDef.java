@@ -32,12 +32,6 @@ public class ServiceDetailsStepDef extends ServiceDetailsPage {
     }
 
     //  Scenario: Verify footer section available in Service details tab
-    @When("user clicks on the Pend Claim Number")
-    public void user_clicks_on_the_pend_claim_number() throws InterruptedException {
-        clickOnGlobalSearch();
-        enterPendClaimNumberInSearchField();
-        clickOnClaimNumber();
-    }
     @Then("user views the footer section in Service Details page")
     public void user_views_the_footer_section_in_service_details_page(DataTable footerFields) {
         userViewsFooterSectionInServiceDetails(footerFields);

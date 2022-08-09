@@ -54,7 +54,8 @@ Feature: Service Details
 
   @37695
   Scenario: Verify footer section available in Service details tab
-    When user clicks on the Pend Claim Number
+    Given the user is in FFS Professional page
+    When user clicks on the Claim Number
     And user clicks on Service Details tab
     Then user views the footer section in Service Details page
       | On Hold           |

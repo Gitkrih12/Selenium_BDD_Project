@@ -9,9 +9,9 @@ import java.util.*;
 
 public class ServiceDetailsPage extends SeleniumUtils {
 
-    String lnkGlobalSearch = "//div[contains(text(),'Global Search')]";
+    String lnkGlobalSearch = "(//div[contains(text(),'Global Search')])[1]";
     String inputClaimNumber = "//input[@aria-label='Claim Number Filter Input']";
-    String eleClaimNumber = "//div[@class='ag-pinned-left-cols-container']//a";
+    String eleClaimNumber = "(//div[@class='ag-pinned-left-cols-container']//a)[1]";
     String tabServiceDetails = "//*[contains(text(), 'Service Details')]";
     String lstServiceDetailsColumnFields = "//*[@id='nav-service-details']//div[contains(@class, 'columnFont')]//div";
     String tblServiceLineFields = "//table[@class='table table-striped ng-star-inserted']//tr//th[(node())]";
