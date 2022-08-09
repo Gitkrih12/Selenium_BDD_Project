@@ -24,6 +24,7 @@ Feature: Service Details
       | ICD Codes              |
 
   @37694
+  @Sanity
   Scenario: Verify Service Lines fields
     When user clicking on Claim Number in Global Search page
     And user clicks on Service Details tab
