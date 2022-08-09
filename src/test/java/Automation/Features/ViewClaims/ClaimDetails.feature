@@ -69,6 +69,7 @@ Feature: Claim Details
       | Deny              |
       | Approve           |
       | Update Auth       |
+      | Deactivate        |
 
   @37402
   Scenario: Verify Claim Details sections
