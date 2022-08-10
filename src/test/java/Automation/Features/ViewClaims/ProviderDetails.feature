@@ -54,7 +54,8 @@ Feature: Provider Details
 
   @39974
   Scenario: Validate all the buttons available at the footer section under Provider Details tab
-    When user clicks on the Pend Claim Number
+    Given the user is in FFS Professional page
+    When user clicks on the Claim Number
     And user clicks on the Provider Details tab
     Then user views the footer section in Provider Details page
       | On Hold           |
@@ -63,7 +64,6 @@ Feature: Provider Details
       | Deny              |
       | Approve           |
       | Update Auth       |
-      | Deactivate        |
 
   @48990
   @Sanity

@@ -28,8 +28,9 @@ public class ProviderDetailsPage extends SeleniumUtils {
 
     // Scenario: Verify user able to navigate to the Provider details tab in the View Claims Form page
     public void clickOnProviderDetails() throws InterruptedException {
+        explicitElementClickableWaitByXpath(tabProviderDetails, 50);
         clickElement(tabProviderDetails);
-        threadSleep(1000);
+        threadSleep(2000);
     }
 
     public void userNavigatedToProviderDetails() {
@@ -83,7 +84,7 @@ public class ProviderDetailsPage extends SeleniumUtils {
     public void clickOnVendorId() throws InterruptedException {
         explicitElementClickableWaitByXpath((lnkVendorId), 100);
         clickElement(lnkVendorId);
-        threadSleep(1000);
+        threadSleep(2000);
     }
 
     public void userNavigatesToARTransactionsPage() {
