@@ -108,10 +108,10 @@ public class LoginPage extends SeleniumUtils {
     //    Scenario: Verify user able to login with valid username and password for DSNP adjudicator role
     public void loginWithValidUsernameAndPasswordForDsnpAdjudicator()
     {
-        findElementByXpath(txtUsername).sendKeys(prop.getProperty("dsnpAdjUsername"));
-        findElementByXpath(txtPassword).sendKeys(prop.getProperty("dsnpAdjPassword"));
-        findElementByXpath(btnLogin).click();
-        username = explicitElementClickableWaitByID(lnkUsername, 10).getText();
+        explicitVisibilityOfElementLocatedWaitByXpath(txtUsername,10).sendKeys(prop.getProperty("dsnpAdjUsername"));
+        explicitVisibilityOfElementLocatedWaitByXpath(txtPassword,10).sendKeys(prop.getProperty("dsnpAdjPassword"));
+        explicitElementClickableWaitByXpath(btnLogin,10).click();
+        username = explicitElementClickableWaitByID(lnkUsername, 30).getText();
         System.out.println("User logged in as : " + username);
     }
 
