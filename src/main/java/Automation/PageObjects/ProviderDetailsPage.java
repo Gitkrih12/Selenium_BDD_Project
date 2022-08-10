@@ -21,7 +21,7 @@ public class ProviderDetailsPage extends SeleniumUtils {
     String labelVendorId = "//*[@class='claims-list']";
     String labelCreditOverPaidStatus = "(//*[contains(@class, 'claims-list')])[2]";
     String labelDebitUnderPaidStatus = "(//*[contains(@class, 'claims-list')])[3]";
-    String lstArTransactionFields = "//*[@role='columnheader' and position()>1]";
+    String lstArTransactionFields = "//*[@role='columnheader']";
     String txtSearchFieldsForAR = "//*[@class = 'ag-floating-filter-input']";
 
 
