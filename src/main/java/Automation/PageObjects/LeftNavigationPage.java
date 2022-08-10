@@ -59,7 +59,7 @@ public class LeftNavigationPage extends SeleniumUtils {
     //    Verify Adjudication section should be in expanded mode by default in left navigation pane for both admin and non admin roles
     public void verifyAdjudicationMenuByDefaultInExpandableMode()
     {
-        String expandActText = findElementByXpath(btnAdjudicationExpansion).getAttribute("style");
+        String expandActText = explicitVisibilityOfElementLocatedWaitByXpath(btnAdjudicationExpansion,5).getAttribute("style");
         System.out.println("Adjudication expanded menu attribute value is... " + expandActText);
         if (expandActText.contains(expandedExpText))
         {
