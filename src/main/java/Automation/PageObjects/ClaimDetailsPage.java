@@ -373,12 +373,13 @@ public class ClaimDetailsPage extends SeleniumUtils {
 
     //  Scenario: Validate Hide action for claim summary section
     public void userClicksOnHideLink() {
+        explicitElementClickableWaitByXpath(lnkHideOption, 30);
         clickElement(lnkHideOption);
     }
 
     public void verifyClaimSummarySectionShouldHide() {
-        boolean claimSummarySection = findElementByXpath(eleClaimNumber).isDisplayed();
-        Assert.assertFalse(claimSummarySection);
+        boolean showLink = findElementByXpath(lnkShowOption).isDisplayed();
+        Assert.assertTrue(showLink);
     }
 
     //  Scenario: Validate Show action for claim summary section
