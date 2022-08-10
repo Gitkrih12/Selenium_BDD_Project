@@ -107,7 +107,7 @@ public class LeftNavigationPage extends SeleniumUtils {
             else if (i>=2)
             {
                 menuList.get(i).click();
-                threadSleep(500);
+                threadSleep(1000);
                 actualText = menuList.get(i).getAttribute("style");
                 if (actualText.contains(expandedExpText))
                 {
@@ -138,7 +138,7 @@ public class LeftNavigationPage extends SeleniumUtils {
                 }
             } else if (i >= 2) {
                 menuList.get(i).click();
-                threadSleep(500);
+                threadSleep(1000);
                 actualText = menuList.get(i).getAttribute("style");
                 if (actualText.contains(collapsedExpText))
                 {
