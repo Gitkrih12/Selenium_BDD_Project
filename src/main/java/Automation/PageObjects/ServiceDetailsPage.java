@@ -5,14 +5,13 @@ import io.cucumber.datatable.DataTable;
 import org.junit.Assert;
 import org.openqa.selenium.WebElement;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class ServiceDetailsPage extends SeleniumUtils {
 
-    String lnkGlobalSearch = "//div[contains(text(),'Global Search')]";
+    String lnkGlobalSearch = "(//div[contains(text(),'Global Search')])[1]";
     String inputClaimNumber = "//input[@aria-label='Claim Number Filter Input']";
-    String eleClaimNumber = "//div[@class='ag-pinned-left-cols-container']//a";
+    String eleClaimNumber = "(//div[@class='ag-pinned-left-cols-container']//a)[1]";
     String tabServiceDetails = "//*[contains(text(), 'Service Details')]";
     String lstServiceDetailsColumnFields = "//*[@id='nav-service-details']//div[contains(@class, 'columnFont')]//div";
     String tblServiceLineFields = "//table[@class='table table-striped ng-star-inserted']//tr//th[(node())]";
@@ -80,6 +79,11 @@ public class ServiceDetailsPage extends SeleniumUtils {
             String text = column.getText();
             columnFieldsForCompare.add(text);
         }
+        int expValue = 2;
+        Assert.assertEquals(expValue, Collections.frequency(columnFieldsForCompare, "A"));
+        Assert.assertEquals(expValue, Collections.frequency(columnFieldsForCompare, "B"));
+        Assert.assertEquals(expValue, Collections.frequency(columnFieldsForCompare,"C"));
+        Assert.assertEquals(expValue, Collections.frequency(columnFieldsForCompare, "D"));
         System.out.println("Fields in Service Line Fields section :" + columnFieldsForCompare);
         System.out.println("Expected fields are : " + serviceLineFieldsExp);
         for (String exp : serviceLineFieldsExp) {
@@ -92,14 +96,6 @@ public class ServiceDetailsPage extends SeleniumUtils {
     }
 
     //  Scenario: Verify footer section available in Service details tab
-    public void enterPendClaimNumberInSearchField() throws InterruptedException {
-        threadSleep(1000);
-        expClaimNumber = prop.getProperty("pendClaimNumber");
-        findElementAndSendKeys(findElementByXpath(inputClaimNumber), expClaimNumber);
-        threadSleep(1000);
-        sendKeysUsingKeyboardInput(inputClaimNumber);
-    }
-
     public void userViewsFooterSectionInServiceDetails(DataTable footerFields) {
         List<String> footerFieldsExp = footerFields.asList();
         List<WebElement> ActFooterFields = findElementsByXpath(btnFooterFields);
