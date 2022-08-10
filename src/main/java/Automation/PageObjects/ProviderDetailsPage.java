@@ -21,16 +21,16 @@ public class ProviderDetailsPage extends SeleniumUtils {
     String labelVendorId = "//*[@class='claims-list']";
     String labelCreditOverPaidStatus = "(//*[contains(@class, 'claims-list')])[2]";
     String labelDebitUnderPaidStatus = "(//*[contains(@class, 'claims-list')])[3]";
-    String lstArTransactionFields = "//*[@role='columnheader']";
+    String lstArTransactionFields = "//*[@role='columnheader']//span[text()]";
     String txtSearchFieldsForAR = "//*[@class = 'ag-floating-filter-input']";
 
 
 
     // Scenario: Verify user able to navigate to the Provider details tab in the View Claims Form page
     public void clickOnProviderDetails() throws InterruptedException {
-        explicitElementClickableWaitByXpath(tabProviderDetails, 50);
+        explicitElementClickableWaitByXpath(tabProviderDetails, 30);
         clickElement(tabProviderDetails);
-        threadSleep(2000);
+        threadSleep(3000);
     }
 
     public void userNavigatedToProviderDetails() {
@@ -82,7 +82,7 @@ public class ProviderDetailsPage extends SeleniumUtils {
     }
 
     public void clickOnVendorId() throws InterruptedException {
-        explicitElementClickableWaitByXpath((lnkVendorId), 100);
+        explicitElementClickableWaitByXpath((lnkVendorId), 30);
         clickElement(lnkVendorId);
         threadSleep(2000);
     }
