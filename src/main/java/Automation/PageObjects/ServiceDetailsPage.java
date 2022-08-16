@@ -39,6 +39,7 @@ public class ServiceDetailsPage extends SeleniumUtils {
     }
 
     public void clickOnClaimNumber() {
+        explicitVisibilityOfWait(findElementByXpath(eleClaimNumber), 5);
         clickElement(eleClaimNumber);
     }
 
