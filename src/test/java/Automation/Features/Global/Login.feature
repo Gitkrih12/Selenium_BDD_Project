@@ -33,14 +33,14 @@ Feature: Login
     Then user should navigate to the DSNP admin page after successful login
 
 #  Non DSNP Adjudicator login
-  @Sanity @51207
+  @51207
   Scenario: Verify user able to login with valid username and password for non DSNP adjudicator role
     Given the user is in CA Login screen
     When the user enters the valid username and password and click on login button for Non DSNP adjudicator role
     Then User should be able to login to application successfully with Non DSNP adjudicator credentials
 
 #  Non DSNP Admin login
-  @Sanity @51208
+  @51208
   Scenario: Verify user able to login with valid username and password for non DSNP admin role
     Given the user is in CA Login screen
     When the user enters the valid username and password and click on login button for Non DSNP admin role

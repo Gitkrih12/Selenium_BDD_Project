@@ -8,10 +8,10 @@ import io.cucumber.java.en.When;
 public class ServiceDetailsStepDef extends ServiceDetailsPage {
 
     //  Scenario: Verify Adjudicator able to Navigate Service Details from Global Search and validate the fields
-    @When("user clicking on Claim Number {string} in Global Search page")
-    public void user_clicking_on_claim_number_in_global_search_page(String claimNumber) throws InterruptedException {
+    @When("user clicking on Claim Number in Global Search page")
+    public void user_clicking_on_claim_number_in_global_search_page() throws InterruptedException {
         clickOnGlobalSearch();
-        enterClaimNumberInSearchfield(claimNumber);
+        enterClaimNumberInSearchField();
         clickOnClaimNumber();
     }
 

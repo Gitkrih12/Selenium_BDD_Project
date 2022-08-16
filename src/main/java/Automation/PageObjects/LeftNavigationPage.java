@@ -59,7 +59,7 @@ public class LeftNavigationPage extends SeleniumUtils {
     //    Verify Adjudication section should be in expanded mode by default in left navigation pane for both admin and non admin roles
     public void verifyAdjudicationMenuByDefaultInExpandableMode()
     {
-        String expandActText = findElementByXpath(btnAdjudicationExpansion).getAttribute("style");
+        String expandActText = explicitVisibilityOfElementLocatedWaitByXpath(btnAdjudicationExpansion,5).getAttribute("style");
         System.out.println("Adjudication expanded menu attribute value is... " + expandActText);
         if (expandActText.contains(expandedExpText))
         {
@@ -107,7 +107,7 @@ public class LeftNavigationPage extends SeleniumUtils {
             else if (i>=2)
             {
                 menuList.get(i).click();
-                threadSleep(500);
+                threadSleep(1000);
                 actualText = menuList.get(i).getAttribute("style");
                 if (actualText.contains(expandedExpText))
                 {
@@ -138,7 +138,7 @@ public class LeftNavigationPage extends SeleniumUtils {
                 }
             } else if (i >= 2) {
                 menuList.get(i).click();
-                threadSleep(500);
+                threadSleep(1000);
                 actualText = menuList.get(i).getAttribute("style");
                 if (actualText.contains(collapsedExpText))
                 {
@@ -393,12 +393,13 @@ public class LeftNavigationPage extends SeleniumUtils {
         Assert.assertTrue(leftNavigationStatus);
     }
 
-    //    Scenario: Verify left navigation menu for admin role
+    //    Scenario: Verify left navigation menu for admin and non admin roles
     public void verifyClaimsAdjudicationLabelAndMenuToggleOnLeftNavigation(String lblClaimsAdjExp)
     {
         String lblClaimsAdjAct = getText(lblClaimsAdj);
         System.out.println("Claims Adjudication label name is : " + lblClaimsAdjAct);
         Assert.assertEquals(lblClaimsAdjExp, lblClaimsAdjAct);
+        explicitElementClickableWaitByXpath(tglClaimsAdj,5);
         Assert.assertTrue(isDisplayed(tglClaimsAdj));
         System.out.println("Menu toggle status is :" + isDisplayed(tglClaimsAdj));
     }

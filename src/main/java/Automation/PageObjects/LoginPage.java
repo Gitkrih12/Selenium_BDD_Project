@@ -19,7 +19,6 @@ public class LoginPage extends SeleniumUtils {
     String txtPassword = "//input[@type='password']";
     String btnLogin = "(//button/img)//preceding::b";
     String lnkUsername = "navbarDropdownMenuLink"; //id
-    String dsnpAdjExp = "CLAIMSADJUDICATOR";
     String imgMirra = "(//p[@class='loginUser']//following::img)[1]";
     String imgValorHealthPln = "//body/div[1]/div[2]/span[1]/img[1]";
     String imgValorHealthPlnExp = "valorlogo";
@@ -109,15 +108,16 @@ public class LoginPage extends SeleniumUtils {
     //    Scenario: Verify user able to login with valid username and password for DSNP adjudicator role
     public void loginWithValidUsernameAndPasswordForDsnpAdjudicator()
     {
-        findElementByXpath(txtUsername).sendKeys(prop.getProperty("dsnpAdjUsername"));
-        findElementByXpath(txtPassword).sendKeys(prop.getProperty("dsnpAdjPassword"));
-        findElementByXpath(btnLogin).click();
-        username = explicitElementClickableWaitByID(lnkUsername, 10).getText();
+        explicitVisibilityOfElementLocatedWaitByXpath(txtUsername,10).sendKeys(prop.getProperty("dsnpAdjUsername"));
+        explicitVisibilityOfElementLocatedWaitByXpath(txtPassword,10).sendKeys(prop.getProperty("dsnpAdjPassword"));
+        explicitElementClickableWaitByXpath(btnLogin,10).click();
+        username = explicitElementClickableWaitByID(lnkUsername, 30).getText();
         System.out.println("User logged in as : " + username);
     }
 
     public void verifyLoginWithValidUsernameAndPasswordForDsnpAdjudicator()
     {
+        String dsnpAdjExp = prop.getProperty("dsnpAdjExp");
         Assert.assertEquals(dsnpAdjExp, username);
     }
 
@@ -157,14 +157,14 @@ public class LoginPage extends SeleniumUtils {
     //    Scenario: Verify user able to login with valid username and password for DSNP admin role
     public void loginWithValidUsernameAndPasswordForDsnpAdmin()
     {
-        findElementByXpath(txtUsername).sendKeys(prop.getProperty("dsnpAdminUsername"));
-        findElementByXpath(txtPassword).sendKeys(prop.getProperty("dsnpAdminPassword"));
-        findElementByXpath(btnLogin).click();
+        explicitVisibilityOfElementLocatedWaitByXpath(txtUsername,10).sendKeys(prop.getProperty("dsnpAdminUsername"));
+        explicitVisibilityOfElementLocatedWaitByXpath(txtPassword,10).sendKeys(prop.getProperty("dsnpAdminPassword"));
+        explicitElementClickableWaitByXpath(btnLogin,10).click();
     }
 
     public void userLoginTextForAdmin()
     {
-        WebElement element = explicitElementClickableWaitByID(lnkUsername, 10);
+        WebElement element = explicitElementClickableWaitByID(lnkUsername, 30);
         adminUsername = element.getText();
         System.out.println("User logged in as : " + adminUsername);
     }
