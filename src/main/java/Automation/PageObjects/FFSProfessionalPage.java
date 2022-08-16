@@ -21,7 +21,11 @@ public class FFSProfessionalPage extends SeleniumUtils {
     String eleCOBInMemberHouseInfoTopGrid = "//span[@class='ColorBall_COBInMemberHouse']//following::span[contains(text(),'COB (In Member House)')]";
     String eleCOBNotInMemberHouseInfoTopGrid = "//span[@class='ColorBall_COB_NoninMemberHouse']//following::span[contains(text(),'COB (Not in Member House)')]";
     String lstColumnFields = "//ag-grid-angular[@id='pendGrid']//div[@class='ag-header-cell-label']//span[text()]";
-    String lstColumnFieldsExtra = "//ag-grid-angular[@id='pendGrid']//div[@class='ag-header-cell-label']//span[text()]";
+    String eleNetPayAmount = "//*[@id='pendGrid']//span[text()='Net Pay Amt($)']";
+    String eleTotalPayment = "//*[@id='pendGrid']//span[contains(text(),'Total Charges($)')]";
+    String eleReceivedDate = "//*[@id='pendGrid']//span[text()='Received Date']";
+    String eleAge = "//*[@id='pendGrid']//span[text()='Age']";
+    String eleAssignedTo = "//*[@id='pendGrid']//span[text()='Assigned To']";
     String tabPendState = "(//button[@class='nav-link active'])[1]";
     String lstQueues = "//div[@id='nav-tab']//button";
     String elePendQueuePage = "(//span[@class='ag-cell-value']//app-view-claim-render)[1]";
@@ -51,6 +55,21 @@ public class FFSProfessionalPage extends SeleniumUtils {
     String eleClaimSummary = "//div[@class='claim-summary']";
     String tabFFSProfessionalDefault = "//div[@class='col ng-star-inserted default-tab' and contains(text(),'FFS Professional')]";
     String tabViewClaimDefault = "//div[@class='col ng-star-inserted default-tab' and contains(text(),'View')]";
+    String txtMemberId = "//*[@id='pendGrid']//input[@aria-label='Member ID Filter Input']";
+    String eleMemberId = "(//*[@id='pendGrid']//div[@col-id='subscriberId']//span[@class='ag-cell-value'])[1]";
+    String eleTotalMemberIdRecords = "//*[@id='pendGrid']//div[@col-id='subscriberId']//span[@class='ag-cell-value']";
+    String eleTotalResults = "//*[@id='pendGrid']//span[@class='ag-paging-row-summary-panel']";
+    String elePaginationDescription = "//*[@id='pendGrid']//span[@class='ag-paging-description']";
+    String tabOnHold = "//button[@id='nav-onhold-details-tab']";
+    String eleOnHoldPaginationDescription = "//*[@id='onHoldGrid']//span[@class='ag-paging-description']";
+    String btnNextPage = "//*[@id='onHoldGrid']//span[@class='ag-icon ag-icon-next']";
+    String btnPreviousPage = "//*[@id='onHoldGrid']//span[@class='ag-icon ag-icon-previous']";
+    String txtSearchFields = "//*[@id='pendGrid']//input[@class='ag-input-field-input ag-text-field-input']";
+    String txtReceivedDateSearchField = "//*[@id='pendGrid']//input[@aria-label='Received Date Filter Input']";
+    String txtAgeSearchField = "//*[@id='pendGrid']//input[@aria-label='Age Filter Input']";
+    String txtAssignedToSearchField = "//*[@id='pendGrid']//input[@aria-label='Assigned To Filter Input']";
+
+
 
 
 
@@ -59,8 +78,11 @@ public class FFSProfessionalPage extends SeleniumUtils {
 
 
     private static String expClaimNumber = "";
-
-
+    private static String expMemberId = "";
+    private static int totalRecords = 0;
+    private static int pageNumber = 0;
+    private static int pageNumberNextNavigation = 0;
+    private static String expPaginationMemberId = "";
 
 
     //Verify color code for corrected claims in FFS Professional page
@@ -68,9 +90,10 @@ public class FFSProfessionalPage extends SeleniumUtils {
         explicitVisibilityOfWait(findElementByXpath(lnkFFSProfessional), 5);
         clickElement(lnkFFSProfessional);
     }
-    public void verifyFFSProfessionalPage(){
+    public void verifyFFSProfessionalPage() throws InterruptedException {
         boolean value = isDisplayed(tabFFSProfessional);
         Assert.assertTrue(value);
+        threadSleep(30000);
 
     }
     public void enterCorrectedClaimNumberInFFSProfessionalSearchField() throws InterruptedException {
@@ -312,8 +335,6 @@ public class FFSProfessionalPage extends SeleniumUtils {
         Assert.assertEquals(expColorIndication, actColorCode);
     }
 
-
-
     //Scenario: Validate user able to view all the column fields for Pend bucket in FFS Professional screen
     public void verifyPendStateByDefault(String expState) throws InterruptedException{
         threadSleep(20000);
@@ -326,7 +347,6 @@ public class FFSProfessionalPage extends SeleniumUtils {
 
 
     }
-
     public void verifyFFSProfessionalPendColumnFields(DataTable columnList) throws InterruptedException {
         List<String> expColumnList = columnList.asList();
         List<WebElement> actColumnFields = findElementsByXpath(lstColumnFields);
@@ -346,6 +366,26 @@ public class FFSProfessionalPage extends SeleniumUtils {
                 Assert.fail(expColumn + " column is not as expected");
             }
         }
+    }
+    public void verifyNetPayAmountColumn(String expNetPayAmount){
+        String actNetPayAmount=findElementByXpath(eleNetPayAmount).getText();
+        System.out.println("actNetPayAmount :"+actNetPayAmount);
+        Assert.assertEquals(expNetPayAmount,actNetPayAmount);
+    }
+    public void verifyReceivedDateColumn(String expReceivedDate){
+        String actReceivedDate=findElementByXpath(eleReceivedDate).getText();
+        System.out.println("actReceivedDate :"+actReceivedDate);
+        Assert.assertEquals(expReceivedDate,actReceivedDate);
+    }
+    public void verifyAgeColumn(String expAge){
+        String actAge=findElementByXpath(eleAge).getText();
+        System.out.println("actAge :"+actAge);
+        Assert.assertEquals(expAge,actAge);
+    }
+    public void verifyAssignedToColumn(String expAssignedTo){
+        String actAssignedTo=findElementByXpath(eleAssignedTo).getText();
+        System.out.println("actAssignedTo :"+actAssignedTo);
+        Assert.assertEquals(expAssignedTo,actAssignedTo);
     }
 
     public void verifyQueuesInFFSProfessional(DataTable queueList) throws InterruptedException{
@@ -383,6 +423,121 @@ public class FFSProfessionalPage extends SeleniumUtils {
         threadSleep(20000);
         boolean value=isDisplayed(elePendQueuePage);
         Assert.assertTrue(value);
+    }
+
+    //Scenario: Validate pagination in FFS Professional page
+    public void enterMemberIdInSearchFieldForPaginationInFFSProfessional() throws InterruptedException {
+        threadSleep(30000);
+        expMemberId = prop.getProperty("ffsPaginationMemberId");
+        findElementAndSendKeys(findElementByXpath(txtMemberId), expMemberId);
+        threadSleep(3000);
+    }
+    public void validateMemberIDResultInFFSProfessional() {
+        explicitVisibilityOfWait(findElementByXpath(eleMemberId), 5);
+        String actMemberId = getText(eleMemberId);
+        System.out.println("actual member id :" + actMemberId);
+        Assert.assertEquals(expMemberId, actMemberId);
+    }
+    public void getAllMemberIdResults() {
+        List<WebElement> memberIDResults = findElementsByXpath(eleTotalMemberIdRecords);
+        totalRecords = memberIDResults.size();
+        System.out.println("Total records " + memberIDResults.size());
+    }
+
+    public void verifyTotalResultsForGivenSearch() {
+        String paginationText = findElementByXpath(eleTotalResults).getText();
+        System.out.println("Pagination text " + paginationText);
+        String[] totalResultsCount = paginationText.split(" ");
+        System.out.println(totalResultsCount[4]);
+        if (totalRecords == Integer.parseInt(totalResultsCount[4])) {
+            Assert.assertTrue(true);
+            System.out.println("Pagination text is having the total no of records in the grid");
+        } else {
+            Assert.assertTrue(false);
+        }
+    }
+    //Scenario: Verify user see the page numbers as per the no of data divided by pages size
+    public void verifyPageSizeDividedByNoOfRecordsInTheGrid() {
+        String pagination = findElementByXpath(elePaginationDescription).getText();
+        String[] paginationCount = pagination.split(" ");
+        System.out.println("Page count " + paginationCount[3]);
+        if (totalRecords <= 50) {
+            Assert.assertEquals(1, Integer.parseInt(paginationCount[3]));
+            System.out.println("Page count defined as per no of records : " + Integer.parseInt(paginationCount[3]));
+        }
+    }
+
+    //Scenario: Verify user able to navigate through pages by using Pagination functionality
+    public void clickOnOnHold(){
+        clickElement(tabOnHold);
+    }
+    public void verifyPageNumbersAtBottomOfPage() throws InterruptedException {
+        threadSleep(10000);
+        String pagination = findElementByXpath(eleOnHoldPaginationDescription).getText();
+        String[] paginationCount = pagination.split(" ");
+        System.out.println("Page count " + Integer.parseInt(paginationCount[3]));
+        pageNumber = Integer.parseInt(paginationCount[1]);
+        if (Integer.parseInt(paginationCount[3]) >= 1) {
+            Assert.assertTrue(true);
+        }
+    }
+
+    public void clickOnNextButton() {
+        clickElement(btnNextPage);
+    }
+
+    public void verifyUserNavigatesToNextPage() {
+        String pagination = findElementByXpath(eleOnHoldPaginationDescription).getText();
+        String[] paginationCount = pagination.split(" ");
+        pageNumberNextNavigation = Integer.parseInt(paginationCount[1]);
+        System.out.println("Page number " + pageNumberNextNavigation);
+        if (pageNumberNextNavigation > pageNumber) {
+            Assert.assertTrue(true);
+        } else {
+            Assert.assertTrue(false);
+        }
+
+    }
+
+    public void clickOnPreviousButton() {
+        clickElement(btnPreviousPage);
+    }
+
+    public void verifyUserNavigatesToPreviousPage() {
+        String pagination = findElementByXpath(eleOnHoldPaginationDescription).getText();
+        String[] paginationCount = pagination.split(" ");
+        int pageNumberPreviousNavigation = Integer.parseInt(paginationCount[1]);
+        System.out.println("Page number " + pageNumberPreviousNavigation);
+        if (pageNumberNextNavigation > pageNumberPreviousNavigation) {
+            Assert.assertTrue(true);
+        } else {
+            Assert.assertTrue(false);
+        }
+    }
+
+    //Scenario: Verify user able to view the search fields under each columns in the FFS Professional screen
+    public void verifySearchFieldsUnderEachColumnInFFSProfessional() {
+        List<WebElement> ActCSearchFields = findElementsByXpath(txtSearchFields);
+        for (WebElement column : ActCSearchFields) {
+            scrollIntoView(column, driver);
+            boolean value = column.isDisplayed();
+            Assert.assertTrue(value);
+        }
+    }
+    public void verifyReceivedDateSearchField() throws InterruptedException {
+        threadSleep(10000);
+        scrollIntoView(findElementByXpath(eleTotalPayment),driver);
+        scrollIntoView(findElementByXpath(eleNetPayAmount),driver);
+        Assert.assertTrue(isDisplayed(txtReceivedDateSearchField));
+    }
+
+    public void verifyAgeSearchField(){
+        scrollIntoView(findElementByXpath(txtAgeSearchField),driver);
+        Assert.assertTrue(isDisplayed(txtAgeSearchField));
+    }
+    public void verifyAssignedToSearchField(){
+        scrollIntoView(findElementByXpath(txtAssignedToSearchField),driver);
+        Assert.assertTrue(isDisplayed(txtAssignedToSearchField));
     }
 
 
