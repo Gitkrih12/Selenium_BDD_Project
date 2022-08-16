@@ -19,7 +19,7 @@ Feature: Provider Details
       | Group/Rendering Provider Details |
 
   @39958
-  @Sanity
+#  @Sanity
   Scenario: Verify user able to view all the fields under Pay to Provider Details section
     When user clicking on Claim Number in Global Search page
     And user clicks on the Provider Details tab
@@ -37,7 +37,7 @@ Feature: Provider Details
       | Zipcode              |
 
   @39961
-  @Sanity
+#  @Sanity
   Scenario: Verify user able to view all the fields under Group/Rendering Provider Details section
     When user clicking on Claim Number in Global Search page
     And user clicks on the Provider Details tab
@@ -66,7 +66,7 @@ Feature: Provider Details
       | Update Auth       |
 
   @48990
-  @Sanity
+#  @Sanity
   Scenario: Verify the user able to navigate to the A/R Transactions page on clicking Vendor ID in Provider details tab view
     When user clicking on Claim Number in Global Search page
     And user clicks on the Provider Details tab
