@@ -22,6 +22,7 @@ Feature: Service Details
       | Payable Amount         |
       | ICD Indicator          |
       | ICD Codes              |
+    And user able to view all the field values in Service Details page
 
   @37694
   @Sanity
@@ -51,6 +52,7 @@ Feature: Service Details
       | Adjudication Status |
       | Status              |
       | PBP                 |
+    And user able to view all the field values in Service Line fields
 
   @37695
   Scenario: Verify footer section available in Service details tab

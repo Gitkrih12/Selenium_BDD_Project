@@ -31,10 +31,20 @@ public class ProviderDetailsStepDef extends ProviderDetailsPage {
         userViewsFieldsUnderPayToProviderDetailsSection(fieldsUnderPayToProviderDetails);
     }
 
+    @Then("user able to view all the field values under Pay to Provider Details section")
+    public void user_able_to_view_all_the_field_values_under_pay_to_provider_details_section() throws InterruptedException {
+        userViewsFieldValuesUnderPayToProviderDetails();
+    }
+
     //  Scenario: Verify user able to view all the fields under Group/Rendering Provider Details section
     @Then("user able to view all the fields under Group Rendering Provider Details section")
     public void user_able_to_view_all_the_fields_under_group_rendering_provider_details_section(DataTable fieldsUnderGroupRendering) {
         userViewsFieldsUnderGroupRenderingProviderDetailsSection(fieldsUnderGroupRendering);
+    }
+
+    @Then("user able view all the field values under Group Rendering Provider Details section")
+    public void user_able_view_all_the_field_values_under_group_rendering_provider_details_section() throws InterruptedException {
+        userViewsFieldValuesUnderGroupRenderingProviderDetails();
     }
 
     //  Scenario: Validate all the buttons available at the footer section under Provider Details tab
