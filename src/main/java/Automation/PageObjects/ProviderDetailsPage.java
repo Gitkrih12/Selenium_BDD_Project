@@ -5,9 +5,7 @@ import io.cucumber.datatable.DataTable;
 import org.junit.Assert;
 import org.openqa.selenium.WebElement;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class ProviderDetailsPage extends SeleniumUtils {
@@ -23,7 +21,8 @@ public class ProviderDetailsPage extends SeleniumUtils {
     String labelDebitUnderPaidStatus = "(//*[contains(@class, 'claims-list')])[3]";
     String lstArTransactionFields = "//*[@role='columnheader']//span[text()]";
     String txtSearchFieldsForAR = "//*[@class = 'ag-floating-filter-input']";
-
+    String lstPayToProviderDetailsValues = "//app-providerdetails//div[contains(@class, 'col-3')]//b";
+    String lstGroupRenderingProviderDetailsValues = "//*[@class='table table-striped']//tr//td//div";
 
 
     // Scenario: Verify user able to navigate to the Provider details tab in the View Claims Form page
@@ -45,7 +44,7 @@ public class ProviderDetailsPage extends SeleniumUtils {
         System.out.println("Size: " + ActFields.size());
         System.out.println("Pay to Provider fields and Group/Rendering Provider details are displayed:" + ActFields);
         System.out.println("Expected fields are: " + sectionsExp);
-        Assert.assertEquals(ActFields, sectionsExp);
+        Assert.assertEquals(sectionsExp, ActFields);
     }
 
     //  Scenario: Verify user able to view all the fields under Pay to Provider Details section
@@ -56,7 +55,62 @@ public class ProviderDetailsPage extends SeleniumUtils {
         System.out.println("Size: " + ActFields.size());
         System.out.println("Pay to Provider fields are displayed:" + ActFields);
         System.out.println("Expected fields are: " + fieldsExp);
-        Assert.assertEquals(ActFields, fieldsExp);
+        Assert.assertEquals(fieldsExp, ActFields);
+    }
+
+    public void userViewsFieldValuesUnderPayToProviderDetails() throws InterruptedException {
+        threadSleep(2000);
+        HashMap<String, String> testValues = new HashMap<String, String>();
+        testValues.put("Pay to Provider ID", "VEN00000673");
+        testValues.put("Pay to Provider Name", "mxs zeybq vkmsnow cvkdszcyr idscbofsxe");
+        testValues.put("Tax ID/SSN", "249411735");
+        testValues.put("NPI", "8876210874");
+        testValues.put("Vendor ID", "V0000000039");
+        testValues.put("Vendor Validated", "Validated");
+        testValues.put("Address Line 1", "ofK nsvmeO 33444");
+        testValues.put("Address Line 2", "-");
+        testValues.put("City", "nxkvofovM");
+        testValues.put("State", "RY");
+        testValues.put("Zipcode", "940493477");
+
+        HashMap<String, String> uatValues = new HashMap<>();
+        uatValues.put("Pay to Provider ID", "VEN00001354");
+        uatValues.put("Pay to Provider Name", "PINNACLE CARE PROVIDERS LLC");
+        uatValues.put("Tax ID/SSN", "270204369");
+        uatValues.put("NPI", "1578799417");
+        uatValues.put("Vendor ID", "V0000000070");
+        uatValues.put("Vendor Validated", "Validated");
+        uatValues.put("Address Line 1", "4580 Stephens Cir NW Ste 202");
+        uatValues.put("Address Line 2", "-");
+        uatValues.put("City", "Canton");
+        uatValues.put("State", "OH");
+        uatValues.put("Zipcode", "447183645");
+
+        if (environment.contains("test")) {
+            List<String> fieldsExp = testValues.values().stream().collect(Collectors.toList());
+            List<String> ActValues = findElementsByXpath(lstPayToProviderDetailsValues)
+                    .stream().map((e) -> e.getText().trim()).collect(Collectors.toList());
+            System.out.println("Size:" + ActValues.size());
+            for (String exp : fieldsExp) {
+                if (ActValues.contains(exp)) {
+                    Assert.assertTrue(true);
+                } else {
+                    Assert.fail(exp + " is not listed in actual list");
+                }
+            }
+        } else {
+            List<String> fieldsExp = uatValues.values().stream().collect(Collectors.toList());
+            List<String> ActValues = findElementsByXpath(lstPayToProviderDetailsValues)
+                    .stream().map((e) -> e.getText().trim()).collect(Collectors.toList());
+            System.out.println("Size:" + ActValues.size());
+            for (String exp : fieldsExp) {
+                if (ActValues.contains(exp)) {
+                    Assert.assertTrue(true);
+                } else {
+                    Assert.fail(exp + " is not listed in actual list");
+                }
+            }
+        }
     }
 
     //  Scenario: Verify user able to view all the fields under Group/Rendering Provider Details section
@@ -67,7 +121,62 @@ public class ProviderDetailsPage extends SeleniumUtils {
         System.out.println("Size: " + ActFields.size());
         System.out.println("Group/Rendering Provider Details Fields should display:" + ActFields);
         System.out.println("Expected fields are: " + fieldsExp);
-        Assert.assertEquals(ActFields, fieldsExp);
+        Assert.assertEquals(fieldsExp, ActFields);
+    }
+
+    public void userViewsFieldValuesUnderGroupRenderingProviderDetails() throws InterruptedException {
+        threadSleep(2000);
+        HashMap<String, String> testValues = new HashMap<String, String>();
+        testValues.put("NPI", "870551784");
+        testValues.put("Name", "wkbusF zkirckU");
+        testValues.put("Address", "-");
+        testValues.put("Effective Date", "01/01/2020");
+        testValues.put("Termination Date", "12/31/9999");
+        testValues.put("Timely Filling", "-");
+        testValues.put("Sequestration", "-");
+        testValues.put("ProviderID", "PRO000001806");
+        testValues.put("Contract Name", "MCR_100");
+
+        HashMap<String, String> uatValues = new HashMap<>();
+        uatValues.put("NPI", "1245601103");
+        uatValues.put("Name", "Jacqueline Croston");
+        uatValues.put("Address", "-");
+        uatValues.put("Effective Date", "09/01/2018");
+        uatValues.put("Termination Date", "12/31/9999");
+        uatValues.put("Timely Filling", "-");
+        uatValues.put("Sequestration", "-");
+        uatValues.put("ProviderID", "PRO000001324");
+        uatValues.put("Contract Name", "MCR_100");
+
+        if (environment.contains("test")) {
+            List<String> fieldsExp = testValues.values().stream().collect(Collectors.toList());
+            List<String> ActValues = findElementsByXpath(lstGroupRenderingProviderDetailsValues)
+                    .stream().map((e) -> e.getText().trim()).collect(Collectors.toList());
+            System.out.println("Size:" + ActValues.size());
+            int expValue = 3;
+            Assert.assertEquals(expValue, Collections.frequency(ActValues, "-"));
+            for (String exp : fieldsExp) {
+                if (ActValues.contains(exp)) {
+                    Assert.assertTrue(true);
+                } else {
+                    Assert.fail(exp + " is not listed in actual list");
+                }
+            }
+        } else {
+            List<String> fieldsExp = uatValues.values().stream().collect(Collectors.toList());
+            List<String> ActValues = findElementsByXpath(lstGroupRenderingProviderDetailsValues)
+                    .stream().map((e) -> e.getText().trim()).collect(Collectors.toList());
+            System.out.println("Size:" + ActValues.size());
+            int expValue = 3;
+            Assert.assertEquals(expValue, Collections.frequency(ActValues, "-"));
+            for (String exp : fieldsExp) {
+                if (ActValues.contains(exp)) {
+                    Assert.assertTrue(true);
+                } else {
+                    Assert.fail(exp + " is not listed in actual list");
+                }
+            }
+        }
     }
 
     //  Scenario: Validate all the buttons available at the footer section under Provider Details tab
@@ -78,7 +187,7 @@ public class ProviderDetailsPage extends SeleniumUtils {
         System.out.println("Size: " + ActFields.size());
         System.out.println("Footer fields should display:" + ActFields);
         System.out.println("Expected fields are: " + fieldsExp);
-        Assert.assertEquals(ActFields, fieldsExp);
+        Assert.assertEquals(fieldsExp, ActFields);
     }
 
     public void clickOnVendorId() throws InterruptedException {
