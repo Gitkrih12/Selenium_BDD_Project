@@ -6,6 +6,7 @@ import org.junit.Assert;
 import org.openqa.selenium.WebElement;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -155,6 +156,9 @@ public class ClaimDetailsPage extends SeleniumUtils {
             List<String> ActValues = findElementsByXpath(lstClaimSummaryValues)
                     .stream().map((e) -> e.getText().trim()).collect(Collectors.toList());
             System.out.println("Size:" + ActValues.size());
+            int expValue1 = 2;
+            Assert.assertEquals(expValue1, Collections.frequency(ActValues, "03/05/2022"));
+            Assert.assertEquals(expValue1, Collections.frequency(ActValues, "mxs zeybq vkmsnow cvkdszcyr idscbofsxe"));
             for (String exp : fieldsExp) {
                 if (ActValues.contains(exp)) {
                     Assert.assertTrue(true);
@@ -167,6 +171,9 @@ public class ClaimDetailsPage extends SeleniumUtils {
             List<String> ActValues = findElementsByXpath(lstClaimSummaryValues)
                     .stream().map((e) -> e.getText().trim()).collect(Collectors.toList());
             System.out.println("Size:" + ActValues.size());
+            int expValue1 = 2;
+            Assert.assertEquals(expValue1, Collections.frequency(ActValues, "12/02/2021"));
+            Assert.assertEquals(expValue1, Collections.frequency(ActValues, "PINNACLE CARE PROVIDERS LLC"));
             for (String exp : fieldsExp) {
                 if (ActValues.contains(exp)) {
                     Assert.assertTrue(true);
@@ -305,6 +312,8 @@ public class ClaimDetailsPage extends SeleniumUtils {
             List<String> ActValues = findElementsByXpath(lstClaimInformationValues)
                     .stream().map((e) -> e.getText().trim()).collect(Collectors.toList());
             System.out.println("Size:" + ActValues.size());
+            int expValue = 2;
+            Assert.assertEquals(expValue, Collections.frequency(ActValues, "PAID"));
             for (String exp : fieldsExp) {
                 if (ActValues.contains(exp)) {
                     Assert.assertTrue(true);
@@ -317,6 +326,8 @@ public class ClaimDetailsPage extends SeleniumUtils {
             List<String> ActValues = findElementsByXpath(lstClaimInformationValues)
                     .stream().map((e) -> e.getText().trim()).collect(Collectors.toList());
             System.out.println("Size:" + ActValues.size());
+            int expValue = 2;
+            Assert.assertEquals(expValue, Collections.frequency(ActValues, "PAID"));
             for (String exp : fieldsExp) {
                 if (ActValues.contains(exp)) {
                     Assert.assertTrue(true);
@@ -387,6 +398,12 @@ public class ClaimDetailsPage extends SeleniumUtils {
             List<String> ActValues = findElementsByXpath(lstPaymentInformationValues)
                     .stream().map((e) -> e.getText().trim()).collect(Collectors.toList());
             System.out.println("Size:" + ActValues.size());
+            int expValue1 = 2;
+            int expValue2 = 4;
+            int expValue3 = 3;
+            Assert.assertEquals(expValue1, Collections.frequency(ActValues, "06/24/2022"));
+            Assert.assertEquals(expValue2, Collections.frequency(ActValues, "-"));
+            Assert.assertEquals(expValue3, Collections.frequency(ActValues, "$0"));
             for (String exp : fieldsExp) {
                 if (ActValues.contains(exp)) {
                     Assert.assertTrue(true);
@@ -399,6 +416,11 @@ public class ClaimDetailsPage extends SeleniumUtils {
             List<String> ActValues = findElementsByXpath(lstPaymentInformationValues)
                     .stream().map((e) -> e.getText().trim()).collect(Collectors.toList());
             System.out.println("Size:" + ActValues.size());
+            int expValue1 = 2;
+            int expValue2 = 4;
+            Assert.assertEquals(expValue1, Collections.frequency(ActValues, "06/07/2022"));
+            Assert.assertEquals(expValue2, Collections.frequency(ActValues, "-"));
+            Assert.assertEquals(expValue2, Collections.frequency(ActValues, "$0"));
             for (String exp : fieldsExp) {
                 if (ActValues.contains(exp)) {
                     Assert.assertTrue(true);
@@ -481,6 +503,8 @@ public class ClaimDetailsPage extends SeleniumUtils {
             List<String> ActValues = findElementsByXpath(lstMemberInformationValues)
                     .stream().map((e) -> e.getText().trim()).collect(Collectors.toList());
             System.out.println("Size:" + ActValues.size());
+            int expValue = 3;
+            Assert.assertEquals(expValue, Collections.frequency(ActValues, "-"));
             for (String exp : fieldsExp) {
                 if (ActValues.contains(exp)) {
                     Assert.assertTrue(true);
@@ -493,6 +517,8 @@ public class ClaimDetailsPage extends SeleniumUtils {
             List<String> ActValues = findElementsByXpath(lstMemberInformationValues)
                     .stream().map((e) -> e.getText().trim()).collect(Collectors.toList());
             System.out.println("Size:" + ActValues.size());
+            int expValue = 4;
+            Assert.assertEquals(expValue, Collections.frequency(ActValues, "-"));
             for (String exp : fieldsExp) {
                 if (ActValues.contains(exp)) {
                     Assert.assertTrue(true);
@@ -617,6 +643,8 @@ public class ClaimDetailsPage extends SeleniumUtils {
             List<String> ActValues = findElementsByXpath(lstBillingProviderInfoValues)
                     .stream().map((e) -> e.getText().trim()).collect(Collectors.toList());
             System.out.println("Size:" + ActValues.size());
+            int expValue = 4;
+            Assert.assertEquals(expValue, Collections.frequency(ActValues, "-"));
             for (String exp : fieldsExp) {
                 if (ActValues.contains(exp)) {
                     Assert.assertTrue(true);
@@ -629,6 +657,8 @@ public class ClaimDetailsPage extends SeleniumUtils {
             List<String> ActValues = findElementsByXpath(lstBillingProviderInfoValues)
                     .stream().map((e) -> e.getText().trim()).collect(Collectors.toList());
             System.out.println("Size:" + ActValues.size());
+            int expValue = 4;
+            Assert.assertEquals(expValue, Collections.frequency(ActValues, "-"));
             for (String exp : fieldsExp) {
                 if (ActValues.contains(exp)) {
                     Assert.assertTrue(true);
@@ -685,6 +715,8 @@ public class ClaimDetailsPage extends SeleniumUtils {
             List<String> ActValues = findElementsByXpath(lstPayerValues)
                     .stream().map((e) -> e.getText().trim()).collect(Collectors.toList());
             System.out.println("Size:" + ActValues.size());
+            int expValue = 2;
+            Assert.assertEquals(expValue, Collections.frequency(ActValues, "VALOR HEALTH PLAN"));
             for (String exp : fieldsExp) {
                 if (ActValues.contains(exp)) {
                     Assert.assertTrue(true);
@@ -697,6 +729,8 @@ public class ClaimDetailsPage extends SeleniumUtils {
             List<String> ActValues = findElementsByXpath(lstPayerValues)
                     .stream().map((e) -> e.getText().trim()).collect(Collectors.toList());
             System.out.println("Size:" + ActValues.size());
+            int expValue = 5;
+            Assert.assertEquals(expValue, Collections.frequency(ActValues, "-"));
             for (String exp : fieldsExp) {
                 if (ActValues.contains(exp)) {
                     Assert.assertTrue(true);
@@ -747,6 +781,8 @@ public class ClaimDetailsPage extends SeleniumUtils {
             List<String> ActValues = findElementsByXpath(lstDateOfServiceSectionValues)
                     .stream().map((e) -> e.getText().trim()).collect(Collectors.toList());
             System.out.println("Size:" + ActValues.size());
+            int expValue = 2;
+            Assert.assertEquals(expValue, Collections.frequency(ActValues, "03/05/2022"));
             for (String exp : fieldsExp) {
                 if (ActValues.contains(exp)) {
                     Assert.assertTrue(true);
@@ -759,6 +795,8 @@ public class ClaimDetailsPage extends SeleniumUtils {
             List<String> ActValues = findElementsByXpath(lstDateOfServiceSectionValues)
                     .stream().map((e) -> e.getText().trim()).collect(Collectors.toList());
             System.out.println("Size:" + ActValues.size());
+            int expValue = 2;
+            Assert.assertEquals(expValue, Collections.frequency(ActValues, "12/02/2021"));
             for (String exp : fieldsExp) {
                 if (ActValues.contains(exp)) {
                     Assert.assertTrue(true);

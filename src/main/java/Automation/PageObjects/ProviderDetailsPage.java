@@ -5,10 +5,7 @@ import io.cucumber.datatable.DataTable;
 import org.junit.Assert;
 import org.openqa.selenium.WebElement;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class ProviderDetailsPage extends SeleniumUtils {
@@ -47,7 +44,7 @@ public class ProviderDetailsPage extends SeleniumUtils {
         System.out.println("Size: " + ActFields.size());
         System.out.println("Pay to Provider fields and Group/Rendering Provider details are displayed:" + ActFields);
         System.out.println("Expected fields are: " + sectionsExp);
-        Assert.assertEquals(ActFields, sectionsExp);
+        Assert.assertEquals(sectionsExp, ActFields);
     }
 
     //  Scenario: Verify user able to view all the fields under Pay to Provider Details section
@@ -58,7 +55,7 @@ public class ProviderDetailsPage extends SeleniumUtils {
         System.out.println("Size: " + ActFields.size());
         System.out.println("Pay to Provider fields are displayed:" + ActFields);
         System.out.println("Expected fields are: " + fieldsExp);
-        Assert.assertEquals(ActFields, fieldsExp);
+        Assert.assertEquals(fieldsExp, ActFields);
     }
 
     public void userViewsFieldValuesUnderPayToProviderDetails() throws InterruptedException {
@@ -124,7 +121,7 @@ public class ProviderDetailsPage extends SeleniumUtils {
         System.out.println("Size: " + ActFields.size());
         System.out.println("Group/Rendering Provider Details Fields should display:" + ActFields);
         System.out.println("Expected fields are: " + fieldsExp);
-        Assert.assertEquals(ActFields, fieldsExp);
+        Assert.assertEquals(fieldsExp, ActFields);
     }
 
     public void userViewsFieldValuesUnderGroupRenderingProviderDetails() throws InterruptedException {
@@ -156,6 +153,8 @@ public class ProviderDetailsPage extends SeleniumUtils {
             List<String> ActValues = findElementsByXpath(lstGroupRenderingProviderDetailsValues)
                     .stream().map((e) -> e.getText().trim()).collect(Collectors.toList());
             System.out.println("Size:" + ActValues.size());
+            int expValue = 3;
+            Assert.assertEquals(expValue, Collections.frequency(ActValues, "-"));
             for (String exp : fieldsExp) {
                 if (ActValues.contains(exp)) {
                     Assert.assertTrue(true);
@@ -168,6 +167,8 @@ public class ProviderDetailsPage extends SeleniumUtils {
             List<String> ActValues = findElementsByXpath(lstGroupRenderingProviderDetailsValues)
                     .stream().map((e) -> e.getText().trim()).collect(Collectors.toList());
             System.out.println("Size:" + ActValues.size());
+            int expValue = 3;
+            Assert.assertEquals(expValue, Collections.frequency(ActValues, "-"));
             for (String exp : fieldsExp) {
                 if (ActValues.contains(exp)) {
                     Assert.assertTrue(true);
@@ -186,7 +187,7 @@ public class ProviderDetailsPage extends SeleniumUtils {
         System.out.println("Size: " + ActFields.size());
         System.out.println("Footer fields should display:" + ActFields);
         System.out.println("Expected fields are: " + fieldsExp);
-        Assert.assertEquals(ActFields, fieldsExp);
+        Assert.assertEquals(fieldsExp, ActFields);
     }
 
     public void clickOnVendorId() throws InterruptedException {

@@ -2,6 +2,7 @@ package Automation.PageObjects;
 
 import Automation.Utilities.SeleniumUtils;
 import io.cucumber.datatable.DataTable;
+import io.cucumber.java.bs.A;
 import org.junit.Assert;
 import org.openqa.selenium.WebElement;
 
@@ -108,6 +109,8 @@ public class ServiceDetailsPage extends SeleniumUtils {
             List<String> ActValues = findElementsByXpath(lstServiceDetailsValues)
                     .stream().map((e) -> e.getText().trim()).collect(Collectors.toList());
             System.out.println("Size:" + ActValues.size());
+            int expValue = 6;
+            Assert.assertEquals(expValue, Collections.frequency(ActValues, "$0.00"));
             for (String exp : fieldsExp) {
                 if (ActValues.contains(exp)) {
                     Assert.assertTrue(true);
@@ -120,6 +123,8 @@ public class ServiceDetailsPage extends SeleniumUtils {
             List<String> ActValues = findElementsByXpath(lstServiceDetailsValues)
                     .stream().map((e) -> e.getText().trim()).collect(Collectors.toList());
             System.out.println("Size:" + ActValues.size());
+            int expValue = 6;
+            Assert.assertEquals(expValue, Collections.frequency(ActValues, "$0.00"));
             for (String exp : fieldsExp) {
                 if (ActValues.contains(exp)) {
                     Assert.assertTrue(true);
@@ -179,7 +184,6 @@ public class ServiceDetailsPage extends SeleniumUtils {
         testValues.put("Status", "APPROVED");
         testValues.put("PBP", "-");
 
-
         HashMap<String, String> uatValues = new HashMap<>();
         uatValues.put("Line#", "91967");
         uatValues.put("Code", "99308");
@@ -193,7 +197,7 @@ public class ServiceDetailsPage extends SeleniumUtils {
         uatValues.put("A1", "1");
         uatValues.put("B1", "2");
         uatValues.put("C1", "3");
-        uatValues.put("D1", "1");
+        uatValues.put("D1", "-");
         uatValues.put("Unit", "UN");
         uatValues.put("Unit Count", "1");
         uatValues.put("Total Charges($)", "96.00");
@@ -206,6 +210,10 @@ public class ServiceDetailsPage extends SeleniumUtils {
             List<String> ActValues = findElementsByXpath(lstServiceLineFieldValues)
                     .stream().map((e) -> e.getText().trim()).collect(Collectors.toList());
             System.out.println("Size:" + ActValues.size());
+            int expValue1 = 8;
+            int expValue2 = 2;
+            Assert.assertEquals(expValue1, Collections.frequency(ActValues, "-"));
+            Assert.assertEquals(expValue2, Collections.frequency(ActValues, "03/05/2022"));
             for (String exp : fieldsExp) {
                 if (ActValues.contains(exp)) {
                     Assert.assertTrue(true);
@@ -218,6 +226,10 @@ public class ServiceDetailsPage extends SeleniumUtils {
             List<String> ActValues = findElementsByXpath(lstServiceLineFieldValues)
                     .stream().map((e) -> e.getText().trim()).collect(Collectors.toList());
             System.out.println("Size:" + ActValues.size());
+            int expValue1 = 6;
+            int expValue2 = 2;
+            Assert.assertEquals(expValue1, Collections.frequency(ActValues, "-"));
+            Assert.assertEquals(expValue2, Collections.frequency(ActValues, "12/02/2021"));
             for (String exp : fieldsExp) {
                 if (ActValues.contains(exp)) {
                     Assert.assertTrue(true);
