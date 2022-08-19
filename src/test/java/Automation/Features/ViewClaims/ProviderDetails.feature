@@ -35,6 +35,7 @@ Feature: Provider Details
       | City                 |
       | State                |
       | Zipcode              |
+    And user able to view all the field values under Pay to Provider Details section
 
   @39961
 #  @Sanity
@@ -51,6 +52,7 @@ Feature: Provider Details
       | Sequestration    |
       | ProviderID       |
       | Contract Name    |
+    And user able view all the field values under Group Rendering Provider Details section
 
   @39974
   Scenario: Validate all the buttons available at the footer section under Provider Details tab
