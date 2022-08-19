@@ -400,10 +400,9 @@ public class ClaimDetailsPage extends SeleniumUtils {
             System.out.println("Size:" + ActValues.size());
             int expValue1 = 2;
             int expValue2 = 4;
-            int expValue3 = 3;
-            Assert.assertEquals(expValue1, Collections.frequency(ActValues, "06/24/2022"));
+            Assert.assertEquals(expValue1, Collections.frequency(ActValues, "06/07/2022"));
             Assert.assertEquals(expValue2, Collections.frequency(ActValues, "-"));
-            Assert.assertEquals(expValue3, Collections.frequency(ActValues, "$0"));
+            Assert.assertEquals(expValue2, Collections.frequency(ActValues, "$0"));
             for (String exp : fieldsExp) {
                 if (ActValues.contains(exp)) {
                     Assert.assertTrue(true);
@@ -418,9 +417,10 @@ public class ClaimDetailsPage extends SeleniumUtils {
             System.out.println("Size:" + ActValues.size());
             int expValue1 = 2;
             int expValue2 = 4;
-            Assert.assertEquals(expValue1, Collections.frequency(ActValues, "06/07/2022"));
+            int expValue3 = 3;
+            Assert.assertEquals(expValue1, Collections.frequency(ActValues, "06/24/2022"));
             Assert.assertEquals(expValue2, Collections.frequency(ActValues, "-"));
-            Assert.assertEquals(expValue2, Collections.frequency(ActValues, "$0"));
+            Assert.assertEquals(expValue3, Collections.frequency(ActValues, "$0"));
             for (String exp : fieldsExp) {
                 if (ActValues.contains(exp)) {
                     Assert.assertTrue(true);
