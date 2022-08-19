@@ -120,13 +120,18 @@ public class ServiceDetailsPage extends SeleniumUtils {
             }
         } else {
             List<String> fieldsExp = uatValues.values().stream().collect(Collectors.toList());
-            List<String> ActValues = findElementsByXpath(lstServiceDetailsValues)
-                    .stream().map((e) -> e.getText().trim()).collect(Collectors.toList());
-            System.out.println("Size:" + ActValues.size());
+            List<WebElement> ActColumnFields = findElementsByXpath(lstServiceDetailsColumnFields);
+            List<String> columnFieldsForCompare = new ArrayList<>();
+            System.out.println("Size " + ActColumnFields.size());
+            for (WebElement column : ActColumnFields) {
+                scrollIntoView(column, driver);
+                String text = column.getText();
+                columnFieldsForCompare.add(text);
+            }
             int expValue = 6;
-            Assert.assertEquals(expValue, Collections.frequency(ActValues, "$0.00"));
+            Assert.assertEquals(expValue, Collections.frequency(columnFieldsForCompare, "$0.00"));
             for (String exp : fieldsExp) {
-                if (ActValues.contains(exp)) {
+                if (columnFieldsForCompare.contains(exp)) {
                     Assert.assertTrue(true);
                 } else {
                     Assert.fail(exp + " is not listed in actual list");
