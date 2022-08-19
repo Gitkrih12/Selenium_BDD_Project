@@ -110,7 +110,9 @@ public class ServiceDetailsPage extends SeleniumUtils {
                     .stream().map((e) -> e.getText().trim()).collect(Collectors.toList());
             System.out.println("Size:" + ActValues.size());
             int expValue = 6;
+            int expValue2 = 2;
             Assert.assertEquals(expValue, Collections.frequency(ActValues, "$0.00"));
+            Assert.assertEquals(expValue2, Collections.frequency(ActValues, "$32.82"));
             for (String exp : fieldsExp) {
                 if (ActValues.contains(exp)) {
                     Assert.assertTrue(true);
@@ -129,7 +131,9 @@ public class ServiceDetailsPage extends SeleniumUtils {
                 columnFieldsForCompare.add(text);
             }
             int expValue = 6;
+            int expValue2 = 2;
             Assert.assertEquals(expValue, Collections.frequency(columnFieldsForCompare, "$0.00"));
+            Assert.assertEquals(expValue2, Collections.frequency(columnFieldsForCompare, "$52.67"));
             for (String exp : fieldsExp) {
                 if (columnFieldsForCompare.contains(exp)) {
                     Assert.assertTrue(true);
@@ -217,8 +221,10 @@ public class ServiceDetailsPage extends SeleniumUtils {
             System.out.println("Size:" + ActValues.size());
             int expValue1 = 8;
             int expValue2 = 2;
+            int expValue3 = 2;
             Assert.assertEquals(expValue1, Collections.frequency(ActValues, "-"));
             Assert.assertEquals(expValue2, Collections.frequency(ActValues, "03/05/2022"));
+            Assert.assertEquals(expValue3, Collections.frequency(ActValues, "1"));
             for (String exp : fieldsExp) {
                 if (ActValues.contains(exp)) {
                     Assert.assertTrue(true);
@@ -233,8 +239,10 @@ public class ServiceDetailsPage extends SeleniumUtils {
             System.out.println("Size:" + ActValues.size());
             int expValue1 = 6;
             int expValue2 = 2;
+            int expValue3 = 2;
             Assert.assertEquals(expValue1, Collections.frequency(ActValues, "-"));
             Assert.assertEquals(expValue2, Collections.frequency(ActValues, "12/02/2021"));
+            Assert.assertEquals(expValue3, Collections.frequency(ActValues, "1"));
             for (String exp : fieldsExp) {
                 if (ActValues.contains(exp)) {
                     Assert.assertTrue(true);
