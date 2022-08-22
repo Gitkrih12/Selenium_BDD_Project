@@ -113,18 +113,29 @@ Feature: FFS Professional
     And color indication information for Unclean should be available on top of grid in FFS Professional
 
   #38954-As an adjudicator, I should be able to view FFS professional claims page with all claims details data so that I can search specific claim id details adding applicable filters
+  @TC_60398
+  Scenario: Verify user should navigates to FFS Professional screen
+    When user clicks on FFS Professional in left navigation menu
+    Then the user should navigate to the FFS Professional page
+
   @TC_58787
   Scenario: Verify by default user should be in the Pend state in FFS Professional screen
     When user clicks on FFS Professional in left navigation menu
     Then the user should navigate to the FFS Professional page
     And by default user should be in Pend state results page
 
+  @TC_61065
+  Scenario: Verify user should able to see Clam List Label in FFS Professional screen
+    When user clicks on FFS Professional in left navigation menu
+    Then the user should navigate to the FFS Professional page
+    And user should be able to view the Clam List Label in the FFS Professional screen
+
   @TC_39049
   Scenario: Validate user able to view all the column fields for Pend bucket in FFS Professional screen
     When user clicks on FFS Professional in left navigation menu
     Then the user should navigate to the FFS Professional page
     When user views Pend bucket by default should be "active"
-    Then user able to view following column fields
+    Then user able to view following column fields in Pend bucket
       | Claim Number           |
       | Patient                |
       | Member ID              |
@@ -153,7 +164,7 @@ Feature: FFS Professional
       | Draft             |
       | Rejected          |
 
-    @TC_39057
+  @TC_39057
   Scenario: Validate pagination in FFS Professional page
     When user clicks on FFS Professional in left navigation menu
     Then the user should navigate to the FFS Professional page

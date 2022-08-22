@@ -4,22 +4,15 @@ import Automation.Utilities.SeleniumUtils;
 import io.cucumber.datatable.DataTable;
 import org.junit.Assert;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.Color;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
-public class FFSProfessionalPage extends SeleniumUtils {
-    String lnkFFSProfessional = "//div[contains(text(),'FFS Professional')]";
-    String tabFFSProfessional = "(//div[contains(text(),'FFS Professional')])[2]";
-    String txtClaimNumber = "(//input[@aria-label='Claim Number Filter Input'])[1]";
-    String eleClaimNumber = "(//div[@class='ag-pinned-left-cols-container']//a)[1]";
-    String eleVerticalColorForCorrected = "(//div[@col-id='isCorrected']//span)[6]";
-    String eleCorrectedInfoTopGrid = "//div//span[@class='ColorBall']//following::span[contains(text(),'Corrected')]";
-    String elePatientNameColorCode = "((//div[contains(@class,'ag-cell ag-cell-not-inline-editing ag-cell-normal-height') and @col-id='memberFullName'])[1]//span)[3]";
-    String eleCOBInMemberHouseInfoTopGrid = "//span[@class='ColorBall_COBInMemberHouse']//following::span[contains(text(),'COB (In Member House)')]";
-    String eleCOBNotInMemberHouseInfoTopGrid = "//span[@class='ColorBall_COB_NoninMemberHouse']//following::span[contains(text(),'COB (Not in Member House)')]";
+public class CAPProfessionalPage extends SeleniumUtils {
+    String lnkCAPProfessional = "//div[contains(text(),'CAP Professional')]";
+    String tabCAPProfessional = "(//div[contains(text(),'CAP Professional')])[2]";
+    String elePendQueuePage = "(//span[@class='ag-cell-value']//app-view-claim-render)[1]";
+    String eleClaimList = "//div//*[text()='Claim List']";
     String lstColumnFields = "//ag-grid-angular[@id='pendGrid']//div[@class='ag-header-cell-label']//span[text()]";
     String eleNetPayAmount = "//*[@id='pendGrid']//span[text()='Net Pay Amt($)']";
     String eleTotalCharges = "//*[@id='pendGrid']//span[contains(text(),'Total Charges($)')]";
@@ -28,8 +21,14 @@ public class FFSProfessionalPage extends SeleniumUtils {
     String eleAssignedTo = "//*[@id='pendGrid']//span[text()='Assigned To']";
     String tabPendState = "(//button[@class='nav-link active'])[1]";
     String lstQueues = "//div[@id='nav-tab']//button";
-    String elePendQueuePage = "(//span[@class='ag-cell-value']//app-view-claim-render)[1]";
-    String eleClaimList = "//div//*[text()='Claim List']";
+    String txtClaimNumber = "(//input[@aria-label='Claim Number Filter Input'])[1]";
+    String eleClaimNumber = "(//div[@class='ag-pinned-left-cols-container']//a)[1]";
+    String eleVerticalColorForCorrected = "(//div[@col-id='isCorrected']//span)[6]";
+    String eleCorrectedInfoTopGrid = "//div//span[@class='ColorBall']//following::span[contains(text(),'Corrected')]";
+    String elePatientNameColorCode = "((//div[contains(@class,'ag-cell ag-cell-not-inline-editing ag-cell-normal-height') and @col-id='memberFullName'])[1]//span)[3]";
+    String eleCOBInMemberHouseInfoTopGrid = "//span[@class='ColorBall_COBInMemberHouse']//following::span[contains(text(),'COB (In Member House)')]";
+    String eleCOBNotInMemberHouseInfoTopGrid = "//span[@class='ColorBall_COB_NoninMemberHouse']//following::span[contains(text(),'COB (Not in Member House)')]";
+    String tabCAPProfessionalDefault = "//div[@class='col ng-star-inserted default-tab' and contains(text(),'CAP Professional')]";
     String eleVerticalColorForUncleanPendClaim = "(//div[@col-id='IsClean']//span)[6]";
     String eleUncleanInfoTopGrid = "//div//span[@class='ColorBall_UnClean']//following::span[contains(text(),'Un-clean')]";
     String tabPayerReview = "//button[@id='nav-payerreview-details-tab']";
@@ -52,10 +51,6 @@ public class FFSProfessionalPage extends SeleniumUtils {
     String txtPreBatchClaimNumber = "(//input[@aria-label='Claim Number Filter Input'])[7]";
     String elePreBatchClaimNumber="//*[@id='prebatchdGrid']//div[contains(@class,'ag-cell-last-left-pinned')]//a";
     String eleVerticalColorForUncleanPreBatchClaim = "(//*[@id='prebatchdGrid']//div[contains(@class,'ag-cell-normal-height')]//span)[4]";
-    String tabViewClaim = "//div[@class='col ng-star-inserted active-tab']";
-    String eleClaimSummary = "//div[@class='claim-summary']";
-    String tabFFSProfessionalDefault = "//div[@class='col ng-star-inserted default-tab' and contains(text(),'FFS Professional')]";
-    String tabViewClaimDefault = "//div[@class='col ng-star-inserted default-tab' and contains(text(),'View')]";
     String txtMemberId = "//*[@id='pendGrid']//input[@aria-label='Member ID Filter Input']";
     String eleMemberId = "(//*[@id='pendGrid']//div[@col-id='subscriberId']//span[@class='ag-cell-value'])[1]";
     String eleTotalMemberIdRecords = "//*[@id='pendGrid']//div[@col-id='subscriberId']//span[@class='ag-cell-value']";
@@ -65,17 +60,6 @@ public class FFSProfessionalPage extends SeleniumUtils {
     String eleOnHoldPaginationDescription = "//*[@id='onHoldGrid']//span[@class='ag-paging-description']";
     String btnNextPage = "//*[@id='onHoldGrid']//span[@class='ag-icon ag-icon-next']";
     String btnPreviousPage = "//*[@id='onHoldGrid']//span[@class='ag-icon ag-icon-previous']";
-    String txtSearchFields = "//*[@id='pendGrid']//input[@class='ag-input-field-input ag-text-field-input']";
-    String txtReceivedDateSearchField = "//*[@id='pendGrid']//input[@aria-label='Received Date Filter Input']";
-    String txtAgeSearchField = "//*[@id='pendGrid']//input[@aria-label='Age Filter Input']";
-    String txtAssignedToSearchField = "//*[@id='pendGrid']//input[@aria-label='Assigned To Filter Input']";
-
-
-
-
-
-
-
 
 
     private static String expClaimNumber = "";
@@ -83,261 +67,31 @@ public class FFSProfessionalPage extends SeleniumUtils {
     private static int totalRecords = 0;
     private static int pageNumber = 0;
     private static int pageNumberNextNavigation = 0;
-    private static String expPaginationMemberId = "";
 
-
-    //Verify color code for corrected claims in FFS Professional page
-    public void clickOnFFSProfessional(){
-        explicitVisibilityOfWait(findElementByXpath(lnkFFSProfessional), 5);
-        clickElement(lnkFFSProfessional);
+    //Scenario: Verify user should navigates to CAP Professional screen
+    public void clickOnCAPProfessional(){
+        explicitVisibilityOfWait(findElementByXpath(lnkCAPProfessional), 5);
+        clickElement(lnkCAPProfessional);
     }
-    public void verifyFFSProfessionalPage() throws InterruptedException {
-        boolean value = isDisplayed(tabFFSProfessional);
+    public void verifyCAPProfessionalPage() throws InterruptedException {
+        boolean value = isDisplayed(tabCAPProfessional);
         Assert.assertTrue(value);
-        threadSleep(30000);
-
-    }
-    public void enterCorrectedClaimNumberInFFSProfessionalSearchField() throws InterruptedException {
-        threadSleep(30000);
-        expClaimNumber = prop.getProperty("ffsProfessionalCorrectedClaimNumber");
-        findElementAndSendKeys(findElementByXpath(txtClaimNumber), expClaimNumber);
-        threadSleep(1000);
-        sendKeysUsingKeyboardInput(txtClaimNumber);
-    }
-    public void validateClaimNumberResult() {
-        explicitVisibilityOfWait(findElementByXpath(eleClaimNumber), 5);
-        String actClaimNumber = getText(eleClaimNumber);
-        System.out.println("actual claimNumber :" + actClaimNumber);
-        Assert.assertEquals(expClaimNumber, actClaimNumber);
-    }
-
-    public void verifyVerticalColorIndicationForCorrectedClaim(String expColorIndication) {
-        String actColorCode = getColorCodeForBackground(eleVerticalColorForCorrected);
-        System.out.println("actual color code :" + actColorCode);
-        Assert.assertEquals(expColorIndication, actColorCode);
-    }
-
-    public void verifyCorrectedInformationOnTopOfGrid() {
-        boolean value = isDisplayed(eleCorrectedInfoTopGrid);
-        Assert.assertTrue(value);
-    }
-
-    //Verify color code for COB Not In Member House in FFS Professional page
-    public void enterCOBInMemberHouseClaimNumber() throws InterruptedException {
-        threadSleep(30000);
-        expClaimNumber = prop.getProperty("ffsProfessionalCobInMemberHouse");
-        findElementAndSendKeys(findElementByXpath(txtClaimNumber), expClaimNumber);
-        threadSleep(1000);
-        sendKeysUsingKeyboardInput(txtClaimNumber);
-    }
-    public void verifyPatientNameColorCode(String expColorCode){
-        String actColorCode = getColorCodeForText(elePatientNameColorCode);
-        System.out.println("actual color code :" + actColorCode);
-        Assert.assertEquals(expColorCode, actColorCode);
-    }
-    public void verifyCOBInMemberHouseInformationOnTopOfGrid() {
-        boolean value = isDisplayed(eleCOBInMemberHouseInfoTopGrid);
-        Assert.assertTrue(value);
-    }
-
-    //Scenario: Verify color code for COB Not In Member House in FFS Professional page
-    public void enterCOBNotInMemberHouseClaimNumber() throws InterruptedException {
-        threadSleep(30000);
-        expClaimNumber = prop.getProperty("ffsProfessionalCobNotInMemberHouse");
-        findElementAndSendKeys(findElementByXpath(txtClaimNumber), expClaimNumber);
-        threadSleep(1000);
-        sendKeysUsingKeyboardInput(txtClaimNumber);
-    }
-    public void verifyCOBNotInMemberHouseInformationOnTopOfGrid() {
-        boolean value = isDisplayed(eleCOBNotInMemberHouseInfoTopGrid);
-        Assert.assertTrue(value);
-    }
-
-    //Scenario:Verify user able to navigate to claim summary screen on clicking claim number in FFS Professional Queue page
-    public void clickOnFFSProfessionalClaim() throws InterruptedException {
         threadSleep(20000);
-        clickElement(eleClaimNumber);
-    }
-    public void clickOnFFSProfessionalDefaultTab(){
-        clickElement(tabFFSProfessionalDefault);
-    }
-    public void verifyViewClaimDetailsTab(){
-        Assert.assertTrue(isDisplayed(tabViewClaim));
-    }
-    public void verifyClaimSummaryOption(String expOption) throws InterruptedException {
-        threadSleep(2000);
-        String actOption=findElementByXpath(eleClaimSummary).getText();
-        System.out.println("actOption "+actOption);
-        if(actOption.contains(expOption)){
-            Assert.assertTrue(true);
-        }else{
-            Assert.assertTrue(false);
-        }
-
-    }
-    public void getOpenedClaimNumber(){
-        String viewClaimNumberText=findElementByXpath(tabViewClaim).getText();
-        String[] claimData=viewClaimNumberText.split(" ");
-        expClaimNumber=claimData[2].substring(1);
-        System.out.println("claim number "+expClaimNumber);
-
-    }
-    public void verifyUserShouldSeeAlreadyOpenedClaimNumber(){
-        clickElement(tabViewClaimDefault);
-        String viewClaimNumberTextOnSecondClick=findElementByXpath(tabViewClaim).getText();
-        String[] claimData=viewClaimNumberTextOnSecondClick.split(" ");
-        String actClaimNumber=claimData[2].substring(1);
-        System.out.println("act claim number "+actClaimNumber);
-        Assert.assertEquals(expClaimNumber,actClaimNumber);
     }
 
-    //Scenario: Verify user able to navigate to claim summary screen only once when performed multiple clicks on Claim number
-    public void enterClaimNumberInPendFFSProfessionalSearchField() throws InterruptedException {
-        threadSleep(30000);
-        expClaimNumber = prop.getProperty("ffsProfessionalClaimNumber");
-        findElementAndSendKeys(findElementByXpath(txtClaimNumber), expClaimNumber);
-        threadSleep(1000);
-        sendKeysUsingKeyboardInput(txtClaimNumber);
-    }
-
-    //Scenario:Verify colour coding for Unclean status claims under Pend bucket in FFS professional page
-    public void enterUnCleanStatusPendClaimNumber() throws InterruptedException {
-        threadSleep(30000);
-        expClaimNumber = prop.getProperty("ffsProfessionalUnCleanStatusPendClaimNumber");
-        findElementAndSendKeys(findElementByXpath(txtClaimNumber), expClaimNumber);
-        threadSleep(1000);
-        sendKeysUsingKeyboardInput(txtClaimNumber);
-    }
-
-    public void verifyVerticalColorIndicationForUncleanPendClaim(String expColorIndication){
-        String actColorCode = getColorCodeForBackground(eleVerticalColorForUncleanPendClaim);
-        System.out.println("actual color code :" + actColorCode);
-        Assert.assertEquals(expColorIndication, actColorCode);
-    }
-    public void verifyUncleanInformationOnTopOfGrid() {
-        boolean value = isDisplayed(eleUncleanInfoTopGrid);
+    //Scenario: Verify by default user should be in the Pend state in CAP Professional screen
+    public void verifyUserByDefaultInPendStateResultsPage() throws InterruptedException {
+        threadSleep(20000);
+        boolean value=isDisplayed(elePendQueuePage);
         Assert.assertTrue(value);
     }
 
-    //Scenario: Verify colour coding for Unclean status claims under Payer Review bucket in FFS professional page
-    public void clickOnPayerReviewBucket(){
-        clickElement(tabPayerReview);
+    //Verify user should able to see Clam List Label in CAP Professional screen
+    public void verifyClaimListLabel(){
+        Assert.assertTrue(isDisplayed(eleClaimList));
     }
 
-    public void enterUnCleanStatusPayerReviewClaimNumber() throws InterruptedException {
-        threadSleep(30000);
-        expClaimNumber = prop.getProperty("ffsProfessionalUnCleanStatusPayerReviewClaimNumber");
-        findElementAndSendKeys(findElementByXpath(txtPayerReviewClaimNumber), expClaimNumber);
-        threadSleep(1000);
-        sendKeysUsingKeyboardInput(txtPayerReviewClaimNumber);
-    }
-    public void validatePayerReviewClaimNumberResult() {
-        explicitVisibilityOfWait(findElementByXpath(elePayerReviewClaimNumber), 5);
-        String actClaimNumber = getText(elePayerReviewClaimNumber);
-        System.out.println("actual claimNumber :" + actClaimNumber);
-        Assert.assertEquals(expClaimNumber, actClaimNumber);
-    }
-    public void verifyVerticalColorIndicationForUncleanPayerReviewClaim(String expColorIndication){
-        String actColorCode = getColorCodeForBackground(eleVerticalColorForUncleanPayerReviewClaim);
-        System.out.println("actual color code :" + actColorCode);
-        Assert.assertEquals(expColorIndication, actColorCode);
-    }
-    //Scenario: Verify colour coding for Unclean status claims under Management Review bucket in FFS professional page
-    public void clickOnManagementReviewBucket(){
-        clickElement(tabManagementReview);
-    }
-
-    public void enterUnCleanStatusManagementReviewClaimNumber() throws InterruptedException {
-        threadSleep(30000);
-        expClaimNumber = prop.getProperty("ffsProfessionalUnCleanStatusManagementReviewClaimNumber");
-        findElementAndSendKeys(findElementByXpath(txtManagementReviewClaimNumber), expClaimNumber);
-        threadSleep(1000);
-        sendKeysUsingKeyboardInput(txtManagementReviewClaimNumber);
-    }
-    public void validateManagementReviewClaimNumberResult() {
-        explicitVisibilityOfWait(findElementByXpath(eleManagementReviewClaimNumber), 5);
-        String actClaimNumber = getText(eleManagementReviewClaimNumber);
-        System.out.println("actual claimNumber :" + actClaimNumber);
-        Assert.assertEquals(expClaimNumber, actClaimNumber);
-    }
-    public void verifyVerticalColorIndicationForUncleanManagementReviewClaim(String expColorIndication){
-        String actColorCode = getColorCodeForBackground(eleVerticalColorForUncleanManagementReviewClaim);
-        System.out.println("actual color code :" + actColorCode);
-        Assert.assertEquals(expColorIndication, actColorCode);
-    }
-
-    //Scenario: Verify colour coding for Unclean status claims under Approved bucket in FFS professional page
-    public void clickOnApprovedBucket(){
-        clickElement(tabApproved);
-    }
-
-    public void enterUnCleanStatusApprovedClaimNumber() throws InterruptedException {
-        threadSleep(30000);
-        expClaimNumber = prop.getProperty("ffsProfessionalUnCleanStatusApprovedClaimNumber");
-        findElementAndSendKeys(findElementByXpath(txtApprovedClaimNumber), expClaimNumber);
-        threadSleep(1000);
-        sendKeysUsingKeyboardInput(txtApprovedClaimNumber);
-    }
-    public void validateApprovedClaimNumberResult() {
-        explicitVisibilityOfWait(findElementByXpath(eleApprovedClaimNumber), 5);
-        String actClaimNumber = getText(eleApprovedClaimNumber);
-        System.out.println("actual claimNumber :" + actClaimNumber);
-        Assert.assertEquals(expClaimNumber, actClaimNumber);
-    }
-    public void verifyVerticalColorIndicationForUncleanApprovedClaim(String expColorIndication){
-        String actColorCode = getColorCodeForBackground(eleVerticalColorForUncleanApprovedClaim);
-        System.out.println("actual color code :" + actColorCode);
-        Assert.assertEquals(expColorIndication, actColorCode);
-    }
-
-    //Scenario: Verify colour coding for Unclean status claims under Denied bucket in FFS professional page
-    public void clickOnDeniedBucket(){
-        clickElement(tabDenied);
-    }
-
-    public void enterUnCleanStatusDeniedClaimNumber() throws InterruptedException {
-        threadSleep(30000);
-        expClaimNumber = prop.getProperty("ffsProfessionalUnCleanStatusDeniedClaimNumber");
-        findElementAndSendKeys(findElementByXpath(txtDeniedClaimNumber), expClaimNumber);
-        threadSleep(1000);
-        sendKeysUsingKeyboardInput(txtDeniedClaimNumber);
-    }
-    public void validateDeniedClaimNumberResult() {
-        explicitVisibilityOfWait(findElementByXpath(eleDeniedClaimNumber), 5);
-        String actClaimNumber = getText(eleDeniedClaimNumber);
-        System.out.println("actual claimNumber :" + actClaimNumber);
-        Assert.assertEquals(expClaimNumber, actClaimNumber);
-    }
-    public void verifyVerticalColorIndicationForUncleanDeniedClaim(String expColorIndication){
-        String actColorCode = getColorCodeForBackground(eleVerticalColorForUncleanDeniedClaim);
-        System.out.println("actual color code :" + actColorCode);
-        Assert.assertEquals(expColorIndication, actColorCode);
-    }
-    //Scenario: Verify colour coding for Unclean status claims under Pre Batch bucket in FFS professional page
-    public void clickOnPreBatchBucket(){
-        clickElement(tabPreBatch);
-    }
-
-    public void enterUnCleanStatusPreBatchClaimNumber() throws InterruptedException {
-        threadSleep(30000);
-        expClaimNumber = prop.getProperty("ffsProfessionalUnCleanStatusPreBatchClaimNumber");
-        findElementAndSendKeys(findElementByXpath(txtPreBatchClaimNumber), expClaimNumber);
-        threadSleep(1000);
-        sendKeysUsingKeyboardInput(txtPreBatchClaimNumber);
-    }
-    public void validatePreBatchClaimNumberResult() {
-        explicitVisibilityOfWait(findElementByXpath(elePreBatchClaimNumber), 5);
-        String actClaimNumber = getText(elePreBatchClaimNumber);
-        System.out.println("actual claimNumber :" + actClaimNumber);
-        Assert.assertEquals(expClaimNumber, actClaimNumber);
-    }
-    public void verifyVerticalColorIndicationForUncleanPreBatchClaim(String expColorIndication){
-        String actColorCode = getColorCodeForBackground(eleVerticalColorForUncleanPreBatchClaim);
-        System.out.println("actual color code :" + actColorCode);
-        Assert.assertEquals(expColorIndication, actColorCode);
-    }
-
-    //Scenario: Validate user able to view all the column fields for Pend bucket in FFS Professional screen
+    //Scenario: Validate user able to view all the column fields for Pend bucket in CAP Professional screen
     public void verifyPendStateByDefault(String expState) throws InterruptedException{
         threadSleep(20000);
         String actState=findElementByXpath(tabPendState).getAttribute("class");
@@ -348,7 +102,7 @@ public class FFSProfessionalPage extends SeleniumUtils {
         }
     }
 
-    public void verifyFFSProfessionalPendColumnFields(DataTable columnList) throws InterruptedException {
+    public void verifyCAPProfessionalPendColumnFields(DataTable columnList) throws InterruptedException {
         List<String> expColumnList = columnList.asList();
         List<WebElement> actColumnFields = findElementsByXpath(lstColumnFields);
         List<String> actualColumnFieldsForCompare = new ArrayList<>();
@@ -368,8 +122,10 @@ public class FFSProfessionalPage extends SeleniumUtils {
             }
         }
     }
-    public void verifyNetPayAmountColumn(String expNetPayAmount){
-        scrollIntoView(findElementByXpath(eleTotalCharges),driver);
+    public void verifyNetPayAmountColumn(String expNetPayAmount) throws InterruptedException {
+        scrollIntoView(findElementByXpath(eleTotalCharges), driver);
+        threadSleep(1000);
+        scrollToElement(eleNetPayAmount);
         String actNetPayAmount=findElementByXpath(eleNetPayAmount).getText();
         System.out.println("actNetPayAmount :"+actNetPayAmount);
         Assert.assertEquals(expNetPayAmount,actNetPayAmount);
@@ -390,8 +146,7 @@ public class FFSProfessionalPage extends SeleniumUtils {
         Assert.assertEquals(expAssignedTo,actAssignedTo);
     }
 
-    //Scenario: Verify all the queue field details in the FFS Professional page
-    public void verifyQueuesInFFSProfessional(DataTable queueList) throws InterruptedException{
+    public void verifyQueuesInCAPProfessional(DataTable queueList) throws InterruptedException {
         List<String> expQueueList = queueList.asList();
         List<WebElement> actQueueFields = findElementsByXpath(lstQueues);
         List<String> actualQueueFieldsForCompare = new ArrayList<>();
@@ -399,48 +154,242 @@ public class FFSProfessionalPage extends SeleniumUtils {
             threadSleep(1000);
             scrollIntoView(column, driver);
             String text = column.getText();
-            String[] queueData=text.split(" ");
-            if(queueData.length==2) {
+            String[] queueData = text.split(" ");
+            if (queueData.length == 2) {
                 actualQueueFieldsForCompare.add(queueData[0]);
-            }else if(queueData.length==3){
-                actualQueueFieldsForCompare.add(queueData[0]+" "+queueData[1]);
-            }else if(queueData.length==4){
-                actualQueueFieldsForCompare.add(queueData[0]+" "+queueData[1]+" "+queueData[2]);
-            }else{
-                actualQueueFieldsForCompare.add(queueData[0].substring(0,8));
-            }
-        }
-        System.out.println("actual queue fields " + actualQueueFieldsForCompare);
-        System.out.println("expected queue fields " + expQueueList);
-        for (String expQueue : expQueueList) {
-            if (actualQueueFieldsForCompare.contains(expQueue)) {
-                Assert.assertTrue(true);
+            } else if (queueData.length == 3) {
+                actualQueueFieldsForCompare.add(queueData[0] + " " + queueData[1]);
+            } else if (queueData.length == 4) {
+                actualQueueFieldsForCompare.add(queueData[0] + " " + queueData[1] + " " + queueData[2]);
             } else {
-                Assert.fail(expQueue + " queue is not as expected");
+                actualQueueFieldsForCompare.add(queueData[0].substring(0, 8));
             }
         }
-
     }
 
-    public void verifyUserByDefaultInPendStateResultsPage() throws InterruptedException {
-        threadSleep(20000);
-        boolean value=isDisplayed(elePendQueuePage);
+    //Scenario: Verify all the queue field details in the CAP Professional page
+    public void enterCorrectedClaimNumberInCAPProfessionalSearchField() throws InterruptedException {
+        threadSleep(30000);
+        expClaimNumber = prop.getProperty("capProfessionalCorrectedClaimNumber");
+        findElementAndSendKeys(findElementByXpath(txtClaimNumber), expClaimNumber);
+        threadSleep(1000);
+        sendKeysUsingKeyboardInput(txtClaimNumber);
+    }
+    public void validateClaimNumberResult() throws InterruptedException {
+        threadSleep(5000);
+        explicitVisibilityOfWait(findElementByXpath(eleClaimNumber), 5);
+        String actClaimNumber = getText(eleClaimNumber);
+        System.out.println("actual claimNumber :" + actClaimNumber);
+        Assert.assertEquals(expClaimNumber, actClaimNumber);
+    }
+
+    public void verifyVerticalColorIndicationForCorrectedClaim(String expColorIndication) {
+        String actColorCode = getColorCodeForBackground(eleVerticalColorForCorrected);
+        System.out.println("actual color code :" + actColorCode);
+        Assert.assertEquals(expColorIndication, actColorCode);
+    }
+
+    public void verifyCorrectedInformationOnTopOfGrid() {
+        boolean value = isDisplayed(eleCorrectedInfoTopGrid);
         Assert.assertTrue(value);
     }
 
-    //Scenario: Verify by default user should be in the Pend state in FFS Professional screen
-    public void verifyClaimListLabel(){
-        Assert.assertTrue(isDisplayed(eleClaimList));
+    //  Scenario: Verify color code for COB In Member House in CAP Professional page
+    public void enterCOBInMemberHouseClaimNumber() throws InterruptedException {
+        threadSleep(30000);
+        expClaimNumber = prop.getProperty("capProfessionalCobInMemberHouse");
+        findElementAndSendKeys(findElementByXpath(txtClaimNumber), expClaimNumber);
+        threadSleep(1000);
+        sendKeysUsingKeyboardInput(txtClaimNumber);
+    }
+    public void verifyPatientNameColorCode(String expColorCode){
+        String actColorCode = getColorCodeForText(elePatientNameColorCode);
+        System.out.println("actual color code :" + actColorCode);
+        Assert.assertEquals(expColorCode, actColorCode);
+    }
+    public void verifyCOBInMemberHouseInformationOnTopOfGrid() {
+        boolean value = isDisplayed(eleCOBInMemberHouseInfoTopGrid);
+        Assert.assertTrue(value);
     }
 
-    //Scenario: Validate pagination in FFS Professional page
-    public void enterMemberIdInSearchFieldForPaginationInFFSProfessional() throws InterruptedException {
+    //Scenario: Verify color code for COB Not In Member House in CAP Professional page
+    public void enterCOBNotInMemberHouseClaimNumber() throws InterruptedException {
         threadSleep(30000);
-        expMemberId = prop.getProperty("ffsProfessionalPaginationMemberId");
+        expClaimNumber = prop.getProperty("capProfessionalCobNotInMemberHouse");
+        findElementAndSendKeys(findElementByXpath(txtClaimNumber), expClaimNumber);
+        threadSleep(1000);
+        sendKeysUsingKeyboardInput(txtClaimNumber);
+    }
+    public void verifyCOBNotInMemberHouseInformationOnTopOfGrid() {
+        boolean value = isDisplayed(eleCOBNotInMemberHouseInfoTopGrid);
+        Assert.assertTrue(value);
+    }
+
+    //Scenario: Verify user able to navigate to claim summary screen on clicking claim number
+    public void clickOnCAPProfessionalClaim() throws InterruptedException {
+        threadSleep(20000);
+        clickElement(eleClaimNumber);
+    }
+
+    //Scenario: Verify user able to navigate to claim summary screen only once when performed multiple clicks on Claim number
+    public void enterClaimNumberInPendCAPProfessionalSearchField() throws InterruptedException {
+        threadSleep(30000);
+        expClaimNumber = prop.getProperty("capProfessionalClaimNumber");
+        findElementAndSendKeys(findElementByXpath(txtClaimNumber), expClaimNumber);
+        threadSleep(1000);
+        sendKeysUsingKeyboardInput(txtClaimNumber);
+    }
+    public void clickOnCAPProfessionalDefaultTab(){
+        clickElement(tabCAPProfessionalDefault);
+    }
+
+    //Scenario: Verify user able to navigate to claim summary screen only once when performed multiple clicks on Claim number
+    public void enterUnCleanStatusPendClaimNumber() throws InterruptedException {
+        threadSleep(30000);
+        expClaimNumber = prop.getProperty("capProfessionalUnCleanStatusPendClaimNumber");
+        findElementAndSendKeys(findElementByXpath(txtClaimNumber), expClaimNumber);
+        threadSleep(1000);
+        sendKeysUsingKeyboardInput(txtClaimNumber);
+    }
+    public void verifyVerticalColorIndicationForUncleanPendClaim(String expColorIndication) throws InterruptedException {
+        threadSleep(2000);
+        String actColorCode = getColorCodeForBackground(eleVerticalColorForUncleanPendClaim);
+        System.out.println("actual color code :" + actColorCode);
+        Assert.assertEquals(expColorIndication, actColorCode);
+    }
+    public void verifyUncleanInformationOnTopOfGrid() {
+        boolean value = isDisplayed(eleUncleanInfoTopGrid);
+        Assert.assertTrue(value);
+    }
+
+    //Scenario: Verify colour coding for Unclean status claims under Payer Review bucket in CAP professional page
+    public void clickOnPayerReviewBucket(){
+        clickElement(tabPayerReview);
+    }
+    public void enterUnCleanStatusPayerReviewClaimNumber() throws InterruptedException {
+        threadSleep(30000);
+        expClaimNumber = prop.getProperty("capProfessionalUnCleanStatusPayerReviewClaimNumber");
+        findElementAndSendKeys(findElementByXpath(txtPayerReviewClaimNumber), expClaimNumber);
+        threadSleep(1000);
+        sendKeysUsingKeyboardInput(txtPayerReviewClaimNumber);
+    }
+
+    public void validatePayerReviewClaimNumberResult() {
+        explicitVisibilityOfWait(findElementByXpath(elePayerReviewClaimNumber), 5);
+        String actClaimNumber = getText(elePayerReviewClaimNumber);
+        System.out.println("actual claimNumber :" + actClaimNumber);
+        Assert.assertEquals(expClaimNumber, actClaimNumber);
+    }
+
+    public void verifyVerticalColorIndicationForUncleanPayerReviewClaim(String expColorIndication) throws InterruptedException {
+        threadSleep(2000);
+        String actColorCode = getColorCodeForBackground(eleVerticalColorForUncleanPayerReviewClaim);
+        System.out.println("actual color code :" + actColorCode);
+        Assert.assertEquals(expColorIndication, actColorCode);
+    }
+
+    //Scenario: Verify colour coding for Unclean status claims under Management Review bucket in CAP professional page
+    public void clickOnManagementReviewBucket(){
+        clickElement(tabManagementReview);
+    }
+    public void enterUnCleanStatusManagementReviewClaimNumber() throws InterruptedException {
+        threadSleep(30000);
+        expClaimNumber = prop.getProperty("capProfessionalUnCleanStatusManagementReviewClaimNumber");
+        findElementAndSendKeys(findElementByXpath(txtManagementReviewClaimNumber), expClaimNumber);
+        threadSleep(1000);
+        sendKeysUsingKeyboardInput(txtManagementReviewClaimNumber);
+    }
+    public void validateManagementReviewClaimNumberResult() {
+        explicitVisibilityOfWait(findElementByXpath(eleManagementReviewClaimNumber), 5);
+        String actClaimNumber = getText(eleManagementReviewClaimNumber);
+        System.out.println("actual claimNumber :" + actClaimNumber);
+        Assert.assertEquals(expClaimNumber, actClaimNumber);
+    }
+    public void verifyVerticalColorIndicationForUncleanManagementReviewClaim(String expColorIndication) throws InterruptedException {
+        threadSleep(2000);
+        String actColorCode = getColorCodeForBackground(eleVerticalColorForUncleanManagementReviewClaim);
+        System.out.println("actual color code :" + actColorCode);
+        Assert.assertEquals(expColorIndication, actColorCode);
+    }
+
+    //Scenario: Verify colour coding for Unclean status claims under Approved bucket in CAP professional page
+    public void clickOnApprovedBucket(){
+        clickElement(tabApproved);
+    }
+    public void enterUnCleanStatusApprovedClaimNumber() throws InterruptedException {
+        threadSleep(30000);
+        expClaimNumber = prop.getProperty("capProfessionalUnCleanStatusApprovedClaimNumber");
+        findElementAndSendKeys(findElementByXpath(txtApprovedClaimNumber), expClaimNumber);
+        threadSleep(1000);
+        sendKeysUsingKeyboardInput(txtApprovedClaimNumber);
+    }
+    public void validateApprovedClaimNumberResult() {
+        explicitVisibilityOfWait(findElementByXpath(eleApprovedClaimNumber), 5);
+        String actClaimNumber = getText(eleApprovedClaimNumber);
+        System.out.println("actual claimNumber :" + actClaimNumber);
+        Assert.assertEquals(expClaimNumber, actClaimNumber);
+    }
+    public void verifyVerticalColorIndicationForUncleanApprovedClaim(String expColorIndication) throws InterruptedException {
+        threadSleep(2000);
+        String actColorCode = getColorCodeForBackground(eleVerticalColorForUncleanApprovedClaim);
+        System.out.println("actual color code :" + actColorCode);
+        Assert.assertEquals(expColorIndication, actColorCode);
+    }
+    //Scenario: Verify colour coding for Unclean status claims under Denied bucket in CAP professional page
+    public void clickOnDeniedBucket(){
+        clickElement(tabDenied);
+    }
+
+    public void enterUnCleanStatusDeniedClaimNumber() throws InterruptedException {
+        threadSleep(30000);
+        expClaimNumber = prop.getProperty("capProfessionalUnCleanStatusDeniedClaimNumber");
+        findElementAndSendKeys(findElementByXpath(txtDeniedClaimNumber), expClaimNumber);
+        threadSleep(1000);
+        sendKeysUsingKeyboardInput(txtDeniedClaimNumber);
+    }
+    public void validateDeniedClaimNumberResult() {
+        explicitVisibilityOfWait(findElementByXpath(eleDeniedClaimNumber), 5);
+        String actClaimNumber = getText(eleDeniedClaimNumber);
+        System.out.println("actual claimNumber :" + actClaimNumber);
+        Assert.assertEquals(expClaimNumber, actClaimNumber);
+    }
+    public void verifyVerticalColorIndicationForUncleanDeniedClaim(String expColorIndication){
+        String actColorCode = getColorCodeForBackground(eleVerticalColorForUncleanDeniedClaim);
+        System.out.println("actual color code :" + actColorCode);
+        Assert.assertEquals(expColorIndication, actColorCode);
+    }
+
+    //Scenario: Verify colour coding for Unclean status claims under Pre Batch bucket in CAP professional page
+    public void clickOnPreBatchBucket(){
+        clickElement(tabPreBatch);
+    }
+
+    public void enterUnCleanStatusPreBatchClaimNumber() throws InterruptedException {
+        threadSleep(30000);
+        expClaimNumber = prop.getProperty("capProfessionalUnCleanStatusPreBatchClaimNumber");
+        findElementAndSendKeys(findElementByXpath(txtPreBatchClaimNumber), expClaimNumber);
+        threadSleep(1000);
+        sendKeysUsingKeyboardInput(txtPreBatchClaimNumber);
+    }
+    public void validatePreBatchClaimNumberResult() {
+        explicitVisibilityOfWait(findElementByXpath(elePreBatchClaimNumber), 5);
+        String actClaimNumber = getText(elePreBatchClaimNumber);
+        System.out.println("actual claimNumber :" + actClaimNumber);
+        Assert.assertEquals(expClaimNumber, actClaimNumber);
+    }
+    public void verifyVerticalColorIndicationForUncleanPreBatchClaim(String expColorIndication){
+        String actColorCode = getColorCodeForBackground(eleVerticalColorForUncleanPreBatchClaim);
+        System.out.println("actual color code :" + actColorCode);
+        Assert.assertEquals(expColorIndication, actColorCode);
+    }
+
+    public void enterMemberIdInSearchFieldForPaginationInCAPProfessional() throws InterruptedException {
+        threadSleep(30000);
+        expMemberId = prop.getProperty("capProfessionalPaginationMemberId");
         findElementAndSendKeys(findElementByXpath(txtMemberId), expMemberId);
         threadSleep(3000);
     }
-    public void validateMemberIDResultInFFSProfessional() {
+    public void validateMemberIDResultInCAPProfessional() {
         explicitVisibilityOfWait(findElementByXpath(eleMemberId), 5);
         String actMemberId = getText(eleMemberId);
         System.out.println("actual member id :" + actMemberId);
@@ -464,6 +413,7 @@ public class FFSProfessionalPage extends SeleniumUtils {
             Assert.assertTrue(false);
         }
     }
+
     //Scenario: Verify user see the page numbers as per the no of data divided by pages size
     public void verifyPageSizeDividedByNoOfRecordsInTheGrid() {
         String pagination = findElementByXpath(elePaginationDescription).getText();
@@ -522,32 +472,6 @@ public class FFSProfessionalPage extends SeleniumUtils {
             Assert.assertTrue(false);
         }
     }
-
-    //Scenario: Verify user able to view the search fields under each columns in the FFS Professional screen
-    public void verifySearchFieldsUnderEachColumnInFFSProfessional() {
-        List<WebElement> ActCSearchFields = findElementsByXpath(txtSearchFields);
-        for (WebElement column : ActCSearchFields) {
-            scrollIntoView(column, driver);
-            boolean value = column.isDisplayed();
-            Assert.assertTrue(value);
-        }
-    }
-    public void verifyReceivedDateSearchField() throws InterruptedException {
-        threadSleep(10000);
-        scrollIntoView(findElementByXpath(eleTotalCharges),driver);
-        scrollIntoView(findElementByXpath(eleNetPayAmount),driver);
-        Assert.assertTrue(isDisplayed(txtReceivedDateSearchField));
-    }
-
-    public void verifyAgeSearchField(){
-        scrollIntoView(findElementByXpath(txtAgeSearchField),driver);
-        Assert.assertTrue(isDisplayed(txtAgeSearchField));
-    }
-    public void verifyAssignedToSearchField(){
-        scrollIntoView(findElementByXpath(txtAssignedToSearchField),driver);
-        Assert.assertTrue(isDisplayed(txtAssignedToSearchField));
-    }
-
 
 
 }

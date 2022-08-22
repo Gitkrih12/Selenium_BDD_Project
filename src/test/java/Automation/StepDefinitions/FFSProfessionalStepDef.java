@@ -77,7 +77,7 @@ public class FFSProfessionalStepDef extends FFSProfessionalPage {
     }
 
     @Then("User should see {string} option with Claim summary")
-    public void user_should_see_option_with_claim_summary(String option) {
+    public void user_should_see_option_with_claim_summary(String option) throws InterruptedException {
         verifyClaimSummaryOption(option);
     }
 
@@ -128,7 +128,6 @@ public class FFSProfessionalStepDef extends FFSProfessionalPage {
     @When("user clicks on Payer Review bucket")
     public void user_clicks_on_payer_review_bucket() {
         clickOnPayerReviewBucket();
-
     }
     @When("user enters Unclean status claim in search criteria in Payer Review bucket")
     public void user_enters_unclean_status_claim_in_search_criteria_in_payer_review_bucket() throws InterruptedException {
@@ -222,8 +221,8 @@ public class FFSProfessionalStepDef extends FFSProfessionalPage {
     public void user_views_pend_bucket_by_default_should_be(String state) throws InterruptedException{
         verifyPendStateByDefault(state);
     }
-    @Then("user able to view following column fields")
-    public void user_able_to_view_following_column_fields(DataTable columnList) throws InterruptedException {
+    @Then("user able to view following column fields in Pend bucket")
+    public void user_able_to_view_following_column_fields_in_pend_bucket(DataTable columnList) throws InterruptedException {
         verifyFFSProfessionalPendColumnFields(columnList);
     }
 
@@ -235,7 +234,7 @@ public class FFSProfessionalStepDef extends FFSProfessionalPage {
         verifyAssignedToColumn(assignedTo);
     }
 
-
+    //Scenario: Verify all the queue field details in the FFS Professional page
     @Then("user should be able to view following queue detail fields")
     public void user_should_be_able_to_view_following_queue_detail_fields(DataTable queueList) throws InterruptedException{
         verifyQueuesInFFSProfessional(queueList);
@@ -245,6 +244,12 @@ public class FFSProfessionalStepDef extends FFSProfessionalPage {
     @Then("by default user should be in Pend state results page")
     public void by_default_user_should_be_in_pend_state_results_page() throws InterruptedException {
         verifyUserByDefaultInPendStateResultsPage();
+    }
+
+    //Scenario: Verify user should able to see Clam List Label in FFS Professional screen
+    @Then("user should be able to view the Clam List Label in the FFS Professional screen")
+    public void user_should_be_able_to_view_the_clam_list_label_in_the_ffs_professional_screen() {
+
     }
 
     //Scenario: Validate pagination in FFS Professional page
