@@ -23,7 +23,7 @@ Feature: MOOP Ledger
   Scenario: Verify user clicks on 'Member ID' from the MOOP Ledger
     When user clicks on MOOP Ledger under Member Management
     And user clicks on Member ID
-    Then user navigates to the "Moop Transaction of 2193336VF for year 2022" screen
+    Then user navigates to the "Moop Transaction of 1603336VF for year 2020" and "Moop Accumulator Summary of 1603336VF for year 2020" screen
     And user able to view the below mentioned fields under Moop Transaction page
       | Claim Number          |
       | Type of coverage      |
@@ -33,12 +33,11 @@ Feature: MOOP Ledger
       | Transaction Date      |
       | Transaction By        |
       | Remarks               |
-    And user able to view the below mentioned fields under Moop Accumulator Summary
-      | Type Of Coverage    |
-      | Network Affiliation |
-      | Deductible          |
-      | Copay ($)           |
-      | Coinsurance ($)     |
-      | Total Amount ($)    |
-      | Moop Year           |
-      | Max Moop Year       |
+      | Type Of Coverage      |
+      | Network Affiliation   |
+      | Deductible            |
+      | Copay ($)             |
+      | Coinsurance ($)       |
+      | Total Amount ($)      |
+      | Moop Year             |
+      | Max Moop Year         |

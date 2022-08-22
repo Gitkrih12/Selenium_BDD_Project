@@ -29,22 +29,18 @@ public class MOOPLedgerStepDef extends MOOPLedgerPage {
     }
 
     @When("user clicks on Member ID")
-    public void user_clicks_on_member_id() {
+    public void user_clicks_on_member_id() throws InterruptedException {
         userClicksOnMemberId();
     }
 
-    @Then("user navigates to the {string} screen")
-    public void user_navigates_to_the_screen(String expTab) {
-        userNavigatesToMemberTransactionScreen(expTab);
+    @Then("user navigates to the {string} and {string} screen")
+    public void user_navigates_to_the_and_screen(String expTab, String expTab2) {
+        userNavigatesToMoopTransactionScreen(expTab);
+        userNavigatesToMoopAccumulatorSummary(expTab2);
     }
 
     @Then("user able to view the below mentioned fields under Moop Transaction page")
     public void user_able_to_view_the_below_mentioned_fields_under_moop_transaction_page(DataTable expFields) {
         verifyFieldsUnderMoopTransaction(expFields);
-    }
-
-    @Then("user able to view the below mentioned fields under Moop Accumulator Summary")
-    public void user_able_to_view_the_below_mentioned_fields_under_moop_accumulator_summary(DataTable expColumns) {
-        verifyMoopAccumulatorSummary(expColumns);
     }
 }
