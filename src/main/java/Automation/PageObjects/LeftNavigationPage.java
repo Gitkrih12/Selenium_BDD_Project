@@ -43,12 +43,15 @@ public class LeftNavigationPage extends SeleniumUtils {
     String mnuManageUsers = "//div[contains(text(),'Manage Users')]";
     String mnuManageRole = "//div[contains(text(),'Manage Role')]";
     String tabAdminHomePage = "//div[@class='col active-tab ng-star-inserted']";
-
+    String mnuGlobalSearch = "(//div[contains(text(), 'Global Search')])[1]";
+    String mnuCheckManagementListNonAdmin = "(//div[contains(@class,'mat-expansion-panel-body')])[5]//div[@class='menuitemschaild']";
+    String mnuMemberManagementListNonAdmin = "(//div[contains(@class,'mat-expansion-panel-body')])[6]//div[@class='menuitemschaild']";
 
 
     private static boolean claimAdjSpanStatus;
     private static List<WebElement> menuList;
     private static String actualText;
+    private static boolean GlobalSearchMenuStatus;
 
     public void leftNavigationValidation() {
         boolean leftNavigationStatus = isDisplayed(mnuLeftNavigation);
@@ -430,5 +433,135 @@ public class LeftNavigationPage extends SeleniumUtils {
             }
         }
     }
+
+    // Scenario: Validate Adjudication Menu for adjudicator role
+    public void verifyAdjudicationMenuForNonAdminRole()
+    {
+        GlobalSearchMenuStatus = isDisplayed(mnuGlobalSearch);
+        System.out.println("Global search sub menu status is: " + GlobalSearchMenuStatus);
+        Assert.assertTrue(GlobalSearchMenuStatus);
+    }
+
+    //    Scenario: Validate Check Management Menu for adjudicator role
+    public void validateCheckManagementSubMenusForNonAdminRole(DataTable checkManagementList)
+    {
+        List<String> checkManagementListExp = checkManagementList.asList();
+        clickElement(mnuCheckManagement);
+        List<WebElement> checkMngmtSubMenusList = findElementsByXpath(mnuCheckManagementListNonAdmin);
+        List<String> checkManagementListAct = new ArrayList<>();
+
+        for (WebElement checkList: checkMngmtSubMenusList)
+        {
+            moveToElement(checkList).perform();
+            String text = checkList.getText();
+            checkManagementListAct.add(text);
+        }
+        System.out.println("Actual list is : " + checkManagementListAct);
+        System.out.println("Expected list is : " + checkManagementListExp);
+
+        for (String exp: checkManagementListExp)
+        {
+            if (checkManagementListAct.contains(exp))
+            {
+                Assert.assertTrue(true);
+            }
+            else
+            {
+                Assert.fail(exp + " is not listed in actual list");
+            }
+        }
+
+    }
+
+    //    Scenario: Validate Member Management Menu for adjudicator role
+    public void validateMemberManagementSubMenusForNonAdminRole(DataTable memberManagementList)
+    {
+        List<String> memberManagementListExp = memberManagementList.asList();
+        clickElement(mnuMemberManagement);
+        List<WebElement> memberManagementSubMenus = findElementsByXpath(mnuMemberManagementListNonAdmin);
+        List<String> memberManagementListAct = new ArrayList<>();
+
+        for (WebElement memberList: memberManagementSubMenus)
+        {
+            moveToElement(memberList).perform();
+            String text = memberList.getText();
+            memberManagementListAct.add(text);
+        }
+        System.out.println("Member management actual list: " + memberManagementListAct);
+        System.out.println("Member management expected list: " + memberManagementListExp);
+        for (String exp: memberManagementListExp)
+        {
+            if (memberManagementListAct.contains(exp))
+            {
+                Assert.assertTrue(true);
+            }
+            else
+            {
+                Assert.fail(exp + " value is not listed in actual list");
+            }
+        }
+
+    }
+
+    public void verifyMainMenuItemsFromLeftNavigationForNonAdminRole(DataTable leftNavMainMenusList)
+    {
+        List <String> leftNavMainMenusListExp = leftNavMainMenusList.asList();
+        List<WebElement> leftNavMainMenuList = findElementsByXpath(mnuLeftNavList);
+        List<String> leftNavMainMenusListAct = new ArrayList<>();
+        System.out.println("Left Navigation main menus actual list size: " + leftNavMainMenusListExp.size());
+        System.out.println("Left Navigation main menus expected list size: " + leftNavMainMenuList.size());
+        for (WebElement list: leftNavMainMenuList)
+        {
+            String text = list.getText();
+            leftNavMainMenusListAct.add(text);
+        }
+        System.out.println("Left Navigation main menus actual list is: " + leftNavMainMenusListAct);
+        System.out.println("Left Navigation main menus Expected list is: "+ leftNavMainMenusListExp);
+        for (String exp: leftNavMainMenusListExp)
+        {
+            if (leftNavMainMenusListAct.contains(exp))
+            {
+                Assert.assertTrue(true);
+            }
+            else
+            {
+                Assert.fail(exp + " value is not listed in actual list");
+            }
+        }
+    }
+
+    // Scenario: Verify user not able to view Reports Menu in Left Navigation for adjudicator role
+    public void verifyUserNotAbleToViewReportsMenuFromLeftNavigationForNonAdminRole()
+    {
+        boolean reportsMenuStatus = isDisplayed(mnuReports);
+        System.out.println("Reports menu status is: " + reportsMenuStatus);
+        Assert.assertFalse(reportsMenuStatus);
+    }
+
+    //  Scenario: Verify user not able to view the few sub menu's under Adjudication Menu for adjudicator role
+    public void verifyUserAbleToViewGlobalSearchUnderAdjudicationMainMenuForNonAdminRole()
+    {
+        GlobalSearchMenuStatus = isDisplayed(mnuGlobalSearch);
+        System.out.println("Global search sub menu status is: " + GlobalSearchMenuStatus);
+        Assert.assertTrue(GlobalSearchMenuStatus);
+
+    }
+    public void verifyUserNotAbleToViewOtherSubMenusExceptGlobalSearchUnderAdjMainMenuForNonAdminRole(DataTable otherMenusList)
+    {
+        List <String> otherMenusListAct = otherMenusList.asList();
+        for (String act: otherMenusListAct)
+        {
+            Assert.assertNotEquals("Global Search", act);
+        }
+    }
+
+    // Scenario: Verify user not able to view User Management Menu in Left Navigation for adjudicator role
+    public void verifyUserNotAbleToViewUserManagementMainMenuForNonAdminRole()
+    {
+        boolean userManagementStatus = isDisplayed(mnuUserManagement);
+        System.out.println("User management main menu status is: " + userManagementStatus);
+        Assert.assertFalse(userManagementStatus);
+    }
+
 
 }
