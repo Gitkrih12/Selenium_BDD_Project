@@ -19,12 +19,11 @@ public class LoginPage extends SeleniumUtils {
     String txtPassword = "//input[@type='password']";
     String btnLogin = "(//button/img)//preceding::b";
     String lnkUsername = "navbarDropdownMenuLink"; //id
-    String dsnpAdjExp = "CLAIMSADJUDICATOR";
     String imgMirra = "(//p[@class='loginUser']//following::img)[1]";
     String imgValorHealthPln = "//body/div[1]/div[2]/span[1]/img[1]";
     String imgValorHealthPlnExp = "valorlogo";
     String dsnpAdminExp = "ClaimsUser";
-    String lnkforgotPassword = "//a[contains(text(),'Forgot Password?')]";
+    String lnkForgotPassword = "//a[contains(text(),'Forgot Password?')]";
     String lblPassword = "(//span/img)[4]//following::label[1]";
     String lblPasswordExp = "Password";
     String attPwdExp = "Enter Password";
@@ -36,7 +35,7 @@ public class LoginPage extends SeleniumUtils {
     String txtUniversalSearch = "ip1"; //Id
     String attUniversalSearchBoxExp = "Enter Valid Claim Number";
     String mnuDrawer = "//div[@class='bento-menu']";
-    String icnNotification = "//app-header/nav[1]/div[1]/form[1]/mat-icon[1]/a[1]/*[1]";
+    String icnNotification = "//a//*[@class='bi bi-bell bellicon']";
     String ddlUserOptions = "//a[@id='navbarDropdownMenuLink']/img[2]";
     String btnChangePassword = "//button[contains(text(), 'Change Password')]";
     String btnLogOut = "//button[contains(text(), 'Log Out')]";
@@ -72,159 +71,140 @@ public class LoginPage extends SeleniumUtils {
         log.info("User sees Welcome to Claims Adjudication text");
         System.out.println("'Welcome to claims adjudication NG' text status is : " + welcomeToClaimsAdjNg);
     }
-    public void verifyWelcomeToClaimsAdjudicationText()
-    {
+
+    public void verifyWelcomeToClaimsAdjudicationText() {
         Assert.assertTrue(welcomeToClaimsAdjNg);
     }
 
 
-
     //    Scenario: Verify "User Login" text should display in the Login screen
-    public void userLoginText()
-    {
+    public void userLoginText() {
         userLoginText = getText(txtUserLogin);
         System.out.println("Text present is : " + userLoginText);
         log.info("User sees User Login text");
 
     }
-    public void verifyUserLoginText()
-    {
+
+    public void verifyUserLoginText() {
         Assert.assertEquals(txtUserLoginExp, userLoginText);
     }
 
     //      Scenario: Verify the hospital pictography along with the texts displayed in Login Screen
-    public void hospitalImage()
-    {
+    public void hospitalImage() {
         WebElement imageElement = explicitElementClickableWaitByXpath(imgHospital, 10);
         imageStatus = isDisplayed(imageElement);
         log.info("User sees hospital image on home page");
         System.out.println("Image status is : " + imageStatus);
     }
 
-    public void verifyHospitalImage()
-    {
+    public void verifyHospitalImage() {
         Assert.assertTrue(imageStatus);
     }
 
     //    Scenario: Verify user able to login with valid username and password for DSNP adjudicator role
-    public void loginWithValidUsernameAndPasswordForDsnpAdjudicator()
-    {
-        findElementByXpath(txtUsername).sendKeys(prop.getProperty("dsnpAdjUsername"));
-        findElementByXpath(txtPassword).sendKeys(prop.getProperty("dsnpAdjPassword"));
-        findElementByXpath(btnLogin).click();
-        username = explicitElementClickableWaitByID(lnkUsername, 10).getText();
+    public void loginWithValidUsernameAndPasswordForDsnpAdjudicator() {
+        explicitVisibilityOfElementLocatedWaitByXpath(txtUsername, 10).sendKeys(prop.getProperty("dsnpAdjUsername"));
+        explicitVisibilityOfElementLocatedWaitByXpath(txtPassword, 10).sendKeys(prop.getProperty("dsnpAdjPassword"));
+        explicitElementClickableWaitByXpath(btnLogin, 10).click();
+        username = explicitElementClickableWaitByID(lnkUsername, 30).getText();
         System.out.println("User logged in as : " + username);
     }
 
-    public void verifyLoginWithValidUsernameAndPasswordForDsnpAdjudicator()
-    {
+    public void verifyLoginWithValidUsernameAndPasswordForDsnpAdjudicator() {
+        String dsnpAdjExp = prop.getProperty("dsnpAdjExp");
         Assert.assertEquals(dsnpAdjExp, username);
     }
 
-    public void mirraLogoOnHomePage()
-    {
+    public void mirraLogoOnHomePage() {
         mirraImage = isDisplayed(imgMirra);
         System.out.println("Image status is : " + mirraImage);
     }
-    public void verifyMirraLogoOnHomePage()
-    {
+
+    public void verifyMirraLogoOnHomePage() {
         Assert.assertTrue(mirraImage);
     }
 
     //    Scenario: Verify user should be able to view the "Valor Health Plan", "Insurance focused on you." texts one after the other in Login screen
-    public void valorHealthPlanImage()
-    {
+    public void valorHealthPlanImage() {
         String valorHealthPlanSrc = getAttribute(imgValorHealthPln, "src");
         System.out.println("Health plan image source is : " + valorHealthPlanSrc);
         healthPlanImgStatus = valorHealthPlanSrc.contains(imgValorHealthPlnExp);
     }
-    public void verifyValorHealthPlanImage()
-    {
+
+    public void verifyValorHealthPlanImage() {
         Assert.assertTrue(healthPlanImgStatus);
     }
 
     //    Scenario:  Verify user views "Login" button besides rightwards arrow symbol in Login screen
-    public void loginButton()
-    {
+    public void loginButton() {
         System.out.println("Login button status is : " + isDisplayed(btnLogin));
     }
-    public void verifyLoginButton()
-    {
+
+    public void verifyLoginButton() {
         Assert.assertTrue(isDisplayed(btnLogin));
     }
 
 
     //    Scenario: Verify user able to login with valid username and password for DSNP admin role
-    public void loginWithValidUsernameAndPasswordForDsnpAdmin()
-    {
-        findElementByXpath(txtUsername).sendKeys(prop.getProperty("dsnpAdminUsername"));
-        findElementByXpath(txtPassword).sendKeys(prop.getProperty("dsnpAdminPassword"));
-        findElementByXpath(btnLogin).click();
+    public void loginWithValidUsernameAndPasswordForDsnpAdmin() {
+        explicitVisibilityOfElementLocatedWaitByXpath(txtUsername, 10).sendKeys(prop.getProperty("dsnpAdminUsername"));
+        explicitVisibilityOfElementLocatedWaitByXpath(txtPassword, 10).sendKeys(prop.getProperty("dsnpAdminPassword"));
+        explicitElementClickableWaitByXpath(btnLogin, 10).click();
     }
 
-    public void userLoginTextForAdmin()
-    {
-        WebElement element = explicitElementClickableWaitByID(lnkUsername, 10);
+    public void userLoginTextForAdmin() {
+        WebElement element = explicitElementClickableWaitByID(lnkUsername, 30);
         adminUsername = element.getText();
         System.out.println("User logged in as : " + adminUsername);
     }
 
-    public void verifyLoginWithValidUsernameAndPasswordForDsnpAdmin()
-    {
+    public void verifyLoginWithValidUsernameAndPasswordForDsnpAdmin() {
         Assert.assertEquals(dsnpAdminExp, adminUsername);
     }
 
     //    Scenario: Verify user views the "Forgot Password?" text in the Login page
-    public void forgotPasswordMessage()
-    {
-        forgotPwdStatus = isDisplayed(lnkforgotPassword);
+    public void forgotPasswordMessage() {
+        forgotPwdStatus = isDisplayed(lnkForgotPassword);
         log.info("User sees forgot password message");
     }
 
-    public void verifyForgotPasswordMessage()
-    {
+    public void verifyForgotPasswordMessage() {
         Assert.assertTrue(forgotPwdStatus);
     }
 
     //    Scenario: Verify user views the "Password" text besides lock icon with grey field along with the inner text
-    public void verifyPasswordText()
-    {
+    public void verifyPasswordText() {
         log.info("User sees Password label");
-        Assert.assertEquals(lblPasswordExp,getText(lblPassword));
+        Assert.assertEquals(lblPasswordExp, getText(lblPassword));
     }
 
-    public void verifyGreyFieldUnderPasswordText()
-    {
+    public void verifyGreyFieldUnderPasswordText() {
         Assert.assertTrue(isDisplayed(txtPassword));
     }
 
-    public void validateEnterPasswordText()
-    {
+    public void validateEnterPasswordText() {
         String pwdAtt = getAttribute(txtPassword, "placeholder");
         System.out.println("Attribute value is : " + pwdAtt);
         Assert.assertEquals(attPwdExp, pwdAtt);
     }
 
     //    Scenario: Verify user views the "Username" text besides person icon with grey field along with the inner text
-    public void verifyUsernameText()
-    {
-        Assert.assertEquals(lblUsernameExp,getText(lblUsername));
+    public void verifyUsernameText() {
+        Assert.assertEquals(lblUsernameExp, getText(lblUsername));
     }
-    public void verifyGreyFieldUnderUsernameText()
-    {
+
+    public void verifyGreyFieldUnderUsernameText() {
         Assert.assertTrue(isDisplayed(txtUsername));
     }
 
-    public void validateEnterUsernameText()
-    {
+    public void validateEnterUsernameText() {
         String attUname = getAttribute(txtUsername, "placeholder");
         System.out.println("Attribute value is :  " + attUname);
         Assert.assertEquals(attUnameExp, attUname);
     }
 
     //    Scenario: Verify user able to login with valid username and password for non DSNP adjudicator role
-    public void loginWithValidUsernameAndPasswordForNonDsnpAdjudicator()
-    {
+    public void loginWithValidUsernameAndPasswordForNonDsnpAdjudicator() {
         findElementByXpath(txtUsername).sendKeys(prop.getProperty("nonDsnpAdjUsername"));
         findElementByXpath(txtPassword).sendKeys(prop.getProperty("nonDsnpAdjPassword"));
         findElementByXpath(btnLogin).click();
@@ -232,39 +212,36 @@ public class LoginPage extends SeleniumUtils {
         System.out.println("User logged in as : " + nonDsnpAdjUsername);
 
     }
-    public void verifyLoginWithValidUsernameAndPasswordForNonDsnpAdjudicator()
-    {
-        Assert.assertEquals(nonDsnpAdjExp,nonDsnpAdjUsername);
+
+    public void verifyLoginWithValidUsernameAndPasswordForNonDsnpAdjudicator() {
+        Assert.assertEquals(nonDsnpAdjExp, nonDsnpAdjUsername);
     }
 
 
     //    Scenario: Verify user able to login with valid username and password for non DSNP admin role
-    public void loginWithValidUsernameAndPasswordForNonDsnpAdmin()
-    {
+    public void loginWithValidUsernameAndPasswordForNonDsnpAdmin() {
         findElementByXpath(txtUsername).sendKeys(prop.getProperty("nonDsnpAdminUsername"));
         findElementByXpath(txtPassword).sendKeys(prop.getProperty("nonDsnpAdminPassword"));
         findElementByXpath(btnLogin).click();
         nonDsnpAdminUsername = findElementByID(lnkUsername).getText();
         System.out.println("User logged in as : " + nonDsnpAdminUsername);
     }
-    public void verifyLoginWithValidUsernameAndPasswordForNonDsnpAdmin()
-    {
-        Assert.assertEquals(nonDsnpAdminUsername,nonDsnpAdminExp);
+
+    public void verifyLoginWithValidUsernameAndPasswordForNonDsnpAdmin() {
+        Assert.assertEquals(nonDsnpAdminUsername, nonDsnpAdminExp);
     }
 
     //    Scenario: Verify user lands to the home page when logged in to the CA application for both DSNP adjudicator & admin
-    public void verifyUserLoginToApplicationForDsnpAdjAndAdmin()
-    {
+    public void verifyUserLoginToApplicationForDsnpAdjAndAdmin() {
         loginWithValidUsernameAndPasswordForDsnpAdjudicator();
     }
 
-    public void userIsOnHomePageForDsnpAdjAndAdmin()
-    {
+    public void userIsOnHomePageForDsnpAdjAndAdmin() {
         dsnpAdjHomePageUrl = driver.getCurrentUrl();
         System.out.println("DSNP adjudicator home page URL is : " + dsnpAdjHomePageUrl);
     }
-    public void verifyIfUserIsOnHomePageForDsnpAdjAndAdmin()
-    {
+
+    public void verifyIfUserIsOnHomePageForDsnpAdjAndAdmin() {
         Assert.assertTrue(dsnpAdjHomePageUrl.contains("home"));
     }
 
@@ -279,34 +256,31 @@ public class LoginPage extends SeleniumUtils {
         universalPlaceHolder = getAttribute(universalSearchBox, "placeholder");
         System.out.println("Universal placeholder value is : " + universalPlaceHolder);
     }
-    public void validateUniversalSearchPlaceHolderFromHeaderOptions()
-    {
-        Assert.assertEquals(attUniversalSearchBoxExp,universalPlaceHolder);
+
+    public void validateUniversalSearchPlaceHolderFromHeaderOptions() {
+        Assert.assertEquals(attUniversalSearchBoxExp, universalPlaceHolder);
     }
 
     //    Scenario: Verify user should view the App Drawer icon at the top right corner in the home page view
-    public void appDrawerIconFromHeaderOptions()
-    {
+    public void appDrawerIconFromHeaderOptions() {
         System.out.println("Drawer icon status is : " + isDisplayed(mnuDrawer));
     }
-    public void validateAppDrawerIconFromHeaderOptions()
-    {
+
+    public void validateAppDrawerIconFromHeaderOptions() {
         Assert.assertTrue(isDisplayed(mnuDrawer));
     }
 
     //    Scenario: Verify user should view the Notification icon in the home page screen
-    public void notificationIconFromHeaderOptions()
-    {
+    public void notificationIconFromHeaderOptions() {
         System.out.println("Notification icon status is : " + isDisplayed(icnNotification));
     }
-    public void validateNotificationIconFromHeaderOptions()
-    {
+
+    public void validateNotificationIconFromHeaderOptions() {
         Assert.assertTrue(isDisplayed(icnNotification));
     }
 
     //    Scenario: Verify user views the User Options on clicking username dropdown in the home page screen
-    public void userOptionsUnderUsernameDropdown()
-    {
+    public void userOptionsUnderUsernameDropdown() {
         findElementByXpath(ddlUserOptions).click();
         moveToElement(btnChangePassword).perform();
         Assert.assertTrue(isDisplayed(btnChangePassword));
@@ -314,8 +288,8 @@ public class LoginPage extends SeleniumUtils {
         moveToElement(btnLogOut).perform();
         System.out.println("Log Out button status is : " + isDisplayed(btnLogOut));
     }
-    public void validateUserOptionsUnderUsernameDropdown()
-    {
+
+    public void validateUserOptionsUnderUsernameDropdown() {
         Assert.assertTrue(isDisplayed(btnLogOut));
     }
 }
