@@ -33,14 +33,24 @@ public class MOOPLedgerStepDef extends MOOPLedgerPage {
         userClicksOnMemberId();
     }
 
-    @Then("user navigates to the {string} and {string} screen")
-    public void user_navigates_to_the_and_screen(String expTab, String expTab2) {
-        userNavigatesToMoopTransactionScreen(expTab);
-        userNavigatesToMoopAccumulatorSummary(expTab2);
+    @Then("user navigates to the Moop Transaction tabs")
+    public void user_navigates_to_the_moop_transaction_tabs() {
+        userNavigatesToMoopTransactionScreen();
+        userNavigatesToMoopAccumulatorSummary();
     }
 
     @Then("user able to view the below mentioned fields under Moop Transaction page")
     public void user_able_to_view_the_below_mentioned_fields_under_moop_transaction_page(DataTable expFields) {
         verifyFieldsUnderMoopTransaction(expFields);
+    }
+
+    @Then("user able view the field values under Moop Transaction page")
+    public void user_able_view_the_field_values_under_moop_transaction_page() {
+        verifyFieldValuesUnderMoopTransaction();
+    }
+
+    @Then("user able to view the Search criteria under Moop Transaction page")
+    public void user_able_to_view_the_search_criteria_under_moop_transaction_page() {
+        verifySearchCriteriaInMoopTransaction();
     }
 }
