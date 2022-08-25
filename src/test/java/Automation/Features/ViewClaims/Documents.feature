@@ -6,7 +6,7 @@ Feature: Documents
 
   @47215
   Scenario: Verify user should be able to see attached files and EDI files in Documents tab
-    When user clicking on Claim Number "P0020021100018" in Global Search page
+    When user clicking on Claim Number in Global Search page
     And user clicks on the Documents tab
     Then user navigates to "Documents" tab
     And user able to view the two sub tabs as "EDIFiles" and "Attachments"
@@ -27,20 +27,23 @@ Feature: Documents
 
   @49610
   Scenario: Verify column fields in Attachments sub tab
-    When user clicking on Claim Number "P0020021100018" in Global Search page
+    When user clicking on Claim Number in Global Search page
     And user clicks on the Documents tab
+    And user clicks on Attachments sub tab
     Then user able to view the below column fields under Attachments sub tab
       | File Name   |
       | Title       |
       | Uploaded By |
       | Uploaded On |
+    And user able to view the field values under Attachments sub tab
 
   @49613
   Scenario: Verify column fields in EDI files sub tab
-    When user clicking on Claim Number "P0020021100018" in Global Search page
+    When user clicking on Claim Number in Global Search page
     And user clicks on the Documents tab
     Then user able to view the below column fields under EDI Files sub tab
       | File Name   |
       | File Type   |
       | Uploaded By |
       | Uploaded On |
+    And user able to view the field values under EDI Files sub tab

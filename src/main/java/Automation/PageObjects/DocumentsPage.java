@@ -6,6 +6,8 @@ import org.junit.Assert;
 import org.openqa.selenium.WebElement;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -17,6 +19,8 @@ public class DocumentsPage extends SeleniumUtils {
     String btnFooterSection = "//*[@class='footer footer-flex']/button";
     String lstEdiFiles = "//app-documents//*[@id = 'resultsGrid']//span[@ref = 'eText']";
     String lstAttachments = "//app-documents//*[@id = 'resultsGrid1']//span[@ref = 'eText']";
+    String lstEdiFilesValues = "//*[@aria-label = 'Press SPACE to deselect this row.']//span[@class = 'ag-cell-value']";
+    String lstAttachmentValues = "(//*[@aria-label = 'Press SPACE to select this row.'])[9]//span[@class = 'ag-cell-value']";
 
 
     //  Scenario: Verify user should be able to see attached files and EDI files in Documents tab
@@ -49,10 +53,16 @@ public class DocumentsPage extends SeleniumUtils {
         System.out.println("Size :" + ActFields.size());
         System.out.println("Footer fields should display:" + ActFields);
         System.out.println("Expected fields are: " + fieldsExp);
-        Assert.assertEquals(ActFields, fieldsExp);
+        Assert.assertEquals(fieldsExp, ActFields);
     }
 
     //  Scenario: Verify column fields in Attachments sub tab
+    public void userClicksOnAttachmentsSubTab() throws InterruptedException {
+        explicitVisibilityOfWait(findElementByXpath(tabAttachments), 10);
+        clickElement(tabAttachments);
+        threadSleep(1000);
+    }
+
     public void verifyUserViewsColumnsUnderAttachmentsSection(DataTable columnsUnderAttachments) {
         List<String> fieldsExp = columnsUnderAttachments.asList();
         List<String> ActFields = findElementsByXpath(lstAttachments)
@@ -60,7 +70,58 @@ public class DocumentsPage extends SeleniumUtils {
         System.out.println("Size :" + ActFields.size());
         System.out.println("Attachments Columns should display:" + ActFields);
         System.out.println("Expected fields are: " + fieldsExp);
-        Assert.assertEquals(ActFields, fieldsExp);
+        Assert.assertEquals(fieldsExp, ActFields);
+    }
+
+    public void verifyFieldValuesUnderAttachments() throws InterruptedException {
+        threadSleep(1000);
+        HashMap<String, String> testValues = new HashMap<String, String>();
+        testValues.put("File Name", "5222MH20220607R34E4BCD12.txt");
+        testValues.put("Title", "");
+        testValues.put("Uploaded By", "UATValorAdjudication@mirra.com");
+        testValues.put("Uploaded On", "06/07/2022");
+
+        HashMap<String, String> uatValues = new HashMap<>();
+        uatValues.put("File Name", "");
+        uatValues.put("Title", "");
+        uatValues.put("Uploaded By", "");
+        uatValues.put("Uploaded On", "");
+
+        if (environment.contains("test")) {
+            List<String> fieldsExp = uatValues.values().stream().collect(Collectors.toList());
+            List<WebElement> ActColumnFields = findElementsByXpath(lstAttachmentValues);
+            List<String> columnFieldsForCompare = new ArrayList<>();
+            System.out.println("Size " + ActColumnFields.size());
+            for (WebElement column : ActColumnFields) {
+                scrollIntoView(column, driver);
+                String text = column.getText();
+                columnFieldsForCompare.add(text);
+            }
+            for (String exp : fieldsExp) {
+                if (columnFieldsForCompare.contains(exp)) {
+                    Assert.assertTrue(true);
+                } else {
+                    Assert.fail(exp + " is not listed in actual list");
+                }
+            }
+        } else {
+            List<String> fieldsExp = uatValues.values().stream().collect(Collectors.toList());
+            List<WebElement> ActColumnFields = findElementsByXpath(lstAttachmentValues);
+            List<String> columnFieldsForCompare = new ArrayList<>();
+            System.out.println("Size " + ActColumnFields.size());
+            for (WebElement column : ActColumnFields) {
+                scrollIntoView(column, driver);
+                String text = column.getText();
+                columnFieldsForCompare.add(text);
+            }
+            for (String exp : fieldsExp) {
+                if (columnFieldsForCompare.contains(exp)) {
+                    Assert.assertTrue(true);
+                } else {
+                    Assert.fail(exp + " is not listed in actual list");
+                }
+            }
+        }
     }
 
     //  Scenario: Verify column fields in EDI files sub tab
@@ -72,5 +133,50 @@ public class DocumentsPage extends SeleniumUtils {
         System.out.println("EDI Files Columns should display:" + ActFields);
         System.out.println("Expected fields are: " + fieldsExp);
         Assert.assertEquals(ActFields, fieldsExp);
+    }
+
+    public void verifyFieldValuesUnderEdiFiles(){
+        HashMap<String, String> testValues = new HashMap<String, String>();
+        testValues.put("File Name", "H1119.AH.PROD.MAO.ENC0132.AH.P.CARE.20220607195510.edi");
+        testValues.put("File Type", "Encounter");
+        testValues.put("Uploaded By", "claims-User@adjudication.com");
+        testValues.put("Uploaded On", "06/07/2022");
+
+        HashMap<String, String> uatValues = new HashMap<>();
+        uatValues.put("File Name", "H1119.AH.PROD.MAO.ENC0132.AH.P.CARE.20220624073021.edi");
+        uatValues.put("File Type", "Encounter");
+        uatValues.put("Uploaded By", "claims-User@adjudication.com");
+        uatValues.put("Uploaded On", "06/24/2022");
+
+        if (environment.contains("test")) {
+            List<String> fieldsExp = testValues.values().stream().collect(Collectors.toList());
+            List<String> ActValues = findElementsByXpath(lstEdiFilesValues)
+                    .stream().map((e) -> e.getText().trim()).collect(Collectors.toList());
+            System.out.println("Size:" + ActValues.size());
+            for (String exp : fieldsExp) {
+                if (ActValues.contains(exp)) {
+                    Assert.assertTrue(true);
+                } else {
+                    Assert.fail(exp + " is not listed in actual list");
+                }
+            }
+        } else {
+            List<String> fieldsExp = uatValues.values().stream().collect(Collectors.toList());
+            List<WebElement> ActColumnFields = findElementsByXpath(lstEdiFilesValues);
+            List<String> columnFieldsForCompare = new ArrayList<>();
+            System.out.println("Size " + ActColumnFields.size());
+            for (WebElement column : ActColumnFields) {
+                scrollIntoView(column, driver);
+                String text = column.getText();
+                columnFieldsForCompare.add(text);
+            }
+            for (String exp : fieldsExp) {
+                if (columnFieldsForCompare.contains(exp)) {
+                    Assert.assertTrue(true);
+                } else {
+                    Assert.fail(exp + " is not listed in actual list");
+                }
+            }
+        }
     }
 }

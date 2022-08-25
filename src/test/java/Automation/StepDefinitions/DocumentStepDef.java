@@ -31,14 +31,29 @@ public class DocumentStepDef extends DocumentsPage {
     }
 
     //  Scenario: Verify column fields in Attachments sub tab
+    @When("user clicks on Attachments sub tab")
+    public void user_clicks_on_attachments_sub_tab() throws InterruptedException {
+        userClicksOnAttachmentsSubTab();
+    }
+
     @Then("user able to view the below column fields under Attachments sub tab")
     public void user_able_to_view_the_below_column_fields_under_attachments_sub_tab(DataTable columnsUnderAttachments) {
         verifyUserViewsColumnsUnderAttachmentsSection(columnsUnderAttachments);
+    }
+
+    @Then("user able to view the field values under Attachments sub tab")
+    public void user_able_to_view_the_field_values_under_attachments_sub_tab() throws InterruptedException {
+        verifyFieldValuesUnderAttachments();
     }
 
     //  Scenario: Verify column fields in EDI files sub tab
     @Then("user able to view the below column fields under EDI Files sub tab")
     public void user_able_to_view_the_below_column_fields_under_edi_files_sub_tab(DataTable columnFields) {
         verifyUserViewsColumnsUnderEdiFilesSection(columnFields);
+    }
+
+    @Then("user able to view the field values under EDI Files sub tab")
+    public void user_able_to_view_the_field_values_under_edi_files_sub_tab() {
+        verifyFieldValuesUnderEdiFiles();
     }
 }
