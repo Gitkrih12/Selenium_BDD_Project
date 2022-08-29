@@ -25,10 +25,20 @@ public class ServiceDetailsStepDef extends ServiceDetailsPage {
         userViewsAllColumnFieldsInServiceDetails(columnList);
     }
 
+    @Then("user able to view all the field values in Service Details page")
+    public void user_able_to_view_all_the_field_values_in_service_details_page() {
+        verifyUserViewsFieldValuesInServiceDetails();
+    }
+
     //  Scenario: Verify Service Lines fields
     @Then("user able to view the below Service Line Fields")
     public void user_able_to_view_the_below_service_line_fields(DataTable serviceLineFields) {
         userViewsServiceLineFields(serviceLineFields);
+    }
+
+    @Then("user able to view all the field values in Service Line fields")
+    public void user_able_to_view_all_the_field_values_in_service_line_fields() {
+        userViewsServiceLineFieldValues();
     }
 
     //  Scenario: Verify footer section available in Service details tab

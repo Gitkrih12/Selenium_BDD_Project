@@ -131,6 +131,51 @@ public class LeftNavigationStepDef extends LeftNavigationPage {
         verifyMainMenuItemsFromLeftNavigationForAdmin(leftNavMainMenusList);
     }
 
+    // Scenario: Validate Adjudication Menu for adjudicator role
+    @Then("user should be able to view the Global Search Menu under Adjudication Menu")
+    public void user_should_be_able_to_view_the_global_search_menu_under_adjudication_menu() {
+        verifyAdjudicationMenuForNonAdminRole();
+    }
+
+    //    Scenario: Validate Check Management Menu for adjudicator role
+    @Then("user should be able to view the following sub menus under Check Management main Menu for non admin role")
+    public void user_should_be_able_to_view_the_following_sub_menus_under_check_management_main_menu_for_non_admin_role(DataTable checkManagementList) {
+        validateCheckManagementSubMenusForNonAdminRole(checkManagementList);
+    }
+
+    //    Scenario: Validate Member Management Menu for adjudicator role
+    @Then("user should be able to view the following sub menus under Member Management main Menu for non admin role")
+    public void user_should_be_able_to_view_the_following_sub_menus_under_member_management_main_menu_for_non_admin_role(DataTable memberManagementList) {
+        validateMemberManagementSubMenusForNonAdminRole(memberManagementList);
+    }
+
+    //    Scenario: Verify left navigation menu for adjudicator role
+    @Then("user should be able to view the following menu items under left navigation panel for non admin role")
+    public void user_should_be_able_to_view_the_following_menu_items_under_left_navigation_panel_for_non_admin_role(DataTable leftNavMainMenusList) {
+        verifyMainMenuItemsFromLeftNavigationForNonAdminRole(leftNavMainMenusList);
+    }
+
+    // Scenario: Verify user not able to view Reports Menu in Left Navigation for adjudicator role
+    @Then("user should not be able to view the Reports Menu in Left Navigation for adjudicator role")
+    public void user_should_not_be_able_to_view_the_reports_menu_in_left_navigation_for_adjudicator_role() {
+        verifyUserNotAbleToViewReportsMenuFromLeftNavigationForNonAdminRole();
+    }
+
+    //    Scenario: Verify user not able to view the few sub menu's under Adjudication Menu for adjudicator role
+    @Then("user should see the Global search menu under Adjudication section")
+    public void user_should_see_the_global_search_menu_under_adjudication_section() {
+        verifyUserAbleToViewGlobalSearchUnderAdjudicationMainMenuForNonAdminRole();
+    }
+    @Then("user should not be able to view the following sub menus under adjudication main menu")
+    public void user_should_not_be_able_to_view_the_following_sub_menus_under_adjudication_main_menu(DataTable otherMenusList) {
+        verifyUserNotAbleToViewOtherSubMenusExceptGlobalSearchUnderAdjMainMenuForNonAdminRole(otherMenusList);
+    }
+
+    // Scenario: Verify user not able to view User Management Menu in Left Navigation for adjudicator role
+    @Then("user not able to view the User Management Menu in Left Navigation for adjudicator role")
+    public void user_not_able_to_view_the_user_management_menu_in_left_navigation_for_adjudicator_role() {
+        verifyUserNotAbleToViewUserManagementMainMenuForNonAdminRole();
+    }
 
 
 }
