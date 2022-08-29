@@ -69,7 +69,6 @@ public class Driver {
         }
         driver.manage().deleteAllCookies();
         driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         driver.get(URL);
     }
 
@@ -92,6 +91,7 @@ public class Driver {
         options.addArguments("disable-infobars");
         options.addArguments("--no-sandbox");
         options.addArguments("use-fake-ui-for-media-stream=1");
+        options.addArguments("window-size=1920,1080");
         options.setExperimentalOption("useAutomationExtension", false);
         options.setExperimentalOption("excludeSwitches", Collections.singletonList("enable-automation"));
 
