@@ -85,7 +85,7 @@ public class FilesPage extends SeleniumUtils {
         List<WebElement> fields837P = findElementsByXpath(lst837PColumnFieldNames);
         List<String> fieldsList837PAct = new ArrayList<>();
         for (WebElement column : fields837P) {
-            threadSleep(2000);
+            threadSleep(4000);
             scrollIntoView(column, driver);
             String text = column.getText();
             fieldsList837PAct.add(text);
