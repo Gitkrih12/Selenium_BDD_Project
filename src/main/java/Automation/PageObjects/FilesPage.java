@@ -83,10 +83,12 @@ public class FilesPage extends SeleniumUtils {
     public void verifyUserAbleToSee837PColumnFields(DataTable fieldsList837P) throws InterruptedException {
         List<String> fieldsList837PExp = fieldsList837P.asList();
         List<WebElement> fields837P = findElementsByXpath(lst837PColumnFieldNames);
+        System.out.println("Elements size is: " + fields837P.size());
         List<String> fieldsList837PAct = new ArrayList<>();
         for (WebElement column : fields837P) {
-            threadSleep(4000);
+            threadSleep(2000);
             scrollIntoView(column, driver);
+            allelements
             String text = column.getText();
             fieldsList837PAct.add(text);
         }
