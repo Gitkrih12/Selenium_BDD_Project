@@ -260,7 +260,7 @@ public class FilesPage extends SeleniumUtils {
 
     //    Scenario: Verify color code for Status View under '837P Files' tab
     public void verify837PStatusViewColorCoding(String status, String colorCode837PExp) throws InterruptedException {
-        explicitElementClickableWaitByXpath(txt837PStatus, 5).sendKeys(status);
+        explicitElementClickableWaitByXpath(txt837PStatus, 10).sendKeys(status);
         threadSleep(2000);
         String colorCode837PAct = getColorCodeForBackground(lbl837PStatusColor);
         System.out.println("837P color code status is: " + colorCode837PAct);
