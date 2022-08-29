@@ -3,6 +3,7 @@ package Automation.Utilities;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.Assert;
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -69,6 +70,7 @@ public class Driver {
         }
         driver.manage().deleteAllCookies();
         driver.manage().window().maximize();
+        driver.manage().window().setSize(new Dimension(1920, 1280));
         driver.get(URL);
     }
 
@@ -91,7 +93,7 @@ public class Driver {
         options.addArguments("disable-infobars");
         options.addArguments("--no-sandbox");
         options.addArguments("use-fake-ui-for-media-stream=1");
-        options.addArguments("window-size=1920,1080");
+//        options.addArguments("window-size=1920,1080");
         options.setExperimentalOption("useAutomationExtension", false);
         options.setExperimentalOption("excludeSwitches", Collections.singletonList("enable-automation"));
 
