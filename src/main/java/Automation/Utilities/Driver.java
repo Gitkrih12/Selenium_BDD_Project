@@ -70,7 +70,7 @@ public class Driver {
         }
         driver.manage().deleteAllCookies();
         driver.manage().window().maximize();
-        driver.manage().window().setSize(new Dimension(1920, 1280));
+//        driver.manage().window().setSize(new Dimension(1920, 1280));
         driver.get(URL);
     }
 
@@ -89,11 +89,12 @@ public class Driver {
     {
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--incognito");
+        options.addArguments("--headless");
+        options.addArguments("window-size=1920,1080");
         options.addArguments("--disable-features=VizDisplayCompositor");
         options.addArguments("disable-infobars");
         options.addArguments("--no-sandbox");
         options.addArguments("use-fake-ui-for-media-stream=1");
-//        options.addArguments("window-size=1920,1080");
         options.setExperimentalOption("useAutomationExtension", false);
         options.setExperimentalOption("excludeSwitches", Collections.singletonList("enable-automation"));
 
