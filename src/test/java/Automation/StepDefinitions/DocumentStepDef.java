@@ -56,4 +56,84 @@ public class DocumentStepDef extends DocumentsPage {
     public void user_able_to_view_the_field_values_under_edi_files_sub_tab() {
         verifyFieldValuesUnderEdiFiles();
     }
+
+    @When("user sorts File Name column to ascending on EDI Files table")
+    public void user_sorts_file_name_column_to_ascending_on_edi_files_table() {
+        setSortOrder("File Name", true);
+    }
+
+    @Then("File Name column data should display ascending order on EDI Files table")
+    public void file_name_column_data_should_display_ascending_order_on_edi_files_table() throws InterruptedException {
+        verifySortOrder("File Name", true);
+    }
+
+    @When("user sorts File Name column to descending on EDI Files table")
+    public void user_sorts_file_name_column_to_descending_on_edi_files_table() {
+        setSortOrder("File Name", false);
+    }
+
+    @Then("File Name column data should display descending order on EDI Files table")
+    public void file_name_column_data_should_display_descending_order_on_edi_files_table() throws InterruptedException {
+        verifySortOrder("File Name", false);
+    }
+
+    @When("user sorts File Type column to ascending on EDI Files table")
+    public void user_sorts_file_type_column_to_ascending_on_edi_files_table() {
+        setSortOrder("File Type", true);
+    }
+
+    @Then("File Type column data should display ascending order on EDI Files table")
+    public void file_type_column_data_should_display_ascending_order_on_edi_files_table() throws InterruptedException {
+        verifySortOrder("File Type", true);
+    }
+
+    @When("user sorts File Type column to descending on EDI Files table")
+    public void user_sorts_file_type_column_to_descending_on_edi_files_table() {
+        setSortOrder("File Type", false);
+    }
+
+    @Then("File Type column data should display descending order on EDI Files table")
+    public void file_type_column_data_should_display_descending_order_on_edi_files_table() throws InterruptedException {
+        verifySortOrder("File Type", false);
+    }
+
+    @When("user sorts Uploaded By column to ascending on EDI Files table")
+    public void user_sorts_uploaded_by_column_to_ascending_on_edi_files_table() {
+        setSortOrder("Uploaded By", true);
+    }
+
+    @Then("Uploaded By column data should display ascending order on EDI Files table")
+    public void uploaded_by_column_data_should_display_ascending_order_on_edi_files_table() throws InterruptedException {
+        verifySortOrder("Uploaded By", true);
+    }
+
+    @When("user sorts Uploaded By column to descending on EDI Files table")
+    public void user_sorts_uploaded_by_column_to_descending_on_edi_files_table() {
+        setSortOrder("Uploaded By", false);
+    }
+
+    @Then("Uploaded By column data should display descending order on EDI Files table")
+    public void uploaded_by_column_data_should_display_descending_order_on_edi_files_table() throws InterruptedException {
+        verifySortOrder("Uploaded By", false);
+    }
+
+    @When("user sorts Uploaded On column to ascending on EDI Files table")
+    public void user_sorts_uploaded_on_column_to_ascending_on_edi_files_table() {
+        setSortOrder("Uploaded On", true);
+    }
+
+    @Then("Uploaded On column data should display ascending order on EDI Files table")
+    public void uploaded_on_column_data_should_display_ascending_order_on_edi_files_table() throws InterruptedException {
+        verifySortOrder("Uploaded On", true);
+    }
+
+    @When("user sorts Uploaded On column to descending on EDI Files table")
+    public void user_sorts_uploaded_on_column_to_descending_on_edi_files_table() {
+        setSortOrder("Uploaded On", false);
+    }
+
+    @Then("Uploaded On column data should display descending order on EDI Files table")
+    public void uploaded_on_column_data_should_display_descending_order_on_edi_files_table() throws InterruptedException {
+        verifySortOrder("Uploaded On", false);
+    }
 }

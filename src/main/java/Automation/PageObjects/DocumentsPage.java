@@ -3,6 +3,7 @@ package Automation.PageObjects;
 import Automation.Utilities.SeleniumUtils;
 import io.cucumber.datatable.DataTable;
 import org.junit.Assert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
 import java.util.ArrayList;
@@ -19,8 +20,9 @@ public class DocumentsPage extends SeleniumUtils {
     String btnFooterSection = "//*[@class='footer footer-flex']/button";
     String lstEdiFiles = "//app-documents//*[@id = 'resultsGrid']//span[@ref = 'eText']";
     String lstAttachments = "//app-documents//*[@id = 'resultsGrid1']//span[@ref = 'eText']";
-    String lstEdiFilesValues = "//*[@aria-label = 'Press SPACE to deselect this row.']//span[@class = 'ag-cell-value']";
+    String lstEdiFilesValues = "(//*[@id= 'resultsGrid'])[3]//span[@class = 'ag-cell-value']";
     String lstAttachmentValues = "(//*[@aria-label = 'Press SPACE to select this row.'])[9]//span[@class = 'ag-cell-value']";
+    String lstEdiFilesHeaderName = "//*[@id = 'resultsGrid']//span[contains(text(), '$HeaderName^')]";
 
 
     //  Scenario: Verify user should be able to see attached files and EDI files in Documents tab
@@ -178,5 +180,59 @@ public class DocumentsPage extends SeleniumUtils {
                 }
             }
         }
+    }
+
+    public void setSortOrder(String HeaderName, boolean isAscending){
+        String expectedSortOrder = isAscending ? "ascending" : "descending";
+        String sortOrder;
+        for(int i = 0; i < 3; i++){
+            explicitVisibilityOfWait(findElementByXpath(lstEdiFilesHeaderName.replace("$HeaderName^", HeaderName)), 20).click();
+            sortOrder = getSortOrder(HeaderName);
+            if (sortOrder != null && sortOrder.equals(expectedSortOrder)) {
+                return;
+            }
+        }
+        Assert.assertTrue(String.format("Header isn't set to %s order!", expectedSortOrder), isAscending);
+    }
+
+    public String getSortOrder(String HeaderName){
+        String sortOrder = getWebDriver().findElement(By.xpath(lstEdiFilesHeaderName.replace("$HeaderName^", HeaderName))).getAttribute("class");
+        return sortOrder;
+    }
+
+    public void verifySortOrder(String HeaderName, boolean isAscending) throws InterruptedException {
+        String expectedSortOrder = isAscending ? "ascending" : "descending";
+        List<String> cellData = getCellData(HeaderName);
+        Assert.assertTrue("Table has no data!", cellData.size() != 0);
+        for (int i = 1; i < cellData.size() - 1; i++) {
+            int output = cellData.get(i - 1).compareTo(cellData.get(i));
+            if (isAscending) {
+                Assert.assertTrue(String.format("Expected sort order %s", expectedSortOrder), output - 1 <=0);
+            } else {
+                Assert.assertTrue(String.format("Expected sort order %s", expectedSortOrder), output + 1 > 0);
+            }
+        }
+    }
+
+    public List<String> getCellData(String HeaderName) throws InterruptedException {
+        List<String> cellData = new ArrayList<>();
+        int indexValue = getHeaderPosition(HeaderName);
+        List<WebElement> columnData = getWebDriver().findElements(By.xpath
+                ("(//*[@id= 'resultsGrid'])[3]//span[@class = 'ag-cell-value'][" + indexValue + "]"));
+        for (WebElement x : columnData) {
+            cellData.add(x.getText());
+        }
+        return cellData;
+    }
+
+    public int getHeaderPosition(String HeaderName) throws InterruptedException {
+        List<String> headerName = new ArrayList<>();
+        threadSleep(1000);
+        List<WebElement> AllHeaders = getWebDriver().findElements(By.xpath(lstEdiFiles));
+        for (WebElement x : AllHeaders) {
+            headerName.add(x.getText());
+        }
+        int indexValue = headerName.indexOf(HeaderName) + 1;
+        return indexValue;
     }
 }
