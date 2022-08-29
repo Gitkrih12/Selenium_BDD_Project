@@ -88,7 +88,6 @@ public class FilesPage extends SeleniumUtils {
         for (WebElement column : fields837P) {
             threadSleep(2000);
             scrollIntoView(column, driver);
-            allelements
             String text = column.getText();
             fieldsList837PAct.add(text);
         }
