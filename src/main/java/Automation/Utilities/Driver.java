@@ -69,7 +69,6 @@ public class Driver {
         }
         driver.manage().deleteAllCookies();
         driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         driver.get(URL);
     }
 
@@ -88,6 +87,8 @@ public class Driver {
     {
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--incognito");
+        options.addArguments("--headless");
+        options.addArguments("window-size=1920,1080");
         options.addArguments("--disable-features=VizDisplayCompositor");
         options.addArguments("disable-infobars");
         options.addArguments("--no-sandbox");
