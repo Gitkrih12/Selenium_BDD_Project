@@ -70,7 +70,6 @@ public class Driver {
         }
         driver.manage().deleteAllCookies();
         driver.manage().window().maximize();
-//        driver.manage().window().setSize(new Dimension(1920, 1280));
         driver.get(URL);
     }
 

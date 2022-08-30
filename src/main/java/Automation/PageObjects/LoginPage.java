@@ -103,7 +103,7 @@ public class LoginPage extends SeleniumUtils {
 
     //    Scenario: Verify user able to login with valid username and password for DSNP adjudicator role
     public void loginWithValidUsernameAndPasswordForDsnpAdjudicator() {
-        explicitVisibilityOfElementLocatedWaitByXpath(txtUsername, 10).sendKeys(prop.getProperty("dsnpAdjUsername"));
+        explicitVisibilityOfElementLocatedWaitByXpath(txtUsername, 30).sendKeys(prop.getProperty("dsnpAdjUsername"));
         explicitVisibilityOfElementLocatedWaitByXpath(txtPassword, 10).sendKeys(prop.getProperty("dsnpAdjPassword"));
         explicitElementClickableWaitByXpath(btnLogin, 10).click();
         username = explicitElementClickableWaitByID(lnkUsername, 30).getText();
@@ -147,7 +147,7 @@ public class LoginPage extends SeleniumUtils {
 
     //    Scenario: Verify user able to login with valid username and password for DSNP admin role
     public void loginWithValidUsernameAndPasswordForDsnpAdmin() {
-        explicitVisibilityOfElementLocatedWaitByXpath(txtUsername, 10).sendKeys(prop.getProperty("dsnpAdminUsername"));
+        explicitVisibilityOfElementLocatedWaitByXpath(txtUsername, 30).sendKeys(prop.getProperty("dsnpAdminUsername"));
         explicitVisibilityOfElementLocatedWaitByXpath(txtPassword, 10).sendKeys(prop.getProperty("dsnpAdminPassword"));
         explicitElementClickableWaitByXpath(btnLogin, 10).click();
     }
@@ -205,10 +205,10 @@ public class LoginPage extends SeleniumUtils {
 
     //    Scenario: Verify user able to login with valid username and password for non DSNP adjudicator role
     public void loginWithValidUsernameAndPasswordForNonDsnpAdjudicator() {
-        findElementByXpath(txtUsername).sendKeys(prop.getProperty("nonDsnpAdjUsername"));
-        findElementByXpath(txtPassword).sendKeys(prop.getProperty("nonDsnpAdjPassword"));
-        findElementByXpath(btnLogin).click();
-        nonDsnpAdjUsername = findElementByID(lnkUsername).getText();
+        explicitVisibilityOfElementLocatedWaitByXpath(txtUsername, 30).sendKeys(prop.getProperty("nonDsnpAdjUsername"));
+        explicitVisibilityOfElementLocatedWaitByXpath(txtPassword, 10).sendKeys(prop.getProperty("nonDsnpAdjPassword"));
+        explicitElementClickableWaitByXpath(btnLogin, 10).click();
+        nonDsnpAdjUsername = explicitElementClickableWaitByID(lnkUsername, 30).getText();
         System.out.println("User logged in as : " + nonDsnpAdjUsername);
 
     }
@@ -220,10 +220,10 @@ public class LoginPage extends SeleniumUtils {
 
     //    Scenario: Verify user able to login with valid username and password for non DSNP admin role
     public void loginWithValidUsernameAndPasswordForNonDsnpAdmin() {
-        findElementByXpath(txtUsername).sendKeys(prop.getProperty("nonDsnpAdminUsername"));
-        findElementByXpath(txtPassword).sendKeys(prop.getProperty("nonDsnpAdminPassword"));
-        findElementByXpath(btnLogin).click();
-        nonDsnpAdminUsername = findElementByID(lnkUsername).getText();
+        explicitVisibilityOfElementLocatedWaitByXpath(txtUsername, 30).sendKeys(prop.getProperty("nonDsnpAdminUsername"));
+        explicitVisibilityOfElementLocatedWaitByXpath(txtPassword, 10).sendKeys(prop.getProperty("nonDsnpAdminPassword"));
+        explicitElementClickableWaitByXpath(btnLogin, 10).click();
+        nonDsnpAdminUsername = explicitElementClickableWaitByID(lnkUsername, 30).getText();
         System.out.println("User logged in as : " + nonDsnpAdminUsername);
     }
 
