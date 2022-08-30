@@ -25,6 +25,11 @@ public class MemberDetailsStepDef extends MemberDetailsPage {
         userViewsFields(expFields);
     }
 
+    @Then("user able to view all the field values under Member Details page")
+    public void user_able_to_view_all_the_field_values_under_member_details_page() {
+        verifyFieldValuesUnderMemberDetails();
+    }
+
     //  Scenario: Verify Member Details tabs
     @Then("user should be able to view the below tabs")
     public void user_should_be_able_to_view_the_below_tabs(DataTable expTabs) {
@@ -41,6 +46,11 @@ public class MemberDetailsStepDef extends MemberDetailsPage {
     @Then("user should be able to view the below column fields under Provider Details tab")
     public void user_should_be_able_to_view_the_below_column_fields_under_provider_details_tab(DataTable expFields) {
         userViewsFieldsUnderProviderDetails(expFields);
+    }
+
+    @Then("user able to view all the field values under Provider Details tab")
+    public void user_able_to_view_all_the_field_values_under_provider_details_tab() {
+        verifyFieldValuesUnderProviderDetails();
     }
 
     //  Scenario: Verify user navigates to Address subtab in Member Details page
@@ -60,7 +70,19 @@ public class MemberDetailsStepDef extends MemberDetailsPage {
         userViewAddressSubTabColumns(expColumns);
     }
 
+    @Then("user able to view all the field values under Address subtab")
+    public void user_able_to_view_all_the_field_values_under_address_subtab() {
+        verifyFieldValuesUnderAddress();
+    }
+
     //  Scenario: Verify user should navigate to Membership Information tab in Member Details page
+    @When("user clicking on Membership Claim Number in Global Search page")
+    public void user_clicking_on_membership_claim_number_in_global_search_page() throws InterruptedException {
+        clickOnGlobalSearch();
+        enterClaimNumberInSearchField();
+        clickOnClaimNumber();
+    }
+
     @When("user clicks on Membership Information subtab in Member Details page")
     public void user_clicks_on_membership_information_subtab_in_member_details_page() throws InterruptedException {
         userClicksOnMemberShipInfoSubTab();
@@ -77,10 +99,20 @@ public class MemberDetailsStepDef extends MemberDetailsPage {
         userViewMemberShipInfoColumns(expFields);
     }
 
+    @Then("user able to view all the field values under Membership Information subtab")
+    public void user_able_to_view_all_the_field_values_under_membership_information_subtab() {
+        verifyFieldValuesUnderMembershipInformation();
+    }
+
     //  Scenario: Verify user should able to see Membership History column fields
     @Then("user should be able to view the following columns in Membership History")
     public void user_should_be_able_to_view_the_following_columns_in_membership_history(DataTable expMemberShipHistoryColumns) {
         userViewMemberShipHistoryColumns(expMemberShipHistoryColumns);
+    }
+
+    @Then("user able to view all the field values under Membership History subtab")
+    public void user_able_to_view_all_the_field_values_under_membership_history_subtab() {
+        verifyFieldValuesUnderMembershipHistory();
     }
 
     //  Scenario: Verify column fields in Claims subtab

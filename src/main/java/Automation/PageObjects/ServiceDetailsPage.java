@@ -33,7 +33,6 @@ public class ServiceDetailsPage extends SeleniumUtils {
         clickElement(lnkGlobalSearch);
     }
 
-    //  Scenario: Verify Adjudicator able to Navigate Service Details from Global Search and validate the fields
     public void enterClaimNumberInSearchField() throws InterruptedException {
         threadSleep(1000);
         expClaimNumber = prop.getProperty("claimNumber");
@@ -42,7 +41,6 @@ public class ServiceDetailsPage extends SeleniumUtils {
         sendKeysUsingKeyboardInput(inputClaimNumber);
     }
 
-    //  Scenario: Verify Adjudicator able to Navigate Service Details from Global Search and validate the fields
     public void clickOnClaimNumber() throws InterruptedException{
         explicitVisibilityOfWait(findElementByXpath(eleClaimNumber), 5);
         clickElement(eleClaimNumber);

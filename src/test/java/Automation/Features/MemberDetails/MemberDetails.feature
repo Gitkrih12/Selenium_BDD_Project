@@ -39,6 +39,7 @@ Feature: Member Details
       | Eff.Date      |
       | MBI           |
       | Status        |
+    And user able to view all the field values under Member Details page
 
   @52214
   Scenario: Verify Member Details tabs
@@ -73,6 +74,7 @@ Feature: Member Details
       | Eff From       |
       | Eff To         |
       | Phone          |
+    And user able to view all the field values under Provider Details tab
 
   @52363
   Scenario: Verify user navigates to Address subtab in Member Details page
@@ -95,6 +97,7 @@ Feature: Member Details
       | ZIP Code     |
       | Phone        |
       | Fax          |
+    And user able to view all the field values under Address subtab
 
   @52386
   Scenario: Verify user should navigate to Membership Information tab in Member Details page
@@ -105,7 +108,7 @@ Feature: Member Details
 
   @52390
   Scenario: Verify column fields in Membership Information tab
-    When user clicking on Claim Number in Global Search page
+    When user clicking on Membership Claim Number in Global Search page
     And user clicks on the Patient ID or MBR ID
     When user clicks on Membership Information subtab in Member Details page
     Then user should be able to view the following columns in Membership Information subtab
@@ -122,6 +125,7 @@ Feature: Member Details
       | Plan Term Date |
       | Address        |
       | Phone          |
+    And user able to view all the field values under Membership Information subtab
 
   @52392
   Scenario: Verify user should able to see Membership History column fields
@@ -142,6 +146,7 @@ Feature: Member Details
       | Plan Term Date |
       | Address        |
       | Phone          |
+    And user able to view all the field values under Membership History subtab
 
   @52405
   Scenario: Verify column fields in Claims subtab
@@ -164,6 +169,7 @@ Feature: Member Details
       | Date Paid        |
       | Check No         |
       | EOB              |
+    And user able to view all the field values under Claims subtab
 
   @52409
   Scenario: Verify Search functionality in claims subtab
@@ -185,6 +191,7 @@ Feature: Member Details
       | Termination Date |
       | Policy ID        |
       | Carrier          |
+    And user able to view all the field values under COB subtab
 
   @52454
   Scenario: Verify user should navigate to MOOP tab and view column fields in Member Details page
@@ -199,6 +206,7 @@ Feature: Member Details
       | Deductible($)   |
       | Total($)        |
       | Max Limit($)    |
+    And user able to view all the field values under Moop subtab
 
   @52589
   Scenario: Verify user should navigate to Instructions tab and view column fields in Member Details page
@@ -217,6 +225,7 @@ Feature: Member Details
       | Bill Type    |
       | Revenue Code |
       | Notes        |
+    And user able to view all the field values under Instructions subtab
 
   @52592
   Scenario: Verify user should navigate to HOSPICE tab and view column fields in Member Details page
@@ -229,3 +238,4 @@ Feature: Member Details
       | Member Death Date  |
       | Hospice Begin Date |
       | Hospice End Date   |
+    And user able to view all the field values under Hospice subtab
