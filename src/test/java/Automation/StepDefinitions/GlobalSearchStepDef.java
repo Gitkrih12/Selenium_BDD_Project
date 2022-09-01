@@ -60,7 +60,7 @@ public class GlobalSearchStepDef extends GlobalSearchPage {
 
 
     @Then("user able to view the exact claim details")
-    public void user_able_to_view_the_exact_claim_details() {
+    public void user_able_to_view_the_exact_claim_details()  throws InterruptedException {
         validateClaimNumberResult();
     }
 
@@ -160,7 +160,7 @@ public class GlobalSearchStepDef extends GlobalSearchPage {
     }
 
     @Then("user able to view the claim details for given Billing Provider")
-    public void user_able_to_view_the_claim_details_for_given_billing_provider() {
+    public void user_able_to_view_the_claim_details_for_given_billing_provider() throws InterruptedException {
         validateBillingProviderResult();
     }
 
@@ -199,7 +199,7 @@ public class GlobalSearchStepDef extends GlobalSearchPage {
     }
 
     @Then("user should be able to display the claim records in a Global Search for given Patient criteria")
-    public void user_should_be_able_to_display_the_claim_records_in_a_global_search_for_given_patient_criteria() {
+    public void user_should_be_able_to_display_the_claim_records_in_a_global_search_for_given_patient_criteria() throws InterruptedException{
         validatePatientResultForCharacterLimit();
     }
 
@@ -210,7 +210,7 @@ public class GlobalSearchStepDef extends GlobalSearchPage {
     }
 
     @Then("user should be able to display the claim records in a Global Search for given Billing Provider criteria")
-    public void user_should_be_able_to_display_the_claim_records_in_a_global_search_for_given_billing_provider_criteria() {
+    public void user_should_be_able_to_display_the_claim_records_in_a_global_search_for_given_billing_provider_criteria() throws InterruptedException {
         validateBillingProviderResultForCharacterLimit();
     }
 
@@ -271,7 +271,7 @@ public class GlobalSearchStepDef extends GlobalSearchPage {
     }
 
     @Then("user should able to view corrected claim")
-    public void user_should_able_to_view_corrected_claim() {
+    public void user_should_able_to_view_corrected_claim()  throws InterruptedException {
         validateClaimNumberResult();
     }
 
@@ -320,7 +320,7 @@ public class GlobalSearchStepDef extends GlobalSearchPage {
     }
 
     @Then("user should able to view Unclean status claim")
-    public void user_should_able_to_view_unclean_status_claim() {
+    public void user_should_able_to_view_unclean_status_claim()  throws InterruptedException {
         validateClaimNumberResult();
     }
 
