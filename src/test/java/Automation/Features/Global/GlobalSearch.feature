@@ -11,7 +11,7 @@ Feature: Global Search
     Then user should land on Global Search page
 
   #37487-As an Adjudicator, I should be able to get the required filtered data by all Global search grid columns
-  @TC_34918 @Sanity @abc
+  @TC_34918 @Sanity
   Scenario: Verify user enters the Claim Number in the Search field
     When user clicks on Global Search in left navigation menu
     Then the user should navigate to the Global Search page
@@ -32,7 +32,7 @@ Feature: Global Search
     When user enters the Patient Name in the Search field
     Then user able to view the claim details for given Patient name
 
-  @TC_37887 @abc
+  @TC_37887
   Scenario: Verify user enters the Billing Provider details in the Search field
     When user clicks on Global Search in left navigation menu
     Then the user should navigate to the Global Search page
@@ -71,7 +71,7 @@ Feature: Global Search
     And user enters the DOS To in the Search field
     Then user able to view the claim details for given DOS To
 
-  @TC_34927 @Sanity @abc
+  @TC_34927 @Sanity
   Scenario: Validate Export Result button should display when the search results are displayed
     When user clicks on Global Search in left navigation menu
     Then the user should navigate to the Global Search page
@@ -98,7 +98,7 @@ Feature: Global Search
     And user should be able view the Reprocess button for Paid state record
 
   #48151-As an Adjudicator, When I search with more than 6 characters in the Claim Number filter, the application should be able to display claim records in a Global search.
-  @TC_49496  @Sanity @abc
+  @TC_49496  @Sanity
   Scenario: Verify user should get records when he search with more than 6 characters in claim number field in Global Search page
     When user clicks on Global Search in left navigation menu
     Then the user should navigate to the Global Search page
@@ -120,14 +120,14 @@ Feature: Global Search
     When user searches more than two characters in Member Id field
     Then user should be able to display the claim records in a Global Search for given Member Id criteria
 
-  @TC_50702 @Sanity @abc
+  @TC_50702 @Sanity
   Scenario: Verify user able to search more than 2 characters in Patient field
     When user clicks on Global Search in left navigation menu
     Then the user should navigate to the Global Search page
     When user searches more than two characters in Patient field
     Then user should be able to display the claim records in a Global Search for given Patient criteria
 
-  @TC_50703 @abc
+  @TC_50703
   Scenario: Verify user able to search more than 2 characters in Billing Provider field
     When user clicks on Global Search in left navigation menu
     Then the user should navigate to the Global Search page
@@ -161,7 +161,7 @@ Feature: Global Search
     Then user should be getting an error message as "Invalid claim number"
 
   #41480- As an adjudicator, I should be able to view correct color coding on the Global search page so that I can easily identify the claim details
-  @TC_42006 @Sanity @abc
+  @TC_42006 @Sanity
   Scenario: Verify color code for corrected claims in Global Search page
     When user clicks on Global Search in left navigation menu
     Then the user should navigate to the Global Search page
@@ -210,7 +210,7 @@ Feature: Global Search
     And user should able to see the circle with color code "#212121" for given State
 
     #53039-As an Adjudicator, When the claim is in Unclean status I want the claim to be displayed and highlighted in the Orange bar.
-  @TC_53445 @Sanity @abc
+  @TC_53445 @Sanity
   Scenario: Verify colour coding for Unclean status professional claims in Global Search page
     When user clicks on Global Search in left navigation menu
     Then the user should navigate to the Global Search page
@@ -219,7 +219,7 @@ Feature: Global Search
     And user should able to see vertical line beside unclean status claim number with color code "#FFC33E"
     And color indication information for Unclean should be available on top of grid
 
-  @TC_53521 @Sanity @abc
+  @TC_53521 @Sanity
   Scenario: Verify colour coding for Unclean status Institutional claims in Global Search page
     When user clicks on Global Search in left navigation menu
     Then the user should navigate to the Global Search page
@@ -271,7 +271,7 @@ Feature: Global Search
     Then claim number column should be first and disabled mode
     And claim number check box should be selected by default
 
-  @TC_48814 @Sanity @abc
+  @TC_48814 @Sanity
   Scenario: Verify user should able to see saved/updated fields under Global Search page
     When user clicks on Global Search in left navigation menu
     Then the user should navigate to the Global Search page
