@@ -189,8 +189,8 @@ public class GlobalSearchPage extends SeleniumUtils {
         sendKeysUsingKeyboardInput(txtClaimNumber);
     }
 
-    public void validateClaimNumberResult() {
-        explicitVisibilityOfWait(findElementByXpath(eleClaimNumber), 5);
+    public void validateClaimNumberResult()  throws InterruptedException{
+        threadSleep(5000);
         String actClaimNumber = getText(eleClaimNumber);
         System.out.println("actual claimNumber :" + actClaimNumber);
         Assert.assertEquals(expClaimNumber, actClaimNumber);
@@ -272,8 +272,8 @@ public class GlobalSearchPage extends SeleniumUtils {
         threadSleep(3000);
     }
 
-    public void validateBillingProviderResult() {
-        explicitVisibilityOfWait(findElementByXpath(eleBillingProvider), 5);
+    public void validateBillingProviderResult() throws InterruptedException  {
+        threadSleep(5000);
         String actBillingProvider = getText(eleBillingProvider);
         System.out.println("actual Billing Provider :" + actBillingProvider);
         Assert.assertEquals(expBillingProvider, actBillingProvider);
@@ -375,7 +375,7 @@ public class GlobalSearchPage extends SeleniumUtils {
     }
 
     public void validateClaimNumberResultForCharacterLimit() throws InterruptedException {
-        threadSleep(10000);
+        threadSleep(12000);
         explicitVisibilityOfWait(findElementByXpath(eleClaimNumber), 5);
         String actClaimNumber = getText(eleClaimNumber);
         System.out.println("actual claimNumber :" + actClaimNumber);
@@ -415,7 +415,8 @@ public class GlobalSearchPage extends SeleniumUtils {
         threadSleep(3000);
     }
 
-    public void validatePatientResultForCharacterLimit() {
+    public void validatePatientResultForCharacterLimit() throws InterruptedException {
+        threadSleep(10000);
         explicitVisibilityOfWait(findElementByXpath(elePatientName), 5);
         String actPatientName = getText(elePatientName);
         System.out.println("actual patient name :" + actPatientName);
@@ -435,7 +436,8 @@ public class GlobalSearchPage extends SeleniumUtils {
         threadSleep(3000);
     }
 
-    public void validateBillingProviderResultForCharacterLimit() {
+    public void validateBillingProviderResultForCharacterLimit() throws InterruptedException {
+        threadSleep(10000);
         explicitVisibilityOfWait(findElementByXpath(eleBillingProvider), 5);
         String actPatientName = getText(eleBillingProvider);
         System.out.println("actual billing provider :" + actPatientName);
@@ -561,7 +563,8 @@ public class GlobalSearchPage extends SeleniumUtils {
     }
 
     //Scenario: Verify user should navigate to Customized Columns window when we click on Customized columns in Global Search page
-    public void clickOnCustomiseColumn() {
+    public void clickOnCustomiseColumn() throws InterruptedException {
+        threadSleep(5000);
         clickElement(btnCustomisedColumns);
     }
 
