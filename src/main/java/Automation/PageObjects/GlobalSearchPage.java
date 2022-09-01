@@ -563,7 +563,8 @@ public class GlobalSearchPage extends SeleniumUtils {
     }
 
     //Scenario: Verify user should navigate to Customized Columns window when we click on Customized columns in Global Search page
-    public void clickOnCustomiseColumn() {
+    public void clickOnCustomiseColumn() throws InterruptedException {
+        threadSleep(5000);
         clickElement(btnCustomisedColumns);
     }
 

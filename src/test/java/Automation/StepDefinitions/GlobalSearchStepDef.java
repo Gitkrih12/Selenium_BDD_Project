@@ -336,7 +336,7 @@ public class GlobalSearchStepDef extends GlobalSearchPage {
 
     //Scenario: Verify user should navigate to Customized Columns window when we click on Customized columns in Global Search page
     @When("the user clicks Customize Columns option")
-    public void the_user_clicks_customize_columns_option() {
+    public void the_user_clicks_customize_columns_option() throws InterruptedException {
         clickOnCustomiseColumn();
     }
     @Then("the user should able to navigate to Customized Columns window")
