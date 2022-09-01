@@ -59,7 +59,7 @@ public class LoginPage extends SeleniumUtils {
         log = LogManager.getLogger();
         log.info("User is on CA Home page");
 
-        explicitVisibilityOfElementLocatedWaitByXpath(lblWelcomeToExp, 30);
+        explicitVisibilityOfElementLocatedWaitByXpath(lblWelcomeToClaimsAdjNg, 30);
         boolean homePageTitle = getTitle().equals(titleHomePage);
         Assert.assertTrue(homePageTitle);
     }
