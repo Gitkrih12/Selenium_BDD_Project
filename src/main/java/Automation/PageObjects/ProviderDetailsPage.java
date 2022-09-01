@@ -27,7 +27,7 @@ public class ProviderDetailsPage extends SeleniumUtils {
 
     // Scenario: Verify user able to navigate to the Provider details tab in the View Claims Form page
     public void clickOnProviderDetails() throws InterruptedException {
-        explicitElementClickableWaitByXpath(tabProviderDetails, 30);
+        explicitElementClickableWaitByXpath(tabProviderDetails, 50);
         clickElement(tabProviderDetails);
         threadSleep(3000);
     }
