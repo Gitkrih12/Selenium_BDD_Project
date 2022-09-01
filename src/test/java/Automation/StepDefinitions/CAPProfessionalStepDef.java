@@ -41,18 +41,33 @@ public class CAPProfessionalStepDef extends CAPProfessionalPage {
         verifyCAPProfessionalPendColumnFields(columnList);
     }
 
-    @Then("user able to view the {string}, {string}, {string} and {string} column fields in CAP Professional pend bucket")
-    public void user_able_to_view_the_and_column_fields_in_cap_professional_pend_bucket(String netPayAmt, String receivedDate, String age, String assignedTo) throws InterruptedException {
-        verifyNetPayAmountColumn(netPayAmt);
-        verifyReceivedDateColumn(receivedDate);
-        verifyAgeColumn(age);
-        verifyAssignedToColumn(assignedTo);
-    }
-
     //Scenario: Verify all the queue field details in the CAP Professional page
     @Then("user should be able to view following queue detail fields in CAP Professional page")
     public void user_should_be_able_to_view_following_queue_detail_fields_in_cap_professional_page(DataTable queueList) throws InterruptedException {
         verifyQueuesInCAPProfessional(queueList);
+    }
+
+    //Scenario: Verify user able to view the search fields under each columns in the CAP Professional screen
+    @Then("user able to view the Search fields under each column in CAP Professional page")
+    public void user_able_to_view_the_search_fields_under_each_column_in_cap_professional_page() {
+        verifySearchFieldsUnderEachColumnInCAPProfessional();
+    }
+
+    //Scenario: Verify user able to navigate to claim summary screen on clicking claim number
+    @When("user clicks on claim number in CAP Professional page")
+    public void user_clicks_on_claim_number_in_cap_professional_page() throws InterruptedException {
+        clickOnCAPProfessionalClaim();
+    }
+
+    //Scenario: Verify user able to navigate to claim summary screen only once when performed multiple clicks on Claim number
+    @When("user searches for claim number in pend bucket in CAP Professional")
+    public void user_searches_for_claim_number_in_pend_bucket_in_cap_professional() throws InterruptedException {
+        enterClaimNumberInPendCAPProfessionalSearchField();
+    }
+    @When("user clicks on the same claim number again in pend bucket in CAP Professional")
+    public void user_clicks_on_the_same_claim_number_again_in_pend_bucket_in_cap_professional() throws InterruptedException {
+        clickOnCAPProfessionalDefaultTab();
+        clickOnCAPProfessionalClaim();
     }
 
     //Scenario: Verify color code for corrected claims in CAP Professional page
@@ -105,23 +120,6 @@ public class CAPProfessionalStepDef extends CAPProfessionalPage {
     @Then("color indication information for COB Not In Member House should be available on top of grid in CAP Professional page")
     public void color_indication_information_for_cob_not_in_member_house_should_be_available_on_top_of_grid_in_cap_professional_page() {
         verifyCOBNotInMemberHouseInformationOnTopOfGrid();
-    }
-
-    //Scenario: Verify user able to navigate to claim summary screen on clicking claim number
-    @When("user clicks on claim number in CAP Professional page")
-    public void user_clicks_on_claim_number_in_cap_professional_page() throws InterruptedException {
-        clickOnCAPProfessionalClaim();
-    }
-
-    //Scenario: Verify user able to navigate to claim summary screen only once when performed multiple clicks on Claim number
-    @When("user searches for claim number in pend bucket in CAP Professional")
-    public void user_searches_for_claim_number_in_pend_bucket_in_cap_professional() throws InterruptedException {
-        enterClaimNumberInPendCAPProfessionalSearchField();
-    }
-    @When("user clicks on the same claim number again in pend bucket in CAP Professional")
-    public void user_clicks_on_the_same_claim_number_again_in_pend_bucket_in_cap_professional() throws InterruptedException {
-        clickOnCAPProfessionalDefaultTab();
-        clickOnCAPProfessionalClaim();
     }
 
     //Scenario: Verify user able to navigate to claim summary screen only once when performed multiple clicks on Claim number

@@ -21,11 +21,6 @@ public class FFSProfessionalPage extends SeleniumUtils {
     String eleCOBInMemberHouseInfoTopGrid = "//span[@class='ColorBall_COBInMemberHouse']//following::span[contains(text(),'COB (In Member House)')]";
     String eleCOBNotInMemberHouseInfoTopGrid = "//span[@class='ColorBall_COB_NoninMemberHouse']//following::span[contains(text(),'COB (Not in Member House)')]";
     String lstColumnFields = "//ag-grid-angular[@id='pendGrid']//div[@class='ag-header-cell-label']//span[text()]";
-    String eleNetPayAmount = "//*[@id='pendGrid']//span[text()='Net Pay Amt($)']";
-    String eleTotalCharges = "//*[@id='pendGrid']//span[contains(text(),'Total Charges($)')]";
-    String eleReceivedDate = "//*[@id='pendGrid']//span[text()='Received Date']";
-    String eleAge = "//*[@id='pendGrid']//span[text()='Age']";
-    String eleAssignedTo = "//*[@id='pendGrid']//span[text()='Assigned To']";
     String tabPendState = "(//button[@class='nav-link active'])[1]";
     String lstQueues = "//div[@id='nav-tab']//button";
     String elePendQueuePage = "(//span[@class='ag-cell-value']//app-view-claim-render)[1]";
@@ -73,11 +68,6 @@ public class FFSProfessionalPage extends SeleniumUtils {
 
 
 
-
-
-
-
-
     private static String expClaimNumber = "";
     private static String expMemberId = "";
     private static int totalRecords = 0;
@@ -86,7 +76,7 @@ public class FFSProfessionalPage extends SeleniumUtils {
     private static String expPaginationMemberId = "";
 
 
-    //Verify color code for corrected claims in FFS Professional page
+    //Scenario: Verify user should navigates to FFS Professional screen
     public void clickOnFFSProfessional(){
         explicitVisibilityOfWait(findElementByXpath(lnkFFSProfessional), 5);
         clickElement(lnkFFSProfessional);
@@ -95,8 +85,8 @@ public class FFSProfessionalPage extends SeleniumUtils {
         boolean value = isDisplayed(tabFFSProfessional);
         Assert.assertTrue(value);
         threadSleep(30000);
-
     }
+    //Scenario: Verify color code for corrected claims in FFS Professional page
     public void enterCorrectedClaimNumberInFFSProfessionalSearchField() throws InterruptedException {
         threadSleep(30000);
         expClaimNumber = prop.getProperty("ffsProfessionalCorrectedClaimNumber");
@@ -122,7 +112,7 @@ public class FFSProfessionalPage extends SeleniumUtils {
         Assert.assertTrue(value);
     }
 
-    //Verify color code for COB Not In Member House in FFS Professional page
+    //scenario: Verify color code for COB Not In Member House in FFS Professional page
     public void enterCOBInMemberHouseClaimNumber() throws InterruptedException {
         threadSleep(30000);
         expClaimNumber = prop.getProperty("ffsProfessionalCobInMemberHouse");
@@ -368,27 +358,6 @@ public class FFSProfessionalPage extends SeleniumUtils {
             }
         }
     }
-    public void verifyNetPayAmountColumn(String expNetPayAmount){
-        scrollIntoView(findElementByXpath(eleTotalCharges),driver);
-        String actNetPayAmount=findElementByXpath(eleNetPayAmount).getText();
-        System.out.println("actNetPayAmount :"+actNetPayAmount);
-        Assert.assertEquals(expNetPayAmount,actNetPayAmount);
-    }
-    public void verifyReceivedDateColumn(String expReceivedDate){
-        String actReceivedDate=findElementByXpath(eleReceivedDate).getText();
-        System.out.println("actReceivedDate :"+actReceivedDate);
-        Assert.assertEquals(expReceivedDate,actReceivedDate);
-    }
-    public void verifyAgeColumn(String expAge){
-        String actAge=findElementByXpath(eleAge).getText();
-        System.out.println("actAge :"+actAge);
-        Assert.assertEquals(expAge,actAge);
-    }
-    public void verifyAssignedToColumn(String expAssignedTo){
-        String actAssignedTo=findElementByXpath(eleAssignedTo).getText();
-        System.out.println("actAssignedTo :"+actAssignedTo);
-        Assert.assertEquals(expAssignedTo,actAssignedTo);
-    }
 
     //Scenario: Verify all the queue field details in the FFS Professional page
     public void verifyQueuesInFFSProfessional(DataTable queueList) throws InterruptedException{
@@ -406,8 +375,6 @@ public class FFSProfessionalPage extends SeleniumUtils {
                 actualQueueFieldsForCompare.add(queueData[0]+" "+queueData[1]);
             }else if(queueData.length==4){
                 actualQueueFieldsForCompare.add(queueData[0]+" "+queueData[1]+" "+queueData[2]);
-            }else{
-                actualQueueFieldsForCompare.add(queueData[0].substring(0,8));
             }
         }
         System.out.println("actual queue fields " + actualQueueFieldsForCompare);
@@ -428,7 +395,7 @@ public class FFSProfessionalPage extends SeleniumUtils {
         Assert.assertTrue(value);
     }
 
-    //Scenario: Verify by default user should be in the Pend state in FFS Professional screen
+    //Scenario: Verify user should able to see Clam List Label in FFS Professional screen
     public void verifyClaimListLabel(){
         Assert.assertTrue(isDisplayed(eleClaimList));
     }
@@ -532,22 +499,5 @@ public class FFSProfessionalPage extends SeleniumUtils {
             Assert.assertTrue(value);
         }
     }
-    public void verifyReceivedDateSearchField() throws InterruptedException {
-        threadSleep(10000);
-        scrollIntoView(findElementByXpath(eleTotalCharges),driver);
-        scrollIntoView(findElementByXpath(eleNetPayAmount),driver);
-        Assert.assertTrue(isDisplayed(txtReceivedDateSearchField));
-    }
-
-    public void verifyAgeSearchField(){
-        scrollIntoView(findElementByXpath(txtAgeSearchField),driver);
-        Assert.assertTrue(isDisplayed(txtAgeSearchField));
-    }
-    public void verifyAssignedToSearchField(){
-        scrollIntoView(findElementByXpath(txtAssignedToSearchField),driver);
-        Assert.assertTrue(isDisplayed(txtAssignedToSearchField));
-    }
-
-
 
 }

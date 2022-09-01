@@ -21,6 +21,7 @@ public class CAPProfessionalPage extends SeleniumUtils {
     String eleAssignedTo = "//*[@id='pendGrid']//span[text()='Assigned To']";
     String tabPendState = "(//button[@class='nav-link active'])[1]";
     String lstQueues = "//div[@id='nav-tab']//button";
+    String txtSearchFields = "//*[@id='pendGrid']//input[@class='ag-input-field-input ag-text-field-input']";
     String txtClaimNumber = "(//input[@aria-label='Claim Number Filter Input'])[1]";
     String eleClaimNumber = "(//div[@class='ag-pinned-left-cols-container']//a)[1]";
     String eleVerticalColorForCorrected = "(//div[@col-id='isCorrected']//span)[6]";
@@ -122,29 +123,6 @@ public class CAPProfessionalPage extends SeleniumUtils {
             }
         }
     }
-    public void verifyNetPayAmountColumn(String expNetPayAmount) throws InterruptedException {
-        scrollIntoView(findElementByXpath(eleTotalCharges), driver);
-        threadSleep(1000);
-        scrollToElement(eleNetPayAmount);
-        String actNetPayAmount=findElementByXpath(eleNetPayAmount).getText();
-        System.out.println("actNetPayAmount :"+actNetPayAmount);
-        Assert.assertEquals(expNetPayAmount,actNetPayAmount);
-    }
-    public void verifyReceivedDateColumn(String expReceivedDate){
-        String actReceivedDate=findElementByXpath(eleReceivedDate).getText();
-        System.out.println("actReceivedDate :"+actReceivedDate);
-        Assert.assertEquals(expReceivedDate,actReceivedDate);
-    }
-    public void verifyAgeColumn(String expAge){
-        String actAge=findElementByXpath(eleAge).getText();
-        System.out.println("actAge :"+actAge);
-        Assert.assertEquals(expAge,actAge);
-    }
-    public void verifyAssignedToColumn(String expAssignedTo){
-        String actAssignedTo=findElementByXpath(eleAssignedTo).getText();
-        System.out.println("actAssignedTo :"+actAssignedTo);
-        Assert.assertEquals(expAssignedTo,actAssignedTo);
-    }
 
     public void verifyQueuesInCAPProfessional(DataTable queueList) throws InterruptedException {
         List<String> expQueueList = queueList.asList();
@@ -154,16 +132,33 @@ public class CAPProfessionalPage extends SeleniumUtils {
             threadSleep(1000);
             scrollIntoView(column, driver);
             String text = column.getText();
-            String[] queueData = text.split(" ");
-            if (queueData.length == 2) {
+            String[] queueData=text.split(" ");
+            if(queueData.length==2) {
                 actualQueueFieldsForCompare.add(queueData[0]);
-            } else if (queueData.length == 3) {
-                actualQueueFieldsForCompare.add(queueData[0] + " " + queueData[1]);
-            } else if (queueData.length == 4) {
-                actualQueueFieldsForCompare.add(queueData[0] + " " + queueData[1] + " " + queueData[2]);
-            } else {
-                actualQueueFieldsForCompare.add(queueData[0].substring(0, 8));
+            }else if(queueData.length==3){
+                actualQueueFieldsForCompare.add(queueData[0]+" "+queueData[1]);
+            }else if(queueData.length==4){
+                actualQueueFieldsForCompare.add(queueData[0]+" "+queueData[1]+" "+queueData[2]);
             }
+        }
+        System.out.println("actual queue fields " + actualQueueFieldsForCompare);
+        System.out.println("expected queue fields " + expQueueList);
+        for (String expQueue : expQueueList) {
+            if (actualQueueFieldsForCompare.contains(expQueue)) {
+                Assert.assertTrue(true);
+            } else {
+                Assert.fail(expQueue + " queue is not as expected");
+            }
+        }
+    }
+
+    //Scenario: Verify all the queue field details in the CAP Professional page
+    public void verifySearchFieldsUnderEachColumnInCAPProfessional() {
+        List<WebElement> ActCSearchFields = findElementsByXpath(txtSearchFields);
+        for (WebElement column : ActCSearchFields) {
+            scrollIntoView(column, driver);
+            boolean value = column.isDisplayed();
+            Assert.assertTrue(value);
         }
     }
 

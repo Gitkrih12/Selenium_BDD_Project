@@ -36,7 +36,10 @@ Feature: CAP Professional
       | DOS From               |
       | DOS To                 |
       | Total Charges($)       |
-    And user able to view the "Net Pay Amt($)", "Received Date", "Age" and "Assigned To" column fields in CAP Professional pend bucket
+      | Net Pay Amt($)         |
+      | Received Date          |
+      | Age                    |
+      | Assigned To            |
 
   @TC_39054
   Scenario: Verify all the queue field details in the CAP Professional page
@@ -54,6 +57,12 @@ Feature: CAP Professional
       | Paid              |
       | Draft             |
       | Rejected          |
+
+  @TC_39059
+  Scenario: Verify user able to view the search fields under each columns in the CAP Professional screen
+    When user clicks on CAP Professional in left navigation menu
+    Then the user should navigate to the CAP Professional page
+    And user able to view the Search fields under each column in CAP Professional page
 
   @TC_39228
   Scenario: Verify Pagination in CAP Professional page
@@ -84,6 +93,26 @@ Feature: CAP Professional
     When user tries to click on back arrow symbol in CAP Professional
     Then user should allow to navigates to back page in CAP Professional
 
+    #40715-As an adjudicator, I should be able to click on any Claim number from CAP Professional queue and get navigated to appropriate claims details page
+  @TC_37332
+  Scenario: Verify user able to navigate to claim summary screen on clicking claim number
+    When user clicks on CAP Professional in left navigation menu
+    Then the user should navigate to the CAP Professional page
+    When user clicks on claim number in CAP Professional page
+    Then user should be able to navigate to View Claim Details page
+    And  User should see "Hide" option with Claim summary
+
+  @TC_46249
+  Scenario: Verify user able to navigate to claim summary screen only once when performed multiple clicks on Claim number
+    When user clicks on CAP Professional in left navigation menu
+    Then the user should navigate to the CAP Professional page
+    When user searches for claim number in pend bucket in CAP Professional
+    And user clicks on claim number
+    Then user should be able to navigate to View Claim Details page and get the claim details
+    When user clicks on the same claim number again in pend bucket in CAP Professional
+    Then user should be able to see already opened claim details
+    And  User should see "Hide" option with Claim summary
+
   #41736-As an adjudicator, I should be able to view Corrected colour codings in the CAP Professional page so that I can easily identify the corrected claims details
   @TC_45620
   Scenario: Verify color code for corrected claims in CAP Professional page
@@ -112,27 +141,7 @@ Feature: CAP Professional
     And user should able to view patient name with color code "#FF0000" in CAP Professional page
     And color indication information for COB Not In Member House should be available on top of grid in CAP Professional page
 
-    #40715-As an adjudicator, I should be able to click on any Claim number from CAP Professional queue and get navigated to appropriate claims details page
-  @TC_37332
-  Scenario: Verify user able to navigate to claim summary screen on clicking claim number
-    When user clicks on CAP Professional in left navigation menu
-    Then the user should navigate to the CAP Professional page
-    When user clicks on claim number in CAP Professional page
-    Then user should be able to navigate to View Claim Details page
-    And  User should see "Hide" option with Claim summary
-
-  @TC_46249
-  Scenario: Verify user able to navigate to claim summary screen only once when performed multiple clicks on Claim number
-    When user clicks on CAP Professional in left navigation menu
-    Then the user should navigate to the CAP Professional page
-    When user searches for claim number in pend bucket in CAP Professional
-    And user clicks on claim number
-    Then user should be able to navigate to View Claim Details page and get the claim details
-    When user clicks on the same claim number again in pend bucket in CAP Professional
-    Then user should be able to see already opened claim details
-    And  User should see "Hide" option with Claim summary
-
-  #60637-As an Adjudicator, When the claim is in Unclean status I want the claim to be displayed and highlighted in the Orange bar.
+   #60637-As an Adjudicator, When the claim is in Unclean status I want the claim to be displayed and highlighted in the Orange bar.
   @TC_60653
   Scenario: Verify colour coding for Unclean status claims under Pend bucket in CAP professional page
     When user clicks on CAP Professional in left navigation menu
