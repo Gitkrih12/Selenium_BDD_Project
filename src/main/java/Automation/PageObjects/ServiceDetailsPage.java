@@ -42,12 +42,14 @@ public class ServiceDetailsPage extends SeleniumUtils {
         sendKeysUsingKeyboardInput(inputClaimNumber);
     }
 
-    public void clickOnClaimNumber() {
+    public void clickOnClaimNumber() throws InterruptedException {
+        threadSleep(2000);
         explicitVisibilityOfWait(findElementByXpath(eleClaimNumber), 5);
         clickElement(eleClaimNumber);
     }
 
     public void clickOnServiceDetails() throws InterruptedException {
+        threadSleep(2000);
         clickElement(tabServiceDetails);
         threadSleep(1000);
     }
