@@ -24,6 +24,11 @@ public class MoopStepDef extends MoopPage {
         userViewsAllColumnFieldsInMoop(columnFields);
     }
 
+    @Then("user able to view all the field values under Moop tab")
+    public void user_able_to_view_all_the_field_values_under_moop_tab() throws InterruptedException {
+        verifyFieldValuesUnderMoopTab();
+    }
+
     //  Scenario: Verify the footer section should display in MOOP page
     @Then("user views the footer section in Moop page")
     public void user_views_the_footer_section_in_moop_page(DataTable footerFields) {
