@@ -21,7 +21,7 @@ public class DocumentsPage extends SeleniumUtils {
     String lstEdiFiles = "//app-documents//*[@id = 'resultsGrid']//span[@ref = 'eText']";
     String lstAttachments = "//app-documents//*[@id = 'resultsGrid1']//span[@ref = 'eText']";
     String lstEdiFilesValues = "(//*[@id= 'resultsGrid'])[3]//span[@class = 'ag-cell-value']";
-    String lstAttachmentValues = "(//*[@aria-label = 'Press SPACE to select this row.'])[9]//span[@class = 'ag-cell-value']";
+    String lstAttachmentValues = "(//*[@aria-label = 'Press SPACE to select this row.'])[6]//span[@class = 'ag-cell-value']";
     String lstEdiFilesHeaderName = "//*[@id = 'resultsGrid']//span[contains(text(), '$HeaderName^')]";
 
 
@@ -78,10 +78,10 @@ public class DocumentsPage extends SeleniumUtils {
     public void verifyFieldValuesUnderAttachments() throws InterruptedException {
         threadSleep(1000);
         HashMap<String, String> testValues = new HashMap<String, String>();
-        testValues.put("File Name", "5222MH20220607R34E4BCD12.txt");
-        testValues.put("Title", "");
-        testValues.put("Uploaded By", "UATValorAdjudication@mirra.com");
-        testValues.put("Uploaded On", "06/07/2022");
+        testValues.put("File Name", "mxs codksmycck kscordcoxk ubkz vol__EOPRemittance.pdf");
+        testValues.put("Title", "EOPRemittance");
+        testValues.put("Uploaded By", "LiveValorAdjudication@mirra.com");
+        testValues.put("Uploaded On", "07/21/2022");
 
         HashMap<String, String> uatValues = new HashMap<>();
         uatValues.put("File Name", "");
@@ -180,59 +180,5 @@ public class DocumentsPage extends SeleniumUtils {
                 }
             }
         }
-    }
-
-    public void setSortOrder(String HeaderName, boolean isAscending){
-        String expectedSortOrder = isAscending ? "ascending" : "descending";
-        String sortOrder;
-        for(int i = 0; i < 3; i++){
-            explicitVisibilityOfWait(findElementByXpath(lstEdiFilesHeaderName.replace("$HeaderName^", HeaderName)), 20).click();
-            sortOrder = getSortOrder(HeaderName);
-            if (sortOrder != null && sortOrder.equals(expectedSortOrder)) {
-                return;
-            }
-        }
-        Assert.assertTrue(String.format("Header isn't set to %s order!", expectedSortOrder), isAscending);
-    }
-
-    public String getSortOrder(String HeaderName){
-        String sortOrder = getWebDriver().findElement(By.xpath(lstEdiFilesHeaderName.replace("$HeaderName^", HeaderName))).getAttribute("class");
-        return sortOrder;
-    }
-
-    public void verifySortOrder(String HeaderName, boolean isAscending) throws InterruptedException {
-        String expectedSortOrder = isAscending ? "ascending" : "descending";
-        List<String> cellData = getCellData(HeaderName);
-        Assert.assertTrue("Table has no data!", cellData.size() != 0);
-        for (int i = 1; i < cellData.size() - 1; i++) {
-            int output = cellData.get(i - 1).compareTo(cellData.get(i));
-            if (isAscending) {
-                Assert.assertTrue(String.format("Expected sort order %s", expectedSortOrder), output - 1 <=0);
-            } else {
-                Assert.assertTrue(String.format("Expected sort order %s", expectedSortOrder), output + 1 > 0);
-            }
-        }
-    }
-
-    public List<String> getCellData(String HeaderName) throws InterruptedException {
-        List<String> cellData = new ArrayList<>();
-        int indexValue = getHeaderPosition(HeaderName);
-        List<WebElement> columnData = getWebDriver().findElements(By.xpath
-                ("(//*[@id= 'resultsGrid'])[3]//span[@class = 'ag-cell-value'][" + indexValue + "]"));
-        for (WebElement x : columnData) {
-            cellData.add(x.getText());
-        }
-        return cellData;
-    }
-
-    public int getHeaderPosition(String HeaderName) throws InterruptedException {
-        List<String> headerName = new ArrayList<>();
-        threadSleep(1000);
-        List<WebElement> AllHeaders = getWebDriver().findElements(By.xpath(lstEdiFiles));
-        for (WebElement x : AllHeaders) {
-            headerName.add(x.getText());
-        }
-        int indexValue = headerName.indexOf(HeaderName) + 1;
-        return indexValue;
     }
 }

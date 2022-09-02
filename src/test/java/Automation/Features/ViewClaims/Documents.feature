@@ -47,24 +47,3 @@ Feature: Documents
       | Uploaded By |
       | Uploaded On |
     And user able to view the field values under EDI Files sub tab
-
-  @49615
-  Scenario: Verify Sorting functionality in EDI files sub tab
-    When user clicking on Claim Number in Global Search page
-    And user clicks on the Documents tab
-    When user sorts File Name column to ascending on EDI Files table
-    Then File Name column data should display ascending order on EDI Files table
-    When user sorts File Name column to descending on EDI Files table
-    Then File Name column data should display descending order on EDI Files table
-    When user sorts File Type column to ascending on EDI Files table
-    Then File Type column data should display ascending order on EDI Files table
-    When user sorts File Type column to descending on EDI Files table
-    Then File Type column data should display descending order on EDI Files table
-    When user sorts Uploaded By column to ascending on EDI Files table
-    Then Uploaded By column data should display ascending order on EDI Files table
-    When user sorts Uploaded By column to descending on EDI Files table
-    Then Uploaded By column data should display descending order on EDI Files table
-    When user sorts Uploaded On column to ascending on EDI Files table
-    Then Uploaded On column data should display ascending order on EDI Files table
-    When user sorts Uploaded On column to descending on EDI Files table
-    Then Uploaded On column data should display descending order on EDI Files table
