@@ -1345,6 +1345,16 @@ public class SeleniumUtils extends Driver {
             return null;
         }
     }
+    public String getColorCodeForText(String xpath){
+        try {
+            String cssValue = findElementByXpath(xpath).getCssValue("color");
+            String colorCode = Color.fromString(cssValue).asHex().toUpperCase(Locale.ROOT);
+            return colorCode;
+        }catch(Exception e) {
+            System.out.println("Element not found " + xpath + "|Error - " + e);
+            return null;
+        }
+    }
     // ************** End of Get related methods **************** //
 
 
