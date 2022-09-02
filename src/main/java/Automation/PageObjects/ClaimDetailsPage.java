@@ -63,7 +63,6 @@ public class ClaimDetailsPage extends SeleniumUtils {
     }
 
     public void userClicksOnClaimNumber() throws InterruptedException {
-        threadSleep(2000);
         explicitElementClickableWaitByXpath(lnkClaimNumber, 30);
         clickElement(lnkClaimNumber);
     }

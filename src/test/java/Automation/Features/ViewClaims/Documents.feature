@@ -13,6 +13,7 @@ Feature: Documents
 
   @47240 @abc
   Scenario: Verify user should be able to see footer section buttons
+    Given the user is in FFS Professional page
     When user clicks on the Claim Number
     And user clicks on the Documents tab
     Then user views the footer section in Documents page
