@@ -6,7 +6,7 @@ Feature: AR Transaction
 
   @52209
   Scenario: Verify user able to Navigate to the A/R Transaction tab from Global Search
-    When user clicking on Claim Number "P0020021100018" in Global Search page
+    When user clicking on Claim Number in Global Search page
     And user clicks on the AR Transaction tab
     Then user navigates to the "AR Transaction" tab
     And user able to view the below mentioned fields under AR Transaction tab

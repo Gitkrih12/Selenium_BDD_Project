@@ -4,6 +4,7 @@ import Automation.Utilities.SeleniumUtils;
 import io.cucumber.datatable.DataTable;
 import org.junit.Assert;
 import org.openqa.selenium.WebElement;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -16,16 +17,16 @@ public class ARTransactionPage extends SeleniumUtils {
 
 
     //  Scenario: Verify user able to Navigate to the A/R Transaction tab from Global Search
-    public void userClicksOnARTransaction() throws InterruptedException{
+    public void userClicksOnARTransaction() throws InterruptedException {
         clickElement(tabArTransaction);
         threadSleep(1000);
     }
 
-    public void verifyUserNavigatesToARTransaction(String expTab){
+    public void verifyUserNavigatesToARTransaction(String expTab) {
         Assert.assertEquals(expTab, findElementByXpath(tabArTransaction).getText());
     }
 
-    public void userViewsArTransactionFields(DataTable expFields){
+    public void userViewsArTransactionFields(DataTable expFields) {
         List<String> fieldsExp = expFields.asList();
         List<WebElement> ActColumnFields = findElementsByXpath(lstArTransaction);
         List<String> columnFieldsForCompare = new ArrayList<>();
