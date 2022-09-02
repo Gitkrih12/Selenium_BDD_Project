@@ -3,11 +3,9 @@ package Automation.PageObjects;
 import Automation.Utilities.SeleniumUtils;
 import io.cucumber.datatable.DataTable;
 import org.junit.Assert;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -85,6 +83,7 @@ public class DocumentsPage extends SeleniumUtils {
         clickElement(eleClaimNumber);
         threadSleep(1000);
     }
+
     public void userClicksOnAttachmentsSubTab() throws InterruptedException {
         explicitVisibilityOfWait(findElementByXpath(tabAttachments), 10);
         clickElement(tabAttachments);
@@ -163,7 +162,7 @@ public class DocumentsPage extends SeleniumUtils {
         Assert.assertEquals(ActFields, fieldsExp);
     }
 
-    public void verifyFieldValuesUnderEdiFiles(){
+    public void verifyFieldValuesUnderEdiFiles() {
         HashMap<String, String> testValues = new HashMap<String, String>();
         testValues.put("File Name", "H1119.AH.PROD.MAO.ENC0132.AH.P.CARE.20220607195510.edi");
         testValues.put("File Type", "Encounter");
