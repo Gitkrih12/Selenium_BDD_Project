@@ -23,7 +23,6 @@ Feature: Notes
 
   @46159
   Scenario: Validate footer buttons in Notes Tab
-    Given the user is in FFS Professional page
     When user clicks on the Claim Number
     And user clicks on the Notes tab
     Then user views the footer section in Notes tab
