@@ -262,7 +262,6 @@ public class FFSProfessionalStepDef extends FFSProfessionalPage {
         verifyVerticalColorIndicationForUncleanApprovedClaim(colorCode);
     }
     //Scenario: Verify colour coding for Unclean status claims under Denied bucket in FFS professional page
-
     @When("user clicks on Denied bucket")
     public void user_clicks_on_denied_bucket() {
         clickOnDeniedBucket();

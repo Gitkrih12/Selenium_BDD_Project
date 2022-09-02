@@ -14,11 +14,6 @@ public class CAPProfessionalPage extends SeleniumUtils {
     String elePendQueuePage = "(//span[@class='ag-cell-value']//app-view-claim-render)[1]";
     String eleClaimList = "//div//*[text()='Claim List']";
     String lstColumnFields = "//ag-grid-angular[@id='pendGrid']//div[@class='ag-header-cell-label']//span[text()]";
-    String eleNetPayAmount = "//*[@id='pendGrid']//span[text()='Net Pay Amt($)']";
-    String eleTotalCharges = "//*[@id='pendGrid']//span[contains(text(),'Total Charges($)')]";
-    String eleReceivedDate = "//*[@id='pendGrid']//span[text()='Received Date']";
-    String eleAge = "//*[@id='pendGrid']//span[text()='Age']";
-    String eleAssignedTo = "//*[@id='pendGrid']//span[text()='Assigned To']";
     String tabPendState = "(//button[@class='nav-link active'])[1]";
     String lstQueues = "//div[@id='nav-tab']//button";
     String txtSearchFields = "//*[@id='pendGrid']//input[@class='ag-input-field-input ag-text-field-input']";
@@ -124,6 +119,7 @@ public class CAPProfessionalPage extends SeleniumUtils {
         }
     }
 
+    //Scenario: Verify all the queue field details in the CAP Professional page
     public void verifyQueuesInCAPProfessional(DataTable queueList) throws InterruptedException {
         List<String> expQueueList = queueList.asList();
         List<WebElement> actQueueFields = findElementsByXpath(lstQueues);
@@ -162,7 +158,7 @@ public class CAPProfessionalPage extends SeleniumUtils {
         }
     }
 
-    //Scenario: Verify all the queue field details in the CAP Professional page
+    //Scenario: Verify color code for corrected claims in CAP Professional page
     public void enterCorrectedClaimNumberInCAPProfessionalSearchField() throws InterruptedException {
         threadSleep(30000);
         expClaimNumber = prop.getProperty("capProfessionalCorrectedClaimNumber");
@@ -238,7 +234,7 @@ public class CAPProfessionalPage extends SeleniumUtils {
         clickElement(tabCAPProfessionalDefault);
     }
 
-    //Scenario: Verify user able to navigate to claim summary screen only once when performed multiple clicks on Claim number
+    //Scenario: Verify colour coding for Unclean status claims under Pend bucket in CAP professional page
     public void enterUnCleanStatusPendClaimNumber() throws InterruptedException {
         threadSleep(30000);
         expClaimNumber = prop.getProperty("capProfessionalUnCleanStatusPendClaimNumber");
@@ -378,6 +374,7 @@ public class CAPProfessionalPage extends SeleniumUtils {
         Assert.assertEquals(expColorIndication, actColorCode);
     }
 
+    //Scenario: Verify Pagination in CAP Professional page
     public void enterMemberIdInSearchFieldForPaginationInCAPProfessional() throws InterruptedException {
         threadSleep(30000);
         expMemberId = prop.getProperty("capProfessionalPaginationMemberId");

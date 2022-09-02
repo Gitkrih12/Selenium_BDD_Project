@@ -61,11 +61,6 @@ public class FFSProfessionalPage extends SeleniumUtils {
     String btnNextPage = "//*[@id='onHoldGrid']//span[@class='ag-icon ag-icon-next']";
     String btnPreviousPage = "//*[@id='onHoldGrid']//span[@class='ag-icon ag-icon-previous']";
     String txtSearchFields = "//*[@id='pendGrid']//input[@class='ag-input-field-input ag-text-field-input']";
-    String txtReceivedDateSearchField = "//*[@id='pendGrid']//input[@aria-label='Received Date Filter Input']";
-    String txtAgeSearchField = "//*[@id='pendGrid']//input[@aria-label='Age Filter Input']";
-    String txtAssignedToSearchField = "//*[@id='pendGrid']//input[@aria-label='Assigned To Filter Input']";
-
-
 
 
     private static String expClaimNumber = "";
@@ -389,6 +384,7 @@ public class FFSProfessionalPage extends SeleniumUtils {
 
     }
 
+    //Scenario: Verify by default user should be in the Pend state in FFS Professional screen
     public void verifyUserByDefaultInPendStateResultsPage() throws InterruptedException {
         threadSleep(20000);
         boolean value=isDisplayed(elePendQueuePage);

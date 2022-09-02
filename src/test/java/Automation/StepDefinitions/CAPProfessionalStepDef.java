@@ -122,7 +122,7 @@ public class CAPProfessionalStepDef extends CAPProfessionalPage {
         verifyCOBNotInMemberHouseInformationOnTopOfGrid();
     }
 
-    //Scenario: Verify user able to navigate to claim summary screen only once when performed multiple clicks on Claim number
+    //Scenario: Verify colour coding for Unclean status claims under Pend bucket in CAP professional page
     @When("user enters Unclean status claim in search criteria in Pend bucket in CAP Professional")
     public void user_enters_unclean_status_claim_in_search_criteria_in_pend_bucket_in_cap_professional() throws InterruptedException {
         enterUnCleanStatusPendClaimNumber();
