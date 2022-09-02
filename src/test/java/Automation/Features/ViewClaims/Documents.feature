@@ -4,14 +4,14 @@ Feature: Documents
     Given the user is in CA Login screen
     When the user enters the valid username and password and click on login button
 
-  @47215
+  @47215 @abc
   Scenario: Verify user should be able to see attached files and EDI files in Documents tab
     When user clicking on Claim Number in Global Search page
     And user clicks on the Documents tab
     Then user navigates to "Documents" tab
     And user able to view the two sub tabs as "EDIFiles" and "Attachments"
 
-  @47240
+  @47240 @abc
   Scenario: Verify user should be able to see footer section buttons
     When user clicks on the Claim Number
     And user clicks on the Documents tab
@@ -24,7 +24,7 @@ Feature: Documents
       | Update Auth       |
       | Deactivate        |
 
-  @49610
+  @49610 @abc
   Scenario: Verify column fields in Attachments sub tab
     When user clicking on Attachments Claim Number in Global Search page
     And user clicks on the Documents tab
@@ -36,7 +36,7 @@ Feature: Documents
       | Uploaded On |
     And user able to view the field values under Attachments sub tab
 
-  @49613
+  @49613 @abc
   Scenario: Verify column fields in EDI files sub tab
     When user clicking on Claim Number in Global Search page
     And user clicks on the Documents tab
