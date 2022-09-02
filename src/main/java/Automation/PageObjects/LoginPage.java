@@ -59,15 +59,17 @@ public class LoginPage extends SeleniumUtils {
         log = LogManager.getLogger();
         log.info("User is on CA Home page");
 
+        explicitVisibilityOfElementLocatedWaitByXpath(lblWelcomeToClaimsAdjNg, 30);
         boolean homePageTitle = getTitle().equals(titleHomePage);
         Assert.assertTrue(homePageTitle);
     }
 
     //    Scenario: Verify the "Welcome to Claims Adjudication" text along with NG in Login page screen
     public void welcomeToClaimsAdjudicationNg() {
+        welcomeToClaimsAdjNg = explicitVisibilityOfElementLocatedWaitByXpath(lblWelcomeToClaimsAdjNg, 30).getText().contains(lblWelcomeToExp) &&
+                explicitVisibilityOfElementLocatedWaitByXpath(lblWelcomeToClaimsAdjNg, 10).getText().contains(lblClaimsAdjExp) &&
+                explicitVisibilityOfElementLocatedWaitByXpath(lblWelcomeToClaimsAdjNg, 10).getText().contains(lblNgExp);
 
-        welcomeToClaimsAdjNg = getText(lblWelcomeToClaimsAdjNg).contains(lblWelcomeToExp) &&
-                getText(lblWelcomeToClaimsAdjNg).contains(lblClaimsAdjExp) && getText(lblWelcomeToClaimsAdjNg).contains(lblNgExp);
         log.info("User sees Welcome to Claims Adjudication text");
         System.out.println("'Welcome to claims adjudication NG' text status is : " + welcomeToClaimsAdjNg);
     }
@@ -79,7 +81,7 @@ public class LoginPage extends SeleniumUtils {
 
     //    Scenario: Verify "User Login" text should display in the Login screen
     public void userLoginText() {
-        userLoginText = getText(txtUserLogin);
+        userLoginText = explicitVisibilityOfElementLocatedWaitByXpath(txtUserLogin, 30).getText();
         System.out.println("Text present is : " + userLoginText);
         log.info("User sees User Login text");
 
@@ -103,7 +105,7 @@ public class LoginPage extends SeleniumUtils {
 
     //    Scenario: Verify user able to login with valid username and password for DSNP adjudicator role
     public void loginWithValidUsernameAndPasswordForDsnpAdjudicator() {
-        explicitVisibilityOfElementLocatedWaitByXpath(txtUsername, 10).sendKeys(prop.getProperty("dsnpAdjUsername"));
+        explicitVisibilityOfElementLocatedWaitByXpath(txtUsername, 30).sendKeys(prop.getProperty("dsnpAdjUsername"));
         explicitVisibilityOfElementLocatedWaitByXpath(txtPassword, 10).sendKeys(prop.getProperty("dsnpAdjPassword"));
         explicitElementClickableWaitByXpath(btnLogin, 10).click();
         username = explicitElementClickableWaitByID(lnkUsername, 30).getText();
@@ -116,6 +118,7 @@ public class LoginPage extends SeleniumUtils {
     }
 
     public void mirraLogoOnHomePage() {
+        explicitVisibilityOfElementLocatedWaitByXpath(imgMirra, 30);
         mirraImage = isDisplayed(imgMirra);
         System.out.println("Image status is : " + mirraImage);
     }
@@ -126,7 +129,7 @@ public class LoginPage extends SeleniumUtils {
 
     //    Scenario: Verify user should be able to view the "Valor Health Plan", "Insurance focused on you." texts one after the other in Login screen
     public void valorHealthPlanImage() {
-        String valorHealthPlanSrc = getAttribute(imgValorHealthPln, "src");
+        String valorHealthPlanSrc = explicitVisibilityOfElementLocatedWaitByXpath(imgValorHealthPln, 30).getAttribute("src");
         System.out.println("Health plan image source is : " + valorHealthPlanSrc);
         healthPlanImgStatus = valorHealthPlanSrc.contains(imgValorHealthPlnExp);
     }
@@ -147,7 +150,7 @@ public class LoginPage extends SeleniumUtils {
 
     //    Scenario: Verify user able to login with valid username and password for DSNP admin role
     public void loginWithValidUsernameAndPasswordForDsnpAdmin() {
-        explicitVisibilityOfElementLocatedWaitByXpath(txtUsername, 10).sendKeys(prop.getProperty("dsnpAdminUsername"));
+        explicitVisibilityOfElementLocatedWaitByXpath(txtUsername, 30).sendKeys(prop.getProperty("dsnpAdminUsername"));
         explicitVisibilityOfElementLocatedWaitByXpath(txtPassword, 10).sendKeys(prop.getProperty("dsnpAdminPassword"));
         explicitElementClickableWaitByXpath(btnLogin, 10).click();
     }
@@ -164,7 +167,8 @@ public class LoginPage extends SeleniumUtils {
 
     //    Scenario: Verify user views the "Forgot Password?" text in the Login page
     public void forgotPasswordMessage() {
-        forgotPwdStatus = isDisplayed(lnkForgotPassword);
+
+        forgotPwdStatus = explicitVisibilityOfElementLocatedWaitByXpath(lnkForgotPassword, 30).isDisplayed();
         log.info("User sees forgot password message");
     }
 
@@ -190,7 +194,7 @@ public class LoginPage extends SeleniumUtils {
 
     //    Scenario: Verify user views the "Username" text besides person icon with grey field along with the inner text
     public void verifyUsernameText() {
-        Assert.assertEquals(lblUsernameExp, getText(lblUsername));
+        Assert.assertEquals(lblUsernameExp, explicitVisibilityOfElementLocatedWaitByXpath(lblUsername, 30).getText());
     }
 
     public void verifyGreyFieldUnderUsernameText() {
@@ -205,10 +209,10 @@ public class LoginPage extends SeleniumUtils {
 
     //    Scenario: Verify user able to login with valid username and password for non DSNP adjudicator role
     public void loginWithValidUsernameAndPasswordForNonDsnpAdjudicator() {
-        findElementByXpath(txtUsername).sendKeys(prop.getProperty("nonDsnpAdjUsername"));
-        findElementByXpath(txtPassword).sendKeys(prop.getProperty("nonDsnpAdjPassword"));
-        findElementByXpath(btnLogin).click();
-        nonDsnpAdjUsername = findElementByID(lnkUsername).getText();
+        explicitVisibilityOfElementLocatedWaitByXpath(txtUsername, 30).sendKeys(prop.getProperty("nonDsnpAdjUsername"));
+        explicitVisibilityOfElementLocatedWaitByXpath(txtPassword, 10).sendKeys(prop.getProperty("nonDsnpAdjPassword"));
+        explicitElementClickableWaitByXpath(btnLogin, 10).click();
+        nonDsnpAdjUsername = explicitElementClickableWaitByID(lnkUsername, 30).getText();
         System.out.println("User logged in as : " + nonDsnpAdjUsername);
 
     }
@@ -220,10 +224,10 @@ public class LoginPage extends SeleniumUtils {
 
     //    Scenario: Verify user able to login with valid username and password for non DSNP admin role
     public void loginWithValidUsernameAndPasswordForNonDsnpAdmin() {
-        findElementByXpath(txtUsername).sendKeys(prop.getProperty("nonDsnpAdminUsername"));
-        findElementByXpath(txtPassword).sendKeys(prop.getProperty("nonDsnpAdminPassword"));
-        findElementByXpath(btnLogin).click();
-        nonDsnpAdminUsername = findElementByID(lnkUsername).getText();
+        explicitVisibilityOfElementLocatedWaitByXpath(txtUsername, 30).sendKeys(prop.getProperty("nonDsnpAdminUsername"));
+        explicitVisibilityOfElementLocatedWaitByXpath(txtPassword, 10).sendKeys(prop.getProperty("nonDsnpAdminPassword"));
+        explicitElementClickableWaitByXpath(btnLogin, 10).click();
+        nonDsnpAdminUsername = explicitElementClickableWaitByID(lnkUsername, 30).getText();
         System.out.println("User logged in as : " + nonDsnpAdminUsername);
     }
 
