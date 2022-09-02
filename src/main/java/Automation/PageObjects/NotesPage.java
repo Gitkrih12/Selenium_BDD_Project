@@ -14,6 +14,7 @@ public class NotesPage extends SeleniumUtils {
     String lstNotesColumns = "//app-notes//*[contains(@class, 'ag-theme-alpine')]//span[@ref = 'eText']";
     String btnFooterFields = "//*[@class='footer footer-flex']/button";
     String lstNotesValues = "//app-notes//div[@class = 'ag-center-cols-container']//span";
+    String lstNotesValuesUat = "(//app-notes//div[@class = 'ag-center-cols-container']//div)[1]//span";
 
 
     //  Scenario: Verify user should navigate to Notes page on clicking claim number from Global Search page
@@ -48,11 +49,11 @@ public class NotesPage extends SeleniumUtils {
         testValues.put("Created Date", "06/07/2022");
 
         HashMap<String, String> uatValues = new HashMap<>();
-        uatValues.put("Title", "Claim Reprocessed");
-        uatValues.put("Category", "Plan - Claims/Appeals");
-        uatValues.put("Description", "Testing Reprocess P01MR22051701O");
+        uatValues.put("Title", "Moved to PEND status.");
+        uatValues.put("Category", "Ambulance");
+        uatValues.put("Description", "test");
         uatValues.put("Created By", "ClaimsUser@ahcpllc.com");
-        uatValues.put("Created Date", "06/07/2022");
+        uatValues.put("Created Date", "06/24/2022");
 
         if (environment.contains("test")) {
             List<String> fieldsExp = testValues.values().stream().collect(Collectors.toList());
@@ -68,7 +69,7 @@ public class NotesPage extends SeleniumUtils {
             }
         } else {
             List<String> fieldsExp = uatValues.values().stream().collect(Collectors.toList());
-            List<String> ActValues = findElementsByXpath(lstNotesValues)
+            List<String> ActValues = findElementsByXpath(lstNotesValuesUat)
                     .stream().map((e) -> e.getText().trim()).collect(Collectors.toList());
             System.out.println("Size:" + ActValues.size());
             for (String exp : fieldsExp) {
