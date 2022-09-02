@@ -6,15 +6,15 @@ Feature: Service Details
 
   @37693
   Scenario: Verify Adjudicator able to Navigate Service Details from Global Search and validate the fields
-    When user clicking on Claim Number "P0020021100018" in Global Search page
+    When user clicking on Claim Number in Global Search page
     And user clicks on Service Details tab
     Then user should view all the column fields in Service Details page
       | Adjustment             |
       | Deductible             |
       | Coinsurance            |
       | Copay                  |
-      | Total Payment Amt      |
-      | Net payment ammount    |
+      | Total Payment Amount   |
+      | Net Payment Amount     |
       | Recovery Amount        |
       | Interest Paid          |
       | Is A/R Amount Eligible |
@@ -22,10 +22,12 @@ Feature: Service Details
       | Payable Amount         |
       | ICD Indicator          |
       | ICD Codes              |
+    And user able to view all the field values in Service Details page
 
   @37694
+  @Sanity
   Scenario: Verify Service Lines fields
-    When user clicking on Claim Number "P0020021100018" in Global Search page
+    When user clicking on Claim Number in Global Search page
     And user clicks on Service Details tab
     Then user able to view the below Service Line Fields
       | DOS                 |
@@ -50,10 +52,12 @@ Feature: Service Details
       | Adjudication Status |
       | Status              |
       | PBP                 |
+    And user able to view all the field values in Service Line fields
 
   @37695
   Scenario: Verify footer section available in Service details tab
-    When user clicking on Claim Number "P0020021100018" in Global Search page
+    Given the user is in FFS Professional page
+    When user clicks on the Claim Number
     And user clicks on Service Details tab
     Then user views the footer section in Service Details page
       | On Hold           |
@@ -65,7 +69,7 @@ Feature: Service Details
 
   @38099
   Scenario: Verify user able to navigate to Pricing page upon clicking Line number
-    When user clicking on Claim Number "P0020021100018" in Global Search page
+    When user clicking on Claim Number in Global Search page
     And user clicks on Service Details tab
     And user clicking on Line number
     Then user able to navigate to the Pricing page
