@@ -4,13 +4,13 @@ Feature: Notes
     Given the user is in CA Login screen
     When the user enters the valid username and password and click on login button
 
-  @46153
+  @46153 @abc
   Scenario: Verify user should navigate to Notes page on clicking claim number from Global Search page
     When user clicking on Claim Number in Global Search page
     And user clicks on the Notes tab
     Then user navigates to the "Notes" tab
 
-  @46154
+  @46154 @abc
   Scenario: Verify column fields in Notes tab
     When user clicking on Claim Number in Global Search page
     And user clicks on the Notes tab
@@ -20,9 +20,11 @@ Feature: Notes
       | Description  |
       | Created By   |
       | Created Date |
+    And user able to view all the field values under Notes tab
 
-  @46159
+  @46159 @abc
   Scenario: Validate footer buttons in Notes Tab
+    Given the user is in FFS Professional page
     When user clicks on the Claim Number
     And user clicks on the Notes tab
     Then user views the footer section in Notes tab

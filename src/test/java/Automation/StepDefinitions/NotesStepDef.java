@@ -24,6 +24,11 @@ public class NotesStepDef extends NotesPage {
         verifyColumnsUnderNotesTab(columnFields);
     }
 
+    @Then("user able to view all the field values under Notes tab")
+    public void user_able_to_view_all_the_field_values_under_notes_tab() throws InterruptedException {
+        verifyFieldValuesUnderNotesTab();
+    }
+
     //  Scenario: Validate footer buttons in Notes Tab
     @Then("user views the footer section in Notes tab")
     public void user_views_the_footer_section_in_notes_tab(DataTable footerFields) {
