@@ -27,7 +27,7 @@ Feature: Documents
 
   @49610
   Scenario: Verify column fields in Attachments sub tab
-    When user clicking on Claim Number in Global Search page
+    When user clicking on Attachments Claim Number in Global Search page
     And user clicks on the Documents tab
     And user clicks on Attachments sub tab
     Then user able to view the below column fields under Attachments sub tab

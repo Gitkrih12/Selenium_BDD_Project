@@ -21,12 +21,19 @@ public class DocumentsPage extends SeleniumUtils {
     String lstEdiFiles = "//app-documents//*[@id = 'resultsGrid']//span[@ref = 'eText']";
     String lstAttachments = "//app-documents//*[@id = 'resultsGrid1']//span[@ref = 'eText']";
     String lstEdiFilesValues = "(//*[@id= 'resultsGrid'])[3]//span[@class = 'ag-cell-value']";
-    String lstAttachmentValues = "(//*[@aria-label = 'Press SPACE to select this row.'])[6]//span[@class = 'ag-cell-value']";
+    String lstEdiFilesValuesUat = "(//*[@id='nav-edifiles-details']//div[@aria-label = 'Press SPACE to select this row.'])[5]//span[@class = 'ag-cell-value']";
+    String lstAttachmentValues = "(//*[@id = 'nav-attachments-details']//div[@aria-label = 'Press SPACE to select this row.'])[4]//span[@class = 'ag-cell-value']";
     String lstEdiFilesHeaderName = "//*[@id = 'resultsGrid']//span[contains(text(), '$HeaderName^')]";
+    String lnkGlobalSearch = "(//div[contains(text(),'Global Search')])[1]";
+    String inputClaimNumber = "//input[@aria-label='Claim Number Filter Input']";
+    String eleClaimNumber = "(//div[@class='ag-pinned-left-cols-container']//a)[1]";
+
+    private static String expClaimNumber = "";
 
 
     //  Scenario: Verify user should be able to see attached files and EDI files in Documents tab
     public void userClicksOnDocumentsTab() throws InterruptedException {
+        threadSleep(1000);
         clickElement(tabDocument);
         threadSleep(1000);
     }
@@ -59,6 +66,25 @@ public class DocumentsPage extends SeleniumUtils {
     }
 
     //  Scenario: Verify column fields in Attachments sub tab
+    public void clickOnGlobalSearch() {
+        explicitVisibilityOfWait(findElementByXpath(lnkGlobalSearch), 5);
+        clickElement(lnkGlobalSearch);
+    }
+
+    public void enterClaimNumberInSearchField() throws InterruptedException {
+        threadSleep(1000);
+        expClaimNumber = prop.getProperty("attachmentClaimNumber");
+        findElementAndSendKeys(findElementByXpath(inputClaimNumber), expClaimNumber);
+        threadSleep(1000);
+        sendKeysUsingKeyboardInput(inputClaimNumber);
+    }
+
+    public void clickOnClaimNumber() throws InterruptedException {
+        threadSleep(2000);
+        explicitVisibilityOfWait(findElementByXpath(eleClaimNumber), 5);
+        clickElement(eleClaimNumber);
+        threadSleep(1000);
+    }
     public void userClicksOnAttachmentsSubTab() throws InterruptedException {
         explicitVisibilityOfWait(findElementByXpath(tabAttachments), 10);
         clickElement(tabAttachments);
@@ -78,19 +104,19 @@ public class DocumentsPage extends SeleniumUtils {
     public void verifyFieldValuesUnderAttachments() throws InterruptedException {
         threadSleep(1000);
         HashMap<String, String> testValues = new HashMap<String, String>();
-        testValues.put("File Name", "mxs codksmycck kscordcoxk ubkz vol__EOPRemittance.pdf");
+        testValues.put("File Name", "THORN TWP_EOPRemittance.pdf");
         testValues.put("Title", "EOPRemittance");
         testValues.put("Uploaded By", "LiveValorAdjudication@mirra.com");
-        testValues.put("Uploaded On", "07/21/2022");
+        testValues.put("Uploaded On", "02/27/2020");
 
         HashMap<String, String> uatValues = new HashMap<>();
-        uatValues.put("File Name", "");
-        uatValues.put("Title", "");
-        uatValues.put("Uploaded By", "");
-        uatValues.put("Uploaded On", "");
+        uatValues.put("File Name", "mxs codksmycck kscordcoxk ubkz vol__EOPRemittance.pdf");
+        uatValues.put("Title", "EOPRemittance");
+        uatValues.put("Uploaded By", "LiveValorAdjudication@mirra.com");
+        uatValues.put("Uploaded On", "09/02/2022");
 
         if (environment.contains("test")) {
-            List<String> fieldsExp = uatValues.values().stream().collect(Collectors.toList());
+            List<String> fieldsExp = testValues.values().stream().collect(Collectors.toList());
             List<WebElement> ActColumnFields = findElementsByXpath(lstAttachmentValues);
             List<String> columnFieldsForCompare = new ArrayList<>();
             System.out.println("Size " + ActColumnFields.size());
@@ -164,7 +190,7 @@ public class DocumentsPage extends SeleniumUtils {
             }
         } else {
             List<String> fieldsExp = uatValues.values().stream().collect(Collectors.toList());
-            List<WebElement> ActColumnFields = findElementsByXpath(lstEdiFilesValues);
+            List<WebElement> ActColumnFields = findElementsByXpath(lstEdiFilesValuesUat);
             List<String> columnFieldsForCompare = new ArrayList<>();
             System.out.println("Size " + ActColumnFields.size());
             for (WebElement column : ActColumnFields) {

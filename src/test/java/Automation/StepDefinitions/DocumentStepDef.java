@@ -31,6 +31,13 @@ public class DocumentStepDef extends DocumentsPage {
     }
 
     //  Scenario: Verify column fields in Attachments sub tab
+    @When("user clicking on Attachments Claim Number in Global Search page")
+    public void user_clicking_on_attachments_claim_number_in_global_search_page() throws InterruptedException {
+        clickOnGlobalSearch();
+        enterClaimNumberInSearchField();
+        clickOnClaimNumber();
+    }
+
     @When("user clicks on Attachments sub tab")
     public void user_clicks_on_attachments_sub_tab() throws InterruptedException {
         userClicksOnAttachmentsSubTab();
