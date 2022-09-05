@@ -62,7 +62,7 @@ public class ClaimDetailsPage extends SeleniumUtils {
         clickElement(lnkFFSProfessional);
     }
 
-    public void userClicksOnClaimNumber() {
+    public void userClicksOnClaimNumber() throws InterruptedException {
         explicitElementClickableWaitByXpath(lnkClaimNumber, 30);
         clickElement(lnkClaimNumber);
     }
