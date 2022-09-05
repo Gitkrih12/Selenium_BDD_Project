@@ -15,7 +15,7 @@ public class ClaimDetailsStepDef extends ClaimDetailsPage {
     }
 
     @When("user clicks on the Claim Number")
-    public void user_clicks_on_the_claim_number() {
+    public void user_clicks_on_the_claim_number() throws InterruptedException {
         userClicksOnClaimNumber();
     }
 
