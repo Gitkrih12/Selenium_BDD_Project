@@ -24,6 +24,12 @@ public class ActivityLoggerStepDef extends ActivityLoggerPage {
         userViewsActivityLoggerFields(expFields);
     }
 
+    @Then("user able to view all the field values under Activity Logger tab")
+    public void user_able_to_view_all_the_field_values_under_activity_logger_tab() throws InterruptedException {
+        enterChangesetInSearchField();
+        verifyFieldValuesUnderActivityLogger();
+    }
+
     //  Scenario: Verify user able to navigate to Activity Logger tab and validated the buttons
     @Then("user able to view the below footer section in Activity Logger")
     public void user_able_to_view_the_below_footer_section_in_activity_logger(DataTable expFooterSection) {
