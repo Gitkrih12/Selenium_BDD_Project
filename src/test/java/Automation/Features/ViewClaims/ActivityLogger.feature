@@ -5,6 +5,7 @@ Feature: Activity Logger
     When the user enters the valid username and password and click on login button
 
   @42356 @abc
+  @Sanity
   Scenario: Verify user able to navigate to Activity Logger tab
     When user clicking on Claim Number in Global Search page
     And user clicks on the Activity Logger tab
