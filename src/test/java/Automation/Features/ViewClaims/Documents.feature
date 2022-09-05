@@ -26,6 +26,7 @@ Feature: Documents
       | Deactivate        |
 
   @49610
+  @Sanity
   Scenario: Verify column fields in Attachments sub tab
     When user clicking on Attachments Claim Number in Global Search page
     And user clicks on the Documents tab
@@ -38,6 +39,7 @@ Feature: Documents
     And user able to view the field values under Attachments sub tab
 
   @49613
+  @Sanity
   Scenario: Verify column fields in EDI files sub tab
     When user clicking on Claim Number in Global Search page
     And user clicks on the Documents tab
