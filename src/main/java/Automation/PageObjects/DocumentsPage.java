@@ -18,7 +18,7 @@ public class DocumentsPage extends SeleniumUtils {
     String btnFooterSection = "//*[@class='footer footer-flex']/button";
     String lstEdiFiles = "//app-documents//*[@id = 'resultsGrid']//span[@ref = 'eText']";
     String lstAttachments = "//app-documents//*[@id = 'resultsGrid1']//span[@ref = 'eText']";
-    String lstEdiFilesValues = "(//*[@id= 'resultsGrid'])[3]//span[@class = 'ag-cell-value']";
+    String lstEdiFilesValues = "(//app-documents//div[@aria-label = 'Press SPACE to select this row.'])[4]//span[@class = 'ag-cell-value']";
     String lstEdiFilesValuesUat = "(//*[@id='nav-edifiles-details']//div[@aria-label = 'Press SPACE to select this row.'])[5]//span[@class = 'ag-cell-value']";
     String lstAttachmentValues = "(//*[@id = 'nav-attachments-details']//div[@aria-label = 'Press SPACE to select this row.'])[4]//span[@class = 'ag-cell-value']";
     String lstEdiFilesHeaderName = "//*[@id = 'resultsGrid']//span[contains(text(), '$HeaderName^')]";
@@ -43,7 +43,7 @@ public class DocumentsPage extends SeleniumUtils {
     public void verifyUserViewsEDIFilesSubTab(String expSubTab1) {
         String actualValue = findElementByXpath(tabEdiFile).getText().replace("(", " ").replace(")", "");
         String actualTab1[] = actualValue.split(" ");
-        Assert.assertEquals(expSubTab1, actualTab1[0] + actualTab1[1]);
+        Assert.assertEquals(expSubTab1, actualTab1[0] +" "+ actualTab1[1]);
     }
 
     public void verifyUserViewsAttachmentsSubTab(String expSubTab2) {
@@ -159,7 +159,7 @@ public class DocumentsPage extends SeleniumUtils {
         System.out.println("Size :" + ActFields.size());
         System.out.println("EDI Files Columns should display:" + ActFields);
         System.out.println("Expected fields are: " + fieldsExp);
-        Assert.assertEquals(ActFields, fieldsExp);
+        Assert.assertEquals(fieldsExp, ActFields);
     }
 
     public void verifyFieldValuesUnderEdiFiles() {

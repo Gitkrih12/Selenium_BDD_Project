@@ -9,7 +9,7 @@ Feature: Documents
     When user clicking on Claim Number in Global Search page
     And user clicks on the Documents tab
     Then user navigates to "Documents" tab
-    And user able to view the two sub tabs as "EDIFiles" and "Attachments"
+    And user able to view the two sub tabs as "EDI Files" and "Attachments"
 
   @47240
   Scenario: Verify user should be able to see footer section buttons
