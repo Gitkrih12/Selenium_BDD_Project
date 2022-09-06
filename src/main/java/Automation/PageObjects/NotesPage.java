@@ -89,6 +89,6 @@ public class NotesPage extends SeleniumUtils {
                 .stream().map((e) -> e.getText().trim()).collect(Collectors.toList());
         System.out.println("Footer fields should display:" + ActFields);
         System.out.println("Expected fields are: " + fieldsExp);
-        Assert.assertEquals(ActFields, fieldsExp);
+        Assert.assertEquals(fieldsExp, ActFields);
     }
 }

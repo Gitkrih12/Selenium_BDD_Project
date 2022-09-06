@@ -5,12 +5,14 @@ Feature: Notes
     When the user enters the valid username and password and click on login button
 
   @46153
+  @Sanity
   Scenario: Verify user should navigate to Notes page on clicking claim number from Global Search page
     When user clicking on Claim Number in Global Search page
     And user clicks on the Notes tab
     Then user navigates to the "Notes" tab
 
   @46154
+  @Sanity
   Scenario: Verify column fields in Notes tab
     When user clicking on Claim Number in Global Search page
     And user clicks on the Notes tab
