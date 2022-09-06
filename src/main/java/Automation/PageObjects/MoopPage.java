@@ -37,7 +37,7 @@ public class MoopPage extends SeleniumUtils {
         System.out.println("Size :" + ActFields.size());
         System.out.println("Fields in Moop should display:" + ActFields);
         System.out.println("Expected fields are: " + fieldsExp);
-        Assert.assertEquals(ActFields, fieldsExp);
+        Assert.assertEquals(fieldsExp, ActFields);
     }
 
     public void verifyFieldValuesUnderMoopTab() throws InterruptedException {

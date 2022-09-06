@@ -11,6 +11,7 @@ Feature: MOOP
     Then user navigates to "MOOP" tab
 
   @46278
+  @Sanity
   Scenario: Verify user should be able to view the appropriate table with all the fields in MOOP page
     When user clicking on Claim Number in Global Search page
     And user clicks on Moop tab
