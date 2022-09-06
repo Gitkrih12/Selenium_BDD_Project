@@ -2,7 +2,6 @@ package Automation.PageObjects;
 
 import Automation.Utilities.SeleniumUtils;
 import io.cucumber.datatable.DataTable;
-import org.checkerframework.checker.units.qual.C;
 import org.junit.Assert;
 import org.openqa.selenium.WebElement;
 
@@ -38,13 +37,14 @@ public class MOOPLedgerPage extends SeleniumUtils {
         clickElement(lnkMemberManagement);
         threadSleep(1000);
     }
+
     public void userClickOnMoopLedger() throws InterruptedException {
         explicitVisibilityOfWait(findElementByXpath(lnkMOOPLedger), 20);
         clickElement(lnkMOOPLedger);
         threadSleep(1000);
     }
 
-    public void userNavigatesToMoopLedgerPage(String expTab){
+    public void userNavigatesToMoopLedgerPage(String expTab) {
         Assert.assertEquals(expTab, findElementByXpath(tabMOOPLedger).getText());
     }
 
@@ -69,7 +69,7 @@ public class MOOPLedgerPage extends SeleniumUtils {
         }
     }
 
-    public void verifySearchCriteriaInMoopLedgerPage(){
+    public void verifySearchCriteriaInMoopLedgerPage() {
         List<WebElement> ActSearchFields = findElementsByXpath(txtMOOPSearchBox);
         for (WebElement column : ActSearchFields) {
             scrollIntoView(column, driver);
@@ -84,22 +84,22 @@ public class MOOPLedgerPage extends SeleniumUtils {
         findElementAndSendKeys(findElementByXpath(inputMemberID), expMemberId);
         threadSleep(1000);
         sendKeysUsingKeyboardInput(inputMemberID);
-        explicitVisibilityOfWait(findElementByXpath(lnkMemberID),10);
+        explicitVisibilityOfWait(findElementByXpath(lnkMemberID), 10);
         clickElement(lnkMemberID);
         threadSleep(1000);
     }
 
-    public void userNavigatesToMoopTransactionScreen(){
+    public void userNavigatesToMoopTransactionScreen() {
         expMoopTransactionTab = prop.getProperty("moopTransactionTab");
         Assert.assertEquals(expMoopTransactionTab, findElementByXpath(titleMoopTransaction).getText());
     }
 
-    public void userNavigatesToMoopAccumulatorSummary(){
+    public void userNavigatesToMoopAccumulatorSummary() {
         expMoopAccumulatorSummaryTab = prop.getProperty("moopAccumulatorSummaryTab");
         Assert.assertEquals(expMoopAccumulatorSummaryTab, findElementByXpath(titleMoopAccumulatorSummary).getText());
     }
 
-    public void verifyFieldsUnderMoopTransaction(DataTable expFields){
+    public void verifyFieldsUnderMoopTransaction(DataTable expFields) {
         List<String> columnListExp = expFields.asList();
         List<WebElement> ActColumnFields = findElementsByXpath(lstMoopTransactionFields);
         List<String> columnFieldsForCompare = new ArrayList<>();
@@ -109,6 +109,8 @@ public class MOOPLedgerPage extends SeleniumUtils {
             String text = column.getText();
             columnFieldsForCompare.add(text);
         }
+        int expValue = 2;
+        Assert.assertEquals(expValue, Collections.frequency(columnFieldsForCompare, "Network Affiliation"));
         System.out.println("Fields in Moop Transaction and Accumulator summary section :" + columnFieldsForCompare);
         System.out.println("Expected fields are : " + columnListExp);
         for (String exp : columnListExp) {
@@ -120,7 +122,7 @@ public class MOOPLedgerPage extends SeleniumUtils {
         }
     }
 
-    public void verifyFieldValuesUnderMoopTransaction(){
+    public void verifyFieldValuesUnderMoopTransaction() {
         HashMap<String, String> testValues = new HashMap<String, String>();
         testValues.put("Claim Number", "I00MR220303002");
         testValues.put("Type Of Coverage", "Part B");
@@ -195,7 +197,7 @@ public class MOOPLedgerPage extends SeleniumUtils {
         }
     }
 
-    public void verifySearchCriteriaInMoopTransaction(){
+    public void verifySearchCriteriaInMoopTransaction() {
         List<WebElement> ActSearchFields = findElementsByXpath(txtSearchFieldsForMoopTransaction);
         for (WebElement column : ActSearchFields) {
             scrollIntoView(column, driver);

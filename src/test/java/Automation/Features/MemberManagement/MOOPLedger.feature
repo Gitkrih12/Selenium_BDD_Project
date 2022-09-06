@@ -5,6 +5,7 @@ Feature: MOOP Ledger
     When the user enters the valid username and password and click on login button
 
   @52338
+  @Sanity
   Scenario: Verify user able to view all the columns when user clicks on MOOP Ledger under Member Management
     When user clicks on MOOP Ledger under Member Management
     Then user navigates to the "Moop Ledger" page successfully
@@ -20,6 +21,7 @@ Feature: MOOP Ledger
     And user able to view the Search criteria in Moop Ledger
 
   @52371
+  @Sanity
   Scenario: Verify user clicks on 'Member ID' from the MOOP Ledger
     When user clicks on MOOP Ledger under Member Management
     And user clicks on Member ID
