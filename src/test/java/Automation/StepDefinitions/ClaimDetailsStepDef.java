@@ -15,7 +15,7 @@ public class ClaimDetailsStepDef extends ClaimDetailsPage {
     }
 
     @When("user clicks on the Claim Number")
-    public void user_clicks_on_the_claim_number() {
+    public void user_clicks_on_the_claim_number() throws InterruptedException {
         userClicksOnClaimNumber();
     }
 
@@ -50,7 +50,7 @@ public class ClaimDetailsStepDef extends ClaimDetailsPage {
     }
 
     @Then("user able to view all the field values in Claim Summary Details page")
-    public void user_able_to_view_all_the_field_values_in_claim_summary_details_page() {
+    public void user_able_to_view_all_the_field_values_in_claim_summary_details_page() throws InterruptedException {
         verifyFieldValuesInClaimSummaryDetailsPage();
     }
 

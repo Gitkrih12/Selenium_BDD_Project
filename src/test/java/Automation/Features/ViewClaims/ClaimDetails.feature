@@ -22,7 +22,6 @@ Feature: Claim Details
   @37393
   @Sanity
   Scenario: Verify column fields in Claim Summary details page
-    Given the user is in FFS Professional page
     When user clicks on the Claim Number in Universal Search
     Then user navigates to the "Claim Summary" page
     And user should be able to view all the column fields in Claim Summary Details page
@@ -91,7 +90,6 @@ Feature: Claim Details
 
   @37403
   Scenario: Validate Claim Information section
-    Given the user is in FFS Professional page
     When user clicks on the Claim Number in Universal Search
     Then user navigates to the "Claim Summary" page
     And user able to view the below fields under claim information section
@@ -107,7 +105,6 @@ Feature: Claim Details
 
   @37405
   Scenario: Validate Payment Information section
-    Given the user is in FFS Professional page
     When user clicks on the Claim Number in Universal Search
     Then user navigates to the "Claim Summary" page
     And user able to view the below fields under Payment Information section
@@ -144,7 +141,6 @@ Feature: Claim Details
 
   @37413
   Scenario: Validate Member Information section
-    Given the user is in FFS Professional page
     When user clicks on the Claim Number in Universal Search
     Then user navigates to the "Claim Summary" page
     And user able to view the below fields under Member Information section
@@ -166,7 +162,6 @@ Feature: Claim Details
 
   @37414
   Scenario: Validate Rendering Provider Information section
-    Given the user is in FFS Professional page
     When user clicks on the Claim Number in Universal Search
     Then user navigates to the "Claim Summary" page
     And user able to view the below fields under Rendering Provider information section
@@ -177,7 +172,6 @@ Feature: Claim Details
 
   @37415
   Scenario: Validate Billing Provider Information section
-    Given the user is in FFS Professional page
     When user clicks on the Claim Number in Universal Search
     Then user navigates to the "Claim Summary" page
     And user able to view the below fields under Billing Provider Information section
@@ -196,7 +190,6 @@ Feature: Claim Details
 
   @37416
   Scenario: Validate Payer section
-    Given the user is in FFS Professional page
     When user clicks on the Claim Number in Universal Search
     Then user navigates to the "Claim Summary" page
     And user able to view the below fields under Payer section
@@ -211,7 +204,6 @@ Feature: Claim Details
 
   @37418
   Scenario: Validate Date of Service section
-    Given the user is in FFS Professional page
     When user clicks on the Claim Number in Universal Search
     Then user navigates to the "Claim Summary" page
     And user able to view the below fields under Date of Service section
