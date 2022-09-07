@@ -18,11 +18,6 @@ public class MoopStepDef extends MoopPage {
         verifyUserNavigatesToMoop(expTab);
     }
 
-    @Then("user navigates to {string} tab")
-    public void user_navigates_to_tab(String expTab) {
-        verifyUserNavigatesToMoop(expTab);
-    }
-
     //  Scenario: Verify user should be able to view the appropriate table with all the fields in MOOP page
     @Then("user able to view the below fields under Moop tab")
     public void user_able_to_view_the_below_fields_under_moop_tab(DataTable columnFields) {
