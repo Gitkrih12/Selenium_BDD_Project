@@ -133,8 +133,8 @@ public class PriorAuthPage extends SeleniumUtils {
 
     //  Scenario: Verify Search box under each column and able to enter search criteria
     public void verifySearchFieldsUnderEachColumn() {
-        List<WebElement> ActSearchFields = findElementsByXpath(txtPriorAuthSearchFields);
-        for (WebElement column : ActSearchFields) {
+        List<WebElement> actSearchFields = findElementsByXpath(txtPriorAuthSearchFields);
+        for (WebElement column : actSearchFields) {
             scrollIntoView(column, driver);
             boolean value = column.isDisplayed();
             Assert.assertTrue(value);
