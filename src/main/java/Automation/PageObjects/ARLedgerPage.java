@@ -25,6 +25,7 @@ public class ARLedgerPage extends SeleniumUtils {
     String txtTaxID = "//input[@aria-label='Tax ID / SSN Filter Input']";
     String txtAmount = "//input[@aria-label='Amount($) Filter Input']";
     String txtCreatedOn = "//input[@aria-label='Created On Filter Input']";
+    String lnkVendorId = "//*[@id='nav-claim-details']//div[5]//a";
 
     private static String expVendorID = "";
     private static String expVendorName = "";
@@ -167,5 +168,11 @@ public class ARLedgerPage extends SeleniumUtils {
         threadSleep(1000);
         sendKeysUsingKeyboardInput(txtCreatedOn);
         threadSleep(5000);
+    }
+
+    public void userClicksOnVendorID() throws InterruptedException {
+        explicitElementClickableWaitByXpath((lnkVendorId), 30);
+        clickElement(lnkVendorId);
+        threadSleep(2000);
     }
 }

@@ -40,3 +40,20 @@ Feature: AR Ledger
     Then user able to view the appropriate results
     When user enters the Created On in Search criteria
     Then user able to view the appropriate results
+
+  @46979
+  Scenario: Verify user navigates to the A/R Transaction claim details on clicking Vendor ID and validates all the fields
+    When user clicks on AR Ledger on the left navigation panel
+    And user clicks on Vendor ID in AR Ledger page
+    Then user navigates to the AR Transactions page
+    And user able to view Credit Overpaid and Debit Underpaid status as "Credit/Overpaid - Added to Account Receivable" "Debit/Underpaid - deducted to Account Receivable"
+    Then user able to view all the below mentioned columns in Account Review Transactions page
+      | Transaction Type       |
+      | Transaction Date       |
+      | Transaction Amount ($) |
+      | Running Balance ($)    |
+      | Transacted By          |
+      | Claim Number           |
+      | Recovery Claim Number  |
+      | Remarks                |
+    Then user able to view the search box for all the column on AR Transactions grid

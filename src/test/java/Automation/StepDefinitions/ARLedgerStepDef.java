@@ -70,4 +70,9 @@ public class ARLedgerStepDef extends ARLedgerPage {
     public void user_enters_the_created_on_in_search_criteria() throws InterruptedException {
         userEntersCreatedOnInSearchCriteria();
     }
+
+    @When("user clicks on Vendor ID in AR Ledger page")
+    public void user_clicks_on_vendor_id_in_ar_ledger_page() throws InterruptedException {
+        userClicksOnVendorID();
+    }
 }
