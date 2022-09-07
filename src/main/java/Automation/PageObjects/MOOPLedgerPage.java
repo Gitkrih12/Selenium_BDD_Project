@@ -18,7 +18,7 @@ public class MOOPLedgerPage extends SeleniumUtils {
     String tabMOOPLedger = "//app-moop-ledger//h6";
     String lstMOOPLedger = "//*[@ref = 'eText']";
     String txtMOOPSearchBox = "//input[@ref='eInput' and @type = 'text']";
-    String inputMemberID = "//*[@aria-label = 'Member ID Filter Input']";
+    String txtMemberID = "//*[@aria-label = 'Member ID Filter Input']";
     String lnkMemberID = "(//app-view-claim-render//a)[1]";
     String titleMoopTransaction = "(//app-moop-transaction//h6)[1]";
     String lstMoopTransactionFields = "//app-moop-transaction//span[@ref = 'eText']";
@@ -49,7 +49,7 @@ public class MOOPLedgerPage extends SeleniumUtils {
     }
 
     public void verifyFieldsUnderMoopLedger(DataTable expFields) {
-        List<String> arTransactionFieldsExp = expFields.asList();
+        List<String> moopFieldsExp = expFields.asList();
         List<WebElement> ActFooterFields = findElementsByXpath(lstMOOPLedger);
         List<String> fieldsForCompare = new ArrayList<>();
         System.out.println("Size" + ActFooterFields.size());
@@ -59,8 +59,8 @@ public class MOOPLedgerPage extends SeleniumUtils {
             fieldsForCompare.add(text);
         }
         System.out.println("Moop Ledger fields  should display :" + fieldsForCompare);
-        System.out.println("Expected fields are : " + arTransactionFieldsExp);
-        for (String exp : arTransactionFieldsExp) {
+        System.out.println("Expected fields are : " + moopFieldsExp);
+        for (String exp : moopFieldsExp) {
             if (fieldsForCompare.contains(exp)) {
                 Assert.assertTrue(true);
             } else {
@@ -81,9 +81,9 @@ public class MOOPLedgerPage extends SeleniumUtils {
     public void userClicksOnMemberId() throws InterruptedException {
         threadSleep(1000);
         expMemberId = prop.getProperty("moopMemberId");
-        findElementAndSendKeys(findElementByXpath(inputMemberID), expMemberId);
+        findElementAndSendKeys(findElementByXpath(txtMemberID), expMemberId);
         threadSleep(1000);
-        sendKeysUsingKeyboardInput(inputMemberID);
+        sendKeysUsingKeyboardInput(txtMemberID);
         explicitVisibilityOfWait(findElementByXpath(lnkMemberID), 10);
         clickElement(lnkMemberID);
         threadSleep(1000);
@@ -134,7 +134,7 @@ public class MOOPLedgerPage extends SeleniumUtils {
         testValues.put("Remarks", "I00MR220303002 REPROCESSED");
         testValues.put("Type Of Coverage1", "Part B");
         testValues.put("Network Affiliation1", "INN");
-        testValues.put("Deductible", "0");
+        testValues.put("Deductible ($)", "0");
         testValues.put("Copay ($)", "0");
         testValues.put("Coinsurance ($)", "0");
         testValues.put("Total Amount ($)", "0");
@@ -152,7 +152,7 @@ public class MOOPLedgerPage extends SeleniumUtils {
         uatValues.put("Remarks", "User Updated");
         uatValues.put("Type Of Coverage1", "Part A");
         uatValues.put("Network Affiliation1", "INN");
-        uatValues.put("Deductible", "0");
+        uatValues.put("Deductible ($)", "0");
         uatValues.put("Copay ($)", "0");
         uatValues.put("Coinsurance ($)", "3000");
         uatValues.put("Total Amount ($)", "3000");
