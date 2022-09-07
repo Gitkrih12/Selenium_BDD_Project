@@ -16,7 +16,7 @@ public class CAPProfessionalPage extends SeleniumUtils {
     String lstColumnFields = "//ag-grid-angular[@id='pendGrid']//div[@class='ag-header-cell-label']//span[text()]";
     String tabPendState = "(//button[@class='nav-link active'])[1]";
     String lstQueues = "//div[@id='nav-tab']//button";
-    String txtSearchFields = "//*[@id='pendGrid']//input[@class='ag-input-field-input ag-text-field-input']";
+    String txtSearchFields = "//ag-grid-angular[@id='pendGrid']//div[@class='ag-header-cell-label']//span[text()]//following::div[1]//input[@type='text']";
     String txtClaimNumber = "(//input[@aria-label='Claim Number Filter Input'])[1]";
     String eleClaimNumber = "(//div[@class='ag-pinned-left-cols-container']//a)[1]";
     String eleVerticalColorForCorrected = "(//div[@col-id='isCorrected']//span)[6]";
@@ -77,7 +77,6 @@ public class CAPProfessionalPage extends SeleniumUtils {
 
     //Scenario: Verify by default user should be in the Pend state in CAP Professional screen
     public void verifyUserByDefaultInPendStateResultsPage() throws InterruptedException {
-        threadSleep(20000);
         boolean value=isDisplayed(elePendQueuePage);
         Assert.assertTrue(value);
     }
@@ -89,7 +88,6 @@ public class CAPProfessionalPage extends SeleniumUtils {
 
     //Scenario: Validate user able to view all the column fields for Pend bucket in CAP Professional screen
     public void verifyPendStateByDefault(String expState) throws InterruptedException{
-        threadSleep(20000);
         String actState=findElementByXpath(tabPendState).getAttribute("class");
         if(actState.contains(expState)){
             Assert.assertTrue(true);
@@ -160,7 +158,6 @@ public class CAPProfessionalPage extends SeleniumUtils {
 
     //Scenario: Verify color code for corrected claims in CAP Professional page
     public void enterCorrectedClaimNumberInCAPProfessionalSearchField() throws InterruptedException {
-        threadSleep(30000);
         expClaimNumber = prop.getProperty("capProfessionalCorrectedClaimNumber");
         findElementAndSendKeys(findElementByXpath(txtClaimNumber), expClaimNumber);
         threadSleep(1000);
@@ -187,7 +184,6 @@ public class CAPProfessionalPage extends SeleniumUtils {
 
     //  Scenario: Verify color code for COB In Member House in CAP Professional page
     public void enterCOBInMemberHouseClaimNumber() throws InterruptedException {
-        threadSleep(30000);
         expClaimNumber = prop.getProperty("capProfessionalCobInMemberHouse");
         findElementAndSendKeys(findElementByXpath(txtClaimNumber), expClaimNumber);
         threadSleep(1000);
@@ -224,7 +220,6 @@ public class CAPProfessionalPage extends SeleniumUtils {
 
     //Scenario: Verify user able to navigate to claim summary screen only once when performed multiple clicks on Claim number
     public void enterClaimNumberInPendCAPProfessionalSearchField() throws InterruptedException {
-        threadSleep(30000);
         expClaimNumber = prop.getProperty("capProfessionalClaimNumber");
         findElementAndSendKeys(findElementByXpath(txtClaimNumber), expClaimNumber);
         threadSleep(1000);
@@ -236,7 +231,6 @@ public class CAPProfessionalPage extends SeleniumUtils {
 
     //Scenario: Verify colour coding for Unclean status claims under Pend bucket in CAP professional page
     public void enterUnCleanStatusPendClaimNumber() throws InterruptedException {
-        threadSleep(30000);
         expClaimNumber = prop.getProperty("capProfessionalUnCleanStatusPendClaimNumber");
         findElementAndSendKeys(findElementByXpath(txtClaimNumber), expClaimNumber);
         threadSleep(1000);
@@ -258,7 +252,6 @@ public class CAPProfessionalPage extends SeleniumUtils {
         clickElement(tabPayerReview);
     }
     public void enterUnCleanStatusPayerReviewClaimNumber() throws InterruptedException {
-        threadSleep(30000);
         expClaimNumber = prop.getProperty("capProfessionalUnCleanStatusPayerReviewClaimNumber");
         findElementAndSendKeys(findElementByXpath(txtPayerReviewClaimNumber), expClaimNumber);
         threadSleep(1000);
@@ -284,7 +277,6 @@ public class CAPProfessionalPage extends SeleniumUtils {
         clickElement(tabManagementReview);
     }
     public void enterUnCleanStatusManagementReviewClaimNumber() throws InterruptedException {
-        threadSleep(30000);
         expClaimNumber = prop.getProperty("capProfessionalUnCleanStatusManagementReviewClaimNumber");
         findElementAndSendKeys(findElementByXpath(txtManagementReviewClaimNumber), expClaimNumber);
         threadSleep(1000);
@@ -308,7 +300,6 @@ public class CAPProfessionalPage extends SeleniumUtils {
         clickElement(tabApproved);
     }
     public void enterUnCleanStatusApprovedClaimNumber() throws InterruptedException {
-        threadSleep(30000);
         expClaimNumber = prop.getProperty("capProfessionalUnCleanStatusApprovedClaimNumber");
         findElementAndSendKeys(findElementByXpath(txtApprovedClaimNumber), expClaimNumber);
         threadSleep(1000);
@@ -332,7 +323,6 @@ public class CAPProfessionalPage extends SeleniumUtils {
     }
 
     public void enterUnCleanStatusDeniedClaimNumber() throws InterruptedException {
-        threadSleep(30000);
         expClaimNumber = prop.getProperty("capProfessionalUnCleanStatusDeniedClaimNumber");
         findElementAndSendKeys(findElementByXpath(txtDeniedClaimNumber), expClaimNumber);
         threadSleep(1000);
@@ -356,7 +346,6 @@ public class CAPProfessionalPage extends SeleniumUtils {
     }
 
     public void enterUnCleanStatusPreBatchClaimNumber() throws InterruptedException {
-        threadSleep(30000);
         expClaimNumber = prop.getProperty("capProfessionalUnCleanStatusPreBatchClaimNumber");
         findElementAndSendKeys(findElementByXpath(txtPreBatchClaimNumber), expClaimNumber);
         threadSleep(1000);
@@ -376,7 +365,6 @@ public class CAPProfessionalPage extends SeleniumUtils {
 
     //Scenario: Verify Pagination in CAP Professional page
     public void enterMemberIdInSearchFieldForPaginationInCAPProfessional() throws InterruptedException {
-        threadSleep(30000);
         expMemberId = prop.getProperty("capProfessionalPaginationMemberId");
         findElementAndSendKeys(findElementByXpath(txtMemberId), expMemberId);
         threadSleep(3000);

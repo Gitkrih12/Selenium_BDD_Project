@@ -5,7 +5,7 @@ Feature: FFS Professional
     When the user enters the valid username and password and click on login button
 
     #38954-As an adjudicator, I should be able to view FFS professional claims page with all claims details data so that I can search specific claim id details adding applicable filters
-  @TC_60398
+  @TC_60398 @Sanity
   Scenario: Verify user should navigates to FFS Professional screen
     When user clicks on FFS Professional in left navigation menu
     Then the user should navigate to the FFS Professional page
@@ -22,7 +22,7 @@ Feature: FFS Professional
     Then the user should navigate to the FFS Professional page
     And user should be able to view the Clam List Label in the FFS Professional screen
 
-  @TC_39049
+  @TC_39049 @Sanity
   Scenario: Validate user able to view all the column fields for Pend bucket in FFS Professional screen
     When user clicks on FFS Professional in left navigation menu
     Then the user should navigate to the FFS Professional page
@@ -43,7 +43,7 @@ Feature: FFS Professional
       | Assigned To            |
 
 
-  @TC_58744
+  @TC_58744 @Sanity
   Scenario: Verify all the queue field details in the FFS Professional page
     When user clicks on FFS Professional in left navigation menu
     Then the user should navigate to the FFS Professional page
@@ -60,13 +60,13 @@ Feature: FFS Professional
       | Draft             |
       | Rejected          |
 
-  @TC_39686
+  @TC_39686 @Sanity
   Scenario: Verify user able to view the search fields under each columns in the FFS Professional screen
     When user clicks on FFS Professional in left navigation menu
     Then the user should navigate to the FFS Professional page
     And user able to view the Search fields under each column in FFS Professional page
 
-  @TC_39057
+  @TC_39057 @Sanity
   Scenario: Validate pagination in FFS Professional page
     When user clicks on FFS Professional in left navigation menu
     Then the user should navigate to the FFS Professional page
@@ -84,7 +84,7 @@ Feature: FFS Professional
     When user get the total records for the search criteria in FFS Professional page
     Then user see the page numbers as per the no of data divided by pages size in FFS Professional page
 
-  @TC_39435
+  @TC_39435 @Sanity
   Scenario: Verify user able to navigate through pages by using Pagination functionality
     When user clicks on FFS Professional in left navigation menu
     Then the user should navigate to the FFS Professional page
@@ -96,7 +96,7 @@ Feature: FFS Professional
     Then user should allow to navigates to back page in FFS Professional
 
   #40714-As an adjudicator, I should be able to click on any Claim number from FFS Professional queue and get navigated to appropriate claims details page
-  @TC_46665
+  @TC_46665 @Sanity
   Scenario:Verify user able to navigate to claim summary screen on clicking claim number in FFS Professional Queue page
     When user clicks on FFS Professional in left navigation menu
     Then the user should navigate to the FFS Professional page
@@ -104,7 +104,7 @@ Feature: FFS Professional
     Then user should be able to navigate to View Claim Details page
     And  User should see "Hide" option with Claim summary
 
-  @TC_46666
+  @TC_46666 @Sanity
   Scenario: Verify user able to navigate to claim summary screen only once when performed multiple clicks on Claim number
     When user clicks on FFS Professional in left navigation menu
     Then the user should navigate to the FFS Professional page
@@ -116,7 +116,7 @@ Feature: FFS Professional
     And  User should see "Hide" option with Claim summary
 
     #41481- As an adjudicator, I should be able to view Corrected colour codings in the FFS Professional page so that I can easily identify the corrected claims details
-  @TC_42519
+  @TC_42519 @Sanity
   Scenario: Verify color code for corrected claims in FFS Professional page
     When user clicks on FFS Professional in left navigation menu
     Then the user should navigate to the FFS Professional page
@@ -125,7 +125,7 @@ Feature: FFS Professional
     And user should able to see vertical line beside claim number with color code "#AD71FF" in FFS Professional page
     And color indication information should be available on top of grid in FFS Professional page
 
-  @TC_42549
+  @TC_42549 @Sanity
   Scenario: Verify color code for COB In Member House in FFS Professional page
     When user clicks on FFS Professional in left navigation menu
     Then the user should navigate to the FFS Professional page
@@ -134,7 +134,7 @@ Feature: FFS Professional
     And user should able to view patient name with color code "#008000" in FFS Professional page
     And color indication information for COB In Member House should be available on top of grid
 
-  @TC_42606
+  @TC_42606 @Sanity
   Scenario: Verify color code for COB Not In Member House in FFS Professional page
     When user clicks on FFS Professional in left navigation menu
     Then the user should navigate to the FFS Professional page
@@ -144,7 +144,7 @@ Feature: FFS Professional
     And color indication information for COB Not In Member House should be available on top of grid
 
     #53039-As an Adjudicator, When the claim is in Unclean status I want the claim to be displayed and highlighted in the Orange bar.
-  @TC_53451
+  @TC_53451 @Sanity
   Scenario: Verify colour coding for Unclean status claims under Pend bucket in FFS professional page
     When user clicks on FFS Professional in left navigation menu
     Then the user should navigate to the FFS Professional page

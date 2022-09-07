@@ -146,7 +146,7 @@ public class FFSProfessionalStepDef extends FFSProfessionalPage {
         enterCorrectedClaimNumberInFFSProfessionalSearchField();
     }
     @Then("user should able to view corrected claim in FFS Professional Grid")
-    public void user_should_able_to_view_corrected_claim_in_ffs_professional_grid() {
+    public void user_should_able_to_view_corrected_claim_in_ffs_professional_grid() throws InterruptedException {
         validateClaimNumberResult();
     }
     @Then("user should able to see vertical line beside claim number with color code {string} in FFS Professional page")
@@ -164,7 +164,7 @@ public class FFSProfessionalStepDef extends FFSProfessionalPage {
         enterCOBInMemberHouseClaimNumber();
     }
     @Then("user should able to view COB In Member House claim")
-    public void user_should_able_to_view_cob_in_member_house_claim() {
+    public void user_should_able_to_view_cob_in_member_house_claim() throws InterruptedException {
         validateClaimNumberResult();
     }
     @Then("user should able to view patient name with color code {string} in FFS Professional page")
@@ -182,7 +182,7 @@ public class FFSProfessionalStepDef extends FFSProfessionalPage {
         enterCOBNotInMemberHouseClaimNumber();
     }
     @Then("user should able to view COB Not In Member House claim")
-    public void user_should_able_to_view_cob_not_in_member_house_claim() {
+    public void user_should_able_to_view_cob_not_in_member_house_claim() throws InterruptedException {
         validateClaimNumberResult();
     }
     @Then("color indication information for COB Not In Member House should be available on top of grid")
@@ -196,11 +196,11 @@ public class FFSProfessionalStepDef extends FFSProfessionalPage {
         enterUnCleanStatusPendClaimNumber();
     }
     @Then("user should able to view Unclean status claim in FFS Professional Grid")
-    public void user_should_able_to_view_unclean_status_claim_in_ffs_professional_grid() {
+    public void user_should_able_to_view_unclean_status_claim_in_ffs_professional_grid() throws InterruptedException {
         validateClaimNumberResult();
     }
     @Then("user should able to see vertical line beside unclean status Pend claim number with color code {string} in FFS Professional")
-    public void user_should_able_to_see_vertical_line_beside_unclean_status_Pend_claim_number_with_color_code_in_ffs_professional(String colorCode) {
+    public void user_should_able_to_see_vertical_line_beside_unclean_status_Pend_claim_number_with_color_code_in_ffs_professional(String colorCode) throws InterruptedException {
         verifyVerticalColorIndicationForUncleanPendClaim(colorCode);
     }
     @Then("color indication information for Unclean should be available on top of grid in FFS Professional")

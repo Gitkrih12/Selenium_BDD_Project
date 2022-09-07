@@ -3,10 +3,12 @@ package Automation.PageObjects;
 import Automation.Utilities.SeleniumUtils;
 import io.cucumber.datatable.DataTable;
 import org.junit.Assert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.Color;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
 
@@ -60,7 +62,9 @@ public class FFSProfessionalPage extends SeleniumUtils {
     String eleOnHoldPaginationDescription = "//*[@id='onHoldGrid']//span[@class='ag-paging-description']";
     String btnNextPage = "//*[@id='onHoldGrid']//span[@class='ag-icon ag-icon-next']";
     String btnPreviousPage = "//*[@id='onHoldGrid']//span[@class='ag-icon ag-icon-previous']";
-    String txtSearchFields = "//*[@id='pendGrid']//input[@class='ag-input-field-input ag-text-field-input']";
+    String txtSearchFields = "//ag-grid-angular[@id='pendGrid']//div[@class='ag-header-cell-label']//span[text()]//following::div[1]//input[@type='text']";
+
+
 
 
     private static String expClaimNumber = "";
@@ -83,13 +87,13 @@ public class FFSProfessionalPage extends SeleniumUtils {
     }
     //Scenario: Verify color code for corrected claims in FFS Professional page
     public void enterCorrectedClaimNumberInFFSProfessionalSearchField() throws InterruptedException {
-        threadSleep(30000);
         expClaimNumber = prop.getProperty("ffsProfessionalCorrectedClaimNumber");
         findElementAndSendKeys(findElementByXpath(txtClaimNumber), expClaimNumber);
         threadSleep(1000);
         sendKeysUsingKeyboardInput(txtClaimNumber);
     }
-    public void validateClaimNumberResult() {
+    public void validateClaimNumberResult() throws InterruptedException {
+        threadSleep(5000);
         explicitVisibilityOfWait(findElementByXpath(eleClaimNumber), 5);
         String actClaimNumber = getText(eleClaimNumber);
         System.out.println("actual claimNumber :" + actClaimNumber);
@@ -109,7 +113,6 @@ public class FFSProfessionalPage extends SeleniumUtils {
 
     //scenario: Verify color code for COB Not In Member House in FFS Professional page
     public void enterCOBInMemberHouseClaimNumber() throws InterruptedException {
-        threadSleep(30000);
         expClaimNumber = prop.getProperty("ffsProfessionalCobInMemberHouse");
         findElementAndSendKeys(findElementByXpath(txtClaimNumber), expClaimNumber);
         threadSleep(1000);
@@ -127,7 +130,6 @@ public class FFSProfessionalPage extends SeleniumUtils {
 
     //Scenario: Verify color code for COB Not In Member House in FFS Professional page
     public void enterCOBNotInMemberHouseClaimNumber() throws InterruptedException {
-        threadSleep(30000);
         expClaimNumber = prop.getProperty("ffsProfessionalCobNotInMemberHouse");
         findElementAndSendKeys(findElementByXpath(txtClaimNumber), expClaimNumber);
         threadSleep(1000);
@@ -168,17 +170,30 @@ public class FFSProfessionalPage extends SeleniumUtils {
 
     }
     public void verifyUserShouldSeeAlreadyOpenedClaimNumber(){
-        clickElement(tabViewClaimDefault);
+        /*clickElement(tabViewClaimDefault);
         String viewClaimNumberTextOnSecondClick=findElementByXpath(tabViewClaim).getText();
         String[] claimData=viewClaimNumberTextOnSecondClick.split(" ");
         String actClaimNumber=claimData[2].substring(1);
         System.out.println("act claim number "+actClaimNumber);
-        Assert.assertEquals(expClaimNumber,actClaimNumber);
+        Assert.assertEquals(expClaimNumber,actClaimNumber);*/
+        ArrayList<String> openedTabs = new ArrayList<>();
+        List<WebElement> abc = findElementByXpath("//div[@class='mat-tab-labels']").findElements(By.xpath("*"));
+        for (WebElement a : abc)
+        {
+            if(a.getText().contains("View")){
+                String [] claimValues = a.getText().split(" ");
+                openedTabs.add(claimValues[0]);
+            }else {
+                openedTabs.add(a.getText());
+            }
+        }
+        System.out.println(openedTabs);
+        Assert.assertEquals(1, Collections.frequency(openedTabs, "View"));
+        clickElement(tabViewClaimDefault);
     }
 
     //Scenario: Verify user able to navigate to claim summary screen only once when performed multiple clicks on Claim number
     public void enterClaimNumberInPendFFSProfessionalSearchField() throws InterruptedException {
-        threadSleep(30000);
         expClaimNumber = prop.getProperty("ffsProfessionalClaimNumber");
         findElementAndSendKeys(findElementByXpath(txtClaimNumber), expClaimNumber);
         threadSleep(1000);
@@ -187,14 +202,14 @@ public class FFSProfessionalPage extends SeleniumUtils {
 
     //Scenario:Verify colour coding for Unclean status claims under Pend bucket in FFS professional page
     public void enterUnCleanStatusPendClaimNumber() throws InterruptedException {
-        threadSleep(30000);
         expClaimNumber = prop.getProperty("ffsProfessionalUnCleanStatusPendClaimNumber");
         findElementAndSendKeys(findElementByXpath(txtClaimNumber), expClaimNumber);
         threadSleep(1000);
         sendKeysUsingKeyboardInput(txtClaimNumber);
     }
 
-    public void verifyVerticalColorIndicationForUncleanPendClaim(String expColorIndication){
+    public void verifyVerticalColorIndicationForUncleanPendClaim(String expColorIndication) throws InterruptedException {
+        threadSleep(2000);
         String actColorCode = getColorCodeForBackground(eleVerticalColorForUncleanPendClaim);
         System.out.println("actual color code :" + actColorCode);
         Assert.assertEquals(expColorIndication, actColorCode);
@@ -210,7 +225,6 @@ public class FFSProfessionalPage extends SeleniumUtils {
     }
 
     public void enterUnCleanStatusPayerReviewClaimNumber() throws InterruptedException {
-        threadSleep(30000);
         expClaimNumber = prop.getProperty("ffsProfessionalUnCleanStatusPayerReviewClaimNumber");
         findElementAndSendKeys(findElementByXpath(txtPayerReviewClaimNumber), expClaimNumber);
         threadSleep(1000);
@@ -233,7 +247,6 @@ public class FFSProfessionalPage extends SeleniumUtils {
     }
 
     public void enterUnCleanStatusManagementReviewClaimNumber() throws InterruptedException {
-        threadSleep(30000);
         expClaimNumber = prop.getProperty("ffsProfessionalUnCleanStatusManagementReviewClaimNumber");
         findElementAndSendKeys(findElementByXpath(txtManagementReviewClaimNumber), expClaimNumber);
         threadSleep(1000);
@@ -257,7 +270,6 @@ public class FFSProfessionalPage extends SeleniumUtils {
     }
 
     public void enterUnCleanStatusApprovedClaimNumber() throws InterruptedException {
-        threadSleep(30000);
         expClaimNumber = prop.getProperty("ffsProfessionalUnCleanStatusApprovedClaimNumber");
         findElementAndSendKeys(findElementByXpath(txtApprovedClaimNumber), expClaimNumber);
         threadSleep(1000);
@@ -281,7 +293,6 @@ public class FFSProfessionalPage extends SeleniumUtils {
     }
 
     public void enterUnCleanStatusDeniedClaimNumber() throws InterruptedException {
-        threadSleep(30000);
         expClaimNumber = prop.getProperty("ffsProfessionalUnCleanStatusDeniedClaimNumber");
         findElementAndSendKeys(findElementByXpath(txtDeniedClaimNumber), expClaimNumber);
         threadSleep(1000);
@@ -304,7 +315,6 @@ public class FFSProfessionalPage extends SeleniumUtils {
     }
 
     public void enterUnCleanStatusPreBatchClaimNumber() throws InterruptedException {
-        threadSleep(30000);
         expClaimNumber = prop.getProperty("ffsProfessionalUnCleanStatusPreBatchClaimNumber");
         findElementAndSendKeys(findElementByXpath(txtPreBatchClaimNumber), expClaimNumber);
         threadSleep(1000);
@@ -324,7 +334,6 @@ public class FFSProfessionalPage extends SeleniumUtils {
 
     //Scenario: Validate user able to view all the column fields for Pend bucket in FFS Professional screen
     public void verifyPendStateByDefault(String expState) throws InterruptedException{
-        threadSleep(20000);
         String actState=findElementByXpath(tabPendState).getAttribute("class");
         if(actState.contains(expState)){
             Assert.assertTrue(true);
@@ -386,7 +395,6 @@ public class FFSProfessionalPage extends SeleniumUtils {
 
     //Scenario: Verify by default user should be in the Pend state in FFS Professional screen
     public void verifyUserByDefaultInPendStateResultsPage() throws InterruptedException {
-        threadSleep(20000);
         boolean value=isDisplayed(elePendQueuePage);
         Assert.assertTrue(value);
     }
@@ -398,7 +406,6 @@ public class FFSProfessionalPage extends SeleniumUtils {
 
     //Scenario: Validate pagination in FFS Professional page
     public void enterMemberIdInSearchFieldForPaginationInFFSProfessional() throws InterruptedException {
-        threadSleep(30000);
         expMemberId = prop.getProperty("ffsProfessionalPaginationMemberId");
         findElementAndSendKeys(findElementByXpath(txtMemberId), expMemberId);
         threadSleep(3000);

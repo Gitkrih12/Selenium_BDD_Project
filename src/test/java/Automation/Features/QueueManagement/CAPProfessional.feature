@@ -4,7 +4,7 @@ Feature: CAP Professional
     Given the user is in CA Login screen
     When the user enters the valid username and password and click on login button
 
-  @TC_39033
+  @TC_39033 @Sanity
   Scenario: Verify user should navigates to CAP Professional screen
     When user clicks on CAP Professional in left navigation menu
     Then the user should navigate to the CAP Professional page
@@ -21,7 +21,7 @@ Feature: CAP Professional
     Then the user should navigate to the CAP Professional page
     And user should be able to view the Clam List Label in the CAP Professional screen
 
-  @TC_39051
+  @TC_39051 @Sanity
   Scenario: Validate user able to view all the column fields for Pend bucket in CAP Professional screen
     When user clicks on CAP Professional in left navigation menu
     Then the user should navigate to the CAP Professional page
@@ -41,7 +41,7 @@ Feature: CAP Professional
       | Age                    |
       | Assigned To            |
 
-  @TC_39054
+  @TC_39054 @Sanity
   Scenario: Verify all the queue field details in the CAP Professional page
     When user clicks on CAP Professional in left navigation menu
     Then the user should navigate to the CAP Professional page
@@ -58,13 +58,13 @@ Feature: CAP Professional
       | Draft             |
       | Rejected          |
 
-  @TC_39059
+  @TC_39059 @Sanity
   Scenario: Verify user able to view the search fields under each columns in the CAP Professional screen
     When user clicks on CAP Professional in left navigation menu
     Then the user should navigate to the CAP Professional page
     And user able to view the Search fields under each column in CAP Professional page
 
-  @TC_39228
+  @TC_39228 @Sanity
   Scenario: Verify Pagination in CAP Professional page
     When user clicks on CAP Professional in left navigation menu
     Then the user should navigate to the CAP Professional page
@@ -82,7 +82,7 @@ Feature: CAP Professional
     When user get the total records for the search criteria in CAP Professional page
     Then user see the page numbers as per the no of data divided by pages size in CAP Professional page
 
-  @TC_60884
+  @TC_60884 @Sanity
   Scenario: Verify user able to navigate through pages by using Pagination functionality
     When user clicks on CAP Professional in left navigation menu
     Then the user should navigate to the CAP Professional page
@@ -94,7 +94,7 @@ Feature: CAP Professional
     Then user should allow to navigates to back page in CAP Professional
 
     #40715-As an adjudicator, I should be able to click on any Claim number from CAP Professional queue and get navigated to appropriate claims details page
-  @TC_37332
+  @TC_37332 @Sanity
   Scenario: Verify user able to navigate to claim summary screen on clicking claim number
     When user clicks on CAP Professional in left navigation menu
     Then the user should navigate to the CAP Professional page
@@ -102,7 +102,7 @@ Feature: CAP Professional
     Then user should be able to navigate to View Claim Details page
     And  User should see "Hide" option with Claim summary
 
-  @TC_46249
+  @TC_46249 @Sanity
   Scenario: Verify user able to navigate to claim summary screen only once when performed multiple clicks on Claim number
     When user clicks on CAP Professional in left navigation menu
     Then the user should navigate to the CAP Professional page
@@ -114,7 +114,7 @@ Feature: CAP Professional
     And  User should see "Hide" option with Claim summary
 
   #41736-As an adjudicator, I should be able to view Corrected colour codings in the CAP Professional page so that I can easily identify the corrected claims details
-  @TC_45620
+  @TC_45620 @Sanity
   Scenario: Verify color code for corrected claims in CAP Professional page
     When user clicks on CAP Professional in left navigation menu
     Then the user should navigate to the CAP Professional page
@@ -123,7 +123,7 @@ Feature: CAP Professional
     And user should able to see vertical line beside claim number with color code "#AD71FF" in CAP Professional page
     And color indication information should be available on top of grid in CAP Professional page
 
-  @TC_45617
+  @TC_45617 @Sanity
   Scenario: Verify color code for COB In Member House in CAP Professional page
     When user clicks on CAP Professional in left navigation menu
     Then the user should navigate to the CAP Professional page
@@ -132,7 +132,7 @@ Feature: CAP Professional
     And user should able to view patient name with color code "#008000" in CAP Professional page
     And color indication information for COB In Member House should be available on top of grid in CAP Professional page
 
-  @TC_45618
+  @TC_45618 @Sanity
   Scenario: Verify color code for COB Not In Member House in CAP Professional page
     When user clicks on CAP Professional in left navigation menu
     Then the user should navigate to the CAP Professional page
@@ -142,7 +142,7 @@ Feature: CAP Professional
     And color indication information for COB Not In Member House should be available on top of grid in CAP Professional page
 
    #60637-As an Adjudicator, When the claim is in Unclean status I want the claim to be displayed and highlighted in the Orange bar.
-  @TC_60653
+  @TC_60653 @Sanity
   Scenario: Verify colour coding for Unclean status claims under Pend bucket in CAP professional page
     When user clicks on CAP Professional in left navigation menu
     Then the user should navigate to the CAP Professional page
