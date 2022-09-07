@@ -4,13 +4,13 @@ Feature: Prior Authorization
     Given the user is in CA Login screen
     When the user enters the valid username and password and click on login button
 
-  @46222 @abc
+  @46222
   Scenario: Verify user navigate to Prior Authorization tab from Global Search
     When user clicking on Claim Number in Global Search page
     And user clicks on the Prior Authorization tab
     Then user navigated to the "Prior Authorization" tab
 
-  @46229 @abc
+  @46229
   @Sanity
   @test
   Scenario: Verify Prior Authorization column fields and member level Prior Authorization details
@@ -30,14 +30,14 @@ Feature: Prior Authorization
       | Status        |
     And user able to view all the field values under Prior Authorization tab
 
-  @46231 @abc
+  @46231
   Scenario: Verify Search box under each column and able to enter search criteria
     When user clicking on Claim Number in Global Search page
     And user clicks on the Prior Authorization tab
     Then user should be able to view the Search fields under each column
 
 
-  @46232 @abc
+  @46232
   Scenario: Validate footer section in Prior Authorization tab
     Given the user is in FFS Professional page
     When user clicks on the Claim Number
