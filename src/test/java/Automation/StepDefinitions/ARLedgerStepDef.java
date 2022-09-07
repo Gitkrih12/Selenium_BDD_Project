@@ -48,31 +48,26 @@ public class ARLedgerStepDef extends ARLedgerPage {
 
     @Then("user able to view the appropriate results")
     public void user_able_to_view_the_appropriate_results() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+        verifyAppropriateResults();
     }
 
     @When("user enters the Vendor Name in Search criteria")
-    public void user_enters_the_vendor_name_in_search_criteria() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+    public void user_enters_the_vendor_name_in_search_criteria() throws InterruptedException {
+        userEntersVendorNameInSearchCriteria();
     }
 
     @When("user enters the Tax ID in Search criteria")
-    public void user_enters_the_tax_id_in_search_criteria() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+    public void user_enters_the_tax_id_in_search_criteria() throws InterruptedException {
+        userEntersTaxIdInSearchCriteria();
     }
 
     @When("user enters the Amount in Search criteria")
-    public void user_enters_the_amount_in_search_criteria() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+    public void user_enters_the_amount_in_search_criteria() throws InterruptedException {
+        userEntersAmountInSearchCriteria();
     }
 
     @When("user enters the Created On in Search criteria")
-    public void user_enters_the_created_on_in_search_criteria() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+    public void user_enters_the_created_on_in_search_criteria() throws InterruptedException {
+        userEntersCreatedOnInSearchCriteria();
     }
 }

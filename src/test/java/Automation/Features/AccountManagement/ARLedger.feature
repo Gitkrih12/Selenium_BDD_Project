@@ -10,6 +10,7 @@ Feature: AR Ledger
     Then user able to navigates to the "A/R Ledger" page
 
   @46716
+  @Sanity
   Scenario: Verify user able to view all the column details in the A/R Ledger page
     When user clicks on AR Ledger on the left navigation panel
     Then user able to view "Add A/R Transaction" button
