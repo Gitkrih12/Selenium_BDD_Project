@@ -50,10 +50,10 @@ public class MOOPLedgerPage extends SeleniumUtils {
 
     public void verifyFieldsUnderMoopLedger(DataTable expFields) {
         List<String> moopFieldsExp = expFields.asList();
-        List<WebElement> ActFooterFields = findElementsByXpath(lstMOOPLedger);
+        List<WebElement> actFields = findElementsByXpath(lstMOOPLedger);
         List<String> fieldsForCompare = new ArrayList<>();
-        System.out.println("Size" + ActFooterFields.size());
-        for (WebElement column : ActFooterFields) {
+        System.out.println("Size" + actFields.size());
+        for (WebElement column : actFields) {
             scrollIntoView(column, driver);
             String text = column.getText();
             fieldsForCompare.add(text);
