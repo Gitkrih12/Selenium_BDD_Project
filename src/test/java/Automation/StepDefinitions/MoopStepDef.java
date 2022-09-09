@@ -13,8 +13,8 @@ public class MoopStepDef extends MoopPage {
         userClicksOnMoopTab();
     }
 
-    @Then("user navigates to {string} tab")
-    public void user_navigates_to_tab(String expTab) {
+    @Then("user navigates to the {string} tab successfully")
+    public void user_navigates_to_the_tab_successfully(String expTab) {
         verifyUserNavigatesToMoop(expTab);
     }
 
