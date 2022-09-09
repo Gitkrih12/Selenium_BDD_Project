@@ -119,6 +119,180 @@ public class FFSInstitutionalStepDef extends FFSInstitutionalPage {
         clickOnFFSInstitutionalClaim();
     }
 
+    //Scenario: Verify user can Identify corrected claims from FFS Institutional page
+    @When("user enters Corrected claim in FFS Institutional search criteria")
+    public void user_enters_corrected_claim_in_ffs_institutional_search_criteria() throws InterruptedException {
+        enterCorrectedClaimNumberInFFSInstitutionalSearchField();
+    }
+    @Then("user should able to view corrected claim in FFS Institutional Grid")
+    public void user_should_able_to_view_corrected_claim_in_ffs_institutional_grid() throws InterruptedException {
+        validateClaimNumberResult();
+    }
+    @Then("user should able to see vertical line beside claim number with color code {string} in FFS Institutional page")
+    public void user_should_able_to_see_vertical_line_beside_claim_number_with_color_code_in_ffs_institutional_page(String colorIndication) {
+        verifyVerticalColorIndicationForCorrectedClaim(colorIndication);
+    }
+    @Then("color indication information should be available on top of grid in FFS Institutional page")
+    public void color_indication_information_should_be_available_on_top_of_grid_in_ffs_institutional_page() {
+        verifyCorrectedInformationOnTopOfGrid();
+    }
+
+    //Scenario: Verify user can Identify COB In Member House from FFS Institutional page
+    @When("user enters COB In Member House claim in search criteria in FFS Institutional page")
+    public void user_enters_cob_in_member_house_claim_in_search_criteria_in_ffs_institutional_page() throws InterruptedException {
+        enterCOBInMemberHouseClaimNumber();
+    }
+
+    @Then("user should able to view COB In Member House claim in FFS Institutional page")
+    public void user_should_able_to_view_cob_in_member_house_claim_in_ffs_institutional_page() throws InterruptedException {
+        validateClaimNumberResult();
+    }
+
+    @Then("user should able to view patient name with color code {string} in FFS Institutional page")
+    public void user_should_able_to_view_patient_name_with_color_code_in_ffs_institutional_page(String colorCode) {
+        verifyPatientNameColorCode(colorCode);
+    }
+
+    @Then("color indication information for COB In Member House should be available on top of grid in FFS Institutional page")
+    public void color_indication_information_for_cob_in_member_house_should_be_available_on_top_of_grid_in_ffs_institutional_page() {
+        verifyCOBInMemberHouseInformationOnTopOfGrid();
+    }
+
+    //Scenario: Verify user can Identify COB Not In Member House from FFS Institutional page
+    @When("user enters COB Not In Member House claim in search criteria in FFS Institutional page")
+    public void user_enters_cob_not_in_member_house_claim_in_search_criteria_in_ffs_institutional_page() throws InterruptedException {
+        enterCOBNotInMemberHouseClaimNumber();
+    }
+
+    @Then("user should able to view COB Not In Member House claim in FFS Institutional page")
+    public void user_should_able_to_view_cob_not_in_member_house_claim_in_ffs_institutional_page() throws InterruptedException {
+        validateClaimNumberResult();
+    }
+
+    @Then("color indication information for COB Not In Member House should be available on top of grid in FFS Institutional page")
+    public void color_indication_information_for_cob_not_in_member_house_should_be_available_on_top_of_grid_in_ffs_institutional_page() {
+        verifyCOBNotInMemberHouseInformationOnTopOfGrid();
+    }
+
+    //Scenario: Verify colour coding for Unclean status claims under Pend bucket in FFS Institutional page
+    @When("user enters Unclean status claim in search criteria in Pend bucket in FFS Institutional")
+    public void user_enters_unclean_status_claim_in_search_criteria_in_pend_bucket_in_ffs_institutional() throws InterruptedException {
+        enterUnCleanStatusPendClaimNumber();
+    }
+
+    @Then("user should able to view Unclean status claim in FFS Institutional Grid")
+    public void user_should_able_to_view_unclean_status_claim_in_ffs_institutional_grid() throws InterruptedException {
+        validateClaimNumberResult();
+    }
+
+    @Then("user should able to see vertical line beside unclean status Pend claim number with color code {string} in FFS Institutional")
+    public void user_should_able_to_see_vertical_line_beside_unclean_status_pend_claim_number_with_color_code_in_ffs_institutional(String colorCode) throws InterruptedException {
+        verifyVerticalColorIndicationForUncleanPendClaim(colorCode);
+    }
+
+    @Then("color indication information for Unclean should be available on top of grid in FFS Institutional")
+    public void color_indication_information_for_unclean_should_be_available_on_top_of_grid_in_ffs_institutional() {
+        verifyUncleanInformationOnTopOfGrid();
+    }
+
+    //Scenario: Verify colour coding for Unclean status claims under Payer Review bucket in FFS Institutional page
+    @When("user clicks on Payer Review bucket in FFS Institutional page")
+    public void user_clicks_on_payer_review_bucket_in_ffs_institutional_page() {
+        clickOnPayerReviewBucket();
+    }
+
+    //Scenario: Verify colour coding for Unclean status claims under Payer Review bucket in FFS Institutional page
+    @When("user enters Unclean status claim in search criteria in Payer Review bucket in FFS Institutional")
+    public void user_enters_unclean_status_claim_in_search_criteria_in_payer_review_bucket_in_ffs_institutional() throws InterruptedException {
+        enterUnCleanStatusPayerReviewClaimNumber();
+    }
+
+    @Then("user should able to view Unclean status Payer Review claim in FFS Institutional Grid")
+    public void user_should_able_to_view_unclean_status_payer_review_claim_in_ffs_institutional_grid() {
+        validatePayerReviewClaimNumberResult();
+    }
+
+    @Then("user should able to see vertical line beside unclean status Payer Review claim number with color code {string} in FFS Institutional")
+    public void user_should_able_to_see_vertical_line_beside_unclean_status_payer_review_claim_number_with_color_code_in_ffs_institutional(String colorCode) throws InterruptedException {
+        verifyVerticalColorIndicationForUncleanPayerReviewClaim(colorCode);
+    }
+
+    //Scenario: Verify colour coding for Unclean status claims under Management Review bucket in FFS Institutional page
+    @When("user clicks on Management Review bucket in FFS Institutional page")
+    public void user_clicks_on_management_review_bucket_in_ffs_institutional_page() {
+        clickOnManagementReviewBucket();
+    }
+    @When("user enters Unclean status claim in search criteria in Management Review bucket in FFS Institutional")
+    public void user_enters_unclean_status_claim_in_search_criteria_in_management_review_bucket_in_ffs_institutional() throws InterruptedException {
+        enterUnCleanStatusManagementReviewClaimNumber();
+    }
+    @Then("user should able to view Unclean status Management Review claim in FFS Institutional Grid")
+    public void user_should_able_to_view_unclean_status_management_review_claim_in_ffs_institutional_grid() {
+        validateManagementReviewClaimNumberResult();
+    }
+    @Then("user should able to see vertical line beside unclean status Management Review claim number with color code {string} in FFS Institutional")
+    public void user_should_able_to_see_vertical_line_beside_unclean_status_management_review_claim_number_with_color_code_in_ffs_institutional(String colorCode) throws InterruptedException {
+        verifyVerticalColorIndicationForUncleanManagementReviewClaim(colorCode);
+    }
+
+    //Scenario: Verify colour coding for Unclean status claims under Approved bucket in FFS Institutional page
+    @When("user clicks on Approved bucket in FFS Institutional page")
+    public void user_clicks_on_approved_bucket_in_ffs_institutional_page() {
+        clickOnApprovedBucket();
+    }
+    @When("user enters Unclean status claim in search criteria in Approved bucket in FFS Institutional")
+    public void user_enters_unclean_status_claim_in_search_criteria_in_approved_bucket_in_ffs_institutional() throws InterruptedException {
+        enterUnCleanStatusApprovedClaimNumber();
+    }
+    @Then("user should able to view Unclean status Approved claim in FFS Institutional Grid")
+    public void user_should_able_to_view_unclean_status_approved_claim_in_ffs_institutional_grid() {
+        validateApprovedClaimNumberResult();
+    }
+    @Then("user should able to see vertical line beside unclean status Approved claim number with color code {string} in FFS Institutional")
+    public void user_should_able_to_see_vertical_line_beside_unclean_status_approved_claim_number_with_color_code_in_ffs_institutional(String colorCode) throws InterruptedException {
+        verifyVerticalColorIndicationForUncleanApprovedClaim(colorCode);
+    }
+
+    //Scenario: Verify colour coding for Unclean status claims under Denied bucket in FFS Institutional page
+    @When("user clicks on Denied bucket in FFS Institutional page")
+    public void user_clicks_on_denied_bucket_in_ffs_institutional_page() {
+        clickOnDeniedBucket();
+    }
+    @When("user enters Unclean status claim in search criteria in Denied bucket in FFS Institutional")
+    public void user_enters_unclean_status_claim_in_search_criteria_in_denied_bucket_in_ffs_institutional() throws InterruptedException {
+        enterUnCleanStatusDeniedClaimNumber();
+    }
+    @Then("user should able to view Unclean status Denied claim in FFS Institutional Grid")
+    public void user_should_able_to_view_unclean_status_denied_claim_in_ffs_institutional_grid() {
+        validateDeniedClaimNumberResult();
+    }
+    @Then("user should able to see vertical line beside unclean status Denied claim number with color code {string} in FFS Institutional")
+    public void user_should_able_to_see_vertical_line_beside_unclean_status_denied_claim_number_with_color_code_in_ffs_institutional(String colorCode) {
+        verifyVerticalColorIndicationForUncleanDeniedClaim(colorCode);
+    }
+
+    //Scenario: Verify colour coding for Unclean status claims under Pre Batch bucket in FFS Institutional page
+    @When("user clicks on Pre Batch bucket in FFS Institutional page")
+    public void user_clicks_on_pre_batch_bucket_in_ffs_institutional_page() {
+        clickOnPreBatchBucket();
+    }
+    @When("user enters Unclean status claim in search criteria in Pre Batch bucket in FFS Institutional")
+    public void user_enters_unclean_status_claim_in_search_criteria_in_pre_batch_bucket_in_ffs_institutional() throws InterruptedException {
+        enterUnCleanStatusPreBatchClaimNumber();
+    }
+    @Then("user should able to view Unclean status Pre Batch claim in FFS Institutional Grid")
+    public void user_should_able_to_view_unclean_status_pre_batch_claim_in_ffs_institutional_grid() {
+        validatePreBatchClaimNumberResult();
+    }
+    @Then("user should able to see vertical line beside unclean status Pre Batch claim number with color code {string} in FFS Institutional")
+    public void user_should_able_to_see_vertical_line_beside_unclean_status_pre_batch_claim_number_with_color_code_in_ffs_institutional(String colorCode) {
+        verifyVerticalColorIndicationForUncleanPreBatchClaim(colorCode);
+    }
+
+
+
+
+
 
 
 

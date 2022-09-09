@@ -148,8 +148,8 @@ public class CAPProfessionalPage extends SeleniumUtils {
 
     //Scenario: Verify all the queue field details in the CAP Professional page
     public void verifySearchFieldsUnderEachColumnInCAPProfessional() {
-        List<WebElement> ActCSearchFields = findElementsByXpath(txtSearchFields);
-        for (WebElement column : ActCSearchFields) {
+        List<WebElement> actSearchFields = findElementsByXpath(txtSearchFields);
+        for (WebElement column : actSearchFields) {
             scrollIntoView(column, driver);
             boolean value = column.isDisplayed();
             Assert.assertTrue(value);
@@ -214,7 +214,6 @@ public class CAPProfessionalPage extends SeleniumUtils {
 
     //Scenario: Verify user able to navigate to claim summary screen on clicking claim number
     public void clickOnCAPProfessionalClaim() throws InterruptedException {
-        threadSleep(20000);
         clickElement(eleClaimNumber);
     }
 
@@ -402,6 +401,8 @@ public class CAPProfessionalPage extends SeleniumUtils {
         if (totalRecords <= 50) {
             Assert.assertEquals(1, Integer.parseInt(paginationCount[3]));
             System.out.println("Page count defined as per no of records : " + Integer.parseInt(paginationCount[3]));
+        }else{
+            Assert.fail("Page count is not defined as per no of records");
         }
     }
 
@@ -417,6 +418,8 @@ public class CAPProfessionalPage extends SeleniumUtils {
         pageNumber = Integer.parseInt(paginationCount[1]);
         if (Integer.parseInt(paginationCount[3]) >= 1) {
             Assert.assertTrue(true);
+        }else{
+            Assert.fail("Unable to navigate to next page");
         }
     }
 

@@ -142,7 +142,6 @@ public class FFSProfessionalPage extends SeleniumUtils {
 
     //Scenario:Verify user able to navigate to claim summary screen on clicking claim number in FFS Professional Queue page
     public void clickOnFFSProfessionalClaim() throws InterruptedException {
-        threadSleep(20000);
         clickElement(eleClaimNumber);
     }
     public void clickOnFFSProfessionalDefaultTab(){
@@ -170,15 +169,9 @@ public class FFSProfessionalPage extends SeleniumUtils {
 
     }
     public void verifyUserShouldSeeAlreadyOpenedClaimNumber(){
-        /*clickElement(tabViewClaimDefault);
-        String viewClaimNumberTextOnSecondClick=findElementByXpath(tabViewClaim).getText();
-        String[] claimData=viewClaimNumberTextOnSecondClick.split(" ");
-        String actClaimNumber=claimData[2].substring(1);
-        System.out.println("act claim number "+actClaimNumber);
-        Assert.assertEquals(expClaimNumber,actClaimNumber);*/
         ArrayList<String> openedTabs = new ArrayList<>();
-        List<WebElement> abc = findElementByXpath("//div[@class='mat-tab-labels']").findElements(By.xpath("*"));
-        for (WebElement a : abc)
+        List<WebElement> actTabs = findElementByXpath("//div[@class='mat-tab-labels']").findElements(By.xpath("*"));
+        for (WebElement a : actTabs)
         {
             if(a.getText().contains("View")){
                 String [] claimValues = a.getText().split(" ");
@@ -442,6 +435,8 @@ public class FFSProfessionalPage extends SeleniumUtils {
         if (totalRecords <= 50) {
             Assert.assertEquals(1, Integer.parseInt(paginationCount[3]));
             System.out.println("Page count defined as per no of records : " + Integer.parseInt(paginationCount[3]));
+        }else{
+            Assert.fail("Page count is not defined as per no of records");
         }
     }
 
@@ -457,6 +452,8 @@ public class FFSProfessionalPage extends SeleniumUtils {
         pageNumber = Integer.parseInt(paginationCount[1]);
         if (Integer.parseInt(paginationCount[3]) >= 1) {
             Assert.assertTrue(true);
+        }else{
+            Assert.fail("Unable to navigate to next page");
         }
     }
 
@@ -495,8 +492,8 @@ public class FFSProfessionalPage extends SeleniumUtils {
 
     //Scenario: Verify user able to view the search fields under each columns in the FFS Professional screen
     public void verifySearchFieldsUnderEachColumnInFFSProfessional() {
-        List<WebElement> ActCSearchFields = findElementsByXpath(txtSearchFields);
-        for (WebElement column : ActCSearchFields) {
+        List<WebElement> actSearchFields = findElementsByXpath(txtSearchFields);
+        for (WebElement column : actSearchFields) {
             scrollIntoView(column, driver);
             boolean value = column.isDisplayed();
             Assert.assertTrue(value);
