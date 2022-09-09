@@ -5,7 +5,9 @@ import io.cucumber.datatable.DataTable;
 import org.junit.Assert;
 import org.openqa.selenium.WebElement;
 
+import java.security.SecureRandom;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -26,12 +28,28 @@ public class ARLedgerPage extends SeleniumUtils {
     String txtAmount = "//input[@aria-label='Amount($) Filter Input']";
     String txtCreatedOn = "//input[@aria-label='Created On Filter Input']";
     String lnkVendorId = "(//*[@class = 'ag-cell-value']//a)[1]";
+    String txtTransactionType = "//*[@aria-label = 'Transaction Type Filter Input']";
+    String lstARTransactionValues = "(//*[@id='arTransacrtionsResultId']//div[@role='rowgroup'])[2]//span";
+    String txtTransactionDate = "//*[@aria-label = 'Transaction Date Filter Input']";
+    String txtTransactionAmount = "//*[@aria-label = 'Transaction Amount ($) Filter Input']";
+    String txtRunningBalance = "//*[@aria-label = 'Running Balance ($) Filter Input']";
+    String txtTransactedBy = "//*[@aria-label = 'Transacted By Filter Input']";
+    String txtClaimNumber = "//*[@aria-label = 'Claim Number Filter Input']";
+    String txtRemarks = "//*[@aria-label = 'Remarks Filter Input']";
 
     private static String expVendorID = "";
     private static String expVendorName = "";
     private static String expTaxID = "";
     private static String expAmount = "";
     private static String expCreatedOn = "";
+    private static String expTransactionType = "";
+    private static String expTransactionDate = "";
+    private static String expTransactionAmount = "";
+    private static String expRunningBalance = "";
+    private static String expTransactedBy = "";
+    private static String expClaimNumber = "";
+    private static String expRemarks = "";
+
 
     // Scenario: Verify user able to navigate to A/R Ledger page from the Account Management grid in Left navigation panel
     public void userClicksARLedger() throws InterruptedException {
@@ -170,6 +188,7 @@ public class ARLedgerPage extends SeleniumUtils {
         threadSleep(5000);
     }
 
+    //  Scenario: Verify user navigates to the A/R Transaction claim details on clicking Vendor ID and validates all the fields
     public void userClicksOnVendorID() throws InterruptedException {
         expVendorID = prop.getProperty("vendorId");
         findElementAndSendKeys(findElementByXpath(txtVendorId), expVendorID);
@@ -179,5 +198,122 @@ public class ARLedgerPage extends SeleniumUtils {
         explicitElementClickableWaitByXpath((lnkVendorId), 30);
         clickElement(lnkVendorId);
         threadSleep(2000);
+    }
+
+    public void userClicksVendorID() throws InterruptedException {
+        expVendorID = prop.getProperty("transactionVendorId");
+        findElementAndSendKeys(findElementByXpath(txtVendorId), expVendorID);
+        threadSleep(1000);
+        sendKeysUsingKeyboardInput(txtVendorId);
+        threadSleep(5000);
+        explicitElementClickableWaitByXpath((lnkVendorId), 30);
+        clickElement(lnkVendorId);
+        threadSleep(2000);
+    }
+
+    public void userEntersTransactionTypeInSearchCriteria() throws InterruptedException {
+        expTransactionType = prop.getProperty("transactionType");
+        findElementAndSendKeys(findElementByXpath(txtTransactionType), expTransactionType);
+        threadSleep(1000);
+        sendKeysUsingKeyboardInput(txtTransactionType);
+        threadSleep(5000);
+    }
+
+    public void verifyAppropriateResultsInMoopTransaction(){
+        HashMap<String, String> testValues = new HashMap<String, String>();
+        testValues.put("Transaction Type", "Credit/Overpaid");
+        testValues.put("Transaction Date", "09/06/2022");
+        testValues.put("Transaction Amount ($)", "0.08");
+        testValues.put("Running Balance ($)", "0.08");
+        testValues.put("Transacted By", "System");
+        testValues.put("Claim Number", "P0120123000063");
+        testValues.put("Recovery Claim Number", "");
+        testValues.put("Remarks", "Interest reversal of $0.08 for claim P0020123000063");
+
+        HashMap<String, String> uatValues = new HashMap<>();
+        uatValues.put("Transaction Type", "Debit/Underpaid");
+        uatValues.put("Transaction Date", "10/20/2020");
+        uatValues.put("Transaction Amount ($)", "15.66");
+        uatValues.put("Running Balance ($)", "0.00");
+        uatValues.put("Transacted By", "ravikumar@mirrahealthcare.com");
+        uatValues.put("Claim Number", "I0020101000085");
+        uatValues.put("Recovery Claim Number", "");
+        uatValues.put("Remarks", "RECOVERY OF $15.66 FOR CLAIM I0020101000085");
+
+        if (environment.contains("test")) {
+            List<String> fieldsExp = testValues.values().stream().collect(Collectors.toList());
+            List<String> ActValues = findElementsByXpath(lstARTransactionValues)
+                    .stream().map((e) -> e.getText().trim()).collect(Collectors.toList());
+            System.out.println("Size:" + ActValues.size());
+            int expValue = 2;
+            Assert.assertEquals(expValue, Collections.frequency(ActValues, "0.08"));
+            for (String exp : fieldsExp) {
+                if (ActValues.contains(exp)) {
+                    Assert.assertTrue(true);
+                } else {
+                    Assert.fail(exp + " is not listed in actual list");
+                }
+            }
+        } else {
+            List<String> fieldsExp = uatValues.values().stream().collect(Collectors.toList());
+            List<String> ActValues = findElementsByXpath(lstARTransactionValues)
+                    .stream().map((e) -> e.getText().trim()).collect(Collectors.toList());
+            System.out.println("Size:" + ActValues.size());
+            for (String exp : fieldsExp) {
+                if (ActValues.contains(exp)) {
+                    Assert.assertTrue(true);
+                } else {
+                    Assert.fail(exp + " is not listed in actual list");
+                }
+            }
+        }
+    }
+
+    public void userEntersTransactionDateInSearchCriteria() throws InterruptedException {
+        expTransactionDate = prop.getProperty("transactionDate");
+        findElementAndSendKeys(findElementByXpath(txtTransactionDate), expTransactionDate);
+        threadSleep(1000);
+        sendKeysUsingKeyboardInput(txtTransactionDate);
+        threadSleep(5000);
+    }
+
+    public void userEntersTransactionAmountInSearchCriteria() throws InterruptedException {
+        expTransactionAmount = prop.getProperty("transactionAmount");
+        findElementAndSendKeys(findElementByXpath(txtTransactionAmount), expTransactionAmount);
+        threadSleep(1000);
+        sendKeysUsingKeyboardInput(txtTransactionAmount);
+        threadSleep(5000);
+    }
+
+    public void userEntersRunningBalanceInSearchCriteria() throws InterruptedException {
+        expRunningBalance = prop.getProperty("runningBalance");
+        findElementAndSendKeys(findElementByXpath(txtRunningBalance), expRunningBalance);
+        threadSleep(1000);
+        sendKeysUsingKeyboardInput(txtRunningBalance);
+        threadSleep(5000);
+    }
+
+    public void userEntersTransactedByInSearchCriteria() throws InterruptedException {
+        expTransactedBy = prop.getProperty("transactedBy");
+        findElementAndSendKeys(findElementByXpath(txtTransactedBy), expTransactedBy);
+        threadSleep(1000);
+        sendKeysUsingKeyboardInput(txtTransactedBy);
+        threadSleep(5000);
+    }
+
+    public void userEntersClaimNumberInSearchCriteria() throws InterruptedException {
+        expClaimNumber = prop.getProperty("claimNumberARTransaction");
+        findElementAndSendKeys(findElementByXpath(txtClaimNumber), expClaimNumber);
+        threadSleep(1000);
+        sendKeysUsingKeyboardInput(txtClaimNumber);
+        threadSleep(5000);
+    }
+
+    public void userEntersRemarksInSearchCriteria() throws InterruptedException {
+        expRemarks = prop.getProperty("remarks");
+        findElementAndSendKeys(findElementByXpath(txtRemarks), expRemarks);
+        threadSleep(1000);
+        sendKeysUsingKeyboardInput(txtRemarks);
+        threadSleep(5000);
     }
 }

@@ -57,3 +57,22 @@ Feature: AR Ledger
       | Recovery Claim Number  |
       | Remarks                |
     Then user able to view the search box for all the column on AR Transactions grid
+
+  @47018
+  Scenario: Verify when user enters the data in search criteria to display the appropriate results in A/R Ledger Transaction view details
+    When user clicks on AR Ledger on the left navigation panel
+    And user clicks on Vendor ID
+    When user enters the Transaction type in Search Criteria
+    Then user able to view the appropriate results in Moop Transaction
+    When user enters the Transaction Date in Search Criteria
+    Then user able to view the appropriate results in Moop Transaction
+    When user enters the Transaction Amount in Search Criteria
+    Then user able to view the appropriate results in Moop Transaction
+    When user enters the Running Balance in Search Criteria
+    Then user able to view the appropriate results in Moop Transaction
+    When user enters the Transacted By in Search Criteria
+    Then user able to view the appropriate results in Moop Transaction
+    When user enters the Claim Number in Search Criteria
+    Then user able to view the appropriate results in Moop Transaction
+    When user enters the Remarks in Search Criteria
+    Then user able to view the appropriate results in Moop Transaction
