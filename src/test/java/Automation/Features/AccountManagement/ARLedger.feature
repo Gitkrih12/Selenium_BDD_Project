@@ -41,6 +41,7 @@ Feature: AR Ledger
     Then user able to view the appropriate results
 
   @46979
+  @Sanity
   Scenario: Verify user navigates to the A/R Transaction claim details on clicking Vendor ID and validates all the fields
     When user clicks on AR Ledger on the left navigation panel
     And user clicks on Vendor ID in AR Ledger page
