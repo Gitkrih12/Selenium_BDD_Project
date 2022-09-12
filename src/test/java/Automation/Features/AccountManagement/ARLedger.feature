@@ -14,7 +14,6 @@ Feature: AR Ledger
   Scenario: Verify user able to view all the column details in the A/R Ledger page
     When user clicks on AR Ledger on the left navigation panel
     Then user able to view "Add A/R Transaction" button
-    And user able to view Search Vendor "Enter Claim Number To Search Vendor"
     And user able to view the column fields under AR Ledger
       | Vendor ID    |
       | Vendor Name  |

@@ -17,7 +17,6 @@ public class ARLedgerPage extends SeleniumUtils {
     String lnkARLedger = "//*[contains(text(), ' A/R Ledger ')]";
     String tabARLedger = "//h6";
     String btnAddARTransaction = "//button[contains(text(), 'Add A/R Transaction')]";
-    String txtSearchVendor = "//input[@placeholder='Enter Claim Number To Search Vendor']";
     String lstArLedgerColumns = "//*[@id='arLedgersGrid']//div[@class = 'ag-header-cell-label']//span[@ref = 'eText']";
     String txtSearchBoxARLedger = "//input[@ref='eInput' and @type = 'text']";
     String txtVendorId = "//input[@aria-label = 'Vendor ID Filter Input']";
@@ -67,10 +66,6 @@ public class ARLedgerPage extends SeleniumUtils {
     // Scenario: Verify user able to view all the column details in the A/R Ledger page
     public void verifyAddARTransactionButton(String expButton) {
         Assert.assertEquals(expButton, findElementByXpath(btnAddARTransaction).getText());
-    }
-
-    public void verifySearchVendor(String expSearchVendor) {
-        Assert.assertEquals(expSearchVendor, findElementByXpath(txtSearchVendor).getAttribute("placeholder"));
     }
 
     public void verifyColumnsUnderARLedger(DataTable expColumns) {
