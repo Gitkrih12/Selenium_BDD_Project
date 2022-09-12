@@ -8,7 +8,7 @@ Feature: MOOP
   Scenario: Verify user should be able to navigate to the MOOP page through view claims from Global Search page
     When user clicking on Claim Number in Global Search page
     And user clicks on Moop tab
-    Then user navigates to "MOOP" tab
+    Then user navigates to the "MOOP" tab successfully
 
   @46278
   @Sanity
