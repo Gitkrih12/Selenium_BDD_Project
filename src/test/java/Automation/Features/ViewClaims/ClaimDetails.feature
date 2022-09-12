@@ -20,9 +20,9 @@ Feature: Claim Details
     And user should view Claim in CMS "View Claim in CMS 1500" and self assign "Self-Assign" buttons in Claim Summary details page
 
   @37393
+  @Sanity
   Scenario: Verify column fields in Claim Summary details page
-    Given the user is in FFS Professional page
-    When user clicks on the Claim Number
+    When user clicks on the Claim Number in Universal Search
     Then user navigates to the "Claim Summary" page
     And user should be able to view all the column fields in Claim Summary Details page
       | Claim Number      |
@@ -38,6 +38,7 @@ Feature: Claim Details
       | Age               |
       | Received Date     |
       | Ref ID            |
+    And user able to view all the field values in Claim Summary Details page
 
   @37394
   Scenario: Verify Claim Summary Tab List
@@ -69,9 +70,9 @@ Feature: Claim Details
       | Deny              |
       | Approve           |
       | Update Auth       |
-      | Deactivate        |
 
   @37402
+  @Sanity
   Scenario: Verify Claim Details sections
     Given the user is in FFS Professional page
     When user clicks on the Claim Number
@@ -89,8 +90,7 @@ Feature: Claim Details
 
   @37403
   Scenario: Validate Claim Information section
-    Given the user is in FFS Professional page
-    When user clicks on the Claim Number
+    When user clicks on the Claim Number in Universal Search
     Then user navigates to the "Claim Summary" page
     And user able to view the below fields under claim information section
       | Claim Number         |
@@ -101,11 +101,11 @@ Feature: Claim Details
       | Form Type            |
       | Claim Submission     |
       | Clean/Unclean Status |
+    And user able to view all the field values under claim information section
 
   @37405
   Scenario: Validate Payment Information section
-    Given the user is in FFS Professional page
-    When user clicks on the Claim Number
+    When user clicks on the Claim Number in Universal Search
     Then user navigates to the "Claim Summary" page
     And user able to view the below fields under Payment Information section
       | OK Pay Date     |
@@ -122,6 +122,8 @@ Feature: Claim Details
       | Mailing date    |
       | Payment Type    |
       | Payment ID      |
+    And user able to view all the field values under Payment Information section
+
 
   @37406
   Scenario: Validate Clean status
@@ -139,8 +141,7 @@ Feature: Claim Details
 
   @37413
   Scenario: Validate Member Information section
-    Given the user is in FFS Professional page
-    When user clicks on the Claim Number
+    When user clicks on the Claim Number in Universal Search
     Then user navigates to the "Claim Summary" page
     And user able to view the below fields under Member Information section
       | Patient Name                      |
@@ -157,21 +158,21 @@ Feature: Claim Details
       | Insured's Unique Identifier       |
       | Insured's Group Name              |
       | Insured's Group Number            |
+    And user able to view all the field values under Member Information section
 
   @37414
   Scenario: Validate Rendering Provider Information section
-    Given the user is in FFS Professional page
-    When user clicks on the Claim Number
+    When user clicks on the Claim Number in Universal Search
     Then user navigates to the "Claim Summary" page
     And user able to view the below fields under Rendering Provider information section
       | Rendering Provider Name |
       | Rendering Provider NPI  |
       | Taxonomy                |
+    And user able to view all the field values under Rendering Provider Information section
 
   @37415
   Scenario: Validate Billing Provider Information section
-    Given the user is in FFS Professional page
-    When user clicks on the Claim Number
+    When user clicks on the Claim Number in Universal Search
     Then user navigates to the "Claim Summary" page
     And user able to view the below fields under Billing Provider Information section
       | Billing Provider Name |
@@ -185,11 +186,11 @@ Feature: Claim Details
       | SSN                   |
       | Telephone             |
       | Network Affiliation   |
+    And user able to view all the field values under Billing Provider Information section
 
   @37416
   Scenario: Validate Payer section
-    Given the user is in FFS Professional page
-    When user clicks on the Claim Number
+    When user clicks on the Claim Number in Universal Search
     Then user navigates to the "Claim Summary" page
     And user able to view the below fields under Payer section
       | Payer name     |
@@ -199,17 +200,18 @@ Feature: Claim Details
       | City           |
       | State          |
       | Zip Code       |
+    And user able to view all the field values under Payer section
 
   @37418
   Scenario: Validate Date of Service section
-    Given the user is in FFS Professional page
-    When user clicks on the Claim Number
+    When user clicks on the Claim Number in Universal Search
     Then user navigates to the "Claim Summary" page
     And user able to view the below fields under Date of Service section
       | From Date              |
       | To Date                |
       | Prior Auth             |
       | Patient Control Number |
+    And user able to view all the field values under Date of Service section
 
   @37421
   Scenario: Validate Is Patient Condition Related To section
