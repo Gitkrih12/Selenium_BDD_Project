@@ -18,7 +18,7 @@ public class ARLedgerPage extends SeleniumUtils {
     String tabARLedger = "//h6";
     String btnAddARTransaction = "//button[contains(text(), 'Add A/R Transaction')]";
     String lstArLedgerColumns = "//*[@id='arLedgersGrid']//div[@class = 'ag-header-cell-label']//span[@ref = 'eText']";
-    String txtSearchBoxARLedger = "//input[@ref='eInput' and @type = 'text']";
+    String txtSearchBoxARLedger = "//ag-grid-angular[@id='arLedgersGrid']//span[@ref='eText']//following::input[@type='text']";
     String txtVendorId = "//input[@aria-label = 'Vendor ID Filter Input']";
     String lstARLedgerValues = "//*[@class = 'ag-cell-value']";
     String txtVendorName = "//input[@aria-label='Vendor Name Filter Input']";
@@ -53,7 +53,6 @@ public class ARLedgerPage extends SeleniumUtils {
     public void userClicksARLedger() throws InterruptedException {
         explicitVisibilityOfWait(findElementByXpath(lnkAccountManagement), 20);
         clickElement(lnkAccountManagement);
-        threadSleep(1000);
         explicitVisibilityOfWait(findElementByXpath(lnkARLedger), 20);
         clickElement(lnkARLedger);
         threadSleep(1000);
@@ -70,10 +69,10 @@ public class ARLedgerPage extends SeleniumUtils {
 
     public void verifyColumnsUnderARLedger(DataTable expColumns) {
         List<String> arLedgerFieldsExp = expColumns.asList();
-        List<WebElement> ActFields = findElementsByXpath(lstArLedgerColumns);
+        List<WebElement> actFields = findElementsByXpath(lstArLedgerColumns);
         List<String> fieldsForCompare = new ArrayList<>();
-        System.out.println("Size" + ActFields.size());
-        for (WebElement column : ActFields) {
+        System.out.println("Size" + actFields.size());
+        for (WebElement column : actFields) {
             scrollIntoView(column, driver);
             String text = column.getText();
             fieldsForCompare.add(text);
@@ -91,8 +90,8 @@ public class ARLedgerPage extends SeleniumUtils {
 
     // Scenario: Verify Search box should display for all the columns on the grid
     public void verifySearchCriteriaForAllColumns() {
-        List<WebElement> ActSearchFields = findElementsByXpath(txtSearchBoxARLedger);
-        for (WebElement column : ActSearchFields) {
+        List<WebElement> actSearchFields = findElementsByXpath(txtSearchBoxARLedger);
+        for (WebElement column : actSearchFields) {
             scrollIntoView(column, driver);
             boolean value = column.isDisplayed();
             Assert.assertTrue(value);
@@ -125,11 +124,11 @@ public class ARLedgerPage extends SeleniumUtils {
 
         if (environment.contains("test")) {
             List<String> fieldsExp = testValues.values().stream().collect(Collectors.toList());
-            List<String> ActValues = findElementsByXpath(lstARLedgerValues)
+            List<String> actValues = findElementsByXpath(lstARLedgerValues)
                     .stream().map((e) -> e.getText().trim()).collect(Collectors.toList());
-            System.out.println("Size:" + ActValues.size());
+            System.out.println("Size:" + actValues.size());
             for (String exp : fieldsExp) {
-                if (ActValues.contains(exp)) {
+                if (actValues.contains(exp)) {
                     Assert.assertTrue(true);
                 } else {
                     Assert.fail(exp + " is not listed in actual list");
@@ -137,11 +136,11 @@ public class ARLedgerPage extends SeleniumUtils {
             }
         } else {
             List<String> fieldsExp = uatValues.values().stream().collect(Collectors.toList());
-            List<String> ActValues = findElementsByXpath(lstARLedgerValues)
+            List<String> actValues = findElementsByXpath(lstARLedgerValues)
                     .stream().map((e) -> e.getText().trim()).collect(Collectors.toList());
-            System.out.println("Size:" + ActValues.size());
+            System.out.println("Size:" + actValues.size());
             for (String exp : fieldsExp) {
-                if (ActValues.contains(exp)) {
+                if (actValues.contains(exp)) {
                     Assert.assertTrue(true);
                 } else {
                     Assert.fail(exp + " is not listed in actual list");
