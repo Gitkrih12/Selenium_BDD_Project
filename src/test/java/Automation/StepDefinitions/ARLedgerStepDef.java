@@ -24,11 +24,6 @@ public class ARLedgerStepDef extends ARLedgerPage {
         verifyAddARTransactionButton(expButton);
     }
 
-    @Then("user able to view Search Vendor {string}")
-    public void user_able_to_view_search_vendor(String expSearchVendor) {
-        verifySearchVendor(expSearchVendor);
-    }
-
     @Then("user able to view the column fields under AR Ledger")
     public void user_able_to_view_the_column_fields_under_ar_ledger(DataTable expColumns) {
         verifyColumnsUnderARLedger(expColumns);
