@@ -118,11 +118,11 @@ public class ARLedgerPage extends SeleniumUtils {
             }
         } else {
             List<String> fieldsExp = uatValues.values().stream().collect(Collectors.toList());
-            List<String> ActValues = findElementsByXpath(lstARLedgerValues)
+            List<String> actValues = findElementsByXpath(lstARLedgerValues)
                     .stream().map((e) -> e.getText().trim()).collect(Collectors.toList());
-            System.out.println("Size:" + ActValues.size());
+            System.out.println("Size:" + actValues.size());
             for (String exp : fieldsExp) {
-                if (ActValues.contains(exp)) {
+                if (actValues.contains(exp)) {
                     Assert.assertTrue(true);
                 } else {
                     Assert.fail(exp + " is not listed in actual list");
