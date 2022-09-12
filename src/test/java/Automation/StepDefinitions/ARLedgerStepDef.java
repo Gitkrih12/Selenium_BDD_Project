@@ -88,30 +88,37 @@ public class ARLedgerStepDef extends ARLedgerPage {
     public void user_enters_the_transaction_type_in_search_criteria() throws InterruptedException {
         userEntersTransactionTypeInSearchCriteria();
     }
-    @Then("user able to view the appropriate results in Moop Transaction")
-    public void user_able_to_view_the_appropriate_results_in_moop_transaction() {
-        verifyAppropriateResultsInMoopTransaction();
+
+    @Then("user able to view the appropriate results in AR Transaction")
+    public void user_able_to_view_the_appropriate_results_in_ar_transaction() {
+        verifyAppropriateResultsInARTransaction();
     }
+
     @When("user enters the Transaction Date in Search Criteria")
     public void user_enters_the_transaction_date_in_search_criteria() throws InterruptedException {
         userEntersTransactionDateInSearchCriteria();
     }
+
     @When("user enters the Transaction Amount in Search Criteria")
     public void user_enters_the_transaction_amount_in_search_criteria() throws InterruptedException {
         userEntersTransactionAmountInSearchCriteria();
     }
+
     @When("user enters the Running Balance in Search Criteria")
     public void user_enters_the_running_balance_in_search_criteria() throws InterruptedException {
         userEntersRunningBalanceInSearchCriteria();
     }
+
     @When("user enters the Transacted By in Search Criteria")
     public void user_enters_the_transacted_by_in_search_criteria() throws InterruptedException {
         userEntersTransactedByInSearchCriteria();
     }
+
     @When("user enters the Claim Number in Search Criteria")
     public void user_enters_the_claim_number_in_search_criteria() throws InterruptedException {
         userEntersClaimNumberInSearchCriteria();
     }
+
     @When("user enters the Remarks in Search Criteria")
     public void user_enters_the_remarks_in_search_criteria() throws InterruptedException {
         userEntersRemarksInSearchCriteria();

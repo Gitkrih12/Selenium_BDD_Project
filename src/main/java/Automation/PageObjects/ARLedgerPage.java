@@ -5,7 +5,6 @@ import io.cucumber.datatable.DataTable;
 import org.junit.Assert;
 import org.openqa.selenium.WebElement;
 
-import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -219,7 +218,7 @@ public class ARLedgerPage extends SeleniumUtils {
         threadSleep(5000);
     }
 
-    public void verifyAppropriateResultsInMoopTransaction(){
+    public void verifyAppropriateResultsInARTransaction() {
         HashMap<String, String> testValues = new HashMap<String, String>();
         testValues.put("Transaction Type", "Credit/Overpaid");
         testValues.put("Transaction Date", "09/06/2022");
