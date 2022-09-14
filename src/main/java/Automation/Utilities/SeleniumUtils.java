@@ -1136,6 +1136,35 @@ public class SeleniumUtils extends Driver {
         }
     }
 
+    public ArrayList<String> getAllElementsToArrayList(String ArrayListXpath) {
+        ArrayList<String> listOfRecords = null;
+        try {
+            listOfRecords = new ArrayList<>();
+            List<WebElement> listOfElements = findElementsByXpath(ArrayListXpath);
+            for (WebElement record : listOfElements) {
+                listOfRecords.add(record.getText());
+            }
+        } catch (Exception e) {
+            Assert.fail("Unable to get list of elements to arraylist");
+        }
+        return listOfRecords;
+    }
+
+    public ArrayList<String> scrollAndGetAllElementsToArrayList(String ArrayListXpath) {
+        ArrayList<String> listOfRecords = null;
+        try {
+            listOfRecords = new ArrayList<>();
+            List<WebElement> listOfElements = findElementsByXpath(ArrayListXpath);
+            for (WebElement record : listOfElements) {
+                scrollIntoView(record, driver);
+                listOfRecords.add(record.getText());
+            }
+        } catch (Exception e) {
+            Assert.fail("Unable to get list of elements to arraylist");
+        }
+        return listOfRecords;
+    }
+
     public String getAttribute(WebElement element, String attribute) {
         try {
             String att = element.getAttribute(attribute);
