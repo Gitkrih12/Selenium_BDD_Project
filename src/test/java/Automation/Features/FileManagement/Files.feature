@@ -130,7 +130,7 @@ Feature: Files tab
     Then user should be able to view the 837P control number records in ascending order
 
 #  57949, As a tester, i want to automate 837I tab on the files page
-  @45913 @Sanity @abc
+  @45913 @Sanity
   Scenario: Validate pagination functionality in '837I Files' tab
     Given the user is on the "Files" page
     When the user clicks on the 837I Files tab
@@ -140,7 +140,7 @@ Feature: Files tab
     And Page size can be defined by the User as per the given option at the bottom of the grid under 837I files tab
     And the user should be able to see the page numbers as per the number of data divided by page size under 837I files tab
 
-  @45911 @Sanity @abc
+  @45911 @Sanity
   Scenario Outline: Verify color code for Status View under 837I files tab
     Given the user is on the "Files" page
     When the user clicks on the 837I Files tab
@@ -150,7 +150,7 @@ Feature: Files tab
       | Processed | #0E8D00 |
       | Rejected  | #BA0000 |
 
-  @45908 @Sanity @abc
+  @45908 @Sanity
   Scenario: Verify column fields in '837I Files' tab
     Given the user is on the "Files" page
     When the user clicks on the 837I Files tab
@@ -166,7 +166,7 @@ Feature: Files tab
     And user should be able to view the 837I column fields search boxes
 
 #  57944, As a tester, I want to automate the 837D tab on the Files page
-  @46385 @Sanity @abc
+  @46385 @Sanity
   Scenario: Verify column fields in '837D Files' tab
     Given the user is on the "Files" page
     When the user clicks on the 837D Files tab
@@ -182,7 +182,7 @@ Feature: Files tab
     And user should be able to view the 837D column fields search boxes
 
 #  57952, As a tester, i want to automate the 999 tab on the Files page
-  @46462 @Sanity @abc
+  @46462 @Sanity
   Scenario: Validate pagination functionality in '999' tab
     Given the user is on the "Files" page
     When the user clicks on the 999 tab
@@ -191,7 +191,7 @@ Feature: Files tab
     And Page size can be defined by the User as per the given option at the bottom of the grid under 999 files tab
     And the user should be able to see the page numbers as per the number of data divided by page size under 999 files tab
 
-  @46471 @Sanity @abc
+  @46471 @Sanity
   Scenario Outline: Verify color code for Status View under '999 Files' tab
     Given the user is on the "Files" page
     When the user clicks on the 999 tab
@@ -201,7 +201,7 @@ Feature: Files tab
       | Processed | #0E8D00 |
 #      | Rejected  | #BA0000 |
 
-  @46459 @Sanity @abc
+  @46459 @Sanity
   Scenario: Verify column fields in '999' tab
     Given the user is on the "Files" page
     When the user clicks on the 999 tab
@@ -217,7 +217,7 @@ Feature: Files tab
     And user should be able to view the 999 column fields search boxes
 
 #  57954, As a tester, i want to automate 277CA tab on the Files page
-  @46679 @abc
+  @46679
   Scenario: Validate pagination functionality in '277CA' tab
     Given the user is on the "Files" page
     When the user clicks on the 277CA tab
@@ -226,7 +226,7 @@ Feature: Files tab
     And Page size can be defined by the User as per the given option at the bottom of the grid under 277CA files tab
     And the user should be able to see the page numbers as per the number of data divided by page size under 277CA files tab
 
-  @46681 @Sanity @abc
+  @46681 @Sanity
   Scenario Outline: Verify color code for Status View under '277CA' tab
     Given the user is on the "Files" page
     When the user clicks on the 277CA tab
@@ -236,7 +236,7 @@ Feature: Files tab
       | Processed | #0E8D00 |
 #      | Rejected  | #BA0000 |
 
-  @46676 @Sanity @abc
+  @46676 @Sanity
   Scenario: Verify column fields in '277CA' tab
     Given the user is on the "Files" page
     When the user clicks on the 277CA tab
@@ -252,7 +252,7 @@ Feature: Files tab
     And user should be able to view the 277CA column fields search boxes
 
 #  57956, As a tester, i want to automate 835 tab on the Files page
-  @46695 @abc
+  @46695
   Scenario: Validate pagination functionality in '835' tab
     Given the user is on the "Files" page
     When the user clicks on the 835 tab
@@ -261,7 +261,7 @@ Feature: Files tab
     And Page size can be defined by the User as per the given option at the bottom of the grid under 835 files tab
     And the user should be able to see the page numbers as per the number of data divided by page size under 835 files tab
 
-  @46698 @Sanity @abc
+  @46698 @Sanity
   Scenario Outline: Verify color code for Status View under '835' tab
     Given the user is on the "Files" page
     When the user clicks on the 835 tab
@@ -271,7 +271,7 @@ Feature: Files tab
       | Processed | #0E8D00 |
 #      | Rejected  | #BA0000 |
 
-  @46692 @Sanity @abc
+  @46692 @Sanity
   Scenario: Verify column fields in '835' tab
     Given the user is on the "Files" page
     When the user clicks on the 835 tab
