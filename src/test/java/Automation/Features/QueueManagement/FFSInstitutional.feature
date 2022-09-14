@@ -6,7 +6,7 @@ Feature: FFS Institutional
 
   #38960-As an adjudicator, I should be able to view FFS Institutional claims page with all claims details data so that I can search specific claim id details adding applicable filters
 
-  @TC_39790
+  @TC_39790 @Sanity
   Scenario: Verify user should navigates to FFS Institutional screen
     When user clicks on FFS Institutional in left navigation menu
     Then the user should navigate to the FFS Institutional page
@@ -23,7 +23,7 @@ Feature: FFS Institutional
     Then the user should navigate to the FFS Institutional page
     And user should be able to view the Clam List Label in the FFS Institutional screen
 
-  @TC_39665
+  @TC_39665 @Sanity
   Scenario: Validate user able to view all the column fields in FFS Institutional screen
     When user clicks on FFS Institutional in left navigation menu
     Then the user should navigate to the FFS Institutional page
@@ -43,7 +43,7 @@ Feature: FFS Institutional
       | Age                    |
       | Assigned To            |
 
-  @TC_39666
+  @TC_39666 @Sanity
   Scenario: Verify all the queue field details in the FFS Institutional page
     When user clicks on FFS Institutional in left navigation menu
     Then the user should navigate to the FFS Institutional page
@@ -60,13 +60,13 @@ Feature: FFS Institutional
       | Draft             |
       | Rejected          |
 
-  @TC_39786
+  @TC_39786 @Sanity
   Scenario: Verify user able to view the search fields under each columns in the FFS Institutional screen
     When user clicks on FFS Institutional in left navigation menu
     Then the user should navigate to the FFS Institutional page
     And user able to view the Search fields under each column in FFS Institutional page
 
-  @TC_39699
+  @TC_39699 @Sanity
   Scenario: Verify Pagination in FFS Institutional page
     When user clicks on FFS Institutional in left navigation menu
     Then the user should navigate to the FFS Institutional page
@@ -84,7 +84,7 @@ Feature: FFS Institutional
     When user get the total records for the search criteria in FFS Institutional page
     Then user see the page numbers as per the no of data divided by pages size in FFS Institutional page
 
-  @TC_63813
+  @TC_63813 @Sanity
   Scenario: Verify user able to navigate through pages by using Pagination functionality
     When user clicks on FFS Institutional in left navigation menu
     Then the user should navigate to the FFS Institutional page
@@ -96,7 +96,7 @@ Feature: FFS Institutional
     Then user should allow to navigates to back page in FFS Institutional
 
   #40716-As an adjudicator, I should be able to click on any Claim number from FFS Institutional queue and get navigated to appropriate claims details page
-  @TC_46258
+  @TC_46258 @Sanity
   Scenario: Verify user able to navigate to claim summary screen on clicking claim number
     When user clicks on FFS Institutional in left navigation menu
     Then the user should navigate to the FFS Institutional page
@@ -104,7 +104,7 @@ Feature: FFS Institutional
     Then user should be able to navigate to View Claim Details page
     And  User should see "Hide" option with Claim summary
 
-  @TC_46259
+  @TC_46259 @Sanity
   Scenario: Verify user able to navigate to claim summary screen only once when performed multiple clicks on Claim number
     When user clicks on FFS Institutional in left navigation menu
     Then the user should navigate to the FFS Institutional page
@@ -144,7 +144,7 @@ Feature: FFS Institutional
     And color indication information for COB Not In Member House should be available on top of grid in FFS Institutional page
 
   #64462-As an Adjudicator, When the claim is in Unclean status I want the claim to be displayed and highlighted in the Orange bar.
-  @TC_64463
+  @TC_64463 @Sanity
   Scenario: Verify colour coding for Unclean status claims under Pend bucket in FFS Institutional page
     When user clicks on FFS Institutional in left navigation menu
     Then the user should navigate to the FFS Institutional page

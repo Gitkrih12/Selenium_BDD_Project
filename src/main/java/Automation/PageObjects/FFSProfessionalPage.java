@@ -142,6 +142,7 @@ public class FFSProfessionalPage extends SeleniumUtils {
 
     //Scenario:Verify user able to navigate to claim summary screen on clicking claim number in FFS Professional Queue page
     public void clickOnFFSProfessionalClaim() throws InterruptedException {
+        threadSleep(5000);
         clickElement(eleClaimNumber);
     }
     public void clickOnFFSProfessionalDefaultTab(){
