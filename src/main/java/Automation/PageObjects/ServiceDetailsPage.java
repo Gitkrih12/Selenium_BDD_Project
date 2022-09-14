@@ -42,12 +42,16 @@ public class ServiceDetailsPage extends SeleniumUtils {
         sendKeysUsingKeyboardInput(inputClaimNumber);
     }
 
-    public void clickOnClaimNumber() {
+    //  Scenario: Verify Adjudicator able to Navigate Service Details from Global Search and validate the fields
+    public void clickOnClaimNumber() throws InterruptedException {
+        threadSleep(3000);
         explicitVisibilityOfWait(findElementByXpath(eleClaimNumber), 5);
         clickElement(eleClaimNumber);
+        threadSleep(1000);
     }
 
     public void clickOnServiceDetails() throws InterruptedException {
+        threadSleep(2000);
         clickElement(tabServiceDetails);
         threadSleep(1000);
     }

@@ -62,7 +62,7 @@ public class ClaimDetailsPage extends SeleniumUtils {
         clickElement(lnkFFSProfessional);
     }
 
-    public void userClicksOnClaimNumber() {
+    public void userClicksOnClaimNumber() throws InterruptedException {
         explicitElementClickableWaitByXpath(lnkClaimNumber, 30);
         clickElement(lnkClaimNumber);
     }
@@ -74,7 +74,7 @@ public class ClaimDetailsPage extends SeleniumUtils {
 
     public void userViewsHideOptionBesideClaimSummary(String expOption) {
         explicitVisibilityOfWait(findElementByXpath(lnkHideOption), 20);
-        Assert.assertEquals("(Hide)", findElementByXpath(lnkHideOption).getText());
+        Assert.assertEquals(expOption, findElementByXpath(lnkHideOption).getText());
     }
 
     //  Scenario: Verify View Claim in CMS 1500 and Self Assign buttons in Claim Summary details page
@@ -120,7 +120,8 @@ public class ClaimDetailsPage extends SeleniumUtils {
         }
     }
 
-    public void verifyFieldValuesInClaimSummaryDetailsPage() {
+    public void verifyFieldValuesInClaimSummaryDetailsPage() throws InterruptedException {
+        threadSleep(2000);
         HashMap<String, String> testValues = new HashMap<String, String>();
         testValues.put("Claim Number", "P00MR22051701S");
         testValues.put("Patient", "BKVVSW NOBNVSW");
