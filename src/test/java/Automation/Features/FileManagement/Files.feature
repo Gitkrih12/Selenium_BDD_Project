@@ -6,7 +6,7 @@ Feature: Files tab
     When the user enters the valid username and password and click on login button
 
 #    57922, As a tester, i want to automate 837P Files tab on the Files page
-  @45795 @Sanity @abc
+  @45795 @Sanity
   Scenario: Verify column fields in '837P Files' tab
     Given the user is on the "Files" page
     When the user clicks on the 837P Files tab
@@ -21,13 +21,13 @@ Feature: Files tab
       | File Type      |
     And user should be able to view the 837P column fields search boxes
 
-  @45797 @abc
+  @45797
   Scenario: Verify user should be able to see the results of rows count next to the "837P Files" tab
     Given the user is on the "Files" page
     When the user clicks on the 837P Files tab
     Then user should be able to see the results of rows count next to the 837PFiles Tab
 
-  @45837 @Sanity @abc
+  @45837 @Sanity
   Scenario: Validate pagination functionality in '837P Files' tab
     Given the user is on the "Files" page
     When the user clicks on the 837P Files tab
@@ -37,7 +37,7 @@ Feature: Files tab
     And Page size can be defined by the User as per the given option at the bottom of the grid under 837P files tab
     And the user should be able to see the page numbers as per the number of data divided by page size under 837P files tab
 
-  @45853 @Sanity @abc
+  @45853 @Sanity
   Scenario Outline: Verify color code for Status View under '837P Files' tab
     Given the user is on the "Files" page
     When the user clicks on the 837P Files tab
@@ -49,7 +49,7 @@ Feature: Files tab
 
 
 #  @45840 will have multiple test cases to verify sorting for all the columns listed under 837P Files tab
-  @45840-1 @abc
+  @45840-1
   Scenario: Verify Sorting functionality for "File Name" column under "837P Files" tab
     Given the user is on the "Files" page
     When the user clicks on the 837P Files tab
@@ -59,7 +59,7 @@ Feature: Files tab
     And user clicks on 837P file name column to sort records in ascending order
     Then user should be able to view the 837P file name records in ascending order
 
-  @45840-2 @abc
+  @45840-2
   Scenario: Verify Sorting functionality for "Sender" column under "837P Files" tab
     Given the user is on the "Files" page
     When the user clicks on the 837P Files tab
@@ -69,7 +69,7 @@ Feature: Files tab
     And user clicks on 837P sender column to sort records in ascending order
     Then user should be able to view the 837P sender records in ascending order
 
-  @45840-3 @abc
+  @45840-3
   Scenario: Verify Sorting functionality for "Receiver" column under "837P Files" tab
     Given the user is on the "Files" page
     When the user clicks on the 837P Files tab
@@ -79,7 +79,7 @@ Feature: Files tab
     And user clicks on 837P receiver column to sort records in ascending order
     Then user should be able to view the 837P receiver records in ascending order
 
-  @45840-4 @Sanity @abc
+  @45840-4 @Sanity
   Scenario: Verify Sorting functionality for "Date received" column under "837P Files" tab
     Given the user is on the "Files" page
     When the user clicks on the 837P Files tab
@@ -88,7 +88,7 @@ Feature: Files tab
     And user gets list of records from 837P date received column before sort in descending order
     Then user should be able to view the 837P date received records in descending order
 
-  @45840-5 @Sanity @abc
+  @45840-5 @Sanity
   Scenario: Verify Sorting functionality for "Age(Days)" column under "837P Files" tab
     Given the user is on the "Files" page
     When the user clicks on the 837P Files tab
@@ -97,7 +97,7 @@ Feature: Files tab
     And user gets list of records from 837P age days column before sort in ascending order
     Then user should be able to view the 837P age days records in ascending order
 
-  @45840-6 @Sanity @abc
+  @45840-6 @Sanity
   Scenario: Verify Sorting functionality for "Status" column under "837P Files" tab
     Given the user is on the "Files" page
     When the user clicks on the 837P Files tab
@@ -107,7 +107,7 @@ Feature: Files tab
     And user clicks on 837P status column to sort records in ascending order
     Then user should be able to view the 837P status records in ascending order
 
-  @45840-7 @abc
+  @45840-7
   Scenario: Verify Sorting functionality for "File Type" column under "837P Files" tab
     Given the user is on the "Files" page
     When the user clicks on the 837P Files tab
@@ -117,7 +117,7 @@ Feature: Files tab
     And user clicks on 837P file type column to sort records in ascending order
     Then user should be able to view the 837P file type records in ascending order
 
-  @45840-8 @Sanity @abc
+  @45840-8 @Sanity
   Scenario: Verify Sorting functionality for "Control Number" column under "837P Files" tab
     Given the user is on the "Files" page
     When the user clicks on the 837P Files tab

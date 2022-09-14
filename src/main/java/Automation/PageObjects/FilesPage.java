@@ -77,7 +77,7 @@ public class FilesPage extends SeleniumUtils {
     public void clickOn837PFilesTab() throws InterruptedException {
         explicitElementClickableWaitByXpath(tab837PFiles, 10);
         moveToElement(tab837PFiles).click().perform();
-        threadSleep(2000);
+        threadSleep(4000);
     }
 
     public void verifyUserAbleToSee837PColumnFields(DataTable fieldsList837P) throws InterruptedException {
@@ -261,7 +261,7 @@ public class FilesPage extends SeleniumUtils {
     //    Scenario: Verify color code for Status View under '837P Files' tab
     public void verify837PStatusViewColorCoding(String status, String colorCode837PExp) throws InterruptedException {
         explicitElementClickableWaitByXpath(txt837PStatus, 10).sendKeys(status);
-        threadSleep(2000);
+        threadSleep(4000);
         String colorCode837PAct = getColorCodeForBackground(lbl837PStatusColor);
         System.out.println("837P color code status is: " + colorCode837PAct);
         Assert.assertEquals(colorCode837PExp, colorCode837PAct);
