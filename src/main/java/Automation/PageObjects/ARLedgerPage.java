@@ -235,13 +235,13 @@ public class ARLedgerPage extends SeleniumUtils {
 
         if (environment.contains("test")) {
             List<String> fieldsExp = testValues.values().stream().collect(Collectors.toList());
-            List<String> ActValues = findElementsByXpath(lstARTransactionValues)
+            List<String> actValues = findElementsByXpath(lstARTransactionValues)
                     .stream().map((e) -> e.getText().trim()).collect(Collectors.toList());
-            System.out.println("Size:" + ActValues.size());
+            System.out.println("Size:" + actValues.size());
             int expValue = 2;
-            Assert.assertEquals(expValue, Collections.frequency(ActValues, "0.08"));
+            Assert.assertEquals(expValue, Collections.frequency(actValues, "0.08"));
             for (String exp : fieldsExp) {
-                if (ActValues.contains(exp)) {
+                if (actValues.contains(exp)) {
                     Assert.assertTrue(true);
                 } else {
                     Assert.fail(exp + " is not listed in actual list");
@@ -249,11 +249,11 @@ public class ARLedgerPage extends SeleniumUtils {
             }
         } else {
             List<String> fieldsExp = uatValues.values().stream().collect(Collectors.toList());
-            List<String> ActValues = findElementsByXpath(lstARTransactionValues)
+            List<String> actValues = findElementsByXpath(lstARTransactionValues)
                     .stream().map((e) -> e.getText().trim()).collect(Collectors.toList());
-            System.out.println("Size:" + ActValues.size());
+            System.out.println("Size:" + actValues.size());
             for (String exp : fieldsExp) {
-                if (ActValues.contains(exp)) {
+                if (actValues.contains(exp)) {
                     Assert.assertTrue(true);
                 } else {
                     Assert.fail(exp + " is not listed in actual list");

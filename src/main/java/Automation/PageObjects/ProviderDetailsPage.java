@@ -213,10 +213,10 @@ public class ProviderDetailsPage extends SeleniumUtils {
     //  Scenario: Verify user able to view the available Account Review Transactions and all the columns in the A/R transaction details page
     public void userViewsAccountReviewTransactionColumns(DataTable arTransactionFields) {
         List<String> arTransactionFieldsExp = arTransactionFields.asList();
-        List<WebElement> ActFooterFields = findElementsByXpath(lstArTransactionFields);
+        List<WebElement> actFields = findElementsByXpath(lstArTransactionFields);
         List<String> fieldsForCompare = new ArrayList<>();
-        System.out.println("Size" + ActFooterFields.size());
-        for (WebElement column : ActFooterFields) {
+        System.out.println("Size" + actFields.size());
+        for (WebElement column : actFields) {
             scrollIntoView(column, driver);
             String text = column.getText();
             fieldsForCompare.add(text);
@@ -234,8 +234,8 @@ public class ProviderDetailsPage extends SeleniumUtils {
 
     //  Scenario: Verify Search box should display for all the columns on the A/R Transactions grid
     public void verifySearchFieldsUnderEachColumn() {
-        List<WebElement> ActSearchFields = findElementsByXpath(txtSearchFieldsForAR);
-        for (WebElement column : ActSearchFields) {
+        List<WebElement> actSearchFields = findElementsByXpath(txtSearchFieldsForAR);
+        for (WebElement column : actSearchFields) {
             scrollIntoView(column, driver);
             boolean value = column.isDisplayed();
             Assert.assertTrue(value);
