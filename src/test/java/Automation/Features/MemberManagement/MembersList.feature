@@ -24,3 +24,37 @@ Feature: Members List
       | Term. Date  |
       | Address     |
       | Status      |
+
+  @52277
+  Scenario: Verify user able to Search Member in the Search Box
+    When user clicks on Members List under Member Management
+    And user enters Member ID in the Search criteria
+    Then user able to view the appropriate results on Members List screen
+    When user enters Last Name in the Search criteria
+    Then user able to view the appropriate results on Members List screen
+    When user enters First Name in the Search criteria
+    Then user able to view the appropriate results on Members List screen
+    When user enters Middle Name in the Search criteria
+    Then user able to view the appropriate results on Members List screen
+    When user enters DOB in the Search criteria
+    Then user able to view the appropriate results on Members List screen
+    When user enters Gender in the Search criteria
+    Then user able to view the appropriate results on Members List screen
+    When user enters MBI in the Search criteria
+    Then user able to view the appropriate results on Members List screen
+    When user enters Provider ID in the Search criteria
+    Then user able to view the appropriate results on Members List screen
+    When user enters PCP in the Search criteria
+    Then user able to view the appropriate results on Members List screen
+#    When user enters PCP Phone in the Search criteria
+#    Then user able to view the appropriate results on Members List screen
+    When user enters Plan in the Search criteria
+    Then user able to view the appropriate results on Members List screen
+    When user enters Eff Date in the Search criteria
+    Then user able to view the appropriate results on Members List screen
+    When user enters Term Date in the Search criteria
+    Then user able to view the appropriate results on Members List screen
+#    When user enters Address in the Search criteria
+#    Then user able to view the appropriate results on Members List screen
+#    When user enters Status in the Search criteria
+#    Then user able to view the appropriate results on Members List screen
