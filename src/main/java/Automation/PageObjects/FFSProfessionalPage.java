@@ -72,7 +72,6 @@ public class FFSProfessionalPage extends SeleniumUtils {
     private static int totalRecords = 0;
     private static int pageNumber = 0;
     private static int pageNumberNextNavigation = 0;
-    private static String expPaginationMemberId = "";
 
 
     //Scenario: Verify user should navigates to FFS Professional screen

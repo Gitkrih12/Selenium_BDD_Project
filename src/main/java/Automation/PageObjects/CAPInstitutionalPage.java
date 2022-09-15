@@ -194,7 +194,6 @@ public class CAPInstitutionalPage extends SeleniumUtils {
         clickElement(tabOnHold);
     }
     public void verifyPageNumbersAtBottomOfPage() throws InterruptedException {
-        threadSleep(10000);
         String pagination = findElementByXpath(eleOnHoldPaginationDescription).getText();
         String[] paginationCount = pagination.split(" ");
         System.out.println("Page count " + Integer.parseInt(paginationCount[3]));
