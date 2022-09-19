@@ -36,7 +36,7 @@ public class ClaimDetailsPage extends SeleniumUtils {
             "/div[1]/div | //*[@id='nav-claim-details']/div[12]/div[1]/div";
     String payerFields = "//*[@id='nav-claim-details']/div[13]/div[1]/div | //*[@id='nav-claim-details']/div[14]/div[1]/div";
     String dateOfServiceFields = "//*[@id='nav-claim-details']/div[15]/div[1]/div[1]/div";
-    String isPatientConditionRelatedToField = "//*[@id='nav-claim-details']/div[15]/div[2]/div/div/b";
+    String isPatientConditionRelatedToField = "//*[@id='nav-claim-details']/div[15]/div[2]//div/b";
     String lnkShowOption = "//*[contains(text(), '(Show)')]";
     String eleClaimNumber = "(//*[contains(text(), 'Claim Number')])[1]";
     String checkboxFields = "//*[@id='nav-claim-details']/div[15]/div[2]//input";
