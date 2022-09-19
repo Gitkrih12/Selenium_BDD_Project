@@ -59,13 +59,13 @@ public class CheckRegisterPage extends SeleniumUtils {
     public void userSelectsValuesFromBillingProviderDropDown() throws InterruptedException {
         List <String> getAllOptionsFromDropdown = findElementsByXpath(lstBillingProvider)
                 .stream().map((e) -> e.getText().trim()).collect(Collectors.toList());
-        System.out.println(getAllOptionsFromDropdown.get(rand.nextInt(getAllOptionsFromDropdown.size())));
+        String getRandomOption = getAllOptionsFromDropdown.get(rand.nextInt(getAllOptionsFromDropdown.size()));
+        System.out.println(getRandomOption);
         explicitVisibilityOfWait(findElementByXpath(btnSearch), 20);
         clickElement(btnSearch);
         threadSleep(2000);
     }
 
     public void verifyTheResultForTheSearchCriteria(){
-
     }
 }
