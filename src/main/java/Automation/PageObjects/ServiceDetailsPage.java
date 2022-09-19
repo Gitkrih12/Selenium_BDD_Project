@@ -88,7 +88,7 @@ public class ServiceDetailsPage extends SeleniumUtils {
         testValues.put("Recovery Amount", "$32.82");
         testValues.put("Interest Paid", "$0.00");
         testValues.put("Is A/R Amount Eligible", "");
-        testValues.put("A/R Balance", "$164.76");
+        testValues.put("A/R Balance", "$0.00");
         testValues.put("Payable Amount", "$0.00");
         testValues.put("ICD Indicator", "ICD - 10");
         testValues.put("ICD Codes", "G912");
@@ -113,7 +113,7 @@ public class ServiceDetailsPage extends SeleniumUtils {
             List<String> ActValues = findElementsByXpath(lstServiceDetailsValues)
                     .stream().map((e) -> e.getText().trim()).collect(Collectors.toList());
             System.out.println("Size:" + ActValues.size());
-            int expValue = 6;
+            int expValue = 7;
             int expValue2 = 2;
             Assert.assertEquals(expValue, Collections.frequency(ActValues, "$0.00"));
             Assert.assertEquals(expValue2, Collections.frequency(ActValues, "$32.82"));

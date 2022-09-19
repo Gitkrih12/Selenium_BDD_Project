@@ -109,11 +109,11 @@ public class ARLedgerPage extends SeleniumUtils {
 
     public void verifyAppropriateResults() {
         HashMap<String, String> testValues = new HashMap<String, String>();
-        testValues.put("Vendor ID", "V0000000143");
-        testValues.put("Vendor Name", "Maxwell Teresa");
-        testValues.put("Tax ID/SSN", "929588446");
-        testValues.put("Amount($)", "34400");
-        testValues.put("Created On", "07/06/2022");
+        testValues.put("Vendor ID", "V0000000029");
+        testValues.put("Vendor Name", "ELENA NORCH");
+        testValues.put("Tax ID/SSN", "182228535");
+        testValues.put("Amount($)", "37.83");
+        testValues.put("Created On", "02/27/2022");
 
         HashMap<String, String> uatValues = new HashMap<>();
         uatValues.put("Vendor ID", "V0000000005");
