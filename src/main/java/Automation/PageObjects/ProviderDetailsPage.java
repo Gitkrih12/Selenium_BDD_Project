@@ -128,7 +128,7 @@ public class ProviderDetailsPage extends SeleniumUtils {
         threadSleep(2000);
         HashMap<String, String> testValues = new HashMap<String, String>();
         testValues.put("NPI", "870551784");
-        testValues.put("Name", "wkbusF zkirckU");
+        testValues.put("Name", "wkbusF");
         testValues.put("Address", "-");
         testValues.put("Effective Date", "01/01/2020");
         testValues.put("Termination Date", "12/31/9999");

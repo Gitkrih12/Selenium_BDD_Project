@@ -81,7 +81,6 @@ public class ClaimDetailsPage extends SeleniumUtils {
     public void userViewsCMSButton(String expViewClaimValue) {
         explicitVisibilityOfWait(findElementByXpath(btnViewClaim), 20);
         Assert.assertEquals(expViewClaimValue, findElementByXpath(btnViewClaim).getText());
-
     }
 
     public void userViewsSelfAssignButton(String expSelfAssignValue) {

@@ -45,9 +45,9 @@ public class MoopPage extends SeleniumUtils {
         HashMap<String, String> testValues = new HashMap<String, String>();
         testValues.put("Year", "2022");
         testValues.put("Co-pay($)", "0.00");
-        testValues.put("Co-Insurance($)", "151.85");
+        testValues.put("Co-Insurance($)", "149.61");
         testValues.put("Deductible($)", "233.00");
-        testValues.put("Total($)", "384.85");
+        testValues.put("Total($)", "382.61");
         testValues.put("Max Limit($)", "0.00");
 
         HashMap<String, String> uatValues = new HashMap<>();

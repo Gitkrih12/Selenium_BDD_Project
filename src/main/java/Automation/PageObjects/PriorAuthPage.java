@@ -77,7 +77,6 @@ public class PriorAuthPage extends SeleniumUtils {
     }
 
     public void verifyUserViewsFieldValuesUnderPriorAuthTab() {
-//        threadSleep(2000);
         HashMap<String, String> testValues = new HashMap<String, String>();
         testValues.put("Auth Number", "310909004");
         testValues.put("Provider NPI", "1548435365");
