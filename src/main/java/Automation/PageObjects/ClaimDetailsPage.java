@@ -79,12 +79,12 @@ public class ClaimDetailsPage extends SeleniumUtils {
 
     //  Scenario: Verify View Claim in CMS 1500 and Self Assign buttons in Claim Summary details page
     public void userViewsCMSButton(String expViewClaimValue) {
-        explicitVisibilityOfWait(findElementByXpath(btnViewClaim), 20);
+        explicitVisibilityOfWait(findElementByXpath(btnViewClaim), 30);
         Assert.assertEquals(expViewClaimValue, findElementByXpath(btnViewClaim).getText());
     }
 
     public void userViewsSelfAssignButton(String expSelfAssignValue) {
-        explicitVisibilityOfWait(findElementByXpath(btnSelfAssign), 20);
+        explicitVisibilityOfWait(findElementByXpath(btnSelfAssign), 30);
         Assert.assertEquals(expSelfAssignValue, findElementByXpath(btnSelfAssign).getText());
     }
 
