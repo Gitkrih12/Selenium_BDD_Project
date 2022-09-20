@@ -193,7 +193,7 @@ public class ProviderDetailsPage extends SeleniumUtils {
     public void clickOnVendorId() throws InterruptedException {
         explicitElementClickableWaitByXpath((lnkVendorId), 30);
         clickElement(lnkVendorId);
-        threadSleep(2000);
+        threadSleep(3000);
     }
 
     public void userNavigatesToARTransactionsPage() {

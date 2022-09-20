@@ -63,7 +63,7 @@ public class ClaimDetailsPage extends SeleniumUtils {
     }
 
     public void userClicksOnClaimNumber() throws InterruptedException {
-        explicitElementClickableWaitByXpath(lnkClaimNumber, 30);
+        explicitElementClickableWaitByXpath(lnkClaimNumber, 50);
         clickElement(lnkClaimNumber);
     }
 
@@ -96,6 +96,7 @@ public class ClaimDetailsPage extends SeleniumUtils {
         findElementAndSendKeys(findElementByXpath(txtUniversalSearchBar), expClaimNumber);
         threadSleep(1000);
         sendKeysUsingKeyboardInput(txtUniversalSearchBar);
+        threadSleep(2000);
     }
 
     public void userViewsAllColumnFieldsInClaimSummaryDetails(DataTable columnList) {
