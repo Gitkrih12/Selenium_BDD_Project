@@ -46,6 +46,153 @@ public class FilesPage extends SeleniumUtils {
     String txt837PControlNumber = "(//div[@col-id='controlNumber']//following::input[@aria-label='Control Number Filter Input'])[1]";
     String ele837PControlNumber = "(//div[@class='ag-pinned-left-cols-container']//span[@class='ag-cell-value'])[1]";
 
+    //    837I Files tab locators
+    String tab837I = "//button[@aria-controls='nav-837i-details']";
+    String lst837IColumnFieldNames = "//div[@id='nav-837i-details']//div[@ref='eLabel']//span[text()]";
+    String lst837IColumnSearchFields = "//div[@id='nav-837i-details']//span[@class='ag-header-cell-text']//following::div[1]//input[@type='text']";
+    String lst837IPageBar = "//div[@id='nav-837i-details']//span[@class='ag-paging-description']";
+    String lst837IRecordsBar = "//div[@id='nav-837i-details']//span[@class='ag-paging-row-summary-panel']";
+    String txt837IControlNumber = "(//div[@col-id='controlNumber']//following::input[@aria-label='Control Number Filter Input'])[2]";
+    String ele837IControlNumber = "(//div[@id='nav-837i-details']//div[@col-id='controlNumber']//span[@class='ag-cell-value'])[1]";
+    String btn837INext = "//div[@id='nav-837i-details']//span[@class='ag-icon ag-icon-next']";
+    String btn837IPrevious = "//div[@id='nav-837i-details']//span[@class='ag-icon ag-icon-previous']";
+    String lbl837IStatusColor = "(//div[@id='nav-837i-details']//div[@col-id='status']//span[contains(@style,'color')])[1]";
+    String txt837IStatus = "//div[@id='nav-837i-details']//input[@aria-label='Status Filter Input']";
+    String lbl837IFileName = "//div[@id='nav-837i-details']//span[contains(text(),'File Name')]";
+    String lst837IFileNameRecords = "//div[@id='nav-837i-details']//div[@col-id='fileName']//span[@class='ag-cell-value']";
+    String lbl837ISender = "//div[@id='nav-837i-details']//span[contains(text(),'Sender')]";
+    String lst837ISenderRecords = "//div[@id='nav-837i-details']//div[@col-id='sender']//span[@class='ag-cell-value']";
+    String lbl837IReceiver = "//div[@id='nav-837i-details']//span[contains(text(),'Receiver')]";
+    String lst837IReceiverRecords = "//div[@id='nav-837i-details']//div[@col-id='receiver']//span[@class='ag-cell-value']";
+    String lst837IDateReceivedRecords = "//div[@id='nav-837i-details']//div[@col-id='dateReceived']//span[@class='ag-cell-value']";
+    String txt837IDateReceived = "(//div[@col-id='dateReceived']//following::input[@aria-label='Date Received Filter Input'])[2]";
+    String ele837IDateReceived = "(//div[@id='nav-837i-details']//div[@col-id='dateReceived']//span[@class='ag-cell-value'])[1]";
+    String lst837IAgeDaysRecords = "//div[@id='nav-837i-details']//div[@col-id='ageInDays']//span[@class='ag-cell-value']";
+    String lbl837IStatus = "//div[@id='nav-837i-details']//span[contains(text(),'Status')]";
+    String lst837IStatusRecords = "//div[@id='nav-837i-details']//div[@col-id='status']//span[@class='ag-cell-value']//span[2]";
+    String lbl837IFileType = "//div[@id='nav-837i-details']//span[contains(text(),'File Type')]";
+    String lst837IFileTypeRecords = "//div[@id='nav-837i-details']//div[@col-id='fileType']//span[@class='ag-cell-value']";
+    String lst837IControlNumberRecords = "//div[@id='nav-837i-details']//div[@col-id='controlNumber']//span[@class='ag-cell-value']";
+    String lbl837IControlNumber = "//div[@id='nav-837i-details']//span[contains(text(),'Control Number')]";
+
+    //    837D Files tab locators
+    String tab837D = "//button[@aria-controls='nav-837d-details']";
+    String lst837DColumnFieldNames = "//div[@id='nav-837d-details']//div[@ref='eLabel']//span[text()]";
+    String lst837DColumnSearchFields = "//div[@id='nav-837d-details']//span[@class='ag-header-cell-text']//following::div[1]//input[@type='text']";
+    String lst837DPageBar = "//div[@id='nav-837d-details']//span[@class='ag-paging-description']";
+    String lst837DRecordsBar = "//div[@id='nav-837d-details']//span[@class='ag-paging-row-summary-panel']";
+    String txt837DControlNumber = "(//div[@col-id='controlNumber']//following::input[@aria-label='Control Number Filter Input'])[3]";
+    String ele837DControlNumber = "(//div[@id='nav-837d-details']//div[@col-id='controlNumber']//span[@class='ag-cell-value'])[1]";
+    String btn837DNext = "//div[@id='nav-837d-details']//span[@class='ag-icon ag-icon-next']";
+    String btn837DPrevious = "//div[@id='nav-837d-details']//span[@class='ag-icon ag-icon-previous']";
+    String lbl837DStatusColor = "(//div[@id='nav-837d-details']//div[@col-id='status']//span[contains(@style,'color')])[1]";
+    String txt837DStatus = "//div[@id='nav-837d-details']//input[@aria-label='Status Filter Input']";
+    String lbl837DFileName = "//div[@id='nav-837d-details']//span[contains(text(),'File Name')]";
+    String lst837DFileNameRecords = "//div[@id='nav-837d-details']//div[@col-id='fileName']//span[@class='ag-cell-value']";
+    String lbl837DSender = "//div[@id='nav-837d-details']//span[contains(text(),'Sender')]";
+    String lst837DSenderRecords = "//div[@id='nav-837d-details']//div[@col-id='sender']//span[@class='ag-cell-value']";
+    String lbl837DReceiver = "//div[@id='nav-837d-details']//span[contains(text(),'Receiver')]";
+    String lst837DReceiverRecords = "//div[@id='nav-837d-details']//div[@col-id='receiver']//span[@class='ag-cell-value']";
+    String lst837DDateReceivedRecords = "//div[@id='nav-837d-details']//div[@col-id='dateReceived']//span[@class='ag-cell-value']";
+    String txt837DDateReceived = "(//div[@col-id='dateReceived']//following::input[@aria-label='Date Received Filter Input'])[3]";
+    String ele837DDateReceived = "(//div[@id='nav-837d-details']//div[@col-id='dateReceived']//span[@class='ag-cell-value'])[1]";
+    String lst837DAgeDaysRecords = "//div[@id='nav-837d-details']//div[@col-id='ageInDays']//span[@class='ag-cell-value']";
+    String lbl837DStatus = "//div[@id='nav-837d-details']//span[contains(text(),'Status')]";
+    String lst837DStatusRecords = "//div[@id='nav-837d-details']//div[@col-id='status']//span[@class='ag-cell-value']//span[2]";
+    String lbl837DFileType = "//div[@id='nav-837d-details']//span[contains(text(),'File Type')]";
+    String lst837DFileTypeRecords = "//div[@id='nav-837d-details']//div[@col-id='fileType']//span[@class='ag-cell-value']";
+    String lst837DControlNumberRecords = "//div[@id='nav-837d-details']//div[@col-id='controlNumber']//span[@class='ag-cell-value']";
+    String lbl837DControlNumber = "//div[@id='nav-837d-details']//span[contains(text(),'Control Number')]";
+
+    // 999 Files tab locators
+    String tab999 = "//button[@aria-controls='nav-999-details']";
+    String lst999ColumnFieldNames = "//div[@id='nav-999-details']//div[@ref='eLabel']//span[@ref='eText']";
+    String lst999ColumnSearchFields = "//div[@id='nav-999-details']//span[@class='ag-header-cell-text']//following::div[1]//input[@type='text']";
+    String lst999PageBar = "//div[@id='nav-999-details']//span[@class='ag-paging-description']";
+    String lst999RecordsBar = "//div[@id='nav-999-details']//span[@class='ag-paging-row-summary-panel']";
+    String txt999ControlNumber = "(//div[@col-id='controlNumber']//following::input[@aria-label='Control Number Filter Input'])[4]";
+    String ele999ControlNumber = "(//div[@id='nav-999-details']//div[@col-id='controlNumber']//span[@class='ag-cell-value'])[1]";
+    String btn999Next = "//div[@id='nav-999-details']//span[@class='ag-icon ag-icon-next']";
+    String btn999Previous = "//div[@id='nav-999-details']//span[@class='ag-icon ag-icon-previous']";
+    String lbl999StatusColor = "(//div[@id='nav-999-details']//div[@col-id='status']//span[contains(@style,'color')])[1]";
+    String txt999Status = "//div[@id='nav-999-details']//input[@aria-label='Status Filter Input']";
+    String lbl999FileName = "//div[@id='nav-999-details']//span[contains(text(),'File Name')]";
+    String lst999FileNameRecords = "//div[@id='nav-999-details']//div[@col-id='fileName']//span[@class='ag-cell-value']";
+    String lbl999Sender = "//div[@id='nav-999-details']//span[contains(text(),'Sender')]";
+    String lst999SenderRecords = "//div[@id='nav-999-details']//div[@col-id='sender']//span[@class='ag-cell-value']";
+    String lbl999Receiver = "//div[@id='nav-999-details']//span[contains(text(),'Receiver')]";
+    String lst999ReceiverRecords = "//div[@id='nav-999-details']//div[@col-id='receiver']//span[@class='ag-cell-value']";
+    String lst999DateOfCreationRecords = "//div[@id='nav-999-details']//div[@col-id='dateReceived']//span[@class='ag-cell-value']";
+    String txt999DateOfCreation = "(//div[@col-id='dateReceived']//following::input[@aria-label='Date of Creation Filter Input'])[1]";
+    String ele999DateOfCreation = "(//div[@id='nav-999-details']//div[@col-id='dateReceived']//span[@class='ag-cell-value'])[1]";
+    String lst999AgeDaysRecords = "//div[@id='nav-999-details']//div[@col-id='ageInDays']//span[@class='ag-cell-value']";
+    String lbl999Status = "//div[@id='nav-999-details']//span[contains(text(),'Status')]";
+    String lst999StatusRecords = "//div[@id='nav-999-details']//div[@col-id='status']//span[@class='ag-cell-value']//span[2]";
+    String lbl999ClaimType = "//div[@id='nav-999-details']//span[contains(text(),'Claim Type')]";
+    String lst999ClaimTypeRecords = "//div[@id='nav-999-details']//div[@col-id='claimType']//span[@class='ag-cell-value']";
+    String lst999ControlNumberRecords = "//div[@id='nav-999-details']//div[@col-id='controlNumber']//span[@class='ag-cell-value']";
+    String lbl999ControlNumber = "//div[@id='nav-999-details']//span[contains(text(),'Control Number')]";
+
+    // 277CA Files tab locators
+    String tab277CA = "//button[@aria-controls='nav-277ca-details']";
+    String lst277CAColumnFieldNames = "//div[@id='nav-277ca-details']//div[@ref='eLabel']//span[@ref='eText']";
+    String lst277CAColumnSearchFields = "//div[@id='nav-277ca-details']//span[@class='ag-header-cell-text']//following::div[1]//input[@type='text']";
+    String lst277CAPageBar = "//div[@id='nav-277ca-details']//span[@class='ag-paging-description']";
+    String lst277CARecordsBar = "//div[@id='nav-277ca-details']//span[@class='ag-paging-row-summary-panel']";
+    String txt277CAControlNumber = "(//div[@col-id='controlNumber']//following::input[@aria-label='Control Number Filter Input'])[5]";
+    String ele277CAControlNumber = "(//div[@id='nav-277ca-details']//div[@col-id='controlNumber']//span[@class='ag-cell-value'])[1]";
+    String btn277CANext = "//div[@id='nav-277ca-details']//span[@class='ag-icon ag-icon-next']";
+    String btn277CAPrevious = "//div[@id='nav-277ca-details']//span[@class='ag-icon ag-icon-previous']";
+    String lbl277CAStatusColor = "(//div[@id='nav-277ca-details']//div[@col-id='status']//span[contains(@style,'color')])[1]";
+    String txt277CAStatus = "//div[@id='nav-277ca-details']//input[@aria-label='Status Filter Input']";
+    String lbl277CAFileName = "//div[@id='nav-277ca-details']//span[contains(text(),'File Name')]";
+    String lst277CAFileNameRecords = "//div[@id='nav-277ca-details']//div[@col-id='fileName']//span[@class='ag-cell-value']";
+    String lbl277CASender = "//div[@id='nav-277ca-details']//span[contains(text(),'Sender')]";
+    String lst277CASenderRecords = "//div[@id='nav-277ca-details']//div[@col-id='sender']//span[@class='ag-cell-value']";
+    String lbl277CAReceiver = "//div[@id='nav-277ca-details']//span[contains(text(),'Receiver')]";
+    String lst277CAReceiverRecords = "//div[@id='nav-277ca-details']//div[@col-id='receiver']//span[@class='ag-cell-value']";
+    String lst277CADateOfCreationRecords = "//div[@id='nav-277ca-details']//div[@col-id='dateReceived']//span[@class='ag-cell-value']";
+    String txt277CADateOfCreation = "(//div[@col-id='dateReceived']//following::input[@aria-label='Date Of Creation Filter Input'])[1]";
+    String ele277CADateOfCreation = "(//div[@id='nav-277ca-details']//div[@col-id='dateReceived']//span[@class='ag-cell-value'])[1]";
+    String lst277CAAgeDaysRecords = "//div[@id='nav-277ca-details']//div[@col-id='ageInDays']//span[@class='ag-cell-value']";
+    String lbl277CAStatus = "//div[@id='nav-277ca-details']//span[contains(text(),'Status')]";
+    String lst277CAStatusRecords = "//div[@id='nav-277ca-details']//div[@col-id='status']//span[@class='ag-cell-value']//span[2]";
+    String lbl277CAClaimType = "//div[@id='nav-277ca-details']//span[contains(text(),'Claim Type')]";
+    String lst277CAClaimTypeRecords = "//div[@id='nav-277ca-details']//div[@col-id='claimType']//span[@class='ag-cell-value']";
+    String lst277CAControlNumberRecords = "//div[@id='nav-277ca-details']//div[@col-id='controlNumber']//span[@class='ag-cell-value']";
+    String lbl277CAControlNumber = "//div[@id='nav-277ca-details']//span[contains(text(),'Control Number')]";
+
+    // 277CA Files tab locators
+    String tab835 = "//button[@aria-controls='nav-835-details']";
+    String lst835ColumnFieldNames = "//div[@id='nav-835-details']//div[@ref='eLabel']//span[@ref='eText']";
+    String lst835ColumnSearchFields = "//div[@id='nav-835-details']//span[@class='ag-header-cell-text']//following::div[1]//input[@type='text']";
+    String lst835PageBar = "//div[@id='nav-835-details']//span[@class='ag-paging-description']";
+    String lst835RecordsBar = "//div[@id='nav-835-details']//span[@class='ag-paging-row-summary-panel']";
+    String txt835ControlNumber = "(//div[@col-id='controlNumber']//following::input[@aria-label='Control Number Filter Input'])[6]";
+    String ele835ControlNumber = "(//div[@id='nav-835-details']//div[@col-id='controlNumber']//span[@class='ag-cell-value'])[1]";
+    String lbl835ChequeDate = "//div[@id='nav-835-details']//span[contains(text(),'Cheque Date')]";
+    String lst835ChequeDateRecords = "//div[@id='nav-835-details']//div[@col-id='chequeIssueDate']//span[@class='ag-cell-value']";
+    String btn835Next = "//div[@id='nav-835-details']//span[@class='ag-icon ag-icon-next']";
+    String btn835Previous = "//div[@id='nav-835-details']//span[@class='ag-icon ag-icon-previous']";
+    String lbl835StatusColor = "(//div[@id='nav-835-details']//div[@col-id='status']//span[contains(@style,'color')])[1]";
+    String txt835Status = "//div[@id='nav-835-details']//input[@aria-label='Status Filter Input']";
+    String lbl835FileName = "//div[@id='nav-835-details']//span[contains(text(),'File Name')]";
+    String lst835FileNameRecords = "//div[@id='nav-835-details']//div[@col-id='fileName']//span[@class='ag-cell-value']";
+    String lbl835Sender = "//div[@id='nav-835-details']//span[contains(text(),'Sender')]";
+    String lst835SenderRecords = "//div[@id='nav-835-details']//div[@col-id='sender']//span[@class='ag-cell-value']";
+    String lbl835Receiver = "//div[@id='nav-835-details']//span[contains(text(),'Receiver')]";
+    String lst835ReceiverRecords = "//div[@id='nav-835-details']//div[@col-id='receiver']//span[@class='ag-cell-value']";
+    String lst835DateOfCreationRecords = "//div[@id='nav-835-details']//div[@col-id='dateReceived']//span[@class='ag-cell-value']";
+    String txt835DateOfCreation = "(//div[@col-id='dateReceived']//following::input[@aria-label='Date of Creation Filter Input'])[2]";
+    String ele835DateOfCreation = "(//div[@id='nav-835-details']//div[@col-id='dateReceived']//span[@class='ag-cell-value'])[1]";
+    String lst835AgeDaysRecords = "//div[@id='nav-835-details']//div[@col-id='ageInDays']//span[@class='ag-cell-value']";
+    String lbl835Status = "//div[@id='nav-835-details']//span[contains(text(),'Status')]";
+    String lst835StatusRecords = "//div[@id='nav-835-details']//div[@col-id='status']//span[@class='ag-cell-value']//span[2]";
+    String lbl835Transaction = "//div[@id='nav-835-details']//span[contains(text(),'Transaction')]";
+    String lst835TransactionRecords = "//div[@id='nav-835-details']//div[@col-id='transaction']//span[@class='ag-cell-value']";
+    String lst835ControlNumberRecords = "//div[@id='nav-835-details']//div[@col-id='controlNumber']//span[@class='ag-cell-value']";
+    String lbl835ControlNumber = "//div[@id='nav-835-details']//span[contains(text(),'Control Number')]";
+
     private static String controlNumber837PSortExp;
     private static ArrayList<String> fileNameRecords837P;
     private static ArrayList<String> senderRecords837P;
@@ -470,6 +617,342 @@ public class FilesPage extends SeleniumUtils {
         }
     }
 
+    //    Scenario: Verify column fields in '837I Files' tab
+    public void clickOn837IFilesTab() throws InterruptedException {
+        explicitElementClickableWaitByXpath(tab837I, 5);
+        moveToElement(tab837I).click().perform();
+        threadSleep(4000);
+    }
+
+    public void verifyUserAbleToSee837IColumnFields(DataTable fieldsList837I) throws InterruptedException {
+        List<String> fieldsList837IExp = fieldsList837I.asList();
+        List<WebElement> fields837I = findElementsByXpath(lst837IColumnFieldNames);
+        List<String> fieldsList837IAct = new ArrayList<>();
+        for (WebElement column : fields837I) {
+            threadSleep(2000);
+            scrollIntoView(column, driver);
+            String text = column.getText();
+            fieldsList837IAct.add(text);
+        }
+        System.out.println("837I column names actual size: " + fieldsList837IAct.size());
+        System.out.println("837I column names expected size: " + fieldsList837IExp.size());
+        System.out.println("837I actual column names: " + fieldsList837IAct);
+        System.out.println("837I expected column names: " + fieldsList837IExp);
+        for (String exp : fieldsList837IExp) {
+            if (fieldsList837IAct.contains(exp)) {
+                Assert.assertTrue(true);
+            } else {
+                Assert.fail(exp + " is not listed in actual");
+            }
+        }
+    }
+
+    public void verifyUserAbleToView837IColumnFieldsSearchBoxes() {
+        List<WebElement> SearchBoxes837I = findElementsByXpath(lst837IColumnSearchFields);
+        for (WebElement searchBox : SearchBoxes837I) {
+            scrollIntoView(searchBox, driver);
+            Assert.assertTrue(isDisplayed(searchBox));
+        }
+    }
+
+    //    Scenario: Validate pagination functionality in '837I Files' tab
+    public void applyFilterToControlNumberFieldOn837IFilesTab() throws InterruptedException {
+        if (Objects.equals(environment, "test")) {
+            String paginationControlNumber837IExp = prop.getProperty("837IPaginationControlNumber");
+            explicitElementClickableWaitByXpath(txt837IControlNumber, 5).sendKeys(paginationControlNumber837IExp);
+            threadSleep(2000);
+            String paginationControlNumber837IAct = explicitElementClickableWaitByXpath(ele837IControlNumber, 5).getText();
+            System.out.println("837I control line is: " + paginationControlNumber837IAct);
+            Assert.assertEquals(paginationControlNumber837IExp, paginationControlNumber837IAct);
+        }
+    }
+
+    public void validateTheDataExceedsTheDefinedPageSizeUnder837IFilesTab() {
+        validateTheDataExceedsTheDefinedPageSize(lst837IRecordsBar);
+    }
+
+    public void verify837IForwardNavigationThroughPages() {
+        verifyForwardNavigationThroughPages(btn837INext, lst837IPageBar);
+    }
+
+    public void verify837IBackwardNavigationThroughPages() {
+        verifyBackwardNavigationThroughPages(btn837IPrevious, lst837IPageBar);
+    }
+
+    public void verify837IForwardNavigationPageSizeAtTheBottomOfTheGrid() {
+        verifyForwardNavigationPageSizeAtTheBottomOfTheGrid(btn837INext, lst837IRecordsBar);
+    }
+
+    public void verify837IBackwardNavigationPageSizeAtTheBottomOfTheGrid() {
+        verifyBackwardNavigationPageSizeAtTheBottomOfTheGrid(btn837IPrevious, lst837IRecordsBar);
+    }
+
+    public void verify837ITotalNumberOfPagesBasedOnThePerPageRecordCount() {
+        verifyTotalNumberOfPagesBasedOnThePerPageRecordCount(lst837IRecordsBar, lst837IPageBar);
+    }
+
+    //    Scenario: Verify color code for Status View
+    public void verify837IStatusViewColorCoding(String status, String colorCode837IExp) throws InterruptedException {
+        explicitElementClickableWaitByXpath(txt837IStatus, 5).sendKeys(status);
+        threadSleep(4000);
+        String colorCode837IAct = getColorCodeForBackground(lbl837IStatusColor);
+        System.out.println("837I color code status is: " + colorCode837IAct);
+        Assert.assertEquals(colorCode837IExp, colorCode837IAct);
+    }
+
+    //    Scenario: Verify column fields in '837D Files' tab
+    public void clickOn837DFilesTab() throws InterruptedException {
+        explicitElementClickableWaitByXpath(tab837D, 5);
+        moveToElement(tab837D).click().perform();
+        threadSleep(2000);
+    }
+
+    public void verifyUserAbleToSee837DColumnFields(DataTable fieldsList837D) throws InterruptedException {
+        List<String> fieldsList837DExp = fieldsList837D.asList();
+        List<WebElement> fields837D = findElementsByXpath(lst837DColumnFieldNames);
+        List<String> fieldsList837DAct = new ArrayList<>();
+        for (WebElement column : fields837D) {
+            threadSleep(1000);
+            scrollIntoView(column, driver);
+            String text = column.getText();
+            fieldsList837DAct.add(text);
+        }
+        System.out.println("837D column names actual size: " + fieldsList837DAct.size());
+        System.out.println("837D column names expected size: " + fieldsList837DExp.size());
+        System.out.println("837D actual column names: " + fieldsList837DAct);
+        System.out.println("837D expected column names: " + fieldsList837DExp);
+        for (String exp : fieldsList837DExp) {
+            if (fieldsList837DAct.contains(exp)) {
+                Assert.assertTrue(true);
+            } else {
+                Assert.fail(exp + " is not listed in actual");
+            }
+        }
+    }
+
+    public void verifyUserAbleToView837DColumnFieldsSearchBoxes() {
+        List<WebElement> SearchBoxes837D = findElementsByXpath(lst837DColumnSearchFields);
+        for (WebElement searchBox : SearchBoxes837D) {
+            scrollIntoView(searchBox, driver);
+            Assert.assertTrue(isDisplayed(searchBox));
+        }
+    }
+
+    //    Scenario: Verify column fields in '999' tab
+    public void clickOn999FilesTab() throws InterruptedException {
+        explicitElementClickableWaitByXpath(tab999, 5);
+        moveToElement(tab999).click().perform();
+        threadSleep(4000);
+    }
+
+    public void verifyUserAbleToSee999ColumnFields(DataTable fieldsList999) throws InterruptedException {
+        List<String> fieldsList999Exp = fieldsList999.asList();
+        List<WebElement> fields999 = findElementsByXpath(lst999ColumnFieldNames);
+        List<String> fieldsList999Act = new ArrayList<>();
+        for (WebElement column : fields999) {
+            threadSleep(1000);
+            scrollIntoView(column, driver);
+            String text = column.getText();
+            fieldsList999Act.add(text);
+        }
+        System.out.println("999 column names actual size: " + fieldsList999Act.size());
+        System.out.println("999 column names expected size: " + fieldsList999Exp.size());
+        System.out.println("999 actual column names: " + fieldsList999Act);
+        System.out.println("999 expected column names: " + fieldsList999Exp);
+        for (String exp : fieldsList999Exp) {
+            if (fieldsList999Act.contains(exp)) {
+                Assert.assertTrue(true);
+            } else {
+                Assert.fail(exp + " is not listed in actual");
+            }
+        }
+    }
+
+    public void verifyUserAbleToView999ColumnFieldsSearchBoxes() {
+        List<WebElement> SearchBoxes999 = findElementsByXpath(lst999ColumnSearchFields);
+        for (WebElement searchBox : SearchBoxes999) {
+            scrollIntoView(searchBox, driver);
+            Assert.assertTrue(isDisplayed(searchBox));
+        }
+    }
+
+    //    Scenario: Validate pagination functionality in '999 Files' tab
+    public void validateTheDataExceedsTheDefinedPageSizeUnder999FilesTab() {
+        validateTheDataExceedsTheDefinedPageSize(lst999RecordsBar);
+    }
+
+    public void verify999ForwardNavigationThroughPages() {
+        verifyForwardNavigationThroughPages(btn999Next, lst999PageBar);
+    }
+
+    public void verify999BackwardNavigationThroughPages() {
+        verifyBackwardNavigationThroughPages(btn999Previous, lst999PageBar);
+    }
+
+    public void verify999ForwardNavigationPageSizeAtTheBottomOfTheGrid() {
+        verifyForwardNavigationPageSizeAtTheBottomOfTheGrid(btn999Next, lst999RecordsBar);
+    }
+
+    public void verify999BackwardNavigationPageSizeAtTheBottomOfTheGrid() {
+        verifyBackwardNavigationPageSizeAtTheBottomOfTheGrid(btn999Previous, lst999RecordsBar);
+    }
+
+    public void verify999TotalNumberOfPagesBasedOnThePerPageRecordCount() {
+        verifyTotalNumberOfPagesBasedOnThePerPageRecordCount(lst999RecordsBar, lst999PageBar);
+    }
+
+    //    Scenario Outline: Verify color code for Status View under 999 files tab
+    public void verify999StatusViewColorCoding(String status, String colorCode999Exp) throws InterruptedException {
+        explicitElementClickableWaitByXpath(txt999Status, 5).sendKeys(status);
+        threadSleep(4000);
+        String colorCode999Act = getColorCodeForBackground(lbl999StatusColor);
+        System.out.println("999 color code status is: " + colorCode999Act);
+        Assert.assertEquals(colorCode999Exp, colorCode999Act);
+    }
+
+    //    Scenario: Verify column fields in '277CA' tab
+    public void clickOn277CAFilesTab() throws InterruptedException {
+        explicitElementClickableWaitByXpath(tab277CA, 5).click();
+        threadSleep(4000);
+    }
+
+    public void verifyUserAbleToSee277CAColumnFields(DataTable fieldsList277CA) throws InterruptedException {
+        List<String> fieldsList277CAExp = fieldsList277CA.asList();
+        List<WebElement> fields277CA = findElementsByXpath(lst277CAColumnFieldNames);
+        List<String> fieldsList277CAAct = new ArrayList<>();
+        for (WebElement column : fields277CA) {
+            threadSleep(1000);
+            scrollIntoView(column, driver);
+            String text = column.getText();
+            fieldsList277CAAct.add(text);
+        }
+        System.out.println("277CA column names actual size: " + fieldsList277CAAct.size());
+        System.out.println("277CA column names expected size: " + fieldsList277CAExp.size());
+        System.out.println("277CA actual column names: " + fieldsList277CAAct);
+        System.out.println("277CA expected column names: " + fieldsList277CAExp);
+        for (String exp : fieldsList277CAExp) {
+            if (fieldsList277CAAct.contains(exp)) {
+                Assert.assertTrue(true);
+            } else {
+                Assert.fail(exp + " is not listed in actual");
+            }
+        }
+    }
+
+    public void verifyUserAbleToView277CAColumnFieldsSearchBoxes() {
+        List<WebElement> SearchBoxes277CA = findElementsByXpath(lst277CAColumnSearchFields);
+        for (WebElement searchBox : SearchBoxes277CA) {
+            scrollIntoView(searchBox, driver);
+            Assert.assertTrue(isDisplayed(searchBox));
+        }
+    }
+
+    //    Scenario: Validate pagination functionality in '277CA Files' tab
+    public void validateTheDataExceedsTheDefinedPageSizeUnder277CAFilesTab() {
+        validateTheDataExceedsTheDefinedPageSize(lst277CARecordsBar);
+    }
+
+    public void verify277CAForwardNavigationThroughPages() {
+        verifyForwardNavigationThroughPages(btn277CANext, lst277CAPageBar);
+    }
+
+    public void verify277CABackwardNavigationThroughPages() {
+        verifyBackwardNavigationThroughPages(btn277CAPrevious, lst277CAPageBar);
+    }
+
+    public void verify277CAForwardNavigationPageSizeAtTheBottomOfTheGrid() {
+        verifyForwardNavigationPageSizeAtTheBottomOfTheGrid(btn277CANext, lst277CARecordsBar);
+    }
+
+    public void verify277CABackwardNavigationPageSizeAtTheBottomOfTheGrid() {
+        verifyBackwardNavigationPageSizeAtTheBottomOfTheGrid(btn277CAPrevious, lst277CARecordsBar);
+    }
+
+    public void verify277CATotalNumberOfPagesBasedOnThePerPageRecordCount() {
+        verifyTotalNumberOfPagesBasedOnThePerPageRecordCount(lst277CARecordsBar, lst277CAPageBar);
+    }
+
+    //    Scenario Outline: Verify color code for Status View under 277CA files tab
+    public void verify277CAStatusViewColorCoding(String status, String colorCode277CAExp) throws InterruptedException {
+        explicitElementClickableWaitByXpath(txt277CAStatus, 5).sendKeys(status);
+        threadSleep(4000);
+        String colorCode277CAAct = getColorCodeForBackground(lbl277CAStatusColor);
+        System.out.println("277CA color code status is: " + colorCode277CAAct);
+        Assert.assertEquals(colorCode277CAExp, colorCode277CAAct);
+    }
+
+    //    Scenario: Validate pagination functionality in '835' tab
+    public void clickOn835FilesTab() throws InterruptedException {
+        explicitElementClickableWaitByXpath(tab835, 5);
+        moveToElement(tab835).click().perform();
+        threadSleep(4000);
+    }
+    public void validateTheDataExceedsTheDefinedPageSizeUnder835FilesTab()
+    {
+        validateTheDataExceedsTheDefinedPageSize(lst835RecordsBar);
+    }
+    public void verify835ForwardNavigationThroughPages()
+    {
+        verifyForwardNavigationThroughPages(btn835Next, lst835PageBar);
+    }
+    public void verify835BackwardNavigationThroughPages()
+    {
+        verifyBackwardNavigationThroughPages(btn835Previous, lst835PageBar);
+    }
+    public void verify835ForwardNavigationPageSizeAtTheBottomOfTheGrid()
+    {
+        verifyForwardNavigationPageSizeAtTheBottomOfTheGrid(btn835Next, lst835RecordsBar);
+    }
+    public void verify835BackwardNavigationPageSizeAtTheBottomOfTheGrid()
+    {
+        verifyBackwardNavigationPageSizeAtTheBottomOfTheGrid(btn835Previous, lst835RecordsBar);
+    }
+    public void verify835TotalNumberOfPagesBasedOnThePerPageRecordCount()
+    {
+        verifyTotalNumberOfPagesBasedOnThePerPageRecordCount(lst835RecordsBar, lst835PageBar);
+    }
+
+    //    Scenario Outline: Verify color code for Status View under 835 files tab
+    public void verify835StatusViewColorCoding(String status, String colorCode835Exp) throws InterruptedException {
+        scrollToElement(txt835Status);
+        explicitElementClickableWaitByXpath(txt835Status, 5).sendKeys(status);
+        threadSleep(4000);
+        String colorCode835Act = getColorCodeForBackground(lbl835StatusColor);
+        System.out.println("835 color code status is: " + colorCode835Act);
+        Assert.assertEquals(colorCode835Exp, colorCode835Act);
+    }
+
+    //    Scenario: Verify column fields in '835' tab
+    public void verifyUserAbleToSee835ColumnFields(DataTable fieldsList835) throws InterruptedException {
+        List<String> fieldsList835Exp = fieldsList835.asList();
+        List<WebElement> fields835 = findElementsByXpath(lst835ColumnFieldNames);
+        List<String> fieldsList835Act = new ArrayList<>();
+        for (WebElement column : fields835) {
+            threadSleep(1000);
+            scrollIntoView(column, driver);
+            String text = column.getText();
+            fieldsList835Act.add(text);
+        }
+        System.out.println("835 column names actual size: " + fieldsList835Act.size());
+        System.out.println("835 column names expected size: " + fieldsList835Exp.size());
+        System.out.println("835 actual column names: " + fieldsList835Act);
+        System.out.println("835 expected column names: " + fieldsList835Exp);
+        for (String exp : fieldsList835Exp) {
+            if (fieldsList835Act.contains(exp)) {
+                Assert.assertTrue(true);
+            } else {
+                Assert.fail(exp + " is not listed in actual");
+            }
+        }
+    }
+    public void verifyUserAbleToView835ColumnFieldsSearchBoxes()
+    {
+        List<WebElement> SearchBoxes835 = findElementsByXpath(lst835ColumnSearchFields);
+        for (WebElement searchBox : SearchBoxes835) {
+            scrollIntoView(searchBox, driver);
+            Assert.assertTrue(isDisplayed(searchBox));
+        }
+    }
 
 
 }

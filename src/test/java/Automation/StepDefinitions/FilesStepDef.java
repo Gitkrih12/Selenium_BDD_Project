@@ -199,5 +199,184 @@ public class FilesStepDef extends FilesPage {
         verify837PControlNumberColumnRecordsInAscendingOrder();
     }
 
+    //    Scenario: Verify column fields in '837I Files' tab
+    @When("the user clicks on the 837I Files tab")
+    public void the_user_clicks_on_the_837i_files_tab() throws InterruptedException {
+        clickOn837IFilesTab();
+    }
+    @Then("user should be able to view the following column fields under 837I Files tab")
+    public void user_should_be_able_to_view_the_following_column_fields_under_837I_files_tab(DataTable fieldsList837I) throws InterruptedException {
+        verifyUserAbleToSee837IColumnFields(fieldsList837I);
+    }
+    @Then("user should be able to view the 837I column fields search boxes")
+    public void user_should_be_able_to_view_the_837i_column_fields_search_boxes() {
+        verifyUserAbleToView837IColumnFieldsSearchBoxes();
+    }
+
+    //    Scenario: Validate pagination functionality in '837I Files' tab
+    @Given("the user applies a filter to any field in the 837I Files tab")
+    public void the_user_applies_a_filter_to_any_field_in_the_837I_Files_tab() throws InterruptedException {
+        applyFilterToControlNumberFieldOn837IFilesTab();
+    }
+    @When("the data exceeds the defined page size under 837I files tab")
+    public void the_data_exceeds_the_defined_page_size_under_837I_files_tab() {
+        validateTheDataExceedsTheDefinedPageSizeUnder837IFilesTab();
+    }
+    @Then("the user should be able to navigate through pages under 837I files tab")
+    public void the_user_should_be_able_to_navigate_through_pages_under_837I_files_tab() {
+        verify837IForwardNavigationThroughPages();
+        verify837IBackwardNavigationThroughPages();
+    }
+    @Then("Page size can be defined by the User as per the given option at the bottom of the grid under 837I files tab")
+    public void page_size_can_be_defined_by_the_user_as_per_the_given_option_at_the_bottom_of_the_grid_under_837I_files_tab() {
+        verify837IForwardNavigationPageSizeAtTheBottomOfTheGrid();
+        verify837IBackwardNavigationPageSizeAtTheBottomOfTheGrid();
+    }
+    @Then("the user should be able to see the page numbers as per the number of data divided by page size under 837I files tab")
+    public void the_user_should_be_able_to_see_the_page_numbers_as_per_the_number_of_data_divided_by_page_size_under_837I_files_tab() {
+        verify837ITotalNumberOfPagesBasedOnThePerPageRecordCount();
+    }
+
+    //    Scenario Outline: Verify color code for Status View under 837I files tab
+    @Then("the user should be able to see 837I {string} results with the {string} indication")
+    public void the_user_should_be_able_to_see_837I_results_with_the_indication(String status, String colorCode837IExp) throws InterruptedException {
+        verify837IStatusViewColorCoding(status, colorCode837IExp);
+    }
+
+    //    Scenario: Verify column fields in '837D Files' tab
+    @When("the user clicks on the 837D Files tab")
+    public void the_user_clicks_on_the_837d_files_tab() throws InterruptedException {
+        clickOn837DFilesTab();
+    }
+    @Then("user should be able to view the following column fields under 837D Files tab")
+    public void user_should_be_able_to_view_the_following_column_fields_under_837D_files_tab(DataTable fieldsList837D) throws InterruptedException {
+        verifyUserAbleToSee837DColumnFields(fieldsList837D);
+    }
+    @Then("user should be able to view the 837D column fields search boxes")
+    public void user_should_be_able_to_view_the_837d_column_fields_search_boxes() {
+        verifyUserAbleToView837DColumnFieldsSearchBoxes();
+    }
+
+    //    Scenario: Verify column fields in '999' tab
+    @When("the user clicks on the 999 tab")
+    public void the_user_clicks_on_the_999_tab() throws InterruptedException {
+        clickOn999FilesTab();
+    }
+    @Then("user should be able to view the following column fields under 999 Files tab")
+    public void user_should_be_able_to_view_the_following_column_fields_under_999_files_tab(DataTable fieldsList999) throws InterruptedException {
+        verifyUserAbleToSee999ColumnFields(fieldsList999);
+    }
+    @Then("user should be able to view the 999 column fields search boxes")
+    public void user_should_be_able_to_view_the_999_column_fields_search_boxes() {
+        verifyUserAbleToView999ColumnFieldsSearchBoxes();
+    }
+
+    //    Scenario: Validate pagination functionality in '999 Files' tab
+    @When("the data exceeds the defined page size under 999 files tab")
+    public void the_data_exceeds_the_defined_page_size_under_999_files_tab() {
+        validateTheDataExceedsTheDefinedPageSizeUnder999FilesTab();
+    }
+    @Then("the user should be able to navigate through pages under 999 files tab")
+    public void the_user_should_be_able_to_navigate_through_pages_under_999_files_tab() {
+        verify999ForwardNavigationThroughPages();
+        verify999BackwardNavigationThroughPages();
+    }
+    @Then("Page size can be defined by the User as per the given option at the bottom of the grid under 999 files tab")
+    public void page_size_can_be_defined_by_the_user_as_per_the_given_option_at_the_bottom_of_the_grid_under_999_files_tab() {
+        verify999ForwardNavigationPageSizeAtTheBottomOfTheGrid();
+        verify999BackwardNavigationPageSizeAtTheBottomOfTheGrid();
+    }
+    @Then("the user should be able to see the page numbers as per the number of data divided by page size under 999 files tab")
+    public void the_user_should_be_able_to_see_the_page_numbers_as_per_the_number_of_data_divided_by_page_size_under_999_files_tab() {
+        verify999TotalNumberOfPagesBasedOnThePerPageRecordCount();
+    }
+
+    //    Scenario Outline: Verify color code for Status View under 999 files tab
+    @Then("the user should be able to see 999 {string} results with the {string} indication")
+    public void the_user_should_be_able_to_see_999_results_with_the_indication(String status, String colorCode999Exp) throws InterruptedException {
+        verify999StatusViewColorCoding(status, colorCode999Exp);
+    }
+
+    //    Scenario: Verify column fields in '277CA' tab
+    @When("the user clicks on the 277CA tab")
+    public void the_user_clicks_on_the_277CA_tab() throws InterruptedException {
+        clickOn277CAFilesTab();
+    }
+    @Then("user should be able to view the following column fields under 277CA Files tab")
+    public void user_should_be_able_to_view_the_following_column_fields_under_277CA_files_tab(DataTable fieldsList277CA) throws InterruptedException {
+        verifyUserAbleToSee277CAColumnFields(fieldsList277CA);
+    }
+    @Then("user should be able to view the 277CA column fields search boxes")
+    public void user_should_be_able_to_view_the_277ca_column_fields_search_boxes() {
+        verifyUserAbleToView277CAColumnFieldsSearchBoxes();
+    }
+
+    //    Scenario: Validate pagination functionality in '277CA Files' tab
+    @When("the data exceeds the defined page size under 277CA files tab")
+    public void the_data_exceeds_the_defined_page_size_under_277CA_files_tab() {
+        validateTheDataExceedsTheDefinedPageSizeUnder277CAFilesTab();
+    }
+    @Then("the user should be able to navigate through pages under 277CA files tab")
+    public void the_user_should_be_able_to_navigate_through_pages_under_277CA_files_tab() {
+        verify277CAForwardNavigationThroughPages();
+        verify277CABackwardNavigationThroughPages();
+    }
+    @Then("Page size can be defined by the User as per the given option at the bottom of the grid under 277CA files tab")
+    public void page_size_can_be_defined_by_the_user_as_per_the_given_option_at_the_bottom_of_the_grid_under_277CA_files_tab() {
+        verify277CAForwardNavigationPageSizeAtTheBottomOfTheGrid();
+        verify277CABackwardNavigationPageSizeAtTheBottomOfTheGrid();
+    }
+    @Then("the user should be able to see the page numbers as per the number of data divided by page size under 277CA files tab")
+    public void the_user_should_be_able_to_see_the_page_numbers_as_per_the_number_of_data_divided_by_page_size_under_277CA_files_tab() {
+        verify277CATotalNumberOfPagesBasedOnThePerPageRecordCount();
+    }
+
+    //    Scenario Outline: Verify color code for Status View under 277CA files tab
+    @Then("the user should be able to see 277CA {string} results with the {string} indication")
+    public void the_user_should_be_able_to_see_277CA_results_with_the_indication(String status, String colorCode277CAExp) throws InterruptedException {
+        verify277CAStatusViewColorCoding(status, colorCode277CAExp);
+    }
+
+    //    Scenario: Validate pagination functionality in '835' tab
+    @When("the user clicks on the 835 tab")
+    public void the_user_clicks_on_the_835_tab() throws InterruptedException {
+        clickOn835FilesTab();
+    }
+
+    @When("the data exceeds the defined page size under 835 files tab")
+    public void the_data_exceeds_the_defined_page_size_under_835_files_tab() {
+        validateTheDataExceedsTheDefinedPageSizeUnder835FilesTab();
+    }
+    @Then("the user should be able to navigate through pages under 835 files tab")
+    public void the_user_should_be_able_to_navigate_through_pages_under_835_files_tab() {
+        verify835ForwardNavigationThroughPages();
+        verify835BackwardNavigationThroughPages();
+    }
+    @Then("Page size can be defined by the User as per the given option at the bottom of the grid under 835 files tab")
+    public void page_size_can_be_defined_by_the_user_as_per_the_given_option_at_the_bottom_of_the_grid_under_835_files_tab() {
+        verify835ForwardNavigationPageSizeAtTheBottomOfTheGrid();
+        verify835BackwardNavigationPageSizeAtTheBottomOfTheGrid();
+    }
+    @Then("the user should be able to see the page numbers as per the number of data divided by page size under 835 files tab")
+    public void the_user_should_be_able_to_see_the_page_numbers_as_per_the_number_of_data_divided_by_page_size_under_835_files_tab() {
+        verify835TotalNumberOfPagesBasedOnThePerPageRecordCount();
+    }
+
+    //    Scenario Outline: Verify color code for Status View under 835 files tab
+    @Then("the user should be able to see 835 {string} results with the {string} indication")
+    public void the_user_should_be_able_to_see_835_results_with_the_indication(String status, String colorCode835Exp) throws InterruptedException {
+        verify835StatusViewColorCoding(status, colorCode835Exp);
+    }
+
+    //    Scenario: Verify column fields in '835' tab
+    @Then("user should be able to view the following column fields under 835 Files tab")
+    public void user_should_be_able_to_view_the_following_column_fields_under_835_files_tab(DataTable fieldsList835) throws InterruptedException {
+        verifyUserAbleToSee835ColumnFields(fieldsList835);
+    }
+    @Then("user should be able to view the 835 column fields search boxes")
+    public void user_should_be_able_to_view_the_835_column_fields_search_boxes() {
+        verifyUserAbleToView835ColumnFieldsSearchBoxes();
+    }
+
 
 }
