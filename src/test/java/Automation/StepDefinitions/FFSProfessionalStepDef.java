@@ -371,6 +371,17 @@ public class FFSProfessionalStepDef extends FFSProfessionalPage {
 
     }
 
+    //Scenario: Verify user able to view the check void information in Check Info page
+    @When("user enters Batch Id in search criteria for Check Void")
+    public void user_enters_batch_id_in_search_criteria_for_check_void() throws InterruptedException {
+        enterBatchIdForVoided();
+    }
+    @Then("user should able to see Check Type as {string} for voided batch")
+    public void user_should_able_to_see_check_type_as_for_voided_batch(String checkType) throws InterruptedException {
+        verifyCheckType(checkType);
+    }
+
+
 
 
 

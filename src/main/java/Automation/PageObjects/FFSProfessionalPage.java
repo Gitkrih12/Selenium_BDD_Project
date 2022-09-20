@@ -630,10 +630,22 @@ public class FFSProfessionalPage extends SeleniumUtils {
     }
     //Scenario: Verify user able to view the check reissue information in Check Info page
     public void verifyCheckType(String expCheckType) throws InterruptedException {
-        explicitTextToBePresentInElementLocatedWait(By.xpath(eleCheckType), 10, "ReIssue");
+        if(expCheckType.contains("ReIssue")){
+            explicitTextToBePresentInElementLocatedWait(By.xpath(eleCheckType), 10, "ReIssue");
+        }else{
+            explicitTextToBePresentInElementLocatedWait(By.xpath(eleCheckType), 10, "Void");
+        }
         String actCheckType=findElementByXpath(eleCheckType).getText();
         System.out.println("Check Type is :"+actCheckType);
         Assert.assertEquals(expCheckType, actCheckType);
+    }
+
+    public void enterBatchIdForVoided() throws InterruptedException {
+        expBatchID = prop.getProperty("ffsProfessionalBatchIDForVoid");
+        threadSleep(3000);
+        findElementAndSendKeys(findElementByXpath(txtBatchID), expBatchID);
+        threadSleep(1000);
+        sendKeysUsingKeyboardInput(txtBatchID);
     }
 
 

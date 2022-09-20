@@ -261,6 +261,16 @@ Feature: FFS Professional
     And user clicks on the Check Info tab
     Then user should able to see Check Type as "ReIssue"
 
+  @TC_67328
+  Scenario: Verify user able to view the check void information in Check Info page
+    When user clicks on FFS Professional in left navigation menu
+    Then the user should navigate to the FFS Professional page
+    When user clicks on Paid bucket
+    And user enters Batch Id in search criteria for Check Void
+    And user clicks on Batch Id
+    And user clicks on the Check Info tab
+    Then user should able to see Check Type as "Void" for voided batch
+
 
 
 
