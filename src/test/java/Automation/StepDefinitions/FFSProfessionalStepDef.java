@@ -297,6 +297,82 @@ public class FFSProfessionalStepDef extends FFSProfessionalPage {
         verifyVerticalColorIndicationForUncleanPreBatchClaim(colorCode);
     }
 
+    //Scenario: Verify all tabs should display when clicking on Batch ID under Paid tab in FFS Professional page
+    @When("user clicks on Paid bucket")
+    public void user_clicks_on_paid_bucket() {
+        clickOnPaidBucket();
+    }
+    @When("user enters Batch Id in search criteria")
+    public void user_enters_batch_id_in_search_criteria() throws InterruptedException {
+        enterBatchId();
+    }
+
+    @When("user clicks on Batch Id")
+    public void user_clicks_on_batch_id() throws InterruptedException {
+        clickOnBatchId();
+    }
+    @Then("user views Claim List tab by default should be {string}")
+    public void user_views_claim_list_tab_by_default_should_be(String state) throws InterruptedException {
+        verifyClaimListByDefault(state);
+    }
+
+    @Then("user should be able to see below tabs")
+    public void user_should_be_able_to_see_below_tabs(DataTable tabList) throws InterruptedException {
+        verifyTabsInBatchIDInFFSProfessional(tabList);
+    }
+
+    //Scenario: Verify by default user navigates to the View Claims List page
+    @Then("by default user navigates to the Claim List page")
+    public void by_default_user_navigates_to_the_claim_list_page() {
+
+    }
+    @Then("displays all the list of claims for that Batch ID")
+    public void displays_all_the_list_of_claims_for_that_batch_id() throws InterruptedException {
+        verifyClaimsCount();
+    }
+    @Then("user should able to see {string}")
+    public void user_should_able_to_see(String claimListLabel) {
+        verifyClaimListInTheSelectedBatchLabel(claimListLabel);
+
+    }
+
+    //Scenario: Verify user should navigates to the Provider List page on clicking Provider List tab
+    @When("user clicks on the Provider List tab")
+    public void user_clicks_on_the_provider_list_tab() {
+        clickOnProviderList();
+    }
+    @When("displays all the list of provider list for that Batch ID")
+    public void displays_all_the_list_of_provider_list_for_that_batch_id() throws InterruptedException {
+        verifyProviderCount();
+    }
+    @When("user should be able to see {string} label in Provider List screen")
+    public void user_should_be_able_to_see_label_in_provider_list_screen(String providerListLabel) {
+        verifyProviderListInTheSelectedBatchLabel(providerListLabel);
+    }
+
+    //Scenario: Verify user should navigates to the Check Info page on clicking Check Info tab
+    @When("user clicks on the Check Info tab")
+    public void user_clicks_on_the_check_info_tab() {
+        clickOnCheckInfoList();
+    }
+    @When("displays all the list of Check Info for that Batch ID")
+    public void displays_all_the_list_of_check_info_for_that_batch_id() throws InterruptedException {
+        verifyCheckInfoCount();
+    }
+    @When("user should be able to see {string} label in Check Info screen")
+    public void user_should_be_able_to_see_label_in_check_info_screen(String checkInfoLabel) {
+        verifyCheckInfoLabel(checkInfoLabel);
+    }
+
+    //Scenario: Verify user able to view the check reissue information in Check Info page
+    @Then("user should able to see Check Type as {string}")
+    public void user_should_able_to_see_check_type_as(String checkType) throws InterruptedException {
+        verifyCheckType(checkType);
+
+    }
+
+
+
 
 
 }

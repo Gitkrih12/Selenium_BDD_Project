@@ -2,6 +2,7 @@ package Automation.PageObjects;
 
 import Automation.Utilities.SeleniumUtils;
 import io.cucumber.datatable.DataTable;
+import net.bytebuddy.pool.TypePool;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -63,6 +64,23 @@ public class FFSProfessionalPage extends SeleniumUtils {
     String btnNextPage = "//*[@id='onHoldGrid']//span[@class='ag-icon ag-icon-next']";
     String btnPreviousPage = "//*[@id='onHoldGrid']//span[@class='ag-icon ag-icon-previous']";
     String txtSearchFields = "//ag-grid-angular[@id='pendGrid']//div[@class='ag-header-cell-label']//span[text()]//following::div[1]//input[@type='text']";
+    String tabPaid = "//button[@id='nav-paid-details-tab']";
+    String lstTabsInBatchID= "//div[@id='nav-tab']//button";
+    String txtBatchID= "(//input[@aria-label='Batch ID Filter Input'])[5]";
+    String eleBatchID= "//*[@id='paidGrid']//div[@col-id='batchCode']//a";
+    String tabClaimListState = "(//button[@class='nav-link active'])[1]";
+    String lstClaimList = "//div[@col-id='claimNumber']//a";
+    String tabClaimList = "//button[@id='nav-view-claim-list-details-tab']";
+    String eleClaimListInTheSelectedBatch = "//span[contains(text(),'Claim List in the Selected Batch')]";
+    String tabProviderList = "//button[@id='nav-provider-list-details-tab']";
+    String lstProviderList = "//div[@col-id='renderingProviderNPI']//div//span[@class='ag-cell-value']";
+    String eleProviderListInTheSelectedBatch = "//span[contains(text(),'Providers in the Selected Batch')]";
+    String tabCheckInfo = "//button[@id='nav-check-info-details-tab']";
+    String lstCheckInfo = "//div[@col-id='checkType']//div//span[@class='ag-cell-value']";
+    String eleCheckInformation = "//span[contains(text(),'Check Information')]";
+    String eleCheckType = "(//div[@col-id='checkType']//div//span[@class='ag-cell-value'])[1]";
+
+
 
 
 
@@ -72,6 +90,7 @@ public class FFSProfessionalPage extends SeleniumUtils {
     private static int totalRecords = 0;
     private static int pageNumber = 0;
     private static int pageNumberNextNavigation = 0;
+    private static String expBatchID ="";
 
 
     //Scenario: Verify user should navigates to FFS Professional screen
@@ -499,5 +518,139 @@ public class FFSProfessionalPage extends SeleniumUtils {
             Assert.assertTrue(value);
         }
     }
+
+    //Scenario: Verify all tabs should display when clicking on Batch ID under Paid tab in FFS Professional page
+    public void  clickOnPaidBucket(){
+        clickElement(tabPaid);
+    }
+    public void enterBatchId() throws InterruptedException {
+        expBatchID = prop.getProperty("ffsProfessionalBatchID");
+        threadSleep(3000);
+        findElementAndSendKeys(findElementByXpath(txtBatchID), expBatchID);
+        threadSleep(1000);
+        sendKeysUsingKeyboardInput(txtBatchID);
+    }
+
+    public void clickOnBatchId() throws InterruptedException {
+        threadSleep(3000);
+        clickElement(eleBatchID);
+    }
+
+    public void verifyTabsInBatchIDInFFSProfessional(DataTable tabList) throws InterruptedException{
+        threadSleep(5000);
+        List<String> expTabList = tabList.asList();
+        List<WebElement> actTabFields = findElementsByXpath(lstTabsInBatchID);
+        List<String> actualQueueFieldsForCompare = new ArrayList<>();
+        for (WebElement column : actTabFields) {
+            threadSleep(1000);
+            String text = column.getText();
+            String[] queueData=text.split(" ");
+            if(queueData.length==1 ||queueData.length==2) {
+                actualQueueFieldsForCompare.add(queueData[0]);
+            }else if(queueData.length==3){
+                actualQueueFieldsForCompare.add(queueData[0]+" "+queueData[1]);
+            }else if(queueData.length==4){
+                actualQueueFieldsForCompare.add(queueData[0]+" "+queueData[1]+" "+queueData[2]);
+            }
+        }
+        System.out.println("actual queue fields " + actualQueueFieldsForCompare);
+        System.out.println("expected queue fields " + expTabList);
+        for (String expQueue : expTabList) {
+            if (actualQueueFieldsForCompare.contains(expQueue)) {
+                Assert.assertTrue(true);
+            } else {
+                Assert.fail(expQueue + " queue is not as expected");
+            }
+        }
+
+    }
+
+    //Scenario: Verify by default user navigates to the View Claims List page
+    public void verifyClaimListByDefault(String expState) throws InterruptedException{
+        String actState=findElementByXpath(tabClaimListState).getAttribute("class");
+        if(actState.contains(expState)){
+            Assert.assertTrue(true);
+        }else{
+            Assert.assertTrue(false);
+        }
+    }
+
+    public void verifyClaimsCount() throws InterruptedException {
+        explicitTextToBePresentInElementLocatedWait(By.xpath(tabClaimList), 15, "Claims List");
+        validateRowCountInBatchIDTabs(tabClaimList,lstClaimList);
+    }
+
+    public void verifyClaimListInTheSelectedBatchLabel(String expClaimListLabel){
+        String actClaimListLabel=findElementByXpath(eleClaimListInTheSelectedBatch).getText();
+        if(actClaimListLabel.contains(expClaimListLabel)){
+            Assert.assertTrue(true);
+        }else{
+            Assert.assertTrue(false);
+        }
+
+    }
+
+    //Scenario: Verify user should navigates to the Provider List page on clicking Provider List tab
+    public void clickOnProviderList(){
+        clickElement(tabProviderList);
+    }
+
+    public void verifyProviderCount() throws InterruptedException {
+        explicitTextToBePresentInElementLocatedWait(By.xpath(tabProviderList), 10, "Provider List");
+        validateRowCountInBatchIDTabs(tabProviderList,lstProviderList);
+    }
+
+    public void verifyProviderListInTheSelectedBatchLabel(String expClaimListLabel){
+        String actProviderListLabel=findElementByXpath(eleProviderListInTheSelectedBatch).getText();
+        if(actProviderListLabel.contains(expClaimListLabel)){
+            Assert.assertTrue(true);
+        }else{
+            Assert.assertTrue(false);
+        }
+
+    }
+
+    //Scenario: Verify user should navigates to the Check Info page on clicking Check Info tab
+    public void clickOnCheckInfoList(){
+        explicitTextToBePresentInElementLocatedWait(By.xpath(tabCheckInfo), 10, "Check Info");
+        clickElement(tabCheckInfo);
+    }
+    public void verifyCheckInfoCount() throws InterruptedException {
+        validateRowCountInBatchIDTabs(tabCheckInfo,lstCheckInfo);
+    }
+
+    public void verifyCheckInfoLabel(String expClaimListLabel){
+        String actProviderListLabel=findElementByXpath(eleCheckInformation).getText();
+        if(actProviderListLabel.contains(expClaimListLabel)){
+            Assert.assertTrue(true);
+        }else{
+            Assert.assertTrue(false);
+        }
+
+    }
+    //Scenario: Verify user able to view the check reissue information in Check Info page
+    public void verifyCheckType(String expCheckType) throws InterruptedException {
+        explicitTextToBePresentInElementLocatedWait(By.xpath(eleCheckType), 10, "ReIssue");
+        String actCheckType=findElementByXpath(eleCheckType).getText();
+        System.out.println("Check Type is :"+actCheckType);
+        Assert.assertEquals(expCheckType, actCheckType);
+    }
+
+
+    //Generic method to get the Row count next to the tabs
+    public void validateRowCountInBatchIDTabs(String fileTabXpath, String lstRecordsXpath) throws InterruptedException {
+        String recordsBarText = explicitElementClickableWaitByXpath(fileTabXpath, 5).getText();
+        String expRowCount = recordsBarText.substring(recordsBarText.indexOf("(") + 1, recordsBarText.indexOf(")"));
+        System.out.println("Expected row count is: " + expRowCount);
+        threadSleep(2000);
+        List<WebElement> expTabFields = findElementsByXpath(lstRecordsXpath);
+        int actRecordCount=expTabFields.size();
+        System.out.println("Actual row count is: " + actRecordCount);
+        Assert.assertEquals(Integer.parseInt(expRowCount), actRecordCount);
+    }
+
+
+
+
 
 }
