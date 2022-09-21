@@ -36,7 +36,7 @@ public class ClaimDetailsPage extends SeleniumUtils {
             "/div[1]/div | //*[@id='nav-claim-details']/div[12]/div[1]/div";
     String payerFields = "//*[@id='nav-claim-details']/div[13]/div[1]/div | //*[@id='nav-claim-details']/div[14]/div[1]/div";
     String dateOfServiceFields = "//*[@id='nav-claim-details']/div[15]/div[1]/div[1]/div";
-    String isPatientConditionRelatedToField = "//*[@id='nav-claim-details']/div[15]/div[2]/div/div/b";
+    String isPatientConditionRelatedToField = "//*[@id='nav-claim-details']/div[15]/div[2]//div/b";
     String lnkShowOption = "//*[contains(text(), '(Show)')]";
     String eleClaimNumber = "(//*[contains(text(), 'Claim Number')])[1]";
     String checkboxFields = "//*[@id='nav-claim-details']/div[15]/div[2]//input";
@@ -63,7 +63,7 @@ public class ClaimDetailsPage extends SeleniumUtils {
     }
 
     public void userClicksOnClaimNumber() throws InterruptedException {
-        explicitElementClickableWaitByXpath(lnkClaimNumber, 30);
+        explicitElementClickableWaitByXpath(lnkClaimNumber, 50);
         clickElement(lnkClaimNumber);
     }
 
@@ -79,12 +79,12 @@ public class ClaimDetailsPage extends SeleniumUtils {
 
     //  Scenario: Verify View Claim in CMS 1500 and Self Assign buttons in Claim Summary details page
     public void userViewsCMSButton(String expViewClaimValue) {
-        explicitVisibilityOfWait(findElementByXpath(btnViewClaim), 20);
+        explicitVisibilityOfWait(findElementByXpath(btnViewClaim), 30);
         Assert.assertEquals(expViewClaimValue, findElementByXpath(btnViewClaim).getText());
     }
 
     public void userViewsSelfAssignButton(String expSelfAssignValue) {
-        explicitVisibilityOfWait(findElementByXpath(btnSelfAssign), 20);
+        explicitVisibilityOfWait(findElementByXpath(btnSelfAssign), 30);
         Assert.assertEquals(expSelfAssignValue, findElementByXpath(btnSelfAssign).getText());
     }
 
@@ -96,6 +96,7 @@ public class ClaimDetailsPage extends SeleniumUtils {
         findElementAndSendKeys(findElementByXpath(txtUniversalSearchBar), expClaimNumber);
         threadSleep(1000);
         sendKeysUsingKeyboardInput(txtUniversalSearchBar);
+        threadSleep(2000);
     }
 
     public void userViewsAllColumnFieldsInClaimSummaryDetails(DataTable columnList) {
