@@ -30,3 +30,33 @@ Feature: Check Register
     When user clicks on Check Register under Check Management
     And user select value from Billing Provider dropdown field
     Then user able to view the result for the search criteria
+
+  @60703
+  Scenario: Verify user should get result on selecting value from Facility drop down field
+    When user clicks on Check Register under Check Management
+    And user select value from Facility dropdown field
+    Then user able to view the result for the facility dropdown search criteria
+
+  @60710
+  Scenario: Verify user should get result on selecting dates from Created Date From and To fields
+    When user clicks on Check Register under Check Management
+    And user select dates from Created Date From and To dropdown field
+    Then user able to view the result for the Created Date dropdown search criteria
+
+  @60711
+  Scenario: Verify user should get result on selecting dates from the Date of Service From and To values
+    When user clicks on Check Register under Check Management
+    And user select dates from Date of Service From and To dropdown field
+    Then user able to view the result for the Date of Service dropdown search criteria
+
+  @60713
+  Scenario: Verify user should get result on selecting value from State drop down field
+    When user clicks on Check Register under Check Management
+    And user select value from State dropdown field
+    Then user able to view the result for the State dropdown search criteria
+
+  @67635
+  Scenario: Verify user should get result on selecting value from Place of Service drop down field
+    When user clicks on Check Register under Check Management
+    And user select value from Place of Service dropdown field
+    Then user able to view the result for the Place of Service dropdown search criteria

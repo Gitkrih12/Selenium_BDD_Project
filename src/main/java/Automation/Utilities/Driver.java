@@ -87,8 +87,8 @@ public class Driver {
     private WebDriver setChromeDriverLocal() throws AWTException
     {
         ChromeOptions options = new ChromeOptions();
-        options.addArguments("--incognito");
-        options.addArguments("--headless");
+//        options.addArguments("--incognito");
+//        options.addArguments("--headless");
         options.addArguments("window-size=1920,1080");
         options.addArguments("--disable-features=VizDisplayCompositor");
         options.addArguments("disable-infobars");
