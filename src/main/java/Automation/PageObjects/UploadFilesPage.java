@@ -27,6 +27,8 @@ public class UploadFilesPage extends SeleniumUtils {
     String lstFileUploadColumnFields = "//div[contains(text(),'Total File')]|//tr/th[node()]";
     String btnCancel = "//button[contains(text(),'Cancel')]";
 
+    static String basePath;
+
     //    Scenario: Verify user navigates to Upload files section on clicking Upload Files in Left Navigation Menu
     public void clickOnUploadFiles() {
         clickElement(mnuFileManagement);
@@ -37,19 +39,19 @@ public class UploadFilesPage extends SeleniumUtils {
         explicitVisibilityOfElementLocatedWaitByXpath(tabUploadFiles, 10).click();
         String[] uploadFilesTitleText = getText(tabUploadFiles).split(" ");
         String uploadFilesTitleAct = uploadFilesTitleText[0] + " " + uploadFilesTitleText[1];
-        System.out.println("Upload files actual title is: " + uploadFilesTitleAct);
+        System.out.println(ANSI_GREEN + "Upload files actual title is: " + uploadFilesTitleAct + ANSI_RESET);
         Assert.assertEquals(uploadFilesTitleExp, uploadFilesTitleAct);
     }
 
     public void verifyUserNavigatedToUploadFilesScreen() {
         String uploadFilesAct = explicitVisibilityOfElementLocatedWaitByXpath(lblUploadFiles, 5).getText();
-        System.out.println("Actual message is: " + uploadFilesAct);
+        System.out.println(ANSI_GREEN + "Actual message is: " + uploadFilesAct + ANSI_RESET);
         Assert.assertEquals(uploadFilesExp, uploadFilesAct);
     }
 
     //    Scenario: Verify user should see Drag Files Here (or) Choose File option and able to upload file
     public void verifyUserAbleToChoose837FilesFromSystem() throws InterruptedException, AWTException {
-        String basePath = System.getProperty("user.dir");
+        basePath = System.getProperty("user.dir");
         String filePath = basePath + prop.getProperty("uploadFilePath1");
         uploadFileWithJavaScriptAndSendKeys(txtFileUpload, filePath);
         boolean uploadFileStatus = explicitVisibilityOfElementLocatedWaitByXpath(btnUploadFile, 10).isDisplayed();
@@ -58,8 +60,6 @@ public class UploadFilesPage extends SeleniumUtils {
 
     //    Scenario: Verify Total File Selected section
     public void verifyUserAbleToChooseMultiple837FilesFromSystem() throws InterruptedException, AWTException {
-        String basePath = System.getProperty("user.dir");
-
         String filePath1 = basePath + prop.getProperty("uploadFilePath1");
         uploadFileWithJavaScriptAndSendKeys(txtFileUpload, filePath1);
         explicitVisibilityOfElementLocatedWaitByXpath(btnUploadFile, 10);
@@ -75,7 +75,7 @@ public class UploadFilesPage extends SeleniumUtils {
         List<WebElement> fileRecords = findElementsByXpath(tblFileList);
         int fileRecordsSizeAct = fileRecords.size();
         int fileRecordsSizeExp = 2;
-        System.out.println("Actual File records size: " + fileRecords.size());
+        System.out.println(ANSI_GREEN + "Actual File records size: " + fileRecords.size() + ANSI_RESET);
         Assert.assertEquals(fileRecordsSizeExp, fileRecordsSizeAct);
     }
 
@@ -90,18 +90,17 @@ public class UploadFilesPage extends SeleniumUtils {
         String date = subtractDaysFromCurrentDateAndGetPastDate("MM/dd/yyyy", 10);
         findElementAndSendKeys(findElementByXpath(txtPlanReceivedDate), date);
         String text = getAttribute(txtPlanReceivedDate, "ng-reflect-model");
-        System.out.println("UI plan received date is: " + text);
+        System.out.println(ANSI_GREEN + "UI plan received date is: " + text + ANSI_RESET);
     }
     public void clickOnUploadFileButton() {
         explicitVisibilityOfElementLocatedWaitByXpath(btnUploadFile, 5).click();
         String fileUploadToasterMessageAct = explicitVisibilityOfElementLocatedWaitByXpath(msgFileUploadToaster, 10).getText();
-        System.out.println("File upload actual message is: " + fileUploadToasterMessageAct);
+        System.out.println(ANSI_GREEN + "File upload actual message is: " + fileUploadToasterMessageAct + ANSI_RESET);
         Assert.assertEquals(fileUploadSuccessfulMessageExp, fileUploadToasterMessageAct);
     }
 
     //    Scenario: Verify Invalid Payer ID File message Identified by system in red color
     public void verifyUserAbleToChooseInvalid837FilesFromSystem() throws InterruptedException, AWTException {
-        String basePath = System.getProperty("user.dir");
         String filePath = basePath + prop.getProperty("invalidPayerIdFilePath");
         uploadFileWithJavaScriptAndSendKeys(txtFileUpload, filePath);
         boolean uploadFileStatus = explicitVisibilityOfElementLocatedWaitByXpath(btnUploadFile, 10).isDisplayed();
@@ -112,7 +111,7 @@ public class UploadFilesPage extends SeleniumUtils {
     }
     public void validateInvalidPayerIdMessage() {
         String fileUploadInvalidMessageAct = explicitVisibilityOfElementLocatedWaitByXpath(msgFileUploadToaster, 10).getText();
-        System.out.println("Invalid payer id file upload actual message is: " + fileUploadInvalidMessageAct);
+        System.out.println(ANSI_GREEN + "Invalid payer id file upload actual message is: " + fileUploadInvalidMessageAct + ANSI_RESET);
         Assert.assertEquals(fileUploadInvalidMessageExp, fileUploadInvalidMessageAct);
     }
 
@@ -121,10 +120,10 @@ public class UploadFilesPage extends SeleniumUtils {
         List<String> fileUploadColumnFieldsExp = fileUploadColumnFields.asList();
         List<String> fileUploadColumnFieldsAct = findElementsByXpath(lstFileUploadColumnFields)
                 .stream().map(element -> element.getText().trim()).toList();
-        System.out.println("File Upload column fields actual size: " + fileUploadColumnFieldsAct.size());
-        System.out.println("File Upload column fields expected size: " + fileUploadColumnFieldsExp.size());
-        System.out.println("File Upload actual column fields are: " + fileUploadColumnFieldsAct);
-        System.out.println("File Upload expected column fields are: " + fileUploadColumnFieldsExp);
+        System.out.println(ANSI_GREEN + "File Upload column fields actual size: " + fileUploadColumnFieldsAct.size() + ANSI_RESET);
+        System.out.println(ANSI_GREEN + "File Upload column fields expected size: " + fileUploadColumnFieldsExp.size() + ANSI_RESET);
+        System.out.println(ANSI_GREEN + "File Upload actual column fields are: " + fileUploadColumnFieldsAct + ANSI_RESET);
+        System.out.println(ANSI_GREEN + "File Upload expected column fields are: " + fileUploadColumnFieldsExp + ANSI_RESET);
         Assert.assertEquals(fileUploadColumnFieldsExp, fileUploadColumnFieldsAct);
     }
 
@@ -133,8 +132,8 @@ public class UploadFilesPage extends SeleniumUtils {
         String currentDate = explicitVisibilityOfElementLocatedWaitByXpath(txtPlanReceivedDate, 10).getAttribute("max");
         String currentDateAct = convertDateFromOneFormatToAnother("yyyy-MM-dd", "MM/dd/yyyy", currentDate);
         String currentDateExp = getCurrentDate("MM/dd/yyyy");
-        System.out.println("UI actual current date is: " + currentDateAct);
-        System.out.println("UI expected current date is: " + currentDateExp);
+        System.out.println(ANSI_GREEN + "UI actual current date is: " + currentDateAct + ANSI_RESET);
+        System.out.println(ANSI_GREEN + "UI expected current date is: " + currentDateExp + ANSI_RESET);
         Assert.assertEquals(currentDateExp, currentDateAct);
     }
 
@@ -147,8 +146,8 @@ public class UploadFilesPage extends SeleniumUtils {
         String pastDate = findElementByXpath(txtPlanReceivedDate).getAttribute("ng-reflect-model");
         String pastDate1 = pastDate.substring(4, 15);
         String pastDateAct = convertDateFromOneFormatToAnother("MMM dd yyyy", "MM/dd/yyyy", pastDate1);
-        System.out.println("UI actual past date is: " + pastDateAct);
-        System.out.println("UI expected past date is: " + pastDateExp);
+        System.out.println(ANSI_GREEN + "UI actual past date is: " + pastDateAct + ANSI_RESET);
+        System.out.println(ANSI_GREEN + "UI expected past date is: " + pastDateExp + ANSI_RESET);
         Assert.assertEquals(pastDateExp, pastDateAct);
     }
 
@@ -157,7 +156,7 @@ public class UploadFilesPage extends SeleniumUtils {
     {
         clickElement(btnDelete);
         boolean deleteStatus = isDisplayed(btnDelete);
-        System.out.println("Delete button status is: " + deleteStatus);
+        System.out.println(ANSI_GREEN + "Delete button status is: " + deleteStatus + ANSI_RESET);
         Assert.assertFalse(deleteStatus);
     }
 
@@ -166,7 +165,7 @@ public class UploadFilesPage extends SeleniumUtils {
     {
         clickElement(btnCancel);
         boolean cancelStatus = isDisplayed(btnCancel);
-        System.out.println("Cancel button status is: " + cancelStatus);
+        System.out.println(ANSI_GREEN + "Cancel button status is: " + cancelStatus + ANSI_RESET);
         Assert.assertFalse(cancelStatus);
     }
 

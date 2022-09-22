@@ -108,7 +108,7 @@ public class LoginPage extends SeleniumUtils {
         explicitVisibilityOfElementLocatedWaitByXpath(txtUsername, 30).sendKeys(prop.getProperty("dsnpAdjUsername"));
         explicitVisibilityOfElementLocatedWaitByXpath(txtPassword, 10).sendKeys(prop.getProperty("dsnpAdjPassword"));
         explicitElementClickableWaitByXpath(btnLogin, 10).click();
-        username = explicitElementClickableWaitByID(lnkUsername, 30).getText();
+        username = explicitElementClickableWaitByID(lnkUsername, 60).getText();
         System.out.println("User logged in as : " + username);
     }
 
@@ -156,7 +156,7 @@ public class LoginPage extends SeleniumUtils {
     }
 
     public void userLoginTextForAdmin() {
-        WebElement element = explicitElementClickableWaitByID(lnkUsername, 30);
+        WebElement element = explicitElementClickableWaitByID(lnkUsername, 60);
         adminUsername = element.getText();
         System.out.println("User logged in as : " + adminUsername);
     }
@@ -212,7 +212,7 @@ public class LoginPage extends SeleniumUtils {
         explicitVisibilityOfElementLocatedWaitByXpath(txtUsername, 30).sendKeys(prop.getProperty("nonDsnpAdjUsername"));
         explicitVisibilityOfElementLocatedWaitByXpath(txtPassword, 10).sendKeys(prop.getProperty("nonDsnpAdjPassword"));
         explicitElementClickableWaitByXpath(btnLogin, 10).click();
-        nonDsnpAdjUsername = explicitElementClickableWaitByID(lnkUsername, 30).getText();
+        nonDsnpAdjUsername = explicitElementClickableWaitByID(lnkUsername, 60).getText();
         System.out.println("User logged in as : " + nonDsnpAdjUsername);
 
     }
@@ -227,7 +227,7 @@ public class LoginPage extends SeleniumUtils {
         explicitVisibilityOfElementLocatedWaitByXpath(txtUsername, 30).sendKeys(prop.getProperty("nonDsnpAdminUsername"));
         explicitVisibilityOfElementLocatedWaitByXpath(txtPassword, 10).sendKeys(prop.getProperty("nonDsnpAdminPassword"));
         explicitElementClickableWaitByXpath(btnLogin, 10).click();
-        nonDsnpAdminUsername = explicitElementClickableWaitByID(lnkUsername, 30).getText();
+        nonDsnpAdminUsername = explicitElementClickableWaitByID(lnkUsername, 60).getText();
         System.out.println("User logged in as : " + nonDsnpAdminUsername);
     }
 
