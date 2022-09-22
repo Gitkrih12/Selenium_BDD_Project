@@ -111,7 +111,7 @@ public class FFSInstitutionalStepDef extends FFSInstitutionalPage {
     //Scenario: Verify user able to navigate to claim summary screen only once when performed multiple clicks on Claim number
     @When("user searches for claim number in pend bucket in FFS Institutional")
     public void user_searches_for_claim_number_in_pend_bucket_in_ffs_institutional() throws InterruptedException {
-        enterClaimNumberInPendCFFSInstitutionalSearchField();
+        enterClaimNumberInPendFFSInstitutionalSearchField();
     }
     @When("user clicks on the same claim number again in pend bucket in FFS Institutional")
     public void user_clicks_on_the_same_claim_number_again_in_pend_bucket_in_ffs_institutional() throws InterruptedException {
@@ -201,7 +201,6 @@ public class FFSInstitutionalStepDef extends FFSInstitutionalPage {
         clickOnPayerReviewBucket();
     }
 
-    //Scenario: Verify colour coding for Unclean status claims under Payer Review bucket in FFS Institutional page
     @When("user enters Unclean status claim in search criteria in Payer Review bucket in FFS Institutional")
     public void user_enters_unclean_status_claim_in_search_criteria_in_payer_review_bucket_in_ffs_institutional() throws InterruptedException {
         enterUnCleanStatusPayerReviewClaimNumber();

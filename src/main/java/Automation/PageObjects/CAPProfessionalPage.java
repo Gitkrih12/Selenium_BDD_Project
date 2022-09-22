@@ -214,6 +214,7 @@ public class CAPProfessionalPage extends SeleniumUtils {
 
     //Scenario: Verify user able to navigate to claim summary screen on clicking claim number
     public void clickOnCAPProfessionalClaim() throws InterruptedException {
+        threadSleep(5000);
         clickElement(eleClaimNumber);
     }
 
