@@ -27,7 +27,9 @@ public class UploadFilesPage extends SeleniumUtils {
     String lstFileUploadColumnFields = "//div[contains(text(),'Total File')]|//tr/th[node()]";
     String btnCancel = "//button[contains(text(),'Cancel')]";
 
-    static String basePath;
+    private static String basePath;
+    private String futurePlanReceivedDateAct;
+
 
     //    Scenario: Verify user navigates to Upload files section on clicking Upload Files in Left Navigation Menu
     public void clickOnUploadFiles() {
@@ -167,6 +169,21 @@ public class UploadFilesPage extends SeleniumUtils {
         boolean cancelStatus = isDisplayed(btnCancel);
         System.out.println(ANSI_GREEN + "Cancel button status is: " + cancelStatus + ANSI_RESET);
         Assert.assertFalse(cancelStatus);
+    }
+
+    //    Scenario: verify user should NOT be able to upload any file with future date
+    public void enterFuturePlanReceivedDateOnFileUploadPage() throws Exception {
+        String futureDate = addDaysToCurrentDateAndGetFutureDate("MM/dd/yyyy", 10);
+        clearUsingKeyClass(txtPlanReceivedDate);
+        findElementByXpath(txtPlanReceivedDate).sendKeys(futureDate);
+        clickElement(btnUploadFile);
+        futurePlanReceivedDateAct = getText(msgFileUploadToaster);
+        printStatementInGreenColor("Future plan received date error message actual", futurePlanReceivedDateAct);
+    }
+    public void verifyUserShouldNotBeAbleToUploadFilesWithFuturePlanReceivedDate(String futurePlanReceivedDateExp)
+    {
+        printStatementInGreenColor("Future plan received date error message expected", futurePlanReceivedDateExp);
+        Assert.assertEquals(futurePlanReceivedDateExp, futurePlanReceivedDateAct);
     }
 
 }

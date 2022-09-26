@@ -55,30 +55,39 @@ Feature: Upload Files
     When user should navigate to Upload files screen successfully
     Then the user should be able to choose 837 file or files from the system
     Then user should be able to see following fields on file upload page
-    | Total File |
-    |  File Name |
-    |  Plan Received Date |
+      | Total File         |
+      | File Name          |
+      | Plan Received Date |
 
-    @56666
-    Scenario: Verify Plan Received Date field in total File Selected section
-      When user click on Upload files in left navigation menu
-      Given the user is on the "Upload Files" tab
-      When user should navigate to Upload files screen successfully
-      Then the user should be able to choose 837 file or files from the system
-      Then the user should be able to enter Plan Received date on or before today's date
+  @56666
+  Scenario: Verify Plan Received Date field in total File Selected section
+    When user click on Upload files in left navigation menu
+    Given the user is on the "Upload Files" tab
+    When user should navigate to Upload files screen successfully
+    Then the user should be able to choose 837 file or files from the system
+    Then the user should be able to enter Plan Received date on or before today's date
 
-    @67749
-    Scenario: verify user able to delete the selected file on file upload page
-      When user click on Upload files in left navigation menu
-      Given the user is on the "Upload Files" tab
-      When user should navigate to Upload files screen successfully
-      Then the user should be able to choose 837 file or files from the system
-      And user should be able to delete the selected file from the file upload page
+  @67749
+  Scenario: verify user able to delete the selected file on file upload page
+    When user click on Upload files in left navigation menu
+    Given the user is on the "Upload Files" tab
+    When user should navigate to Upload files screen successfully
+    Then the user should be able to choose 837 file or files from the system
+    And user should be able to delete the selected file from the file upload page
 
-    @67755
-    Scenario: verify user able to cancel the selected files on file upload page
-      When user click on Upload files in left navigation menu
-      Given the user is on the "Upload Files" tab
-      When user should navigate to Upload files screen successfully
-      Then the user should be able to choose multiple 837 files from the system
-      Then user should be able to cancel all the selected files on files upload page
+  @67755
+  Scenario: verify user able to cancel the selected files on file upload page
+    When user click on Upload files in left navigation menu
+    Given the user is on the "Upload Files" tab
+    When user should navigate to Upload files screen successfully
+    Then the user should be able to choose multiple 837 files from the system
+    Then user should be able to cancel all the selected files on files upload page
+
+  @68541 @Sanity
+  Scenario: verify user should NOT be able to upload any file with future date
+    When user click on Upload files in left navigation menu
+    Given the user is on the "Upload Files" tab
+    When user should navigate to Upload files screen successfully
+    Then the user should be able to choose 837 file or files from the system
+    Then the user enters future plan received date on file upload page
+    Then user should be able to view "Plan received date should not be greater than to today's date" error message

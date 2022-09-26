@@ -95,4 +95,14 @@ public class UploadFilesStepDef extends UploadFilesPage {
         verifyUserAbleToCancelSelectedFilesOnUploadFilesPage();
     }
 
+    //    Scenario: verify user should NOT be able to upload any file with future date
+    @Then("the user enters future plan received date on file upload page")
+    public void the_user_enters_future_plan_received_date_on_file_upload_page() throws Exception {
+        enterFuturePlanReceivedDateOnFileUploadPage();
+    }
+    @Then("user should be able to view {string} error message")
+    public void user_should_be_able_to_view_error_message(String futurePlanReceivedDateExp) {
+        verifyUserShouldNotBeAbleToUploadFilesWithFuturePlanReceivedDate(futurePlanReceivedDateExp);
+    }
+
 }

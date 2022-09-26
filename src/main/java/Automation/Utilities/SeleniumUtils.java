@@ -1469,6 +1469,18 @@ public class SeleniumUtils extends Driver {
             Assert.fail("File not deleted " + filePath + "|Error - " + e);
         }
     }
+
+    public void printStatementInGreenColor(String text, String result)
+    {
+        try
+        {
+            System.out.println(ANSI_GREEN + text + ": " + result + ANSI_RESET);
+        }catch (Exception e)
+        {
+            Assert.fail("Unable to print statement in required color");
+        }
+    }
+
     // ****************** End of Generic methods  *********************//
 
 
