@@ -11,9 +11,9 @@ import java.util.stream.Collectors;
 
 public class ARTransactionPage extends SeleniumUtils {
 
-    String tabArTransaction = "//button[@id = 'nav-artranscation-tab']";
+    String tabArTransaction = "//*[@id = 'nav-artranscation-tab']";
     String lstArTransaction = "//app-ar-transactionview//*[@id = 'resultsGrid']//span[@ref='eText']";
-    String btnFooterSection = "//*[@class='button-padding-left footer']//button";
+    String btnFooterSection = "//*[@class='footer footer-flex']//button";
 
 
     //  Scenario: Verify user able to Navigate to the A/R Transaction tab from Global Search
@@ -55,6 +55,6 @@ public class ARTransactionPage extends SeleniumUtils {
         System.out.println("Size " + ActFields.size());
         System.out.println("Footer fields should display:" + ActFields);
         System.out.println("Expected fields are: " + fieldsExp);
-        Assert.assertEquals(ActFields, fieldsExp);
+        Assert.assertEquals(fieldsExp, ActFields);
     }
 }
