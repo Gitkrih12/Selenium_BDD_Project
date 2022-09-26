@@ -336,8 +336,8 @@ public class GlobalSearchStepDef extends GlobalSearchPage {
 
     //Scenario: Verify user should navigate to Customized Columns window when we click on Customized columns in Global Search page
     @When("the user clicks Customize Columns option")
-    public void the_user_clicks_customize_columns_option() throws InterruptedException {
-        clickOnCustomiseColumn();
+    public void the_user_clicks_customize_columns_option() throws Exception {
+        clickOnCustomizeColumn();
     }
     @Then("the user should able to navigate to Customized Columns window")
     public void the_user_should_able_to_navigate_to_customized_columns_window() {
@@ -384,7 +384,7 @@ public class GlobalSearchStepDef extends GlobalSearchPage {
     }
 
     @Then("user unselect check box for the Provider field")
-    public void user_unselect_check_box_for_the_provider_field() throws InterruptedException {
+    public void user_unselect_check_box_for_the_provider_field() throws Exception {
         unSelectProviderCheckBox();
     }
     @Then("user should not able to see the Provider column in the Global search grid page")
