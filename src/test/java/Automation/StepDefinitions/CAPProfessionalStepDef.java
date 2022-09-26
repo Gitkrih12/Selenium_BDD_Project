@@ -281,6 +281,12 @@ public class CAPProfessionalStepDef extends CAPProfessionalPage {
         verifyUserNavigatesToPreviousPage();
     }
 
+    //Scenario: Verify all tabs should display when clicking on Batch ID under Paid tab in CAP Professional page
+    @When("user enters Batch Id in search criteria in CAP Professional page")
+    public void user_enters_batch_id_in_search_criteria_in_cap_professional_page() throws InterruptedException {
+        enterBatchId();
+    }
+
 
 
 

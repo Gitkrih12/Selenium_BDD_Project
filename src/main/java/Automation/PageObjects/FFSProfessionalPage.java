@@ -79,6 +79,13 @@ public class FFSProfessionalPage extends SeleniumUtils {
     String lstCheckInfo = "//div[@col-id='checkType']//div//span[@class='ag-cell-value']";
     String eleCheckInformation = "//span[contains(text(),'Check Information')]";
     String eleCheckType = "(//div[@col-id='checkType']//div//span[@class='ag-cell-value'])[1]";
+    String tabHistoryDoc = "//button[@id='nav-history-doc-details-tab']";
+    String lstHistoryDoc = "//div[@col-id='payeeid']//div//span[@class='ag-cell-value']";
+    String eleHistoryDoc = "//span[contains(text(),'History Of Doc in the Selected Batch')]";
+    String tabDownloads = "//button[@id='nav-downloads-details-tab']";
+    String eleEOPLetter = "//button[text()='Download EOP Letter']";
+    String ele835file = "//button[text()='Download 835 File']";
+    String tabFFSProfessionalPend = "//button[@id='nav-pend-details-tab']";
 
 
 
@@ -101,8 +108,9 @@ public class FFSProfessionalPage extends SeleniumUtils {
     public void verifyFFSProfessionalPage() throws InterruptedException {
         boolean value = isDisplayed(tabFFSProfessional);
         Assert.assertTrue(value);
-        threadSleep(30000);
+        explicitInvisibilityOfElementWithTextWait(By.xpath(tabFFSProfessionalPend), 60, "Pend ()");
     }
+
     //Scenario: Verify color code for corrected claims in FFS Professional page
     public void enterCorrectedClaimNumberInFFSProfessionalSearchField() throws InterruptedException {
         expClaimNumber = prop.getProperty("ffsProfessionalCorrectedClaimNumber");
@@ -464,7 +472,8 @@ public class FFSProfessionalPage extends SeleniumUtils {
         clickElement(tabOnHold);
     }
     public void verifyPageNumbersAtBottomOfPage() throws InterruptedException {
-        threadSleep(10000);
+        //threadSleep(10000);
+        explicitVisibilityOfElementLocatedWaitByXpath(eleOnHoldPaginationDescription,10);
         String pagination = findElementByXpath(eleOnHoldPaginationDescription).getText();
         String[] paginationCount = pagination.split(" ");
         System.out.println("Page count " + Integer.parseInt(paginationCount[3]));
@@ -619,9 +628,9 @@ public class FFSProfessionalPage extends SeleniumUtils {
         validateRowCountInBatchIDTabs(tabCheckInfo,lstCheckInfo);
     }
 
-    public void verifyCheckInfoLabel(String expClaimListLabel){
-        String actProviderListLabel=findElementByXpath(eleCheckInformation).getText();
-        if(actProviderListLabel.contains(expClaimListLabel)){
+    public void verifyCheckInfoLabel(String expCheckInfoLabel){
+        String actCheckInfoLabel=findElementByXpath(eleCheckInformation).getText();
+        if(actCheckInfoLabel.contains(expCheckInfoLabel)){
             Assert.assertTrue(true);
         }else{
             Assert.assertTrue(false);
@@ -632,14 +641,17 @@ public class FFSProfessionalPage extends SeleniumUtils {
     public void verifyCheckType(String expCheckType) throws InterruptedException {
         if(expCheckType.contains("ReIssue")){
             explicitTextToBePresentInElementLocatedWait(By.xpath(eleCheckType), 10, "ReIssue");
-        }else{
+        }else if(expCheckType.contains("Void")){
             explicitTextToBePresentInElementLocatedWait(By.xpath(eleCheckType), 10, "Void");
+        }else{
+            explicitTextToBePresentInElementLocatedWait(By.xpath(eleCheckType), 10, "Regular");
         }
         String actCheckType=findElementByXpath(eleCheckType).getText();
         System.out.println("Check Type is :"+actCheckType);
         Assert.assertEquals(expCheckType, actCheckType);
     }
 
+    //Scenario: Verify user able to view the check void information in Check Info page
     public void enterBatchIdForVoided() throws InterruptedException {
         expBatchID = prop.getProperty("ffsProfessionalBatchIDForVoid");
         threadSleep(3000);
@@ -648,10 +660,43 @@ public class FFSProfessionalPage extends SeleniumUtils {
         sendKeysUsingKeyboardInput(txtBatchID);
     }
 
+    //Scenario: Verify user able to navigate to the History Doc page on clicking History Doc tab
+    public void clickOnHistoryDoc(){
+        explicitTextToBePresentInElementLocatedWait(By.xpath(tabHistoryDoc), 20, "History Doc");
+        clickElement(tabHistoryDoc);
+    }
+    public void verifyHistoryDocCount() throws InterruptedException {
+        explicitTextToBePresentInElementLocatedWait(By.xpath(eleHistoryDoc), 20, "History Of Doc");
+        validateRowCountInBatchIDTabs(tabHistoryDoc,lstHistoryDoc);
+    }
+    public void verifyHistoryDocLabel(String expHistoryDocLabel){
+        String actHistoryDocLabel=findElementByXpath(eleHistoryDoc).getText();
+        if(actHistoryDocLabel.contains(expHistoryDocLabel)){
+            Assert.assertTrue(true);
+        }else{
+            Assert.assertTrue(false);
+        }
+
+    }
+
+    //Scenario:Verify user able to navigate to the Downloads tab on clicking Downloads tab and verify the files when there are any files
+    public void clickOnDownloads(){
+        explicitTextToBePresentInElementLocatedWait(By.xpath(tabDownloads), 20, "Downloads");
+        clickElement(tabDownloads);
+    }
+    public void verifyEOPLetter(String expEOPLetter){
+        explicitTextToBePresentInElementLocatedWait(By.xpath(eleEOPLetter), 20, "Download EOP Letter");
+        String actEOPLetter=findElementByXpath(eleEOPLetter).getText();
+        Assert.assertEquals(expEOPLetter,actEOPLetter);
+    }
+    public void verify835File(String expFileName){
+        String actEOPLetter=findElementByXpath(ele835file).getText();
+        Assert.assertEquals(expFileName,actEOPLetter);
+    }
 
     //Generic method to get the Row count next to the tabs
     public void validateRowCountInBatchIDTabs(String fileTabXpath, String lstRecordsXpath) throws InterruptedException {
-        String recordsBarText = explicitElementClickableWaitByXpath(fileTabXpath, 5).getText();
+        String recordsBarText = explicitElementClickableWaitByXpath(fileTabXpath, 10).getText();
         String expRowCount = recordsBarText.substring(recordsBarText.indexOf("(") + 1, recordsBarText.indexOf(")"));
         System.out.println("Expected row count is: " + expRowCount);
         threadSleep(2000);
@@ -660,6 +705,8 @@ public class FFSProfessionalPage extends SeleniumUtils {
         System.out.println("Actual row count is: " + actRecordCount);
         Assert.assertEquals(Integer.parseInt(expRowCount), actRecordCount);
     }
+
+
 
 
 

@@ -271,6 +271,38 @@ Feature: FFS Professional
     And user clicks on the Check Info tab
     Then user should able to see Check Type as "Void" for voided batch
 
+  @TC_67905
+  Scenario: Verify user able to view Check Type as Regular if its not void or reissue in Check Info page
+    When user clicks on FFS Professional in left navigation menu
+    Then the user should navigate to the FFS Professional page
+    When user clicks on Paid bucket
+    And user enters Batch Id in search criteria for Normal Check
+    And user clicks on Batch Id
+    And user clicks on the Check Info tab
+    Then user should able to see Check Type as "Regular" for Normal Check
+
+
+  @TC_52016
+  Scenario: Verify user able to navigate to the History Doc page on clicking History Doc tab
+    When user clicks on FFS Professional in left navigation menu
+    Then the user should navigate to the FFS Professional page
+    When user clicks on Paid bucket
+    And user enters Batch Id in search criteria for Check Void
+    And user clicks on Batch Id
+    And user clicks on History Doc
+    And displays all the list of History Doc for that Batch ID
+    And user should be able to see "History Of Doc in the Selected Batch" label in History Doc screen
+
+  @TC_67482
+  Scenario:Verify user able to navigate to the Downloads tab on clicking Downloads tab and verify the files when there are any files
+    When user clicks on FFS Professional in left navigation menu
+    Then the user should navigate to the FFS Professional page
+    When user clicks on Paid bucket
+    And user enters Batch Id in search criteria for Check Void
+    And user clicks on Batch Id
+    And user clicks on Downloads
+    Then user able to view the "Download EOP Letter" and "Download 835 File"
+
 
 
 

@@ -381,6 +381,48 @@ public class FFSProfessionalStepDef extends FFSProfessionalPage {
         verifyCheckType(checkType);
     }
 
+    //Scenario: Verify user able to view Check Type as Regular if its not void or reissue in Check Info page
+    @When("user enters Batch Id in search criteria for Normal Check")
+    public void user_enters_batch_id_in_search_criteria_for_normal_check() {
+
+    }
+
+    @Then("user should able to see Check Type as {string} for Normal Check")
+    public void user_should_able_to_see_check_type_as_for_normal_check(String string) {
+        
+    }
+
+
+    //Scenario: Verify user able to navigate to the History Doc page on clicking History Doc tab
+    @When("user clicks on History Doc")
+    public void user_clicks_on_history_doc() {
+        clickOnHistoryDoc();
+    }
+
+    @When("displays all the list of History Doc for that Batch ID")
+    public void displays_all_the_list_of_history_doc_for_that_batch_id() throws InterruptedException {
+        verifyHistoryDocCount();
+    }
+
+    @When("user should be able to see {string} label in History Doc screen")
+    public void user_should_be_able_to_see_label_in_history_doc_screen(String HistoryDocLabel) {
+        verifyHistoryDocLabel(HistoryDocLabel);
+    }
+
+    //Scenario:Verify user able to navigate to the Downloads tab on clicking Downloads tab and verify the files when there are any files
+    @When("user clicks on Downloads")
+    public void user_clicks_on_downloads() {
+        clickOnDownloads();
+    }
+    @Then("user able to view the {string} and {string}")
+    public void user_able_to_view_the_and(String eopLetter, String fileName) {
+        verifyEOPLetter(eopLetter);
+        verify835File(fileName);
+    }
+
+
+
+
 
 
 
