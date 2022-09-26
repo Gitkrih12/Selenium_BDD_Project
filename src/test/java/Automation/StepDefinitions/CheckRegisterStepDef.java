@@ -7,6 +7,7 @@ import io.cucumber.java.en.When;
 
 public class CheckRegisterStepDef extends CheckRegisterPage {
 
+    //  Scenario: Verify user navigates to Check Register page
     @When("user clicks on Check Register under Check Management")
     public void user_clicks_on_check_register_under_check_management() throws InterruptedException {
         userClicksOnCheckRegister();
@@ -17,11 +18,13 @@ public class CheckRegisterStepDef extends CheckRegisterPage {
         verifyUserNavigatesToCheckRegister();
     }
 
+    //  Scenario: Verify fields in Check Register page
     @Then("user able to view all the below mentioned fields under Check Register")
     public void user_able_to_view_all_the_below_mentioned_fields_under_check_register(DataTable expFields) {
         verifyFieldsUnderCheckRegister(expFields);
     }
 
+    //  Scenario: Verify user should get result on selecting value from Billing Provider drop down field
     @When("user select value from Billing Provider dropdown field")
     public void user_select_value_from_billing_provider_dropdown_field() throws InterruptedException {
         userSelectsValuesFromBillingProviderDropDown();
@@ -37,11 +40,13 @@ public class CheckRegisterStepDef extends CheckRegisterPage {
         userSelectsValuesFromFacilityDropDown();
     }
 
+    //  Scenario: Verify user should get result on selecting value from Facility drop down field
     @Then("user able to view the result for the facility dropdown search criteria")
     public void user_able_to_view_the_result_for_the_facility_dropdown_search_criteria() {
         verifyTheResultForTheFacilitySearchCriteria();
     }
 
+    //  Scenario: Verify user should get result on selecting dates from Created Date From and To fields
     @When("user select dates from Created Date From and To dropdown field")
     public void user_select_dates_from_created_date_from_and_to_dropdown_field() throws InterruptedException {
         userSelectsValuesFromCreatedDateFromField();
@@ -53,6 +58,7 @@ public class CheckRegisterStepDef extends CheckRegisterPage {
         verifyTheResultForTheCreatedDateSearchCriteria();
     }
 
+    //  Scenario: Verify user should get result on selecting dates from the Date of Service From and To values
     @When("user select dates from Date of Service From and To dropdown field")
     public void user_select_dates_from_date_of_service_from_and_to_dropdown_field() throws InterruptedException {
         userSelectsValuesFromDateOfServiceFromField();
@@ -64,6 +70,7 @@ public class CheckRegisterStepDef extends CheckRegisterPage {
         verifyTheResultForTheDateOfServiceSearchCriteria();
     }
 
+    //  Scenario: Verify user should get result on selecting value from State drop down field
     @When("user select value from State dropdown field")
     public void user_select_value_from_state_dropdown_field() throws InterruptedException {
         userSelectsValuesFromStateField();
