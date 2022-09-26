@@ -54,9 +54,3 @@ Feature: Check Register
     When user clicks on Check Register under Check Management
     And user select value from State dropdown field
     Then user able to view the result for the State dropdown search criteria
-
-  @67635
-  Scenario: Verify user should get result on selecting value from Place of Service drop down field
-    When user clicks on Check Register under Check Management
-    And user select value from Place of Service dropdown field
-    Then user able to view the result for the Place of Service dropdown search criteria

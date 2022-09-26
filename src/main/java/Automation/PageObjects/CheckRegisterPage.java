@@ -185,27 +185,4 @@ public class CheckRegisterPage extends SeleniumUtils {
             Assert.assertTrue(findElementByXpath(txtPayToId).isDisplayed());
         }
     }
-
-    public void userSelectsValuesFromPlaceOfServiceDropdownField() throws InterruptedException {
-        explicitVisibilityOfWait(findElementByXpath(dropdownPlaceOfService), 10);
-        clickElement(dropdownPlaceOfService);
-        List <String> getAllOptionsFromDropdown = findElementsByXpath(lstPlaceOfService)
-                .stream().map((e) -> e.getText().trim()).collect(Collectors.toList());
-        String getRandomOption = getAllOptionsFromDropdown.get(rand.nextInt(getAllOptionsFromDropdown.size()));
-        System.out.println(getRandomOption);
-        clickElement(findElementByXpath(selectOption.replace("$option$", getRandomOption)));
-        explicitVisibilityOfWait(findElementByXpath(btnSearch), 20);
-        clickElement(btnSearch);
-        threadSleep(4000);
-    }
-
-    public void verifyTheResultForThePlaceOfServiceSearchCriteria(){
-        String selectedOption = findElementByXpath(dropdownPlaceOfService).getText();
-        if(selectedOption.equals("Select Place of Service")){
-            findElementByXpath(txtLoading).isDisplayed();
-        }
-        else {
-            Assert.assertTrue(findElementByXpath(txtPayToId).isDisplayed());
-        }
-    }
 }

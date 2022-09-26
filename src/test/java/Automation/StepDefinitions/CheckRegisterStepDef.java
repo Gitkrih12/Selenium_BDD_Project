@@ -73,14 +73,4 @@ public class CheckRegisterStepDef extends CheckRegisterPage {
     public void user_able_to_view_the_result_for_the_state_dropdown_search_criteria() {
         verifyTheResultForTheStateSearchCriteria();
     }
-
-    @When("user select value from Place of Service dropdown field")
-    public void user_select_value_from_place_of_service_dropdown_field() throws InterruptedException {
-        userSelectsValuesFromPlaceOfServiceDropdownField();
-    }
-
-    @Then("user able to view the result for the Place of Service dropdown search criteria")
-    public void user_able_to_view_the_result_for_the_place_of_service_dropdown_search_criteria() {
-        verifyTheResultForThePlaceOfServiceSearchCriteria();
-    }
 }
