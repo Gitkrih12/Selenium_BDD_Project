@@ -72,7 +72,6 @@ public class FFSProfessionalPage extends SeleniumUtils {
     private static int totalRecords = 0;
     private static int pageNumber = 0;
     private static int pageNumberNextNavigation = 0;
-    private static String expPaginationMemberId = "";
 
 
     //Scenario: Verify user should navigates to FFS Professional screen
@@ -142,6 +141,7 @@ public class FFSProfessionalPage extends SeleniumUtils {
 
     //Scenario:Verify user able to navigate to claim summary screen on clicking claim number in FFS Professional Queue page
     public void clickOnFFSProfessionalClaim() throws InterruptedException {
+        threadSleep(5000);
         clickElement(eleClaimNumber);
     }
     public void clickOnFFSProfessionalDefaultTab(){

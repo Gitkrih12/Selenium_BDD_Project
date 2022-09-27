@@ -27,7 +27,7 @@ public class FFSInstitutionalPage extends SeleniumUtils {
     String btnNextPage = "//*[@id='onHoldGrid']//span[@class='ag-icon ag-icon-next']";
     String btnPreviousPage = "//*[@id='onHoldGrid']//span[@class='ag-icon ag-icon-previous']";
     String eleClaimNumber = "(//div[@class='ag-pinned-left-cols-container']//a)[1]";
-    String tabCAPProfessionalDefault = "//div[@class='col ng-star-inserted default-tab' and contains(text(),'FFS Institutional')]";
+    String tabFFSInstitutionalDefault = "//div[@class='col ng-star-inserted default-tab' and contains(text(),'FFS Institutional')]";
     String txtClaimNumber = "(//input[@aria-label='Claim Number Filter Input'])[1]";
     String eleVerticalColorForCorrected = "(//div[@col-id='isCorrected']//span)[6]";
     String eleCorrectedInfoTopGrid = "//div//span[@class='ColorBall']//following::span[contains(text(),'Corrected')]";
@@ -249,18 +249,19 @@ public class FFSInstitutionalPage extends SeleniumUtils {
     }
 
     public void clickOnFFSInstitutionalClaim() throws InterruptedException {
+        threadSleep(5000);
         clickElement(eleClaimNumber);
     }
 
     //Scenario: Verify user able to navigate to claim summary screen only once when performed multiple clicks on Claim number
-    public void enterClaimNumberInPendCFFSInstitutionalSearchField() throws InterruptedException {
+    public void enterClaimNumberInPendFFSInstitutionalSearchField() throws InterruptedException {
         expClaimNumber = prop.getProperty("ffsInstitutionalClaimNumber");
         findElementAndSendKeys(findElementByXpath(txtClaimNumber), expClaimNumber);
         threadSleep(1000);
         sendKeysUsingKeyboardInput(txtClaimNumber);
     }
     public void clickOnFFSInstitutionalDefaultTab(){
-        clickElement(tabCAPProfessionalDefault);
+        clickElement(tabFFSInstitutionalDefault);
     }
 
     //Scenario: Verify user can Identify corrected claims from FFS Institutional page
