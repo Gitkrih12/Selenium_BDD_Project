@@ -100,7 +100,7 @@ public class MembersListPage extends SeleniumUtils {
         testValues.put("Member ID", "3693336VF");
         testValues.put("LastName", "BOWYMGOX");
         testValues.put("First Name", "IMXKX");
-        testValues.put("Middel Name", "V");
+        testValues.put("Middle Name", "V");
         testValues.put("DOB", "08/18/1960");
         testValues.put("Gender", "Female");
         testValues.put("MBI", "362OX2MR85K8");

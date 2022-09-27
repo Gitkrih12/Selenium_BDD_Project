@@ -12,7 +12,7 @@ Feature: Members List
       | Member ID   |
       | LastName    |
       | First Name  |
-      | Middel Name |
+      | Middle Name |
       | DOB         |
       | Gender      |
       | MBI         |
@@ -46,7 +46,7 @@ Feature: Members List
     Then user able to view the appropriate results on Members List screen
     When user enters PCP in the Search criteria
     Then user able to view the appropriate results on Members List screen
-#    When user enters PCP Phone in the Search criteria
+    When user enters PCP Phone in the Search criteria
 #    Then user able to view the appropriate results on Members List screen
     When user enters Plan in the Search criteria
     Then user able to view the appropriate results on Members List screen
