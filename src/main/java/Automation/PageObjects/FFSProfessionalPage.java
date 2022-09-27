@@ -67,7 +67,7 @@ public class FFSProfessionalPage extends SeleniumUtils {
     String tabPaid = "//button[@id='nav-paid-details-tab']";
     String lstTabsInBatchID= "//div[@id='nav-tab']//button";
     String txtBatchID= "(//input[@aria-label='Batch ID Filter Input'])[5]";
-    String eleBatchID= "//*[@id='paidGrid']//div[@col-id='batchCode']//a";
+    String eleBatchID= "(//*[@id='paidGrid']//div[@col-id='batchCode']//a)[1]";
     String tabClaimListState = "(//button[@class='nav-link active'])[1]";
     String lstClaimList = "//div[@col-id='claimNumber']//a";
     String tabClaimList = "//button[@id='nav-view-claim-list-details-tab']";
@@ -534,19 +534,19 @@ public class FFSProfessionalPage extends SeleniumUtils {
     }
     public void enterBatchId() throws InterruptedException {
         expBatchID = prop.getProperty("ffsProfessionalBatchID");
-        threadSleep(3000);
+        explicitVisibilityOfElementLocatedWaitByXpath(txtBatchID, 10);
         findElementAndSendKeys(findElementByXpath(txtBatchID), expBatchID);
-        threadSleep(1000);
-        sendKeysUsingKeyboardInput(txtBatchID);
+        explicitTextToBePresentInElementLocatedWait(By.xpath(eleBatchID), 15, expBatchID);
     }
 
     public void clickOnBatchId() throws InterruptedException {
-        threadSleep(3000);
-        clickElement(eleBatchID);
+        explicitElementClickableWaitByXpath(eleBatchID, 10).click();
+        explicitInvisibilityOfElementWithTextWait(By.xpath("//button[@id='nav-history-doc-details-tab']"), 60, "History Doc ()");
+        explicitTextToBePresentInElementLocatedWait(By.xpath("//button[@id = 'nav-downloads-details-tab']"), 20, "Downloads");
+        threadSleep(1000);
     }
 
     public void verifyTabsInBatchIDInFFSProfessional(DataTable tabList) throws InterruptedException{
-        threadSleep(5000);
         List<String> expTabList = tabList.asList();
         List<WebElement> actTabFields = findElementsByXpath(lstTabsInBatchID);
         List<String> actualQueueFieldsForCompare = new ArrayList<>();
@@ -562,13 +562,13 @@ public class FFSProfessionalPage extends SeleniumUtils {
                 actualQueueFieldsForCompare.add(queueData[0]+" "+queueData[1]+" "+queueData[2]);
             }
         }
-        System.out.println("actual queue fields " + actualQueueFieldsForCompare);
-        System.out.println("expected queue fields " + expTabList);
+        System.out.println("actual tab fields " + actualQueueFieldsForCompare);
+        System.out.println("expected tab fields " + expTabList);
         for (String expQueue : expTabList) {
             if (actualQueueFieldsForCompare.contains(expQueue)) {
                 Assert.assertTrue(true);
             } else {
-                Assert.fail(expQueue + " queue is not as expected");
+                Assert.fail(expQueue + " tab is not as expected");
             }
         }
 
@@ -601,11 +601,11 @@ public class FFSProfessionalPage extends SeleniumUtils {
 
     //Scenario: Verify user should navigates to the Provider List page on clicking Provider List tab
     public void clickOnProviderList(){
+        explicitTextToBePresentInElementLocatedWait(By.xpath(tabProviderList), 10, "Provider List");
         clickElement(tabProviderList);
     }
 
     public void verifyProviderCount() throws InterruptedException {
-        explicitTextToBePresentInElementLocatedWait(By.xpath(tabProviderList), 10, "Provider List");
         validateRowCountInBatchIDTabs(tabProviderList,lstProviderList);
     }
 
@@ -654,11 +654,20 @@ public class FFSProfessionalPage extends SeleniumUtils {
     //Scenario: Verify user able to view the check void information in Check Info page
     public void enterBatchIdForVoided() throws InterruptedException {
         expBatchID = prop.getProperty("ffsProfessionalBatchIDForVoid");
-        threadSleep(3000);
+        explicitElementClickableWaitByXpath(txtBatchID, 10);
         findElementAndSendKeys(findElementByXpath(txtBatchID), expBatchID);
-        threadSleep(1000);
-        sendKeysUsingKeyboardInput(txtBatchID);
+        explicitTextToBePresentInElementLocatedWait(By.xpath(eleBatchID), 10, expBatchID);
     }
+
+    //Scenario: Verify user able to view Check Type as Regular if its not void or reissue in Check Info page
+    public void enterBatchIdForNormalCheck() throws InterruptedException {
+        expBatchID = prop.getProperty("ffsProfessionalBatchIDForNormalCheck");
+        explicitElementClickableWaitByXpath(txtBatchID, 10);
+        findElementAndSendKeys(findElementByXpath(txtBatchID), expBatchID);
+        explicitTextToBePresentInElementLocatedWait(By.xpath(eleBatchID), 10, expBatchID);
+    }
+
+
 
     //Scenario: Verify user able to navigate to the History Doc page on clicking History Doc tab
     public void clickOnHistoryDoc(){

@@ -383,14 +383,21 @@ public class FFSProfessionalStepDef extends FFSProfessionalPage {
 
     //Scenario: Verify user able to view Check Type as Regular if its not void or reissue in Check Info page
     @When("user enters Batch Id in search criteria for Normal Check")
-    public void user_enters_batch_id_in_search_criteria_for_normal_check() {
-
+    public void user_enters_batch_id_in_search_criteria_for_normal_check() throws InterruptedException {
+        enterBatchIdForNormalCheck();
     }
 
     @Then("user should able to see Check Type as {string} for Normal Check")
-    public void user_should_able_to_see_check_type_as_for_normal_check(String string) {
-        
+    public void user_should_able_to_see_check_type_as_for_normal_check(String checkType) throws InterruptedException {
+        verifyCheckType(checkType);
     }
+
+    @Then("user should able to see Check Type as {string} for issued batch")
+    public void user_should_able_to_see_check_type_as_for_issued_batch(String string) {
+        // Write code here that turns the phrase above into concrete actions
+        throw new io.cucumber.java.PendingException();
+    }
+
 
 
     //Scenario: Verify user able to navigate to the History Doc page on clicking History Doc tab

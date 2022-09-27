@@ -464,10 +464,32 @@ public class CAPProfessionalPage extends SeleniumUtils {
     //Scenario: Verify all tabs should display when clicking on Batch ID under Paid tab in CAP Professional page
     public void enterBatchId() throws InterruptedException {
         expBatchID = prop.getProperty("capProfessionalBatchID");
-        threadSleep(3000);
+        explicitElementClickableWaitByXpath(txtBatchID, 10);
         findElementAndSendKeys(findElementByXpath(txtBatchID), expBatchID);
-        threadSleep(1000);
-        sendKeysUsingKeyboardInput(txtBatchID);
+        explicitTextToBePresentInElementLocatedWait(By.xpath(eleBatchID), 10, expBatchID);
+    }
+
+    //Scenario: Verify user able to view Check Type as Regular if its not void or reissue in Check Info page    public void enterBatchIdForNormalCheck() throws InterruptedException {
+    public void enterBatchIdForNormalCheck() throws InterruptedException {
+        expBatchID = prop.getProperty("capProfessionalBatchIDForNormalCheck");
+        explicitElementClickableWaitByXpath(txtBatchID, 10);
+        findElementAndSendKeys(findElementByXpath(txtBatchID), expBatchID);
+        explicitTextToBePresentInElementLocatedWait(By.xpath(eleBatchID), 10, expBatchID);
+    }
+
+    //Scenario: Verify user able to view the check reissue information in Check Info page
+    public void enterBatchIdForIssuedCheck() throws InterruptedException {
+        expBatchID = prop.getProperty("capProfessionalBatchIDForIssuedCheck");
+        explicitElementClickableWaitByXpath(txtBatchID, 10);
+        findElementAndSendKeys(findElementByXpath(txtBatchID), expBatchID);
+        explicitTextToBePresentInElementLocatedWait(By.xpath(eleBatchID), 10, expBatchID);
+    }
+
+    public void enterBatchIdForVoided() throws InterruptedException {
+        expBatchID = prop.getProperty("capProfessionalBatchIDForVoid");
+        explicitElementClickableWaitByXpath(txtBatchID, 10);
+        findElementAndSendKeys(findElementByXpath(txtBatchID), expBatchID);
+        explicitTextToBePresentInElementLocatedWait(By.xpath(eleBatchID), 10, expBatchID);
     }
 
 

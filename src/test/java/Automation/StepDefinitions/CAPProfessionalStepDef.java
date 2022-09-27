@@ -287,6 +287,27 @@ public class CAPProfessionalStepDef extends CAPProfessionalPage {
         enterBatchId();
     }
 
+    //Scenario: Verify user able to view Check Type as Regular if its not void or reissue in Check Info page
+    @When("user enters Batch Id in search criteria for Normal Check in CAP Professional page")
+    public void user_enters_batch_id_in_search_criteria_for_normal_check_in_cap_professional_page() throws InterruptedException {
+        enterBatchIdForNormalCheck();
+    }
+
+    //Scenario: Verify user able to view the check reissue information in Check Info page
+    @When("user enters Batch Id in search criteria for issued check in CAP Professional page")
+    public void user_enters_batch_id_in_search_criteria_for_issued_check_in_cap_professional_page() throws InterruptedException {
+        enterBatchIdForIssuedCheck();
+    }
+
+    //Scenario: Verify user able to navigate to the History Doc tab on clicking History Doc tab
+    @When("user enters Batch Id in search criteria for Check Void in CAP Professional page")
+    public void user_enters_batch_id_in_search_criteria_for_check_void_in_cap_professional_page() throws InterruptedException {
+        enterBatchIdForVoided();
+    }
+
+
+
+
 
 
 

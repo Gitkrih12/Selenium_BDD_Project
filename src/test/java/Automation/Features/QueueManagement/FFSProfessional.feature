@@ -212,7 +212,7 @@ Feature: FFS Professional
     And user enters Batch Id in search criteria
     And user clicks on Batch Id
     Then user should be able to see below tabs
-      | Claims List   |
+      | Claim List    |
       | Provider List |
       | Check Info    |
       | History Doc   |
