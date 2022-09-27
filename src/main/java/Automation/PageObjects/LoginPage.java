@@ -3,6 +3,7 @@ package Automation.PageObjects;
 import Automation.Utilities.SeleniumUtils;
 import org.apache.logging.log4j.LogManager;
 import org.junit.Assert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
 public class LoginPage extends SeleniumUtils {
@@ -286,6 +287,7 @@ public class LoginPage extends SeleniumUtils {
     //    Scenario: Verify user views the User Options on clicking username dropdown in the home page screen
     public void userOptionsUnderUsernameDropdown() {
         findElementByXpath(ddlUserOptions).click();
+        explicitTextToBePresentInElementLocatedWait(By.xpath(btnChangePassword), 10, "Change Password");
         moveToElement(btnChangePassword).perform();
         Assert.assertTrue(isDisplayed(btnChangePassword));
         System.out.println("Change password button status is : " + isDisplayed(btnChangePassword));
