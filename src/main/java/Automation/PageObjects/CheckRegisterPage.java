@@ -15,7 +15,8 @@ public class CheckRegisterPage extends SeleniumUtils {
 
     String lnkCheckManagement = "//*[contains(text(), 'Check Management')]";
     String lnkCheckRegister = "//*[contains(text(), ' Check Register ')]";
-    String titleCheckRegister = "//h5";
+    String tabCheckRegister = "(//div[contains(text(),'Check Register')])[2]";
+    String titleCheckRegister = "//h5[@class='search-check']";
     String lstCheckRegister = "//app-check-register//div//span";
     String lstBillingProvider = "(//*[@name = 'ddlplaceofservice'])[1]//option";
     String btnSearch = "//button[contains(text(), 'Search')]";
@@ -49,7 +50,7 @@ public class CheckRegisterPage extends SeleniumUtils {
         clickElement(lnkCheckManagement);
         explicitVisibilityOfWait(findElementByXpath(lnkCheckRegister), 20);
         clickElement(lnkCheckRegister);
-        threadSleep(1000);
+        explicitTextToBePresentInElementLocatedWait(By.xpath(tabCheckRegister), 10, "Check Register");
     }
 
     public void verifyUserNavigatesToCheckRegister(){
@@ -90,17 +91,11 @@ public class CheckRegisterPage extends SeleniumUtils {
         clickElement(findElementByXpath(selectOption.replace("$option$", getRandomOption)));
         explicitVisibilityOfWait(findElementByXpath(btnSearch), 20);
         clickElement(btnSearch);
-        threadSleep(2000);
+        explicitElementClickableWaitByXpath(txtPayToId, 30);
     }
 
     public void verifyTheResultForTheSearchCriteria(){
-        String selectedOption = findElementByXpath(dropdownBillingProvider).getText();
-        if(selectedOption.equals("Select Billing Provider")){
-            findElementByXpath(txtLoading).isDisplayed();
-        }
-        else {
             Assert.assertTrue(findElementByXpath(txtPayToId).isDisplayed());
-        }
     }
 
     public void userSelectsValuesFromFacilityDropDown() throws InterruptedException {
@@ -113,35 +108,25 @@ public class CheckRegisterPage extends SeleniumUtils {
         clickElement(findElementByXpath(selectOption.replace("$option$", getRandomOption)));
         explicitVisibilityOfWait(findElementByXpath(btnSearch), 20);
         clickElement(btnSearch);
-        threadSleep(2000);
+        explicitElementClickableWaitByXpath(txtPayToId, 30);
     }
 
     //  Scenario: Verify user should get result on selecting value from Facility drop down field
     public void verifyTheResultForTheFacilitySearchCriteria(){
-        String selectedOption = findElementByXpath(dropdownFacility).getText();
-        if(selectedOption.equals("Select Facility")){
-            findElementByXpath(txtLoading).isDisplayed();
-        }
-        else {
             Assert.assertTrue(findElementByXpath(txtPayToId).isDisplayed());
-        }
     }
 
     // Scenario: Verify user should get result on selecting dates from Created Date From and To fields
     public void userSelectsValuesFromCreatedDateFromField() throws InterruptedException {
         expFromDate = prop.getProperty("createdFromDate");
         findElementAndSendKeys(findElementByXpath(txtCreatedFromDate), expFromDate);
-        threadSleep(1000);
-        sendKeysUsingKeyboardInput(txtCreatedFromDate);
     }
 
     public void userSelectsValuesFromCreatedDateToField() throws InterruptedException {
         expToDate = prop.getProperty("createdToDate");
         findElementAndSendKeys(findElementByXpath(txtCreatedToDate), expToDate);
-        threadSleep(1000);
-        sendKeysUsingKeyboardInput(txtCreatedToDate);
         clickElement(btnSearch);
-        threadSleep(2000);
+        explicitElementClickableWaitByXpath(txtPayToId, 30);
     }
 
     public void verifyTheResultForTheCreatedDateSearchCriteria() {
@@ -152,17 +137,13 @@ public class CheckRegisterPage extends SeleniumUtils {
     public void userSelectsValuesFromDateOfServiceFromField() throws InterruptedException {
         expDateOfServiceFromField = prop.getProperty("dateOfServiceFromField");
         findElementAndSendKeys(findElementByXpath(txtDateOfServiceFromField), expDateOfServiceFromField);
-        threadSleep(1000);
-        sendKeysUsingKeyboardInput(txtDateOfServiceFromField);
     }
 
     public void userSelectsValuesFromDateOfServiceToField() throws InterruptedException {
         expDateOfServiceToField = prop.getProperty("dateOfServiceToField");
         findElementAndSendKeys(findElementByXpath(txtDateOfServiceToField), expDateOfServiceToField);
-        threadSleep(1000);
-        sendKeysUsingKeyboardInput(txtDateOfServiceToField);
         clickElement(btnSearch);
-        threadSleep(5000);
+        explicitElementClickableWaitByXpath(txtPayToId, 50);
     }
 
     public void verifyTheResultForTheDateOfServiceSearchCriteria(){
@@ -180,16 +161,10 @@ public class CheckRegisterPage extends SeleniumUtils {
         clickElement(findElementByXpath(selectOption.replace("$option$", getRandomOption)));
         explicitVisibilityOfWait(findElementByXpath(btnSearch), 20);
         clickElement(btnSearch);
-        threadSleep(2000);
+        explicitElementClickableWaitByXpath(txtPayToId, 30);
     }
 
     public void verifyTheResultForTheStateSearchCriteria(){
-        String selectedOption = findElementByXpath(dropdownState).getText();
-        if(selectedOption.equals("Select State")){
-            findElementByXpath(txtLoading).isDisplayed();
-        }
-        else {
             Assert.assertTrue(findElementByXpath(txtPayToId).isDisplayed());
-        }
     }
 }
