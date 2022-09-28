@@ -204,4 +204,28 @@ public class ClaimDetailsStepDef extends ClaimDetailsPage {
     public void user_able_to_view_the_claim_summary_section() {
         verifyUserViewsClaimSummarySection();
     }
+
+    //  Scenario: Verify user able to view 1-New Claim Submission type in Claim details page
+    @Then("user views Claim Submission type as New")
+    public void user_views_claim_submission_type_as_new() {
+        verifyClaimSubmissionTypeAsNew();
+    }
+
+    //  Scenario: Verify user able to view 7-Corrected claim submission type in Claim Details page
+    @Then("user views Claim Submission type as Corrected")
+    public void user_views_claim_submission_type_as_corrected() {
+        verifyClaimSubmissionTypeAsCorrected();
+    }
+
+    @When("user enters and clicks on the (.*) in FFS Institutional")
+    public void user_enters_and_clicks_on_the_claim_number_in_ffs_institutional() {
+        // Write code here that turns the phrase above into concrete actions
+        throw new io.cucumber.java.PendingException();
+    }
+
+    @Then("user views the Claim Submission (.*)")
+    public void user_views_the_claim_submission_type() {
+        // Write code here that turns the phrase above into concrete actions
+        throw new io.cucumber.java.PendingException();
+    }
 }

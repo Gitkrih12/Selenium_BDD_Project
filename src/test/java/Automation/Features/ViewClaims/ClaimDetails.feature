@@ -243,3 +243,58 @@ Feature: Claim Details
     Then user able to view the show link
     When user clicks on Show link
     Then user able to view the Claim Summary section
+
+  @42125
+  Scenario: Verify user able to view 1-New Claim Submission type in Claim details page
+    Given the user is in FFS Professional page
+    When user clicks on the Claim Number
+    Then user views Claim Submission type as New
+
+  @42127
+  Scenario: Verify user able to view 7-Corrected claim submission type in Claim Details page
+    When user clicks on FFS Professional in left navigation menu
+    Then the user should navigate to the FFS Professional page
+    When user enters Corrected claim in FFS Professional search criteria
+    And user clicks on the Claim Number
+    Then user views Claim Submission type as Corrected
+
+  @42125-1
+  Scenario: Verify user able to view 1-New Claim Submission type in CAP Professional page
+    When user clicks on CAP Professional in left navigation menu
+    Then the user should navigate to the CAP Professional page
+    When user clicks on the Claim Number
+    Then user views Claim Submission type as New
+
+  @42127-1
+  Scenario: Verify user able to view 7-Corrected claim submission type in CAP Professional page
+    When user clicks on CAP Professional in left navigation menu
+    Then the user should navigate to the CAP Professional page
+    When user enters Corrected claim in CAP Professional search criteria
+    And user clicks on the Claim Number
+    Then user views Claim Submission type as Corrected
+
+  @42197
+  Scenario Outline: Verify user able to view 1-New Claim Submission type in FFS Institutional page
+    When user clicks on FFS Institutional in left navigation menu
+    Then the user should navigate to the FFS Institutional page
+    When user enters and clicks on the <claim number> in FFS Institutional
+    Then user views the Claim Submission <type>
+    Examples:
+      | claim number   | type                       |
+      | I0021120320003 | 0-NON-PAYMENT/ZERO CLAIM   |
+      | I01MR22042700I | 1-ADMIT THROUGH DISCHARGE  |
+      | I0119040400004 | 2-INTERIM-FIRST CLAIM      |
+      | I0020121200014 | 3-INTERIM-CONTINUING CLAIM |
+      | I00MR211230002 | 4-INTERIM-LAST CLAIM       |
+      | I00MR220916005 | 5-LATE CHARGE ONLY         |
+      | I0020082700004 | 7-CORRECTED                |
+      | I00MR220113001 | 9-FINAL CLAIM              |
+      | I00MR220309006 | A-NOTICE OF ADMISSION      |
+
+  @42197-1
+  Scenario: Verify user able to view 7-Corrected claim submission type in FFS Institutional page
+    When user clicks on FFS Institutional in left navigation menu
+    Then the user should navigate to the FFS Institutional page
+    When user enters Corrected claim in FFS Institutional search criteria
+    And user clicks on the Claim Number
+    Then user views Claim Submission type as Corrected
