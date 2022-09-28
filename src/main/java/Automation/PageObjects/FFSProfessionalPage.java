@@ -585,7 +585,7 @@ public class FFSProfessionalPage extends SeleniumUtils {
     }
 
     public void verifyClaimsCount() throws InterruptedException {
-        explicitTextToBePresentInElementLocatedWait(By.xpath(tabClaimList), 15, "Claims List");
+        explicitTextToBePresentInElementLocatedWait(By.xpath(tabClaimList), 15, "Claim List");
         validateRowCountInBatchIDTabs(tabClaimList,lstClaimList);
     }
 
