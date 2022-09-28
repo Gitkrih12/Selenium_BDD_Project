@@ -445,6 +445,7 @@ public class CAPInstitutionalPage extends SeleniumUtils {
 
     public void enterUnCleanStatusPreBatchClaimNumber() throws InterruptedException {
         expClaimNumber = prop.getProperty("capInstitutionalUnCleanStatusPreBatchClaimNumber");
+        explicitVisibilityOfWait(findElementByXpath(txtPreBatchClaimNumber), 5);
         findElementAndSendKeys(findElementByXpath(txtPreBatchClaimNumber), expClaimNumber);
         threadSleep(1000);
         sendKeysUsingKeyboardInput(txtPreBatchClaimNumber);

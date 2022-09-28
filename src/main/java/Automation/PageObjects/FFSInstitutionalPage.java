@@ -345,6 +345,7 @@ public class FFSInstitutionalPage extends SeleniumUtils {
     }
     public void enterUnCleanStatusPayerReviewClaimNumber() throws InterruptedException {
         expClaimNumber = prop.getProperty("ffsInstitutionalUnCleanStatusPayerReviewClaimNumber");
+        explicitVisibilityOfWait(findElementByXpath(txtPayerReviewClaimNumber), 5);
         findElementAndSendKeys(findElementByXpath(txtPayerReviewClaimNumber), expClaimNumber);
         threadSleep(1000);
         sendKeysUsingKeyboardInput(txtPayerReviewClaimNumber);
@@ -393,6 +394,7 @@ public class FFSInstitutionalPage extends SeleniumUtils {
     }
     public void enterUnCleanStatusApprovedClaimNumber() throws InterruptedException {
         expClaimNumber = prop.getProperty("ffsInstitutionalUnCleanStatusApprovedClaimNumber");
+        explicitVisibilityOfWait(findElementByXpath(txtApprovedClaimNumber), 5);
         findElementAndSendKeys(findElementByXpath(txtApprovedClaimNumber), expClaimNumber);
         threadSleep(1000);
         sendKeysUsingKeyboardInput(txtApprovedClaimNumber);
@@ -440,6 +442,7 @@ public class FFSInstitutionalPage extends SeleniumUtils {
 
     public void enterUnCleanStatusPreBatchClaimNumber() throws InterruptedException {
         expClaimNumber = prop.getProperty("ffsInstitutionalUnCleanStatusPreBatchClaimNumber");
+        explicitVisibilityOfWait(findElementByXpath(txtPreBatchClaimNumber), 5);
         findElementAndSendKeys(findElementByXpath(txtPreBatchClaimNumber), expClaimNumber);
         threadSleep(1000);
         sendKeysUsingKeyboardInput(txtPreBatchClaimNumber);

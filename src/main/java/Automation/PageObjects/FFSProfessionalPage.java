@@ -291,6 +291,7 @@ public class FFSProfessionalPage extends SeleniumUtils {
 
     public void enterUnCleanStatusApprovedClaimNumber() throws InterruptedException {
         expClaimNumber = prop.getProperty("ffsProfessionalUnCleanStatusApprovedClaimNumber");
+        explicitVisibilityOfWait(findElementByXpath(txtApprovedClaimNumber), 5);
         findElementAndSendKeys(findElementByXpath(txtApprovedClaimNumber), expClaimNumber);
         threadSleep(1000);
         sendKeysUsingKeyboardInput(txtApprovedClaimNumber);
@@ -314,12 +315,13 @@ public class FFSProfessionalPage extends SeleniumUtils {
 
     public void enterUnCleanStatusDeniedClaimNumber() throws InterruptedException {
         expClaimNumber = prop.getProperty("ffsProfessionalUnCleanStatusDeniedClaimNumber");
+        explicitVisibilityOfWait(findElementByXpath(txtDeniedClaimNumber), 5);
         findElementAndSendKeys(findElementByXpath(txtDeniedClaimNumber), expClaimNumber);
         threadSleep(1000);
         sendKeysUsingKeyboardInput(txtDeniedClaimNumber);
     }
     public void validateDeniedClaimNumberResult() {
-        explicitVisibilityOfWait(findElementByXpath(eleDeniedClaimNumber), 5);
+        explicitVisibilityOfWait(findElementByXpath(eleDeniedClaimNumber), 10);
         String actClaimNumber = getText(eleDeniedClaimNumber);
         System.out.println("actual claimNumber :" + actClaimNumber);
         Assert.assertEquals(expClaimNumber, actClaimNumber);
