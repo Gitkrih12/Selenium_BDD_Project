@@ -3,6 +3,7 @@ package Automation.PageObjects;
 import Automation.Utilities.SeleniumUtils;
 import io.cucumber.datatable.DataTable;
 import org.junit.Assert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
 import java.util.ArrayList;
@@ -62,7 +63,8 @@ public class ClaimDetailsPage extends SeleniumUtils {
         clickElement(lnkFFSProfessional);
     }
 
-    public void userClicksOnClaimNumber() throws InterruptedException {
+    public void userClicksOnClaimNumber() {
+        explicitInvisibilityOfElementWithTextWait(By.xpath("//button[@id='nav-pend-details-tab']"), 60, "Pend()");
         explicitElementClickableWaitByXpath(lnkClaimNumber, 50);
         clickElement(lnkClaimNumber);
     }
