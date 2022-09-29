@@ -8,7 +8,7 @@ Feature: AR Transaction
   Scenario: Verify user able to Navigate to the A/R Transaction tab from Global Search
     When user clicking on Claim Number in Global Search page
     And user clicks on the AR Transaction tab
-    Then user navigates to the "AR Transaction" tab
+    Then user navigates to "AR Transaction" tab successfully
     And user able to view the below mentioned fields under AR Transaction tab
       | Transaction Type       |
       | Transaction Date       |

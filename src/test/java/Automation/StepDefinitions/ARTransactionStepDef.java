@@ -14,8 +14,8 @@ public class ARTransactionStepDef extends ARTransactionPage {
         userClicksOnARTransaction();
     }
 
-    @Then("user navigates to the {string} tab")
-    public void user_navigates_to_the_tab(String expTab) {
+    @Then("user navigates to {string} tab successfully")
+    public void user_navigates_to_tab_successfully(String expTab) {
         verifyUserNavigatesToARTransaction(expTab);
     }
 
