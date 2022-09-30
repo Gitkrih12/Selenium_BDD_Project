@@ -3,6 +3,7 @@ package Automation.PageObjects;
 import Automation.Utilities.SeleniumUtils;
 import io.cucumber.datatable.DataTable;
 import org.junit.Assert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
 import java.util.ArrayList;
@@ -54,6 +55,7 @@ public class ClaimDetailsPage extends SeleniumUtils {
     String lstDateOfServiceSectionValues = "//*[@id='nav-claim-details']/div[15]//div[2]/div/b";
     String txtClaimSubmissionNew = "//*[contains(text(), '1 - NEW')]";
     String txtClaimSubmissionCorrected = "//*[contains(text(), '7 - CORRECTED')]";
+    String eleClaimSubmission = "//*[@id='nav-claim-details']//div[4]/div[2]/b";
 
     private static String expClaimNumber = "";
     private static String expClaimSubmission = "";
@@ -880,5 +882,15 @@ public class ClaimDetailsPage extends SeleniumUtils {
     public void verifyClaimSubmissionTypeAsCorrected(){
         expClaimSubmission = prop.getProperty("claimSubmissionCorrected");
         Assert.assertEquals(expClaimSubmission, findElementByXpath(txtClaimSubmissionCorrected).getText());
+    }
+
+    //  Scenario: Verify user able to view different types of claim submission from FFS/CAP Institutional page
+    public void userEntersAndClicksOnClaimNumber(String claimNumber){
+        findElementAndSendKeys(findElementByXpath(txtUniversalSearchBar), claimNumber);
+        sendKeysUsingKeyboardInput(txtUniversalSearchBar);
+    }
+
+    public void verifyClaimSubmissionType(String type){
+        Assert.assertEquals(type, findElementByXpath(eleClaimSubmission).getText());
     }
 }

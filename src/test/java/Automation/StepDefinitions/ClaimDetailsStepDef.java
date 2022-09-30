@@ -217,15 +217,20 @@ public class ClaimDetailsStepDef extends ClaimDetailsPage {
         verifyClaimSubmissionTypeAsCorrected();
     }
 
-    @When("user enters and clicks on the (.*) in FFS Institutional")
-    public void user_enters_and_clicks_on_the_claim_number_in_ffs_institutional() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+    //  Scenario: Verify user able to view different types of claim submission from FFS Institutional page
+    @When("user enters and clicks on the {string} in FFS Institutional Universal Search")
+    public void user_enters_and_clicks_on_the_in_ffs_institutional_universal_search(String claimNumber) {
+        userEntersAndClicksOnClaimNumber(claimNumber);
     }
 
-    @Then("user views the Claim Submission (.*)")
-    public void user_views_the_claim_submission_type() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+    @Then("user views the Claim Submission {string}")
+    public void user_views_the_claim_submission(String type) {
+        verifyClaimSubmissionType(type);
+    }
+
+    //  Scenario: Verify user able to view different types of claim submission from CAP Institutional page
+    @When("user enters and clicks on the {string} in CAP Institutional Universal Search")
+    public void user_enters_and_clicks_on_the_in_cap_institutional_universal_search(String claimNumber) {
+        userEntersAndClicksOnClaimNumber(claimNumber);
     }
 }

@@ -88,8 +88,8 @@ public class Driver {
     {
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--incognito");
-//        options.addArguments("--headless");
-//        options.addArguments("window-size=1920,1080");
+        options.addArguments("--headless");
+        options.addArguments("window-size=1920,1080");
         options.addArguments("--disable-features=VizDisplayCompositor");
         options.addArguments("disable-infobars");
         options.addArguments("--no-sandbox");

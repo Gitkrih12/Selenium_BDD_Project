@@ -273,12 +273,11 @@ Feature: Claim Details
     And user clicks on the Claim Number
     Then user views Claim Submission type as Corrected
 
-  @42197
-  Scenario Outline: Verify user able to view 1-New Claim Submission type in FFS Institutional page
+  @42196
+  Scenario Outline: Verify user able to view different types of claim submission from FFS Institutional page
     When user clicks on FFS Institutional in left navigation menu
-    Then the user should navigate to the FFS Institutional page
-    When user enters and clicks on the <claim number> in FFS Institutional
-    Then user views the Claim Submission <type>
+    When user enters and clicks on the "<claim number>" in FFS Institutional Universal Search
+    Then user views the Claim Submission "<type>"
     Examples:
       | claim number   | type                       |
       | I0021120320003 | 0-NON-PAYMENT/ZERO CLAIM   |
@@ -288,13 +287,24 @@ Feature: Claim Details
       | I00MR211230002 | 4-INTERIM-LAST CLAIM       |
       | I00MR220916005 | 5-LATE CHARGE ONLY         |
       | I0020082700004 | 7-CORRECTED                |
+      | I00MR211229006 | 8-VOID/CANCEL              |
       | I00MR220113001 | 9-FINAL CLAIM              |
       | I00MR220309006 | A-NOTICE OF ADMISSION      |
 
-  @42197-1
-  Scenario: Verify user able to view 7-Corrected claim submission type in FFS Institutional page
-    When user clicks on FFS Institutional in left navigation menu
-    Then the user should navigate to the FFS Institutional page
-    When user enters Corrected claim in FFS Institutional search criteria
-    And user clicks on the Claim Number
-    Then user views Claim Submission type as Corrected
+  @42197
+  Scenario Outline: Verify user able to view different types of claim submission from CAP Institutional page
+    When user clicks on CAP Institutional in left navigation menu
+    Then the user should navigate to the CAP Institutional page
+    When user enters and clicks on the "<claim number>" in CAP Institutional Universal Search
+    Then user views the Claim Submission "<type>"
+    Examples:
+      | claim number   | type                       |
+      | I0121120300007 | 0-NON-PAYMENT/ZERO CLAIM   |
+      | I0021061400032 | 1-ADMIT THROUGH DISCHARGE  |
+      | I0021062800002 | 2-INTERIM-FIRST CLAIM      |
+      | I00MR22042200D | 3-INTERIM-CONTINUING CLAIM |
+      | I0121101200001 | 4-INTERIM-LAST CLAIM       |
+      | I00MR220421002 | 5-LATE CHARGE ONLY         |
+      | I00MR220725009 | 7-CORRECTED                |
+      | I0021122300001 | 8-VOID/CANCEL              |
+      | I00MR220113003 | 9-FINAL CLAIM              |
