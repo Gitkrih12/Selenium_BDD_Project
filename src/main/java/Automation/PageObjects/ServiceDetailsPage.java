@@ -4,6 +4,7 @@ import Automation.Utilities.SeleniumUtils;
 import io.cucumber.datatable.DataTable;
 import io.cucumber.java.bs.A;
 import org.junit.Assert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
 import java.util.*;
@@ -44,8 +45,7 @@ public class ServiceDetailsPage extends SeleniumUtils {
 
     //  Scenario: Verify Adjudicator able to Navigate Service Details from Global Search and validate the fields
     public void clickOnClaimNumber() throws InterruptedException {
-        threadSleep(3000);
-        explicitVisibilityOfWait(findElementByXpath(eleClaimNumber), 20);
+        explicitTextToBePresentInElementLocatedWait(By.xpath(eleClaimNumber), 20, expClaimNumber);
         clickElement(eleClaimNumber);
         threadSleep(1000);
     }

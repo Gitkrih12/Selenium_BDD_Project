@@ -3,6 +3,7 @@ package Automation.PageObjects;
 import Automation.Utilities.SeleniumUtils;
 import io.cucumber.datatable.DataTable;
 import org.junit.Assert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
 import java.util.ArrayList;
@@ -56,6 +57,7 @@ public class FFSInstitutionalPage extends SeleniumUtils {
     String txtPreBatchClaimNumber = "(//input[@aria-label='Claim Number Filter Input'])[7]";
     String elePreBatchClaimNumber="//*[@id='prebatchdGrid']//div[contains(@class,'ag-cell-last-left-pinned')]//a";
     String eleVerticalColorForUncleanPreBatchClaim = "(//*[@id='prebatchdGrid']//div[contains(@class,'ag-cell-normal-height')]//span)[4]";
+    String tabFFSInstitutionalPend = "//button[@id='nav-pend-details-tab']";
 
     private static String expClaimNumber = "";
     private static String expMemberId = "";
@@ -71,7 +73,7 @@ public class FFSInstitutionalPage extends SeleniumUtils {
     public void verifyFFSInstitutionalPage() throws InterruptedException {
         boolean value = isDisplayed(tabFFSInstitutional);
         Assert.assertTrue(value);
-        threadSleep(20000);
+        explicitInvisibilityOfElementWithTextWait(By.xpath(tabFFSInstitutionalPend), 60, "Pend ()");
     }
 
     //Scenario: Verify by default user should be in the Pend state in FFS Institutional screen
@@ -203,7 +205,7 @@ public class FFSInstitutionalPage extends SeleniumUtils {
         clickElement(tabOnHold);
     }
     public void verifyPageNumbersAtBottomOfPage() throws InterruptedException {
-        threadSleep(10000);
+        explicitVisibilityOfElementLocatedWaitByXpath(eleOnHoldPaginationDescription,10);
         String pagination = findElementByXpath(eleOnHoldPaginationDescription).getText();
         String[] paginationCount = pagination.split(" ");
         System.out.println("Page count " + Integer.parseInt(paginationCount[3]));
@@ -309,7 +311,6 @@ public class FFSInstitutionalPage extends SeleniumUtils {
 
     //Scenario: Verify user can Identify COB Not In Member House from FFS Institutional page
     public void enterCOBNotInMemberHouseClaimNumber() throws InterruptedException {
-        threadSleep(30000);
         expClaimNumber = prop.getProperty("ffsInstitutionalCobNotInMemberHouse");
         findElementAndSendKeys(findElementByXpath(txtClaimNumber), expClaimNumber);
         threadSleep(1000);
@@ -344,6 +345,7 @@ public class FFSInstitutionalPage extends SeleniumUtils {
     }
     public void enterUnCleanStatusPayerReviewClaimNumber() throws InterruptedException {
         expClaimNumber = prop.getProperty("ffsInstitutionalUnCleanStatusPayerReviewClaimNumber");
+        explicitVisibilityOfWait(findElementByXpath(txtPayerReviewClaimNumber), 5);
         findElementAndSendKeys(findElementByXpath(txtPayerReviewClaimNumber), expClaimNumber);
         threadSleep(1000);
         sendKeysUsingKeyboardInput(txtPayerReviewClaimNumber);
@@ -392,6 +394,7 @@ public class FFSInstitutionalPage extends SeleniumUtils {
     }
     public void enterUnCleanStatusApprovedClaimNumber() throws InterruptedException {
         expClaimNumber = prop.getProperty("ffsInstitutionalUnCleanStatusApprovedClaimNumber");
+        explicitVisibilityOfWait(findElementByXpath(txtApprovedClaimNumber), 5);
         findElementAndSendKeys(findElementByXpath(txtApprovedClaimNumber), expClaimNumber);
         threadSleep(1000);
         sendKeysUsingKeyboardInput(txtApprovedClaimNumber);
@@ -439,6 +442,7 @@ public class FFSInstitutionalPage extends SeleniumUtils {
 
     public void enterUnCleanStatusPreBatchClaimNumber() throws InterruptedException {
         expClaimNumber = prop.getProperty("ffsInstitutionalUnCleanStatusPreBatchClaimNumber");
+        explicitVisibilityOfWait(findElementByXpath(txtPreBatchClaimNumber), 5);
         findElementAndSendKeys(findElementByXpath(txtPreBatchClaimNumber), expClaimNumber);
         threadSleep(1000);
         sendKeysUsingKeyboardInput(txtPreBatchClaimNumber);

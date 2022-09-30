@@ -67,7 +67,8 @@ public class ClaimDetailsPage extends SeleniumUtils {
         clickElement(lnkFFSProfessional);
     }
 
-    public void userClicksOnClaimNumber() throws InterruptedException {
+    public void userClicksOnClaimNumber() {
+        explicitInvisibilityOfElementWithTextWait(By.xpath("//button[@id='nav-pend-details-tab']"), 60, "Pend()");
         explicitElementClickableWaitByXpath(lnkClaimNumber, 50);
         clickElement(lnkClaimNumber);
     }

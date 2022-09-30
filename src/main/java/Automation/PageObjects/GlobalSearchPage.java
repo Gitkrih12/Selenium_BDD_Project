@@ -193,7 +193,7 @@ public class GlobalSearchPage extends SeleniumUtils {
     }
 
     public void validateClaimNumberResult()  throws InterruptedException{
-        threadSleep(5000);
+        threadSleep(10000);
         String actClaimNumber = getText(eleClaimNumber);
         System.out.println("actual claimNumber :" + actClaimNumber);
         Assert.assertEquals(expClaimNumber, actClaimNumber);

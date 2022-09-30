@@ -5,6 +5,7 @@ import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
 import java.util.ArrayList;
@@ -58,6 +59,7 @@ public class CAPInstitutionalPage extends SeleniumUtils {
     String txtPreBatchClaimNumber = "(//input[@aria-label='Claim Number Filter Input'])[7]";
     String elePreBatchClaimNumber="//*[@id='prebatchdGrid']//div[contains(@class,'ag-cell-last-left-pinned')]//a";
     String eleVerticalColorForUncleanPreBatchClaim = "(//*[@id='prebatchdGrid']//div[contains(@class,'ag-cell-normal-height')]//span)[4]";
+    String tabCAPInstitutionalPend = "//button[@id='nav-pend-details-tab']";
 
 
     private static String expClaimNumber = "";
@@ -75,7 +77,7 @@ public class CAPInstitutionalPage extends SeleniumUtils {
     public void verifyCAPInstitutionalPage() throws InterruptedException {
         boolean value = isDisplayed(tabCAPInstitutional);
         Assert.assertTrue(value);
-        threadSleep(20000);
+        explicitInvisibilityOfElementWithTextWait(By.xpath(tabCAPInstitutionalPend), 60, "Pend ()");
     }
 
     //Scenario: Verify by default user should be in the Pend state field results page
@@ -194,6 +196,7 @@ public class CAPInstitutionalPage extends SeleniumUtils {
         clickElement(tabOnHold);
     }
     public void verifyPageNumbersAtBottomOfPage() throws InterruptedException {
+        explicitVisibilityOfElementLocatedWaitByXpath(eleOnHoldPaginationDescription,10);
         String pagination = findElementByXpath(eleOnHoldPaginationDescription).getText();
         String[] paginationCount = pagination.split(" ");
         System.out.println("Page count " + Integer.parseInt(paginationCount[3]));
@@ -442,6 +445,7 @@ public class CAPInstitutionalPage extends SeleniumUtils {
 
     public void enterUnCleanStatusPreBatchClaimNumber() throws InterruptedException {
         expClaimNumber = prop.getProperty("capInstitutionalUnCleanStatusPreBatchClaimNumber");
+        explicitVisibilityOfWait(findElementByXpath(txtPreBatchClaimNumber), 5);
         findElementAndSendKeys(findElementByXpath(txtPreBatchClaimNumber), expClaimNumber);
         threadSleep(1000);
         sendKeysUsingKeyboardInput(txtPreBatchClaimNumber);
