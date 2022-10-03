@@ -4,6 +4,7 @@ Feature: CAP Professional
     Given the user is in CA Login screen
     When the user enters the valid username and password and click on login button
 
+  #38959-As an adjudicator, I should be able to view CAP professional claims page with all claims details data so that I can search specific claim id details adding applicable filters
   @TC_39033 @Sanity
   Scenario: Verify user should navigates to CAP Professional screen
     When user clicks on CAP Professional in left navigation menu
@@ -216,7 +217,7 @@ Feature: CAP Professional
       | History Doc   |
       | Downloads     |
 
-  @TC_51910
+  @TC_51980
   Scenario: Verify by default user navigates to the View Claims List page
     When user clicks on CAP Professional in left navigation menu
     Then the user should navigate to the CAP Professional page

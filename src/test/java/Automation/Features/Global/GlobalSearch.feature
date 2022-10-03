@@ -175,7 +175,7 @@ Feature: Global Search
   Scenario Outline: Verify color code for Pend On Hold Payer Review Management Review Approved Deny Prebatch Batch To Pay Paid Rejected state claim number
     When user clicks on Global Search in left navigation menu
     Then the user should navigate to the Global Search page
-    When user enters the Member Id in the Search field
+    When user enters the Member Id in the Search field for color code
     When user enters the State "<State>" in the Search field
     Then user able to view the claim details for given State
     And user should able to see the circle with color code "<Color Code>" for given State
