@@ -4,6 +4,7 @@ import Automation.PageObjects.ProviderDetailsPage;
 import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.openqa.selenium.By;
 
 public class ProviderDetailsStepDef extends ProviderDetailsPage {
 
@@ -81,5 +82,90 @@ public class ProviderDetailsStepDef extends ProviderDetailsPage {
     @Then("user able to view the search box for all the column on AR Transactions grid")
     public void user_able_to_view_the_search_box_for_all_the_column_on_ar_transactions_grid() {
         verifySearchFieldsUnderEachColumn();
+    }
+
+    @When("user clicks on Hold claim number in FFS Institutional page")
+    public void user_clicks_on_hold_claim_number_in_ffs_institutional_page() {
+        userClicksOnHoldClaimNumber();
+    }
+
+    @Then("user able to view Map Pay To Provider button")
+    public void user_able_to_view_map_pay_to_provider_button() {
+        verifyMapPayToProviderButton();
+    }
+
+    @When("user clicks on Map Pay To Provider button")
+    public void user_clicks_on_map_pay_to_provider_button() {
+        userClicksOnMapPayToProviderButton();
+    }
+
+    @Then("user navigates to the Map Pay To Provider side drawer")
+    public void user_navigates_to_the_map_pay_to_provider_side_drawer() {
+        verifyUserNavigatesToMapPayToProvider();
+    }
+
+    @Then("user able to view the below headers under Map Pay To Provider side drawer")
+    public void user_able_to_view_the_below_headers_under_map_pay_to_provider_side_drawer(DataTable expHeaders) {
+        verifyHeadersUnderMapPayToProvider(expHeaders);
+    }
+
+    @Then("user able to view the below fields under Map Pay To Provider")
+    public void user_able_to_view_the_below_fields_under_map_pay_to_provider(DataTable expFields) {
+        verifyFieldsUnderMapPayToProvider(expFields);
+    }
+
+    @When("user clicks on Hold Muliple Vendor claim number in FFS Institutional page")
+    public void user_clicks_on_hold_muliple_vendor_claim_number_in_ffs_institutional_page() {
+        userClicksOnHoldMultipleVendorClaim();
+    }
+
+    @When("user views the multiple Vendors for the claim")
+    public void user_views_the_multiple_vendors_for_the_claim() {
+        userHasMultipleVendors();
+    }
+
+    @Then("user able to view the select button for all the Vendor ID except for the default Vendor ID")
+    public void user_able_to_view_the_select_button_for_all_the_vendor_id_except_for_the_default_vendor_id() {
+        userViewsSelectButton();
+    }
+
+    @Then("green bar should display for the default Vendor ID")
+    public void green_bar_should_display_for_the_default_vendor_id() {
+        verifyGreenBar();
+    }
+
+    @When("user clicks on Select button for the other Vendor ID")
+    public void user_clicks_on_select_button_for_the_other_vendor_id() {
+        userClicksOnSelectButtonForOtherVendorID();
+    }
+
+    @Then("user able to view the Vendor ID by default after selected")
+    public void user_able_to_view_the_vendor_id_by_default_after_selected() {
+        verifyVendorShouldBeDefaultAfterSelected();
+    }
+
+    @Then("user able to view the cancel, close buttons at the bottom and top of the side drawer")
+    public void user_able_to_view_the_cancel_close_buttons_at_the_bottom_and_top_of_the_side_drawer() {
+        verifyCancelCloseButtons();
+    }
+
+    @Then("user able to view the Pagination buttons")
+    public void user_able_to_view_the_pagination_buttons() {
+        verifyPaginationButtons();
+    }
+
+    @When("user clicks on Close button")
+    public void user_clicks_on_close_button() {
+        userClicksOnCloseButton();
+    }
+
+    @Then("user navigates back to the Provider details")
+    public void user_navigates_back_to_the_provider_details() {
+        verifyUserNavigatesToMapPayToProvider();
+    }
+
+    @When("user clicks on Cancel button")
+    public void user_clicks_on_cancel_button() {
+       userClicksOnCancelButton();
     }
 }

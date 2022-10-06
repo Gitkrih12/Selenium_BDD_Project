@@ -104,3 +104,89 @@ Feature: Provider Details
     And user clicks on the Provider Details tab
     When clicking on Vendor ID in Provider Details
     Then user able to view the search box for all the column on AR Transactions grid
+
+  @60783
+  Scenario: Verify user able to view Map Pay To Provider button for ONHOLD Claims only
+    Given the user is in FFS Professional page
+    Then the user should navigate to the FFS Professional page
+    When user clicks on Hold bucket
+    And user clicks on Hold claim number in FFS Institutional page
+    And user clicks on the Provider Details tab
+    Then user able to view Map Pay To Provider button
+
+  @60789
+  Scenario: Verify user able to view the Map Pay to Provider side drawer on clicking the Map Pay To Provider button
+    Given the user is in FFS Professional page
+    Then the user should navigate to the FFS Professional page
+    When user clicks on Hold bucket
+    And user clicks on Hold claim number in FFS Institutional page
+    And user clicks on the Provider Details tab
+    When user clicks on Map Pay To Provider button
+    Then user navigates to the Map Pay To Provider side drawer
+
+  @60810
+  Scenario: Verify user able to view all the fields in Map Pay To Provider Side drawer
+    Given the user is in FFS Professional page
+    Then the user should navigate to the FFS Professional page
+    When user clicks on Hold bucket
+    And user clicks on Hold claim number in FFS Institutional page
+    And user clicks on the Provider Details tab
+    When user clicks on Map Pay To Provider button
+    Then user able to view the below headers under Map Pay To Provider side drawer
+      | Tax ID          |
+      | Pay to Provider |
+      | Default Vendor  |
+    And user able to view the below fields under Map Pay To Provider
+      | Vendor ID       |
+      | Pay To Name     |
+      | NPI             |
+      | Address         |
+
+  @60830
+  Scenario: Verify user should not be able to view the select option and Green bar should display for the default Vendor ID
+    Given the user is in FFS Professional page
+    Then the user should navigate to the FFS Professional page
+    When user clicks on Hold bucket
+    And user clicks on Hold Muliple Vendor claim number in FFS Institutional page
+    And user clicks on the Provider Details tab
+    When user clicks on Map Pay To Provider button
+    When user views the multiple Vendors for the claim
+    Then user able to view the select button for all the Vendor ID except for the default Vendor ID
+    And green bar should display for the default Vendor ID
+
+  @60846
+  Scenario: Verify user able to select the default Vendor ID on clicking the Select button
+    Given the user is in FFS Professional page
+    Then the user should navigate to the FFS Professional page
+    When user clicks on Hold bucket
+    And user clicks on Hold claim number in FFS Institutional page
+    And user clicks on the Provider Details tab
+    When user clicks on Map Pay To Provider button
+    And user clicks on Select button for the other Vendor ID
+    Then user able to view the Vendor ID by default after selected
+
+  @60848
+  Scenario: Verify user able to view the pagination, cancel and close buttons for Map Pay To Provider Side Drawer
+    Given the user is in FFS Professional page
+    Then the user should navigate to the FFS Professional page
+    When user clicks on Hold bucket
+    And user clicks on Hold claim number in FFS Institutional page
+    And user clicks on the Provider Details tab
+    When user clicks on Map Pay To Provider button
+    Then user able to view the cancel, close buttons at the bottom and top of the side drawer
+    And user able to view the Pagination buttons
+
+  @60855
+  Scenario: Verify user able to perform click functionality on cancel and close buttons
+    Given the user is in FFS Professional page
+    Then the user should navigate to the FFS Professional page
+    When user clicks on Hold bucket
+    And user clicks on Hold claim number in FFS Institutional page
+    And user clicks on the Provider Details tab
+    When user clicks on Map Pay To Provider button
+    And user clicks on Close button
+    Then user navigates back to the Provider details
+    When user clicks on Map Pay To Provider button
+    And user clicks on Select button for the other Vendor ID
+    And user clicks on Cancel button
+    Then user navigates back to the Provider details

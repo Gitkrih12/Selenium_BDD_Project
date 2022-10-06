@@ -24,6 +24,7 @@ public class ServiceDetailsPage extends SeleniumUtils {
     String lstServiceDetailsValues = "//*[@id='nav-service-details']//div[contains(@class, 'row mt-1')]//div";
     String lstServiceLineFieldValues = "//table[@class='table table-striped ng-star-inserted']/tbody//div";
 
+
     private static String expClaimNumber = "";
     private static String expPricingTab = "";
 

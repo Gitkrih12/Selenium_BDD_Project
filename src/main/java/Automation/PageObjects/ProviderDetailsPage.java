@@ -2,7 +2,9 @@ package Automation.PageObjects;
 
 import Automation.Utilities.SeleniumUtils;
 import io.cucumber.datatable.DataTable;
+import io.opentelemetry.exporter.logging.SystemOutLogExporter;
 import org.junit.Assert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
 import java.util.*;
@@ -23,6 +25,35 @@ public class ProviderDetailsPage extends SeleniumUtils {
     String txtSearchFieldsForAR = "//*[@class = 'ag-floating-filter-input']";
     String lstPayToProviderDetailsValues = "//app-providerdetails//div[contains(@class, 'col-3')]//b";
     String lstGroupRenderingProviderDetailsValues = "//*[@class='table table-striped']//tr//td//div";
+    String eleOnHoldClaimNumber = "(//*[@id = 'onHoldGrid']//div[@class = 'ag-pinned-left-cols-container']//a)[1]";
+    String btnMapPayToProvider = "//*[contains(text(), 'Map Pay To Provider')]";
+    String titleMapPayToProvider = "//*[@class = 'map-rendering']//h2";
+    String lstHeadersMapPayToProvider = "//mat-dialog-container//*[contains(@class, 'label-heading')]";
+    String lstFieldsMapPayToProvider = "//*[@id='resultsGridPaytoprovider']//span[@ref = 'eText']";
+    String eleLastRowOnPage = "//*[@id='resultsGridPaytoprovider']//span[@ref = 'lbLastRowOnPage']";
+    String btnSelect = "(//*[@id='resultsGridPaytoprovider']//button[contains(text(), 'Select')])[2]";
+    String eleDefaultVendor = "//*[@col-id='uniquePayToId']//button";
+    String eleGreenBar = "//*[@id='resultsGridPaytoprovider']//div[@col-id = 'isDefault']//span//span//span";
+    String txtOnHoldClaimNumber = "//*[@id = 'onHoldGrid']//input[@aria-label='Claim Number Filter Input']";
+    String eleSelect = "(//*[@id='resultsGridPaytoprovider']//button[contains(text(), 'Select')])[last()]";
+    String btnCancel = "//mat-dialog-container//button[contains(text(),'Cancel')]";
+    String btnClose = "//mat-dialog-container//button[@aria-label = 'Close']";
+    String btnFirstPage = "//mat-dialog-container//div[@aria-label = 'First Page']";
+    String btnPreviousPage = "//mat-dialog-container//div[@aria-label = 'Previous Page']";
+    String btnNextPage = "//mat-dialog-container//div[@aria-label = 'Next Page']";
+    String btnLastPage = "//mat-dialog-container//div[@aria-label = 'Last Page']";
+
+
+    private static String expMapPayToProvider = "";
+    private static String expButton = "";
+    private static String expColor = "";
+    private static String expMultipleVendorClaimNumber = "";
+    private static String expCancelButton = "";
+    private static String expCloseButton = "";
+    private static String expFirstPage = "";
+    private static String expPreviousPage = "";
+    private static String expNextPage = "";
+    private static String expLastPage = "";
 
 
     // Scenario: Verify user able to navigate to the Provider details tab in the View Claims Form page
@@ -241,4 +272,148 @@ public class ProviderDetailsPage extends SeleniumUtils {
             Assert.assertTrue(value);
         }
     }
+
+    public void userClicksOnHoldClaimNumber(){
+        explicitElementClickableWait(findElementByXpath(eleOnHoldClaimNumber), 60);
+        clickElement(eleOnHoldClaimNumber);
+    }
+
+    public void verifyMapPayToProviderButton(){
+        expMapPayToProvider = prop.getProperty("expMapPayToProviderButton");
+        Assert.assertEquals(expMapPayToProvider, findElementByXpath(btnMapPayToProvider).getText());
+    }
+
+    public void userClicksOnMapPayToProviderButton(){
+        clickElement(btnMapPayToProvider);
+        explicitTextToBePresentInElementLocatedWait(By.xpath(titleMapPayToProvider), 30, expMapPayToProvider);
+    }
+
+    public void verifyUserNavigatesToMapPayToProvider(){
+        expMapPayToProvider = prop.getProperty("expMapPayToProviderSideDrawer");
+        Assert.assertEquals(expMapPayToProvider, findElementByXpath(titleMapPayToProvider).getText());
+    }
+
+    public void verifyHeadersUnderMapPayToProvider(DataTable expHeaders){
+        List<String> headersExp = expHeaders.asList();
+        List<WebElement> actColumnHeaders = findElementsByXpath(lstHeadersMapPayToProvider);
+        List<String> columnHeadersForCompare = new ArrayList<>();
+        System.out.println("Size " + actColumnHeaders.size());
+        for (WebElement column : actColumnHeaders) {
+            scrollIntoView(column, driver);
+            String text = column.getText();
+            columnHeadersForCompare.add(text);
+        }
+        System.out.println("Headers under Map Pay To Provider section :" + columnHeadersForCompare);
+        System.out.println("Expected fields are : " + headersExp);
+        for (String exp : headersExp) {
+            if (columnHeadersForCompare.contains(exp)) {
+                Assert.assertTrue(true);
+            } else {
+                Assert.fail(exp + " is not listed in actual list");
+            }
+        }
+    }
+
+    public void verifyFieldsUnderMapPayToProvider(DataTable expFields){
+        List<String> fieldsExp = expFields.asList();
+        List<WebElement> actColumnFields = findElementsByXpath(lstFieldsMapPayToProvider);
+        List<String> columnFieldsForCompare = new ArrayList<>();
+        System.out.println("Size " + actColumnFields.size());
+        for (WebElement column : actColumnFields) {
+            scrollIntoView(column, driver);
+            String text = column.getText();
+            columnFieldsForCompare.add(text);
+        }
+        System.out.println("Fields under Map Pay To Provider section :" + columnFieldsForCompare);
+        System.out.println("Expected Fields are : " + fieldsExp);
+        for (String exp : fieldsExp) {
+            if (columnFieldsForCompare.contains(exp)) {
+                Assert.assertTrue(true);
+            } else {
+                Assert.fail(exp + " is not listed in actual list");
+            }
+        }
+    }
+
+    public void userClicksOnHoldMultipleVendorClaim(){
+        explicitElementClickableWait(findElementByXpath(txtOnHoldClaimNumber), 60);
+        expMultipleVendorClaimNumber = prop.getProperty("onHoldMultipleVendorClaimNumber");
+        findElementAndSendKeys(findElementByXpath(txtOnHoldClaimNumber), expMultipleVendorClaimNumber);
+        sendKeysUsingKeyboardInput(txtOnHoldClaimNumber);
+        explicitElementClickableWait(findElementByXpath(eleOnHoldClaimNumber), 60);
+        clickElement(eleOnHoldClaimNumber);
+    }
+
+    public void userHasMultipleVendors(){
+        explicitElementClickableWaitByXpath(eleLastRowOnPage, 30);
+        int expVendor = Integer.parseInt(findElementByXpath(eleLastRowOnPage).getText());
+        System.out.println(expVendor);
+        if(expVendor > 1){
+           Assert.assertTrue(true);
+        } else {
+            Assert.fail(expVendor + " doesn't have multiple vendors");
+        }
+    }
+
+    public void userViewsSelectButton(){
+        expButton = prop.getProperty("expSelectButton");
+        explicitElementClickableWait(findElementByXpath(btnSelect), 20);
+        Assert.assertEquals(expButton, findElementByXpath(btnSelect).getText());
+    }
+
+    public void verifyGreenBar(){
+        String expDefaultVendor = findElementByXpath(eleDefaultVendor).getAttribute("disabled");
+        String actColor = getColorCodeForBackground(eleGreenBar);
+        expColor = prop.getProperty("greenBar");
+        if(expDefaultVendor.contains("true")){
+            System.out.println("actual color code :" + actColor);
+            Assert.assertEquals(expColor, actColor);
+        } else {
+            Assert.fail(expColor + " color doesn't match");
+        }
+    }
+
+    public void userClicksOnSelectButtonForOtherVendorID(){
+        explicitTextToBePresentInElementLocatedWait(By.xpath(eleSelect), 40, "Select");
+        clickElement(eleSelect);
+    }
+
+    public void verifyVendorShouldBeDefaultAfterSelected(){
+        String expDefaultVendor = findElementByXpath(eleDefaultVendor).getAttribute("disabled");
+        if(expDefaultVendor.contains("true")){
+            Assert.assertTrue(true);
+        } else {
+            Assert.fail("Vendor is not selected by default");
+        }
+    }
+
+    public void verifyCancelCloseButtons(){
+        expCancelButton = prop.getProperty("expCancel");
+        Assert.assertEquals(expCancelButton, findElementByXpath(btnCancel).getText());
+        expCloseButton = prop.getProperty("expClose");
+        Assert.assertEquals(expCloseButton, findElementByXpath(btnClose).getAttribute("aria-label"));
+    }
+
+    public void verifyPaginationButtons(){
+        expFirstPage = prop.getProperty("expFirst");
+        Assert.assertEquals(expFirstPage, findElementByXpath(btnFirstPage).getAttribute("aria-label"));
+        expPreviousPage = prop.getProperty("expPrevious");
+        Assert.assertEquals(expPreviousPage, findElementByXpath(btnPreviousPage).getAttribute("aria-label"));
+        expNextPage = prop.getProperty("expNext");
+        Assert.assertEquals(expNextPage, findElementByXpath(btnNextPage).getAttribute("aria-label"));
+        expLastPage = prop.getProperty("expLast");
+        Assert.assertEquals(expLastPage, findElementByXpath(btnLastPage).getAttribute("aria-label"));
+    }
+
+    public void userClicksOnCloseButton(){
+        explicitElementClickableWait(findElementByXpath(btnClose), 30);
+        clickElement(btnClose);
+    }
+
+    public void userClicksOnCancelButton(){
+        explicitElementClickableWait(findElementByXpath(btnCancel), 30);
+        clickElement(btnCancel);
+    }
+
+
 }
