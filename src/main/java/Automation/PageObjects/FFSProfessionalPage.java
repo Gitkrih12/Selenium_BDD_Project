@@ -86,6 +86,8 @@ public class FFSProfessionalPage extends SeleniumUtils {
     String eleEOPLetter = "//button[text()='Download EOP Letter']";
     String ele835file = "//button[text()='Download 835 File']";
     String tabFFSProfessionalPend = "//button[@id='nav-pend-details-tab']";
+    String tabOpenedAllTabs = "//div[@class='mat-tab-labels']";
+
 
 
 
@@ -197,7 +199,7 @@ public class FFSProfessionalPage extends SeleniumUtils {
     }
     public void verifyUserShouldSeeAlreadyOpenedClaimNumber(){
         ArrayList<String> openedTabs = new ArrayList<>();
-        List<WebElement> actTabs = findElementByXpath("//div[@class='mat-tab-labels']").findElements(By.xpath("*"));
+        List<WebElement> actTabs = findElementByXpath(tabOpenedAllTabs).findElements(By.xpath("*"));
         for (WebElement a : actTabs)
         {
             if(a.getText().contains("View")){
@@ -543,8 +545,8 @@ public class FFSProfessionalPage extends SeleniumUtils {
 
     public void clickOnBatchId() throws InterruptedException {
         explicitElementClickableWaitByXpath(eleBatchID, 10).click();
-        explicitInvisibilityOfElementWithTextWait(By.xpath("//button[@id='nav-history-doc-details-tab']"), 60, "History Doc ()");
-        explicitTextToBePresentInElementLocatedWait(By.xpath("//button[@id = 'nav-downloads-details-tab']"), 20, "Downloads");
+        explicitInvisibilityOfElementWithTextWait(By.xpath(tabHistoryDoc), 60, "History Doc ()");
+        explicitTextToBePresentInElementLocatedWait(By.xpath(tabDownloads), 20, "Downloads");
         threadSleep(1000);
     }
 

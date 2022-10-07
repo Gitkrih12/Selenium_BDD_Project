@@ -217,7 +217,7 @@ Feature: CAP Professional
       | History Doc   |
       | Downloads     |
 
-  @TC_51980
+  @TC_51980 @Sanity @beta
   Scenario: Verify by default user navigates to the View Claims List page
     When user clicks on CAP Professional in left navigation menu
     Then the user should navigate to the CAP Professional page
@@ -239,7 +239,7 @@ Feature: CAP Professional
     And displays all the list of provider list for that Batch ID
     And user should be able to see "Providers in the Selected Batch" label in Provider List screen
 
-  @TC_67897
+  @TC_67897 @Sanity
   Scenario: Verify user should navigates to the Check Info page on clicking Check Info tab
     When user clicks on CAP Professional in left navigation menu
     Then the user should navigate to the CAP Professional page
@@ -280,7 +280,7 @@ Feature: CAP Professional
     And user clicks on the Check Info tab
     Then user should able to see Check Type as "Void" for voided batch
 
-  @TC_51996
+  @TC_51996 @Sanity @beta
   Scenario: Verify user able to navigate to the History Doc tab on clicking History Doc tab
     When user clicks on CAP Professional in left navigation menu
     Then the user should navigate to the CAP Professional page
@@ -291,7 +291,7 @@ Feature: CAP Professional
     And displays all the list of History Doc for that Batch ID
     And user should be able to see "History Of Doc in the Selected Batch" label in History Doc screen
 
-  @TC_51998
+  @TC_51998 @Sanity @beta
   Scenario: Verify user able to navigate to the Downloads tab on clicking Downloads tab and verify the files when there are any files
     When user clicks on CAP Professional in left navigation menu
     Then the user should navigate to the CAP Professional page

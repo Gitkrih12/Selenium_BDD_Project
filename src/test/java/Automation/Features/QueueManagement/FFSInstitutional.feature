@@ -204,7 +204,7 @@ Feature: FFS Institutional
     And color indication information for Unclean should be available on top of grid in FFS Institutional
 
   #50887-As an adjudicator, When I click on the 'Batch ID' from Paid tab for FFS Institutional So I can be able to View the Claims list, Provider List, Check Info, History Doc, and Downloads sub-tabs under Claims for Batch Tab
-  @TC_52060
+  @TC_52060 @Sanity @beta
   Scenario: Verify all tabs should display when clicking on Batch ID under Paid tab in FFS Institutional page
     When user clicks on FFS Institutional in left navigation menu
     Then the user should navigate to the FFS Institutional page
@@ -218,7 +218,7 @@ Feature: FFS Institutional
       | History Doc   |
       | Downloads     |
 
-  @TC_52157
+  @TC_52157 @Sanity @beta
   Scenario: Verify by default user navigates to the View Claims List page
     When user clicks on FFS Institutional in left navigation menu
     Then the user should navigate to the FFS Institutional page
@@ -240,7 +240,7 @@ Feature: FFS Institutional
     And displays all the list of provider list for that Batch ID
     And user should be able to see "Providers in the Selected Batch" label in Provider List screen
 
-  @TC_69483
+  @TC_69483 @Sanity @beta
   Scenario: Verify user should navigates to the Check Info page on clicking Check Info tab
     When user clicks on FFS Institutional in left navigation menu
     Then the user should navigate to the FFS Institutional page
@@ -281,7 +281,7 @@ Feature: FFS Institutional
     And user clicks on the Check Info tab
     Then user should able to see Check Type as "Void" for voided batch
 
-  @TC_52159
+  @TC_52159 @Sanity @beta
   Scenario: Verify user able to navigate to the History Doc page on clicking History Doc tab
     When user clicks on FFS Institutional in left navigation menu
     Then the user should navigate to the FFS Institutional page
@@ -292,7 +292,7 @@ Feature: FFS Institutional
     And displays all the list of History Doc for that Batch ID
     And user should be able to see "History Of Doc in the Selected Batch" label in History Doc screen
 
-  @TC_52158
+  @TC_52158 @Sanity @beta
   Scenario: Verify user able to navigate to the Downloads tab on clicking Downloads tab and verify the files when there are any files
     When user clicks on FFS Institutional in left navigation menu
     Then the user should navigate to the FFS Institutional page
