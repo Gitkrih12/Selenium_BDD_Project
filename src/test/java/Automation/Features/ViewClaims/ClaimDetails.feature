@@ -12,7 +12,7 @@ Feature: Claim Details
     Then user navigates to the "Claim Summary" page
     And user should view "(Hide)" option besides Claim Summary
 
-  @37392
+  @37392 @beta
   Scenario: Verify View Claim in CMS 1500 and Self Assign buttons in Claim Summary details page
     Given the user is in FFS Professional page
     When user clicks on the Claim Number
@@ -20,7 +20,7 @@ Feature: Claim Details
     And user should view Claim in CMS "View Claim in CMS 1500" and self assign "Self-Assign" buttons in Claim Summary details page
 
   @37393
-  @Sanity
+  @Sanity @beta
   Scenario: Verify column fields in Claim Summary details page
     When user clicks on the Claim Number in Universal Search
     Then user navigates to the "Claim Summary" page
@@ -40,7 +40,7 @@ Feature: Claim Details
       | Ref ID            |
     And user able to view all the field values in Claim Summary Details page
 
-  @37394
+  @37394 @beta
   Scenario: Verify Claim Summary Tab List
     Given the user is in FFS Professional page
     When user clicks on the Claim Number
@@ -58,7 +58,7 @@ Feature: Claim Details
       | Activity Logger     |
       | AR Transaction      |
 
-  @37397
+  @37397 @beta
   Scenario: Verify footer section in Claim Summary details page
     Given the user is in FFS Professional page
     When user clicks on the Claim Number
@@ -72,7 +72,7 @@ Feature: Claim Details
       | Update Auth       |
 
   @37402
-  @Sanity
+  @Sanity @beta
   Scenario: Verify Claim Details sections
     Given the user is in FFS Professional page
     When user clicks on the Claim Number
@@ -88,7 +88,7 @@ Feature: Claim Details
       | Date of Service                 |
       | Is Patient Condition Related To |
 
-  @37403
+  @37403 @beta
   Scenario: Validate Claim Information section
     When user clicks on the Claim Number in Universal Search
     Then user navigates to the "Claim Summary" page
@@ -103,7 +103,7 @@ Feature: Claim Details
       | Clean/Unclean Status |
     And user able to view all the field values under claim information section
 
-  @37405
+  @37405 @beta
   Scenario: Validate Payment Information section
     When user clicks on the Claim Number in Universal Search
     Then user navigates to the "Claim Summary" page
@@ -139,7 +139,7 @@ Feature: Claim Details
     Then user navigates to the "Claim Summary" page
     And user claim status as Un-Clean is unchecked by default
 
-  @37413
+  @37413 @beta
   Scenario: Validate Member Information section
     When user clicks on the Claim Number in Universal Search
     Then user navigates to the "Claim Summary" page
@@ -160,7 +160,7 @@ Feature: Claim Details
       | Insured's Group Number            |
     And user able to view all the field values under Member Information section
 
-  @37414
+  @37414 @beta
   Scenario: Validate Rendering Provider Information section
     When user clicks on the Claim Number in Universal Search
     Then user navigates to the "Claim Summary" page
@@ -170,7 +170,7 @@ Feature: Claim Details
       | Taxonomy                |
     And user able to view all the field values under Rendering Provider Information section
 
-  @37415
+  @37415 @beta
   Scenario: Validate Billing Provider Information section
     When user clicks on the Claim Number in Universal Search
     Then user navigates to the "Claim Summary" page
@@ -188,7 +188,7 @@ Feature: Claim Details
       | Network Affiliation   |
     And user able to view all the field values under Billing Provider Information section
 
-  @37416
+  @37416 @beta
   Scenario: Validate Payer section
     When user clicks on the Claim Number in Universal Search
     Then user navigates to the "Claim Summary" page
@@ -202,7 +202,7 @@ Feature: Claim Details
       | Zip Code       |
     And user able to view all the field values under Payer section
 
-  @37418
+  @37418 @beta
   Scenario: Validate Date of Service section
     When user clicks on the Claim Number in Universal Search
     Then user navigates to the "Claim Summary" page
@@ -213,7 +213,7 @@ Feature: Claim Details
       | Patient Control Number |
     And user able to view all the field values under Date of Service section
 
-  @37421
+  @37421 @beta
   Scenario: Validate Is Patient Condition Related To section
     Given the user is in FFS Professional page
     When user clicks on the Claim Number
