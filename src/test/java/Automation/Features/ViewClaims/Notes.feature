@@ -12,7 +12,7 @@ Feature: Notes
     Then user navigates to the "Notes" tab
 
   @46154
-  @Sanity
+  @Sanity @beta
   Scenario: Verify column fields in Notes tab
     When user clicking on Claim Number in Global Search page
     And user clicks on the Notes tab
@@ -24,7 +24,7 @@ Feature: Notes
       | Created Date |
     And user able to view all the field values under Notes tab
 
-  @46159
+  @46159 @beta
   Scenario: Validate footer buttons in Notes Tab
     Given the user is in FFS Professional page
     When user clicks on the Claim Number

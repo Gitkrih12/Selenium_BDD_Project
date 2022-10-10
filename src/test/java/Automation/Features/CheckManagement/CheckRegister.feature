@@ -11,7 +11,7 @@ Feature: Check Register
     Then user able to navigate to the Check Register page
 
   @60696
-  @Sanity
+  @Sanity @beta
   Scenario: Verify fields in Check Register page
     When user clicks on Check Register under Check Management
     Then user able to view all the below mentioned fields under Check Register
@@ -28,14 +28,14 @@ Feature: Check Register
       | Zip              |
 
   @60701
-  @Sanity
+  @Sanity @beta
   Scenario: Verify user should get result on selecting value from Billing Provider drop down field
     When user clicks on Check Register under Check Management
     And user select value from Billing Provider dropdown field
     Then user able to view the result for the search criteria
 
   @60703
-  @Sanity
+  @Sanity @beta
   Scenario: Verify user should get result on selecting value from Facility drop down field
     When user clicks on Check Register under Check Management
     And user select value from Facility dropdown field

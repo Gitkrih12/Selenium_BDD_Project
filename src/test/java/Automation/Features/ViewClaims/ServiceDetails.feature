@@ -4,7 +4,7 @@ Feature: Service Details
     Given the user is in CA Login screen
     When the user enters the valid username and password and click on login button
 
-  @37693
+  @37693 @beta
   Scenario: Verify Adjudicator able to Navigate Service Details from Global Search and validate the fields
     When user clicking on Claim Number in Global Search page
     And user clicks on Service Details tab
@@ -25,7 +25,7 @@ Feature: Service Details
     And user able to view all the field values in Service Details page
 
   @37694
-  @Sanity
+  @Sanity @beta
   Scenario: Verify Service Lines fields
     When user clicking on Claim Number in Global Search page
     And user clicks on Service Details tab
@@ -54,7 +54,7 @@ Feature: Service Details
       | PBP                 |
     And user able to view all the field values in Service Line fields
 
-  @37695
+  @37695 @beta
   Scenario: Verify footer section available in Service details tab
     Given the user is in FFS Professional page
     When user clicks on the Claim Number

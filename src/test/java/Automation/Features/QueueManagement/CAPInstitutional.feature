@@ -23,7 +23,7 @@ Feature: CAP Institutional
     Then the user should navigate to the CAP Institutional page
     And user should be able to view the Clam List Label in the CAP Institutional screen
 
-  @TC_37106 @Sanity
+  @TC_37106 @Sanity @beta
   Scenario: Validate user able to view all the column fields in CAP Institutional screen
     When user clicks on CAP Institutional in left navigation menu
     Then the user should navigate to the CAP Institutional page
@@ -43,7 +43,7 @@ Feature: CAP Institutional
       | Age                    |
       | Assigned To            |
 
-  @TC_37104 @Sanity
+  @TC_37104 @Sanity @beta
   Scenario: Verify all the queue field details in the CAP Institutional page
     When user clicks on CAP Institutional in left navigation menu
     Then the user should navigate to the CAP Institutional page
@@ -60,7 +60,7 @@ Feature: CAP Institutional
       | Draft             |
       | Rejected          |
 
-  @TC_37144 @Sanity
+  @TC_37144 @Sanity @beta
   Scenario: Verify user able to view the search fields under each columns in the CAP Institutional screen
     When user clicks on CAP Institutional in left navigation menu
     Then the user should navigate to the CAP Institutional page
@@ -96,7 +96,7 @@ Feature: CAP Institutional
     Then user should allow to navigates to back page in CAP Institutional
 
   #40717-As an adjudicator, I should be able to click on any Claim number from CAP Institutional queue and get navigated to the appropriate claims details page
-  @TC_45942 @Sanity
+  @TC_45942 @Sanity @beta
   Scenario: Verify user should navigates to Claim Details page on clicking claim number from CAP Institutional page
     When user clicks on CAP Institutional in left navigation menu
     Then the user should navigate to the CAP Institutional page

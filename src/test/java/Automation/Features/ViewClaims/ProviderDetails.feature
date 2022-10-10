@@ -10,7 +10,7 @@ Feature: Provider Details
     And user clicks on the Provider Details tab
     Then user navigates to the Provider Details tab
 
-  @39953
+   @39953 @beta
   Scenario: Verify user able to view the Pay to Provider Details and Group/Rendering Provider Details section under Provider Details tab
     When user clicking on Claim Number in Global Search page
     And user clicks on the Provider Details tab
@@ -18,7 +18,7 @@ Feature: Provider Details
       | Pay to Provider details          |
       | Group/Rendering Provider Details |
 
-  @39958
+  @39958 @beta
 #  @Sanity
   Scenario: Verify user able to view all the fields under Pay to Provider Details section
     When user clicking on Claim Number in Global Search page
@@ -37,7 +37,7 @@ Feature: Provider Details
       | Zipcode              |
     And user able to view all the field values under Pay to Provider Details section
 
-  @39961
+  @39961 @beta
 #  @Sanity
   Scenario: Verify user able to view all the fields under Group/Rendering Provider Details section
     When user clicking on Claim Number in Global Search page
@@ -54,7 +54,7 @@ Feature: Provider Details
       | Contract Name    |
     And user able view all the field values under Group Rendering Provider Details section
 
-  @39974
+  @39974 @beta
   Scenario: Validate all the buttons available at the footer section under Provider Details tab
     Given the user is in FFS Professional page
     When user clicks on the Claim Number
@@ -76,14 +76,14 @@ Feature: Provider Details
     When clicking on Vendor ID in Provider Details
     Then user navigates to the AR Transactions page
 
-  @47008
+  @47008 @beta
   Scenario: Verify user able to view the Credit/Overpaid and Debit/Underpaid status at the middle of the A/R Ledger
     When user clicking on Claim Number in Global Search page
     And user clicks on the Provider Details tab
     When clicking on Vendor ID in Provider Details
     Then user able to view Credit Overpaid and Debit Underpaid status as "Credit/Overpaid - Added to Account Receivable" "Debit/Underpaid - deducted to Account Receivable"
 
-  @47013
+  @47013 @beta
   Scenario: Verify user able to view the available Account Review Transactions and all the columns in the A/R transaction details page
     When user clicking on Claim Number in Global Search page
     And user clicks on the Provider Details tab

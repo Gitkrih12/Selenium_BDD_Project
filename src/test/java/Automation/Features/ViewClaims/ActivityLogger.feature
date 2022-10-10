@@ -5,7 +5,7 @@ Feature: Activity Logger
     When the user enters the valid username and password and click on login button
 
   @42356
-  @Sanity
+  @Sanity @beta
   Scenario: Verify user able to navigate to Activity Logger tab
     When user clicking on Claim Number in Global Search page
     And user clicks on the Activity Logger tab
@@ -19,7 +19,7 @@ Feature: Activity Logger
       | Performed By     |
     And user able to view all the field values under Activity Logger tab
 
-  @42359
+  @42359 @beta
   Scenario: Verify user able to navigate to Activity Logger tab and validated the buttons
     Given the user is in FFS Professional page
     When user clicks on the Claim Number
