@@ -274,16 +274,16 @@ Feature: Provider Details
     And user clicks on the Provider Details tab
     When user clicks on Contract Name under Group Rendering Provider Details
     Then user should be able to view the following fields in Pay Class section
-      | FFS Percentage          |
+      | FFS Percentage |
 #      | Medicare Allowable Rate |
-      | Service                 |
-      | Diagnostis              |
-      | Lab                     |
-      | DME                     |
-      | Injections              |
-      | Immunizations           |
-      | AWP Pricer              |
-      | ASP Pricer              |
+      | Service        |
+      | Diagnostis     |
+      | Lab            |
+      | DME            |
+      | Injections     |
+      | Immunizations  |
+      | AWP Pricer     |
+      | ASP Pricer     |
 
   @55533
   Scenario: Verify Exceptions CPT fields in contract window

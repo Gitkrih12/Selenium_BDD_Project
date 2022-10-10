@@ -2,12 +2,14 @@ package Automation.PageObjects;
 
 import Automation.Utilities.SeleniumUtils;
 import io.cucumber.datatable.DataTable;
-import io.opentelemetry.exporter.logging.SystemOutLogExporter;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
 import java.util.stream.Collectors;
 
 public class ProviderDetailsPage extends SeleniumUtils {
@@ -292,27 +294,30 @@ public class ProviderDetailsPage extends SeleniumUtils {
         }
     }
 
-    public void userClicksOnHoldClaimNumber(){
+    // Scenario: Verify user able to view Map Pay To Provider button for ONHOLD Claims only
+    public void userClicksOnHoldClaimNumber() {
         explicitElementClickableWait(findElementByXpath(eleOnHoldClaimNumber), 60);
         clickElement(eleOnHoldClaimNumber);
     }
 
-    public void verifyMapPayToProviderButton(){
+    public void verifyMapPayToProviderButton() {
         expMapPayToProvider = prop.getProperty("expMapPayToProviderButton");
         Assert.assertEquals(expMapPayToProvider, findElementByXpath(btnMapPayToProvider).getText());
     }
 
-    public void userClicksOnMapPayToProviderButton(){
+    //  Scenario: Verify user able to view the Map Pay to Provider side drawer on clicking the Map Pay To Provider button
+    public void userClicksOnMapPayToProviderButton() {
         clickElement(btnMapPayToProvider);
         explicitTextToBePresentInElementLocatedWait(By.xpath(titleMapPayToProvider), 30, expMapPayToProvider);
     }
 
-    public void verifyUserNavigatesToMapPayToProvider(){
+    public void verifyUserNavigatesToMapPayToProvider() {
         expMapPayToProvider = prop.getProperty("expMapPayToProviderSideDrawer");
         Assert.assertEquals(expMapPayToProvider, findElementByXpath(titleMapPayToProvider).getText());
     }
 
-    public void verifyHeadersUnderMapPayToProvider(DataTable expHeaders){
+    //  Scenario: Verify user able to view all the fields in Map Pay To Provider Side drawer
+    public void verifyHeadersUnderMapPayToProvider(DataTable expHeaders) {
         List<String> headersExp = expHeaders.asList();
         List<WebElement> actColumnHeaders = findElementsByXpath(lstHeadersMapPayToProvider);
         List<String> columnHeadersForCompare = new ArrayList<>();
@@ -333,7 +338,7 @@ public class ProviderDetailsPage extends SeleniumUtils {
         }
     }
 
-    public void verifyFieldsUnderMapPayToProvider(DataTable expFields){
+    public void verifyFieldsUnderMapPayToProvider(DataTable expFields) {
         List<String> fieldsExp = expFields.asList();
         List<WebElement> actColumnFields = findElementsByXpath(lstFieldsMapPayToProvider);
         List<String> columnFieldsForCompare = new ArrayList<>();
@@ -354,7 +359,8 @@ public class ProviderDetailsPage extends SeleniumUtils {
         }
     }
 
-    public void userClicksOnHoldMultipleVendorClaim(){
+    //  Scenario: Verify user should not be able to view the select option and Green bar should display for the default Vendor ID
+    public void userClicksOnHoldMultipleVendorClaim() {
         explicitElementClickableWait(findElementByXpath(txtOnHoldClaimNumber), 60);
         expMultipleVendorClaimNumber = prop.getProperty("onHoldMultipleVendorClaimNumber");
         findElementAndSendKeys(findElementByXpath(txtOnHoldClaimNumber), expMultipleVendorClaimNumber);
@@ -363,28 +369,28 @@ public class ProviderDetailsPage extends SeleniumUtils {
         clickElement(eleOnHoldClaimNumber);
     }
 
-    public void userHasMultipleVendors(){
+    public void userHasMultipleVendors() {
         explicitElementClickableWaitByXpath(eleLastRowOnPage, 30);
         int expVendor = Integer.parseInt(findElementByXpath(eleLastRowOnPage).getText());
         System.out.println(expVendor);
-        if(expVendor > 1){
-           Assert.assertTrue(true);
+        if (expVendor > 1) {
+            Assert.assertTrue(true);
         } else {
             Assert.fail(expVendor + " doesn't have multiple vendors");
         }
     }
 
-    public void userViewsSelectButton(){
+    public void userViewsSelectButton() {
         expButton = prop.getProperty("expSelectButton");
         explicitElementClickableWait(findElementByXpath(btnSelect), 20);
         Assert.assertEquals(expButton, findElementByXpath(btnSelect).getText());
     }
 
-    public void verifyGreenBar(){
+    public void verifyGreenBar() {
         String expDefaultVendor = findElementByXpath(eleDefaultVendor).getAttribute("disabled");
         String actColor = getColorCodeForBackground(eleGreenBar);
         expColor = prop.getProperty("greenBar");
-        if(expDefaultVendor.contains("true")){
+        if (expDefaultVendor.contains("true")) {
             System.out.println("actual color code :" + actColor);
             Assert.assertEquals(expColor, actColor);
         } else {
@@ -392,28 +398,30 @@ public class ProviderDetailsPage extends SeleniumUtils {
         }
     }
 
-    public void userClicksOnSelectButtonForOtherVendorID(){
+    //  Scenario: Verify user able to select the default Vendor ID on clicking the Select button
+    public void userClicksOnSelectButtonForOtherVendorID() {
         explicitTextToBePresentInElementLocatedWait(By.xpath(eleSelect), 40, "Select");
         clickElement(eleSelect);
     }
 
-    public void verifyVendorShouldBeDefaultAfterSelected(){
+    public void verifyVendorShouldBeDefaultAfterSelected() {
         String expDefaultVendor = findElementByXpath(eleDefaultVendor).getAttribute("disabled");
-        if(expDefaultVendor.contains("true")){
+        if (expDefaultVendor.contains("true")) {
             Assert.assertTrue(true);
         } else {
             Assert.fail("Vendor is not selected by default");
         }
     }
 
-    public void verifyCancelCloseButtons(){
+    //  Scenario: Verify user able to view the pagination, cancel and close buttons for Map Pay To Provider Side Drawer
+    public void verifyCancelCloseButtons() {
         expCancelButton = prop.getProperty("expCancel");
         Assert.assertEquals(expCancelButton, findElementByXpath(btnCancel).getText());
         expCloseButton = prop.getProperty("expClose");
         Assert.assertEquals(expCloseButton, findElementByXpath(btnClose).getAttribute("aria-label"));
     }
 
-    public void verifyPaginationButtons(){
+    public void verifyPaginationButtons() {
         expFirstPage = prop.getProperty("expFirst");
         Assert.assertEquals(expFirstPage, findElementByXpath(btnFirstPage).getAttribute("aria-label"));
         expPreviousPage = prop.getProperty("expPrevious");
@@ -424,28 +432,31 @@ public class ProviderDetailsPage extends SeleniumUtils {
         Assert.assertEquals(expLastPage, findElementByXpath(btnLastPage).getAttribute("aria-label"));
     }
 
-    public void userClicksOnCloseButton(){
+    //  Scenario: Verify user able to perform click functionality on cancel and close buttons
+    public void userClicksOnCloseButton() {
         explicitElementClickableWait(findElementByXpath(btnClose), 30);
         clickElement(btnClose);
     }
 
-    public void userClicksOnCancelButton(){
+    public void userClicksOnCancelButton() {
         explicitElementClickableWait(findElementByXpath(btnCancel), 30);
         clickElement(btnCancel);
     }
 
-    public void userClicksOnProviderIDUnderGroupRenderingProvider(){
+    //  Scenario: Verify user should navigate to Provider window on clicking Provider ID under Group/Rendering Provider Details table
+    public void userClicksOnProviderIDUnderGroupRenderingProvider() {
         explicitElementClickableWait(findElementByXpath(lnkProviderId), 20);
         clickElement(lnkProviderId);
         explicitTextToBePresentInElementLocatedWait(By.xpath(titleBasicInfoSubtab), 20, "Basic Information");
     }
 
-    public void verifyUserNavigatesToProviderWindow(){
+    public void verifyUserNavigatesToProviderWindow() {
         expWindow = prop.getProperty("expProviderWindow");
         Assert.assertEquals(expWindow, findElementByXpath(titleProviderWindow).getAttribute("ng-reflect-ng-class"));
     }
 
-    public void verifyTheSubtabs(DataTable expSubtabs){
+    //  Scenario: Verify user should able to see sub-tabs in provider window
+    public void verifyTheSubtabs(DataTable expSubtabs) {
         List<String> subtabsExp = expSubtabs.asList();
         List<String> actSubtabs = findElementsByXpath(lstSubtabs)
                 .stream().map((e) -> e.getText().trim()).collect(Collectors.toList());
@@ -455,12 +466,13 @@ public class ProviderDetailsPage extends SeleniumUtils {
         Assert.assertEquals(subtabsExp, actSubtabs);
     }
 
-    public void userNavigatesToBasicInformationSubtabByDefault(){
+    public void userNavigatesToBasicInformationSubtabByDefault() {
         expSubtab = prop.getProperty("expBasicInfo");
         Assert.assertEquals(expSubtab, findElementByXpath(titleBasicInfoSubtab).getText());
     }
 
-    public void verifyFieldsUnderProviderBasicInfoSubtab(DataTable expFields){
+    //  Scenario: Verify Basic Information tab in Provider details screen
+    public void verifyFieldsUnderProviderBasicInfoSubtab(DataTable expFields) {
         List<String> fieldsExp = expFields.asList();
         List<String> actFields = findElementsByXpath(lstProviderBasicInfoFields)
                 .stream().map((e) -> e.getText().trim()).collect(Collectors.toList());
@@ -470,7 +482,8 @@ public class ProviderDetailsPage extends SeleniumUtils {
         Assert.assertEquals(fieldsExp, actFields);
     }
 
-    public void verifyFieldsUnderFacilityName(DataTable expFields){
+    // Scenario: Verify Facility Name section in Basic Information tab
+    public void verifyFieldsUnderFacilityName(DataTable expFields) {
         List<String> fieldsExp = expFields.asList();
         List<String> actFields = findElementsByXpath(lstFacilityName)
                 .stream().map((e) -> e.getText().trim()).collect(Collectors.toList());
@@ -480,7 +493,8 @@ public class ProviderDetailsPage extends SeleniumUtils {
         Assert.assertEquals(fieldsExp, actFields);
     }
 
-    public void verifyFieldsUnderAdverseActionsSection(DataTable expFields){
+    // Scenario: Verify Adverse Actions section in Basic Information tab
+    public void verifyFieldsUnderAdverseActionsSection(DataTable expFields) {
         List<String> fieldsExp = expFields.asList();
         List<String> actFields = findElementsByXpath(lstAdverseActions)
                 .stream().map((e) -> e.getText().trim()).collect(Collectors.toList());
@@ -490,7 +504,8 @@ public class ProviderDetailsPage extends SeleniumUtils {
         Assert.assertEquals(fieldsExp, actFields);
     }
 
-    public void verifyFieldsUnderCommentsSection(DataTable expFields){
+    //  Scenario: Verify Comments section in Basic Information tab
+    public void verifyFieldsUnderCommentsSection(DataTable expFields) {
         List<String> fieldsExp = expFields.asList();
         List<String> actFields = findElementsByXpath(lstCommentSection)
                 .stream().map((e) -> e.getText().trim()).collect(Collectors.toList());
@@ -500,22 +515,25 @@ public class ProviderDetailsPage extends SeleniumUtils {
         Assert.assertEquals(fieldsExp, actFields);
     }
 
-    public void userClicksOnContractName(){
+    //  Scenario: Verify user should navigate to Contract Name window on clicking contract name hyperlink in Provider Details tab
+    public void userClicksOnContractName() {
         explicitElementClickableWait(findElementByXpath(lnkContractName), 20);
         clickElement(lnkContractName);
     }
 
-    public void verifyContractNameWindow(){
+    public void verifyContractNameWindow() {
         expContractName = prop.getProperty("expContractNameWindow");
         Assert.assertEquals(expContractName, findElementByXpath(titlePayClass).getText());
     }
 
-    public void verfiyPayClassAndExceptionSections(){
+    //  Scenario: Verify Pay Class and Exceptions sections in contract window
+    public void verfiyPayClassAndExceptionSections() {
         expException = prop.getProperty("expExceptionSection");
         Assert.assertEquals(expException, findElementByXpath(titleException).getText());
     }
 
-    public void verifyFieldsInPayClass(DataTable expFields){
+    //  Scenario: Verify Pay class section fields in contract window
+    public void verifyFieldsInPayClass(DataTable expFields) {
         List<String> fieldsExp = expFields.asList();
         explicitElementClickableWait(findElementByXpath(lstPayClassFields), 20);
         List<WebElement> actColumnFields = findElementsByXpath(lstPayClassFields);
@@ -537,7 +555,8 @@ public class ProviderDetailsPage extends SeleniumUtils {
         }
     }
 
-    public void verifyFieldsInCPTSection(DataTable expFields){
+    //   Scenario: Verify Exceptions CPT fields in contract window
+    public void verifyFieldsInCPTSection(DataTable expFields) {
         List<String> fieldsExp = expFields.asList();
         explicitElementClickableWait(findElementByXpath(lstCPTFields), 20);
         List<WebElement> actColumnFields = findElementsByXpath(lstCPTFields);
@@ -559,12 +578,13 @@ public class ProviderDetailsPage extends SeleniumUtils {
         }
     }
 
-    public void userClicksOnRevenueCodeSection(){
+    //  Scenario: Verify Exceptions Revenue Code fields in contract window
+    public void userClicksOnRevenueCodeSection() {
         explicitElementClickableWait(findElementByXpath(btnRevenueCode), 20);
         clickElement(btnRevenueCode);
     }
 
-    public void verifyFieldsInRevenueCode(DataTable expFields){
+    public void verifyFieldsInRevenueCode(DataTable expFields) {
         List<String> fieldsExp = expFields.asList();
         explicitElementClickableWait(findElementByXpath(lstRevenueCodeFields), 20);
         List<WebElement> actColumnFields = findElementsByXpath(lstRevenueCodeFields);

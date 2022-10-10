@@ -4,7 +4,6 @@ import Automation.PageObjects.ProviderDetailsPage;
 import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import org.openqa.selenium.By;
 
 public class ProviderDetailsStepDef extends ProviderDetailsPage {
 
@@ -84,6 +83,7 @@ public class ProviderDetailsStepDef extends ProviderDetailsPage {
         verifySearchFieldsUnderEachColumn();
     }
 
+    // Scenario: Verify user able to view Map Pay To Provider button for ONHOLD Claims only
     @When("user clicks on Hold claim number in FFS Institutional page")
     public void user_clicks_on_hold_claim_number_in_ffs_institutional_page() {
         userClicksOnHoldClaimNumber();
@@ -94,6 +94,7 @@ public class ProviderDetailsStepDef extends ProviderDetailsPage {
         verifyMapPayToProviderButton();
     }
 
+    //  Scenario: Verify user able to view the Map Pay to Provider side drawer on clicking the Map Pay To Provider button
     @When("user clicks on Map Pay To Provider button")
     public void user_clicks_on_map_pay_to_provider_button() {
         userClicksOnMapPayToProviderButton();
@@ -104,6 +105,7 @@ public class ProviderDetailsStepDef extends ProviderDetailsPage {
         verifyUserNavigatesToMapPayToProvider();
     }
 
+    //  Scenario: Verify user able to view all the fields in Map Pay To Provider Side drawer
     @Then("user able to view the below headers under Map Pay To Provider side drawer")
     public void user_able_to_view_the_below_headers_under_map_pay_to_provider_side_drawer(DataTable expHeaders) {
         verifyHeadersUnderMapPayToProvider(expHeaders);
@@ -114,6 +116,7 @@ public class ProviderDetailsStepDef extends ProviderDetailsPage {
         verifyFieldsUnderMapPayToProvider(expFields);
     }
 
+    //  Scenario: Verify user should not be able to view the select option and Green bar should display for the default Vendor ID
     @When("user clicks on Hold Muliple Vendor claim number in FFS Institutional page")
     public void user_clicks_on_hold_muliple_vendor_claim_number_in_ffs_institutional_page() {
         userClicksOnHoldMultipleVendorClaim();
@@ -134,6 +137,7 @@ public class ProviderDetailsStepDef extends ProviderDetailsPage {
         verifyGreenBar();
     }
 
+    //  Scenario: Verify user able to select the default Vendor ID on clicking the Select button
     @When("user clicks on Select button for the other Vendor ID")
     public void user_clicks_on_select_button_for_the_other_vendor_id() {
         userClicksOnSelectButtonForOtherVendorID();
@@ -144,6 +148,7 @@ public class ProviderDetailsStepDef extends ProviderDetailsPage {
         verifyVendorShouldBeDefaultAfterSelected();
     }
 
+    //  Scenario: Verify user able to view the pagination, cancel and close buttons for Map Pay To Provider Side Drawer
     @Then("user able to view the cancel, close buttons at the bottom and top of the side drawer")
     public void user_able_to_view_the_cancel_close_buttons_at_the_bottom_and_top_of_the_side_drawer() {
         verifyCancelCloseButtons();
@@ -154,6 +159,7 @@ public class ProviderDetailsStepDef extends ProviderDetailsPage {
         verifyPaginationButtons();
     }
 
+    // Scenario: Verify user able to perform click functionality on cancel and close buttons
     @When("user clicks on Close button")
     public void user_clicks_on_close_button() {
         userClicksOnCloseButton();
@@ -166,9 +172,10 @@ public class ProviderDetailsStepDef extends ProviderDetailsPage {
 
     @When("user clicks on Cancel button")
     public void user_clicks_on_cancel_button() {
-       userClicksOnCancelButton();
+        userClicksOnCancelButton();
     }
 
+    //  Scenario: Verify user should navigate to Provider window on clicking Provider ID under Group/Rendering Provider Details table
     @When("user clicks on Provider ID under Group Rendering Provider Details")
     public void user_clicks_on_provider_id_under_group_rendering_provider_details() {
         userClicksOnProviderIDUnderGroupRenderingProvider();
@@ -179,6 +186,7 @@ public class ProviderDetailsStepDef extends ProviderDetailsPage {
         verifyUserNavigatesToProviderWindow();
     }
 
+    //  Scenario: Verify user should able to see sub-tabs in provider window
     @Then("user able to see the following sub tabs")
     public void user_able_to_see_the_following_sub_tabs(DataTable expSubtabs) {
         verifyTheSubtabs(expSubtabs);
@@ -189,26 +197,31 @@ public class ProviderDetailsStepDef extends ProviderDetailsPage {
         userNavigatesToBasicInformationSubtabByDefault();
     }
 
+    //  Scenario: Verify Basic Information tab in Provider details screen
     @Then("user able to view the below mentioned fields under Provider Basic Information subtab")
     public void user_able_to_view_the_below_mentioned_fields_under_provider_basic_information_subtab(DataTable expFields) {
         verifyFieldsUnderProviderBasicInfoSubtab(expFields);
     }
 
+    //  Scenario: Verify Facility Name section in Basic Information tab
     @Then("user able to view the following fields under Facility Name")
     public void user_able_to_view_the_following_fields_under_facility_name(DataTable expFields) {
         verifyFieldsUnderFacilityName(expFields);
     }
 
+    // Scenario: Verify Adverse Actions section in Basic Information tab
     @Then("user able to view the following fields under Adverse Actions section")
     public void user_able_to_view_the_following_fields_under_adverse_actions_section(DataTable expFields) {
         verifyFieldsUnderAdverseActionsSection(expFields);
     }
 
+    // Scenario: Verify Comments section in Basic Information tab
     @Then("user able to view the following fields under Comments section")
     public void user_able_to_view_the_following_fields_under_comments_section(DataTable expFields) {
         verifyFieldsUnderCommentsSection(expFields);
     }
 
+    //  Scenario: Verify user should navigate to Contract Name window on clicking contract name hyperlink in Provider Details tab
     @When("user clicks on Contract Name under Group Rendering Provider Details")
     public void user_clicks_on_contract_name_under_group_rendering_provider_details() {
         userClicksOnContractName();
@@ -219,21 +232,25 @@ public class ProviderDetailsStepDef extends ProviderDetailsPage {
         verifyContractNameWindow();
     }
 
+    //  Scenario: Verify Pay Class and Exceptions sections in contract window
     @Then("user should be able to view Pay Class and Exception sections")
     public void user_should_be_able_to_view_pay_class_and_exception_sections() {
         verfiyPayClassAndExceptionSections();
     }
 
+    //  Scenario: Verify Pay class section fields in contract window
     @Then("user should be able to view the following fields in Pay Class section")
     public void user_should_be_able_to_view_the_following_fields_in_pay_class_section(DataTable expFields) {
         verifyFieldsInPayClass(expFields);
     }
 
+    //   Scenario: Verify Exceptions CPT fields in contract window
     @Then("user should be able to view the following fields in CPT Section")
     public void user_should_be_able_to_view_the_following_fields_in_cpt_section(DataTable expFields) {
         verifyFieldsInCPTSection(expFields);
     }
 
+    //  Scenario: Verify Exceptions Revenue Code fields in contract window
     @When("user clicks on Revenue Code Section")
     public void user_clicks_on_revenue_code_section() {
         userClicksOnRevenueCodeSection();
