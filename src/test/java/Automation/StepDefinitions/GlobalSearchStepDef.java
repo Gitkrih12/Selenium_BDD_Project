@@ -97,6 +97,13 @@ public class GlobalSearchStepDef extends GlobalSearchPage {
         validateMemberIDResult();
     }
 
+    //Scenario Outline: Verify color code for Pend On Hold Payer Review Management Review Approved Deny Prebatch Batch To Pay Paid Rejected state claim number
+    @When("user enters the Member Id in the Search field for color code")
+    public void user_enters_the_member_id_in_the_search_field_for_color_code() throws InterruptedException {
+        enterMemberIdInSearchFieldForColorCode();
+    }
+
+
     //Scenario: Verify user enters the Patient Name in the Search field
     @When("user enters the Patient Name in the Search field")
     public void user_enters_the_patient_name_in_the_search_field() throws InterruptedException {
