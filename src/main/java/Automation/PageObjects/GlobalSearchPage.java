@@ -205,6 +205,7 @@ public class GlobalSearchPage extends SeleniumUtils {
         findElementAndSendKeys(findElementByXpath(txtClaimNumber), expClaimNumber);
         threadSleep(1000);
         sendKeysUsingKeyboardInput(txtClaimNumber);
+        explicitTextToBePresentInElementLocatedWait(By.xpath(eleClaimNumber), 20, expClaimNumber);
     }
 
     //Scenario: Verify colour coding for Unclean status professional claims in Global Search page
@@ -239,11 +240,20 @@ public class GlobalSearchPage extends SeleniumUtils {
         findElementAndSendKeys(findElementByXpath(txtMemberId), expMemberId);
         threadSleep(1000);
         sendKeysUsingKeyboardInput(txtMemberId);
-        threadSleep(5000);
+        explicitTextToBePresentInElementLocatedWait(By.xpath(eleMemberId), 30, expMemberId);
+    }
+
+    //Scenario Outline: Verify color code for Pend On Hold Payer Review Management Review Approved Deny Prebatch Batch To Pay Paid Rejected state claim number
+    public void enterMemberIdInSearchFieldForColorCode() throws InterruptedException {
+        expMemberId = prop.getProperty("threeCharMemberID");
+        findElementAndSendKeys(findElementByXpath(txtMemberId), expMemberId);
+        threadSleep(1000);
+        sendKeysUsingKeyboardInput(txtMemberId);
+        explicitTextToBePresentInElementLocatedWait(By.xpath(eleMemberId), 50, expMemberId);
     }
 
     public void validateMemberIDResult() {
-        explicitVisibilityOfWait(findElementByXpath(eleMemberId), 5);
+        //explicitVisibilityOfWait(findElementByXpath(eleMemberId), 5);
         String actMemberId = getText(eleMemberId);
         System.out.println("actual member id :" + actMemberId);
         Assert.assertEquals(expMemberId, actMemberId);
@@ -375,6 +385,7 @@ public class GlobalSearchPage extends SeleniumUtils {
         findElementAndSendKeys(findElementByXpath(txtClaimNumber), expClaimNumber);
         threadSleep(1000);
         sendKeysUsingKeyboardInput(txtClaimNumber);
+        explicitTextToBePresentInElementLocatedWait(By.xpath(eleClaimNumber), 60, expClaimNumber);
     }
 
     public void validateClaimNumberResultForCharacterLimit() throws InterruptedException {
@@ -395,7 +406,7 @@ public class GlobalSearchPage extends SeleniumUtils {
         findElementAndSendKeys(findElementByXpath(txtMemberId), expMemberId);
         threadSleep(1000);
         sendKeysUsingKeyboardInput(txtMemberId);
-        threadSleep(5000);
+        explicitTextToBePresentInElementLocatedWait(By.xpath(eleMemberId), 40, expMemberId);
     }
 
     public void validateMemberIDResultForCharacterLimit() {
@@ -415,7 +426,7 @@ public class GlobalSearchPage extends SeleniumUtils {
         findElementAndSendKeys(findElementByXpath(txtPatientName), expPatientName);
         threadSleep(1000);
         sendKeysUsingKeyboardInput(txtPatientName);
-        threadSleep(3000);
+        explicitTextToBePresentInElementLocatedWait(By.xpath(elePatientName), 40, expPatientName);
     }
 
     public void validatePatientResultForCharacterLimit() throws InterruptedException {
@@ -553,7 +564,7 @@ public class GlobalSearchPage extends SeleniumUtils {
         findElementAndSendKeys(findElementByXpath(txtMemberId), expMemberId);
         threadSleep(1000);
         sendKeysUsingKeyboardInput(txtMemberId);
-        threadSleep(5000);
+        explicitTextToBePresentInElementLocatedWait(By.xpath(eleMemberId), 40, expMemberId);
     }
 
     //Scenario: Verify color code for voided state claim number
@@ -562,7 +573,7 @@ public class GlobalSearchPage extends SeleniumUtils {
         findElementAndSendKeys(findElementByXpath(txtMemberId), expMemberId);
         threadSleep(1000);
         sendKeysUsingKeyboardInput(txtMemberId);
-        threadSleep(5000);
+        explicitTextToBePresentInElementLocatedWait(By.xpath(eleMemberId), 40, expMemberId);
     }
 
     //Scenario: Verify user should navigate to Customized Columns window when we click on Customized columns in Global Search page
@@ -678,7 +689,7 @@ public class GlobalSearchPage extends SeleniumUtils {
         findElementAndSendKeys(findElementByXpath(txtMemberId), expMemberId);
         threadSleep(1000);
         sendKeysUsingKeyboardInput(txtMemberId);
-        threadSleep(5000);
+        explicitTextToBePresentInElementLocatedWait(By.xpath(eleMemberId), 40, expMemberId);
     }
 
     public void getAllMemberIdResults() {

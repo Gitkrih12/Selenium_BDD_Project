@@ -3,6 +3,7 @@ package Automation.PageObjects;
 import Automation.Utilities.SeleniumUtils;
 import io.cucumber.datatable.DataTable;
 import org.junit.Assert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
 import java.util.ArrayList;
@@ -52,8 +53,13 @@ public class ClaimDetailsPage extends SeleniumUtils {
             " //*[@id='nav-claim-details']/div[12]/div[2]/div/b";
     String lstPayerValues = "//*[@id='nav-claim-details']/div[13]/div[2]/div/b | //*[@id='nav-claim-details']/div[14]/div[2]/div/b";
     String lstDateOfServiceSectionValues = "//*[@id='nav-claim-details']/div[15]//div[2]/div/b";
+    String lblClaimSubmissionNew = "//*[contains(text(), '1 - NEW')]";
+    String lblClaimSubmissionCorrected = "//*[contains(text(), '7 - CORRECTED')]";
+    String eleClaimSubmission = "//*[@id='nav-claim-details']//div[4]/div[2]/b";
+    String tabPend = "//button[@id='nav-pend-details-tab']";
 
     private static String expClaimNumber = "";
+    private static String expClaimSubmission = "";
 
 
     //  Scenario: Verify user able to navigate to claim summary screen on clicking claim number
@@ -62,7 +68,8 @@ public class ClaimDetailsPage extends SeleniumUtils {
         clickElement(lnkFFSProfessional);
     }
 
-    public void userClicksOnClaimNumber() throws InterruptedException {
+    public void userClicksOnClaimNumber() {
+        explicitInvisibilityOfElementWithTextWait(By.xpath(tabPend), 60, "Pend ()");
         explicitElementClickableWaitByXpath(lnkClaimNumber, 50);
         clickElement(lnkClaimNumber);
     }
@@ -865,5 +872,27 @@ public class ClaimDetailsPage extends SeleniumUtils {
     public void verifyUserViewsClaimSummarySection() {
         boolean claimSummarySection = findElementByXpath(eleClaimNumber).isDisplayed();
         Assert.assertTrue(claimSummarySection);
+    }
+
+    //  Scenario: Verify user able to view 1-New Claim Submission type in Claim details page
+    public void verifyClaimSubmissionTypeAsNew(){
+        expClaimSubmission = prop.getProperty("claimSubmissionNew");
+        Assert.assertEquals(expClaimSubmission, findElementByXpath(lblClaimSubmissionNew).getText());
+    }
+
+    //  Scenario: Verify user able to view 7-Corrected claim submission type in Claim Details page
+    public void verifyClaimSubmissionTypeAsCorrected(){
+        expClaimSubmission = prop.getProperty("claimSubmissionCorrected");
+        Assert.assertEquals(expClaimSubmission, findElementByXpath(lblClaimSubmissionCorrected).getText());
+    }
+
+    //  Scenario: Verify user able to view different types of claim submission from FFS/CAP Institutional page
+    public void userEntersAndClicksOnClaimNumber(String claimNumber){
+        findElementAndSendKeys(findElementByXpath(txtUniversalSearchBar), claimNumber);
+        sendKeysUsingKeyboardInput(txtUniversalSearchBar);
+    }
+
+    public void verifyClaimSubmissionType(String type){
+        Assert.assertEquals(type, findElementByXpath(eleClaimSubmission).getText());
     }
 }
