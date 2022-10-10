@@ -282,6 +282,7 @@ public class CAPProfessionalPage extends SeleniumUtils {
     }
     public void enterUnCleanStatusManagementReviewClaimNumber() throws InterruptedException {
         expClaimNumber = prop.getProperty("capProfessionalUnCleanStatusManagementReviewClaimNumber");
+        explicitVisibilityOfWait(findElementByXpath(txtManagementReviewClaimNumber), 5);
         findElementAndSendKeys(findElementByXpath(txtManagementReviewClaimNumber), expClaimNumber);
         threadSleep(1000);
         sendKeysUsingKeyboardInput(txtManagementReviewClaimNumber);
