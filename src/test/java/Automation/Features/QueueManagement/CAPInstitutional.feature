@@ -203,5 +203,106 @@ Feature: CAP Institutional
     And user should able to see vertical line beside unclean status Pre Batch claim number with color code "#FFC33E" in CAP Institutional
     And color indication information for Unclean should be available on top of grid in CAP Institutional
 
+  #50888-As an adjudicator, When I click on the 'Batch ID' from Paid tab for CAP Institutional So I can be able to View the Claims list, Provider List, Check Info, History Doc, and Downloads sub-tabs under Claims for Batch Tab
+  @TC_69535 @Sanity @beta
+  Scenario: Verify all tabs should display when clicking on Batch ID under Paid tab in CAP Institutional page
+    When user clicks on CAP Institutional in left navigation menu
+    Then the user should navigate to the CAP Institutional page
+    When user clicks on Paid bucket
+    And user enters Batch Id in search criteria in CAP Institutional page
+    And user clicks on Batch Id
+    Then user should be able to see below tabs
+      | Claim List    |
+      | Provider List |
+      | Check Info    |
+      | History Doc   |
+      | Downloads     |
+
+  @TC_69563 @Sanity @beta
+  Scenario: Verify by default user navigates to the View Claims List page
+    When user clicks on CAP Institutional in left navigation menu
+    Then the user should navigate to the CAP Institutional page
+    When user clicks on Paid bucket
+    And user enters Batch Id in search criteria in CAP Institutional page
+    And user clicks on Batch Id
+    Then user views Claim List tab by default should be "active"
+    And displays all the list of claims for that Batch ID
+    And user should able to see "Claim List in the Selected Batch"
+
+  @TC_69564
+  Scenario: Verify user navigates to the Provider List page on clicking Provider List tab
+    When user clicks on CAP Institutional in left navigation menu
+    Then the user should navigate to the CAP Institutional page
+    When user clicks on Paid bucket
+    And user enters Batch Id in search criteria in CAP Institutional page
+    And user clicks on Batch Id
+    And user clicks on the Provider List tab
+    And displays all the list of provider list for that Batch ID
+    And user should be able to see "Providers in the Selected Batch" label in Provider List screen
+
+  @TC_69581 @Sanity @beta
+  Scenario: Then user navigates to the check Info page successfully along with the check information of that batch
+    When user clicks on CAP Institutional in left navigation menu
+    Then the user should navigate to the CAP Institutional page
+    When user clicks on Paid bucket
+    And user enters Batch Id in search criteria in CAP Institutional page
+    And user clicks on Batch Id
+    And user clicks on the Check Info tab
+    And displays all the list of Check Info for that Batch ID
+    And user should be able to see "Check Information" label in Check Info screen
+
+  @TC_69585
+  Scenario: Verify user able to view Check Type as Regular if its not void or reissue in Check Info page
+    When user clicks on CAP Institutional in left navigation menu
+    Then the user should navigate to the CAP Institutional page
+    When user clicks on Paid bucket
+    And user enters Batch Id in search criteria for Normal Check in CAP Institutional page
+    And user clicks on Batch Id
+    And user clicks on the Check Info tab
+    Then user should able to see Check Type as "Regular" for Normal Check
+
+  @TC_69601
+  Scenario: Verify user able to view the check reissue information in Check Info page
+    When user clicks on CAP Institutional in left navigation menu
+    Then the user should navigate to the CAP Institutional page
+    When user clicks on Paid bucket
+    And user enters Batch Id in search criteria for issued check in CAP Institutional page
+    And user clicks on Batch Id
+    And user clicks on the Check Info tab
+    Then user should able to see Check Type as "ReIssue"
+
+  @TC_69627
+  Scenario: Verify user able to view the check void information in Check Info page
+    When user clicks on CAP Institutional in left navigation menu
+    Then the user should navigate to the CAP Institutional page
+    When user clicks on Paid bucket
+    And user enters Batch Id in search criteria for Check Void in CAP Institutional page
+    And user clicks on Batch Id
+    And user clicks on the Check Info tab
+    Then user should able to see Check Type as "Void" for voided batch
+
+  @TC_69630 @Sanity @beta
+  Scenario: Verify user able to navigate to the History Doc page on clicking History Doc tab
+    When user clicks on CAP Institutional in left navigation menu
+    Then the user should navigate to the CAP Institutional page
+    When user clicks on Paid bucket
+    And user enters Batch Id in search criteria for issued check in CAP Institutional page
+    And user clicks on Batch Id
+    And user clicks on History Doc
+    And displays all the list of History Doc for that Batch ID
+    And user should be able to see "History Of Doc in the Selected Batch" label in History Doc screen
+
+  @TC_69634 @Sanity @beta
+  Scenario: Verify user able to navigate to the Downloads tab on clicking Downloads tab and verify the files when there are any files
+    When user clicks on CAP Institutional in left navigation menu
+    Then the user should navigate to the CAP Institutional page
+    When user clicks on Paid bucket
+    And user enters Batch Id in search criteria for Check Void in CAP Institutional page
+    And user clicks on Batch Id
+    And user clicks on Downloads
+    Then user able to view the "Download EOP Letter" and "Download 835 File"
+
+
+
 
 

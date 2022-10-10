@@ -17,17 +17,17 @@ Feature: Left Navigation Admin
     Then user can able to see the Queue Management section expandable mode by default
 
 
-  @39436
+  @Sanity @39436 @beta
   Scenario:  Validate expanding collapsing action for all menu's in left navigation for admin role
     When left navigation loaded
     Then user should be able to perform expanding and collapsing actions for all menus
 
-  @34890
+  @Sanity @34890 @beta
   Scenario: Validate Account Management Menu for admin role
     When left navigation loaded
     Then user should able to view the AR Ledger Menu under Account Management Menu
 
-  @34864
+  @Sanity @34864 @beta
   Scenario: Validate Adjudication Menu for admin role
     When left navigation loaded
     Then user should able to view the Home, Global Search, Claim Reprocess, Claims Assignment Menu under Adjudication Menu
@@ -36,7 +36,7 @@ Feature: Left Navigation Admin
       |Claims Reprocess|
       |Claims Assignment|
 
-  @34891
+  @Sanity @34891 @beta
   Scenario: Validate Check Management Menu for admin role
     When left navigation loaded
     Then user should able to view the Check Refund, Check Void, Check Reissue, Check Register Menu's under Check Management Menu
@@ -45,7 +45,7 @@ Feature: Left Navigation Admin
       |Check Reissue|
       |Check Register|
 
-  @39536
+  @Sanity @39536 @beta
   Scenario: Validate expanding collapsing left navigation menu on clicking Menu Toggle for admin role
     When left navigation loaded
     And user clicks on Menu Toggle in left navigation menu
@@ -53,12 +53,12 @@ Feature: Left Navigation Admin
     And user clicks on Menu Toggle when left navigation menu in collapsible mode
     Then Left navigation menu should be changed to expandable mode
 
-  @34893
+  @Sanity @34893 @beta
   Scenario: Validate Fee Schedule Menu for admin role
     When left navigation loaded
     Then user should able to view the Medicare and Medicaid Menu's under Fee Schedule Menu
 
-  @34889
+  @Sanity @34889 @beta
   Scenario: Validate File Management Menu for admin role
     When left navigation loaded
     Then user should be able to view the following sub menus under File Management main menu
@@ -68,7 +68,7 @@ Feature: Left Navigation Admin
       | Great Plains    |
       | Encounter Files |
 
-  @34888
+  @Sanity @34888 @beta
   Scenario: Validate Member Management Menu for admin role
     When left navigation loaded
     Then user should be able to view the following sub menus under Member Management main Menu
@@ -76,7 +76,7 @@ Feature: Left Navigation Admin
       | MOOP Ledger         |
       | Prior Authorization |
 
-  @34884
+  @Sanity @34884 @beta
   Scenario: Validate Queue Management Menu for admin role
     When left navigation loaded
     Then user should be able to view the following sub menus under Queue Management main menu
@@ -86,17 +86,17 @@ Feature: Left Navigation Admin
       | CAP Institutional |
       | Dental            |
 
-  @34928
+  @Sanity @34928 @beta
   Scenario: Validate Reports Menu for admin role
     When left navigation loaded
     Then user should able to view the SSRS Reports Menu under Reports Menu
 
-  @34894
+  @Sanity @34894 @beta
   Scenario: Validate Settings Menu for admin role
     When left navigation loaded
     Then user should able to view the Plain Language and Instructions Menus under Settings Menu
 
-  @34896
+  @Sanity @34896 @beta
   Scenario: Validate User Management Menu for admin role
     When left navigation loaded
     Then user should be able to view the Manage Users, Manage Role menus under User Management Menu
@@ -110,7 +110,7 @@ Feature: Left Navigation Admin
   Scenario: Verify left navigation loaded for admin role
     Then user should be able to view the left navigation for his role
 
-  @Sanity @34863
+  @Sanity @34863 @beta
   Scenario: Verify left navigation menu for admin role
     When left navigation loaded
     Then user should be able to view the "Claims Adjudication" Label, Menu toggle on the top view

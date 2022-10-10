@@ -51,7 +51,7 @@ Feature: Files tab
 
 
 #  @45840 will have multiple test cases to verify sorting for all the columns listed under 837P Files tab
-  @45840-1
+  @45840-1 @beta
   Scenario: Verify Sorting functionality for "File Name" column under "837P Files" tab
     Given the user is on the "Files" page
     When the user clicks on the 837P Files tab
