@@ -168,4 +168,79 @@ public class ProviderDetailsStepDef extends ProviderDetailsPage {
     public void user_clicks_on_cancel_button() {
        userClicksOnCancelButton();
     }
+
+    @When("user clicks on Provider ID under Group Rendering Provider Details")
+    public void user_clicks_on_provider_id_under_group_rendering_provider_details() {
+        userClicksOnProviderIDUnderGroupRenderingProvider();
+    }
+
+    @Then("user should navigate to Provider window")
+    public void user_should_navigate_to_provider_window() {
+        verifyUserNavigatesToProviderWindow();
+    }
+
+    @Then("user able to see the following sub tabs")
+    public void user_able_to_see_the_following_sub_tabs(DataTable expSubtabs) {
+        verifyTheSubtabs(expSubtabs);
+    }
+
+    @Then("user navigates to Basic Information sub tab by default")
+    public void user_navigates_to_basic_information_sub_tab_by_default() {
+        userNavigatesToBasicInformationSubtabByDefault();
+    }
+
+    @Then("user able to view the below mentioned fields under Provider Basic Information subtab")
+    public void user_able_to_view_the_below_mentioned_fields_under_provider_basic_information_subtab(DataTable expFields) {
+        verifyFieldsUnderProviderBasicInfoSubtab(expFields);
+    }
+
+    @Then("user able to view the following fields under Facility Name")
+    public void user_able_to_view_the_following_fields_under_facility_name(DataTable expFields) {
+        verifyFieldsUnderFacilityName(expFields);
+    }
+
+    @Then("user able to view the following fields under Adverse Actions section")
+    public void user_able_to_view_the_following_fields_under_adverse_actions_section(DataTable expFields) {
+        verifyFieldsUnderAdverseActionsSection(expFields);
+    }
+
+    @Then("user able to view the following fields under Comments section")
+    public void user_able_to_view_the_following_fields_under_comments_section(DataTable expFields) {
+        verifyFieldsUnderCommentsSection(expFields);
+    }
+
+    @When("user clicks on Contract Name under Group Rendering Provider Details")
+    public void user_clicks_on_contract_name_under_group_rendering_provider_details() {
+        userClicksOnContractName();
+    }
+
+    @Then("user should navigate to Contract Name window")
+    public void user_should_navigate_to_contract_name_window() {
+        verifyContractNameWindow();
+    }
+
+    @Then("user should be able to view Pay Class and Exception sections")
+    public void user_should_be_able_to_view_pay_class_and_exception_sections() {
+        verfiyPayClassAndExceptionSections();
+    }
+
+    @Then("user should be able to view the following fields in Pay Class section")
+    public void user_should_be_able_to_view_the_following_fields_in_pay_class_section(DataTable expFields) {
+        verifyFieldsInPayClass(expFields);
+    }
+
+    @Then("user should be able to view the following fields in CPT Section")
+    public void user_should_be_able_to_view_the_following_fields_in_cpt_section(DataTable expFields) {
+        verifyFieldsInCPTSection(expFields);
+    }
+
+    @When("user clicks on Revenue Code Section")
+    public void user_clicks_on_revenue_code_section() {
+        userClicksOnRevenueCodeSection();
+    }
+
+    @Then("user should be able to view the following fields in Revenue Code Section")
+    public void user_should_be_able_to_view_the_following_fields_in_revenue_code_section(DataTable expFields) {
+        verifyFieldsInRevenueCode(expFields);
+    }
 }

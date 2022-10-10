@@ -42,6 +42,21 @@ public class ProviderDetailsPage extends SeleniumUtils {
     String btnPreviousPage = "//mat-dialog-container//div[@aria-label = 'Previous Page']";
     String btnNextPage = "//mat-dialog-container//div[@aria-label = 'Next Page']";
     String btnLastPage = "//mat-dialog-container//div[@aria-label = 'Last Page']";
+    String lnkProviderId = "(//*[@class = 'table table-striped']//a)[1]";
+    String titleProviderWindow = "//*[@class = 'mat-tab-label-content']//div[@ng-reflect-ng-class ='active-tab']";
+    String lstSubtabs = "//*[@id = 'nav-tab']//button";
+    String titleBasicInfoSubtab = "//button[@class = 'nav-link active']";
+    String lstProviderBasicInfoFields = "//*[@id = 'nav-basic-details']//div[contains(@class, 'columnFont')]//div";
+    String lstFacilityName = "//*[@id = 'nav-basic-details']//div[@class = 'facility-bd']//div//h5";
+    String lstAdverseActions = "(//*[@class = 'table table-striped'])[1]//tr//th";
+    String lstCommentSection = "(//*[@class = 'table table-striped'])[2]//tr//th";
+    String lnkContractName = "//*[@aria-controls = 'offcanvasRight']";
+    String titlePayClass = "//*[@class = 'offcanvas-header']//span";
+    String titleException = "//*[@class = 'offcanvas-body']//h4";
+    String lstPayClassFields = "//*[@class = 'offcanvas-body']//div[@class = 'row']//span[@class = 'label-heading']";
+    String lstCPTFields = "(//*[@id = 'resultsGrid']//div[@ref='gridHeader'])[1]//span[@ref = 'eText']";
+    String btnRevenueCode = "//button[contains(text(), 'Revenue Code')]";
+    String lstRevenueCodeFields = "(//*[@id = 'resultsGrid1']//div[@ref='gridHeader'])[1]//span[@ref = 'eText']";
 
 
     private static String expMapPayToProvider = "";
@@ -54,6 +69,10 @@ public class ProviderDetailsPage extends SeleniumUtils {
     private static String expPreviousPage = "";
     private static String expNextPage = "";
     private static String expLastPage = "";
+    private static String expWindow = "";
+    private static String expSubtab = "";
+    private static String expContractName = "";
+    private static String expException = "";
 
 
     // Scenario: Verify user able to navigate to the Provider details tab in the View Claims Form page
@@ -415,5 +434,155 @@ public class ProviderDetailsPage extends SeleniumUtils {
         clickElement(btnCancel);
     }
 
+    public void userClicksOnProviderIDUnderGroupRenderingProvider(){
+        explicitElementClickableWait(findElementByXpath(lnkProviderId), 20);
+        clickElement(lnkProviderId);
+        explicitTextToBePresentInElementLocatedWait(By.xpath(titleBasicInfoSubtab), 20, "Basic Information");
+    }
 
+    public void verifyUserNavigatesToProviderWindow(){
+        expWindow = prop.getProperty("expProviderWindow");
+        Assert.assertEquals(expWindow, findElementByXpath(titleProviderWindow).getAttribute("ng-reflect-ng-class"));
+    }
+
+    public void verifyTheSubtabs(DataTable expSubtabs){
+        List<String> subtabsExp = expSubtabs.asList();
+        List<String> actSubtabs = findElementsByXpath(lstSubtabs)
+                .stream().map((e) -> e.getText().trim()).collect(Collectors.toList());
+        System.out.println("Size: " + actSubtabs.size());
+        System.out.println("Subtabs should display:" + actSubtabs);
+        System.out.println("Expected subtabs are: " + subtabsExp);
+        Assert.assertEquals(subtabsExp, actSubtabs);
+    }
+
+    public void userNavigatesToBasicInformationSubtabByDefault(){
+        expSubtab = prop.getProperty("expBasicInfo");
+        Assert.assertEquals(expSubtab, findElementByXpath(titleBasicInfoSubtab).getText());
+    }
+
+    public void verifyFieldsUnderProviderBasicInfoSubtab(DataTable expFields){
+        List<String> fieldsExp = expFields.asList();
+        List<String> actFields = findElementsByXpath(lstProviderBasicInfoFields)
+                .stream().map((e) -> e.getText().trim()).collect(Collectors.toList());
+        System.out.println("Size: " + actFields.size());
+        System.out.println("Fields should display:" + actFields);
+        System.out.println("Expected fields are: " + fieldsExp);
+        Assert.assertEquals(fieldsExp, actFields);
+    }
+
+    public void verifyFieldsUnderFacilityName(DataTable expFields){
+        List<String> fieldsExp = expFields.asList();
+        List<String> actFields = findElementsByXpath(lstFacilityName)
+                .stream().map((e) -> e.getText().trim()).collect(Collectors.toList());
+        System.out.println("Size: " + actFields.size());
+        System.out.println("Fields should display:" + actFields);
+        System.out.println("Expected fields are: " + fieldsExp);
+        Assert.assertEquals(fieldsExp, actFields);
+    }
+
+    public void verifyFieldsUnderAdverseActionsSection(DataTable expFields){
+        List<String> fieldsExp = expFields.asList();
+        List<String> actFields = findElementsByXpath(lstAdverseActions)
+                .stream().map((e) -> e.getText().trim()).collect(Collectors.toList());
+        System.out.println("Size: " + actFields.size());
+        System.out.println("Fields should display:" + actFields);
+        System.out.println("Expected fields are: " + fieldsExp);
+        Assert.assertEquals(fieldsExp, actFields);
+    }
+
+    public void verifyFieldsUnderCommentsSection(DataTable expFields){
+        List<String> fieldsExp = expFields.asList();
+        List<String> actFields = findElementsByXpath(lstCommentSection)
+                .stream().map((e) -> e.getText().trim()).collect(Collectors.toList());
+        System.out.println("Size: " + actFields.size());
+        System.out.println("Fields should display:" + actFields);
+        System.out.println("Expected fields are: " + fieldsExp);
+        Assert.assertEquals(fieldsExp, actFields);
+    }
+
+    public void userClicksOnContractName(){
+        explicitElementClickableWait(findElementByXpath(lnkContractName), 20);
+        clickElement(lnkContractName);
+    }
+
+    public void verifyContractNameWindow(){
+        expContractName = prop.getProperty("expContractNameWindow");
+        Assert.assertEquals(expContractName, findElementByXpath(titlePayClass).getText());
+    }
+
+    public void verfiyPayClassAndExceptionSections(){
+        expException = prop.getProperty("expExceptionSection");
+        Assert.assertEquals(expException, findElementByXpath(titleException).getText());
+    }
+
+    public void verifyFieldsInPayClass(DataTable expFields){
+        List<String> fieldsExp = expFields.asList();
+        explicitElementClickableWait(findElementByXpath(lstPayClassFields), 20);
+        List<WebElement> actColumnFields = findElementsByXpath(lstPayClassFields);
+        List<String> columnFieldsForCompare = new ArrayList<>();
+        System.out.println("Size " + actColumnFields.size());
+        for (WebElement column : actColumnFields) {
+            scrollIntoView(column, driver);
+            String text = column.getText();
+            columnFieldsForCompare.add(text);
+        }
+        System.out.println("Fields should display:" + columnFieldsForCompare);
+        System.out.println("Expected Fields are : " + fieldsExp);
+        for (String exp : fieldsExp) {
+            if (columnFieldsForCompare.contains(exp)) {
+                Assert.assertTrue(true);
+            } else {
+                Assert.fail(exp + " is not listed in actual list");
+            }
+        }
+    }
+
+    public void verifyFieldsInCPTSection(DataTable expFields){
+        List<String> fieldsExp = expFields.asList();
+        explicitElementClickableWait(findElementByXpath(lstCPTFields), 20);
+        List<WebElement> actColumnFields = findElementsByXpath(lstCPTFields);
+        List<String> columnFieldsForCompare = new ArrayList<>();
+        System.out.println("Size " + actColumnFields.size());
+        for (WebElement column : actColumnFields) {
+            scrollIntoView(column, driver);
+            String text = column.getText();
+            columnFieldsForCompare.add(text);
+        }
+        System.out.println("Fields should display:" + columnFieldsForCompare);
+        System.out.println("Expected Fields are : " + fieldsExp);
+        for (String exp : fieldsExp) {
+            if (columnFieldsForCompare.contains(exp)) {
+                Assert.assertTrue(true);
+            } else {
+                Assert.fail(exp + " is not listed in actual list");
+            }
+        }
+    }
+
+    public void userClicksOnRevenueCodeSection(){
+        explicitElementClickableWait(findElementByXpath(btnRevenueCode), 20);
+        clickElement(btnRevenueCode);
+    }
+
+    public void verifyFieldsInRevenueCode(DataTable expFields){
+        List<String> fieldsExp = expFields.asList();
+        explicitElementClickableWait(findElementByXpath(lstRevenueCodeFields), 20);
+        List<WebElement> actColumnFields = findElementsByXpath(lstRevenueCodeFields);
+        List<String> columnFieldsForCompare = new ArrayList<>();
+        System.out.println("Size " + actColumnFields.size());
+        for (WebElement column : actColumnFields) {
+            scrollIntoView(column, driver);
+            String text = column.getText();
+            columnFieldsForCompare.add(text);
+        }
+        System.out.println("Fields should display:" + columnFieldsForCompare);
+        System.out.println("Expected Fields are : " + fieldsExp);
+        for (String exp : fieldsExp) {
+            if (columnFieldsForCompare.contains(exp)) {
+                Assert.assertTrue(true);
+            } else {
+                Assert.fail(exp + " is not listed in actual list");
+            }
+        }
+    }
 }

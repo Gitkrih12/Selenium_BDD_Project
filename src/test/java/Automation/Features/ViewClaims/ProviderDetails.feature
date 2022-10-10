@@ -137,10 +137,10 @@ Feature: Provider Details
       | Pay to Provider |
       | Default Vendor  |
     And user able to view the below fields under Map Pay To Provider
-      | Vendor ID       |
-      | Pay To Name     |
-      | NPI             |
-      | Address         |
+      | Vendor ID   |
+      | Pay To Name |
+      | NPI         |
+      | Address     |
 
   @60830
   Scenario: Verify user should not be able to view the select option and Green bar should display for the default Vendor ID
@@ -190,3 +190,130 @@ Feature: Provider Details
     And user clicks on Select button for the other Vendor ID
     And user clicks on Cancel button
     Then user navigates back to the Provider details
+
+  @55147
+  Scenario: Verify user should navigate to Provider window on clicking Provider ID under Group/Rendering Provider Details table
+    When user clicking on Claim Number in Global Search page
+    And user clicks on the Provider Details tab
+    When user clicks on Provider ID under Group Rendering Provider Details
+    Then user should navigate to Provider window
+
+  @55149
+  Scenario: Verify user should able to see sub-tabs in provider window
+    When user clicking on Claim Number in Global Search page
+    And user clicks on the Provider Details tab
+    When user clicks on Provider ID under Group Rendering Provider Details
+    Then user able to see the following sub tabs
+      | Basic Information    |
+      | Location Information |
+      | Contract Information |
+      | Alias Information    |
+
+  @55150
+  Scenario: Verify Basic Information tab in Provider details screen
+    When user clicking on Claim Number in Global Search page
+    And user clicks on the Provider Details tab
+    When user clicks on Provider ID under Group Rendering Provider Details
+    Then user navigates to Basic Information sub tab by default
+    And user able to view the below mentioned fields under Provider Basic Information subtab
+      | Provider ID   |
+      | Provider Type |
+      | Provider Name |
+
+  @55167
+  Scenario: Verify Facility Name section in Basic Information tab
+    When user clicking on Claim Number in Global Search page
+    And user clicks on the Provider Details tab
+    When user clicks on Provider ID under Group Rendering Provider Details
+    Then user able to view the following fields under Facility Name
+      | Speciality    |
+      | NPI           |
+      | Medicare      |
+      | Facility Type |
+
+  @55168
+  Scenario: Verify Adverse Actions section in Basic Information tab
+    When user clicking on Claim Number in Global Search page
+    And user clicks on the Provider Details tab
+    When user clicks on Provider ID under Group Rendering Provider Details
+    Then user able to view the following fields under Adverse Actions section
+      | Effective Date  |
+      | Term Date       |
+      | Adverse Action  |
+      | Action on Claim |
+      | Status          |
+      | Reason          |
+
+  @55170
+  Scenario: Verify Comments section in Basic Information tab
+    When user clicking on Claim Number in Global Search page
+    And user clicks on the Provider Details tab
+    When user clicks on Provider ID under Group Rendering Provider Details
+    Then user able to view the following fields under Comments section
+      | Added On |
+      | Added By |
+      | Comments |
+
+  @55475
+  Scenario: Verify user should navigate to Contract Name window on clicking contract name hyperlink in Provider Details tab
+    When user clicking on Claim Number in Global Search page
+    And user clicks on the Provider Details tab
+    When user clicks on Contract Name under Group Rendering Provider Details
+    Then user should navigate to Contract Name window
+
+  @55489
+  Scenario: Verify Pay Class and Exceptions sections in contract window
+    When user clicking on Claim Number in Global Search page
+    And user clicks on the Provider Details tab
+    When user clicks on Contract Name under Group Rendering Provider Details
+    Then user should be able to view Pay Class and Exception sections
+
+  @55532
+  Scenario: Verify Pay class section fields in contract window
+    When user clicking on Claim Number in Global Search page
+    And user clicks on the Provider Details tab
+    When user clicks on Contract Name under Group Rendering Provider Details
+    Then user should be able to view the following fields in Pay Class section
+      | FFS Percentage          |
+#      | Medicare Allowable Rate |
+      | Service                 |
+      | Diagnostis              |
+      | Lab                     |
+      | DME                     |
+      | Injections              |
+      | Immunizations           |
+      | AWP Pricer              |
+      | ASP Pricer              |
+
+  @55533
+  Scenario: Verify Exceptions CPT fields in contract window
+    When user clicking on Claim Number in Global Search page
+    And user clicks on the Provider Details tab
+    When user clicks on Contract Name under Group Rendering Provider Details
+    Then user should be able to view the following fields in CPT Section
+      | CPT Start         |
+      | CPT End           |
+      | CPT Type          |
+      | Type Of Bill      |
+      | Contract Language |
+      | Rate              |
+      | Effective Dtae    |
+      | Term Date         |
+
+  @55534
+  Scenario: Verify Exceptions Revenue Code fields in contract window
+    When user clicking on Claim Number in Global Search page
+    And user clicks on the Provider Details tab
+    When user clicks on Contract Name under Group Rendering Provider Details
+    And user clicks on Revenue Code Section
+    Then user should be able to view the following fields in Revenue Code Section
+      | Revenue Code Start |
+      | Revenue Code End   |
+      | CPT Code Start     |
+      | CPT Code End       |
+      | Revenue Code Type  |
+      | Type Of Bill       |
+      | Contract Language  |
+      | Rate               |
+      | Effective Date     |
+      | Term Date          |
