@@ -282,7 +282,7 @@ Feature: FFS Professional
     Then user should able to see Check Type as "Regular" for Normal Check
 
 
-  @TC_52016 @beta
+  @TC_52016
   Scenario: Verify user able to navigate to the History Doc page on clicking History Doc tab
     When user clicks on FFS Professional in left navigation menu
     Then the user should navigate to the FFS Professional page
