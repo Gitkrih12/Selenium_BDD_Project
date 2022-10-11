@@ -783,7 +783,7 @@ public class ClaimDetailsPage extends SeleniumUtils {
         uatValues.put("Network Affiliation", "IN NETWORK PROVIDER");
 
         HashMap<String, String> betaValues = new HashMap<>();
-        betaValues.put("Billing Provider Name", "SAMPSON EMERGENCY PRO SERVICES\n");
+        betaValues.put("Billing Provider Name", "SAMPSON EMERGENCY PRO SERVICES");
         betaValues.put("Tax ID", "823693569");
         betaValues.put("Address Line 1", "PO Box 896219");
         betaValues.put("Address Line 2", "-");
@@ -793,7 +793,7 @@ public class ClaimDetailsPage extends SeleniumUtils {
         betaValues.put("Taxonomy", "-");
         betaValues.put("SSN", "-");
         betaValues.put("Telephone", "-");
-        betaValues.put("Network Affiliation", "IN NETWORK PROVIDER\n");
+        betaValues.put("Network Affiliation", "IN NETWORK PROVIDER");
 
         if (environment.contains("test")) {
             List<String> fieldsExp = testValues.values().stream().collect(Collectors.toList());
@@ -888,7 +888,7 @@ public class ClaimDetailsPage extends SeleniumUtils {
         betaValues.put("Address Line 2", "-");
         betaValues.put("City", "-");
         betaValues.put("State", "-");
-        betaValues.put("Zip Code", "-");
+        betaValues.put("Zip Code", "");
 
         if (environment.contains("test")) {
             List<String> fieldsExp = testValues.values().stream().collect(Collectors.toList());
@@ -909,7 +909,7 @@ public class ClaimDetailsPage extends SeleniumUtils {
             List<String> ActValues = findElementsByXpath(lstPayerValues)
                     .stream().map((e) -> e.getText().trim()).collect(Collectors.toList());
             System.out.println("Size:" + ActValues.size());
-            int expValue = 5;
+            int expValue = 4;
             Assert.assertEquals(expValue, Collections.frequency(ActValues, "-"));
             for (String exp : fieldsExp) {
                 if (ActValues.contains(exp)) {
