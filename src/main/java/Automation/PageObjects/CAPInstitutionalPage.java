@@ -5,6 +5,7 @@ import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
 import java.util.ArrayList;
@@ -58,6 +59,9 @@ public class CAPInstitutionalPage extends SeleniumUtils {
     String txtPreBatchClaimNumber = "(//input[@aria-label='Claim Number Filter Input'])[7]";
     String elePreBatchClaimNumber="//*[@id='prebatchdGrid']//div[contains(@class,'ag-cell-last-left-pinned')]//a";
     String eleVerticalColorForUncleanPreBatchClaim = "(//*[@id='prebatchdGrid']//div[contains(@class,'ag-cell-normal-height')]//span)[4]";
+    String tabCAPInstitutionalPend = "//button[@id='nav-pend-details-tab']";
+    String txtBatchID= "(//input[@aria-label='Batch ID Filter Input'])[5]";
+    String eleBatchID= "(//*[@id='paidGrid']//div[@col-id='batchCode']//a)[1]";
 
 
     private static String expClaimNumber = "";
@@ -65,6 +69,7 @@ public class CAPInstitutionalPage extends SeleniumUtils {
     private static int totalRecords = 0;
     private static int pageNumber = 0;
     private static int pageNumberNextNavigation = 0;
+    private static String expBatchID ="";
 
 
     //Scenario: Verify when user clicks on CAP Institutional page on the left navigation pane
@@ -75,7 +80,7 @@ public class CAPInstitutionalPage extends SeleniumUtils {
     public void verifyCAPInstitutionalPage() throws InterruptedException {
         boolean value = isDisplayed(tabCAPInstitutional);
         Assert.assertTrue(value);
-        threadSleep(20000);
+        explicitInvisibilityOfElementWithTextWait(By.xpath(tabCAPInstitutionalPend), 60, "Pend ()");
     }
 
     //Scenario: Verify by default user should be in the Pend state field results page
@@ -194,6 +199,7 @@ public class CAPInstitutionalPage extends SeleniumUtils {
         clickElement(tabOnHold);
     }
     public void verifyPageNumbersAtBottomOfPage() throws InterruptedException {
+        explicitVisibilityOfElementLocatedWaitByXpath(eleOnHoldPaginationDescription,10);
         String pagination = findElementByXpath(eleOnHoldPaginationDescription).getText();
         String[] paginationCount = pagination.split(" ");
         System.out.println("Page count " + Integer.parseInt(paginationCount[3]));
@@ -419,6 +425,7 @@ public class CAPInstitutionalPage extends SeleniumUtils {
 
     public void enterUnCleanStatusDeniedClaimNumber() throws InterruptedException {
         expClaimNumber = prop.getProperty("capInstitutionalUnCleanStatusDeniedClaimNumber");
+        explicitVisibilityOfWait(findElementByXpath(txtDeniedClaimNumber), 5);
         findElementAndSendKeys(findElementByXpath(txtDeniedClaimNumber), expClaimNumber);
         threadSleep(1000);
         sendKeysUsingKeyboardInput(txtDeniedClaimNumber);
@@ -442,6 +449,7 @@ public class CAPInstitutionalPage extends SeleniumUtils {
 
     public void enterUnCleanStatusPreBatchClaimNumber() throws InterruptedException {
         expClaimNumber = prop.getProperty("capInstitutionalUnCleanStatusPreBatchClaimNumber");
+        explicitVisibilityOfWait(findElementByXpath(txtPreBatchClaimNumber), 5);
         findElementAndSendKeys(findElementByXpath(txtPreBatchClaimNumber), expClaimNumber);
         threadSleep(1000);
         sendKeysUsingKeyboardInput(txtPreBatchClaimNumber);
@@ -457,6 +465,39 @@ public class CAPInstitutionalPage extends SeleniumUtils {
         System.out.println("actual color code :" + actColorCode);
         Assert.assertEquals(expColorIndication, actColorCode);
     }
+
+    //Scenario: Verify all tabs should display when clicking on Batch ID under Paid tab in CAP Institutional page
+    public void enterBatchId() throws InterruptedException {
+        expBatchID = prop.getProperty("capInstitutionalBatchID");
+        explicitElementClickableWaitByXpath(txtBatchID, 10);
+        findElementAndSendKeys(findElementByXpath(txtBatchID), expBatchID);
+        explicitTextToBePresentInElementLocatedWait(By.xpath(eleBatchID), 10, expBatchID);
+    }
+
+    //Scenario: Verify user able to view Check Type as Regular if its not void or reissue in Check Info page
+    public void enterBatchIdForNormalCheck() throws InterruptedException {
+        expBatchID = prop.getProperty("capInstitutionalBatchIDForNormalCheck");
+        explicitElementClickableWaitByXpath(txtBatchID, 10);
+        findElementAndSendKeys(findElementByXpath(txtBatchID), expBatchID);
+        explicitTextToBePresentInElementLocatedWait(By.xpath(eleBatchID), 10, expBatchID);
+    }
+
+    //Scenario: Verify user able to view the check reissue information in Check Info page
+    public void enterBatchIdForIssuedCheck() throws InterruptedException {
+        expBatchID = prop.getProperty("capInstitutionalBatchIDForIssuedCheck");
+        explicitElementClickableWaitByXpath(txtBatchID, 10);
+        findElementAndSendKeys(findElementByXpath(txtBatchID), expBatchID);
+        explicitTextToBePresentInElementLocatedWait(By.xpath(eleBatchID), 10, expBatchID);
+    }
+
+    //Scenario: Verify user able to view the check void information in Check Info page
+    public void enterBatchIdForVoided() throws InterruptedException {
+        expBatchID = prop.getProperty("capInstitutionalBatchIDForVoid");
+        explicitElementClickableWaitByXpath(txtBatchID, 10);
+        findElementAndSendKeys(findElementByXpath(txtBatchID), expBatchID);
+        explicitTextToBePresentInElementLocatedWait(By.xpath(eleBatchID), 10, expBatchID);
+    }
+
 
 
 

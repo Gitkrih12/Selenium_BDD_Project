@@ -19,14 +19,14 @@ Feature: Login
     Then user should be able to view the hospital pictography and Hospital, Claim Form texts displayed
 
 #  DSNP Adjudicator login
-  @Sanity @34750
+  @Sanity @34750 @beta
   Scenario: Verify user able to login with valid username and password for DSNP adjudicator role
     Given the user is in CA Login screen
     When the user enters the valid username and password and click on login button
     Then user should be able to login to the CA screen successfully
 
 #  DSNP Admin login
-  @Sanity @37649
+  @Sanity @37649 @beta
   Scenario: Verify user able to login with valid username and password for DSNP admin role
     Given the user enters the valid username and password and click on login button for admin role
     When user lands directly to the page

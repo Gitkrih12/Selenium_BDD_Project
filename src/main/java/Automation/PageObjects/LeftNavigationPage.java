@@ -231,7 +231,7 @@ public class LeftNavigationPage extends SeleniumUtils {
     //    Scenario: Validate expanding collapsing left navigation menu on clicking Menu Toggle for admin & non admin roles
     public void clickOnClaimsAdjudicationToggleMenu()
     {
-        clickElement(tglClaimsAdj);
+        explicitElementClickableWaitByXpath(tglClaimsAdj, 10).click();
     }
     public void verifyCollapsedStatusForClaimsAdjudicationToggleMenu()
     {

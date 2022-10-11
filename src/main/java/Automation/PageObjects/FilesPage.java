@@ -301,9 +301,18 @@ public class FilesPage extends SeleniumUtils {
     }
 
     //Generic method to validate the data exceeds the defined page size 50
-    public String[] validateTheDataExceedsTheDefinedPageSize(String paginationRecordsBarXpath) {
-        String[] paginationRecordsExp = explicitElementClickableWaitByXpath(paginationRecordsBarXpath, 5).getText().split(" ");
-        int totalRowsExp = Integer.parseInt(paginationRecordsExp[4]);
+    public String[] validateTheDataExceedsTheDefinedPageSize(String recordsBarXpath) {
+        int totalRowsExp= 0;
+        String[] paginationRecordsExp = explicitElementClickableWaitByXpath(recordsBarXpath, 5).getText().split(" ");
+        if(paginationRecordsExp[4].contains(","))
+        {
+            String totalRowsString = paginationRecordsExp[4].replace(",", "");
+            totalRowsExp = Integer.parseInt(totalRowsString);
+        }
+        else
+        {
+            totalRowsExp = Integer.parseInt(paginationRecordsExp[4]);
+        }
         System.out.println("total row count is: " + totalRowsExp);
         if (totalRowsExp > 50) {
             Assert.assertTrue(true);
@@ -314,12 +323,12 @@ public class FilesPage extends SeleniumUtils {
     }
 
     //Generic method to verify forward navigation through pages
-    public String[] verifyForwardNavigationThroughPages(String nextButtonXpath, String paginationPageBarXpath) {
+    public String[] verifyForwardNavigationThroughPages(String nextButtonXpath, String pageBarXpath) {
         String[] paginationPagesExp = new String[0];
         try {
             scrollToElement(nextButtonXpath);
             clickElement(nextButtonXpath);
-            paginationPagesExp = explicitElementClickableWaitByXpath(paginationPageBarXpath, 5).getText().split(" ");
+            paginationPagesExp = explicitElementClickableWaitByXpath(pageBarXpath, 5).getText().split(" ");
             System.out.println("Forward navigation page : " + paginationPagesExp[1]);
             if (Integer.parseInt(paginationPagesExp[1]) > 1) {
                 Assert.assertTrue(true);
@@ -333,12 +342,12 @@ public class FilesPage extends SeleniumUtils {
     }
 
     //Generic method to verify forward navigation through pages
-    public String[] verifyBackwardNavigationThroughPages(String previousButtonXpath, String paginationPageBarXpath) {
+    public String[] verifyBackwardNavigationThroughPages(String previousButtonXpath, String pageBarXpath) {
         String[] paginationPagesExp = new String[0];
         try {
             scrollToElement(previousButtonXpath);
             clickElement(previousButtonXpath);
-            paginationPagesExp = explicitElementClickableWaitByXpath(paginationPageBarXpath, 10).getText().split(" ");
+            paginationPagesExp = explicitElementClickableWaitByXpath(pageBarXpath, 10).getText().split(" ");
             System.out.println("Backward navigation page: " + paginationPagesExp[1]);
             Assert.assertEquals(1, Integer.parseInt(paginationPagesExp[1]));
         } catch (Exception e) {
@@ -348,12 +357,12 @@ public class FilesPage extends SeleniumUtils {
     }
 
     //Generic method to verify forward navigation through pages
-    public String[] verifyForwardNavigationPageSizeAtTheBottomOfTheGrid(String nextButtonXpath, String paginationRecordsBarXpath) {
+    public String[] verifyForwardNavigationPageSizeAtTheBottomOfTheGrid(String nextButtonXpath, String recordsBarXpath) {
         String[] paginationRecordsExp = new String[0];
         try {
             scrollToElement(nextButtonXpath);
             clickElement(nextButtonXpath);
-            paginationRecordsExp = explicitElementClickableWaitByXpath(paginationRecordsBarXpath, 10).getText().split(" ");
+            paginationRecordsExp = explicitElementClickableWaitByXpath(recordsBarXpath, 10).getText().split(" ");
             System.out.println("Forward navigation page size: " + paginationRecordsExp[0]);
             if (Integer.parseInt(paginationRecordsExp[0]) > 50) {
                 Assert.assertTrue(true);
@@ -367,12 +376,12 @@ public class FilesPage extends SeleniumUtils {
     }
 
     //Generic method to verify backward navigation through pages
-    public String[] verifyBackwardNavigationPageSizeAtTheBottomOfTheGrid(String previousButtonXpath, String paginationRecordsBarXpath) {
+    public String[] verifyBackwardNavigationPageSizeAtTheBottomOfTheGrid(String previousButtonXpath, String recordsBarXpath) {
         String[] paginationRecordsExp = new String[0];
         try {
             scrollToElement(previousButtonXpath);
             clickElement(previousButtonXpath);
-            paginationRecordsExp = explicitElementClickableWaitByXpath(paginationRecordsBarXpath, 10).getText().split(" ");
+            paginationRecordsExp = explicitElementClickableWaitByXpath(recordsBarXpath, 10).getText().split(" ");
             System.out.println("Backward navigation page size: " + paginationRecordsExp[0]);
             Assert.assertEquals(1, Integer.parseInt(paginationRecordsExp[0]));
         } catch (Exception e) {
@@ -382,10 +391,20 @@ public class FilesPage extends SeleniumUtils {
     }
 
     //Generic method to verify total number of pages based on the record count per page
-    public void verifyTotalNumberOfPagesBasedOnThePerPageRecordCount(String paginationRecordsBarXpath, String paginationPageBarXpath) {
-        String[] paginationRecordsExp = explicitElementClickableWaitByXpath(paginationRecordsBarXpath, 10).getText().split(" ");
-        String[] paginationPagesExp = explicitElementClickableWaitByXpath(paginationPageBarXpath, 10).getText().split(" ");
-        double pageCount = Math.ceil(Double.parseDouble(paginationRecordsExp[4]) / 50);
+    public void verifyTotalNumberOfPagesBasedOnThePerPageRecordCount(String recordsBarXpath, String pageBarXpath) {
+        String[] paginationRecordsExp = explicitElementClickableWaitByXpath(recordsBarXpath, 10).getText().split(" ");
+        String[] paginationPagesExp = explicitElementClickableWaitByXpath(pageBarXpath, 10).getText().split(" ");
+
+        String totalRowsExp=null;
+        if(paginationRecordsExp[4].contains(","))
+        {
+            totalRowsExp = paginationRecordsExp[4].replace(",", "");
+        }
+        else
+        {
+            totalRowsExp = paginationRecordsExp[4];
+        }
+        double pageCount = Math.ceil(Double.parseDouble(totalRowsExp) / 50);
         int pageCountAct = (int) pageCount;
         System.out.println("Actual page count: " + pageCountAct);
         System.out.println("Expected page count: " + paginationPagesExp[3]);
@@ -396,12 +415,22 @@ public class FilesPage extends SeleniumUtils {
     public void validateRowCountNextToFilesTab(String fileTabXpath, String recordsBarXpath) throws InterruptedException {
         String recordsBarText = explicitElementClickableWaitByXpath(fileTabXpath, 5).getText();
         String rowCountAct = recordsBarText.substring(recordsBarText.indexOf("(") + 1, recordsBarText.indexOf(")"));
-        System.out.println("Actual row count is: " + rowCountAct);
-        threadSleep(2000);
+        System.out.println(ANSI_GREEN + "Actual row count is: " + rowCountAct + ANSI_RESET);
+        threadSleep(4000);
         scrollToElement(recordsBarXpath);
         String[] RecordsExp = explicitElementClickableWaitByXpath(recordsBarXpath, 5).getText().split(" ");
-        System.out.println("Expected row count is: " + RecordsExp[4]);
-        Assert.assertEquals(RecordsExp[4], rowCountAct);
+
+        if(RecordsExp[4].contains(","))
+        {
+            rowCountAct = RecordsExp[4].replace(",", "");
+        }
+        else
+        {
+            rowCountAct = RecordsExp[4];
+        }
+
+        System.out.println(ANSI_GREEN + "Expected row count is: " + rowCountAct + ANSI_RESET);
+        Assert.assertEquals(rowCountAct, rowCountAct);
     }
 
 

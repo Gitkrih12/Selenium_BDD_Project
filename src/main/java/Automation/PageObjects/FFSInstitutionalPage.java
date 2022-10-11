@@ -3,6 +3,7 @@ package Automation.PageObjects;
 import Automation.Utilities.SeleniumUtils;
 import io.cucumber.datatable.DataTable;
 import org.junit.Assert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
 import java.util.ArrayList;
@@ -56,12 +57,16 @@ public class FFSInstitutionalPage extends SeleniumUtils {
     String txtPreBatchClaimNumber = "(//input[@aria-label='Claim Number Filter Input'])[7]";
     String elePreBatchClaimNumber="//*[@id='prebatchdGrid']//div[contains(@class,'ag-cell-last-left-pinned')]//a";
     String eleVerticalColorForUncleanPreBatchClaim = "(//*[@id='prebatchdGrid']//div[contains(@class,'ag-cell-normal-height')]//span)[4]";
+    String tabFFSInstitutionalPend = "//button[@id='nav-pend-details-tab']";
+    String txtBatchID= "(//input[@aria-label='Batch ID Filter Input'])[5]";
+    String eleBatchID= "(//*[@id='paidGrid']//div[@col-id='batchCode']//a)[1]";
 
     private static String expClaimNumber = "";
     private static String expMemberId = "";
     private static int totalRecords = 0;
     private static int pageNumber = 0;
     private static int pageNumberNextNavigation = 0;
+    private static String expBatchID ="";
 
     //Scenario: Verify user should navigates to FFS Institutional screen
     public void clickOnFFSInstitutional(){
@@ -71,7 +76,7 @@ public class FFSInstitutionalPage extends SeleniumUtils {
     public void verifyFFSInstitutionalPage() throws InterruptedException {
         boolean value = isDisplayed(tabFFSInstitutional);
         Assert.assertTrue(value);
-        threadSleep(20000);
+        explicitInvisibilityOfElementWithTextWait(By.xpath(tabFFSInstitutionalPend), 60, "Pend ()");
     }
 
     //Scenario: Verify by default user should be in the Pend state in FFS Institutional screen
@@ -203,7 +208,7 @@ public class FFSInstitutionalPage extends SeleniumUtils {
         clickElement(tabOnHold);
     }
     public void verifyPageNumbersAtBottomOfPage() throws InterruptedException {
-        threadSleep(10000);
+        explicitVisibilityOfElementLocatedWaitByXpath(eleOnHoldPaginationDescription,10);
         String pagination = findElementByXpath(eleOnHoldPaginationDescription).getText();
         String[] paginationCount = pagination.split(" ");
         System.out.println("Page count " + Integer.parseInt(paginationCount[3]));
@@ -309,7 +314,6 @@ public class FFSInstitutionalPage extends SeleniumUtils {
 
     //Scenario: Verify user can Identify COB Not In Member House from FFS Institutional page
     public void enterCOBNotInMemberHouseClaimNumber() throws InterruptedException {
-        threadSleep(30000);
         expClaimNumber = prop.getProperty("ffsInstitutionalCobNotInMemberHouse");
         findElementAndSendKeys(findElementByXpath(txtClaimNumber), expClaimNumber);
         threadSleep(1000);
@@ -344,6 +348,7 @@ public class FFSInstitutionalPage extends SeleniumUtils {
     }
     public void enterUnCleanStatusPayerReviewClaimNumber() throws InterruptedException {
         expClaimNumber = prop.getProperty("ffsInstitutionalUnCleanStatusPayerReviewClaimNumber");
+        explicitVisibilityOfWait(findElementByXpath(txtPayerReviewClaimNumber), 5);
         findElementAndSendKeys(findElementByXpath(txtPayerReviewClaimNumber), expClaimNumber);
         threadSleep(1000);
         sendKeysUsingKeyboardInput(txtPayerReviewClaimNumber);
@@ -392,6 +397,7 @@ public class FFSInstitutionalPage extends SeleniumUtils {
     }
     public void enterUnCleanStatusApprovedClaimNumber() throws InterruptedException {
         expClaimNumber = prop.getProperty("ffsInstitutionalUnCleanStatusApprovedClaimNumber");
+        explicitVisibilityOfWait(findElementByXpath(txtApprovedClaimNumber), 5);
         findElementAndSendKeys(findElementByXpath(txtApprovedClaimNumber), expClaimNumber);
         threadSleep(1000);
         sendKeysUsingKeyboardInput(txtApprovedClaimNumber);
@@ -439,6 +445,7 @@ public class FFSInstitutionalPage extends SeleniumUtils {
 
     public void enterUnCleanStatusPreBatchClaimNumber() throws InterruptedException {
         expClaimNumber = prop.getProperty("ffsInstitutionalUnCleanStatusPreBatchClaimNumber");
+        explicitVisibilityOfWait(findElementByXpath(txtPreBatchClaimNumber), 5);
         findElementAndSendKeys(findElementByXpath(txtPreBatchClaimNumber), expClaimNumber);
         threadSleep(1000);
         sendKeysUsingKeyboardInput(txtPreBatchClaimNumber);
@@ -453,6 +460,38 @@ public class FFSInstitutionalPage extends SeleniumUtils {
         String actColorCode = getColorCodeForBackground(eleVerticalColorForUncleanPreBatchClaim);
         System.out.println("actual color code :" + actColorCode);
         Assert.assertEquals(expColorIndication, actColorCode);
+    }
+
+    //Scenario: Verify all tabs should display when clicking on Batch ID under Paid tab in FFS Institutional page    public void enterBatchId() throws InterruptedException {
+    public void enterBatchId() throws InterruptedException {
+        expBatchID = prop.getProperty("ffsInstitutionalBatchID");
+        explicitElementClickableWaitByXpath(txtBatchID, 10);
+        findElementAndSendKeys(findElementByXpath(txtBatchID), expBatchID);
+        explicitTextToBePresentInElementLocatedWait(By.xpath(eleBatchID), 10, expBatchID);
+    }
+
+    //Scenario: Verify user able to view the check reissue information in Check Info page
+    public void enterBatchIdForIssuedCheck() throws InterruptedException {
+        expBatchID = prop.getProperty("ffsInstitutionalBatchIDForIssuedCheck");
+        explicitElementClickableWaitByXpath(txtBatchID, 10);
+        findElementAndSendKeys(findElementByXpath(txtBatchID), expBatchID);
+        explicitTextToBePresentInElementLocatedWait(By.xpath(eleBatchID), 10, expBatchID);
+    }
+
+    //Scenario: Verify user able to view the check void information in Check Info page
+    public void enterBatchIdForVoided() throws InterruptedException {
+        expBatchID = prop.getProperty("ffsInstitutionalBatchIDForVoid");
+        explicitElementClickableWaitByXpath(txtBatchID, 10);
+        findElementAndSendKeys(findElementByXpath(txtBatchID), expBatchID);
+        explicitTextToBePresentInElementLocatedWait(By.xpath(eleBatchID), 10, expBatchID);
+    }
+
+    //Scenario: Verify user able to view Check Type as Regular if its not void or reissue in Check Info page
+    public void enterBatchIdForNormalCheck() throws InterruptedException {
+        expBatchID = prop.getProperty("ffsInstitutionalBatchIDForNormalCheck");
+        explicitElementClickableWaitByXpath(txtBatchID, 10);
+        findElementAndSendKeys(findElementByXpath(txtBatchID), expBatchID);
+        explicitTextToBePresentInElementLocatedWait(By.xpath(eleBatchID), 10, expBatchID);
     }
 
 

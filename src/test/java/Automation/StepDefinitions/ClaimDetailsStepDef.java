@@ -15,7 +15,7 @@ public class ClaimDetailsStepDef extends ClaimDetailsPage {
     }
 
     @When("user clicks on the Claim Number")
-    public void user_clicks_on_the_claim_number() throws InterruptedException {
+    public void user_clicks_on_the_claim_number() {
         userClicksOnClaimNumber();
     }
 
@@ -203,5 +203,34 @@ public class ClaimDetailsStepDef extends ClaimDetailsPage {
     @Then("user able to view the Claim Summary section")
     public void user_able_to_view_the_claim_summary_section() {
         verifyUserViewsClaimSummarySection();
+    }
+
+    //  Scenario: Verify user able to view 1-New Claim Submission type in Claim details page
+    @Then("user views Claim Submission type as New")
+    public void user_views_claim_submission_type_as_new() {
+        verifyClaimSubmissionTypeAsNew();
+    }
+
+    //  Scenario: Verify user able to view 7-Corrected claim submission type in Claim Details page
+    @Then("user views Claim Submission type as Corrected")
+    public void user_views_claim_submission_type_as_corrected() {
+        verifyClaimSubmissionTypeAsCorrected();
+    }
+
+    //  Scenario: Verify user able to view different types of claim submission from FFS Institutional page
+    @When("user enters and clicks on the {string} in FFS Institutional Universal Search")
+    public void user_enters_and_clicks_on_the_in_ffs_institutional_universal_search(String claimNumber) {
+        userEntersAndClicksOnClaimNumber(claimNumber);
+    }
+
+    @Then("user views the Claim Submission {string}")
+    public void user_views_the_claim_submission(String type) {
+        verifyClaimSubmissionType(type);
+    }
+
+    //  Scenario: Verify user able to view different types of claim submission from CAP Institutional page
+    @When("user enters and clicks on the {string} in CAP Institutional Universal Search")
+    public void user_enters_and_clicks_on_the_in_cap_institutional_universal_search(String claimNumber) {
+        userEntersAndClicksOnClaimNumber(claimNumber);
     }
 }
