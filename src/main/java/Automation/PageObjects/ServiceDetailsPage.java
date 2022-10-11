@@ -218,6 +218,27 @@ public class ServiceDetailsPage extends SeleniumUtils {
         uatValues.put("Status", "APPROVED");
         uatValues.put("PBP", "-");
 
+        HashMap<String, String> betaValues = new HashMap<>();
+        betaValues.put("Line#", "273350");
+        betaValues.put("Code", "99285");
+        betaValues.put("From", "07/16/2022");
+        betaValues.put("To", "07/16/2022");
+        betaValues.put("POS", "23");
+        betaValues.put("A", "-");
+        betaValues.put("B", "-");
+        betaValues.put("C", "-");
+        betaValues.put("D", "-");
+        betaValues.put("A1", "1");
+        betaValues.put("B1", "2");
+        betaValues.put("C1", "3");
+        betaValues.put("D1", "4");
+        betaValues.put("Unit", "UN");
+        betaValues.put("Unit Count", "1");
+        betaValues.put("Total Charges($)", "444.00");
+        betaValues.put("Adjudication Status", "Adjudicated");
+        betaValues.put("Status", "APPROVED");
+        betaValues.put("PBP", "-");
+
         if (environment.contains("test")) {
             List<String> fieldsExp = testValues.values().stream().collect(Collectors.toList());
             List<String> ActValues = findElementsByXpath(lstServiceLineFieldValues)
@@ -236,7 +257,7 @@ public class ServiceDetailsPage extends SeleniumUtils {
                     Assert.fail(exp + " is not listed in actual list");
                 }
             }
-        } else {
+        } else if(environment.contains("uat")){
             List<String> fieldsExp = uatValues.values().stream().collect(Collectors.toList());
             List<String> ActValues = findElementsByXpath(lstServiceLineFieldValues)
                     .stream().map((e) -> e.getText().trim()).collect(Collectors.toList());
@@ -247,6 +268,23 @@ public class ServiceDetailsPage extends SeleniumUtils {
             Assert.assertEquals(expValue1, Collections.frequency(ActValues, "-"));
             Assert.assertEquals(expValue2, Collections.frequency(ActValues, "12/02/2021"));
             Assert.assertEquals(expValue3, Collections.frequency(ActValues, "1"));
+            for (String exp : fieldsExp) {
+                if (ActValues.contains(exp)) {
+                    Assert.assertTrue(true);
+                } else {
+                    Assert.fail(exp + " is not listed in actual list");
+                }
+            }
+        } else {
+            List<String> fieldsExp = betaValues.values().stream().collect(Collectors.toList());
+            List<String> ActValues = findElementsByXpath(lstServiceLineFieldValues)
+                    .stream().map((e) -> e.getText().trim()).collect(Collectors.toList());
+            System.out.println("Size:" + ActValues.size());
+            int expValue1 = 5;
+            int expValue2 = 2;
+            Assert.assertEquals(expValue1, Collections.frequency(ActValues, "-"));
+            Assert.assertEquals(expValue2, Collections.frequency(ActValues, "07/16/2022"));
+            Assert.assertEquals(expValue2, Collections.frequency(ActValues, "1"));
             for (String exp : fieldsExp) {
                 if (ActValues.contains(exp)) {
                     Assert.assertTrue(true);

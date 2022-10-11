@@ -175,6 +175,12 @@ public class DocumentsPage extends SeleniumUtils {
         uatValues.put("Uploaded By", "claims-User@adjudication.com");
         uatValues.put("Uploaded On", "06/24/2022");
 
+        HashMap<String, String> betaValues = new HashMap<>();
+        betaValues.put("File Name", "H6351.AH.PROD.MAO.ENC0170.AH.P.CARE.20220817081740.edi");
+        betaValues.put("File Type", "Encounter");
+        betaValues.put("Uploaded By", "claims-User@adjudication.com");
+        betaValues.put("Uploaded On", "08/17/2022");
+
         if (environment.contains("test")) {
             List<String> fieldsExp = testValues.values().stream().collect(Collectors.toList());
             List<String> ActValues = findElementsByXpath(lstEdiFilesValues)
@@ -187,8 +193,25 @@ public class DocumentsPage extends SeleniumUtils {
                     Assert.fail(exp + " is not listed in actual list");
                 }
             }
-        } else {
+        } else if(environment.contains("uat")){
             List<String> fieldsExp = uatValues.values().stream().collect(Collectors.toList());
+            List<WebElement> ActColumnFields = findElementsByXpath(lstEdiFilesValuesUat);
+            List<String> columnFieldsForCompare = new ArrayList<>();
+            System.out.println("Size " + ActColumnFields.size());
+            for (WebElement column : ActColumnFields) {
+                scrollIntoView(column, driver);
+                String text = column.getText();
+                columnFieldsForCompare.add(text);
+            }
+            for (String exp : fieldsExp) {
+                if (columnFieldsForCompare.contains(exp)) {
+                    Assert.assertTrue(true);
+                } else {
+                    Assert.fail(exp + " is not listed in actual list");
+                }
+            }
+        } else {
+            List<String> fieldsExp = betaValues.values().stream().collect(Collectors.toList());
             List<WebElement> ActColumnFields = findElementsByXpath(lstEdiFilesValuesUat);
             List<String> columnFieldsForCompare = new ArrayList<>();
             System.out.println("Size " + ActColumnFields.size());

@@ -159,6 +159,21 @@ public class ClaimDetailsPage extends SeleniumUtils {
         uatValues.put("Received Date", "03/10/2022");
         uatValues.put("Ref ID", "-");
 
+        HashMap<String, String> betaValues = new HashMap<>();
+        betaValues.put("Claim Number", "P0022072200178");
+        betaValues.put("Patient", "CARLTON LETHA ADELL");
+        betaValues.put("Patient ID/MBR ID", "LB3100428");
+        betaValues.put("PCP", "SAMPSON EMERGENCY PRO SERVICES");
+        betaValues.put("Billing Provider", "SAMPSON EMERGENCY PRO SERVICES");
+        betaValues.put("DOS From", "07/16/2022");
+        betaValues.put("DOS To", "07/16/2022");
+        betaValues.put("Billed Amount", "$444");
+        betaValues.put("POS", "23");
+        betaValues.put("PBP", "Liberty Advantage ISNP");
+        betaValues.put("Age", "23");
+        betaValues.put("Received Date", "07/22/2022");
+        betaValues.put("Ref ID", "-");
+
         if (environment.contains("test")) {
             List<String> fieldsExp = testValues.values().stream().collect(Collectors.toList());
             List<String> ActValues = findElementsByXpath(lstClaimSummaryValues)
@@ -174,7 +189,7 @@ public class ClaimDetailsPage extends SeleniumUtils {
                     Assert.fail(exp + " is not listed in actual list");
                 }
             }
-        } else {
+        } else if (environment.contains("uat")){
             List<String> fieldsExp = uatValues.values().stream().collect(Collectors.toList());
             List<String> ActValues = findElementsByXpath(lstClaimSummaryValues)
                     .stream().map((e) -> e.getText().trim()).collect(Collectors.toList());
@@ -182,6 +197,23 @@ public class ClaimDetailsPage extends SeleniumUtils {
             int expValue1 = 2;
             Assert.assertEquals(expValue1, Collections.frequency(ActValues, "12/02/2021"));
             Assert.assertEquals(expValue1, Collections.frequency(ActValues, "PINNACLE CARE PROVIDERS LLC"));
+            for (String exp : fieldsExp) {
+                if (ActValues.contains(exp)) {
+                    Assert.assertTrue(true);
+                } else {
+                    Assert.fail(exp + " is not listed in actual list");
+                }
+            }
+        } else {
+            List<String> fieldsExp = betaValues.values().stream().collect(Collectors.toList());
+            List<String> ActValues = findElementsByXpath(lstClaimSummaryValues)
+                    .stream().map((e) -> e.getText().trim()).collect(Collectors.toList());
+            System.out.println("Size:" + ActValues.size());
+            int expValue1 = 2;
+            int expValue2 = 2;
+            Assert.assertEquals(expValue1, Collections.frequency(ActValues, "07/16/2022"));
+            Assert.assertEquals(expValue1, Collections.frequency(ActValues, "SAMPSON EMERGENCY PRO SERVICES"));
+            Assert.assertEquals(expValue2, Collections.frequency(ActValues, "23"));
             for (String exp : fieldsExp) {
                 if (ActValues.contains(exp)) {
                     Assert.assertTrue(true);
@@ -315,6 +347,17 @@ public class ClaimDetailsPage extends SeleniumUtils {
         uatValues.put("Clean Status", "Clean");
         uatValues.put("Unclean Status", "Un - Clean");
 
+        HashMap<String, String> betaValues = new HashMap<>();
+        betaValues.put("Claim Number", "P0022072200178");
+        betaValues.put("Reference Number", "-");
+        betaValues.put("State", "PAID");
+        betaValues.put("Claim Status", "PAID");
+        betaValues.put("Claim Type", "FFS");
+        betaValues.put("Form Type", "CMS-1500");
+        betaValues.put("Claim Submission", "1 - NEW");
+        betaValues.put("Clean Status", "Clean");
+        betaValues.put("Unclean Status", "Un - Clean");
+
         if (environment.contains("test")) {
             List<String> fieldsExp = testValues.values().stream().collect(Collectors.toList());
             List<String> ActValues = findElementsByXpath(lstClaimInformationValues)
@@ -329,8 +372,22 @@ public class ClaimDetailsPage extends SeleniumUtils {
                     Assert.fail(exp + " is not listed in actual list");
                 }
             }
-        } else {
+        } else if (environment.contains("uat")){
             List<String> fieldsExp = uatValues.values().stream().collect(Collectors.toList());
+            List<String> ActValues = findElementsByXpath(lstClaimInformationValues)
+                    .stream().map((e) -> e.getText().trim()).collect(Collectors.toList());
+            System.out.println("Size:" + ActValues.size());
+            int expValue = 2;
+            Assert.assertEquals(expValue, Collections.frequency(ActValues, "PAID"));
+            for (String exp : fieldsExp) {
+                if (ActValues.contains(exp)) {
+                    Assert.assertTrue(true);
+                } else {
+                    Assert.fail(exp + " is not listed in actual list");
+                }
+            }
+        } else {
+            List<String> fieldsExp = betaValues.values().stream().collect(Collectors.toList());
             List<String> ActValues = findElementsByXpath(lstClaimInformationValues)
                     .stream().map((e) -> e.getText().trim()).collect(Collectors.toList());
             System.out.println("Size:" + ActValues.size());
@@ -401,6 +458,22 @@ public class ClaimDetailsPage extends SeleniumUtils {
         uatValues.put("Payment Type", "-");
         uatValues.put("Payment ID", "-");
 
+        HashMap<String, String> betaValues = new HashMap<>();
+        betaValues.put("OK Pay Date", "08/14/2022");
+        betaValues.put("Paid Date", "08/14/2022");
+        betaValues.put("Check Number", "-");
+        betaValues.put("Reference Check", "1000013362");
+        betaValues.put("Plan CRN", "222030631368224");
+        betaValues.put("Adjustment", "$269.66");
+        betaValues.put("Deductible", "$0");
+        betaValues.put("Coinsurance", "$0");
+        betaValues.put("Copay", "$0");
+        betaValues.put("Recovery Amount", "$0");
+        betaValues.put("Payment Amount", "$174.34");
+        betaValues.put("Mailing date", "$08/16/2022");
+        betaValues.put("Payment Type", "$Provider");
+        betaValues.put("Payment ID", "$268176058");
+
         if (environment.contains("test")) {
             List<String> fieldsExp = testValues.values().stream().collect(Collectors.toList());
             List<String> ActValues = findElementsByXpath(lstPaymentInformationValues)
@@ -418,7 +491,7 @@ public class ClaimDetailsPage extends SeleniumUtils {
                     Assert.fail(exp + " is not listed in actual list");
                 }
             }
-        } else {
+        } else if(environment.contains("uat")){
             List<String> fieldsExp = uatValues.values().stream().collect(Collectors.toList());
             List<String> ActValues = findElementsByXpath(lstPaymentInformationValues)
                     .stream().map((e) -> e.getText().trim()).collect(Collectors.toList());
@@ -429,6 +502,22 @@ public class ClaimDetailsPage extends SeleniumUtils {
             Assert.assertEquals(expValue1, Collections.frequency(ActValues, "06/24/2022"));
             Assert.assertEquals(expValue2, Collections.frequency(ActValues, "-"));
             Assert.assertEquals(expValue3, Collections.frequency(ActValues, "$0"));
+            for (String exp : fieldsExp) {
+                if (ActValues.contains(exp)) {
+                    Assert.assertTrue(true);
+                } else {
+                    Assert.fail(exp + " is not listed in actual list");
+                }
+            }
+        } else {
+            List<String> fieldsExp = betaValues.values().stream().collect(Collectors.toList());
+            List<String> ActValues = findElementsByXpath(lstPaymentInformationValues)
+                    .stream().map((e) -> e.getText().trim()).collect(Collectors.toList());
+            System.out.println("Size:" + ActValues.size());
+            int expValue1 = 2;
+            int expValue2 = 4;
+            Assert.assertEquals(expValue1, Collections.frequency(ActValues, "08/14/2022"));
+            Assert.assertEquals(expValue2, Collections.frequency(ActValues, "$0"));
             for (String exp : fieldsExp) {
                 if (ActValues.contains(exp)) {
                     Assert.assertTrue(true);
@@ -506,6 +595,22 @@ public class ClaimDetailsPage extends SeleniumUtils {
         uatValues.put("Insured's Group Name", "VL3000941");
         uatValues.put("Insured's Group Number", "-");
 
+        HashMap<String, String> betaValues = new HashMap<>();
+        betaValues.put("Patient Name", "CARLTON LETHA ADELL");
+        betaValues.put("Address Line 1", "180 SOUTHWOOD DR");
+        betaValues.put("Address Line 2", "-");
+        betaValues.put("City", "CLINTON");
+        betaValues.put("State", "NC");
+        betaValues.put("Country", "-");
+        betaValues.put("Zip Code", "28328");
+        betaValues.put("Gender", "F");
+        betaValues.put("Date of Birth", "12/01/1952");
+        betaValues.put("Insured Name", "CARLTON");
+        betaValues.put("Patient's Relationship to Insured", "SELF");
+        betaValues.put("Insured's Unique Identifier", "LB3100428");
+        betaValues.put("Insured's Group Name", "LIBERTY ADVANTAGE");
+        betaValues.put("Insured's Group Number", "-");
+
         if (environment.contains("test")) {
             List<String> fieldsExp = testValues.values().stream().collect(Collectors.toList());
             List<String> ActValues = findElementsByXpath(lstMemberInformationValues)
@@ -520,12 +625,26 @@ public class ClaimDetailsPage extends SeleniumUtils {
                     Assert.fail(exp + " is not listed in actual list");
                 }
             }
-        } else {
+        } else if (environment.contains("uat")){
             List<String> fieldsExp = uatValues.values().stream().collect(Collectors.toList());
             List<String> ActValues = findElementsByXpath(lstMemberInformationValues)
                     .stream().map((e) -> e.getText().trim()).collect(Collectors.toList());
             System.out.println("Size:" + ActValues.size());
             int expValue = 4;
+            Assert.assertEquals(expValue, Collections.frequency(ActValues, "-"));
+            for (String exp : fieldsExp) {
+                if (ActValues.contains(exp)) {
+                    Assert.assertTrue(true);
+                } else {
+                    Assert.fail(exp + " is not listed in actual list");
+                }
+            }
+        } else {
+            List<String> fieldsExp = betaValues.values().stream().collect(Collectors.toList());
+            List<String> ActValues = findElementsByXpath(lstMemberInformationValues)
+                    .stream().map((e) -> e.getText().trim()).collect(Collectors.toList());
+            System.out.println("Size:" + ActValues.size());
+            int expValue = 3;
             Assert.assertEquals(expValue, Collections.frequency(ActValues, "-"));
             for (String exp : fieldsExp) {
                 if (ActValues.contains(exp)) {
@@ -570,6 +689,11 @@ public class ClaimDetailsPage extends SeleniumUtils {
         uatValues.put("Rendering Provider NPI", "1245601103");
         uatValues.put("Taxonomy", "-");
 
+        HashMap<String, String> betaValues = new HashMap<>();
+        betaValues.put("Rendering Provider Name", "SAMPSON EMERGENCY PRO SERVICES");
+        betaValues.put("Rendering Provider NPI", "1558348276");
+        betaValues.put("Taxonomy", "-");
+
         if (environment.contains("test")) {
             List<String> fieldsExp = testValues.values().stream().collect(Collectors.toList());
             List<String> ActValues = findElementsByXpath(lstRenderingProviderInfoValues)
@@ -582,8 +706,20 @@ public class ClaimDetailsPage extends SeleniumUtils {
                     Assert.fail(exp + " is not listed in actual list");
                 }
             }
-        } else {
+        } else if (environment.contains("uat")){
             List<String> fieldsExp = uatValues.values().stream().collect(Collectors.toList());
+            List<String> ActValues = findElementsByXpath(lstRenderingProviderInfoValues)
+                    .stream().map((e) -> e.getText().trim()).collect(Collectors.toList());
+            System.out.println("Size:" + ActValues.size());
+            for (String exp : fieldsExp) {
+                if (ActValues.contains(exp)) {
+                    Assert.assertTrue(true);
+                } else {
+                    Assert.fail(exp + " is not listed in actual list");
+                }
+            }
+        } else {
+            List<String> fieldsExp = betaValues.values().stream().collect(Collectors.toList());
             List<String> ActValues = findElementsByXpath(lstRenderingProviderInfoValues)
                     .stream().map((e) -> e.getText().trim()).collect(Collectors.toList());
             System.out.println("Size:" + ActValues.size());
@@ -646,6 +782,19 @@ public class ClaimDetailsPage extends SeleniumUtils {
         uatValues.put("Telephone", "-");
         uatValues.put("Network Affiliation", "IN NETWORK PROVIDER");
 
+        HashMap<String, String> betaValues = new HashMap<>();
+        betaValues.put("Billing Provider Name", "SAMPSON EMERGENCY PRO SERVICES\n");
+        betaValues.put("Tax ID", "823693569");
+        betaValues.put("Address Line 1", "PO Box 896219");
+        betaValues.put("Address Line 2", "-");
+        betaValues.put("City", "Charlotte");
+        betaValues.put("State", "NC");
+        betaValues.put("Zip", "282896219");
+        betaValues.put("Taxonomy", "-");
+        betaValues.put("SSN", "-");
+        betaValues.put("Telephone", "-");
+        betaValues.put("Network Affiliation", "IN NETWORK PROVIDER\n");
+
         if (environment.contains("test")) {
             List<String> fieldsExp = testValues.values().stream().collect(Collectors.toList());
             List<String> ActValues = findElementsByXpath(lstBillingProviderInfoValues)
@@ -660,8 +809,22 @@ public class ClaimDetailsPage extends SeleniumUtils {
                     Assert.fail(exp + " is not listed in actual list");
                 }
             }
-        } else {
+        } else if(environment.contains("uat")){
             List<String> fieldsExp = uatValues.values().stream().collect(Collectors.toList());
+            List<String> ActValues = findElementsByXpath(lstBillingProviderInfoValues)
+                    .stream().map((e) -> e.getText().trim()).collect(Collectors.toList());
+            System.out.println("Size:" + ActValues.size());
+            int expValue = 4;
+            Assert.assertEquals(expValue, Collections.frequency(ActValues, "-"));
+            for (String exp : fieldsExp) {
+                if (ActValues.contains(exp)) {
+                    Assert.assertTrue(true);
+                } else {
+                    Assert.fail(exp + " is not listed in actual list");
+                }
+            }
+        } else {
+            List<String> fieldsExp = betaValues.values().stream().collect(Collectors.toList());
             List<String> ActValues = findElementsByXpath(lstBillingProviderInfoValues)
                     .stream().map((e) -> e.getText().trim()).collect(Collectors.toList());
             System.out.println("Size:" + ActValues.size());
@@ -718,6 +881,15 @@ public class ClaimDetailsPage extends SeleniumUtils {
         uatValues.put("State", "-");
         uatValues.put("Zip Code", "-");
 
+        HashMap<String, String> betaValues = new HashMap<>();
+        betaValues.put("Payer Name", "LIBERTY ADVANTAGE HEALTH PLAN");
+        betaValues.put("Payer ID", "LIB01");
+        betaValues.put("Address Line 1", "-");
+        betaValues.put("Address Line 2", "-");
+        betaValues.put("City", "-");
+        betaValues.put("State", "-");
+        betaValues.put("Zip Code", "-");
+
         if (environment.contains("test")) {
             List<String> fieldsExp = testValues.values().stream().collect(Collectors.toList());
             List<String> ActValues = findElementsByXpath(lstPayerValues)
@@ -732,8 +904,22 @@ public class ClaimDetailsPage extends SeleniumUtils {
                     Assert.fail(exp + " is not listed in actual list");
                 }
             }
-        } else {
+        } else if(environment.contains("uat")){
             List<String> fieldsExp = uatValues.values().stream().collect(Collectors.toList());
+            List<String> ActValues = findElementsByXpath(lstPayerValues)
+                    .stream().map((e) -> e.getText().trim()).collect(Collectors.toList());
+            System.out.println("Size:" + ActValues.size());
+            int expValue = 5;
+            Assert.assertEquals(expValue, Collections.frequency(ActValues, "-"));
+            for (String exp : fieldsExp) {
+                if (ActValues.contains(exp)) {
+                    Assert.assertTrue(true);
+                } else {
+                    Assert.fail(exp + " is not listed in actual list");
+                }
+            }
+        } else {
+            List<String> fieldsExp = betaValues.values().stream().collect(Collectors.toList());
             List<String> ActValues = findElementsByXpath(lstPayerValues)
                     .stream().map((e) -> e.getText().trim()).collect(Collectors.toList());
             System.out.println("Size:" + ActValues.size());
@@ -784,6 +970,12 @@ public class ClaimDetailsPage extends SeleniumUtils {
         uatValues.put("Prior Auth", "-");
         uatValues.put("Patient Control Number", "TXN11893136");
 
+        HashMap<String, String> betaValues = new HashMap<>();
+        betaValues.put("From Date", "07/16/2022");
+        betaValues.put("To Date", "07/16/2022");
+        betaValues.put("Prior Auth", "-");
+        betaValues.put("Patient Control Number", "BUA00017762588");
+
         if (environment.contains("test")) {
             List<String> fieldsExp = testValues.values().stream().collect(Collectors.toList());
             List<String> ActValues = findElementsByXpath(lstDateOfServiceSectionValues)
@@ -798,13 +990,27 @@ public class ClaimDetailsPage extends SeleniumUtils {
                     Assert.fail(exp + " is not listed in actual list");
                 }
             }
-        } else {
+        } else if(environment.contains("uat")){
             List<String> fieldsExp = uatValues.values().stream().collect(Collectors.toList());
             List<String> ActValues = findElementsByXpath(lstDateOfServiceSectionValues)
                     .stream().map((e) -> e.getText().trim()).collect(Collectors.toList());
             System.out.println("Size:" + ActValues.size());
             int expValue = 2;
             Assert.assertEquals(expValue, Collections.frequency(ActValues, "12/02/2021"));
+            for (String exp : fieldsExp) {
+                if (ActValues.contains(exp)) {
+                    Assert.assertTrue(true);
+                } else {
+                    Assert.fail(exp + " is not listed in actual list");
+                }
+            }
+        }  else {
+            List<String> fieldsExp = betaValues.values().stream().collect(Collectors.toList());
+            List<String> ActValues = findElementsByXpath(lstDateOfServiceSectionValues)
+                    .stream().map((e) -> e.getText().trim()).collect(Collectors.toList());
+            System.out.println("Size:" + ActValues.size());
+            int expValue = 2;
+            Assert.assertEquals(expValue, Collections.frequency(ActValues, "07/16/2022"));
             for (String exp : fieldsExp) {
                 if (ActValues.contains(exp)) {
                     Assert.assertTrue(true);
