@@ -91,14 +91,14 @@ public class CheckRegisterPage extends SeleniumUtils {
         clickElement(findElementByXpath(selectOption.replace("$option$", getRandomOption)));
         explicitVisibilityOfWait(findElementByXpath(btnSearch), 20);
         clickElement(btnSearch);
-        explicitElementClickableWaitByXpath(txtPayToId, 30);
+        explicitElementClickableWaitByXpath(txtPayToId, 50);
     }
 
     public void verifyTheResultForTheSearchCriteria(){
             Assert.assertTrue(findElementByXpath(txtPayToId).isDisplayed());
     }
 
-    public void userSelectsValuesFromFacilityDropDown() throws InterruptedException {
+    public void userSelectsValuesFromFacilityDropDown() {
         explicitVisibilityOfWait(findElementByXpath(dropdownFacility), 10);
         clickElement(dropdownFacility);
         List <String> getAllOptionsFromDropdown = findElementsByXpath(lstFacility)
@@ -108,7 +108,7 @@ public class CheckRegisterPage extends SeleniumUtils {
         clickElement(findElementByXpath(selectOption.replace("$option$", getRandomOption)));
         explicitVisibilityOfWait(findElementByXpath(btnSearch), 20);
         clickElement(btnSearch);
-        explicitElementClickableWaitByXpath(txtPayToId, 30);
+        explicitElementClickableWaitByXpath(txtPayToId, 60);
     }
 
     //  Scenario: Verify user should get result on selecting value from Facility drop down field
@@ -119,14 +119,15 @@ public class CheckRegisterPage extends SeleniumUtils {
     // Scenario: Verify user should get result on selecting dates from Created Date From and To fields
     public void userSelectsValuesFromCreatedDateFromField() throws InterruptedException {
         expFromDate = prop.getProperty("createdFromDate");
+        explicitElementClickableWaitByXpath(txtCreatedFromDate, 40);
         findElementAndSendKeys(findElementByXpath(txtCreatedFromDate), expFromDate);
     }
 
-    public void userSelectsValuesFromCreatedDateToField() throws InterruptedException {
+    public void userSelectsValuesFromCreatedDateToField() {
         expToDate = prop.getProperty("createdToDate");
         findElementAndSendKeys(findElementByXpath(txtCreatedToDate), expToDate);
         clickElement(btnSearch);
-        explicitElementClickableWaitByXpath(txtPayToId, 30);
+        explicitElementClickableWaitByXpath(txtPayToId, 40);
     }
 
     public void verifyTheResultForTheCreatedDateSearchCriteria() {
@@ -134,12 +135,13 @@ public class CheckRegisterPage extends SeleniumUtils {
     }
 
     //  Scenario: Verify user should get result on selecting dates from the Date of Service From and To values
-    public void userSelectsValuesFromDateOfServiceFromField() throws InterruptedException {
+    public void userSelectsValuesFromDateOfServiceFromField() {
         expDateOfServiceFromField = prop.getProperty("dateOfServiceFromField");
+        explicitElementClickableWaitByXpath(txtDateOfServiceFromField, 30);
         findElementAndSendKeys(findElementByXpath(txtDateOfServiceFromField), expDateOfServiceFromField);
     }
 
-    public void userSelectsValuesFromDateOfServiceToField() throws InterruptedException {
+    public void userSelectsValuesFromDateOfServiceToField() {
         expDateOfServiceToField = prop.getProperty("dateOfServiceToField");
         findElementAndSendKeys(findElementByXpath(txtDateOfServiceToField), expDateOfServiceToField);
         clickElement(btnSearch);
@@ -161,7 +163,7 @@ public class CheckRegisterPage extends SeleniumUtils {
         clickElement(findElementByXpath(selectOption.replace("$option$", getRandomOption)));
         explicitVisibilityOfWait(findElementByXpath(btnSearch), 20);
         clickElement(btnSearch);
-        explicitElementClickableWaitByXpath(txtPayToId, 30);
+        explicitElementClickableWaitByXpath(txtPayToId, 40);
     }
 
     public void verifyTheResultForTheStateSearchCriteria(){

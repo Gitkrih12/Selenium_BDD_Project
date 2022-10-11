@@ -127,9 +127,9 @@ public class ProviderDetailsPage extends SeleniumUtils {
     public void userViewsFieldValuesUnderGroupRenderingProviderDetails() throws InterruptedException {
         threadSleep(2000);
         HashMap<String, String> testValues = new HashMap<String, String>();
-        testValues.put("NPI", "870551784");
-        testValues.put("Name", "wkbusF");
-        testValues.put("Address", "-");
+        testValues.put("NPI", "8876210874");
+        testValues.put("Name", "QXSVYKSH EA");
+        testValues.put("Address", "NB NBKFBKR 33135");
         testValues.put("Effective Date", "01/01/2020");
         testValues.put("Termination Date", "12/31/9999");
         testValues.put("Timely Filling", "-");
@@ -153,7 +153,7 @@ public class ProviderDetailsPage extends SeleniumUtils {
             List<String> actValues = findElementsByXpath(lstGroupRenderingProviderDetailsValues)
                     .stream().map((e) -> e.getText().trim()).collect(Collectors.toList());
             System.out.println("Size:" + actValues.size());
-            int expValue = 3;
+            int expValue = 2;
             Assert.assertEquals(expValue, Collections.frequency(actValues, "-"));
             for (String exp : fieldsExp) {
                 if (actValues.contains(exp)) {
