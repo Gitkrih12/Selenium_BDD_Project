@@ -4,6 +4,7 @@ Feature: CAP Professional
     Given the user is in CA Login screen
     When the user enters the valid username and password and click on login button
 
+  #38959-As an adjudicator, I should be able to view CAP professional claims page with all claims details data so that I can search specific claim id details adding applicable filters
   @TC_39033 @Sanity
   Scenario: Verify user should navigates to CAP Professional screen
     When user clicks on CAP Professional in left navigation menu
@@ -21,7 +22,7 @@ Feature: CAP Professional
     Then the user should navigate to the CAP Professional page
     And user should be able to view the Clam List Label in the CAP Professional screen
 
-  @TC_39051 @Sanity
+  @TC_39051 @Sanity @beta
   Scenario: Validate user able to view all the column fields for Pend bucket in CAP Professional screen
     When user clicks on CAP Professional in left navigation menu
     Then the user should navigate to the CAP Professional page
@@ -41,7 +42,7 @@ Feature: CAP Professional
       | Age                    |
       | Assigned To            |
 
-  @TC_39054 @Sanity
+  @TC_39054 @Sanity @beta
   Scenario: Verify all the queue field details in the CAP Professional page
     When user clicks on CAP Professional in left navigation menu
     Then the user should navigate to the CAP Professional page
@@ -58,7 +59,7 @@ Feature: CAP Professional
       | Draft             |
       | Rejected          |
 
-  @TC_39059 @Sanity
+  @TC_39059 @Sanity @beta
   Scenario: Verify user able to view the search fields under each columns in the CAP Professional screen
     When user clicks on CAP Professional in left navigation menu
     Then the user should navigate to the CAP Professional page
@@ -94,7 +95,7 @@ Feature: CAP Professional
     Then user should allow to navigates to back page in CAP Professional
 
     #40715-As an adjudicator, I should be able to click on any Claim number from CAP Professional queue and get navigated to appropriate claims details page
-  @TC_37332 @Sanity
+  @TC_37332 @Sanity @beta
   Scenario: Verify user able to navigate to claim summary screen on clicking claim number
     When user clicks on CAP Professional in left navigation menu
     Then the user should navigate to the CAP Professional page
@@ -202,7 +203,7 @@ Feature: CAP Professional
     And color indication information for Unclean should be available on top of grid in CAP Professional
 
   #50010-As an adjudicator, When I click on the 'Batch ID' from Paid tab for CAP professional So I can be able to View the Claims list, Provider List, Check Info, History Doc, and Downloads sub-tabs under Claims for Batch Tab
-  @TC_51975
+  @TC_51975 @beta
   Scenario: Verify all tabs should display when clicking on Batch ID under Paid tab in CAP Professional page
     When user clicks on CAP Professional in left navigation menu
     Then the user should navigate to the CAP Professional page
@@ -216,7 +217,7 @@ Feature: CAP Professional
       | History Doc   |
       | Downloads     |
 
-  @TC_51910
+  @TC_51980 @Sanity @beta
   Scenario: Verify by default user navigates to the View Claims List page
     When user clicks on CAP Professional in left navigation menu
     Then the user should navigate to the CAP Professional page
@@ -238,7 +239,8 @@ Feature: CAP Professional
     And displays all the list of provider list for that Batch ID
     And user should be able to see "Providers in the Selected Batch" label in Provider List screen
 
-  @TC_67897
+
+  @TC_67897 @Sanity @beta
   Scenario: Verify user should navigates to the Check Info page on clicking Check Info tab
     When user clicks on CAP Professional in left navigation menu
     Then the user should navigate to the CAP Professional page
@@ -258,3 +260,45 @@ Feature: CAP Professional
     And user clicks on Batch Id
     And user clicks on the Check Info tab
     Then user should able to see Check Type as "Regular" for Normal Check
+
+  @TC_68574
+  Scenario: Verify user able to view the check reissue information in Check Info page
+    When user clicks on CAP Professional in left navigation menu
+    Then the user should navigate to the CAP Professional page
+    When user clicks on Paid bucket
+    And user enters Batch Id in search criteria for issued check in CAP Professional page
+    And user clicks on Batch Id
+    And user clicks on the Check Info tab
+    Then user should able to see Check Type as "ReIssue"
+
+  @TC_68575
+  Scenario: Then user able to view the check void information of that batch in Check Info page
+    When user clicks on CAP Professional in left navigation menu
+    Then the user should navigate to the CAP Professional page
+    When user clicks on Paid bucket
+    And user enters Batch Id in search criteria for Check Void in CAP Professional page
+    And user clicks on Batch Id
+    And user clicks on the Check Info tab
+    Then user should able to see Check Type as "Void" for voided batch
+
+  @TC_51996 @Sanity @beta
+  Scenario: Verify user able to navigate to the History Doc tab on clicking History Doc tab
+    When user clicks on CAP Professional in left navigation menu
+    Then the user should navigate to the CAP Professional page
+    When user clicks on Paid bucket
+    And user enters Batch Id in search criteria for issued check in CAP Professional page
+    And user clicks on Batch Id
+    And user clicks on History Doc
+    And displays all the list of History Doc for that Batch ID
+    And user should be able to see "History Of Doc in the Selected Batch" label in History Doc screen
+
+  @TC_51998 @Sanity @beta
+  Scenario: Verify user able to navigate to the Downloads tab on clicking Downloads tab and verify the files when there are any files
+    When user clicks on CAP Professional in left navigation menu
+    Then the user should navigate to the CAP Professional page
+    When user clicks on Paid bucket
+    And user enters Batch Id in search criteria for Check Void in CAP Professional page
+    And user clicks on Batch Id
+    And user clicks on Downloads
+    Then user able to view the "Download EOP Letter" and "Download 835 File"
+

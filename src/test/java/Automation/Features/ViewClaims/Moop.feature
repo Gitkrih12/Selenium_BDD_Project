@@ -11,7 +11,7 @@ Feature: MOOP
     Then user navigates to the "MOOP" tab successfully
 
   @46278
-  @Sanity
+  @Sanity @beta
   Scenario: Verify user should be able to view the appropriate table with all the fields in MOOP page
     When user clicking on Claim Number in Global Search page
     And user clicks on Moop tab
@@ -24,7 +24,7 @@ Feature: MOOP
       | Max Limit($)    |
     And user able to view all the field values under Moop tab
 
-  @46286
+  @46286 @beta
   Scenario: Verify the footer section should display in MOOP page
     Given the user is in FFS Professional page
     When user clicks on the Claim Number

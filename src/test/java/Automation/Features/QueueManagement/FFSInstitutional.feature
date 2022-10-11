@@ -23,7 +23,7 @@ Feature: FFS Institutional
     Then the user should navigate to the FFS Institutional page
     And user should be able to view the Clam List Label in the FFS Institutional screen
 
-  @TC_39665 @Sanity
+  @TC_39665 @Sanity @beta
   Scenario: Validate user able to view all the column fields in FFS Institutional screen
     When user clicks on FFS Institutional in left navigation menu
     Then the user should navigate to the FFS Institutional page
@@ -43,7 +43,7 @@ Feature: FFS Institutional
       | Age                    |
       | Assigned To            |
 
-  @TC_39666 @Sanity
+  @TC_39666 @Sanity @beta
   Scenario: Verify all the queue field details in the FFS Institutional page
     When user clicks on FFS Institutional in left navigation menu
     Then the user should navigate to the FFS Institutional page
@@ -60,7 +60,7 @@ Feature: FFS Institutional
       | Draft             |
       | Rejected          |
 
-  @TC_39786 @Sanity
+  @TC_39786 @Sanity @beta
   Scenario: Verify user able to view the search fields under each columns in the FFS Institutional screen
     When user clicks on FFS Institutional in left navigation menu
     Then the user should navigate to the FFS Institutional page
@@ -96,7 +96,7 @@ Feature: FFS Institutional
     Then user should allow to navigates to back page in FFS Institutional
 
   #40716-As an adjudicator, I should be able to click on any Claim number from FFS Institutional queue and get navigated to appropriate claims details page
-  @TC_46258 @Sanity
+  @TC_46258 @Sanity @beta
   Scenario: Verify user able to navigate to claim summary screen on clicking claim number
     When user clicks on FFS Institutional in left navigation menu
     Then the user should navigate to the FFS Institutional page
@@ -202,3 +202,103 @@ Feature: FFS Institutional
     Then user should able to view Unclean status Pre Batch claim in FFS Institutional Grid
     And user should able to see vertical line beside unclean status Pre Batch claim number with color code "#FFC33E" in FFS Institutional
     And color indication information for Unclean should be available on top of grid in FFS Institutional
+
+  #50887-As an adjudicator, When I click on the 'Batch ID' from Paid tab for FFS Institutional So I can be able to View the Claims list, Provider List, Check Info, History Doc, and Downloads sub-tabs under Claims for Batch Tab
+  @TC_52060 @Sanity @beta
+  Scenario: Verify all tabs should display when clicking on Batch ID under Paid tab in FFS Institutional page
+    When user clicks on FFS Institutional in left navigation menu
+    Then the user should navigate to the FFS Institutional page
+    When user clicks on Paid bucket
+    And user enters Batch Id in search criteria in FFS Institutional page
+    And user clicks on Batch Id
+    Then user should be able to see below tabs
+      | Claim List    |
+      | Provider List |
+      | Check Info    |
+      | History Doc   |
+      | Downloads     |
+
+  @TC_52157 @Sanity @beta
+  Scenario: Verify by default user navigates to the View Claims List page
+    When user clicks on FFS Institutional in left navigation menu
+    Then the user should navigate to the FFS Institutional page
+    When user clicks on Paid bucket
+    And user enters Batch Id in search criteria in FFS Institutional page
+    And user clicks on Batch Id
+    Then user views Claim List tab by default should be "active"
+    And displays all the list of claims for that Batch ID
+    And user should able to see "Claim List in the Selected Batch"
+
+  @TC_52169
+  Scenario: Verify user navigates to the Provider List page on clicking Provider List tab
+    When user clicks on FFS Institutional in left navigation menu
+    Then the user should navigate to the FFS Institutional page
+    When user clicks on Paid bucket
+    And user enters Batch Id in search criteria in FFS Institutional page
+    And user clicks on Batch Id
+    And user clicks on the Provider List tab
+    And displays all the list of provider list for that Batch ID
+    And user should be able to see "Providers in the Selected Batch" label in Provider List screen
+
+  @TC_69483 @Sanity @beta
+  Scenario: Verify user should navigates to the Check Info page on clicking Check Info tab
+    When user clicks on FFS Institutional in left navigation menu
+    Then the user should navigate to the FFS Institutional page
+    When user clicks on Paid bucket
+    And user enters Batch Id in search criteria in FFS Institutional page
+    And user clicks on Batch Id
+    And user clicks on the Check Info tab
+    And displays all the list of Check Info for that Batch ID
+    And user should be able to see "Check Information" label in Check Info screen
+
+  @TC_69492
+  Scenario: Verify user able to view Check Type as Regular if its not void or reissue in Check Info page
+    When user clicks on FFS Institutional in left navigation menu
+    Then the user should navigate to the FFS Institutional page
+    When user clicks on Paid bucket
+    And user enters Batch Id in search criteria for Normal Check in FFS Institutional page
+    And user clicks on Batch Id
+    And user clicks on the Check Info tab
+    Then user should able to see Check Type as "Regular" for Normal Check
+
+  @TC_52168
+  Scenario: Verify user able to view the check reissue information in Check Info page
+    When user clicks on FFS Institutional in left navigation menu
+    Then the user should navigate to the FFS Institutional page
+    When user clicks on Paid bucket
+    And user enters Batch Id in search criteria for issued check in FFS Institutional page
+    And user clicks on Batch Id
+    And user clicks on the Check Info tab
+    Then user should able to see Check Type as "ReIssue"
+
+  @TC_69488
+  Scenario: Verify user able to view the check void information in Check Info page
+    When user clicks on FFS Institutional in left navigation menu
+    Then the user should navigate to the FFS Institutional page
+    When user clicks on Paid bucket
+    And user enters Batch Id in search criteria for Check Void in FFS Institutional page
+    And user clicks on Batch Id
+    And user clicks on the Check Info tab
+    Then user should able to see Check Type as "Void" for voided batch
+
+  @TC_52159 @Sanity @beta
+  Scenario: Verify user able to navigate to the History Doc page on clicking History Doc tab
+    When user clicks on FFS Institutional in left navigation menu
+    Then the user should navigate to the FFS Institutional page
+    When user clicks on Paid bucket
+    And user enters Batch Id in search criteria for issued check in FFS Institutional page
+    And user clicks on Batch Id
+    And user clicks on History Doc
+    And displays all the list of History Doc for that Batch ID
+    And user should be able to see "History Of Doc in the Selected Batch" label in History Doc screen
+
+  @TC_52158 @Sanity @beta
+  Scenario: Verify user able to navigate to the Downloads tab on clicking Downloads tab and verify the files when there are any files
+    When user clicks on FFS Institutional in left navigation menu
+    Then the user should navigate to the FFS Institutional page
+    When user clicks on Paid bucket
+    And user enters Batch Id in search criteria for Check Void in FFS Institutional page
+    And user clicks on Batch Id
+    And user clicks on Downloads
+    Then user able to view the "Download EOP Letter" and "Download 835 File"
+

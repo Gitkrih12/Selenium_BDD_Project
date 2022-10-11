@@ -58,7 +58,7 @@ public class CAPProfessionalPage extends SeleniumUtils {
     String btnNextPage = "//*[@id='onHoldGrid']//span[@class='ag-icon ag-icon-next']";
     String btnPreviousPage = "//*[@id='onHoldGrid']//span[@class='ag-icon ag-icon-previous']";
     String txtBatchID= "(//input[@aria-label='Batch ID Filter Input'])[5]";
-    String eleBatchID= "//*[@id='paidGrid']//div[@col-id='batchCode']//a";
+    String eleBatchID= "(//*[@id='paidGrid']//div[@col-id='batchCode']//a)[1]";
     String tabCAPProfessionalPend = "//button[@id='nav-pend-details-tab']";
 
 
@@ -282,6 +282,7 @@ public class CAPProfessionalPage extends SeleniumUtils {
     }
     public void enterUnCleanStatusManagementReviewClaimNumber() throws InterruptedException {
         expClaimNumber = prop.getProperty("capProfessionalUnCleanStatusManagementReviewClaimNumber");
+        explicitVisibilityOfWait(findElementByXpath(txtManagementReviewClaimNumber), 5);
         findElementAndSendKeys(findElementByXpath(txtManagementReviewClaimNumber), expClaimNumber);
         threadSleep(1000);
         sendKeysUsingKeyboardInput(txtManagementReviewClaimNumber);
@@ -486,6 +487,7 @@ public class CAPProfessionalPage extends SeleniumUtils {
         explicitTextToBePresentInElementLocatedWait(By.xpath(eleBatchID), 10, expBatchID);
     }
 
+    //Scenario: Then user able to view the check void information of that batch in Check Info page
     public void enterBatchIdForVoided() throws InterruptedException {
         expBatchID = prop.getProperty("capProfessionalBatchIDForVoid");
         explicitElementClickableWaitByXpath(txtBatchID, 10);
