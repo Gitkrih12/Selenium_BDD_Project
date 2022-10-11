@@ -31,6 +31,10 @@ public class Driver {
     public static PropertyReader prop;
     protected static String environment;
 
+    //  This variable reads project path till home directory
+    public static String basePath = System.getProperty("user.dir");
+
+
     //    Console colors
     public static final String ANSI_RED = "\u001B[31m";
     public static final String ANSI_RESET = "\u001B[0m";

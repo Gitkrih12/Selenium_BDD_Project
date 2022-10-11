@@ -19,9 +19,9 @@ public class UploadFilesStepDef extends UploadFilesPage {
     public void the_user_is_on_the_upload_files_tab(String uploadFilesTitleExp) {
         verifyUserIsOnUploadFilesTab(uploadFilesTitleExp);
     }
-    @Then("user should navigate to Upload files screen successfully")
-    public void user_should_navigate_to_upload_files_screen_successfully() {
-        verifyUserNavigatedToUploadFilesScreen();
+    @Then("user should navigate to Upload files screen successfully and view message {string}")
+    public void user_should_navigate_to_upload_files_screen_successfully_and_view_message(String uploadFilesExp) throws InterruptedException {
+        verifyUserNavigatedToUploadFilesScreen(uploadFilesExp);
     }
 
     //    Scenario: Verify user should see Drag Files Here (or) Choose File option and able to upload file

@@ -3,6 +3,7 @@ package Automation.PageObjects;
 import Automation.Utilities.SeleniumUtils;
 import io.cucumber.datatable.DataTable;
 import org.junit.Assert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
 import java.awt.*;
@@ -13,9 +14,9 @@ public class UploadFilesPage extends SeleniumUtils {
     String mnuFileManagement = "//div[contains(text(),'File Management')]";
     String mnuUploadFiles = "(//div[contains(text(), 'Upload Files')])[1]";
     String tabUploadFiles = "(//div[contains(text(), 'Upload Files')])[2]";
-    String lblUploadFiles = "//div[@class='drag']";
+    String lblDragFiles = "//div[@class='drag']";
+    String lblChooseFiles = "//a[@class='drag']";
     String txtFileUpload = "//input[@type='file']";
-    String uploadFilesExp = "Drag Files Here or";
     String lbl837UploadFileName = "//tbody//tr[1]//td[1]";
     String btnUploadFile = "//button[contains(text(),'Upload File')]";
     String txtPlanReceivedDate = "(//tbody//tr[1]/td[2]//input[1])[1]";
@@ -27,9 +28,7 @@ public class UploadFilesPage extends SeleniumUtils {
     String lstFileUploadColumnFields = "//div[contains(text(),'Total File')]|//tr/th[node()]";
     String btnCancel = "//button[contains(text(),'Cancel')]";
 
-    private static String basePath;
-    private String futurePlanReceivedDateAct;
-
+    private static String futurePlanReceivedDateAct;
 
     //    Scenario: Verify user navigates to Upload files section on clicking Upload Files in Left Navigation Menu
     public void clickOnUploadFiles() {
@@ -38,22 +37,24 @@ public class UploadFilesPage extends SeleniumUtils {
         clickElement(mnuUploadFiles);
     }
     public void verifyUserIsOnUploadFilesTab(String uploadFilesTitleExp) {
-        explicitVisibilityOfElementLocatedWaitByXpath(tabUploadFiles, 10).click();
+        explicitTextToBePresentInElementLocatedWait(By.xpath(tabUploadFiles), 10, uploadFilesTitleExp);
         String[] uploadFilesTitleText = getText(tabUploadFiles).split(" ");
         String uploadFilesTitleAct = uploadFilesTitleText[0] + " " + uploadFilesTitleText[1];
         System.out.println(ANSI_GREEN + "Upload files actual title is: " + uploadFilesTitleAct + ANSI_RESET);
         Assert.assertEquals(uploadFilesTitleExp, uploadFilesTitleAct);
     }
 
-    public void verifyUserNavigatedToUploadFilesScreen() {
-        String uploadFilesAct = explicitVisibilityOfElementLocatedWaitByXpath(lblUploadFiles, 5).getText();
+    public void verifyUserNavigatedToUploadFilesScreen(String uploadFilesExp) throws InterruptedException {
+        String dragFilesText = explicitVisibilityOfElementLocatedWaitByXpath(lblDragFiles, 5).getText();
+        String chooseFilesText = explicitVisibilityOfElementLocatedWaitByXpath(lblChooseFiles, 5).getText();
+        String uploadFilesAct = dragFilesText + " " + chooseFilesText;
         System.out.println(ANSI_GREEN + "Actual message is: " + uploadFilesAct + ANSI_RESET);
+        System.out.println(ANSI_GREEN + "Expected message is: " + uploadFilesExp + ANSI_RESET);
         Assert.assertEquals(uploadFilesExp, uploadFilesAct);
     }
 
     //    Scenario: Verify user should see Drag Files Here (or) Choose File option and able to upload file
     public void verifyUserAbleToChoose837FilesFromSystem() throws InterruptedException, AWTException {
-        basePath = System.getProperty("user.dir");
         String filePath = basePath + prop.getProperty("uploadFilePath1");
         uploadFileWithJavaScriptAndSendKeys(txtFileUpload, filePath);
         boolean uploadFileStatus = explicitVisibilityOfElementLocatedWaitByXpath(btnUploadFile, 10).isDisplayed();
@@ -96,7 +97,7 @@ public class UploadFilesPage extends SeleniumUtils {
     }
     public void clickOnUploadFileButton() {
         explicitVisibilityOfElementLocatedWaitByXpath(btnUploadFile, 5).click();
-        String fileUploadToasterMessageAct = explicitVisibilityOfElementLocatedWaitByXpath(msgFileUploadToaster, 10).getText();
+        String fileUploadToasterMessageAct = explicitVisibilityOfElementLocatedWaitByXpath(msgFileUploadToaster, 30).getText();
         System.out.println(ANSI_GREEN + "File upload actual message is: " + fileUploadToasterMessageAct + ANSI_RESET);
         Assert.assertEquals(fileUploadSuccessfulMessageExp, fileUploadToasterMessageAct);
     }
@@ -177,7 +178,7 @@ public class UploadFilesPage extends SeleniumUtils {
         clearUsingKeyClass(txtPlanReceivedDate);
         findElementByXpath(txtPlanReceivedDate).sendKeys(futureDate);
         clickElement(btnUploadFile);
-        futurePlanReceivedDateAct = getText(msgFileUploadToaster);
+        futurePlanReceivedDateAct = explicitVisibilityOfElementLocatedWaitByXpath(msgFileUploadToaster, 30).getText();
         printStatementInGreenColor("Future plan received date error message actual", futurePlanReceivedDateAct);
     }
     public void verifyUserShouldNotBeAbleToUploadFilesWithFuturePlanReceivedDate(String futurePlanReceivedDateExp)
