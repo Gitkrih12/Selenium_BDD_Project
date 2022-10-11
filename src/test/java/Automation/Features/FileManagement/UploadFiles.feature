@@ -14,7 +14,7 @@ Feature: Upload Files
   Scenario: Verify user navigates to Upload files section on clicking Upload Files in Left Navigation Menu
 # The steps are covered under background section already
 
-  @56663 @Sanity @beta
+  @56663 @Sanity
   Scenario: Verify user should see Drag Files Here (or) Choose File option and able to select files
     Then the user should be able to choose 837 file or files from the system
 
