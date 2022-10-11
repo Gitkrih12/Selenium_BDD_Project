@@ -1,8 +1,13 @@
 package Automation.PageObjects;
 
 import Automation.Utilities.SeleniumUtils;
+import io.cucumber.datatable.DataTable;
 import org.junit.Assert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class FeeSchedulePage extends SeleniumUtils {
     String lnkGlobalSearch = "(//div[contains(text(),'Global Search')])[1]";
@@ -12,6 +17,11 @@ public class FeeSchedulePage extends SeleniumUtils {
     String elePricingScreen="//div[contains(text(),'Pricing')]";
     String lnkSeeFeeSchedule="//button[text()='See Fee Schedule']";
     String eleFeeSchedules="//div[@class='offcanvas-header']//h5";
+    String lstTabsInFeeSchedules= "//h5[@id='offcanvasRightLabel']//following::div[@id='nav-tab']//button";
+    String lstFeeSchedulesColumnFields="(//div[@class='ag-header-row ag-header-row-column'])[2]//div[@role='columnheader']";
+    String tabPaymentPolicyIndicators="//button[text()='Payment Policy Indicators']";
+
+
 
 
     private static String expClaimNumber = "";
@@ -56,9 +66,77 @@ public class FeeSchedulePage extends SeleniumUtils {
         explicitTextToBePresentInElementLocatedWait(By.xpath(eleFeeSchedules), 20, "Fee Schedules");
         String actFeeScheduleText = findElementByXpath(eleFeeSchedules).getText();
         Assert.assertEquals(expFeeScheduleText, actFeeScheduleText);
+    }
 
+    //Scenario: Verify user able to view the respective tabs under Fee Schedules side drawer
+    public void verifyTabsInFeeSchedules(DataTable tabList) throws InterruptedException{
+        List<String> exTabList = tabList.asList();
+        List<WebElement> actTabFields = findElementsByXpath(lstTabsInFeeSchedules);
+        List<String> actualTabFieldsForCompare = new ArrayList<>();
+        for (WebElement column : actTabFields) {
+            threadSleep(1000);
+            scrollIntoView(column, driver);
+            String text = column.getText();
+            actualTabFieldsForCompare.add(text);
+        }
+        System.out.println("actual tab fields " + actualTabFieldsForCompare);
+        System.out.println("expected tab fields " + exTabList);
+        for (String expColumn : exTabList) {
+            if (actualTabFieldsForCompare.contains(expColumn)) {
+                Assert.assertTrue(true);
+            } else {
+                Assert.fail(expColumn + " tab is not as expected");
+            }
+        }
 
     }
+
+    public void verifyFeeSchedulesColumnFields(DataTable columnList) throws InterruptedException {
+        List<String> expColumnList = columnList.asList();
+        List<WebElement> actColumnFields = findElementsByXpath(lstFeeSchedulesColumnFields);
+        List<String> actualColumnFieldsForCompare = new ArrayList<>();
+        for (WebElement column : actColumnFields) {
+            threadSleep(1000);
+            scrollIntoView(column, driver);
+            String text = column.getText();
+            actualColumnFieldsForCompare.add(text);
+        }
+        System.out.println("actual column fields " + actualColumnFieldsForCompare);
+        System.out.println("expected column fields " + expColumnList);
+        for (String expColumn : expColumnList) {
+            if (actualColumnFieldsForCompare.contains(expColumn)) {
+                Assert.assertTrue(true);
+            } else {
+                Assert.fail(expColumn + " column is not as expected");
+            }
+        }
+    }
+
+    //Scenario: Verify column fields in Payment Policy Indicators tab
+    public void clickPaymentPolicyIndicators(){
+        clickElement(tabPaymentPolicyIndicators);
+    }
+    public void verifyPaymentPolicyIndicatorsColumnFields(DataTable columnList) throws InterruptedException {
+        List<String> expColumnList = columnList.asList();
+        List<WebElement> actColumnFields = findElementsByXpath(lstFeeSchedulesColumnFields);
+        List<String> actualColumnFieldsForCompare = new ArrayList<>();
+        for (WebElement column : actColumnFields) {
+            threadSleep(1000);
+            scrollIntoView(column, driver);
+            String text = column.getText();
+            actualColumnFieldsForCompare.add(text);
+        }
+        System.out.println("actual column fields " + actualColumnFieldsForCompare);
+        System.out.println("expected column fields " + expColumnList);
+        for (String expColumn : expColumnList) {
+            if (actualColumnFieldsForCompare.contains(expColumn)) {
+                Assert.assertTrue(true);
+            } else {
+                Assert.fail(expColumn + " column is not as expected");
+            }
+        }
+    }
+
 
 
 }
