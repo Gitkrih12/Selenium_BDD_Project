@@ -20,7 +20,11 @@ public class FeeSchedulePage extends SeleniumUtils {
     String lstTabsInFeeSchedules= "//h5[@id='offcanvasRightLabel']//following::div[@id='nav-tab']//button";
     String lstFeeSchedulesColumnFields="(//div[@class='ag-header-row ag-header-row-column'])[2]//div[@role='columnheader']";
     String tabPaymentPolicyIndicators="//button[text()='Payment Policy Indicators']";
-
+    String lstPaymentPolicyIndicatorsColumnFields="(//div[@class='ag-header-row ag-header-row-column'])[5]//div[@role='columnheader']";
+    String tabRVU="//button[contains(text(),'RVU')]";
+    String lstRVUColumnFields="(//div[@class='ag-header-row ag-header-row-column'])[8]//div[@role='columnheader']";
+    String tabGeographicPracticeCost="//button[contains(text(),'Geographic Practice Cost')]";
+    String lstGeographicPracticeCostColumnFields="(//div[@class='ag-header-row ag-header-row-column'])[11]//div[@role='columnheader']";
 
 
 
@@ -118,7 +122,7 @@ public class FeeSchedulePage extends SeleniumUtils {
     }
     public void verifyPaymentPolicyIndicatorsColumnFields(DataTable columnList) throws InterruptedException {
         List<String> expColumnList = columnList.asList();
-        List<WebElement> actColumnFields = findElementsByXpath(lstFeeSchedulesColumnFields);
+        List<WebElement> actColumnFields = findElementsByXpath(lstPaymentPolicyIndicatorsColumnFields);
         List<String> actualColumnFieldsForCompare = new ArrayList<>();
         for (WebElement column : actColumnFields) {
             threadSleep(1000);
@@ -136,6 +140,82 @@ public class FeeSchedulePage extends SeleniumUtils {
             }
         }
     }
+
+    //Scenario: Verify user navigates to Payment Policy Indicators tab
+    public void verifyPaymentPolicyIndicators(String expPaymentPolicyIndicatorsText){
+        explicitTextToBePresentInElementLocatedWait(By.xpath(tabPaymentPolicyIndicators), 10, "Payment Policy Indicators");
+        String actPaymentPolicyIndicators = findElementByXpath(tabPaymentPolicyIndicators).getText();
+        Assert.assertEquals(expPaymentPolicyIndicatorsText, actPaymentPolicyIndicators);
+    }
+
+    //Scenario: Verify user navigates to RVU tab
+    public void clickOnRVU(){
+        explicitTextToBePresentInElementLocatedWait(By.xpath(tabRVU), 10, "RVU");
+        clickElement(tabRVU);
+    }
+
+    public void verifyRVU(String expRVUText){
+        explicitTextToBePresentInElementLocatedWait(By.xpath(tabRVU), 10, "RVU");
+        String actRVU = findElementByXpath(tabRVU).getText();
+        Assert.assertEquals(expRVUText, actRVU);
+    }
+
+    //Scenario: Verify column fields in RVU tab
+    public void verifyRVUColumnFields(DataTable columnList) throws InterruptedException {
+        List<String> expColumnList = columnList.asList();
+        List<WebElement> actColumnFields = findElementsByXpath(lstRVUColumnFields);
+        List<String> actualColumnFieldsForCompare = new ArrayList<>();
+        for (WebElement column : actColumnFields) {
+            threadSleep(1000);
+            scrollIntoView(column, driver);
+            String text = column.getText();
+            actualColumnFieldsForCompare.add(text);
+        }
+        System.out.println("actual column fields " + actualColumnFieldsForCompare);
+        System.out.println("expected column fields " + expColumnList);
+        for (String expColumn : expColumnList) {
+            if (actualColumnFieldsForCompare.contains(expColumn)) {
+                Assert.assertTrue(true);
+            } else {
+                Assert.fail(expColumn + " column is not as expected");
+            }
+        }
+    }
+
+    //Scenario: Verify user navigates to Geographic Practice Cost tab
+    public void clickOnGeographicPracticeCost(){
+        explicitTextToBePresentInElementLocatedWait(By.xpath(tabGeographicPracticeCost), 10, "Geographic");
+        clickElement(tabGeographicPracticeCost);
+    }
+
+    public void verifyGeographicPracticeCost(String expRVUText){
+        explicitTextToBePresentInElementLocatedWait(By.xpath(tabGeographicPracticeCost), 10, "Geographic");
+        String actRVU = findElementByXpath(tabGeographicPracticeCost).getText();
+        Assert.assertEquals(expRVUText, actRVU);
+    }
+
+    //Scenario: Verify column fields in Geographic Practice Cost tab
+    public void verifyGeographicPracticeCostColumnFields(DataTable columnList) throws InterruptedException {
+        List<String> expColumnList = columnList.asList();
+        List<WebElement> actColumnFields = findElementsByXpath(lstGeographicPracticeCostColumnFields);
+        List<String> actualColumnFieldsForCompare = new ArrayList<>();
+        for (WebElement column : actColumnFields) {
+            threadSleep(1000);
+            scrollIntoView(column, driver);
+            String text = column.getText();
+            actualColumnFieldsForCompare.add(text);
+        }
+        System.out.println("actual column fields " + actualColumnFieldsForCompare);
+        System.out.println("expected column fields " + expColumnList);
+        for (String expColumn : expColumnList) {
+            if (actualColumnFieldsForCompare.contains(expColumn)) {
+                Assert.assertTrue(true);
+            } else {
+                Assert.fail(expColumn + " column is not as expected");
+            }
+        }
+    }
+
 
 
 

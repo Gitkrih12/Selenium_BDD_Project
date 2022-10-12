@@ -44,15 +44,56 @@ public class FeeScheduleStepDef extends FeeSchedulePage {
         verifyFeeSchedulesColumnFields(columnList);
     }
 
+    //Scenario: Verify user navigates to Payment Policy Indicators tab
+    @Then("user navigated to {string} tab successfully")
+    public void user_navigated_to_tab_successfully(String expText) {
+        if(expText.contains("Payment")){
+            verifyPaymentPolicyIndicators(expText);
+        }else if(expText.contains("RVU")){
+            verifyRVU(expText);
+        } else if(expText.contains("Geographic")){
+            verifyGeographicPracticeCost(expText);
+        }
+
+    }
+
     //Scenario: Verify column fields in Payment Policy Indicators tab
     @When("user clicks on Payment Policy Indicators tab")
     public void user_clicks_on_payment_policy_indicators_tab() {
         clickPaymentPolicyIndicators();
     }
-    @Then("user should able to see below mentioned fields")
-    public void user_should_able_to_see_below_mentioned_fields(io.cucumber.datatable.DataTable dataTable) {
-
+    @Then("user should able to see below mentioned fields in Payment Policy Indicators screen")
+    public void user_should_able_to_see_below_mentioned_fields_in_payment_policy_indicators_screen(DataTable columnList) throws InterruptedException {
+        verifyPaymentPolicyIndicatorsColumnFields(columnList);
     }
+
+    //Scenario: Verify user navigates to RVU tab
+    @When("user clicks on RVU tab")
+    public void user_clicks_on_rvu_tab() {
+        clickOnRVU();
+    }
+
+    //Scenario: Verify column fields in RVU tab
+    @Then("user should able to see below mentioned fields in RVU screen")
+    public void user_should_able_to_see_below_mentioned_fields_in_rvu_screen(DataTable columnList) throws InterruptedException {
+        verifyRVUColumnFields(columnList);
+    }
+
+    //Scenario: Verify user navigates to Geographic Practice Cost tab
+    @When("user clicks on Geographic Practice Cost tab")
+    public void user_clicks_on_geographic_practice_cost_tab() {
+        clickOnGeographicPracticeCost();
+    }
+
+    //Scenario: Verify column fields in Geographic Practice Cost tab
+    @Then("user should able to see below mentioned fields in Geographic Practice Cost screen")
+    public void user_should_able_to_see_below_mentioned_fields_in_geographic_practice_cost_screen(DataTable columnList) throws InterruptedException {
+        verifyGeographicPracticeCostColumnFields(columnList);
+    }
+
+
+
+
 
 
 
