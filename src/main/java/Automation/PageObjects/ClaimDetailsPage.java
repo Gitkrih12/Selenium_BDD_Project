@@ -66,8 +66,7 @@ public class ClaimDetailsPage extends SeleniumUtils {
     }
 
     public void userClicksOnClaimNumber() {
-        explicitInvisibilityOfElementWithTextWait(By.xpath(tabPend), 60, "Pend ()");
-        explicitElementClickableWaitByXpath(lnkClaimNumber, 50);
+        explicitElementClickableWaitByXpath(lnkClaimNumber, 60);
         clickElement(lnkClaimNumber);
     }
 
@@ -159,6 +158,7 @@ public class ClaimDetailsPage extends SeleniumUtils {
     //  Scenario: Verify footer section in Claim Summary details page
     public void userViewsFooterSectionInClaimSummaryDetails(DataTable footerFields) {
         List<String> footerFieldsExp = footerFields.asList();
+        explicitElementClickableWaitByXpath(btnFooterFields, 40);
         List<WebElement> ActFooterFields = findElementsByXpath(btnFooterFields);
         List<String> fieldsForCompare = new ArrayList<>();
         System.out.println("Size" + ActFooterFields.size());
@@ -508,6 +508,7 @@ public class ClaimDetailsPage extends SeleniumUtils {
     //  Scenario: Verify user able to view 7-Corrected claim submission type in Claim Details page
     public void verifyClaimSubmissionTypeAsCorrected() {
         expClaimSubmission = prop.getProperty("claimSubmissionCorrected");
+        explicitElementClickableWaitByXpath(lblClaimSubmissionCorrected, 50);
         Assert.assertEquals(expClaimSubmission, findElementByXpath(lblClaimSubmissionCorrected).getText());
     }
 
@@ -517,7 +518,8 @@ public class ClaimDetailsPage extends SeleniumUtils {
         sendKeysUsingKeyboardInput(txtUniversalSearchBar);
     }
 
-    public void verifyClaimSubmissionType(String type) {
+    public void verifyClaimSubmissionType(String type){
+        explicitElementClickableWaitByXpath(eleClaimSubmission, 20);
         Assert.assertEquals(type, findElementByXpath(eleClaimSubmission).getText());
     }
 }

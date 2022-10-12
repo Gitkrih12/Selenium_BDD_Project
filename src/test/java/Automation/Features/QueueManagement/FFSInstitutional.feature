@@ -281,7 +281,7 @@ Feature: FFS Institutional
     And user clicks on the Check Info tab
     Then user should able to see Check Type as "Void" for voided batch
 
-  @TC_52159 @Sanity @beta
+  @TC_52159 @Sanity
   Scenario: Verify user able to navigate to the History Doc page on clicking History Doc tab
     When user clicks on FFS Institutional in left navigation menu
     Then the user should navigate to the FFS Institutional page
