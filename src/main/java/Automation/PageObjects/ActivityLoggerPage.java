@@ -62,46 +62,11 @@ public class ActivityLoggerPage extends SeleniumUtils {
     }
 
     public void verifyFieldValuesUnderActivityLogger() {
-        HashMap<String, String> testValues = new HashMap<String, String>();
-        testValues.put("Changeset", "P100672157");
-        testValues.put("Performed Date", "06/07/2022");
-        testValues.put("Status of Claims", "PAID");
-        testValues.put("Activity", "Check Refund updated");
-        testValues.put("Description", "Check Refund applied with Check number -123456");
-        testValues.put("Performed By", "ClaimsUser@ahcpllc.com");
-
-        HashMap<String, String> uatValues = new HashMap<>();
-        uatValues.put("Changeset", "P100456894");
-        uatValues.put("Performed Date", "06/24/2022");
-        uatValues.put("Status of Claims", "PAID");
-        uatValues.put("Activity", "EFT PAYMENT DONE");
-        uatValues.put("Description", "CLAIM PAYMENT HAS BEEN DONE THROUGH EFT PAYMENT");
-        uatValues.put("Performed By", "ClaimsUser@ahcpllc.com");
-
-        if (environment.contains("test")) {
-            List<String> fieldsExp = testValues.values().stream().collect(Collectors.toList());
-            List<String> ActValues = findElementsByXpath(lstActivityLoggerValues)
-                    .stream().map((e) -> e.getText().trim()).collect(Collectors.toList());
-            System.out.println("Size:" + ActValues.size());
-            for (String exp : fieldsExp) {
-                if (ActValues.contains(exp)) {
-                    Assert.assertTrue(true);
-                } else {
-                    Assert.fail(exp + " is not listed in actual list");
-                }
-            }
-        } else {
-            List<String> fieldsExp = uatValues.values().stream().collect(Collectors.toList());
-            List<String> ActValues = findElementsByXpath(lstActivityLoggerValues)
-                    .stream().map((e) -> e.getText().trim()).collect(Collectors.toList());
-            System.out.println("Size:" + ActValues.size());
-            for (String exp : fieldsExp) {
-                if (ActValues.contains(exp)) {
-                    Assert.assertTrue(true);
-                } else {
-                    Assert.fail(exp + " is not listed in actual list");
-                }
-            }
+        List<WebElement> activityLoggerValues = findElementsByXpath(lstActivityLoggerValues);
+        System.out.println("Size:" + activityLoggerValues.size());
+        for (WebElement value : activityLoggerValues) {
+            isDisplayed(value);
+            System.out.println("Value is displayed: " + isDisplayed(value));
         }
     }
 
