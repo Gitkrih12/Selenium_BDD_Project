@@ -3,8 +3,8 @@ package Automation.PageObjects;
 import Automation.Utilities.SeleniumUtils;
 import io.cucumber.datatable.DataTable;
 import org.junit.Assert;
+import org.openqa.selenium.WebElement;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -39,46 +39,12 @@ public class NotesPage extends SeleniumUtils {
         Assert.assertEquals(columnListExp, ActFields);
     }
 
-    public void verifyFieldValuesUnderNotesTab() throws InterruptedException {
-        threadSleep(2000);
-        HashMap<String, String> testValues = new HashMap<String, String>();
-        testValues.put("Title", "Claim Reprocessed");
-        testValues.put("Category", "Plan - Claims/Appeals");
-        testValues.put("Description", "Testing Reprocess P01MR22051701O");
-        testValues.put("Created By", "ClaimsUser@ahcpllc.com");
-        testValues.put("Created Date", "06/07/2022");
-
-        HashMap<String, String> uatValues = new HashMap<>();
-        uatValues.put("Title", "Moved to PEND status.");
-        uatValues.put("Category", "Ambulance");
-        uatValues.put("Description", "test");
-        uatValues.put("Created By", "ClaimsUser@ahcpllc.com");
-        uatValues.put("Created Date", "06/24/2022");
-
-        if (environment.contains("test")) {
-            List<String> fieldsExp = testValues.values().stream().collect(Collectors.toList());
-            List<String> ActValues = findElementsByXpath(lstNotesValues)
-                    .stream().map((e) -> e.getText().trim()).collect(Collectors.toList());
-            System.out.println("Size:" + ActValues.size());
-            for (String exp : fieldsExp) {
-                if (ActValues.contains(exp)) {
-                    Assert.assertTrue(true);
-                } else {
-                    Assert.fail(exp + " is not listed in actual list");
-                }
-            }
-        } else {
-            List<String> fieldsExp = uatValues.values().stream().collect(Collectors.toList());
-            List<String> ActValues = findElementsByXpath(lstNotesValuesUat)
-                    .stream().map((e) -> e.getText().trim()).collect(Collectors.toList());
-            System.out.println("Size:" + ActValues.size());
-            for (String exp : fieldsExp) {
-                if (ActValues.contains(exp)) {
-                    Assert.assertTrue(true);
-                } else {
-                    Assert.fail(exp + " is not listed in actual list");
-                }
-            }
+    public void verifyFieldValuesUnderNotesTab() {
+        List<WebElement> notesValues = findElementsByXpath(lstNotesValues);
+        System.out.println("Size:" + notesValues.size());
+        for (WebElement value : notesValues) {
+            isDisplayed(value);
+            System.out.println("Value is displayed: " + isDisplayed(value));
         }
     }
 

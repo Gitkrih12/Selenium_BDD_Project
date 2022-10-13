@@ -1411,6 +1411,21 @@ public class SeleniumUtils extends Driver {
         }
     }
 
+    //This method is used to upload files in headless mode
+    public void uploadFileWithJavaScriptAndSendKeys(String xpath, String filePath)
+    {
+        try
+        {
+            WebElement element = driver.findElement(By.xpath(xpath));
+            JavascriptExecutor js = (JavascriptExecutor) driver;
+            js.executeScript("arguments[0].style.display='block';", element);
+            driver.findElement(By.xpath(xpath)).sendKeys(filePath);
+        }catch (Exception e)
+        {
+            Assert.fail("The file could not be uploaded");
+        }
+    }
+
     public void fileUpload(String filepath) throws AWTException, InterruptedException {
         try {
             StringSelection stringSel = new StringSelection(filepath);
@@ -1454,6 +1469,18 @@ public class SeleniumUtils extends Driver {
             Assert.fail("File not deleted " + filePath + "|Error - " + e);
         }
     }
+
+    public void printStatementInGreenColor(String text, String result)
+    {
+        try
+        {
+            System.out.println(ANSI_GREEN + text + ": " + result + ANSI_RESET);
+        }catch (Exception e)
+        {
+            Assert.fail("Unable to print statement in required color");
+        }
+    }
+
     // ****************** End of Generic methods  *********************//
 
 
@@ -2117,7 +2144,21 @@ public class SeleniumUtils extends Driver {
         }
     }
 
-    public LocalDate convertStringtoDate(String formatReq, String date)
+    public String convertDateFromOneFormatToAnother(String formatAct, String formatReq, String date) {
+        try {
+            DateTimeFormatter inputDtf = DateTimeFormatter.ofPattern(formatAct);
+            DateTimeFormatter outputDtf = DateTimeFormatter.ofPattern(formatReq);
+            String stringToDate = LocalDate.parse(date, inputDtf).format(outputDtf);
+            System.out.println("Date after converting from one format to another : " + stringToDate);
+            return stringToDate;
+        } catch (Exception e) {
+            System.out.println("Exception in convertDateFromOneFormatToAnother method");
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public LocalDate convertStringToDate(String formatReq, String date)
     {
         try
         {

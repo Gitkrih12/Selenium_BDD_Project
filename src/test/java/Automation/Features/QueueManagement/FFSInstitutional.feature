@@ -23,7 +23,7 @@ Feature: FFS Institutional
     Then the user should navigate to the FFS Institutional page
     And user should be able to view the Clam List Label in the FFS Institutional screen
 
-  @TC_39665 @Sanity
+  @TC_39665 @Sanity @beta
   Scenario: Validate user able to view all the column fields in FFS Institutional screen
     When user clicks on FFS Institutional in left navigation menu
     Then the user should navigate to the FFS Institutional page
@@ -43,7 +43,7 @@ Feature: FFS Institutional
       | Age                    |
       | Assigned To            |
 
-  @TC_39666 @Sanity
+  @TC_39666 @Sanity @beta
   Scenario: Verify all the queue field details in the FFS Institutional page
     When user clicks on FFS Institutional in left navigation menu
     Then the user should navigate to the FFS Institutional page
@@ -60,7 +60,7 @@ Feature: FFS Institutional
       | Draft             |
       | Rejected          |
 
-  @TC_39786 @Sanity
+  @TC_39786 @Sanity @beta
   Scenario: Verify user able to view the search fields under each columns in the FFS Institutional screen
     When user clicks on FFS Institutional in left navigation menu
     Then the user should navigate to the FFS Institutional page
@@ -96,7 +96,7 @@ Feature: FFS Institutional
     Then user should allow to navigates to back page in FFS Institutional
 
   #40716-As an adjudicator, I should be able to click on any Claim number from FFS Institutional queue and get navigated to appropriate claims details page
-  @TC_46258 @Sanity
+  @TC_46258 @Sanity @beta
   Scenario: Verify user able to navigate to claim summary screen on clicking claim number
     When user clicks on FFS Institutional in left navigation menu
     Then the user should navigate to the FFS Institutional page
@@ -281,7 +281,7 @@ Feature: FFS Institutional
     And user clicks on the Check Info tab
     Then user should able to see Check Type as "Void" for voided batch
 
-  @TC_52159 @Sanity @beta
+  @TC_52159 @Sanity
   Scenario: Verify user able to navigate to the History Doc page on clicking History Doc tab
     When user clicks on FFS Institutional in left navigation menu
     Then the user should navigate to the FFS Institutional page
