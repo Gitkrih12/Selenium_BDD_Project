@@ -31,9 +31,9 @@ public class ProviderDetailsPage extends SeleniumUtils {
     String btnMapPayToProvider = "//*[contains(text(), 'Map Pay To Provider')]";
     String titleMapPayToProvider = "//*[@class = 'map-rendering']//h2";
     String lstHeadersMapPayToProvider = "//mat-dialog-container//*[contains(@class, 'label-heading')]";
-    String lstFieldsMapPayToProvider = "//*[@id='resultsGridPaytoprovider']//span[@ref = 'eText']";
+    String lstFieldsMapPayToProvider = "//*[@id='resultsGridPaytoprovider']//span[@ref = 'eText' and text()]";
     String eleLastRowOnPage = "//*[@id='resultsGridPaytoprovider']//span[@ref = 'lbLastRowOnPage']";
-    String btnSelect = "(//*[@id='resultsGridPaytoprovider']//button[contains(text(), 'Select')])[2]";
+    String btnSelect = "(//*[@id='resultsGridPaytoprovider']//button[contains(text(), 'Select')])";
     String eleDefaultVendor = "//*[@col-id='uniquePayToId']//button";
     String eleGreenBar = "//*[@id='resultsGridPaytoprovider']//div[@col-id = 'isDefault']//span//span//span";
     String txtOnHoldClaimNumber = "//*[@id = 'onHoldGrid']//input[@aria-label='Claim Number Filter Input']";
@@ -59,29 +59,28 @@ public class ProviderDetailsPage extends SeleniumUtils {
     String lstCPTFields = "(//*[@id = 'resultsGrid']//div[@ref='gridHeader'])[1]//span[@ref = 'eText']";
     String btnRevenueCode = "//button[contains(text(), 'Revenue Code')]";
     String lstRevenueCodeFields = "(//*[@id = 'resultsGrid1']//div[@ref='gridHeader'])[1]//span[@ref = 'eText']";
+    String eleVendorId = "(//div[@col-id='uniquePayToId_1']//span[@class='ag-cell-value'])[last()]";
 
 
-    private static String expMapPayToProvider = "";
-    private static String expButton = "";
+
+    private static String expFirstPage = "";
+    private static String expNextPage = "";
+    private static String expPreviousPage = "";
+    private static String expLastPage = "";
     private static String expColor = "";
     private static String expMultipleVendorClaimNumber = "";
-    private static String expCancelButton = "";
-    private static String expCloseButton = "";
-    private static String expFirstPage = "";
-    private static String expPreviousPage = "";
-    private static String expNextPage = "";
-    private static String expLastPage = "";
     private static String expWindow = "";
     private static String expSubtab = "";
-    private static String expContractName = "";
+    private static String expPayClass = "";
     private static String expException = "";
+    private static String expMapPayProviderSideDrawer = "";
 
 
     // Scenario: Verify user able to navigate to the Provider details tab in the View Claims Form page
-    public void clickOnProviderDetails() throws InterruptedException {
+    public void clickOnProviderDetails() {
         explicitElementClickableWaitByXpath(tabProviderDetails, 50);
         clickElement(tabProviderDetails);
-        threadSleep(3000);
+        explicitElementClickableWaitByXpath(lnkProviderId, 20);
     }
 
     public void userNavigatedToProviderDetails() {
@@ -300,20 +299,19 @@ public class ProviderDetailsPage extends SeleniumUtils {
         clickElement(eleOnHoldClaimNumber);
     }
 
-    public void verifyMapPayToProviderButton() {
-        expMapPayToProvider = prop.getProperty("expMapPayToProviderButton");
-        Assert.assertEquals(expMapPayToProvider, findElementByXpath(btnMapPayToProvider).getText());
+    public void verifyMapPayToProviderButton(String expMapPayToProviderButton) {
+        Assert.assertEquals(expMapPayToProviderButton, findElementByXpath(btnMapPayToProvider).getText());
     }
 
     //  Scenario: Verify user able to view the Map Pay to Provider side drawer on clicking the Map Pay To Provider button
     public void userClicksOnMapPayToProviderButton() {
         clickElement(btnMapPayToProvider);
-        explicitTextToBePresentInElementLocatedWait(By.xpath(titleMapPayToProvider), 30, expMapPayToProvider);
+        explicitTextToBePresentInElementLocatedWait(By.xpath(titleMapPayToProvider), 30, expMapPayProviderSideDrawer);
     }
 
     public void verifyUserNavigatesToMapPayToProvider() {
-        expMapPayToProvider = prop.getProperty("expMapPayToProviderSideDrawer");
-        Assert.assertEquals(expMapPayToProvider, findElementByXpath(titleMapPayToProvider).getText());
+        expMapPayProviderSideDrawer = prop.getProperty("expMapPayToProviderSideDrawer");
+        Assert.assertEquals(expMapPayProviderSideDrawer, findElementByXpath(titleMapPayToProvider).getText());
     }
 
     //  Scenario: Verify user able to view all the fields in Map Pay To Provider Side drawer
@@ -365,12 +363,12 @@ public class ProviderDetailsPage extends SeleniumUtils {
         expMultipleVendorClaimNumber = prop.getProperty("onHoldMultipleVendorClaimNumber");
         findElementAndSendKeys(findElementByXpath(txtOnHoldClaimNumber), expMultipleVendorClaimNumber);
         sendKeysUsingKeyboardInput(txtOnHoldClaimNumber);
-        explicitElementClickableWait(findElementByXpath(eleOnHoldClaimNumber), 60);
+        explicitTextToBePresentInElementLocatedWait(By.xpath(eleOnHoldClaimNumber), 10, expMultipleVendorClaimNumber);
         clickElement(eleOnHoldClaimNumber);
     }
 
     public void userHasMultipleVendors() {
-        explicitElementClickableWaitByXpath(eleLastRowOnPage, 30);
+        explicitElementClickableWaitByXpath(eleVendorId, 60);
         int expVendor = Integer.parseInt(findElementByXpath(eleLastRowOnPage).getText());
         System.out.println(expVendor);
         if (expVendor > 1) {
@@ -380,10 +378,12 @@ public class ProviderDetailsPage extends SeleniumUtils {
         }
     }
 
-    public void userViewsSelectButton() {
-        expButton = prop.getProperty("expSelectButton");
-        explicitElementClickableWait(findElementByXpath(btnSelect), 20);
-        Assert.assertEquals(expButton, findElementByXpath(btnSelect).getText());
+    public void userViewsSelectButton(String expButton) {
+        String expDefaultVendor = findElementByXpath(eleDefaultVendor).getAttribute("disabled");
+        if (expDefaultVendor.equals("false")) {
+            explicitElementClickableWait(findElementByXpath(btnSelect), 20);
+            Assert.assertEquals(expButton, findElementByXpath(btnSelect).getText());
+        }
     }
 
     public void verifyGreenBar() {
@@ -414,10 +414,11 @@ public class ProviderDetailsPage extends SeleniumUtils {
     }
 
     //  Scenario: Verify user able to view the pagination, cancel and close buttons for Map Pay To Provider Side Drawer
-    public void verifyCancelCloseButtons() {
-        expCancelButton = prop.getProperty("expCancel");
+        public void verifyCancelCloseButtons(String expCancelButton, String expCloseButton) {
+        explicitElementClickableWaitByXpath(eleVendorId, 60);
+        scrollToElement(btnCancel);
+        explicitTextToBePresentInElementLocatedWait(By.xpath(btnCancel), 30, "Cancel");
         Assert.assertEquals(expCancelButton, findElementByXpath(btnCancel).getText());
-        expCloseButton = prop.getProperty("expClose");
         Assert.assertEquals(expCloseButton, findElementByXpath(btnClose).getAttribute("aria-label"));
     }
 
@@ -486,11 +487,17 @@ public class ProviderDetailsPage extends SeleniumUtils {
     public void verifyFieldsUnderFacilityName(DataTable expFields) {
         List<String> fieldsExp = expFields.asList();
         List<String> actFields = findElementsByXpath(lstFacilityName)
-                .stream().map((e) -> e.getText().trim()).collect(Collectors.toList());
+                .stream().map((e) -> e.getText().trim()).toList();
         System.out.println("Size: " + actFields.size());
         System.out.println("Fields should display:" + actFields);
         System.out.println("Expected fields are: " + fieldsExp);
-        Assert.assertEquals(fieldsExp, actFields);
+        for (String field : fieldsExp) {
+            if(actFields.contains(field)){
+                Assert.assertTrue(true);
+            } else {
+                Assert.fail(field + " is not displayed");
+            }
+        }
     }
 
     // Scenario: Verify Adverse Actions section in Basic Information tab
@@ -521,13 +528,13 @@ public class ProviderDetailsPage extends SeleniumUtils {
         clickElement(lnkContractName);
     }
 
-    public void verifyContractNameWindow() {
-        expContractName = prop.getProperty("expContractNameWindow");
-        Assert.assertEquals(expContractName, findElementByXpath(titlePayClass).getText());
+    public void verifyPayClassUnderContractNameWindow() {
+        expPayClass = prop.getProperty("expPayClass");
+        Assert.assertEquals(expPayClass, findElementByXpath(titlePayClass).getText());
     }
 
     //  Scenario: Verify Pay Class and Exceptions sections in contract window
-    public void verfiyPayClassAndExceptionSections() {
+    public void verifyExceptionSection() {
         expException = prop.getProperty("expExceptionSection");
         Assert.assertEquals(expException, findElementByXpath(titleException).getText());
     }

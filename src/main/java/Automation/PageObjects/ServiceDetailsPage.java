@@ -37,7 +37,7 @@ public class ServiceDetailsPage extends SeleniumUtils {
 
     //  Scenario: Verify Adjudicator able to Navigate Service Details from Global Search and validate the fields
     public void enterClaimNumberInSearchField() throws InterruptedException {
-        threadSleep(1000);
+        explicitElementClickableWaitByXpath(inputClaimNumber, 10);
         expClaimNumber = prop.getProperty("claimNumber");
         findElementAndSendKeys(findElementByXpath(inputClaimNumber), expClaimNumber);
         threadSleep(1000);

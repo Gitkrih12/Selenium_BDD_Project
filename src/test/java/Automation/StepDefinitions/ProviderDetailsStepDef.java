@@ -89,9 +89,9 @@ public class ProviderDetailsStepDef extends ProviderDetailsPage {
         userClicksOnHoldClaimNumber();
     }
 
-    @Then("user able to view Map Pay To Provider button")
-    public void user_able_to_view_map_pay_to_provider_button() {
-        verifyMapPayToProviderButton();
+    @Then("user able to view the {string} button")
+    public void user_able_to_view_the_button(String expMapPayToProviderButton) {
+        verifyMapPayToProviderButton(expMapPayToProviderButton);
     }
 
     //  Scenario: Verify user able to view the Map Pay to Provider side drawer on clicking the Map Pay To Provider button
@@ -117,8 +117,8 @@ public class ProviderDetailsStepDef extends ProviderDetailsPage {
     }
 
     //  Scenario: Verify user should not be able to view the select option and Green bar should display for the default Vendor ID
-    @When("user clicks on Hold Muliple Vendor claim number in FFS Institutional page")
-    public void user_clicks_on_hold_muliple_vendor_claim_number_in_ffs_institutional_page() {
+    @When("user clicks on Hold Multiple Vendor claim number in FFS Institutional page")
+    public void user_clicks_on_hold_multiple_vendor_claim_number_in_ffs_institutional_page() {
         userClicksOnHoldMultipleVendorClaim();
     }
 
@@ -127,9 +127,9 @@ public class ProviderDetailsStepDef extends ProviderDetailsPage {
         userHasMultipleVendors();
     }
 
-    @Then("user able to view the select button for all the Vendor ID except for the default Vendor ID")
-    public void user_able_to_view_the_select_button_for_all_the_vendor_id_except_for_the_default_vendor_id() {
-        userViewsSelectButton();
+    @Then("user able to view the {string} button for all the Vendor IDs other than selected Vendor")
+    public void user_able_to_view_the_button_for_all_the_vendor_ids_other_than_selected_vendor(String expButton) {
+        userViewsSelectButton(expButton);
     }
 
     @Then("green bar should display for the default Vendor ID")
@@ -149,9 +149,9 @@ public class ProviderDetailsStepDef extends ProviderDetailsPage {
     }
 
     //  Scenario: Verify user able to view the pagination, cancel and close buttons for Map Pay To Provider Side Drawer
-    @Then("user able to view the cancel, close buttons at the bottom and top of the side drawer")
-    public void user_able_to_view_the_cancel_close_buttons_at_the_bottom_and_top_of_the_side_drawer() {
-        verifyCancelCloseButtons();
+    @Then("user able to view the {string}, {string} buttons at the bottom and top of the side drawer")
+    public void user_able_to_view_the_buttons_at_the_bottom_and_top_of_the_side_drawer(String expCancelButton, String expCloseButton) {
+        verifyCancelCloseButtons(expCancelButton, expCloseButton);
     }
 
     @Then("user able to view the Pagination buttons")
@@ -229,13 +229,13 @@ public class ProviderDetailsStepDef extends ProviderDetailsPage {
 
     @Then("user should navigate to Contract Name window")
     public void user_should_navigate_to_contract_name_window() {
-        verifyContractNameWindow();
+        verifyPayClassUnderContractNameWindow();
     }
 
     //  Scenario: Verify Pay Class and Exceptions sections in contract window
     @Then("user should be able to view Pay Class and Exception sections")
     public void user_should_be_able_to_view_pay_class_and_exception_sections() {
-        verfiyPayClassAndExceptionSections();
+        verifyExceptionSection();
     }
 
     //  Scenario: Verify Pay class section fields in contract window
