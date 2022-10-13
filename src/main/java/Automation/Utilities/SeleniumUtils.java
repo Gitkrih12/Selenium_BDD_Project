@@ -1481,6 +1481,40 @@ public class SeleniumUtils extends Driver {
         }
     }
 
+    public void printStatementInGreenColor(String text, boolean result)
+    {
+        try
+        {
+            System.out.println(ANSI_GREEN + text + ": " + result + ANSI_RESET);
+        }catch (Exception e)
+        {
+            Assert.fail("Unable to print statement in required color");
+        }
+    }
+
+    public void printStatementInGreenColor(String text, int result)
+    {
+        try
+        {
+            System.out.println(ANSI_GREEN + text + ": " + result + ANSI_RESET);
+        }catch (Exception e)
+        {
+            Assert.fail("Unable to print statement in required color");
+        }
+    }
+
+    public void printStatementInGreenColor(String text, List<String> result)
+    {
+        try
+        {
+            System.out.println(ANSI_GREEN + text + ": " + result + ANSI_RESET);
+        }catch (Exception e)
+        {
+            Assert.fail("Unable to print statement in required color");
+        }
+    }
+
+
     // ****************** End of Generic methods  *********************//
 
 
