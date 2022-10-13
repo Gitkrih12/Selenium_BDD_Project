@@ -32,7 +32,7 @@ public class ProviderDetailsStepDef extends ProviderDetailsPage {
     }
 
     @Then("user able to view all the field values under Pay to Provider Details section")
-    public void user_able_to_view_all_the_field_values_under_pay_to_provider_details_section() throws InterruptedException {
+    public void user_able_to_view_all_the_field_values_under_pay_to_provider_details_section() {
         userViewsFieldValuesUnderPayToProviderDetails();
     }
 
