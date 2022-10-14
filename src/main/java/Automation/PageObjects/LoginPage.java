@@ -286,7 +286,7 @@ public class LoginPage extends SeleniumUtils {
 
     //    Scenario: Verify user views the User Options on clicking username dropdown in the home page screen
     public void userOptionsUnderUsernameDropdown() {
-        findElementByXpath(ddlUserOptions).click();
+        explicitElementClickableWaitByXpath(ddlUserOptions, 10).click();
         explicitTextToBePresentInElementLocatedWait(By.xpath(btnChangePassword), 10, "Change Password");
         moveToElement(btnChangePassword).perform();
         Assert.assertTrue(isDisplayed(btnChangePassword));
