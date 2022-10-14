@@ -10,7 +10,7 @@ Feature: Provider Details
     And user clicks on the Provider Details tab
     Then user navigates to the Provider Details tab
 
-   @39953 @beta
+  @39953 @beta
   Scenario: Verify user able to view the Pay to Provider Details and Group/Rendering Provider Details section under Provider Details tab
     When user clicking on Claim Number in Global Search page
     And user clicks on the Provider Details tab
@@ -104,3 +104,43 @@ Feature: Provider Details
     And user clicks on the Provider Details tab
     When clicking on Vendor ID in Provider Details
     Then user able to view the search box for all the column on AR Transactions grid
+
+
+  @55171
+  Scenario: Verify Location Information tab in Provider Details screen
+    When user clicking on Claim Number in Global Search page
+    And user clicks on the Provider Details tab
+    When user clicks on Provider ID under Group Rendering Provider Details
+    And user clicks on Location Information subtab
+    Then user navigates to "Location Information" subtab
+    And user able to view the following fields under Practice Location List
+      | Effective Date    |
+      | Term Date         |
+      | Practice Name     |
+      | Practice Location |
+      | City              |
+      | ST                |
+      | ZIP               |
+      | County            |
+      | Status            |
+
+  @55200
+
+  @55205
+  Scenario: Verify Contract Information tab in Provider Details screen
+    When user clicking on Claim Number in Global Search page
+    And user clicks on the Provider Details tab
+    When user clicks on Provider ID under Group Rendering Provider Details
+    And user clicks on Contract Information subtab
+    Then user navigates to "Contract Information" subtab
+    And user able to view the following fields under Contract List
+      | Effective Date       |
+      | Term                 |
+      | Tax ID               |
+      | Plan                 |
+      | Network ID           |
+      | Contract             |
+      | Sequestration        |
+      | Provider Type        |
+      | Timely Filling(Days) |
+      | Status               |
