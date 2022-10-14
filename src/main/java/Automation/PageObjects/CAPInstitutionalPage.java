@@ -332,6 +332,7 @@ public class CAPInstitutionalPage extends SeleniumUtils {
     //Scenario: Verify colour coding for Unclean status claims under Pend bucket in CAP Institutional page
     public void enterUnCleanStatusPendClaimNumber() throws InterruptedException {
         expClaimNumber = prop.getProperty("capInstitutionalUnCleanStatusPendClaimNumber");
+        explicitVisibilityOfWait(findElementByXpath(txtClaimNumber), 5);
         findElementAndSendKeys(findElementByXpath(txtClaimNumber), expClaimNumber);
         threadSleep(1000);
         sendKeysUsingKeyboardInput(txtClaimNumber);
@@ -353,6 +354,7 @@ public class CAPInstitutionalPage extends SeleniumUtils {
     }
     public void enterUnCleanStatusPayerReviewClaimNumber() throws InterruptedException {
         expClaimNumber = prop.getProperty("capInstitutionalUnCleanStatusPayerReviewClaimNumber");
+        explicitVisibilityOfWait(findElementByXpath(txtPayerReviewClaimNumber), 5);
         findElementAndSendKeys(findElementByXpath(txtPayerReviewClaimNumber), expClaimNumber);
         threadSleep(1000);
         sendKeysUsingKeyboardInput(txtPayerReviewClaimNumber);
@@ -378,6 +380,7 @@ public class CAPInstitutionalPage extends SeleniumUtils {
     }
     public void enterUnCleanStatusManagementReviewClaimNumber() throws InterruptedException {
         expClaimNumber = prop.getProperty("capInstitutionalUnCleanStatusManagementReviewClaimNumber");
+        explicitVisibilityOfWait(findElementByXpath(txtManagementReviewClaimNumber), 5);
         findElementAndSendKeys(findElementByXpath(txtManagementReviewClaimNumber), expClaimNumber);
         threadSleep(1000);
         sendKeysUsingKeyboardInput(txtManagementReviewClaimNumber);
@@ -401,6 +404,7 @@ public class CAPInstitutionalPage extends SeleniumUtils {
     }
     public void enterUnCleanStatusApprovedClaimNumber() throws InterruptedException {
         expClaimNumber = prop.getProperty("capInstitutionalUnCleanStatusApprovedClaimNumber");
+        explicitVisibilityOfWait(findElementByXpath(txtApprovedClaimNumber), 5);
         findElementAndSendKeys(findElementByXpath(txtApprovedClaimNumber), expClaimNumber);
         threadSleep(1000);
         sendKeysUsingKeyboardInput(txtApprovedClaimNumber);
