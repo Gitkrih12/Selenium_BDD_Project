@@ -502,13 +502,14 @@ public class ClaimDetailsPage extends SeleniumUtils {
     //  Scenario: Verify user able to view 1-New Claim Submission type in Claim details page
     public void verifyClaimSubmissionTypeAsNew() {
         expClaimSubmission = prop.getProperty("claimSubmissionNew");
+        explicitTextToBePresentInElementLocatedWait(By.xpath(lblClaimSubmissionNew), 20, expClaimSubmission);
         Assert.assertEquals(expClaimSubmission, findElementByXpath(lblClaimSubmissionNew).getText());
     }
 
     //  Scenario: Verify user able to view 7-Corrected claim submission type in Claim Details page
     public void verifyClaimSubmissionTypeAsCorrected() {
         expClaimSubmission = prop.getProperty("claimSubmissionCorrected");
-        explicitElementClickableWaitByXpath(lblClaimSubmissionCorrected, 50);
+        explicitTextToBePresentInElementLocatedWait(By.xpath(lblClaimSubmissionCorrected), 20, expClaimSubmission);
         Assert.assertEquals(expClaimSubmission, findElementByXpath(lblClaimSubmissionCorrected).getText());
     }
 
@@ -519,7 +520,7 @@ public class ClaimDetailsPage extends SeleniumUtils {
     }
 
     public void verifyClaimSubmissionType(String type){
-        explicitElementClickableWaitByXpath(eleClaimSubmission, 20);
+        explicitTextToBePresentInElementLocatedWait(By.xpath(eleClaimSubmission), 30, type);
         Assert.assertEquals(type, findElementByXpath(eleClaimSubmission).getText());
     }
 }

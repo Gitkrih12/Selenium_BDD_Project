@@ -69,7 +69,7 @@ Feature: Provider Details
       | Deactivate        |
 
   @48990
-#  @Sanity
+  @Sanity
   Scenario: Verify the user able to navigate to the A/R Transactions page on clicking Vendor ID in Provider details tab view
     When user clicking on Claim Number in Global Search page
     And user clicks on the Provider Details tab
@@ -225,8 +225,8 @@ Feature: Provider Details
     When user clicking on Claim Number in Global Search page
     And user clicks on the Provider Details tab
     When user clicks on Provider ID under Group Rendering Provider Details
+    Then user able to view "Facility Name" and Speciality Fields
     Then user able to view the following fields under Facility Name
-      | Speciality    |
       | NPI           |
       | Medicare      |
       | Facility Type |
