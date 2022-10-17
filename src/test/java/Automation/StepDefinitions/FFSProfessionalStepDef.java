@@ -427,6 +427,31 @@ public class FFSProfessionalStepDef extends FFSProfessionalPage {
         verify835File(fileName);
     }
 
+    //Scenario: Verify Add Note button in Paid Bucket
+    @Then("user should see the Add Note button for given batch id")
+    public void user_should_see_the_add_note_button_for_given_batch_id() {
+        verifyAddNoteButton();
+    }
+
+    //  Scenario: Verify fields in Add Note window
+    @When("user click on the Add Note button")
+    public void user_click_on_the_add_note_button() {
+        clickOnAddNoteButton();
+    }
+    @Then("user should see the {string} {string} and {string} fields")
+    public void user_should_see_the_and_fields(String title, String category, String description) {
+        verifyTitle(title);
+        verifyCategory(category);
+        verifyDescription(description);
+    }
+
+    @Then("user should see the {string} and {string} buttons")
+    public void user_should_see_the_and_buttons(String addButton, String cancel) {
+        verifyAddButton(addButton);
+        verifyCancelButton(cancel);
+    }
+
+
 
 
 

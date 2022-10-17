@@ -303,6 +303,26 @@ Feature: FFS Professional
     And user clicks on Downloads
     Then user able to view the "Download EOP Letter" and "Download 835 File"
 
+  #66083-As an Adjudicator when I click on the “Add Note on the ‘Batch ID of One claim. So that I can be able to view all the claims/Batch ID notes got updated or not.
+  @TC_71343
+  Scenario: Verify Add Note button in Paid Bucket
+    When user clicks on FFS Professional in left navigation menu
+    Then the user should navigate to the FFS Professional page
+    When user clicks on Paid bucket
+    And user enters Batch Id in search criteria
+    Then user should see the Add Note button for given batch id
+
+  @TC_71362
+  Scenario: Verify fields in Add Note window
+    When user clicks on FFS Professional in left navigation menu
+    Then the user should navigate to the FFS Professional page
+    When user clicks on Paid bucket
+    And user enters Batch Id in search criteria
+    Then user should see the Add Note button for given batch id
+    When user click on the Add Note button
+    Then user should see the "Title" "Category" and "Description" fields
+    And user should see the "Add Note" and "Cancel" buttons
+
 
 
 

@@ -87,7 +87,13 @@ public class FFSProfessionalPage extends SeleniumUtils {
     String ele835file = "//button[text()='Download 835 File']";
     String tabFFSProfessionalPend = "//button[@id='nav-pend-details-tab']";
     String tabOpenedAllTabs = "//div[@class='mat-tab-labels']";
-    
+    String btnAddNote = "//button[text()='Add Note']";
+    String eleTitle = "//span[text()='Title']";
+    String eleCategory = "//span[text()='Category']";
+    String eleDescription= "//label[text()='Description']";
+    String btnAdd = "//div[@class='dailog-actions']//button[text()='Add Note']";
+    String btnCancel= "//div[@class='dailog-actions']//button[text()='Cancel']";
+
 
 
 
@@ -727,6 +733,41 @@ public class FFSProfessionalPage extends SeleniumUtils {
         System.out.println("Actual row count is: " + actRecordCount);
         Assert.assertEquals(Integer.parseInt(expRowCount), actRecordCount);
     }
+
+    //Scenario: Verify Add Note button in Paid Bucket
+    public void verifyAddNoteButton(){
+        Assert.assertTrue(isDisplayed(btnAddNote));
+    }
+
+    //  Scenario: Verify fields in Add Note window
+    public void clickOnAddNoteButton(){
+        clickElement(btnAddNote);
+    }
+    public void verifyTitle(String expTitle){
+        explicitTextToBePresentInElementLocatedWait(By.xpath(eleTitle), 20, "Title");
+        String actTitleText = findElementByXpath(eleTitle).getText();
+        Assert.assertEquals(expTitle,actTitleText);
+
+    }
+
+    public void verifyCategory(String expCategory){
+        String actCategory = findElementByXpath(eleCategory).getText();
+        Assert.assertEquals(expCategory,actCategory);
+    }
+    public void verifyDescription(String expDescription){
+        String actDescription = findElementByXpath(eleDescription).getText();
+        Assert.assertEquals(expDescription,actDescription);
+    }
+
+    public void verifyAddButton(String expAdd){
+        String actAdd = findElementByXpath(btnAdd).getText();
+        Assert.assertEquals(expAdd,actAdd);
+    }
+    public void verifyCancelButton(String expCancel){
+        String actCancel = findElementByXpath(btnCancel).getText();
+        Assert.assertEquals(expCancel,actCancel);
+    }
+
 
 
 
