@@ -272,7 +272,7 @@ Feature: CAP Professional
     Then user should able to see Check Type as "ReIssue"
 
   @TC_68575
-  Scenario: Then user able to view the check void information of that batch in Check Info page
+  Scenario: Verify user able to view the check void information in Check Info page
     When user clicks on CAP Professional in left navigation menu
     Then the user should navigate to the CAP Professional page
     When user clicks on Paid bucket
