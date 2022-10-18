@@ -11,14 +11,14 @@ Feature: Global Search
     Then user should land on Global Search page
 
   #37487-As an Adjudicator, I should be able to get the required filtered data by all Global search grid columns
-  @TC_34918 @Sanity
+  @TC_34918 @Sanity @beta
   Scenario: Verify user enters the Claim Number in the Search field
     When user clicks on Global Search in left navigation menu
     Then the user should navigate to the Global Search page
     When user enters the Claim Number in the Search field
     Then user able to view the exact claim details
 
-  @TC_37883 @Sanity
+  @TC_37883 @Sanity @beta
   Scenario: Verify user enters the Member ID in the Search field
     When user clicks on Global Search in left navigation menu
     Then the user should navigate to the Global Search page
@@ -71,7 +71,7 @@ Feature: Global Search
     And user enters the DOS To in the Search field
     Then user able to view the claim details for given DOS To
 
-  @TC_34927 @Sanity
+  @TC_34927 @Sanity @beta
   Scenario: Validate Export Result button should display when the search results are displayed
     When user clicks on Global Search in left navigation menu
     Then the user should navigate to the Global Search page
@@ -88,7 +88,7 @@ Feature: Global Search
     When user enters the Patient Name in the Search field
     Then user able to view the claim details for given Patient name
 
-  @TC_38126 @Sanity
+  @TC_38126 @Sanity @beta
   Scenario: Verify Reprocess button should be available when Paid state is filtered in Global Search page
     When user clicks on Global Search in left navigation menu
     Then the user should navigate to the Global Search page
@@ -143,7 +143,7 @@ Feature: Global Search
     Then user should be able to display the claim records in a Global Search
 
   #38256-As an Adjudicator, I should be able to view claim details from a Universal search with a valid Claim Number
-  @TC_38470  @Sanity
+  @TC_38470  @Sanity @beta
   Scenario: Verify user able to search claims by using universal search
     Then user should be able to view Universal search bar on the top right corner of the page
     And placeholder should read "Enter Valid Claim Number"
@@ -175,7 +175,7 @@ Feature: Global Search
   Scenario Outline: Verify color code for Pend On Hold Payer Review Management Review Approved Deny Prebatch Batch To Pay Paid Rejected state claim number
     When user clicks on Global Search in left navigation menu
     Then the user should navigate to the Global Search page
-    When user enters the Member Id in the Search field
+    When user enters the Member Id in the Search field for color code
     When user enters the State "<State>" in the Search field
     Then user able to view the claim details for given State
     And user should able to see the circle with color code "<Color Code>" for given State
@@ -237,7 +237,7 @@ Feature: Global Search
     When the user clicks Customize Columns option
     Then the user should able to navigate to Customized Columns window
 
-  @TC_48811 @Sanity
+  @TC_48811 @Sanity @beta
   Scenario:Verify user should able to see the mentioned column fields in the 'Customize Columns' window
     When user clicks on Global Search in left navigation menu
     Then the user should navigate to the Global Search page
@@ -271,7 +271,7 @@ Feature: Global Search
     Then claim number column should be first and disabled mode
     And claim number check box should be selected by default
 
-  @TC_48814 @Sanity
+  @TC_48814 @Sanity @beta
   Scenario: Verify user should able to see saved/updated fields under Global Search page
     When user clicks on Global Search in left navigation menu
     Then the user should navigate to the Global Search page
@@ -296,7 +296,7 @@ Feature: Global Search
     Then the user should navigate to the Global Search page
     And user should able to view the Filter and Customize columns buttons
 
-  @TC_37661  @Sanity
+  @TC_37661  @Sanity @beta
   Scenario: Verify column fields in grid level on Global Search
     When user clicks on Global Search in left navigation menu
     Then the user should navigate to the Global Search page
@@ -310,7 +310,7 @@ Feature: Global Search
       | Category         |
       | State            |
 
-  @TC_37663 @Sanity
+  @TC_37663 @Sanity @beta
   Scenario: Verify search field displayed under each column
     When user clicks on Global Search in left navigation menu
     Then the user should navigate to the Global Search page

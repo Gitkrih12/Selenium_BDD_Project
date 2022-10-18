@@ -119,7 +119,7 @@ Feature: Files tab
     And user clicks on 837P file type column to sort records in ascending order
     Then user should be able to view the 837P file type records in ascending order
 
-  @45840-8 @Sanity
+  @45840-8 @Sanity @beta
   Scenario: Verify Sorting functionality for "Control Number" column under "837P Files" tab
     Given the user is on the "Files" page
     When the user clicks on the 837P Files tab

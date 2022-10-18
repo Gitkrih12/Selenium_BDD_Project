@@ -12,7 +12,7 @@ Feature: Prior Authorization
 
   @46229
   @Sanity
-  @test
+  @test @beta
   Scenario: Verify Prior Authorization column fields and member level Prior Authorization details
     When user clicking on Prior Authorization Claim Number in Global Search page
     And user clicks on the Prior Authorization tab
@@ -28,16 +28,16 @@ Feature: Prior Authorization
       | To Date       |
       | POS           |
       | Status        |
-#    And user able to view all the field values under Prior Authorization tab
+    And user able to view all the field values under Prior Authorization tab
 
-  @46231
+  @46231 @beta
   Scenario: Verify Search box under each column and able to enter search criteria
     When user clicking on Claim Number in Global Search page
     And user clicks on the Prior Authorization tab
     Then user should be able to view the Search fields under each column
 
 
-  @46232
+  @46232 @beta
   Scenario: Validate footer section in Prior Authorization tab
     Given the user is in FFS Professional page
     When user clicks on the Claim Number

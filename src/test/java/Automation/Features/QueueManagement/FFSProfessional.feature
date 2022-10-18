@@ -22,7 +22,7 @@ Feature: FFS Professional
     Then the user should navigate to the FFS Professional page
     And user should be able to view the Clam List Label in the FFS Professional screen
 
-  @TC_39049 @Sanity
+  @TC_39049 @Sanity @beta
   Scenario: Validate user able to view all the column fields for Pend bucket in FFS Professional screen
     When user clicks on FFS Professional in left navigation menu
     Then the user should navigate to the FFS Professional page
@@ -43,7 +43,7 @@ Feature: FFS Professional
       | Assigned To            |
 
 
-  @TC_58744 @Sanity
+  @TC_58744 @Sanity @beta
   Scenario: Verify all the queue field details in the FFS Professional page
     When user clicks on FFS Professional in left navigation menu
     Then the user should navigate to the FFS Professional page
@@ -60,7 +60,7 @@ Feature: FFS Professional
       | Draft             |
       | Rejected          |
 
-  @TC_39686 @Sanity
+  @TC_39686 @Sanity @beta
   Scenario: Verify user able to view the search fields under each columns in the FFS Professional screen
     When user clicks on FFS Professional in left navigation menu
     Then the user should navigate to the FFS Professional page
@@ -88,7 +88,7 @@ Feature: FFS Professional
   Scenario: Verify user able to navigate through pages by using Pagination functionality
     When user clicks on FFS Professional in left navigation menu
     Then the user should navigate to the FFS Professional page
-    When user clicks on On Hold bucket
+    When user clicks on Hold bucket
     And user should be able to view the page numbers at bottom of the page in FFS Professional page
     When user tries to click on next arrow symbol in FFS Professional
     And user allow to navigates to next page in FFS Professional
@@ -96,7 +96,7 @@ Feature: FFS Professional
     Then user should allow to navigates to back page in FFS Professional
 
   #40714-As an adjudicator, I should be able to click on any Claim number from FFS Professional queue and get navigated to appropriate claims details page
-  @TC_46665 @Sanity
+  @TC_46665 @Sanity @beta
   Scenario:Verify user able to navigate to claim summary screen on clicking claim number in FFS Professional Queue page
     When user clicks on FFS Professional in left navigation menu
     Then the user should navigate to the FFS Professional page
@@ -202,6 +202,108 @@ Feature: FFS Professional
     Then user should able to view Unclean status Pre Batch claim in FFS Professional Grid
     And user should able to see vertical line beside unclean status Pre Batch claim number with color code "#FFC33E" in FFS Professional
     And color indication information for Unclean should be available on top of grid in FFS Professional
+
+  #48389- As an adjudicator, When I click on the 'Batch ID' from Paid tab for FFS professional So I can be able to View the Claims list, Provider List, Check Info, History Doc, and Downloads sub-tabs under Claims for Batch Tab
+  @TC_52013 @beta
+  Scenario: Verify all tabs should display when clicking on Batch ID under Paid tab in FFS Professional page
+    When user clicks on FFS Professional in left navigation menu
+    Then the user should navigate to the FFS Professional page
+    When user clicks on Paid bucket
+    And user enters Batch Id in search criteria
+    And user clicks on Batch Id
+    Then user should be able to see below tabs
+      | Claim List    |
+      | Provider List |
+      | Check Info    |
+      | History Doc   |
+      | Downloads     |
+
+  @TC_52014 @beta
+  Scenario: Verify by default user navigates to the View Claims List page
+    When user clicks on FFS Professional in left navigation menu
+    Then the user should navigate to the FFS Professional page
+    When user clicks on Paid bucket
+    And user enters Batch Id in search criteria
+    And user clicks on Batch Id
+    Then user views Claim List tab by default should be "active"
+    And displays all the list of claims for that Batch ID
+    And user should able to see "Claim List in the Selected Batch"
+
+  @TC_52018
+  Scenario: Verify user should navigates to the Provider List page on clicking Provider List tab
+    When user clicks on FFS Professional in left navigation menu
+    Then the user should navigate to the FFS Professional page
+    When user clicks on Paid bucket
+    And user enters Batch Id in search criteria
+    And user clicks on Batch Id
+    And user clicks on the Provider List tab
+    And displays all the list of provider list for that Batch ID
+    And user should be able to see "Providers in the Selected Batch" label in Provider List screen
+
+  @TC_66744 @beta
+  Scenario: Verify user should navigates to the Check Info page on clicking Check Info tab
+    When user clicks on FFS Professional in left navigation menu
+    Then the user should navigate to the FFS Professional page
+    When user clicks on Paid bucket
+    And user enters Batch Id in search criteria
+    And user clicks on Batch Id
+    And user clicks on the Check Info tab
+    And displays all the list of Check Info for that Batch ID
+    And user should be able to see "Check Information" label in Check Info screen
+
+  @TC_52017
+  Scenario: Verify user able to view the check reissue information in Check Info page
+    When user clicks on FFS Professional in left navigation menu
+    Then the user should navigate to the FFS Professional page
+    When user clicks on Paid bucket
+    And user enters Batch Id in search criteria
+    And user clicks on Batch Id
+    And user clicks on the Check Info tab
+    Then user should able to see Check Type as "ReIssue"
+
+  @TC_67328
+  Scenario: Verify user able to view the check void information in Check Info page
+    When user clicks on FFS Professional in left navigation menu
+    Then the user should navigate to the FFS Professional page
+    When user clicks on Paid bucket
+    And user enters Batch Id in search criteria for Check Void
+    And user clicks on Batch Id
+    And user clicks on the Check Info tab
+    Then user should able to see Check Type as "Void" for voided batch
+
+  @TC_67905
+  Scenario: Verify user able to view Check Type as Regular if its not void or reissue in Check Info page
+    When user clicks on FFS Professional in left navigation menu
+    Then the user should navigate to the FFS Professional page
+    When user clicks on Paid bucket
+    And user enters Batch Id in search criteria for Normal Check
+    And user clicks on Batch Id
+    And user clicks on the Check Info tab
+    Then user should able to see Check Type as "Regular" for Normal Check
+
+
+  @TC_52016
+  Scenario: Verify user able to navigate to the History Doc page on clicking History Doc tab
+    When user clicks on FFS Professional in left navigation menu
+    Then the user should navigate to the FFS Professional page
+    When user clicks on Paid bucket
+    And user enters Batch Id in search criteria for Check Void
+    And user clicks on Batch Id
+    And user clicks on History Doc
+    And displays all the list of History Doc for that Batch ID
+    And user should be able to see "History Of Doc in the Selected Batch" label in History Doc screen
+
+  @TC_67482 @beta
+  Scenario:Verify user able to navigate to the Downloads tab on clicking Downloads tab and verify the files when there are any files
+    When user clicks on FFS Professional in left navigation menu
+    Then the user should navigate to the FFS Professional page
+    When user clicks on Paid bucket
+    And user enters Batch Id in search criteria for Check Void
+    And user clicks on Batch Id
+    And user clicks on Downloads
+    Then user able to view the "Download EOP Letter" and "Download 835 File"
+
+
 
 
 

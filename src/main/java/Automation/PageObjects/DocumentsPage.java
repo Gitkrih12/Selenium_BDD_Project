@@ -5,8 +5,6 @@ import io.cucumber.datatable.DataTable;
 import org.junit.Assert;
 import org.openqa.selenium.WebElement;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -43,7 +41,7 @@ public class DocumentsPage extends SeleniumUtils {
     public void verifyUserViewsEDIFilesSubTab(String expSubTab1) {
         String actualValue = findElementByXpath(tabEdiFile).getText().replace("(", " ").replace(")", "");
         String actualTab1[] = actualValue.split(" ");
-        Assert.assertEquals(expSubTab1, actualTab1[0] +" "+ actualTab1[1]);
+        Assert.assertEquals(expSubTab1, actualTab1[0] + " " + actualTab1[1]);
     }
 
     public void verifyUserViewsAttachmentsSubTab(String expSubTab2) {
@@ -100,54 +98,12 @@ public class DocumentsPage extends SeleniumUtils {
         Assert.assertEquals(fieldsExp, ActFields);
     }
 
-    public void verifyFieldValuesUnderAttachments() throws InterruptedException {
-        threadSleep(1000);
-        HashMap<String, String> testValues = new HashMap<String, String>();
-        testValues.put("File Name", "THORN TWP_EOPRemittance.pdf");
-        testValues.put("Title", "EOPRemittance");
-        testValues.put("Uploaded By", "LiveValorAdjudication@mirra.com");
-        testValues.put("Uploaded On", "02/27/2020");
-
-        HashMap<String, String> uatValues = new HashMap<>();
-        uatValues.put("File Name", "mxs codksmycck kscordcoxk ubkz vol__EOPRemittance.pdf");
-        uatValues.put("Title", "EOPRemittance");
-        uatValues.put("Uploaded By", "LiveValorAdjudication@mirra.com");
-        uatValues.put("Uploaded On", "09/02/2022");
-
-        if (environment.contains("test")) {
-            List<String> fieldsExp = testValues.values().stream().collect(Collectors.toList());
-            List<WebElement> ActColumnFields = findElementsByXpath(lstAttachmentValues);
-            List<String> columnFieldsForCompare = new ArrayList<>();
-            System.out.println("Size " + ActColumnFields.size());
-            for (WebElement column : ActColumnFields) {
-                scrollIntoView(column, driver);
-                String text = column.getText();
-                columnFieldsForCompare.add(text);
-            }
-            for (String exp : fieldsExp) {
-                if (columnFieldsForCompare.contains(exp)) {
-                    Assert.assertTrue(true);
-                } else {
-                    Assert.fail(exp + " is not listed in actual list");
-                }
-            }
-        } else {
-            List<String> fieldsExp = uatValues.values().stream().collect(Collectors.toList());
-            List<WebElement> ActColumnFields = findElementsByXpath(lstAttachmentValues);
-            List<String> columnFieldsForCompare = new ArrayList<>();
-            System.out.println("Size " + ActColumnFields.size());
-            for (WebElement column : ActColumnFields) {
-                scrollIntoView(column, driver);
-                String text = column.getText();
-                columnFieldsForCompare.add(text);
-            }
-            for (String exp : fieldsExp) {
-                if (columnFieldsForCompare.contains(exp)) {
-                    Assert.assertTrue(true);
-                } else {
-                    Assert.fail(exp + " is not listed in actual list");
-                }
-            }
+    public void verifyFieldValuesUnderAttachments() {
+        List<WebElement> attachmentValues = findElementsByXpath(lstAttachmentValues);
+        System.out.println("Size:" + attachmentValues.size());
+        for (WebElement value : attachmentValues) {
+            isDisplayed(value);
+            System.out.println("Value is displayed: " + isDisplayed(value));
         }
     }
 
@@ -163,47 +119,11 @@ public class DocumentsPage extends SeleniumUtils {
     }
 
     public void verifyFieldValuesUnderEdiFiles() {
-        HashMap<String, String> testValues = new HashMap<String, String>();
-        testValues.put("File Name", "H1119.AH.PROD.MAO.ENC0132.AH.P.CARE.20220607195510.edi");
-        testValues.put("File Type", "Encounter");
-        testValues.put("Uploaded By", "claims-User@adjudication.com");
-        testValues.put("Uploaded On", "06/07/2022");
-
-        HashMap<String, String> uatValues = new HashMap<>();
-        uatValues.put("File Name", "H1119.AH.PROD.MAO.ENC0132.AH.P.CARE.20220624073021.edi");
-        uatValues.put("File Type", "Encounter");
-        uatValues.put("Uploaded By", "claims-User@adjudication.com");
-        uatValues.put("Uploaded On", "06/24/2022");
-
-        if (environment.contains("test")) {
-            List<String> fieldsExp = testValues.values().stream().collect(Collectors.toList());
-            List<String> ActValues = findElementsByXpath(lstEdiFilesValues)
-                    .stream().map((e) -> e.getText().trim()).collect(Collectors.toList());
-            System.out.println("Size:" + ActValues.size());
-            for (String exp : fieldsExp) {
-                if (ActValues.contains(exp)) {
-                    Assert.assertTrue(true);
-                } else {
-                    Assert.fail(exp + " is not listed in actual list");
-                }
-            }
-        } else {
-            List<String> fieldsExp = uatValues.values().stream().collect(Collectors.toList());
-            List<WebElement> ActColumnFields = findElementsByXpath(lstEdiFilesValuesUat);
-            List<String> columnFieldsForCompare = new ArrayList<>();
-            System.out.println("Size " + ActColumnFields.size());
-            for (WebElement column : ActColumnFields) {
-                scrollIntoView(column, driver);
-                String text = column.getText();
-                columnFieldsForCompare.add(text);
-            }
-            for (String exp : fieldsExp) {
-                if (columnFieldsForCompare.contains(exp)) {
-                    Assert.assertTrue(true);
-                } else {
-                    Assert.fail(exp + " is not listed in actual list");
-                }
-            }
+        List<WebElement> ediFileValues = findElementsByXpath(lstEdiFilesValues);
+        System.out.println("Size:" + ediFileValues.size());
+        for (WebElement value : ediFileValues) {
+            isDisplayed(value);
+            System.out.println("Value is displayed: " + isDisplayed(value));
         }
     }
 }

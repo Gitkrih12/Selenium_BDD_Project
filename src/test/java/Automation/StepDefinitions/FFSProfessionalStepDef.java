@@ -75,8 +75,8 @@ public class FFSProfessionalStepDef extends FFSProfessionalPage {
     }
 
     //Scenario: Verify user able to navigate through pages by using Pagination functionality
-    @When("user clicks on On Hold bucket")
-    public void user_clicks_on_on_hold_bucket() {
+    @When("user clicks on Hold bucket")
+    public void user_clicks_on_hold_bucket() {
         clickOnOnHold();
     }
     @When("user should be able to view the page numbers at bottom of the page in FFS Professional page")
@@ -296,6 +296,142 @@ public class FFSProfessionalStepDef extends FFSProfessionalPage {
     public void user_should_able_to_see_vertical_line_beside_unclean_status_pre_batch_claim_number_with_color_code_in_ffs_professional(String colorCode) {
         verifyVerticalColorIndicationForUncleanPreBatchClaim(colorCode);
     }
+
+    //Scenario: Verify all tabs should display when clicking on Batch ID under Paid tab in FFS Professional page
+    @When("user clicks on Paid bucket")
+    public void user_clicks_on_paid_bucket() {
+        clickOnPaidBucket();
+    }
+    @When("user enters Batch Id in search criteria")
+    public void user_enters_batch_id_in_search_criteria() throws InterruptedException {
+        enterBatchId();
+    }
+
+    @When("user clicks on Batch Id")
+    public void user_clicks_on_batch_id() throws InterruptedException {
+        clickOnBatchId();
+    }
+    @Then("user views Claim List tab by default should be {string}")
+    public void user_views_claim_list_tab_by_default_should_be(String state) throws InterruptedException {
+        verifyClaimListByDefault(state);
+    }
+
+    @Then("user should be able to see below tabs")
+    public void user_should_be_able_to_see_below_tabs(DataTable tabList) throws InterruptedException {
+        verifyTabsInBatchIDInFFSProfessional(tabList);
+    }
+
+    //Scenario: Verify by default user navigates to the View Claims List page
+    @Then("by default user navigates to the Claim List page")
+    public void by_default_user_navigates_to_the_claim_list_page() {
+
+    }
+    @Then("displays all the list of claims for that Batch ID")
+    public void displays_all_the_list_of_claims_for_that_batch_id() throws InterruptedException {
+        verifyClaimsCount();
+    }
+    @Then("user should able to see {string}")
+    public void user_should_able_to_see(String claimListLabel) {
+        verifyClaimListInTheSelectedBatchLabel(claimListLabel);
+
+    }
+
+    //Scenario: Verify user should navigates to the Provider List page on clicking Provider List tab
+    @When("user clicks on the Provider List tab")
+    public void user_clicks_on_the_provider_list_tab() {
+        clickOnProviderList();
+    }
+    @When("displays all the list of provider list for that Batch ID")
+    public void displays_all_the_list_of_provider_list_for_that_batch_id() throws InterruptedException {
+        verifyProviderCount();
+    }
+    @When("user should be able to see {string} label in Provider List screen")
+    public void user_should_be_able_to_see_label_in_provider_list_screen(String providerListLabel) {
+        verifyProviderListInTheSelectedBatchLabel(providerListLabel);
+    }
+
+    //Scenario: Verify user should navigates to the Check Info page on clicking Check Info tab
+    @When("user clicks on the Check Info tab")
+    public void user_clicks_on_the_check_info_tab() {
+        clickOnCheckInfoList();
+    }
+    @When("displays all the list of Check Info for that Batch ID")
+    public void displays_all_the_list_of_check_info_for_that_batch_id() throws InterruptedException {
+        verifyCheckInfoCount();
+    }
+    @When("user should be able to see {string} label in Check Info screen")
+    public void user_should_be_able_to_see_label_in_check_info_screen(String checkInfoLabel) {
+        verifyCheckInfoLabel(checkInfoLabel);
+    }
+
+    //Scenario: Verify user able to view the check reissue information in Check Info page
+    @Then("user should able to see Check Type as {string}")
+    public void user_should_able_to_see_check_type_as(String checkType) throws InterruptedException {
+        verifyCheckType(checkType);
+
+    }
+
+    //Scenario: Verify user able to view the check void information in Check Info page
+    @When("user enters Batch Id in search criteria for Check Void")
+    public void user_enters_batch_id_in_search_criteria_for_check_void() throws InterruptedException {
+        enterBatchIdForVoided();
+    }
+    @Then("user should able to see Check Type as {string} for voided batch")
+    public void user_should_able_to_see_check_type_as_for_voided_batch(String checkType) throws InterruptedException {
+        verifyCheckType(checkType);
+    }
+
+    //Scenario: Verify user able to view Check Type as Regular if its not void or reissue in Check Info page
+    @When("user enters Batch Id in search criteria for Normal Check")
+    public void user_enters_batch_id_in_search_criteria_for_normal_check() throws InterruptedException {
+        enterBatchIdForNormalCheck();
+    }
+
+    @Then("user should able to see Check Type as {string} for Normal Check")
+    public void user_should_able_to_see_check_type_as_for_normal_check(String checkType) throws InterruptedException {
+        verifyCheckType(checkType);
+    }
+
+    @Then("user should able to see Check Type as {string} for issued batch")
+    public void user_should_able_to_see_check_type_as_for_issued_batch(String string) {
+        // Write code here that turns the phrase above into concrete actions
+        throw new io.cucumber.java.PendingException();
+    }
+
+
+
+    //Scenario: Verify user able to navigate to the History Doc page on clicking History Doc tab
+    @When("user clicks on History Doc")
+    public void user_clicks_on_history_doc() {
+        clickOnHistoryDoc();
+    }
+
+    @When("displays all the list of History Doc for that Batch ID")
+    public void displays_all_the_list_of_history_doc_for_that_batch_id() throws InterruptedException {
+        verifyHistoryDocCount();
+    }
+
+    @When("user should be able to see {string} label in History Doc screen")
+    public void user_should_be_able_to_see_label_in_history_doc_screen(String HistoryDocLabel) {
+        verifyHistoryDocLabel(HistoryDocLabel);
+    }
+
+    //Scenario:Verify user able to navigate to the Downloads tab on clicking Downloads tab and verify the files when there are any files
+    @When("user clicks on Downloads")
+    public void user_clicks_on_downloads() {
+        clickOnDownloads();
+    }
+    @Then("user able to view the {string} and {string}")
+    public void user_able_to_view_the_and(String eopLetter, String fileName) {
+        verifyEOPLetter(eopLetter);
+        verify835File(fileName);
+    }
+
+
+
+
+
+
 
 
 

@@ -10,7 +10,7 @@ Feature: AR Ledger
     Then user able to navigates to the "A/R Ledger" page
 
   @46716
-  @Sanity
+  @Sanity @beta
   Scenario: Verify user able to view all the column details in the A/R Ledger page
     When user clicks on AR Ledger on the left navigation panel
     Then user able to view "Add A/R Transaction" button
@@ -21,12 +21,12 @@ Feature: AR Ledger
       | Amount($)    |
       | Created On   |
 
-  @46720
+  @46720 @beta
   Scenario: Verify Search box should display for all the columns on the grid
     When user clicks on AR Ledger on the left navigation panel
     Then user able to view the Search criteria for all the columns under AR Ledger
 
-  @46725
+  @46725 @beta
   Scenario: Verify when user enters the data in search criteria to display the appropriate results
     When user clicks on AR Ledger on the left navigation panel
     And user enters the Vendor ID in Search criteria
@@ -41,7 +41,7 @@ Feature: AR Ledger
     Then user able to view the appropriate results
 
   @46979
-  @Sanity
+  @Sanity @beta
   Scenario: Verify user navigates to the A/R Transaction claim details on clicking Vendor ID and validates all the fields
     When user clicks on AR Ledger on the left navigation panel
     And user clicks on Vendor ID in AR Ledger page
@@ -58,7 +58,7 @@ Feature: AR Ledger
       | Remarks                |
     Then user able to view the search box for all the column on AR Transactions grid
 
-  @47018
+  @47018 @beta
   Scenario: Verify when user enters the data in search criteria to display the appropriate results in A/R Ledger Transaction view details
     When user clicks on AR Ledger on the left navigation panel
     And user clicks on Vendor ID
