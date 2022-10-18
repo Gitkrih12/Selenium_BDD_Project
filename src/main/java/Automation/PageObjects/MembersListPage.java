@@ -3,6 +3,7 @@ package Automation.PageObjects;
 import Automation.Utilities.SeleniumUtils;
 import io.cucumber.datatable.DataTable;
 import org.junit.Assert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
 import java.util.ArrayList;
@@ -21,7 +22,7 @@ public class MembersListPage extends SeleniumUtils {
     String lstMemberListValues = "((//*[@id='nav-pend-details']//div[@ref = 'eContainer'])[2]//div)[1]//span";
     String txtLastName = "//*[@aria-label = 'LastName Filter Input']";
     String txtFirstName = "//*[@aria-label = 'First Name Filter Input']";
-    String txtMiddleName = "//*[@aria-label = 'Middel Name Filter Input']";
+    String txtMiddleName = "//*[@aria-label = 'Middle Name Filter Input']";
     String txtDOB = "//*[@aria-label = 'DOB Filter Input']";
     String txtGender = "//*[@aria-label = 'Gender Filter Input']";
     String txtMBI = "//*[@aria-label = 'MBI Filter Input']";
@@ -58,7 +59,7 @@ public class MembersListPage extends SeleniumUtils {
         clickElement(lnkMemberManagement);
         explicitVisibilityOfWait(findElementByXpath(lnkMembersList), 20);
         clickElement(lnkMembersList);
-        threadSleep(1000);
+        threadSleep(2000);
     }
 
     public void verifyUserNavigatesToMembersListPage(){
@@ -90,115 +91,130 @@ public class MembersListPage extends SeleniumUtils {
     public void userEntersMemberIDInSearchCriteria() throws InterruptedException {
         expMemberID = prop.getProperty("membersListMemberID");
         findElementAndSendKeys(findElementByXpath(txtMemberId), expMemberID);
-        threadSleep(1000);
         sendKeysUsingKeyboardInput(txtMemberId);
         threadSleep(1000);
     }
 
     public void verifyAppropriateResultsOnMembersListScreen(){
-
+        List<WebElement> membersListValues = findElementsByXpath(lstMemberListValues);
+        System.out.println("Size:" + membersListValues.size());
+        for (WebElement value : membersListValues) {
+            isDisplayed(value);
+            System.out.println("Value is displayed: " + isDisplayed(value));
+        }
     }
 
     public void userEntersLastNameInSearchCriteria() throws InterruptedException {
+        driver.findElement(By.xpath(txtMemberId)).clear();
         expLastName = prop.getProperty("membersListLastName");
         findElementAndSendKeys(findElementByXpath(txtLastName), expLastName);
-        threadSleep(1000);
         sendKeysUsingKeyboardInput(txtLastName);
         threadSleep(1000);
     }
 
     public void userEntersFirstNameInSearchCriteria() throws InterruptedException {
+        driver.findElement(By.xpath(txtLastName)).clear();
         expFirstName = prop.getProperty("membersListFirstName");
         findElementAndSendKeys(findElementByXpath(txtFirstName), expFirstName);
-        threadSleep(1000);
         sendKeysUsingKeyboardInput(txtFirstName);
         threadSleep(1000);
     }
 
     public void userEntersMiddleNameInSearchCriteria() throws InterruptedException {
+        driver.findElement(By.xpath(txtFirstName)).clear();
         expMiddleName = prop.getProperty("membersListMiddleName");
         findElementAndSendKeys(findElementByXpath(txtMiddleName), expMiddleName);
-        threadSleep(1000);
         sendKeysUsingKeyboardInput(txtMiddleName);
         threadSleep(1000);
     }
 
     public void userEntersDOBInSearchCriteria() throws InterruptedException {
+        driver.findElement(By.xpath(txtMiddleName)).clear();
         expDOB = prop.getProperty("membersListDOB");
         findElementAndSendKeys(findElementByXpath(txtDOB), expDOB);
-        threadSleep(1000);
         sendKeysUsingKeyboardInput(txtDOB);
         threadSleep(1000);
     }
 
     public void userEntersGenderInSearchCriteria() throws InterruptedException {
+        driver.findElement(By.xpath(txtDOB)).clear();
         expGender = prop.getProperty("membersListGender");
         findElementAndSendKeys(findElementByXpath(txtGender), expGender);
-        threadSleep(1000);
         sendKeysUsingKeyboardInput(txtGender);
         threadSleep(1000);
     }
 
     public void userEntersMBIInSearchCriteria() throws InterruptedException {
+        driver.findElement(By.xpath(txtGender)).clear();
         expMBI = prop.getProperty("membersListMBI");
         findElementAndSendKeys(findElementByXpath(txtMBI), expMBI);
-        threadSleep(1000);
         sendKeysUsingKeyboardInput(txtMBI);
         threadSleep(1000);
     }
 
     public void userEntersProviderIDInSearchCriteria() throws InterruptedException {
+        driver.findElement(By.xpath(txtMBI)).clear();
         expProviderID = prop.getProperty("membersListProviderID");
         findElementAndSendKeys(findElementByXpath(txtProviderId), expProviderID);
-        threadSleep(1000);
         sendKeysUsingKeyboardInput(txtProviderId);
         threadSleep(1000);
     }
 
     public void userEntersPCPInSearchCriteria() throws InterruptedException {
+        driver.findElement(By.xpath(txtProviderId)).clear();
         expPCP = prop.getProperty("membersListPCP");
+        scrollToElement(txtPCP);
         findElementAndSendKeys(findElementByXpath(txtPCP), expPCP);
-        threadSleep(1000);
         sendKeysUsingKeyboardInput(txtPCP);
         threadSleep(1000);
     }
 
     public void userEntersPlanInSearchCriteria() throws InterruptedException {
+        driver.findElement(By.xpath(txtPCP)).clear();
         expPlan = prop.getProperty("membersListPlan");
+        WebElement planField = findElementByXpath(txtPlan);
+        scrollIntoView(planField, driver);
         findElementAndSendKeys(findElementByXpath(txtPlan), expPlan);
-        threadSleep(1000);
         sendKeysUsingKeyboardInput(txtPlan);
         threadSleep(1000);
     }
 
     public void userEntersEffDateInSearchCriteria() throws InterruptedException {
+        driver.findElement(By.xpath(txtPlan)).clear();
         expEffDate = prop.getProperty("membersListEffDate");
+        WebElement effDateField = findElementByXpath(txtEffDate);
+        scrollIntoView(effDateField, driver);
         findElementAndSendKeys(findElementByXpath(txtEffDate), expEffDate);
-        threadSleep(1000);
         sendKeysUsingKeyboardInput(txtEffDate);
         threadSleep(1000);
     }
 
     public void userEntersTermDateInSearchCriteria() throws InterruptedException {
+        driver.findElement(By.xpath(txtEffDate)).clear();
         expTermDate = prop.getProperty("membersListTermDate");
+        WebElement termDateField = findElementByXpath(txtTermDate);
+        scrollIntoView(termDateField, driver);
         findElementAndSendKeys(findElementByXpath(txtTermDate), expTermDate);
-        threadSleep(1000);
         sendKeysUsingKeyboardInput(txtTermDate);
         threadSleep(1000);
     }
 
     public void userEntersAddressInSearchCriteria() throws InterruptedException {
+        driver.findElement(By.xpath(txtTermDate)).clear();
         expAddress = prop.getProperty("membersListAddress");
+        WebElement addressField = findElementByXpath(txtAddress);
+        scrollIntoView(addressField, driver);
         findElementAndSendKeys(findElementByXpath(txtAddress), expAddress);
-        threadSleep(1000);
         sendKeysUsingKeyboardInput(txtAddress);
         threadSleep(1000);
     }
 
     public void userEntersStatusInSearchCriteria() throws InterruptedException {
+        driver.findElement(By.xpath(txtAddress)).clear();
         expStatus = prop.getProperty("membersListStatus");
+        explicitElementClickableWaitByID(txtStatus, 30);
+        scrollIntoView(findElementByXpath(txtStatus), driver);
         findElementAndSendKeys(findElementByXpath(txtStatus), expStatus);
-        threadSleep(1000);
         sendKeysUsingKeyboardInput(txtStatus);
         threadSleep(1000);
     }
