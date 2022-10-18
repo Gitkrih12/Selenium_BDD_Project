@@ -541,6 +541,7 @@ public class ProviderDetailsPage extends SeleniumUtils {
         }
     }
 
+    //  Scenario: Verify Location Information tab in Provider Details screen
     public void userClicksOnLocationInfo(){
         explicitElementClickableWaitByXpath(tabLocationInfo, 30);
         clickElement(tabLocationInfo);
@@ -572,6 +573,7 @@ public class ProviderDetailsPage extends SeleniumUtils {
         }
     }
 
+    //  Scenario: Verify Contract Information tab in Provider Details screen
     public void userClicksOnContractInfo(){
         explicitElementClickableWaitByXpath(tabContractInfo, 20);
         clickElement(tabContractInfo);
@@ -603,6 +605,7 @@ public class ProviderDetailsPage extends SeleniumUtils {
         }
     }
 
+    //  Scenario: Verify Alias Information tab in Provider Details screen
     public void userClicksOnAliasInfo(){
         explicitElementClickableWaitByXpath(tabAliasInfo, 20);
         clickElement(tabAliasInfo);
@@ -634,6 +637,7 @@ public class ProviderDetailsPage extends SeleniumUtils {
         }
     }
 
+    //  Scenario: Verify user should be able to navigate Map Provider window on clicking Map Provider button in Provider Details tab
     public void userClicksOnMapProviderButton(){
         explicitElementClickableWaitByXpath(btnMapProvider, 20);
         clickElement(btnMapProvider);
@@ -643,6 +647,7 @@ public class ProviderDetailsPage extends SeleniumUtils {
         Assert.assertEquals(expWindow, findElementByXpath(titleMapRenderingProvider).getText());
     }
 
+    //  Scenario: Verify user should able to validate Tax ID/SSN in Map Provider window
     public void verifyFields(String expField1, String expField2){
         explicitTextToBePresentInElementLocatedWait(By.xpath(eleTaxID), 20, expField1);
         Assert.assertEquals(expField1, findElementByXpath(eleTaxID).getText());

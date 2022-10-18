@@ -261,6 +261,7 @@ public class ProviderDetailsStepDef extends ProviderDetailsPage {
         verifyFieldsInRevenueCode(expFields);
     }
 
+    //  Scenario: Verify Location Information tab in Provider Details screen
     @When("user clicks on Location Information subtab")
     public void user_clicks_on_location_information_subtab() {
         userClicksOnLocationInfo();
@@ -276,6 +277,7 @@ public class ProviderDetailsStepDef extends ProviderDetailsPage {
         verifyPracticeLocationList(expFields);
     }
 
+    //  Scenario: Verify Contract Information tab in Provider Details screen
     @When("user clicks on Contract Information subtab")
     public void user_clicks_on_contract_information_subtab() {
         userClicksOnContractInfo();
@@ -291,6 +293,7 @@ public class ProviderDetailsStepDef extends ProviderDetailsPage {
         verifyFieldsUnderContractList(expFields);
     }
 
+    //  Scenario: Verify Alias Information tab in Provider Details screen
     @When("user clicks on Alias Information subtab")
     public void user_clicks_on_alias_information_subtab() {
         userClicksOnAliasInfo();
@@ -306,6 +309,7 @@ public class ProviderDetailsStepDef extends ProviderDetailsPage {
         verifyProviderAliasList(expFields);
     }
 
+    //  Scenario: Verify user should be able to navigate Map Provider window on clicking Map Provider button in Provider Details tab
     @When("user clicks on Map Provider button")
     public void user_clicks_on_map_provider_button() {
         userClicksOnMapProviderButton();
@@ -316,6 +320,7 @@ public class ProviderDetailsStepDef extends ProviderDetailsPage {
         verifyUserNavigatesToMapPayProvider(expWindow);
     }
 
+    //  Scenario: Verify user should able to validate Tax ID/SSN in Map Provider window
     @Then("user should be able to validate {string} and {string} fields")
     public void user_should_be_able_to_validate_and_fields(String expField1, String expField2) {
         verifyFields(expField1, expField2);

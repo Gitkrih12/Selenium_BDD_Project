@@ -368,7 +368,7 @@ Feature: Provider Details
       | Status            |
 
   @55434
-  Scenario: Verify user should able to navigate Map Provider window on clicking Map Provider button in Provider Details tab
+  Scenario: Verify user should be able to navigate Map Provider window on clicking Map Provider button in Provider Details tab
     Given the user is in FFS Professional page
     Then the user should navigate to the FFS Professional page
     When user clicks on Hold bucket
