@@ -62,10 +62,7 @@ public class MembersListStepDef extends MembersListPage {
     public void user_enters_pcp_in_the_search_criteria() throws InterruptedException {
         userEntersPCPInSearchCriteria();
     }
-    @When("user enters PCP Phone in the Search criteria")
-    public void user_enters_pcp_phone_in_the_search_criteria() throws InterruptedException {
-        userEntersPCPPhoneInSearchCriteria();
-    }
+
     @When("user enters Plan in the Search criteria")
     public void user_enters_plan_in_the_search_criteria() throws InterruptedException {
         userEntersPlanInSearchCriteria();

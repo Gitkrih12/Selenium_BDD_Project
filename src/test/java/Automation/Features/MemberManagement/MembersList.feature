@@ -46,15 +46,13 @@ Feature: Members List
     Then user able to view the appropriate results on Members List screen
     When user enters PCP in the Search criteria
     Then user able to view the appropriate results on Members List screen
-    When user enters PCP Phone in the Search criteria
-#    Then user able to view the appropriate results on Members List screen
     When user enters Plan in the Search criteria
     Then user able to view the appropriate results on Members List screen
     When user enters Eff Date in the Search criteria
     Then user able to view the appropriate results on Members List screen
     When user enters Term Date in the Search criteria
     Then user able to view the appropriate results on Members List screen
-#    When user enters Address in the Search criteria
-#    Then user able to view the appropriate results on Members List screen
-#    When user enters Status in the Search criteria
-#    Then user able to view the appropriate results on Members List screen
+    When user enters Address in the Search criteria
+    Then user able to view the appropriate results on Members List screen
+    When user enters Status in the Search criteria
+    Then user able to view the appropriate results on Members List screen

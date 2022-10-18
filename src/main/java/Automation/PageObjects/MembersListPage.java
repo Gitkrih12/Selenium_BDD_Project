@@ -96,65 +96,7 @@ public class MembersListPage extends SeleniumUtils {
     }
 
     public void verifyAppropriateResultsOnMembersListScreen(){
-        HashMap<String, String> testValues = new HashMap<String, String>();
-        testValues.put("Member ID", "3693336VF");
-        testValues.put("LastName", "BOWYMGOX");
-        testValues.put("First Name", "IMXKX");
-        testValues.put("Middle Name", "V");
-        testValues.put("DOB", "08/18/1960");
-        testValues.put("Gender", "Female");
-        testValues.put("MBI", "362OX2MR85K8");
-        testValues.put("Provider ID", "1821038043");
-        testValues.put("PCP", "David, Dorton string");
-        testValues.put("PCP Phone", "");
-        testValues.put("Plan", "06/01/2020");
-        testValues.put("Eff. Date ", "06/01/2020");
-        testValues.put("Term. Date", "12/31/9999");
-        testValues.put("Address", "");
-        testValues.put("Status", "");
 
-        HashMap<String, String> uatValues = new HashMap<>();
-        uatValues.put("Member ID", "V0000000005");
-        uatValues.put("LastName", "SAFAR AIDA");
-        uatValues.put("First Name", "020737147");
-        uatValues.put("Middel Name", "400");
-        uatValues.put("DOB", "07/27/2022");
-        uatValues.put("Gender", "V0000000005");
-        uatValues.put("MBI", "SAFAR AIDA");
-        uatValues.put("Provider ID", "020737147");
-        uatValues.put("PCP", "400");
-        uatValues.put("PCP Phone", "07/27/2022");
-        uatValues.put("Plan", "V0000000005");
-        uatValues.put("Eff. Date ", "SAFAR AIDA");
-        uatValues.put("Term. Date", "020737147");
-        uatValues.put("Address", "400");
-        uatValues.put("Status", "07/27/2022");
-
-        if (environment.contains("test")) {
-            List<String> fieldsExp = testValues.values().stream().collect(Collectors.toList());
-            List<String> actValues = findElementsByXpath(lstMemberListValues)
-                    .stream().map((e) -> e.getText().trim()).collect(Collectors.toList());
-            System.out.println("Size:" + actValues.size());
-            for (String exp : fieldsExp) {
-                if (actValues.contains(exp)) {
-                    Assert.assertTrue(true);
-                } else {
-                    Assert.fail(exp + " is not listed in actual list");
-                }
-            }
-        } else {
-            List<String> fieldsExp = uatValues.values().stream().collect(Collectors.toList());
-            List<String> actValues = findElementsByXpath(lstMemberListValues)
-                    .stream().map((e) -> e.getText().trim()).collect(Collectors.toList());
-            System.out.println("Size:" + actValues.size());
-            for (String exp : fieldsExp) {
-                if (actValues.contains(exp)) {
-                    Assert.assertTrue(true);
-                } else {
-                    Assert.fail(exp + " is not listed in actual list");
-                }
-            }
-        }
     }
 
     public void userEntersLastNameInSearchCriteria() throws InterruptedException {
@@ -218,14 +160,6 @@ public class MembersListPage extends SeleniumUtils {
         findElementAndSendKeys(findElementByXpath(txtPCP), expPCP);
         threadSleep(1000);
         sendKeysUsingKeyboardInput(txtPCP);
-        threadSleep(1000);
-    }
-
-    public void userEntersPCPPhoneInSearchCriteria() throws InterruptedException {
-        expPCPPhone = prop.getProperty("membersListPCPPhone");
-        findElementAndSendKeys(findElementByXpath(txtPCPPhone), expPCPPhone);
-        threadSleep(1000);
-        sendKeysUsingKeyboardInput(txtPCPPhone);
         threadSleep(1000);
     }
 
