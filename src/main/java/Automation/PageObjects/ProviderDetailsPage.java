@@ -59,6 +59,16 @@ public class ProviderDetailsPage extends SeleniumUtils {
     String lstRevenueCodeFields = "(//*[@id = 'resultsGrid1']//div[@ref='gridHeader'])[1]//span[@ref = 'eText']";
     String eleVendorId = "(//div[@col-id='uniquePayToId_1']//span[@class='ag-cell-value'])[last()]";
     String tabLocationInfo = "//*[@id = 'nav-location-details-tab']";
+    String lstPracticeLocation = "//*[@id = 'nav-location-info']//tr//th";
+    String tabContractInfo = "//*[@id = 'nav-contract-details-tab']";
+    String lstContract = "//*[@id = 'nav-contract-info']//tr//th";
+    String tabAliasInfo = "//*[@id = 'nav-alias-info-tab']";
+    String lstAliasInfo = "//*[@id = 'nav-alias-info']//tr//th";
+    String btnMapProvider = "//*[contains(text(), 'Map Provider')]";
+    String titleMapRenderingProvider = "//*[contains(text(), 'Map Rendering Provider')]";
+    String eleTaxID = "//mat-dialog-container//p[contains(text(), 'Tax ID')]";
+    String eleRenderingProvider = "//mat-dialog-container//p[contains(text(), 'Rendering Provider')]";
+    String lstRenderingProvider = "//*[@id = 'resultsGridRenderingprovider']//span[@ref = 'eText' and text()]";
 
 
 
@@ -534,5 +544,131 @@ public class ProviderDetailsPage extends SeleniumUtils {
     public void userClicksOnLocationInfo(){
         explicitElementClickableWaitByXpath(tabLocationInfo, 30);
         clickElement(tabLocationInfo);
+    }
+
+    public void userNavigatesToLocationInfoSubtab(String expSubtab){
+        Assert.assertEquals(expSubtab, findElementByXpath(tabLocationInfo).getText());
+    }
+
+    public void verifyPracticeLocationList(DataTable expFields){
+        List<String> fieldsExp = expFields.asList();
+        explicitElementClickableWaitByXpath(lstPracticeLocation, 30);
+        List<WebElement> actColumnFields = findElementsByXpath(lstPracticeLocation);
+        List<String> columnFieldsForCompare = new ArrayList<>();
+        System.out.println("Size " + actColumnFields.size());
+        for (WebElement column : actColumnFields) {
+            scrollIntoView(column, driver);
+            String text = column.getText();
+            columnFieldsForCompare.add(text);
+        }
+        System.out.println("Fields should display:" + columnFieldsForCompare);
+        System.out.println("Expected Fields are : " + fieldsExp);
+        for (String exp : fieldsExp) {
+            if (columnFieldsForCompare.contains(exp)) {
+                Assert.assertTrue(true);
+            } else {
+                Assert.fail(exp + " is not listed in actual list");
+            }
+        }
+    }
+
+    public void userClicksOnContractInfo(){
+        explicitElementClickableWaitByXpath(tabContractInfo, 20);
+        clickElement(tabContractInfo);
+    }
+
+    public void userNavigatesToContractInfoSubtab(String expSubtab){
+        Assert.assertEquals(expSubtab, findElementByXpath(tabContractInfo).getText());
+    }
+
+    public void verifyFieldsUnderContractList(DataTable expFields){
+        List<String> fieldsExp = expFields.asList();
+        explicitElementClickableWaitByXpath(lstContract, 30);
+        List<WebElement> actColumnFields = findElementsByXpath(lstContract);
+        List<String> columnFieldsForCompare = new ArrayList<>();
+        System.out.println("Size " + actColumnFields.size());
+        for (WebElement column : actColumnFields) {
+            scrollIntoView(column, driver);
+            String text = column.getText();
+            columnFieldsForCompare.add(text);
+        }
+        System.out.println("Fields should display:" + columnFieldsForCompare);
+        System.out.println("Expected Fields are : " + fieldsExp);
+        for (String exp : fieldsExp) {
+            if (columnFieldsForCompare.contains(exp)) {
+                Assert.assertTrue(true);
+            } else {
+                Assert.fail(exp + " is not listed in actual list");
+            }
+        }
+    }
+
+    public void userClicksOnAliasInfo(){
+        explicitElementClickableWaitByXpath(tabAliasInfo, 20);
+        clickElement(tabAliasInfo);
+    }
+
+    public void verifyUserNavigatesToAliasInfo(String expSubtab){
+        Assert.assertEquals(expSubtab, findElementByXpath(tabAliasInfo).getText());
+    }
+
+    public void verifyProviderAliasList(DataTable expFields){
+        List<String> fieldsExp = expFields.asList();
+        explicitElementClickableWaitByXpath(lstAliasInfo, 30);
+        List<WebElement> actColumnFields = findElementsByXpath(lstAliasInfo);
+        List<String> columnFieldsForCompare = new ArrayList<>();
+        System.out.println("Size " + actColumnFields.size());
+        for (WebElement column : actColumnFields) {
+            scrollIntoView(column, driver);
+            String text = column.getText();
+            columnFieldsForCompare.add(text);
+        }
+        System.out.println("Fields should display:" + columnFieldsForCompare);
+        System.out.println("Expected Fields are : " + fieldsExp);
+        for (String exp : fieldsExp) {
+            if (columnFieldsForCompare.contains(exp)) {
+                Assert.assertTrue(true);
+            } else {
+                Assert.fail(exp + " is not listed in actual list");
+            }
+        }
+    }
+
+    public void userClicksOnMapProviderButton(){
+        explicitElementClickableWaitByXpath(btnMapProvider, 20);
+        clickElement(btnMapProvider);
+    }
+
+    public void verifyUserNavigatesToMapPayProvider(String expWindow){
+        Assert.assertEquals(expWindow, findElementByXpath(titleMapRenderingProvider).getText());
+    }
+
+    public void verifyFields(String expField1, String expField2){
+        explicitTextToBePresentInElementLocatedWait(By.xpath(eleTaxID), 20, expField1);
+        Assert.assertEquals(expField1, findElementByXpath(eleTaxID).getText());
+        explicitTextToBePresentInElementLocatedWait(By.xpath(eleRenderingProvider), 20, expField2);
+        Assert.assertEquals(expField2, findElementByXpath(eleRenderingProvider).getText());
+    }
+
+    public void verifyRenderingProvider(DataTable expFields){
+        List<String> fieldsExp = expFields.asList();
+        explicitElementClickableWaitByXpath(lstRenderingProvider, 30);
+        List<WebElement> actColumnFields = findElementsByXpath(lstRenderingProvider);
+        List<String> columnFieldsForCompare = new ArrayList<>();
+        System.out.println("Size " + actColumnFields.size());
+        for (WebElement column : actColumnFields) {
+            scrollIntoView(column, driver);
+            String text = column.getText();
+            columnFieldsForCompare.add(text);
+        }
+        System.out.println("Fields should display:" + columnFieldsForCompare);
+        System.out.println("Expected Fields are : " + fieldsExp);
+        for (String exp : fieldsExp) {
+            if (columnFieldsForCompare.contains(exp)) {
+                Assert.assertTrue(true);
+            } else {
+                Assert.fail(exp + " is not listed in actual list");
+            }
+        }
     }
 }

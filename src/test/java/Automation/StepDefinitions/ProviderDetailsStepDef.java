@@ -267,20 +267,62 @@ public class ProviderDetailsStepDef extends ProviderDetailsPage {
     }
 
     @Then("user navigates to {string} subtab")
-    public void user_navigates_to_subtab(String string) {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+    public void user_navigates_to_subtab(String expSubtab) {
+        userNavigatesToLocationInfoSubtab(expSubtab);
     }
 
     @Then("user able to view the following fields under Practice Location List")
-    public void user_able_to_view_the_following_fields_under_practice_location_list(io.cucumber.datatable.DataTable dataTable) {
-        // Write code here that turns the phrase above into concrete actions
-        // For automatic transformation, change DataTable to one of
-        // E, List<E>, List<List<E>>, List<Map<K,V>>, Map<K,V> or
-        // Map<K, List<V>>. E,K,V must be a String, Integer, Float,
-        // Double, Byte, Short, Long, BigInteger or BigDecimal.
-        //
-        // For other transformations you can register a DataTableType.
-        throw new io.cucumber.java.PendingException();
+    public void user_able_to_view_the_following_fields_under_practice_location_list(DataTable expFields) {
+        verifyPracticeLocationList(expFields);
+    }
+
+    @When("user clicks on Contract Information subtab")
+    public void user_clicks_on_contract_information_subtab() {
+        userClicksOnContractInfo();
+    }
+
+    @Then("user navigates to the {string} subtab")
+    public void user_navigates_to_the_subtab(String expSubtab) {
+        userNavigatesToContractInfoSubtab(expSubtab);
+    }
+
+    @Then("user able to view the following fields under Contract List")
+    public void user_able_to_view_the_following_fields_under_contract_list(DataTable expFields) {
+        verifyFieldsUnderContractList(expFields);
+    }
+
+    @When("user clicks on Alias Information subtab")
+    public void user_clicks_on_alias_information_subtab() {
+        userClicksOnAliasInfo();
+    }
+
+    @Then("user navigated to the {string} subtab")
+    public void user_navigated_to_the_subtab(String expSubtab) {
+        verifyUserNavigatesToAliasInfo(expSubtab);
+    }
+
+    @Then("user able to view the below list of fields under Provider Alias List")
+    public void user_able_to_view_the_below_list_of_fields_under_provider_alias_list(DataTable expFields) {
+        verifyProviderAliasList(expFields);
+    }
+
+    @When("user clicks on Map Provider button")
+    public void user_clicks_on_map_provider_button() {
+        userClicksOnMapProviderButton();
+    }
+
+    @Then("user navigates to the {string} pop-up window")
+    public void user_navigates_to_the_pop_up_window(String expWindow) {
+        verifyUserNavigatesToMapPayProvider(expWindow);
+    }
+
+    @Then("user should be able to validate {string} and {string} fields")
+    public void user_should_be_able_to_validate_and_fields(String expField1, String expField2) {
+        verifyFields(expField1, expField2);
+    }
+
+    @Then("user able to view all the below mentioned fields under Rendering Provider")
+    public void user_able_to_view_all_the_below_mentioned_fields_under_rendering_provider(DataTable expFields) {
+        verifyRenderingProvider(expFields);
     }
 }
