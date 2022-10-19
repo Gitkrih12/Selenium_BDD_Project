@@ -108,7 +108,7 @@ public class ARLedgerPage extends SeleniumUtils {
         List<WebElement> arLedgerValues = findElementsByXpath(lstARLedgerValues);
         System.out.println("Size:" + arLedgerValues.size());
         for (WebElement value : arLedgerValues) {
-            isDisplayed(value);
+            Assert.assertTrue(isDisplayed(value));
             System.out.println("Value is displayed: " + isDisplayed(value));
         }
     }
@@ -180,7 +180,7 @@ public class ARLedgerPage extends SeleniumUtils {
         List<WebElement> arTransactionValues = findElementsByXpath(lstARTransactionValues);
         System.out.println("Size:" + arTransactionValues.size());
         for (WebElement value : arTransactionValues) {
-            isDisplayed(value);
+            Assert.assertTrue(isDisplayed(value));
             System.out.println("Value is displayed: " + isDisplayed(value));
         }
     }
