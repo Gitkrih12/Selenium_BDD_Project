@@ -127,7 +127,7 @@ public class ClaimDetailsPage extends SeleniumUtils {
         List<WebElement> claimSummaryValues = findElementsByXpath(lstClaimSummaryValues);
         System.out.println("Size:" + claimSummaryValues.size());
         for (WebElement value : claimSummaryValues) {
-            isDisplayed(value);
+            Assert.assertTrue(isDisplayed(value));
             System.out.println("Value is displayed: " + isDisplayed(value));
         }
     }
@@ -237,7 +237,7 @@ public class ClaimDetailsPage extends SeleniumUtils {
         List<WebElement> claimInfoValues = findElementsByXpath(lstClaimInformationValues);
         System.out.println("Size:" + claimInfoValues.size());
         for (WebElement value : claimInfoValues) {
-            isDisplayed(value);
+            Assert.assertTrue(isDisplayed(value));
             System.out.println("Value is displayed: " + isDisplayed(value));
         }
     }
@@ -268,7 +268,7 @@ public class ClaimDetailsPage extends SeleniumUtils {
         List<WebElement> paymentInfoValues = findElementsByXpath(lstPaymentInformationValues);
         System.out.println("Size:" + paymentInfoValues.size());
         for (WebElement value : paymentInfoValues) {
-            isDisplayed(value);
+            Assert.assertTrue(isDisplayed(value));
             System.out.println("Value is displayed: " + isDisplayed(value));
         }
     }
@@ -311,7 +311,7 @@ public class ClaimDetailsPage extends SeleniumUtils {
         List<WebElement> memberInformationValues = findElementsByXpath(lstMemberInformationValues);
         System.out.println("Size:" + memberInformationValues.size());
         for (WebElement value : memberInformationValues) {
-            isDisplayed(value);
+            Assert.assertTrue(isDisplayed(value));
             System.out.println("Value is displayed: " + isDisplayed(value));
         }
     }
@@ -342,7 +342,7 @@ public class ClaimDetailsPage extends SeleniumUtils {
         List<WebElement> renderingProviderValues = findElementsByXpath(lstRenderingProviderInfoValues);
         System.out.println("Size:" + renderingProviderValues.size());
         for (WebElement value : renderingProviderValues) {
-            isDisplayed(value);
+            Assert.assertTrue(isDisplayed(value));
             System.out.println("Value is displayed: " + isDisplayed(value));
         }
     }
@@ -373,7 +373,7 @@ public class ClaimDetailsPage extends SeleniumUtils {
         List<WebElement> billingProviderValues = findElementsByXpath(lstBillingProviderInfoValues);
         System.out.println("Size:" + billingProviderValues.size());
         for (WebElement value : billingProviderValues) {
-            isDisplayed(value);
+            Assert.assertTrue(isDisplayed(value));
             System.out.println("Value is displayed: " + isDisplayed(value));
         }
     }
@@ -404,7 +404,7 @@ public class ClaimDetailsPage extends SeleniumUtils {
         List<WebElement> payerSectionValues = findElementsByXpath(lstPayerValues);
         System.out.println("Size:" + payerSectionValues.size());
         for (WebElement value : payerSectionValues) {
-            isDisplayed(value);
+            Assert.assertTrue(isDisplayed(value));
             System.out.println("Value is displayed: " + isDisplayed(value));
         }
     }
@@ -435,7 +435,7 @@ public class ClaimDetailsPage extends SeleniumUtils {
         List<WebElement> dateOfServiceSectionValues = findElementsByXpath(lstDateOfServiceSectionValues);
         System.out.println("Size:" + dateOfServiceSectionValues.size());
         for (WebElement value : dateOfServiceSectionValues) {
-            isDisplayed(value);
+            Assert.assertTrue(isDisplayed(value));
             System.out.println("Value is displayed: " + isDisplayed(value));
         }
     }

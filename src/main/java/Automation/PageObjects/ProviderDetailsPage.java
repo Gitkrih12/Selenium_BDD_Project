@@ -129,7 +129,7 @@ public class ProviderDetailsPage extends SeleniumUtils {
         List<WebElement> payToProviderValues = findElementsByXpath(lstPayToProviderDetailsValues);
         System.out.println("Size:" + payToProviderValues.size());
         for (WebElement value : payToProviderValues) {
-            isDisplayed(value);
+            Assert.assertTrue(isDisplayed(value));
             System.out.println("Value is displayed: " + isDisplayed(value));
         }
     }
@@ -149,7 +149,7 @@ public class ProviderDetailsPage extends SeleniumUtils {
         List<WebElement> payToProviderValues = findElementsByXpath(lstGroupRenderingProviderDetailsValues);
         System.out.println("Size:" + payToProviderValues.size());
         for (WebElement value : payToProviderValues) {
-            isDisplayed(value);
+            Assert.assertTrue(isDisplayed(value));
             System.out.println("Value is displayed: " + isDisplayed(value));
         }
     }
@@ -341,8 +341,6 @@ public class ProviderDetailsPage extends SeleniumUtils {
                 clickElement(button);
             }
         }
-//        explicitTextToBePresentInElementLocatedWait(By.xpath(eleSelect), 40, "Select");
-//        clickElement(eleSelect);
     }
 
     public void verifyVendorShouldBeDefaultAfterSelected() {
@@ -360,13 +358,6 @@ public class ProviderDetailsPage extends SeleniumUtils {
         if (count == 0) {
             Assert.fail("Default vendor is not selected");
         }
-        /*String expDefaultVendor = findElementByXpath(eleDefaultVendor).getAttribute("disabled");
-        threadSleep(1000);
-        if (expDefaultVendor.contains("true")) {
-            Assert.assertTrue(true);
-        } else {
-            Assert.fail("Vendor is not selected by default");
-        }*/
     }
 
     //  Scenario: Verify user able to view the pagination, cancel and close buttons for Map Pay To Provider Side Drawer
