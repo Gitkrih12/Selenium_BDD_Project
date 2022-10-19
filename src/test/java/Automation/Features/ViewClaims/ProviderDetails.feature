@@ -10,7 +10,7 @@ Feature: Provider Details
     And user clicks on the Provider Details tab
     Then user navigates to the Provider Details tab
 
-   @39953 @beta
+  @39953 @beta
   Scenario: Verify user able to view the Pay to Provider Details and Group/Rendering Provider Details section under Provider Details tab
     When user clicking on Claim Number in Global Search page
     And user clicks on the Provider Details tab
@@ -165,7 +165,7 @@ Feature: Provider Details
     And user clicks on Select button for the other Vendor ID
     Then user able to view the Vendor ID by default after selected
 
-  @60848
+#  @60848
   Scenario: Verify user able to view the pagination, cancel and close buttons for Map Pay To Provider Side Drawer
     Given the user is in FFS Professional page
     Then the user should navigate to the FFS Professional page
@@ -277,7 +277,7 @@ Feature: Provider Details
       | FFS Percentage           |
       | Medicare Allowable Rate* |
       | Service                  |
-      | Diagnostis               |
+      | Diagnostics              |
       | Lab                      |
       | DME                      |
       | Injections               |
@@ -297,7 +297,7 @@ Feature: Provider Details
       | Type Of Bill      |
       | Contract Language |
       | Rate              |
-      | Effective Dtae    |
+      | Effective Date    |
       | Term Date         |
 
   @55534

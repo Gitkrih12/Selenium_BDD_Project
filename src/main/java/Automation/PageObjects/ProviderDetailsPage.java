@@ -4,6 +4,7 @@ import Automation.Utilities.SeleniumUtils;
 import io.cucumber.datatable.DataTable;
 import org.junit.Assert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 import java.util.ArrayList;
@@ -60,6 +61,9 @@ public class ProviderDetailsPage extends SeleniumUtils {
     String eleVendorId = "(//div[@col-id='uniquePayToId_1']//span[@class='ag-cell-value'])[last()]";
     String eleFacilityName = "//*[@id = 'nav-basic-details']//h6[contains(@class, 'columnFont')]";
     String eleSpeciality = "//*[contains(text(), 'Speciality')]";
+    String eleValidated = "//div//b[contains(text(),'Validated')]";
+    String lstSelectButton = "//div[@col-id='uniquePayToId']//button";
+    String elePayToProvider = "//span[contains(text(),'Pay to Provider')]";
 
 
     private static String expFirstPage = "";
@@ -80,7 +84,8 @@ public class ProviderDetailsPage extends SeleniumUtils {
     public void clickOnProviderDetails() throws InterruptedException {
         explicitElementClickableWaitByXpath(tabProviderDetails, 30);
         clickElement(tabProviderDetails);
-        threadSleep(8000);
+//        threadSleep(8000);
+        explicitTextToBePresentInElementLocatedWait(By.xpath(eleValidated), 60, "Validated");
     }
 
     public void userNavigatedToProviderDetails() {
@@ -303,39 +308,65 @@ public class ProviderDetailsPage extends SeleniumUtils {
     }
 
     public void userViewsSelectButton(String expButton) {
-        String expDefaultVendor = findElementByXpath(eleDefaultVendor).getAttribute("disabled");
-        if (expDefaultVendor.equals("false")) {
-            explicitElementClickableWait(findElementByXpath(btnSelect), 20);
-            Assert.assertEquals(expButton, findElementByXpath(btnSelect).getText());
+        List<WebElement> selectButtons = findElementsByXpath(lstSelectButton);
+        int count = 0;
+        for (WebElement button : selectButtons) {
+            String expDefaultVendor = button.getAttribute("style");
+            if (!expDefaultVendor.contains("display: none")) {
+                count++;
+                System.out.println("Select button text" + button.getText());
+                Assert.assertEquals(expButton, button.getText());
+            }
+        }
+        if (count == 0) {
+            Assert.fail("Default vendor is not selected");
         }
     }
 
     public void verifyGreenBar() {
-        String expDefaultVendor = findElementByXpath(eleDefaultVendor).getAttribute("disabled");
         String actColor = getColorCodeForBackground(eleGreenBar);
         expColor = prop.getProperty("greenBar");
-        if (expDefaultVendor.contains("true")) {
-            System.out.println("actual color code :" + actColor);
-            Assert.assertEquals(expColor, actColor);
-        } else {
-            Assert.fail(expColor + " color doesn't match");
-        }
+        System.out.println("actual color code :" + actColor);
+        Assert.assertEquals(expColor, actColor);
     }
 
     //  Scenario: Verify user able to select the default Vendor ID on clicking the Select button
     public void userClicksOnSelectButtonForOtherVendorID() {
-        explicitTextToBePresentInElementLocatedWait(By.xpath(eleSelect), 30, "Select");
-        clickElement(eleSelect);
+        explicitElementClickableWaitByXpath(eleVendorId, 60);
+
+        List<WebElement> selectButtons = findElementsByXpath(lstSelectButton);
+        for (WebElement button : selectButtons) {
+            String expDefaultVendor = button.getAttribute("style");
+            if (!expDefaultVendor.contains("display: none")) {
+                clickElement(button);
+            }
+        }
+//        explicitTextToBePresentInElementLocatedWait(By.xpath(eleSelect), 40, "Select");
+//        clickElement(eleSelect);
     }
 
-    public void verifyVendorShouldBeDefaultAfterSelected() throws InterruptedException {
-        String expDefaultVendor = findElementByXpath(eleDefaultVendor).getAttribute("disabled");
+    public void verifyVendorShouldBeDefaultAfterSelected() {
+        explicitTextToBePresentInElementLocatedWait(By.xpath(elePayToProvider), 20, "Provider");
+        int count = 0;
+        List<WebElement> selectButtons = findElementsByXpath(eleSelect);
+        for (WebElement button : selectButtons) {
+            String expDefaultVendor = button.getAttribute("style");
+            if (expDefaultVendor.contains("display: none")) {
+                count++;
+                System.out.println("Attribute value is " + button.getAttribute("style"));
+                Assert.assertTrue(true);
+            }
+        }
+        if (count == 0) {
+            Assert.fail("Default vendor is not selected");
+        }
+        /*String expDefaultVendor = findElementByXpath(eleDefaultVendor).getAttribute("disabled");
         threadSleep(1000);
         if (expDefaultVendor.contains("true")) {
             Assert.assertTrue(true);
         } else {
             Assert.fail("Vendor is not selected by default");
-        }
+        }*/
     }
 
     //  Scenario: Verify user able to view the pagination, cancel and close buttons for Map Pay To Provider Side Drawer
