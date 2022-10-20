@@ -1,5 +1,6 @@
 package Automation.Utilities;
 
+import io.cucumber.datatable.DataTable;
 import org.junit.Assert;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
@@ -1136,6 +1137,35 @@ public class SeleniumUtils extends Driver {
         }
     }
 
+    public ArrayList<String> getAllElementsToArrayList(String ArrayListXpath) {
+        ArrayList<String> listOfRecords = null;
+        try {
+            listOfRecords = new ArrayList<>();
+            List<WebElement> listOfElements = findElementsByXpath(ArrayListXpath);
+            for (WebElement record : listOfElements) {
+                listOfRecords.add(record.getText());
+            }
+        } catch (Exception e) {
+            Assert.fail("Unable to get list of elements to arraylist");
+        }
+        return listOfRecords;
+    }
+
+    public ArrayList<String> scrollAndGetAllElementsToArrayList(String ArrayListXpath) {
+        ArrayList<String> listOfRecords = null;
+        try {
+            listOfRecords = new ArrayList<>();
+            List<WebElement> listOfElements = findElementsByXpath(ArrayListXpath);
+            for (WebElement record : listOfElements) {
+                scrollIntoView(record, driver);
+                listOfRecords.add(record.getText());
+            }
+        } catch (Exception e) {
+            Assert.fail("Unable to get list of elements to arraylist");
+        }
+        return listOfRecords;
+    }
+
     public String getAttribute(WebElement element, String attribute) {
         try {
             String att = element.getAttribute(attribute);
@@ -1355,6 +1385,7 @@ public class SeleniumUtils extends Driver {
             return null;
         }
     }
+
     // ************** End of Get related methods **************** //
 
 
@@ -1379,6 +1410,21 @@ public class SeleniumUtils extends Driver {
         } catch (Exception e) {
             Assert.fail("Element not found in getAllDescendantElementsWithSameProperty" + parentElement + "|Error - " + e);
             return null;
+        }
+    }
+
+    //This method is used to upload files in headless mode
+    public void uploadFileWithJavaScriptAndSendKeys(String xpath, String filePath)
+    {
+        try
+        {
+            WebElement element = driver.findElement(By.xpath(xpath));
+            JavascriptExecutor js = (JavascriptExecutor) driver;
+            js.executeScript("arguments[0].style.display='block';", element);
+            driver.findElement(By.xpath(xpath)).sendKeys(filePath);
+        }catch (Exception e)
+        {
+            Assert.fail("The file could not be uploaded");
         }
     }
 
@@ -1423,6 +1469,80 @@ public class SeleniumUtils extends Driver {
 
         } catch (Exception e) {
             Assert.fail("File not deleted " + filePath + "|Error - " + e);
+        }
+    }
+
+    public void printStatementInGreenColor(String text, String result)
+    {
+        try
+        {
+            System.out.println(ANSI_GREEN + text + ": " + result + ANSI_RESET);
+        }catch (Exception e)
+        {
+            Assert.fail("Unable to print statement in required color");
+        }
+    }
+
+    public void printStatementInGreenColor(String text, boolean result)
+    {
+        try
+        {
+            System.out.println(ANSI_GREEN + text + ": " + result + ANSI_RESET);
+        }catch (Exception e)
+        {
+            Assert.fail("Unable to print statement in required color");
+        }
+    }
+
+    public void printStatementInGreenColor(String text, int result)
+    {
+        try
+        {
+            System.out.println(ANSI_GREEN + text + ": " + result + ANSI_RESET);
+        }catch (Exception e)
+        {
+            Assert.fail("Unable to print statement in required color");
+        }
+    }
+
+    public void printStatementInGreenColor(String text, List<String> result)
+    {
+        try
+        {
+            System.out.println(ANSI_GREEN + text + ": " + result + ANSI_RESET);
+        }catch (Exception e)
+        {
+            Assert.fail("Unable to print statement in required color");
+        }
+    }
+
+    /*
+    -Compare cucumber data table and list of values from xpath
+    -Cucumber data table would be converted to "String List"
+    -xpath web elements would be converted to "String list" using lambda expressions
+    */
+    public void compare2Lists(DataTable dataTable, String xpath) {
+        List<String> fieldsExp = dataTable.asList();
+        List<String> fieldsAct = findElementsByXpath(xpath).
+                stream().map(element -> element.getText().trim()).toList();
+        printStatementInGreenColor("Fields size actual", fieldsAct.size());
+        printStatementInGreenColor("Fields size expected", fieldsExp.size());
+        printStatementInGreenColor("Fields actual", fieldsAct);
+        printStatementInGreenColor("Fields expected", fieldsExp);
+        Assert.assertEquals(fieldsExp, fieldsAct);
+    }
+
+    /*
+    -This method is used to perform different display validations
+     For example, Fields, field values, Search boxes etc.
+     */
+    public void elementsDisplayValidation(String xpath) {
+        List<WebElement> fieldValues = findElementsByXpath(xpath);
+        printStatementInGreenColor("Fields size", fieldValues.size());
+        for (WebElement fieldValue : fieldValues) {
+            boolean status = isDisplayed(fieldValue);
+            printStatementInGreenColor("Field status is", status);
+            Assert.assertTrue(status);
         }
     }
     // ****************** End of Generic methods  *********************//
@@ -2088,7 +2208,21 @@ public class SeleniumUtils extends Driver {
         }
     }
 
-    public LocalDate convertStringtoDate(String formatReq, String date)
+    public String convertDateFromOneFormatToAnother(String formatAct, String formatReq, String date) {
+        try {
+            DateTimeFormatter inputDtf = DateTimeFormatter.ofPattern(formatAct);
+            DateTimeFormatter outputDtf = DateTimeFormatter.ofPattern(formatReq);
+            String stringToDate = LocalDate.parse(date, inputDtf).format(outputDtf);
+            System.out.println("Date after converting from one format to another : " + stringToDate);
+            return stringToDate;
+        } catch (Exception e) {
+            System.out.println("Exception in convertDateFromOneFormatToAnother method");
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public LocalDate convertStringToDate(String formatReq, String date)
     {
         try
         {

@@ -17,7 +17,8 @@ public class GlobalSearchPage extends SeleniumUtils {
     String lblNoDataDisplay = "//div[@class='ag-center-cols-clipper']";
     String expHeight = "1px";
     String btnFilter = "//button[text()='Filter']";
-    String btnCustomisedColumns = "//button[text()='Customize Columns']";
+    String btnCustomizeColumns = "//button[text()='Customize Columns']";
+    String lblCutomizeColumns = "//b[@id='offcanvasRightLabel']";
     String lstColumnFields = "//div[@class='ag-header-cell-label']//span[text()]";
     String txtSearchFields = "//div[@class='ag-header-cell-label']//span[text()]//following::div//input[@class='ag-input-field-input ag-text-field-input']";
     String tabActiveGlobalSearch = "//div[@class='col active-tab ng-star-inserted']";
@@ -57,6 +58,7 @@ public class GlobalSearchPage extends SeleniumUtils {
     String eleClaimNumberDisabled = "//input[@disabled]";
     String eleClaimNumberColumnOrder = "(//div[@class='offcanvas-header']//following::label)[1]";
     String chkClaimNumber = "//input[@id='claimNumber']";
+    String lblProvider = "(//label[contains(text(),'Provider')])[2]";
     String chkProvider = "//input[@id='providerFullName']";
     String lblProviderColumn = "//div[@class='ag-header-cell-label']//span[text()='Provider']";
     String elePagination = "//div[@class='ag-paging-panel ag-unselectable']";
@@ -101,6 +103,7 @@ public class GlobalSearchPage extends SeleniumUtils {
     private static int pageNumber = 0;
     private static int pageNumberNextNavigation = 0;
     private static String expPaginationMemberId = "";
+    private static int count=0;
 
     //Scenario: Verify user should get no result by default on Global search page
     public void clickOnGlobalSearch() {
@@ -139,7 +142,7 @@ public class GlobalSearchPage extends SeleniumUtils {
     }
 
     public void verifyCustomisedColumn() {
-        boolean value = isDisplayed(btnCustomisedColumns);
+        boolean value = isDisplayed(btnCustomizeColumns);
         Assert.assertTrue(value);
     }
 
@@ -189,8 +192,8 @@ public class GlobalSearchPage extends SeleniumUtils {
         sendKeysUsingKeyboardInput(txtClaimNumber);
     }
 
-    public void validateClaimNumberResult() {
-        explicitVisibilityOfWait(findElementByXpath(eleClaimNumber), 5);
+    public void validateClaimNumberResult()  throws InterruptedException{
+        threadSleep(10000);
         String actClaimNumber = getText(eleClaimNumber);
         System.out.println("actual claimNumber :" + actClaimNumber);
         Assert.assertEquals(expClaimNumber, actClaimNumber);
@@ -202,6 +205,7 @@ public class GlobalSearchPage extends SeleniumUtils {
         findElementAndSendKeys(findElementByXpath(txtClaimNumber), expClaimNumber);
         threadSleep(1000);
         sendKeysUsingKeyboardInput(txtClaimNumber);
+        explicitTextToBePresentInElementLocatedWait(By.xpath(eleClaimNumber), 20, expClaimNumber);
     }
 
     //Scenario: Verify colour coding for Unclean status professional claims in Global Search page
@@ -236,11 +240,20 @@ public class GlobalSearchPage extends SeleniumUtils {
         findElementAndSendKeys(findElementByXpath(txtMemberId), expMemberId);
         threadSleep(1000);
         sendKeysUsingKeyboardInput(txtMemberId);
-        threadSleep(5000);
+        explicitTextToBePresentInElementLocatedWait(By.xpath(eleMemberId), 30, expMemberId);
+    }
+
+    //Scenario Outline: Verify color code for Pend On Hold Payer Review Management Review Approved Deny Prebatch Batch To Pay Paid Rejected state claim number
+    public void enterMemberIdInSearchFieldForColorCode() throws InterruptedException {
+        expMemberId = prop.getProperty("threeCharMemberID");
+        findElementAndSendKeys(findElementByXpath(txtMemberId), expMemberId);
+        threadSleep(1000);
+        sendKeysUsingKeyboardInput(txtMemberId);
+        explicitTextToBePresentInElementLocatedWait(By.xpath(eleMemberId), 50, expMemberId);
     }
 
     public void validateMemberIDResult() {
-        explicitVisibilityOfWait(findElementByXpath(eleMemberId), 5);
+        //explicitVisibilityOfWait(findElementByXpath(eleMemberId), 5);
         String actMemberId = getText(eleMemberId);
         System.out.println("actual member id :" + actMemberId);
         Assert.assertEquals(expMemberId, actMemberId);
@@ -272,8 +285,8 @@ public class GlobalSearchPage extends SeleniumUtils {
         threadSleep(3000);
     }
 
-    public void validateBillingProviderResult() {
-        explicitVisibilityOfWait(findElementByXpath(eleBillingProvider), 5);
+    public void validateBillingProviderResult() throws InterruptedException  {
+        threadSleep(5000);
         String actBillingProvider = getText(eleBillingProvider);
         System.out.println("actual Billing Provider :" + actBillingProvider);
         Assert.assertEquals(expBillingProvider, actBillingProvider);
@@ -372,10 +385,11 @@ public class GlobalSearchPage extends SeleniumUtils {
         findElementAndSendKeys(findElementByXpath(txtClaimNumber), expClaimNumber);
         threadSleep(1000);
         sendKeysUsingKeyboardInput(txtClaimNumber);
+        explicitTextToBePresentInElementLocatedWait(By.xpath(eleClaimNumber), 60, expClaimNumber);
     }
 
     public void validateClaimNumberResultForCharacterLimit() throws InterruptedException {
-        threadSleep(10000);
+        threadSleep(12000);
         explicitVisibilityOfWait(findElementByXpath(eleClaimNumber), 5);
         String actClaimNumber = getText(eleClaimNumber);
         System.out.println("actual claimNumber :" + actClaimNumber);
@@ -392,7 +406,7 @@ public class GlobalSearchPage extends SeleniumUtils {
         findElementAndSendKeys(findElementByXpath(txtMemberId), expMemberId);
         threadSleep(1000);
         sendKeysUsingKeyboardInput(txtMemberId);
-        threadSleep(5000);
+        explicitTextToBePresentInElementLocatedWait(By.xpath(eleMemberId), 40, expMemberId);
     }
 
     public void validateMemberIDResultForCharacterLimit() {
@@ -412,10 +426,11 @@ public class GlobalSearchPage extends SeleniumUtils {
         findElementAndSendKeys(findElementByXpath(txtPatientName), expPatientName);
         threadSleep(1000);
         sendKeysUsingKeyboardInput(txtPatientName);
-        threadSleep(3000);
+        explicitTextToBePresentInElementLocatedWait(By.xpath(elePatientName), 40, expPatientName);
     }
 
-    public void validatePatientResultForCharacterLimit() {
+    public void validatePatientResultForCharacterLimit() throws InterruptedException {
+        threadSleep(10000);
         explicitVisibilityOfWait(findElementByXpath(elePatientName), 5);
         String actPatientName = getText(elePatientName);
         System.out.println("actual patient name :" + actPatientName);
@@ -435,7 +450,8 @@ public class GlobalSearchPage extends SeleniumUtils {
         threadSleep(3000);
     }
 
-    public void validateBillingProviderResultForCharacterLimit() {
+    public void validateBillingProviderResultForCharacterLimit() throws InterruptedException {
+        threadSleep(10000);
         explicitVisibilityOfWait(findElementByXpath(eleBillingProvider), 5);
         String actPatientName = getText(eleBillingProvider);
         System.out.println("actual billing provider :" + actPatientName);
@@ -548,7 +564,7 @@ public class GlobalSearchPage extends SeleniumUtils {
         findElementAndSendKeys(findElementByXpath(txtMemberId), expMemberId);
         threadSleep(1000);
         sendKeysUsingKeyboardInput(txtMemberId);
-        threadSleep(5000);
+        explicitTextToBePresentInElementLocatedWait(By.xpath(eleMemberId), 40, expMemberId);
     }
 
     //Scenario: Verify color code for voided state claim number
@@ -557,12 +573,15 @@ public class GlobalSearchPage extends SeleniumUtils {
         findElementAndSendKeys(findElementByXpath(txtMemberId), expMemberId);
         threadSleep(1000);
         sendKeysUsingKeyboardInput(txtMemberId);
-        threadSleep(5000);
+        explicitTextToBePresentInElementLocatedWait(By.xpath(eleMemberId), 40, expMemberId);
     }
 
     //Scenario: Verify user should navigate to Customized Columns window when we click on Customized columns in Global Search page
-    public void clickOnCustomiseColumn() {
-        clickElement(btnCustomisedColumns);
+    public void clickOnCustomizeColumn() throws Exception {
+        clickOnElementByJS(findElementByXpath(btnCustomizeColumns), driver);
+        explicitTextToBePresentInElementLocatedWait(By.xpath(lblCutomizeColumns), 10, "Customize");
+        String txt = findElementByXpath(lblCutomizeColumns).getText();
+        System.out.println("Customized columns label text: " + txt);
     }
 
     public void verifyCustomizeColumnWindow() {
@@ -630,15 +649,17 @@ public class GlobalSearchPage extends SeleniumUtils {
 
     //Scenario: Verify user should able to see saved/updated fields under Global Search page
     public void clickProviderCheckBox() {
+        String txt = findElementByXpath(lblProvider).getText();
+        System.out.println("Provider label name is: " + txt);
         explicitVisibilityOfWait(findElementByXpath(chkProvider), 5);
-        clickElement(chkProvider);
+        clickOnElementByJS(findElementByXpath(chkProvider), driver);
         boolean actChkValue = findElementByXpath(chkProvider).isSelected();
         Assert.assertTrue(actChkValue);
-        clickElement(btnClose);
+        clickOnElementByJS(findElementByXpath(btnClose), driver);
     }
 
-    public void unSelectProviderCheckBox() throws InterruptedException {
-        threadSleep(3000);
+    public void unSelectProviderCheckBox() throws Exception {
+        threadSleep(15000);
         clickElement(chkProvider);
         boolean actChkValue = findElementByXpath(chkProvider).isSelected();
         Assert.assertFalse(actChkValue);
@@ -646,9 +667,11 @@ public class GlobalSearchPage extends SeleniumUtils {
     }
 
     public void verifyProviderColumnDisplayInGlobalSearch() throws InterruptedException {
-        threadSleep(20000);
+        threadSleep(5000);
         scrollIntoView(findElementByXpath(txtState), driver);
         scrollIntoView(findElementByXpath(lblProviderColumn), driver);
+        String txt = findElementByXpath(lblProviderColumn).getText();
+        System.out.println("Provider column label name: " + txt);
         boolean value = isDisplayed(lblProviderColumn);
         Assert.assertTrue(value);
         threadSleep(1000);
@@ -666,7 +689,7 @@ public class GlobalSearchPage extends SeleniumUtils {
         findElementAndSendKeys(findElementByXpath(txtMemberId), expMemberId);
         threadSleep(1000);
         sendKeysUsingKeyboardInput(txtMemberId);
-        threadSleep(5000);
+        explicitTextToBePresentInElementLocatedWait(By.xpath(eleMemberId), 40, expMemberId);
     }
 
     public void getAllMemberIdResults() {

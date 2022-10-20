@@ -60,7 +60,7 @@ public class GlobalSearchStepDef extends GlobalSearchPage {
 
 
     @Then("user able to view the exact claim details")
-    public void user_able_to_view_the_exact_claim_details() {
+    public void user_able_to_view_the_exact_claim_details()  throws InterruptedException {
         validateClaimNumberResult();
     }
 
@@ -96,6 +96,13 @@ public class GlobalSearchStepDef extends GlobalSearchPage {
     public void user_able_to_view_the_exact_member_details() {
         validateMemberIDResult();
     }
+
+    //Scenario Outline: Verify color code for Pend On Hold Payer Review Management Review Approved Deny Prebatch Batch To Pay Paid Rejected state claim number
+    @When("user enters the Member Id in the Search field for color code")
+    public void user_enters_the_member_id_in_the_search_field_for_color_code() throws InterruptedException {
+        enterMemberIdInSearchFieldForColorCode();
+    }
+
 
     //Scenario: Verify user enters the Patient Name in the Search field
     @When("user enters the Patient Name in the Search field")
@@ -160,7 +167,7 @@ public class GlobalSearchStepDef extends GlobalSearchPage {
     }
 
     @Then("user able to view the claim details for given Billing Provider")
-    public void user_able_to_view_the_claim_details_for_given_billing_provider() {
+    public void user_able_to_view_the_claim_details_for_given_billing_provider() throws InterruptedException {
         validateBillingProviderResult();
     }
 
@@ -199,7 +206,7 @@ public class GlobalSearchStepDef extends GlobalSearchPage {
     }
 
     @Then("user should be able to display the claim records in a Global Search for given Patient criteria")
-    public void user_should_be_able_to_display_the_claim_records_in_a_global_search_for_given_patient_criteria() {
+    public void user_should_be_able_to_display_the_claim_records_in_a_global_search_for_given_patient_criteria() throws InterruptedException{
         validatePatientResultForCharacterLimit();
     }
 
@@ -210,7 +217,7 @@ public class GlobalSearchStepDef extends GlobalSearchPage {
     }
 
     @Then("user should be able to display the claim records in a Global Search for given Billing Provider criteria")
-    public void user_should_be_able_to_display_the_claim_records_in_a_global_search_for_given_billing_provider_criteria() {
+    public void user_should_be_able_to_display_the_claim_records_in_a_global_search_for_given_billing_provider_criteria() throws InterruptedException {
         validateBillingProviderResultForCharacterLimit();
     }
 
@@ -271,7 +278,7 @@ public class GlobalSearchStepDef extends GlobalSearchPage {
     }
 
     @Then("user should able to view corrected claim")
-    public void user_should_able_to_view_corrected_claim() {
+    public void user_should_able_to_view_corrected_claim()  throws InterruptedException {
         validateClaimNumberResult();
     }
 
@@ -320,7 +327,7 @@ public class GlobalSearchStepDef extends GlobalSearchPage {
     }
 
     @Then("user should able to view Unclean status claim")
-    public void user_should_able_to_view_unclean_status_claim() {
+    public void user_should_able_to_view_unclean_status_claim()  throws InterruptedException {
         validateClaimNumberResult();
     }
 
@@ -336,8 +343,8 @@ public class GlobalSearchStepDef extends GlobalSearchPage {
 
     //Scenario: Verify user should navigate to Customized Columns window when we click on Customized columns in Global Search page
     @When("the user clicks Customize Columns option")
-    public void the_user_clicks_customize_columns_option() {
-        clickOnCustomiseColumn();
+    public void the_user_clicks_customize_columns_option() throws Exception {
+        clickOnCustomizeColumn();
     }
     @Then("the user should able to navigate to Customized Columns window")
     public void the_user_should_able_to_navigate_to_customized_columns_window() {
@@ -384,7 +391,7 @@ public class GlobalSearchStepDef extends GlobalSearchPage {
     }
 
     @Then("user unselect check box for the Provider field")
-    public void user_unselect_check_box_for_the_provider_field() throws InterruptedException {
+    public void user_unselect_check_box_for_the_provider_field() throws Exception {
         unSelectProviderCheckBox();
     }
     @Then("user should not able to see the Provider column in the Global search grid page")

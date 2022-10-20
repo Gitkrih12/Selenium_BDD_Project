@@ -3,6 +3,7 @@ package Automation.Utilities;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.Assert;
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -29,6 +30,17 @@ public class Driver {
 
     public static PropertyReader prop;
     protected static String environment;
+
+    //  This variable reads project path till home directory
+    public static String basePath = System.getProperty("user.dir");
+
+    //    Console colors
+    public static final String ANSI_RED = "\u001B[31m";
+    public static final String ANSI_RESET = "\u001B[0m";
+    public static final String ANSI_GREEN = "\u001B[32m";
+    public static final String ANSI_YELLOW = "\u001B[33m";
+    public static final String ANSI_PURPLE = "\u001B[35m";
+    public static final String ANSI_CYAN = "\u001B[36m";
 
     public void readConfig() throws IOException
     {
@@ -69,7 +81,6 @@ public class Driver {
         }
         driver.manage().deleteAllCookies();
         driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         driver.get(URL);
     }
 

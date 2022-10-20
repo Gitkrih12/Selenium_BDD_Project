@@ -12,7 +12,7 @@ Feature: Claim Details
     Then user navigates to the "Claim Summary" page
     And user should view "(Hide)" option besides Claim Summary
 
-  @37392
+  @37392 @beta
   Scenario: Verify View Claim in CMS 1500 and Self Assign buttons in Claim Summary details page
     Given the user is in FFS Professional page
     When user clicks on the Claim Number
@@ -20,9 +20,8 @@ Feature: Claim Details
     And user should view Claim in CMS "View Claim in CMS 1500" and self assign "Self-Assign" buttons in Claim Summary details page
 
   @37393
-  @Sanity
+  @Sanity @beta
   Scenario: Verify column fields in Claim Summary details page
-    Given the user is in FFS Professional page
     When user clicks on the Claim Number in Universal Search
     Then user navigates to the "Claim Summary" page
     And user should be able to view all the column fields in Claim Summary Details page
@@ -41,7 +40,7 @@ Feature: Claim Details
       | Ref ID            |
     And user able to view all the field values in Claim Summary Details page
 
-  @37394
+  @37394 @beta
   Scenario: Verify Claim Summary Tab List
     Given the user is in FFS Professional page
     When user clicks on the Claim Number
@@ -59,7 +58,7 @@ Feature: Claim Details
       | Activity Logger     |
       | AR Transaction      |
 
-  @37397
+  @37397 @beta
   Scenario: Verify footer section in Claim Summary details page
     Given the user is in FFS Professional page
     When user clicks on the Claim Number
@@ -73,7 +72,7 @@ Feature: Claim Details
       | Update Auth       |
 
   @37402
-  @Sanity
+  @Sanity @beta
   Scenario: Verify Claim Details sections
     Given the user is in FFS Professional page
     When user clicks on the Claim Number
@@ -89,9 +88,8 @@ Feature: Claim Details
       | Date of Service                 |
       | Is Patient Condition Related To |
 
-  @37403
+  @37403 @beta
   Scenario: Validate Claim Information section
-    Given the user is in FFS Professional page
     When user clicks on the Claim Number in Universal Search
     Then user navigates to the "Claim Summary" page
     And user able to view the below fields under claim information section
@@ -105,9 +103,8 @@ Feature: Claim Details
       | Clean/Unclean Status |
     And user able to view all the field values under claim information section
 
-  @37405
+  @37405 @beta
   Scenario: Validate Payment Information section
-    Given the user is in FFS Professional page
     When user clicks on the Claim Number in Universal Search
     Then user navigates to the "Claim Summary" page
     And user able to view the below fields under Payment Information section
@@ -142,9 +139,8 @@ Feature: Claim Details
     Then user navigates to the "Claim Summary" page
     And user claim status as Un-Clean is unchecked by default
 
-  @37413
+  @37413 @beta
   Scenario: Validate Member Information section
-    Given the user is in FFS Professional page
     When user clicks on the Claim Number in Universal Search
     Then user navigates to the "Claim Summary" page
     And user able to view the below fields under Member Information section
@@ -164,9 +160,8 @@ Feature: Claim Details
       | Insured's Group Number            |
     And user able to view all the field values under Member Information section
 
-  @37414
+  @37414 @beta
   Scenario: Validate Rendering Provider Information section
-    Given the user is in FFS Professional page
     When user clicks on the Claim Number in Universal Search
     Then user navigates to the "Claim Summary" page
     And user able to view the below fields under Rendering Provider information section
@@ -175,9 +170,8 @@ Feature: Claim Details
       | Taxonomy                |
     And user able to view all the field values under Rendering Provider Information section
 
-  @37415
+  @37415 @beta
   Scenario: Validate Billing Provider Information section
-    Given the user is in FFS Professional page
     When user clicks on the Claim Number in Universal Search
     Then user navigates to the "Claim Summary" page
     And user able to view the below fields under Billing Provider Information section
@@ -194,9 +188,8 @@ Feature: Claim Details
       | Network Affiliation   |
     And user able to view all the field values under Billing Provider Information section
 
-  @37416
+  @37416 @beta
   Scenario: Validate Payer section
-    Given the user is in FFS Professional page
     When user clicks on the Claim Number in Universal Search
     Then user navigates to the "Claim Summary" page
     And user able to view the below fields under Payer section
@@ -209,9 +202,8 @@ Feature: Claim Details
       | Zip Code       |
     And user able to view all the field values under Payer section
 
-  @37418
+  @37418 @beta
   Scenario: Validate Date of Service section
-    Given the user is in FFS Professional page
     When user clicks on the Claim Number in Universal Search
     Then user navigates to the "Claim Summary" page
     And user able to view the below fields under Date of Service section
@@ -221,7 +213,7 @@ Feature: Claim Details
       | Patient Control Number |
     And user able to view all the field values under Date of Service section
 
-  @37421
+  @37421 @beta
   Scenario: Validate Is Patient Condition Related To section
     Given the user is in FFS Professional page
     When user clicks on the Claim Number
@@ -251,3 +243,68 @@ Feature: Claim Details
     Then user able to view the show link
     When user clicks on Show link
     Then user able to view the Claim Summary section
+
+  @42125
+  Scenario: Verify user able to view 1-New Claim Submission type in Claim details page
+    Given the user is in FFS Professional page
+    When user clicks on the Claim Number
+    Then user views Claim Submission type as New
+
+  @42127
+  Scenario: Verify user able to view 7-Corrected claim submission type in Claim Details page
+    When user clicks on FFS Professional in left navigation menu
+    Then the user should navigate to the FFS Professional page
+    When user enters Corrected claim in FFS Professional search criteria
+    And user clicks on the Claim Number
+    Then user views Claim Submission type as Corrected
+
+  @42125-1
+  Scenario: Verify user able to view 1-New Claim Submission type in CAP Professional page
+    When user clicks on CAP Professional in left navigation menu
+    Then the user should navigate to the CAP Professional page
+    When user clicks on the Claim Number
+    Then user views Claim Submission type as New
+
+  @42127-1
+  Scenario: Verify user able to view 7-Corrected claim submission type in CAP Professional page
+    When user clicks on CAP Professional in left navigation menu
+    Then the user should navigate to the CAP Professional page
+    When user enters Corrected claim in CAP Professional search criteria
+    And user clicks on the Claim Number
+    Then user views Claim Submission type as Corrected
+
+  @42196
+  Scenario Outline: Verify user able to view different types of claim submission from FFS Institutional page
+    When user clicks on FFS Institutional in left navigation menu
+    When user enters and clicks on the "<claim number>" in FFS Institutional Universal Search
+    Then user views the Claim Submission "<type>"
+    Examples:
+      | claim number   | type                       |
+      | I0021120320003 | 0-NON-PAYMENT/ZERO CLAIM   |
+      | I01MR22042700I | 1-ADMIT THROUGH DISCHARGE  |
+      | I0119040400004 | 2-INTERIM-FIRST CLAIM      |
+      | I0020121200014 | 3-INTERIM-CONTINUING CLAIM |
+      | I00MR211230002 | 4-INTERIM-LAST CLAIM       |
+      | I00MR220916005 | 5-LATE CHARGE ONLY         |
+      | I0020082700004 | 7-CORRECTED                |
+      | I00MR211229006 | 8-VOID/CANCEL              |
+      | I00MR220113001 | 9-FINAL CLAIM              |
+      | I00MR220309006 | A-NOTICE OF ADMISSION      |
+
+  @42197
+  Scenario Outline: Verify user able to view different types of claim submission from CAP Institutional page
+    When user clicks on CAP Institutional in left navigation menu
+    Then the user should navigate to the CAP Institutional page
+    When user enters and clicks on the "<claim number>" in CAP Institutional Universal Search
+    Then user views the Claim Submission "<type>"
+    Examples:
+      | claim number   | type                       |
+      | I0121120300007 | 0-NON-PAYMENT/ZERO CLAIM   |
+      | I0021061400032 | 1-ADMIT THROUGH DISCHARGE  |
+      | I0021062800002 | 2-INTERIM-FIRST CLAIM      |
+      | I00MR22042200D | 3-INTERIM-CONTINUING CLAIM |
+      | I0121101200001 | 4-INTERIM-LAST CLAIM       |
+      | I00MR220421002 | 5-LATE CHARGE ONLY         |
+      | I00MR220725009 | 7-CORRECTED                |
+      | I0021122300001 | 8-VOID/CANCEL              |
+      | I00MR220113003 | 9-FINAL CLAIM              |
