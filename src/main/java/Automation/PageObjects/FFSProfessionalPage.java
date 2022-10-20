@@ -91,8 +91,19 @@ public class FFSProfessionalPage extends SeleniumUtils {
     String eleTitle = "//span[text()='Title']";
     String eleCategory = "//span[text()='Category']";
     String eleDescription= "//label[text()='Description']";
-    String btnAdd = "//div[@class='dailog-actions']//button[text()='Add Note']";
+    String btnAdd = "//div[@class='dailog-actions']//button[text()='Add']";
     String btnCancel= "//div[@class='dailog-actions']//button[text()='Cancel']";
+    String txtTitle= "//input[@ng-reflect-name='title']";
+    String txtCategory= "//select[@name='ddlcategory']";
+    String txtDescription= "//textarea[@ng-reflect-name='description']";
+    String eleAddNoteToasterMsg= "//div[@role='alertdialog']";
+    String tabNotes= "//button[@id='nav-notes-tab']";
+    String eleNotes= "(//div[@col-id='title'])[2]/..";
+
+
+
+
+
 
 
 
@@ -111,6 +122,9 @@ public class FFSProfessionalPage extends SeleniumUtils {
     private static int pageNumber = 0;
     private static int pageNumberNextNavigation = 0;
     private static String expBatchID ="";
+    private static String title="";
+    private static String category="";
+    private static String description="";
 
 
     //Scenario: Verify user should navigates to FFS Professional screen
@@ -766,6 +780,55 @@ public class FFSProfessionalPage extends SeleniumUtils {
     public void verifyCancelButton(String expCancel){
         String actCancel = findElementByXpath(btnCancel).getText();
         Assert.assertEquals(expCancel,actCancel);
+    }
+    //Scenario: Verify user should be able to view all the Claim notes that are updated for that specific Batch results
+    public void enterTitle(){
+        title= prop.getProperty("Title");
+        findElementAndSendKeys(findElementByXpath(txtTitle), title);
+    }
+
+    public void selectCategory(){
+        category= prop.getProperty("Category");
+        explicitVisibilityOfWait(findElementByXpath(txtCategory), 5);
+        clickElement(txtCategory);
+        selectDropdownByVisibleText(txtCategory,category);
+    }
+    public void enterDescription(){
+        description=prop.getProperty("Description");
+        findElementAndSendKeys(findElementByXpath(txtDescription), description);
+    }
+    public void clickAdd(){
+        clickElement(btnAdd);
+    }
+    public void verifyAddNoteSuccessfullyMsg(String expToasterMsg) throws InterruptedException {
+        explicitTextToBePresentInElementLocatedWait(By.xpath(eleAddNoteToasterMsg), 15, expToasterMsg);
+        String actToasterMsg=findElementByXpath(eleAddNoteToasterMsg).getText();
+        System.out.println("expected toaster msg :"+expToasterMsg);
+        System.out.println("actual toaster msg :"+actToasterMsg);
+        Assert.assertEquals(expToasterMsg,actToasterMsg);
+    }
+    public void clickOnClaimNumber(){
+        clickElement(eleClaimNumber);
+
+    }
+    public void NavigateToNotesScreen(){
+        explicitTextToBePresentInElementLocatedWait(By.xpath(tabNotes), 15, "Notes");
+        clickElement(tabNotes);
+    }
+    public void verifyNotesAddedInNotesSection() throws InterruptedException {
+        threadSleep(5000);
+        explicitVisibilityOfWait(findElementByXpath(eleNotes), 10);
+        String actNotesText=findElementByXpath(eleNotes).getText();
+        System.out.println("Actual Notes :"+actNotesText);
+        String[] actNotes = actNotesText.split("\n");
+        String  actNotesContent=actNotes[0]+" "+actNotes[1]+" "+actNotes[2]+" "+actNotes[3];
+        System.out.println("actual notes content :"+actNotesContent);
+        if(actNotesContent.contains(title)&&actNotesContent.contains(category)&&actNotesContent.contains(description)){
+            Assert.assertTrue(true);
+        }else{
+            Assert.assertTrue(false);
+        }
+
     }
 
 

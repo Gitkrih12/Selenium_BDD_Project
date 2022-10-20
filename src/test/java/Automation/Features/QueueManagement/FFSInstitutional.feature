@@ -302,3 +302,39 @@ Feature: FFS Institutional
     And user clicks on Downloads
     Then user able to view the "Download EOP Letter" and "Download 835 File"
 
+  #71913-As an Adjudicator when I click on the “Add Note on the ‘Batch ID of One claim in FFS Institutional. So that I can be able to view all the claims/Batch ID notes got updated or not
+  @TC_71914
+  Scenario: Verify Add Note button in Paid Bucket
+    When user clicks on FFS Institutional in left navigation menu
+    Then the user should navigate to the FFS Institutional page
+    When user clicks on Paid bucket
+    And user enters Batch Id in search criteria for Normal Check in FFS Institutional page
+    Then user should see the Add Note button for given batch id
+
+  @TC_71915
+  Scenario: Verify fields in Add Note window
+    When user clicks on FFS Institutional in left navigation menu
+    Then the user should navigate to the FFS Institutional page
+    When user clicks on Paid bucket
+    And user enters Batch Id in search criteria for Normal Check in FFS Institutional page
+    Then user should see the Add Note button for given batch id
+    When user click on the Add Note button
+    Then user should see the "Title" "Category" and "Description" fields
+    And user should see the "Add" and "Cancel" buttons
+
+  @TC_71916
+  Scenario: Verify user should be able to view all the Claim notes that are updated for that specific Batch results
+    When user clicks on FFS Institutional in left navigation menu
+    Then the user should navigate to the FFS Institutional page
+    When user clicks on Paid bucket
+    And user enters Batch Id in search criteria for Normal Check in FFS Institutional page
+    Then user should see the Add Note button for given batch id
+    When user click on the Add Note button
+    When user enters values in the Title Category and Description fields
+    And user click on the Add button
+    Then user should able to see "Add note save successfully" message
+    And user clicks on Batch Id
+    When user clicks on claim number and navigates to Notes section
+    Then user should able see the added note in the Notes section
+
+
