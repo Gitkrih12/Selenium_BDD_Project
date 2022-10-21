@@ -131,6 +131,12 @@ public class MemberDetailsStepDef extends MemberDetailsPage {
         userViewsAllFieldsUnderClaimsSubTab(expColumns);
     }
 
+    @Then("user able to view all the field values under Claims subtab")
+    public void user_able_to_view_all_the_field_values_under_claims_subtab() {
+        verifyFieldValuesUnderClaims();
+    }
+
+
     //  Scenario: Verify Search functionality in claims subtab
     @Then("the user should be able to view the Search Criteria in Claim fields")
     public void the_user_should_be_able_to_view_the_search_criteria_in_claim_fields() {
@@ -142,6 +148,7 @@ public class MemberDetailsStepDef extends MemberDetailsPage {
         userClicksOnCOB();
     }
 
+    // Scenario: Verify user should navigate to COB tab and view column fields in Member Details page
     @Then("user should be able to navigate to the {string} subtab in Member Details page")
     public void user_should_be_able_to_navigate_to_the_subtab_in_member_details_page(String expSubTab) {
         userNavigatesToCOBSubTab(expSubTab);
@@ -150,6 +157,11 @@ public class MemberDetailsStepDef extends MemberDetailsPage {
     @Then("user able to view the following fields under COB subtab")
     public void user_able_to_view_the_following_fields_under_cob_subtab(DataTable expFields) {
         verifyCOBFields(expFields);
+    }
+
+    @Then("user able to view all the field values under COB subtab")
+    public void user_able_to_view_all_the_field_values_under_cob_subtab() {
+        verifyCOBFieldValues();
     }
 
     @When("user clicks on MOOP subtab")
