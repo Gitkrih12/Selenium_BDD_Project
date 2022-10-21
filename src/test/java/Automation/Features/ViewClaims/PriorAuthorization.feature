@@ -28,7 +28,7 @@ Feature: Prior Authorization
       | To Date       |
       | POS           |
       | Status        |
-    And user able to view all the field values under Prior Authorization tab
+#    And user able to view all the field values under Prior Authorization tab
 
   @46231 @beta
   Scenario: Verify Search box under each column and able to enter search criteria

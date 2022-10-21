@@ -43,7 +43,7 @@ public class MoopPage extends SeleniumUtils {
         List<WebElement> serviceDetailsValues = findElementsByXpath(lstMoopValues);
         System.out.println("Size:" + serviceDetailsValues.size());
         for (WebElement value : serviceDetailsValues) {
-            isDisplayed(value);
+            Assert.assertTrue(isDisplayed(value));
             System.out.println("Value is displayed: " + isDisplayed(value));
         }
     }

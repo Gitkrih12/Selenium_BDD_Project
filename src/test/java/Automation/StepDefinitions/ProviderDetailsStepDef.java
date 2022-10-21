@@ -144,7 +144,7 @@ public class ProviderDetailsStepDef extends ProviderDetailsPage {
     }
 
     @Then("user able to view the Vendor ID by default after selected")
-    public void user_able_to_view_the_vendor_id_by_default_after_selected() {
+    public void user_able_to_view_the_vendor_id_by_default_after_selected() throws InterruptedException {
         verifyVendorShouldBeDefaultAfterSelected();
     }
 
@@ -204,6 +204,12 @@ public class ProviderDetailsStepDef extends ProviderDetailsPage {
     }
 
     //  Scenario: Verify Facility Name section in Basic Information tab
+
+    @Then("user able to view {string} and Speciality Fields")
+    public void user_able_to_view_and_speciality_fields(String expFacilityName) {
+        verifySpecialityAndFacilityNameFields(expFacilityName);
+    }
+
     @Then("user able to view the following fields under Facility Name")
     public void user_able_to_view_the_following_fields_under_facility_name(DataTable expFields) {
         verifyFieldsUnderFacilityName(expFields);

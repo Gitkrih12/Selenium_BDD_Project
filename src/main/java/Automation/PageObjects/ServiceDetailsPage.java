@@ -82,7 +82,7 @@ public class ServiceDetailsPage extends SeleniumUtils {
         List<WebElement> serviceDetailsValues = findElementsByXpath(lstServiceDetailsValues);
         System.out.println("Size:" + serviceDetailsValues.size());
         for (WebElement value : serviceDetailsValues) {
-            isDisplayed(value);
+            Assert.assertTrue(isDisplayed(value));
             System.out.println("Value is displayed: " + isDisplayed(value));
         }
     }

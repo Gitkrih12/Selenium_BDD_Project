@@ -69,7 +69,7 @@ Feature: Provider Details
       | Deactivate        |
 
   @48990
-#  @Sanity
+  @Sanity
   Scenario: Verify the user able to navigate to the A/R Transactions page on clicking Vendor ID in Provider details tab view
     When user clicking on Claim Number in Global Search page
     And user clicks on the Provider Details tab
@@ -165,7 +165,7 @@ Feature: Provider Details
     And user clicks on Select button for the other Vendor ID
     Then user able to view the Vendor ID by default after selected
 
-  @60848
+#  @60848
   Scenario: Verify user able to view the pagination, cancel and close buttons for Map Pay To Provider Side Drawer
     Given the user is in FFS Professional page
     Then the user should navigate to the FFS Professional page
@@ -225,8 +225,8 @@ Feature: Provider Details
     When user clicking on Claim Number in Global Search page
     And user clicks on the Provider Details tab
     When user clicks on Provider ID under Group Rendering Provider Details
+    Then user able to view "Facility Name" and Speciality Fields
     Then user able to view the following fields under Facility Name
-      | Speciality    |
       | NPI           |
       | Medicare      |
       | Facility Type |
@@ -277,7 +277,7 @@ Feature: Provider Details
       | FFS Percentage           |
       | Medicare Allowable Rate* |
       | Service                  |
-      | Diagnostis               |
+      | Diagnostics              |
       | Lab                      |
       | DME                      |
       | Injections               |
@@ -297,7 +297,7 @@ Feature: Provider Details
       | Type Of Bill      |
       | Contract Language |
       | Rate              |
-      | Effective Dtae    |
+      | Effective Date    |
       | Term Date         |
 
   @55534
