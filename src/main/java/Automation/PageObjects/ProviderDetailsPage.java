@@ -96,7 +96,6 @@ public class ProviderDetailsPage extends SeleniumUtils {
     public void clickOnProviderDetails() throws InterruptedException {
         explicitElementClickableWaitByXpath(tabProviderDetails, 30);
         clickElement(tabProviderDetails);
-//        threadSleep(8000);
         explicitTextToBePresentInElementLocatedWait(By.xpath(eleValidated), 60, "Validated");
     }
 
@@ -590,25 +589,8 @@ public class ProviderDetailsPage extends SeleniumUtils {
     }
 
     public void verifyPracticeLocationList(DataTable expFields){
-        List<String> fieldsExp = expFields.asList();
         explicitElementClickableWaitByXpath(lstPracticeLocation, 30);
-        List<WebElement> actColumnFields = findElementsByXpath(lstPracticeLocation);
-        List<String> columnFieldsForCompare = new ArrayList<>();
-        System.out.println("Size " + actColumnFields.size());
-        for (WebElement column : actColumnFields) {
-            scrollIntoView(column, driver);
-            String text = column.getText();
-            columnFieldsForCompare.add(text);
-        }
-        System.out.println("Fields should display:" + columnFieldsForCompare);
-        System.out.println("Expected Fields are : " + fieldsExp);
-        for (String exp : fieldsExp) {
-            if (columnFieldsForCompare.contains(exp)) {
-                Assert.assertTrue(true);
-            } else {
-                Assert.fail(exp + " is not listed in actual list");
-            }
-        }
+        compare2Lists(expFields, lstPracticeLocation);
     }
 
     //  Scenario: Verify Contract Information tab in Provider Details screen
@@ -622,25 +604,8 @@ public class ProviderDetailsPage extends SeleniumUtils {
     }
 
     public void verifyFieldsUnderContractList(DataTable expFields){
-        List<String> fieldsExp = expFields.asList();
         explicitElementClickableWaitByXpath(lstContract, 30);
-        List<WebElement> actColumnFields = findElementsByXpath(lstContract);
-        List<String> columnFieldsForCompare = new ArrayList<>();
-        System.out.println("Size " + actColumnFields.size());
-        for (WebElement column : actColumnFields) {
-            scrollIntoView(column, driver);
-            String text = column.getText();
-            columnFieldsForCompare.add(text);
-        }
-        System.out.println("Fields should display:" + columnFieldsForCompare);
-        System.out.println("Expected Fields are : " + fieldsExp);
-        for (String exp : fieldsExp) {
-            if (columnFieldsForCompare.contains(exp)) {
-                Assert.assertTrue(true);
-            } else {
-                Assert.fail(exp + " is not listed in actual list");
-            }
-        }
+        compare2Lists(expFields, lstContract);
     }
 
     //  Scenario: Verify Alias Information tab in Provider Details screen
@@ -654,25 +619,8 @@ public class ProviderDetailsPage extends SeleniumUtils {
     }
 
     public void verifyProviderAliasList(DataTable expFields){
-        List<String> fieldsExp = expFields.asList();
         explicitElementClickableWaitByXpath(lstAliasInfo, 30);
-        List<WebElement> actColumnFields = findElementsByXpath(lstAliasInfo);
-        List<String> columnFieldsForCompare = new ArrayList<>();
-        System.out.println("Size " + actColumnFields.size());
-        for (WebElement column : actColumnFields) {
-            scrollIntoView(column, driver);
-            String text = column.getText();
-            columnFieldsForCompare.add(text);
-        }
-        System.out.println("Fields should display:" + columnFieldsForCompare);
-        System.out.println("Expected Fields are : " + fieldsExp);
-        for (String exp : fieldsExp) {
-            if (columnFieldsForCompare.contains(exp)) {
-                Assert.assertTrue(true);
-            } else {
-                Assert.fail(exp + " is not listed in actual list");
-            }
-        }
+        compare2Lists(expFields, lstAliasInfo);
     }
 
     //  Scenario: Verify user should be able to navigate Map Provider window on clicking Map Provider button in Provider Details tab
@@ -693,25 +641,8 @@ public class ProviderDetailsPage extends SeleniumUtils {
         Assert.assertEquals(expField2, findElementByXpath(eleRenderingProvider).getText());
     }
 
-    public void verifyRenderingProvider(DataTable expFields){
-        List<String> fieldsExp = expFields.asList();
+    public void verifyRenderingProvider(DataTable expFields) {
         explicitElementClickableWaitByXpath(lstRenderingProvider, 30);
-        List<WebElement> actColumnFields = findElementsByXpath(lstRenderingProvider);
-        List<String> columnFieldsForCompare = new ArrayList<>();
-        System.out.println("Size " + actColumnFields.size());
-        for (WebElement column : actColumnFields) {
-            scrollIntoView(column, driver);
-            String text = column.getText();
-            columnFieldsForCompare.add(text);
-        }
-        System.out.println("Fields should display:" + columnFieldsForCompare);
-        System.out.println("Expected Fields are : " + fieldsExp);
-        for (String exp : fieldsExp) {
-            if (columnFieldsForCompare.contains(exp)) {
-                Assert.assertTrue(true);
-            } else {
-                Assert.fail(exp + " is not listed in actual list");
-            }
-        }
+        compare2Lists(expFields, lstRenderingProvider);
     }
 }
