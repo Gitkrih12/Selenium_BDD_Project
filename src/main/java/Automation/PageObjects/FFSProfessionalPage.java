@@ -87,6 +87,11 @@ public class FFSProfessionalPage extends SeleniumUtils {
     String ele835file = "//button[text()='Download 835 File']";
     String tabFFSProfessionalPend = "//button[@id='nav-pend-details-tab']";
     String tabOpenedAllTabs = "//div[@class='mat-tab-labels']";
+    
+
+
+
+
 
 
 
@@ -225,6 +230,7 @@ public class FFSProfessionalPage extends SeleniumUtils {
     //Scenario:Verify colour coding for Unclean status claims under Pend bucket in FFS professional page
     public void enterUnCleanStatusPendClaimNumber() throws InterruptedException {
         expClaimNumber = prop.getProperty("ffsProfessionalUnCleanStatusPendClaimNumber");
+        explicitVisibilityOfWait(findElementByXpath(txtClaimNumber), 5);
         findElementAndSendKeys(findElementByXpath(txtClaimNumber), expClaimNumber);
         threadSleep(1000);
         sendKeysUsingKeyboardInput(txtClaimNumber);
@@ -476,6 +482,7 @@ public class FFSProfessionalPage extends SeleniumUtils {
 
     //Scenario: Verify user able to navigate through pages by using Pagination functionality
     public void clickOnOnHold(){
+        explicitInvisibilityOfElementWithTextWait(By.xpath(tabOnHold), 60, "On Hold ()");
         clickElement(tabOnHold);
     }
     public void verifyPageNumbersAtBottomOfPage() throws InterruptedException {
@@ -721,8 +728,6 @@ public class FFSProfessionalPage extends SeleniumUtils {
         System.out.println("Actual row count is: " + actRecordCount);
         Assert.assertEquals(Integer.parseInt(expRowCount), actRecordCount);
     }
-
-
 
 
 

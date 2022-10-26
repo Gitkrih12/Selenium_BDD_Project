@@ -102,7 +102,7 @@ public class DocumentsPage extends SeleniumUtils {
         List<WebElement> attachmentValues = findElementsByXpath(lstAttachmentValues);
         System.out.println("Size:" + attachmentValues.size());
         for (WebElement value : attachmentValues) {
-            isDisplayed(value);
+            Assert.assertTrue(isDisplayed(value));
             System.out.println("Value is displayed: " + isDisplayed(value));
         }
     }
@@ -122,7 +122,7 @@ public class DocumentsPage extends SeleniumUtils {
         List<WebElement> ediFileValues = findElementsByXpath(lstEdiFilesValues);
         System.out.println("Size:" + ediFileValues.size());
         for (WebElement value : ediFileValues) {
-            isDisplayed(value);
+            Assert.assertTrue(isDisplayed(value));
             System.out.println("Value is displayed: " + isDisplayed(value));
         }
     }

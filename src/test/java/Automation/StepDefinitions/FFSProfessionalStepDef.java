@@ -75,8 +75,8 @@ public class FFSProfessionalStepDef extends FFSProfessionalPage {
     }
 
     //Scenario: Verify user able to navigate through pages by using Pagination functionality
-    @When("user clicks on On Hold bucket")
-    public void user_clicks_on_on_hold_bucket() {
+    @When("user clicks on Hold bucket")
+    public void user_clicks_on_hold_bucket() {
         clickOnOnHold();
     }
     @When("user should be able to view the page numbers at bottom of the page in FFS Professional page")

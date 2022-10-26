@@ -79,7 +79,7 @@ public class PriorAuthPage extends SeleniumUtils {
         List<WebElement> priorAuthValues = findElementsByXpath(lstPriorAuthValues);
         System.out.println("Size:" + priorAuthValues.size());
         for (WebElement value : priorAuthValues) {
-            isDisplayed(value);
+            Assert.assertTrue(isDisplayed(value));
             System.out.println("Value is displayed: " + isDisplayed(value));
         }
     }

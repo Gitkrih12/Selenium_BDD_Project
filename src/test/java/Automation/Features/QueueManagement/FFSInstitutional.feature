@@ -297,7 +297,7 @@ Feature: FFS Institutional
     When user clicks on FFS Institutional in left navigation menu
     Then the user should navigate to the FFS Institutional page
     When user clicks on Paid bucket
-    And user enters Batch Id in search criteria for Check Void in FFS Institutional page
+    And user enters Batch Id in search criteria for Normal Check in FFS Institutional page
     And user clicks on Batch Id
     And user clicks on Downloads
     Then user able to view the "Download EOP Letter" and "Download 835 File"

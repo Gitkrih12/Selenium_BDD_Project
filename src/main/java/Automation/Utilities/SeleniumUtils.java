@@ -1,5 +1,6 @@
 package Automation.Utilities;
 
+import io.cucumber.datatable.DataTable;
 import org.junit.Assert;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
@@ -1384,6 +1385,7 @@ public class SeleniumUtils extends Driver {
             return null;
         }
     }
+
     // ************** End of Get related methods **************** //
 
 
@@ -1514,7 +1516,35 @@ public class SeleniumUtils extends Driver {
         }
     }
 
+    /*
+    -Compare cucumber data table and list of values from xpath
+    -Cucumber data table would be converted to "String List"
+    -xpath web elements would be converted to "String list" using lambda expressions
+    */
+    public void compare2Lists(DataTable dataTable, String xpath) {
+        List<String> fieldsExp = dataTable.asList();
+        List<String> fieldsAct = findElementsByXpath(xpath).
+                stream().map(element -> element.getText().trim()).toList();
+        printStatementInGreenColor("Fields size actual", fieldsAct.size());
+        printStatementInGreenColor("Fields size expected", fieldsExp.size());
+        printStatementInGreenColor("Fields actual", fieldsAct);
+        printStatementInGreenColor("Fields expected", fieldsExp);
+        Assert.assertEquals(fieldsExp, fieldsAct);
+    }
 
+    /*
+    -This method is used to perform different display validations
+     For example, Fields, field values, Search boxes etc.
+     */
+    public void elementsDisplayValidation(String xpath) {
+        List<WebElement> fieldValues = findElementsByXpath(xpath);
+        printStatementInGreenColor("Fields size", fieldValues.size());
+        for (WebElement fieldValue : fieldValues) {
+            boolean status = isDisplayed(fieldValue);
+            printStatementInGreenColor("Field status is", status);
+            Assert.assertTrue(status);
+        }
+    }
     // ****************** End of Generic methods  *********************//
 
 

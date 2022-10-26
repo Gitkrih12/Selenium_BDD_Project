@@ -24,6 +24,7 @@ public class ServiceDetailsPage extends SeleniumUtils {
     String lstServiceDetailsValues = "//*[@id='nav-service-details']//div[contains(@class, 'row mt-1')]//div";
     String lstServiceLineFieldValues = "//table[@class='table table-striped ng-star-inserted']/tbody//div";
 
+
     private static String expClaimNumber = "";
     private static String expPricingTab = "";
 
@@ -36,7 +37,7 @@ public class ServiceDetailsPage extends SeleniumUtils {
 
     //  Scenario: Verify Adjudicator able to Navigate Service Details from Global Search and validate the fields
     public void enterClaimNumberInSearchField() throws InterruptedException {
-        threadSleep(1000);
+        explicitElementClickableWaitByXpath(inputClaimNumber, 10);
         expClaimNumber = prop.getProperty("claimNumber");
         findElementAndSendKeys(findElementByXpath(inputClaimNumber), expClaimNumber);
         threadSleep(1000);
@@ -81,7 +82,7 @@ public class ServiceDetailsPage extends SeleniumUtils {
         List<WebElement> serviceDetailsValues = findElementsByXpath(lstServiceDetailsValues);
         System.out.println("Size:" + serviceDetailsValues.size());
         for (WebElement value : serviceDetailsValues) {
-            isDisplayed(value);
+            Assert.assertTrue(isDisplayed(value));
             System.out.println("Value is displayed: " + isDisplayed(value));
         }
     }
