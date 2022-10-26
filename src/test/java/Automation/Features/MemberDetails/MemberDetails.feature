@@ -191,7 +191,7 @@ Feature: Member Details
       | Termination Date |
       | Policy ID        |
       | Carrier          |
-    And user able to view all the field values under COB subtab
+#    And user able to view all the field values under COB subtab
 
   @52454
   Scenario: Verify user should navigate to MOOP tab and view column fields in Member Details page
@@ -225,7 +225,7 @@ Feature: Member Details
       | Bill Type    |
       | Revenue Code |
       | Notes        |
-    And user able to view all the field values under Instructions subtab
+#    And user able to view all the field values under Instructions subtab
 
   @52592
   Scenario: Verify user should navigate to HOSPICE tab and view column fields in Member Details page
@@ -238,4 +238,4 @@ Feature: Member Details
       | Member Death Date  |
       | Hospice Begin Date |
       | Hospice End Date   |
-    And user able to view all the field values under Hospice subtab
+#    And user able to view all the field values under Hospice subtab

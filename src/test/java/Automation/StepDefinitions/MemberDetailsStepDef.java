@@ -159,11 +159,12 @@ public class MemberDetailsStepDef extends MemberDetailsPage {
         verifyCOBFields(expFields);
     }
 
-    @Then("user able to view all the field values under COB subtab")
+    /*@Then("user able to view all the field values under COB subtab")
     public void user_able_to_view_all_the_field_values_under_cob_subtab() {
         verifyCOBFieldValues();
-    }
+    }*/
 
+    //  Scenario: Verify user should navigate to MOOP tab and view column fields in Member Details page
     @When("user clicks on MOOP subtab")
     public void user_clicks_on_moop_subtab() throws InterruptedException {
         userClicksOnMOOPSubtab();
@@ -179,6 +180,12 @@ public class MemberDetailsStepDef extends MemberDetailsPage {
         verifyFieldsUnderMOOPSubtab(expFields);
     }
 
+    @Then("user able to view all the field values under Moop subtab")
+    public void user_able_to_view_all_the_field_values_under_moop_subtab() {
+        verifyMoopFieldValues();
+    }
+
+    //  Scenario: Verify user should navigate to Instructions tab and view column fields in Member Details page
     @When("user clicks on Instructions subtab")
     public void user_clicks_on_instructions_subtab() throws InterruptedException {
         userClicksOnInstructionsSubtab();
@@ -192,6 +199,11 @@ public class MemberDetailsStepDef extends MemberDetailsPage {
     @Then("user able to view the below mentioned fields under Instructions subtab")
     public void user_able_to_view_the_below_mentioned_fields_under_instructions_subtab(DataTable expColumns) {
         verifyColumnsUnderInstructions(expColumns);
+    }
+
+    @Then("user able to view all the field values under Instructions subtab")
+    public void user_able_to_view_all_the_field_values_under_instructions_subtab() {
+        verifyFieldValuesUnderInstructions();
     }
 
     @When("user clicks on Hospice subtab")
