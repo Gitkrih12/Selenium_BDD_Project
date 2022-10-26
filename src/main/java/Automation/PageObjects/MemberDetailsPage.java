@@ -297,6 +297,7 @@ public class MemberDetailsPage extends SeleniumUtils {
         }
     }
 
+    //  Scenario: Verify user should navigate to Instructions tab and view column fields in Member Details page
     public void userClicksOnInstructionsSubtab() throws InterruptedException {
         explicitElementClickableWaitByXpath(tabInstructions, 30);
         clickElement(tabInstructions);
@@ -320,6 +321,7 @@ public class MemberDetailsPage extends SeleniumUtils {
         }
     }
 
+    //  Scenario: Verify user should navigate to HOSPICE tab and view column fields in Member Details page
     public void userClicksOnHospiceSubtab() throws InterruptedException {
         explicitElementClickableWaitByXpath(tabHospice, 30);
         clickElement(tabHospice);

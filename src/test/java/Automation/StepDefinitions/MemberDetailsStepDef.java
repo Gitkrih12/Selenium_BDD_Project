@@ -206,6 +206,7 @@ public class MemberDetailsStepDef extends MemberDetailsPage {
         verifyFieldValuesUnderInstructions();
     }
 
+    //  Scenario: Verify user should navigate to HOSPICE tab and view column fields in Member Details page
     @When("user clicks on Hospice subtab")
     public void user_clicks_on_hospice_subtab() throws InterruptedException {
         userClicksOnHospiceSubtab();

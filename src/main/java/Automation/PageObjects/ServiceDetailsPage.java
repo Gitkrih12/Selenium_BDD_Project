@@ -22,7 +22,7 @@ public class ServiceDetailsPage extends SeleniumUtils {
     String lnkLineNumber = "(//*[@class='gridData ng-star-inserted']//a)[1]";
     String tabPricing = "//*[contains(text(),'Pricing')]";
     String lstServiceDetailsValues = "//*[@id='nav-service-details']//div[contains(@class, 'row mt-1')]//div";
-    String lstServiceLineFieldValues = "//table[@class='table table-striped ng-star-inserted']/tbody//div";
+    String lstServiceLineFieldValues = "//table[@class='table table-striped ng-star-inserted']/tbody//div[contains(@class, 'gridData') and text()]";
 
 
     private static String expClaimNumber = "";

@@ -24,7 +24,7 @@ public class ARLedgerPage extends SeleniumUtils {
     String txtCreatedOn = "//input[@aria-label='Created On Filter Input']";
     String lnkVendorId = "(//*[@class = 'ag-cell-value']//a)[1]";
     String txtTransactionType = "//*[@aria-label = 'Transaction Type Filter Input']";
-    String lstARTransactionValues = "(//*[@id='arTransacrtionsResultId']//div[@role='rowgroup'])[2]//span";
+    String lstARTransactionValues = "(//*[@id='arTransacrtionsResultId']//div[@role='rowgroup'])[2]//span[@class = 'ag-cell-value' and text()]";
     String txtTransactionDate = "//*[@aria-label = 'Transaction Date Filter Input']";
     String txtTransactionAmount = "//*[@aria-label = 'Transaction Amount ($) Filter Input']";
     String txtRunningBalance = "//*[@aria-label = 'Running Balance ($) Filter Input']";
@@ -180,7 +180,7 @@ public class ARLedgerPage extends SeleniumUtils {
         List<WebElement> arTransactionValues = findElementsByXpath(lstARTransactionValues);
         System.out.println("Size:" + arTransactionValues.size());
         for (WebElement value : arTransactionValues) {
-            isDisplayed(value);
+            Assert.assertTrue(isDisplayed(value));
             System.out.println("Value is displayed: " + isDisplayed(value));
         }
     }
