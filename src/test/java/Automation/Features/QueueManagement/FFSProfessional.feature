@@ -3,12 +3,14 @@ Feature: FFS Professional
   Background:
     Given the user is in CA Login screen
     When the user enters the valid username and password and click on login button
+    When user clicks on FFS Professional in left navigation menu
+    Then the user should navigate to the FFS Professional page
 
     #38954-As an adjudicator, I should be able to view FFS professional claims page with all claims details data so that I can search specific claim id details adding applicable filters
   @TC_60398 @Sanity
-  Scenario: Verify user should navigates to FFS Professional screen
-    When user clicks on FFS Professional in left navigation menu
-    Then the user should navigate to the FFS Professional page
+  #Scenario: Verify user should navigates to FFS Professional screen
+  # this scenario is already covered under background section
+
 
   @TC_58787
   Scenario: Verify by default user should be in the Pend state in FFS Professional screen

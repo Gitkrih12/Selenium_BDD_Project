@@ -816,8 +816,8 @@ public class FFSProfessionalPage extends SeleniumUtils {
         clickElement(tabNotes);
     }
     public void verifyNotesAddedInNotesSection() throws InterruptedException {
-        threadSleep(5000);
-        explicitVisibilityOfWait(findElementByXpath(eleNotes), 10);
+        explicitElementClickableWaitByXpath(eleNotes, 20);
+        //explicitVisibilityOfWait(findElementByXpath(eleNotes), 10);
         String actNotesText=findElementByXpath(eleNotes).getText();
         System.out.println("Actual Notes :"+actNotesText);
         String[] actNotes = actNotesText.split("\n");
