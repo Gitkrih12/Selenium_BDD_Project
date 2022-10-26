@@ -59,11 +59,23 @@ public class ProviderDetailsPage extends SeleniumUtils {
     String btnRevenueCode = "//button[contains(text(), 'Revenue Code')]";
     String lstRevenueCodeFields = "(//*[@id = 'resultsGrid1']//div[@ref='gridHeader'])[1]//span[@ref = 'eText']";
     String eleVendorId = "(//div[@col-id='uniquePayToId_1']//span[@class='ag-cell-value'])[last()]";
+    String tabLocationInfo = "//*[@id = 'nav-location-details-tab']";
+    String lstPracticeLocation = "//*[@id = 'nav-location-info']//tr//th";
+    String tabContractInfo = "//*[@id = 'nav-contract-details-tab']";
+    String lstContract = "//*[@id = 'nav-contract-info']//tr//th";
+    String tabAliasInfo = "//*[@id = 'nav-alias-info-tab']";
+    String lstAliasInfo = "//*[@id = 'nav-alias-info']//tr//th";
+    String btnMapProvider = "//*[contains(text(), 'Map Provider')]";
+    String titleMapRenderingProvider = "//*[contains(text(), 'Map Rendering Provider')]";
+    String eleTaxID = "//mat-dialog-container//p[contains(text(), 'Tax ID')]";
+    String eleRenderingProvider = "//mat-dialog-container//p[contains(text(), 'Rendering Provider')]";
+    String lstRenderingProvider = "//*[@id = 'resultsGridRenderingprovider']//span[@ref = 'eText' and text()]";
     String eleFacilityName = "//*[@id = 'nav-basic-details']//h6[contains(@class, 'columnFont')]";
     String eleSpeciality = "//*[contains(text(), 'Speciality')]";
     String eleValidated = "//div//b[contains(text(),'Validated')]";
     String lstSelectButton = "//div[@col-id='uniquePayToId']//button";
     String elePayToProvider = "//span[contains(text(),'Pay to Provider')]";
+
 
 
     private static String expFirstPage = "";
@@ -84,7 +96,6 @@ public class ProviderDetailsPage extends SeleniumUtils {
     public void clickOnProviderDetails() throws InterruptedException {
         explicitElementClickableWaitByXpath(tabProviderDetails, 30);
         clickElement(tabProviderDetails);
-//        threadSleep(8000);
         explicitTextToBePresentInElementLocatedWait(By.xpath(eleValidated), 60, "Validated");
     }
 
@@ -565,5 +576,73 @@ public class ProviderDetailsPage extends SeleniumUtils {
                 Assert.fail(exp + " is not listed in actual list");
             }
         }
+    }
+
+    //  Scenario: Verify Location Information tab in Provider Details screen
+    public void userClicksOnLocationInfo(){
+        explicitElementClickableWaitByXpath(tabLocationInfo, 30);
+        clickElement(tabLocationInfo);
+    }
+
+    public void userNavigatesToLocationInfoSubtab(String expSubtab){
+        Assert.assertEquals(expSubtab, findElementByXpath(tabLocationInfo).getText());
+    }
+
+    public void verifyPracticeLocationList(DataTable expFields){
+        explicitElementClickableWaitByXpath(lstPracticeLocation, 30);
+        compare2Lists(expFields, lstPracticeLocation);
+    }
+
+    //  Scenario: Verify Contract Information tab in Provider Details screen
+    public void userClicksOnContractInfo(){
+        explicitElementClickableWaitByXpath(tabContractInfo, 20);
+        clickElement(tabContractInfo);
+    }
+
+    public void userNavigatesToContractInfoSubtab(String expSubtab){
+        Assert.assertEquals(expSubtab, findElementByXpath(tabContractInfo).getText());
+    }
+
+    public void verifyFieldsUnderContractList(DataTable expFields){
+        explicitElementClickableWaitByXpath(lstContract, 30);
+        compare2Lists(expFields, lstContract);
+    }
+
+    //  Scenario: Verify Alias Information tab in Provider Details screen
+    public void userClicksOnAliasInfo(){
+        explicitElementClickableWaitByXpath(tabAliasInfo, 20);
+        clickElement(tabAliasInfo);
+    }
+
+    public void verifyUserNavigatesToAliasInfo(String expSubtab){
+        Assert.assertEquals(expSubtab, findElementByXpath(tabAliasInfo).getText());
+    }
+
+    public void verifyProviderAliasList(DataTable expFields){
+        explicitElementClickableWaitByXpath(lstAliasInfo, 30);
+        compare2Lists(expFields, lstAliasInfo);
+    }
+
+    //  Scenario: Verify user should be able to navigate Map Provider window on clicking Map Provider button in Provider Details tab
+    public void userClicksOnMapProviderButton(){
+        explicitElementClickableWaitByXpath(btnMapProvider, 20);
+        clickElement(btnMapProvider);
+    }
+
+    public void verifyUserNavigatesToMapPayProvider(String expWindow){
+        Assert.assertEquals(expWindow, findElementByXpath(titleMapRenderingProvider).getText());
+    }
+
+    //  Scenario: Verify user should able to validate Tax ID/SSN in Map Provider window
+    public void verifyFields(String expField1, String expField2){
+        explicitTextToBePresentInElementLocatedWait(By.xpath(eleTaxID), 20, expField1);
+        Assert.assertEquals(expField1, findElementByXpath(eleTaxID).getText());
+        explicitTextToBePresentInElementLocatedWait(By.xpath(eleRenderingProvider), 20, expField2);
+        Assert.assertEquals(expField2, findElementByXpath(eleRenderingProvider).getText());
+    }
+
+    public void verifyRenderingProvider(DataTable expFields) {
+        explicitElementClickableWaitByXpath(lstRenderingProvider, 30);
+        compare2Lists(expFields, lstRenderingProvider);
     }
 }
