@@ -477,6 +477,35 @@ public class FFSProfessionalStepDef extends FFSProfessionalPage {
         verifyNotesAddedInNotesSection();
     }
 
+    //Scenario: Verify error message when user enters Category and Description fields and Title field should leave as empty
+    @When("user enters values in the Category and Description fields")
+    public void user_enters_values_in_the_category_and_description_fields() {
+        selectCategory();
+        enterDescription();
+    }
+    @Then("user should able to see error message as {string} message")
+    public void user_should_able_to_see_error_message_as_message(String toasterMsg) throws InterruptedException {
+        verifyErrorMsg(toasterMsg);
+    }
+
+    //Scenario: Verify error message when user enters Title and Description fields and Category field should leave as empty
+    @When("user enters values in the Title and Description fields")
+    public void user_enters_values_in_the_title_and_description_fields() {
+        enterTitle();
+        enterDescription();
+    }
+
+    //Scenario: Verify error message when user enters Title and Category fields and Description field should leave as empty
+    @When("user enters values in the Title and Category fields")
+    public void user_enters_values_in_the_title_and_category_fields() {
+        enterTitle();
+        selectCategory();
+    }
+
+
+
+
+
 
 
 
