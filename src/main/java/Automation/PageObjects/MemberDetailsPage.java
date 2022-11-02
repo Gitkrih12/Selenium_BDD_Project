@@ -43,20 +43,20 @@ public class MemberDetailsPage extends SeleniumUtils {
     String lstProviderDetailValues = "//*[@id='nav-providerDetails-details']//span[@class = 'ag-cell-value']";
     String lstAddressValues = "(//*[@id='nav-address-details']//div[contains(@class, 'ag-row-first')])[2]//span[@class = 'ag-cell-value' and text()]";
     String lnkGlobalSearch = "(//div[contains(text(),'Global Search')])[1]";
-    String inputClaimNumber = "//input[@aria-label='Claim Number Filter Input']";
+    String txtClaimNumber = "//input[@aria-label='Claim Number Filter Input']";
     String eleClaimNumber = "(//div[@class='ag-pinned-left-cols-container']//a)[1]";
     String lstMemberShipInfoValues = "(//*[@class='grid-membership']//div[@ref='eBodyViewport'])[1]//div[@role = 'gridcell']";
     String lstMemberShipHistoryValues = "(//*[@class='grid-membership']//div[@ref='eBodyViewport'])[2]//div[@role = 'gridcell']";
     String lstClaimsFieldValues = "(//div[@id='nav-claims-details']//div[1]//a)[1] | (//div[@id='nav-claims-details']//div[@ref='eViewport']//div[@role='row'])[5]//span[text()]";
     String lstMoopFieldValues = "((//div[@id='nav-moop-details']//div[@role='rowgroup'])[2]//div[@role='row'])[1]//span";
-    String inputHospice = "//*[@id = 'nav-hospice-details']//div[@class = 'ag-floating-filter-input']//input";
-    String inputInstructions = "//*[@id = 'nav-adjudicatorInstructions-details']//div[@class = 'ag-floating-filter-input']//input";
-    String inputMoop = "//*[@id = 'nav-moop-details']//div[@class = 'ag-floating-filter-input']//input";
-    String inputCob = "//*[@id = 'nav-cob-details']//div[@class = 'ag-floating-filter-input']//input";
-    String inputMemberShipHistory = "(//*[@class='grid-membership']//div[@class = 'ag-header-container'])[2]//div[@class = 'ag-floating-filter-input']//input";
-    String inputMembershipInfo = "(//*[@class='grid-membership']//div[@class = 'ag-header-container'])[1]//div[@class = 'ag-floating-filter-input']//input";
-    String inputAddress = "//*[@id='nav-address-details']//div[@class = 'ag-floating-filter-input']//input";
-    String inputProviderDetails = "//*[@id='nav-providerDetails-details']//div[@class = 'ag-floating-filter-input']//input";
+    String txtHospice = "//*[@id = 'nav-hospice-details']//div[@class = 'ag-floating-filter-input']//input";
+    String txtInstructions = "//*[@id = 'nav-adjudicatorInstructions-details']//div[@class = 'ag-floating-filter-input']//input";
+    String txtMoop = "//*[@id = 'nav-moop-details']//div[@class = 'ag-floating-filter-input']//input";
+    String txtCob = "//*[@id = 'nav-cob-details']//div[@class = 'ag-floating-filter-input']//input";
+    String txtMemberShipHistory = "(//*[@class='grid-membership']//div[@class = 'ag-header-container'])[2]//div[@class = 'ag-floating-filter-input']//input";
+    String txtMembershipInfo = "(//*[@class='grid-membership']//div[@class = 'ag-header-container'])[1]//div[@class = 'ag-floating-filter-input']//input";
+    String txtAddress = "//*[@id='nav-address-details']//div[@class = 'ag-floating-filter-input']//input";
+    String txtProviderDetails = "//*[@id='nav-providerDetails-details']//div[@class = 'ag-floating-filter-input']//input";
 
     private static String expMemberInfoTab = "";
     private static String expClaimNumber = "";
@@ -108,7 +108,7 @@ public class MemberDetailsPage extends SeleniumUtils {
     }
 
     public void verifySearchCriteriaInProviderDetails(){
-        scrollToElementsAndValidateDisplayStatus(inputProviderDetails);
+        scrollToElementsAndValidateDisplayStatus(txtProviderDetails);
     }
 
     public void verifyFieldValuesUnderProviderDetails() {
@@ -132,7 +132,7 @@ public class MemberDetailsPage extends SeleniumUtils {
     }
 
     public void verifySearchCriteriaInAddress(){
-        scrollToElementsAndValidateDisplayStatus(inputAddress);
+        scrollToElementsAndValidateDisplayStatus(txtAddress);
     }
 
     public void verifyFieldValuesUnderAddress() {
@@ -146,11 +146,11 @@ public class MemberDetailsPage extends SeleniumUtils {
     }
 
     public void enterClaimNumberInSearchField() throws InterruptedException {
-        explicitElementClickableWaitByXpath(inputClaimNumber, 20);
+        explicitElementClickableWaitByXpath(txtClaimNumber, 20);
         expClaimNumber = prop.getProperty("membershipClaimNumber");
-        findElementAndSendKeys(findElementByXpath(inputClaimNumber), expClaimNumber);
+        findElementAndSendKeys(findElementByXpath(txtClaimNumber), expClaimNumber);
         threadSleep(1000);
-        sendKeysUsingKeyboardInput(inputClaimNumber);
+        sendKeysUsingKeyboardInput(txtClaimNumber);
     }
 
     public void clickOnClaimNumber() throws InterruptedException {
@@ -175,7 +175,7 @@ public class MemberDetailsPage extends SeleniumUtils {
     }
 
     public void verifySearchCriteriaInMembershipInfo(){
-        scrollToElementsAndValidateDisplayStatus(inputMembershipInfo);
+        scrollToElementsAndValidateDisplayStatus(txtMembershipInfo);
     }
 
     public void verifyFieldValuesUnderMembershipInformation() {
@@ -189,7 +189,7 @@ public class MemberDetailsPage extends SeleniumUtils {
     }
 
     public void verifySearchCriteriaInMembershipHistory(){
-        scrollToElementsAndValidateDisplayStatus(inputMemberShipHistory);
+        scrollToElementsAndValidateDisplayStatus(txtMemberShipHistory);
     }
 
     public void verifyFieldValuesUnderMembershipHistory() {
@@ -236,7 +236,7 @@ public class MemberDetailsPage extends SeleniumUtils {
     }
 
     public void verifySearchCriteriaInCob(){
-        scrollToElementsAndValidateDisplayStatus(inputCob);
+        scrollToElementsAndValidateDisplayStatus(txtCob);
     }
 
     /*public void verifyCOBFieldValues(){
@@ -264,7 +264,7 @@ public class MemberDetailsPage extends SeleniumUtils {
     }
 
     public void verifySearchCriteriaInMoop(){
-        scrollToElementsAndValidateDisplayStatus(inputMoop);
+        scrollToElementsAndValidateDisplayStatus(txtMoop);
     }
 
     public void verifyMoopFieldValues() {
@@ -287,7 +287,7 @@ public class MemberDetailsPage extends SeleniumUtils {
     }
 
     public void verifySearchCriteriaInInstructions(){
-        scrollToElementsAndValidateDisplayStatus(inputInstructions);
+        scrollToElementsAndValidateDisplayStatus(txtInstructions);
     }
 
     public void verifyFieldValuesUnderInstructions() {
@@ -310,6 +310,6 @@ public class MemberDetailsPage extends SeleniumUtils {
     }
 
     public void verifySearchCriteriaInHospice(){
-        scrollToElementsAndValidateDisplayStatus(inputHospice);
+        scrollToElementsAndValidateDisplayStatus(txtHospice);
     }
 }
