@@ -48,6 +48,11 @@ public class MemberDetailsStepDef extends MemberDetailsPage {
         userViewsFieldsUnderProviderDetails(expFields);
     }
 
+    @Then("user able to view the search criteria for all the columns in Provider Details tab")
+    public void user_able_to_view_the_search_criteria_for_all_the_columns_in_provider_details_tab() {
+        verifySearchCriteriaInProviderDetails();
+    }
+
     @Then("user able to view all the field values under Provider Details tab")
     public void user_able_to_view_all_the_field_values_under_provider_details_tab() {
         verifyFieldValuesUnderProviderDetails();
@@ -59,8 +64,8 @@ public class MemberDetailsStepDef extends MemberDetailsPage {
         userClicksOnAddressSubTab();
     }
 
-    @Then("user navigates to the {string} subtab")
-    public void user_navigates_to_the_subtab(String expSubTab) {
+    @Then("user navigates to the {string} subtab successfully")
+    public void user_navigates_to_the_subtab_successfully(String expSubTab) {
         userNavigatesToAddressSubTab(expSubTab);
     }
 
@@ -68,6 +73,11 @@ public class MemberDetailsStepDef extends MemberDetailsPage {
     @Then("user should be able to view the following columns")
     public void user_should_be_able_to_view_the_following_columns(DataTable expColumns) {
         userViewAddressSubTabColumns(expColumns);
+    }
+
+    @Then("user able to view the search criteria for all the columns in Address subtab")
+    public void user_able_to_view_the_search_criteria_for_all_the_columns_in_address_subtab() {
+        verifySearchCriteriaInAddress();
     }
 
     @Then("user able to view all the field values under Address subtab")
@@ -99,6 +109,11 @@ public class MemberDetailsStepDef extends MemberDetailsPage {
         userViewMemberShipInfoColumns(expFields);
     }
 
+    @Then("user able to view the search criteria for all the columns in Membership Information subtab")
+    public void user_able_to_view_the_search_criteria_for_all_the_columns_in_membership_information_subtab() {
+        verifySearchCriteriaInMembershipInfo();
+    }
+
     @Then("user able to view all the field values under Membership Information subtab")
     public void user_able_to_view_all_the_field_values_under_membership_information_subtab() {
         verifyFieldValuesUnderMembershipInformation();
@@ -108,6 +123,11 @@ public class MemberDetailsStepDef extends MemberDetailsPage {
     @Then("user should be able to view the following columns in Membership History")
     public void user_should_be_able_to_view_the_following_columns_in_membership_history(DataTable expMemberShipHistoryColumns) {
         userViewMemberShipHistoryColumns(expMemberShipHistoryColumns);
+    }
+
+    @Then("user able to view the search criteria for all the columns in Membership History subtab")
+    public void user_able_to_view_the_search_criteria_for_all_the_columns_in_membership_history_subtab() {
+        verifySearchCriteriaInMembershipHistory();
     }
 
     @Then("user able to view all the field values under Membership History subtab")
@@ -159,6 +179,11 @@ public class MemberDetailsStepDef extends MemberDetailsPage {
         verifyCOBFields(expFields);
     }
 
+    @Then("user able to view the search criteria for all the columns in COB subtab")
+    public void user_able_to_view_the_search_criteria_for_all_the_columns_in_cob_subtab() {
+        verifySearchCriteriaInCob();
+    }
+
     /*@Then("user able to view all the field values under COB subtab")
     public void user_able_to_view_all_the_field_values_under_cob_subtab() {
         verifyCOBFieldValues();
@@ -178,6 +203,11 @@ public class MemberDetailsStepDef extends MemberDetailsPage {
     @Then("user able to view the below mentioned fields under MOOP subtab")
     public void user_able_to_view_the_below_mentioned_fields_under_moop_subtab(DataTable expFields) {
         verifyFieldsUnderMOOPSubtab(expFields);
+    }
+
+    @Then("user able to view the search criteria for all the columns in Moop subtab")
+    public void user_able_to_view_the_search_criteria_for_all_the_columns_in_moop_subtab() {
+        verifySearchCriteriaInMoop();
     }
 
     @Then("user able to view all the field values under Moop subtab")
@@ -201,6 +231,11 @@ public class MemberDetailsStepDef extends MemberDetailsPage {
         verifyColumnsUnderInstructions(expColumns);
     }
 
+    @Then("user able to view the search criteria for all the columns in Instructions subtab")
+    public void user_able_to_view_the_search_criteria_for_all_the_columns_in_instructions_subtab() {
+        verifySearchCriteriaInInstructions();
+    }
+
     @Then("user able to view all the field values under Instructions subtab")
     public void user_able_to_view_all_the_field_values_under_instructions_subtab() {
         verifyFieldValuesUnderInstructions();
@@ -221,4 +256,10 @@ public class MemberDetailsStepDef extends MemberDetailsPage {
     public void user_able_to_view_the_below_mentioned_columns_under_hospice_subtab(DataTable expFields) {
         verifyFieldsUnderHospice(expFields);
     }
+
+    @Then("user able to view the search criteria for all the columns in Hospice subtab")
+    public void user_able_to_view_the_search_criteria_for_all_the_columns_in_hospice_subtab() {
+        verifySearchCriteriaInHospice();
+    }
+
 }

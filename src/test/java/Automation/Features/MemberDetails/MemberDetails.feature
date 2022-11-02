@@ -74,6 +74,7 @@ Feature: Member Details
       | Eff From       |
       | Eff To         |
       | Phone          |
+    And user able to view the search criteria for all the columns in Provider Details tab
     And user able to view all the field values under Provider Details tab
 
   @52363
@@ -81,7 +82,7 @@ Feature: Member Details
     When user clicking on Claim Number in Global Search page
     And user clicks on the Patient ID or MBR ID
     When user clicks on Address subtab in Member Details page
-    Then user navigates to the "Address" subtab
+    Then user navigates to the "Address" subtab successfully
 
   @52370
   Scenario: Verify column fields in Address sub tab in Member Details page
@@ -97,6 +98,7 @@ Feature: Member Details
       | ZIP Code     |
       | Phone        |
       | Fax          |
+    And user able to view the search criteria for all the columns in Address subtab
     And user able to view all the field values under Address subtab
 
   @52386
@@ -125,6 +127,7 @@ Feature: Member Details
       | Plan Term Date |
       | Address        |
       | Phone          |
+    And user able to view the search criteria for all the columns in Membership Information subtab
     And user able to view all the field values under Membership Information subtab
 
   @52392
@@ -146,6 +149,7 @@ Feature: Member Details
       | Plan Term Date |
       | Address        |
       | Phone          |
+    And user able to view the search criteria for all the columns in Membership History subtab
     And user able to view all the field values under Membership History subtab
 
   @52405
@@ -191,6 +195,7 @@ Feature: Member Details
       | Termination Date |
       | Policy ID        |
       | Carrier          |
+    And user able to view the search criteria for all the columns in COB subtab
 #    And user able to view all the field values under COB subtab
 
   @52454
@@ -206,6 +211,7 @@ Feature: Member Details
       | Deductible($)   |
       | Total($)        |
       | Max Limit($)    |
+    And user able to view the search criteria for all the columns in Moop subtab
     And user able to view all the field values under Moop subtab
 
   @52589
@@ -225,6 +231,7 @@ Feature: Member Details
       | Bill Type    |
       | Revenue Code |
       | Notes        |
+    And user able to view the search criteria for all the columns in Instructions subtab
 #    And user able to view all the field values under Instructions subtab
 
   @52592
@@ -238,4 +245,5 @@ Feature: Member Details
       | Member Death Date  |
       | Hospice Begin Date |
       | Hospice End Date   |
+    And user able to view the search criteria for all the columns in Hospice subtab
 #    And user able to view all the field values under Hospice subtab

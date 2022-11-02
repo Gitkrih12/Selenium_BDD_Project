@@ -4,6 +4,7 @@ import Automation.Utilities.SeleniumUtils;
 import io.cucumber.datatable.DataTable;
 import io.cucumber.java.bs.A;
 import org.junit.Assert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
 import java.sql.ClientInfoStatus;
@@ -46,57 +47,48 @@ public class MemberDetailsPage extends SeleniumUtils {
     String eleClaimNumber = "(//div[@class='ag-pinned-left-cols-container']//a)[1]";
     String lstMemberShipInfoValues = "(//*[@class='grid-membership']//div[@ref='eBodyViewport'])[1]//div[@role = 'gridcell']";
     String lstMemberShipHistoryValues = "(//*[@class='grid-membership']//div[@ref='eBodyViewport'])[2]//div[@role = 'gridcell']";
-    String lstClaimsFieldValues = "((//*[@id = 'resultsGrid']//div[@role = 'rowgroup'])[2]//div)[1]//span[@class = 'ag-cell-value' and text()]";
-    String lstMoopFieldValues = "(//*[contains(@class, 'ag-theme-alpine')])[7]//span[@class = 'ag-cell-value']";
+    String lstClaimsFieldValues = "(//div[@id='nav-claims-details']//div[1]//a)[1] | (//div[@id='nav-claims-details']//div[@ref='eViewport']//div[@role='row'])[5]//span[text()]";
+    String lstMoopFieldValues = "((//div[@id='nav-moop-details']//div[@role='rowgroup'])[2]//div[@role='row'])[1]//span";
+    String inputHospice = "//*[@id = 'nav-hospice-details']//div[@class = 'ag-floating-filter-input']//input";
+    String inputInstructions = "//*[@id = 'nav-adjudicatorInstructions-details']//div[@class = 'ag-floating-filter-input']//input";
+    String inputMoop = "//*[@id = 'nav-moop-details']//div[@class = 'ag-floating-filter-input']//input";
+    String inputCob = "//*[@id = 'nav-cob-details']//div[@class = 'ag-floating-filter-input']//input";
+    String inputMemberShipHistory = "(//*[@class='grid-membership']//div[@class = 'ag-header-container'])[2]//div[@class = 'ag-floating-filter-input']//input";
+    String inputMembershipInfo = "(//*[@class='grid-membership']//div[@class = 'ag-header-container'])[1]//div[@class = 'ag-floating-filter-input']//input";
+    String inputAddress = "//*[@id='nav-address-details']//div[@class = 'ag-floating-filter-input']//input";
+    String inputProviderDetails = "//*[@id='nav-providerDetails-details']//div[@class = 'ag-floating-filter-input']//input";
 
     private static String expMemberInfoTab = "";
     private static String expClaimNumber = "";
 
 
     //  Scenario: Verify user should navigates to Member Details screen on clicking Patient ID/MBR ID
-    public void userClicksOnPatientID() throws InterruptedException {
+    public void userClicksOnPatientID() {
         explicitElementClickableWaitByXpath(lnkPatientID, 40);
         clickElement(lnkPatientID);
-        threadSleep(3000);
+        explicitTextToBePresentInElementLocatedWait(By.xpath(tabProviderDetails), 20, "Provider Details");
     }
 
     public void verifyMemberInfoPage() {
         String actValue[] = findElementByXpath(tabMemberInfoPage).getText().split(" ");
         expMemberInfoTab = prop.getProperty("expMemberInfoScreen");
-        Assert.assertEquals(expMemberInfoTab, actValue[0] + actValue[1]);
+        Assert.assertEquals(expMemberInfoTab, actValue[0] + " " + actValue[1]);
     }
 
     //  Scenario: Verify fields in the Member Details page
     public void userViewsFields(DataTable expFields) {
-        List<String> fieldsExp = expFields.asList();
         explicitElementClickableWaitByXpath(lstMemberInfoFields, 40);
-        List<String> ActFields = findElementsByXpath(lstMemberInfoFields)
-                .stream().map((e) -> e.getText().trim()).collect(Collectors.toList());
-        System.out.println("Size :" + ActFields.size());
-        System.out.println("Member Info Fields should display:" + ActFields);
-        System.out.println("Expected fields are: " + fieldsExp);
-        Assert.assertEquals(ActFields, fieldsExp);
+        compare2Lists(expFields, lstMemberInfoFields);
     }
 
     public void verifyFieldValuesUnderMemberDetails() {
-        List<WebElement> memberDetailsValues = findElementsByXpath(lstMemberInfoFieldValues);
-        System.out.println("Size:" + memberDetailsValues.size());
-        for (WebElement value : memberDetailsValues) {
-            Assert.assertTrue(isDisplayed(value));
-            System.out.println("Value is displayed: " + isDisplayed(value));
-        }
+        elementsDisplayValidation(lstMemberInfoFieldValues);
     }
 
     //  Scenario: Verify Member Details tabs
     public void userViewsTheTabs(DataTable expTabs) {
-        List<String> fieldsExp = expTabs.asList();
         explicitElementClickableWaitByXpath(tabsList, 30);
-        List<String> ActFields = findElementsByXpath(tabsList)
-                .stream().map((e) -> e.getText().trim()).collect(Collectors.toList());
-        System.out.println("Size :" + ActFields.size());
-        System.out.println("All the tabs should display:" + ActFields);
-        System.out.println("Expected fields are: " + fieldsExp);
-        Assert.assertEquals(ActFields, fieldsExp);
+        compare2Lists(expTabs, tabsList);
     }
 
     //  Scenario: Verify user should navigate to Provider Details on Clicking Patient ID/MBR ID in View claim Details page
@@ -115,13 +107,12 @@ public class MemberDetailsPage extends SeleniumUtils {
         compare2Lists(expFields, lstProviderDetails);
     }
 
+    public void verifySearchCriteriaInProviderDetails(){
+        scrollToElementsAndValidateDisplayStatus(inputProviderDetails);
+    }
+
     public void verifyFieldValuesUnderProviderDetails() {
-        List<WebElement> providerDetailsValues = findElementsByXpath(lstProviderDetailValues);
-        System.out.println("Size:" + providerDetailsValues.size());
-        for (WebElement value : providerDetailsValues) {
-            Assert.assertTrue(isDisplayed(value));
-            System.out.println("Value is displayed: " + isDisplayed(value));
-        }
+        elementsDisplayValidation(lstProviderDetailValues);
     }
 
     //  Scenario: Verify user navigates to Address subtab in Member Details page
@@ -140,13 +131,12 @@ public class MemberDetailsPage extends SeleniumUtils {
         compare2Lists(expColumns, lstAddressColumns);
     }
 
+    public void verifySearchCriteriaInAddress(){
+        scrollToElementsAndValidateDisplayStatus(inputAddress);
+    }
+
     public void verifyFieldValuesUnderAddress() {
-        List<WebElement> addressValues = findElementsByXpath(lstAddressValues);
-        System.out.println("Size:" + addressValues.size());
-        for (WebElement value : addressValues) {
-            Assert.assertTrue(isDisplayed(value));
-            System.out.println("Value is displayed: " + isDisplayed(value));
-        }
+        elementsDisplayValidation(lstAddressValues);
     }
 
     //  Scenario: Verify user should navigate to Membership Information tab in Member Details page
@@ -156,7 +146,7 @@ public class MemberDetailsPage extends SeleniumUtils {
     }
 
     public void enterClaimNumberInSearchField() throws InterruptedException {
-        threadSleep(1000);
+        explicitElementClickableWaitByXpath(inputClaimNumber, 20);
         expClaimNumber = prop.getProperty("membershipClaimNumber");
         findElementAndSendKeys(findElementByXpath(inputClaimNumber), expClaimNumber);
         threadSleep(1000);
@@ -184,13 +174,12 @@ public class MemberDetailsPage extends SeleniumUtils {
         compare2Lists(expFields, lstMemberShipInfoFields);
     }
 
+    public void verifySearchCriteriaInMembershipInfo(){
+        scrollToElementsAndValidateDisplayStatus(inputMembershipInfo);
+    }
+
     public void verifyFieldValuesUnderMembershipInformation() {
-        List<WebElement> membershipInfoValues = findElementsByXpath(lstMemberShipInfoValues);
-        System.out.println("Size:" + membershipInfoValues.size());
-        for (WebElement value : membershipInfoValues) {
-            Assert.assertTrue(isDisplayed(value));
-            System.out.println("Value is displayed: " + isDisplayed(value));
-        }
+        elementsDisplayValidation(lstMemberShipInfoValues);
     }
 
     //  Scenario: Verify user should able to see Membership History column fields
@@ -199,13 +188,12 @@ public class MemberDetailsPage extends SeleniumUtils {
         compare2Lists(expMemberShipHistoryColumns, lstMemberShipHistory);
     }
 
+    public void verifySearchCriteriaInMembershipHistory(){
+        scrollToElementsAndValidateDisplayStatus(inputMemberShipHistory);
+    }
+
     public void verifyFieldValuesUnderMembershipHistory() {
-        List<WebElement> membershipHistoryValues = findElementsByXpath(lstMemberShipHistoryValues);
-        System.out.println("Size:" + membershipHistoryValues.size());
-        for (WebElement value : membershipHistoryValues) {
-            Assert.assertTrue(isDisplayed(value));
-            System.out.println("Value is displayed: " + isDisplayed(value));
-        }
+        elementsDisplayValidation(lstMemberShipHistoryValues);
     }
 
     //  Scenario: Verify column fields in Claims subtab
@@ -220,27 +208,16 @@ public class MemberDetailsPage extends SeleniumUtils {
 
     public void userViewsAllFieldsUnderClaimsSubTab(DataTable expColumns) {
         explicitElementClickableWaitByXpath(lstClaimsFields, 50);
-        compare2Lists(expColumns, lstClaimsFields);
+        scrollToElementsAndCompare2Lists(expColumns, lstClaimsFields);
     }
 
     public void verifyFieldValuesUnderClaims() {
-        List<WebElement> claimsValues = findElementsByXpath(lstClaimsFieldValues);
-        System.out.println("Size:" + claimsValues.size());
-        for (WebElement value : claimsValues) {
-            Assert.assertTrue(isDisplayed(value));
-            System.out.println("Value is displayed: " + isDisplayed(value));
-        }
+        elementsDisplayValidation(lstClaimsFieldValues);
     }
 
     //  Scenario: Verify Search functionality in claims subtab
     public void verifySearchBoxForAllFields() {
-        List<WebElement> ActSearchFields = findElementsByXpath(txtSearchFields);
-        explicitElementClickableWaitByXpath(txtSearchFields, 50);
-        for (WebElement column : ActSearchFields) {
-            scrollIntoView(column, driver);
-            boolean value = column.isDisplayed();
-            Assert.assertTrue(value);
-        }
+        scrollToElementsAndValidateDisplayStatus(txtSearchFields);
     }
 
     public void userClicksOnCOB() throws InterruptedException {
@@ -256,6 +233,10 @@ public class MemberDetailsPage extends SeleniumUtils {
     public void verifyCOBFields(DataTable expFields) {
         explicitElementClickableWaitByXpath(lstCOBFields, 30);
         compare2Lists(expFields, lstCOBFields);
+    }
+
+    public void verifySearchCriteriaInCob(){
+        scrollToElementsAndValidateDisplayStatus(inputCob);
     }
 
     /*public void verifyCOBFieldValues(){
@@ -278,23 +259,16 @@ public class MemberDetailsPage extends SeleniumUtils {
     }
 
     public void verifyFieldsUnderMOOPSubtab(DataTable expFields) {
-        List<String> fieldsExp = expFields.asList();
         explicitElementClickableWaitByXpath(lstMoopFields, 30);
-        List<String> actFields = findElementsByXpath(lstMoopFields)
-                .stream().map((e) -> e.getText().trim()).collect(Collectors.toList());
-        System.out.println("Size :" + actFields.size());
-        System.out.println("Moop Fields should display:" + actFields);
-        System.out.println("Expected fields are: " + fieldsExp);
-        Assert.assertEquals(actFields, fieldsExp);
+        compare2Lists(expFields, lstMoopFields);
+    }
+
+    public void verifySearchCriteriaInMoop(){
+        scrollToElementsAndValidateDisplayStatus(inputMoop);
     }
 
     public void verifyMoopFieldValues() {
-        List<WebElement> moopFieldValues = findElementsByXpath(lstMoopFieldValues);
-        System.out.println("Size:" + moopFieldValues.size());
-        for (WebElement value : moopFieldValues) {
-            Assert.assertTrue(isDisplayed(value));
-            System.out.println("Value is displayed: " + isDisplayed(value));
-        }
+        elementsDisplayValidation(lstMoopFieldValues);
     }
 
     //  Scenario: Verify user should navigate to Instructions tab and view column fields in Member Details page
@@ -312,13 +286,12 @@ public class MemberDetailsPage extends SeleniumUtils {
         compare2Lists(expColumns, lstInstructionFields);
     }
 
+    public void verifySearchCriteriaInInstructions(){
+        scrollToElementsAndValidateDisplayStatus(inputInstructions);
+    }
+
     public void verifyFieldValuesUnderInstructions() {
-        List<WebElement> instructionsFieldValues = findElementsByXpath(lstMoopFieldValues);
-        System.out.println("Size:" + instructionsFieldValues.size());
-        for (WebElement value : instructionsFieldValues) {
-            Assert.assertTrue(isDisplayed(value));
-            System.out.println("Value is displayed: " + isDisplayed(value));
-        }
+        elementsDisplayValidation(lstMoopFieldValues);
     }
 
     //  Scenario: Verify user should navigate to HOSPICE tab and view column fields in Member Details page
@@ -334,5 +307,9 @@ public class MemberDetailsPage extends SeleniumUtils {
     public void verifyFieldsUnderHospice(DataTable expFields) {
         explicitElementClickableWaitByXpath(lstHospiceFields, 30);
         compare2Lists(expFields, lstHospiceFields);
+    }
+
+    public void verifySearchCriteriaInHospice(){
+        scrollToElementsAndValidateDisplayStatus(inputHospice);
     }
 }
