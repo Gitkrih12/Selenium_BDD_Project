@@ -149,7 +149,7 @@
                     </includes>
 
                     <parallel>methods</parallel>
-                    <threadCount>4</threadCount>
+                    <threadCount>5</threadCount>
                     <perCoreThreadCount>false</perCoreThreadCount>
                 </configuration>
 

@@ -3,6 +3,7 @@ package Automation.PageObjects;
 import Automation.Utilities.SeleniumUtils;
 import io.cucumber.datatable.DataTable;
 import org.junit.Assert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
 import java.util.ArrayList;
@@ -30,6 +31,7 @@ public class FilesPage extends SeleniumUtils {
     String lst837PSenderRecords = "//div[@id='nav-837p-details']//div[@col-id='sender']//span[@class='ag-cell-value']";
     String txt837PStatus = "//div[@id='nav-837p-details']//input[@aria-label='Status Filter Input']";
     String lbl837PStatusColor = "(//div[@id='nav-837p-details']//div[@col-id='status']//span[contains(@style,'color')])[1]";
+    String lbl837PStatusType = "(//div[@id='nav-837p-details']//div[@col-id='status']//span[contains(@style,'Roboto')])[1]";
     String lbl837PSender = "//div[@id='nav-837p-details']//span[contains(text(),'Sender')]";
     String lst837PReceiverRecords = "//div[@id='nav-837p-details']//div[@col-id='receiver']//span[@class='ag-cell-value']";
     String lbl837PReceiver = "//div[@id='nav-837p-details']//span[contains(text(),'Receiver')]";
@@ -57,6 +59,7 @@ public class FilesPage extends SeleniumUtils {
     String btn837INext = "//div[@id='nav-837i-details']//span[@class='ag-icon ag-icon-next']";
     String btn837IPrevious = "//div[@id='nav-837i-details']//span[@class='ag-icon ag-icon-previous']";
     String lbl837IStatusColor = "(//div[@id='nav-837i-details']//div[@col-id='status']//span[contains(@style,'color')])[1]";
+    String lbl837IStatusType = "(//div[@id='nav-837i-details']//div[@col-id='status']//span[contains(@style,'Roboto')])[1]";
     String txt837IStatus = "//div[@id='nav-837i-details']//input[@aria-label='Status Filter Input']";
     String lbl837IFileName = "//div[@id='nav-837i-details']//span[contains(text(),'File Name')]";
     String lst837IFileNameRecords = "//div[@id='nav-837i-details']//div[@col-id='fileName']//span[@class='ag-cell-value']";
@@ -115,6 +118,7 @@ public class FilesPage extends SeleniumUtils {
     String btn999Next = "//div[@id='nav-999-details']//span[@class='ag-icon ag-icon-next']";
     String btn999Previous = "//div[@id='nav-999-details']//span[@class='ag-icon ag-icon-previous']";
     String lbl999StatusColor = "(//div[@id='nav-999-details']//div[@col-id='status']//span[contains(@style,'color')])[1]";
+    String lbl999StatusType = "(//div[@id='nav-999-details']//div[@col-id='status']//span[contains(@style,'Roboto')])[1]";
     String txt999Status = "//div[@id='nav-999-details']//input[@aria-label='Status Filter Input']";
     String lbl999FileName = "//div[@id='nav-999-details']//span[contains(text(),'File Name')]";
     String lst999FileNameRecords = "//div[@id='nav-999-details']//div[@col-id='fileName']//span[@class='ag-cell-value']";
@@ -144,6 +148,7 @@ public class FilesPage extends SeleniumUtils {
     String btn277CANext = "//div[@id='nav-277ca-details']//span[@class='ag-icon ag-icon-next']";
     String btn277CAPrevious = "//div[@id='nav-277ca-details']//span[@class='ag-icon ag-icon-previous']";
     String lbl277CAStatusColor = "(//div[@id='nav-277ca-details']//div[@col-id='status']//span[contains(@style,'color')])[1]";
+    String lbl277CAStatusType = "(//div[@id='nav-277ca-details']//div[@col-id='status']//span[contains(@style,'Roboto')])[1]";
     String txt277CAStatus = "//div[@id='nav-277ca-details']//input[@aria-label='Status Filter Input']";
     String lbl277CAFileName = "//div[@id='nav-277ca-details']//span[contains(text(),'File Name')]";
     String lst277CAFileNameRecords = "//div[@id='nav-277ca-details']//div[@col-id='fileName']//span[@class='ag-cell-value']";
@@ -175,6 +180,7 @@ public class FilesPage extends SeleniumUtils {
     String btn835Next = "//div[@id='nav-835-details']//span[@class='ag-icon ag-icon-next']";
     String btn835Previous = "//div[@id='nav-835-details']//span[@class='ag-icon ag-icon-previous']";
     String lbl835StatusColor = "(//div[@id='nav-835-details']//div[@col-id='status']//span[contains(@style,'color')])[1]";
+    String lbl835StatusType = "(//div[@id='nav-835-details']//div[@col-id='status']//span[contains(@style,'Roboto')])[1]";
     String txt835Status = "//div[@id='nav-835-details']//input[@aria-label='Status Filter Input']";
     String lbl835FileName = "//div[@id='nav-835-details']//span[contains(text(),'File Name')]";
     String lst835FileNameRecords = "//div[@id='nav-835-details']//div[@col-id='fileName']//span[@class='ag-cell-value']";
@@ -210,10 +216,8 @@ public class FilesPage extends SeleniumUtils {
     //    Scenario: Verify column fields in '837P Files' tab
     public void verifyUserIsOnFilesTab(String filesTabTextExp) throws InterruptedException {
         clickElement(mnuFileManagement);
-        moveToElement(mnuFiles).perform();
-        clickElement(mnuFiles);
-        threadSleep(1000);
-        explicitElementClickableWaitByXpath(tabFiles, 5);
+        explicitElementClickableWaitByXpath(mnuFiles, 10).click();
+        explicitTextToBePresentInElementLocatedWait(By.xpath(tabFiles), 10, "Files");
         String[] filesTabText = getText(tabFiles).split(" ");
         String filesTabTextAct = filesTabText[0];
         System.out.println("Actual files tab text is: " + filesTabTextAct);
@@ -222,45 +226,23 @@ public class FilesPage extends SeleniumUtils {
     }
 
     public void clickOn837PFilesTab() throws InterruptedException {
+        explicitInvisibilityOfElementWithTextWait(By.xpath(tab837PFiles), 40, "837P Files() ");
         explicitElementClickableWaitByXpath(tab837PFiles, 10);
         moveToElement(tab837PFiles).click().perform();
-        threadSleep(4000);
     }
 
     public void verifyUserAbleToSee837PColumnFields(DataTable fieldsList837P) throws InterruptedException {
-        List<String> fieldsList837PExp = fieldsList837P.asList();
-        List<WebElement> fields837P = findElementsByXpath(lst837PColumnFieldNames);
-        System.out.println("Elements size is: " + fields837P.size());
-        List<String> fieldsList837PAct = new ArrayList<>();
-        for (WebElement column : fields837P) {
-            threadSleep(2000);
-            scrollIntoView(column, driver);
-            String text = column.getText();
-            fieldsList837PAct.add(text);
-        }
-        System.out.println("837P column names actual size: " + fieldsList837PAct.size());
-        System.out.println("837P column names expected size: " + fieldsList837PExp.size());
-        System.out.println("837P actual column names: " + fieldsList837PAct);
-        System.out.println("837P expected column names: " + fieldsList837PExp);
-        for (String exp : fieldsList837PExp) {
-            if (fieldsList837PAct.contains(exp)) {
-                Assert.assertTrue(true);
-            } else {
-                Assert.fail(exp + " is not listed in actual");
-            }
-        }
+        explicitElementClickableWaitByXpath(lst837PColumnFieldNames, 10);
+        scrollToElementsAndCompare2Lists(fieldsList837P, lst837PColumnFieldNames);
     }
 
     public void verifyUserAbleToView837PColumnFieldsSearchBoxes() {
-        List<WebElement> SearchBoxes837P = findElementsByXpath(lst837PColumnSearchFields);
-        for (WebElement searchBox : SearchBoxes837P) {
-            scrollIntoView(searchBox, driver);
-            Assert.assertTrue(isDisplayed(searchBox));
-        }
+        scrollToElementsAndValidateDisplayStatus(lst837PColumnSearchFields);
     }
 
     //    Scenario: Verify user should be able to see the results of rows count next to the "837P Files" tab
     public void validateRowCountNextTo837PFilesTab() throws InterruptedException {
+        explicitInvisibilityOfElementWithTextWait(By.xpath(tab837PFiles), 60, "837P Files() ");
         validateRowCountNextToFilesTab(tab837PFiles, lst837PRecordsBar);
     }
 
@@ -269,7 +251,7 @@ public class FilesPage extends SeleniumUtils {
         if (Objects.equals(environment, "test")) {
             String paginationControlNumber837PExp = prop.getProperty("837PPaginationControlNumber");
             explicitElementClickableWaitByXpath(txt837PControlNumber, 5).sendKeys(paginationControlNumber837PExp);
-            threadSleep(2000);
+            explicitTextToBePresentInElementLocatedWait(By.xpath(ele837PControlNumber), 20, paginationControlNumber837PExp);
             String paginationControlNumber837PAct = explicitElementClickableWaitByXpath(ele837PControlNumber, 5).getText();
             System.out.println("837P control line is: " + paginationControlNumber837PAct);
             Assert.assertEquals(paginationControlNumber837PExp, paginationControlNumber837PAct);
@@ -415,29 +397,27 @@ public class FilesPage extends SeleniumUtils {
     public void validateRowCountNextToFilesTab(String fileTabXpath, String recordsBarXpath) throws InterruptedException {
         String recordsBarText = explicitElementClickableWaitByXpath(fileTabXpath, 5).getText();
         String rowCountAct = recordsBarText.substring(recordsBarText.indexOf("(") + 1, recordsBarText.indexOf(")"));
-        System.out.println(ANSI_GREEN + "Actual row count is: " + rowCountAct + ANSI_RESET);
-        threadSleep(4000);
+        printStatementInGreenColor("Actual row count is" , rowCountAct);
         scrollToElement(recordsBarXpath);
-        String[] RecordsExp = explicitElementClickableWaitByXpath(recordsBarXpath, 5).getText().split(" ");
-
-        if(RecordsExp[4].contains(","))
+        String[] records = explicitElementClickableWaitByXpath(recordsBarXpath, 5).getText().split(" ");
+        String rowCountExp;
+        if(records[4].contains(","))
         {
-            rowCountAct = RecordsExp[4].replace(",", "");
+            rowCountExp = records[4].replace(",", "");
         }
         else
         {
-            rowCountAct = RecordsExp[4];
+            rowCountExp = records[4];
         }
-
-        System.out.println(ANSI_GREEN + "Expected row count is: " + rowCountAct + ANSI_RESET);
-        Assert.assertEquals(rowCountAct, rowCountAct);
+        printStatementInGreenColor("Expected row count is" , rowCountExp);
+        Assert.assertEquals(rowCountExp, rowCountAct);
     }
 
 
     //    Scenario: Verify color code for Status View under '837P Files' tab
     public void verify837PStatusViewColorCoding(String status, String colorCode837PExp) throws InterruptedException {
-        explicitElementClickableWaitByXpath(txt837PStatus, 10).sendKeys(status);
-        threadSleep(4000);
+        explicitElementClickableWaitByXpath(txt837PStatus, 5).sendKeys(status);
+        explicitTextToBePresentInElementLocatedWait(By.xpath(lbl837PStatusType), 10, status);
         String colorCode837PAct = getColorCodeForBackground(lbl837PStatusColor);
         System.out.println("837P color code status is: " + colorCode837PAct);
         Assert.assertEquals(colorCode837PExp, colorCode837PAct);
@@ -446,11 +426,11 @@ public class FilesPage extends SeleniumUtils {
     //    Scenario: Verify Sorting functionality for "File Name" column under "837P Files" tab
     public void enter837PControlNumberUnderSearchField() throws InterruptedException {
         controlNumber837PSortExp = prop.getProperty("837PSortControlNumber");
-        findElementWithXpathAndsendKeys(txt837PControlNumber, controlNumber837PSortExp);
-        threadSleep(2000);
+        explicitElementClickableWaitByXpath(txt837PControlNumber, 10).sendKeys(controlNumber837PSortExp);
     }
 
     public void verify837PControlNumbersForGivenRecord() throws InterruptedException {
+        explicitTextToBePresentInElementLocatedWait(By.xpath(ele837PControlNumber), 10, controlNumber837PSortExp);
         String controlNumber837PSortAct = explicitElementClickableWaitByXpath(ele837PControlNumber, 5).getText();
         System.out.println("837P control number is: " + controlNumber837PSortAct);
         Assert.assertEquals(controlNumber837PSortExp, controlNumber837PSortAct);
@@ -613,11 +593,12 @@ public class FilesPage extends SeleniumUtils {
     //    Scenario: Verify Sorting functionality for "Control Number" column under "837P Files" tab
     public void enter837PReceivedDateUnderSearchField() throws InterruptedException {
         receivedDate837PSortExp = prop.getProperty("837PSortDate");
+        explicitElementClickableWaitByXpath(txt837PDateReceived, 10);
         findElementWithXpathAndsendKeys(txt837PDateReceived, receivedDate837PSortExp);
-        threadSleep(2000);
     }
 
     public void verifyUserAbleToView837PReceivedDates() {
+        explicitTextToBePresentInElementLocatedWait(By.xpath(ele837PDateReceived), 10, receivedDate837PSortExp);
         String receivedDate837PSortAct = explicitElementClickableWaitByXpath(ele837PDateReceived, 10).getText();
         System.out.println("837P received date is: " + receivedDate837PSortAct);
         Assert.assertEquals(receivedDate837PSortExp, receivedDate837PSortAct);
@@ -648,40 +629,18 @@ public class FilesPage extends SeleniumUtils {
 
     //    Scenario: Verify column fields in '837I Files' tab
     public void clickOn837IFilesTab() throws InterruptedException {
+        explicitInvisibilityOfElementWithTextWait(By.xpath(tab837I), 60, "837I() ");
         explicitElementClickableWaitByXpath(tab837I, 5);
         moveToElement(tab837I).click().perform();
-        threadSleep(4000);
     }
 
     public void verifyUserAbleToSee837IColumnFields(DataTable fieldsList837I) throws InterruptedException {
-        List<String> fieldsList837IExp = fieldsList837I.asList();
-        List<WebElement> fields837I = findElementsByXpath(lst837IColumnFieldNames);
-        List<String> fieldsList837IAct = new ArrayList<>();
-        for (WebElement column : fields837I) {
-            threadSleep(2000);
-            scrollIntoView(column, driver);
-            String text = column.getText();
-            fieldsList837IAct.add(text);
-        }
-        System.out.println("837I column names actual size: " + fieldsList837IAct.size());
-        System.out.println("837I column names expected size: " + fieldsList837IExp.size());
-        System.out.println("837I actual column names: " + fieldsList837IAct);
-        System.out.println("837I expected column names: " + fieldsList837IExp);
-        for (String exp : fieldsList837IExp) {
-            if (fieldsList837IAct.contains(exp)) {
-                Assert.assertTrue(true);
-            } else {
-                Assert.fail(exp + " is not listed in actual");
-            }
-        }
+        explicitElementClickableWaitByXpath(lst837IColumnFieldNames, 10);
+        scrollToElementsAndCompare2Lists(fieldsList837I, lst837IColumnFieldNames);
     }
 
     public void verifyUserAbleToView837IColumnFieldsSearchBoxes() {
-        List<WebElement> SearchBoxes837I = findElementsByXpath(lst837IColumnSearchFields);
-        for (WebElement searchBox : SearchBoxes837I) {
-            scrollIntoView(searchBox, driver);
-            Assert.assertTrue(isDisplayed(searchBox));
-        }
+        scrollToElementsAndValidateDisplayStatus(lst837IColumnSearchFields);
     }
 
     //    Scenario: Validate pagination functionality in '837I Files' tab
@@ -689,7 +648,7 @@ public class FilesPage extends SeleniumUtils {
         if (Objects.equals(environment, "test")) {
             String paginationControlNumber837IExp = prop.getProperty("837IPaginationControlNumber");
             explicitElementClickableWaitByXpath(txt837IControlNumber, 5).sendKeys(paginationControlNumber837IExp);
-            threadSleep(2000);
+            explicitTextToBePresentInElementLocatedWait(By.xpath(ele837IControlNumber), 10, paginationControlNumber837IExp);
             String paginationControlNumber837IAct = explicitElementClickableWaitByXpath(ele837IControlNumber, 5).getText();
             System.out.println("837I control line is: " + paginationControlNumber837IAct);
             Assert.assertEquals(paginationControlNumber837IExp, paginationControlNumber837IAct);
@@ -723,7 +682,7 @@ public class FilesPage extends SeleniumUtils {
     //    Scenario: Verify color code for Status View
     public void verify837IStatusViewColorCoding(String status, String colorCode837IExp) throws InterruptedException {
         explicitElementClickableWaitByXpath(txt837IStatus, 5).sendKeys(status);
-        threadSleep(4000);
+        explicitTextToBePresentInElementLocatedWait(By.xpath(lbl837IStatusType), 10, status);
         String colorCode837IAct = getColorCodeForBackground(lbl837IStatusColor);
         System.out.println("837I color code status is: " + colorCode837IAct);
         Assert.assertEquals(colorCode837IExp, colorCode837IAct);
@@ -731,78 +690,33 @@ public class FilesPage extends SeleniumUtils {
 
     //    Scenario: Verify column fields in '837D Files' tab
     public void clickOn837DFilesTab() throws InterruptedException {
+        explicitInvisibilityOfElementWithTextWait(By.xpath(tab837D), 60, "837D()");
         explicitElementClickableWaitByXpath(tab837D, 5);
         moveToElement(tab837D).click().perform();
-        threadSleep(2000);
     }
 
     public void verifyUserAbleToSee837DColumnFields(DataTable fieldsList837D) throws InterruptedException {
-        List<String> fieldsList837DExp = fieldsList837D.asList();
-        List<WebElement> fields837D = findElementsByXpath(lst837DColumnFieldNames);
-        List<String> fieldsList837DAct = new ArrayList<>();
-        for (WebElement column : fields837D) {
-            threadSleep(1000);
-            scrollIntoView(column, driver);
-            String text = column.getText();
-            fieldsList837DAct.add(text);
-        }
-        System.out.println("837D column names actual size: " + fieldsList837DAct.size());
-        System.out.println("837D column names expected size: " + fieldsList837DExp.size());
-        System.out.println("837D actual column names: " + fieldsList837DAct);
-        System.out.println("837D expected column names: " + fieldsList837DExp);
-        for (String exp : fieldsList837DExp) {
-            if (fieldsList837DAct.contains(exp)) {
-                Assert.assertTrue(true);
-            } else {
-                Assert.fail(exp + " is not listed in actual");
-            }
-        }
+        explicitElementClickableWaitByXpath(lst837DColumnFieldNames, 10);
+        scrollToElementsAndCompare2Lists(fieldsList837D, lst837DColumnFieldNames);
     }
-
     public void verifyUserAbleToView837DColumnFieldsSearchBoxes() {
-        List<WebElement> SearchBoxes837D = findElementsByXpath(lst837DColumnSearchFields);
-        for (WebElement searchBox : SearchBoxes837D) {
-            scrollIntoView(searchBox, driver);
-            Assert.assertTrue(isDisplayed(searchBox));
-        }
+        scrollToElementsAndValidateDisplayStatus(lst837DColumnSearchFields);
     }
 
     //    Scenario: Verify column fields in '999' tab
     public void clickOn999FilesTab() throws InterruptedException {
+        explicitInvisibilityOfElementWithTextWait(By.xpath(tab999), 60, "999()");
         explicitElementClickableWaitByXpath(tab999, 5);
         moveToElement(tab999).click().perform();
-        threadSleep(4000);
     }
 
     public void verifyUserAbleToSee999ColumnFields(DataTable fieldsList999) throws InterruptedException {
-        List<String> fieldsList999Exp = fieldsList999.asList();
-        List<WebElement> fields999 = findElementsByXpath(lst999ColumnFieldNames);
-        List<String> fieldsList999Act = new ArrayList<>();
-        for (WebElement column : fields999) {
-            threadSleep(1000);
-            scrollIntoView(column, driver);
-            String text = column.getText();
-            fieldsList999Act.add(text);
-        }
-        System.out.println("999 column names actual size: " + fieldsList999Act.size());
-        System.out.println("999 column names expected size: " + fieldsList999Exp.size());
-        System.out.println("999 actual column names: " + fieldsList999Act);
-        System.out.println("999 expected column names: " + fieldsList999Exp);
-        for (String exp : fieldsList999Exp) {
-            if (fieldsList999Act.contains(exp)) {
-                Assert.assertTrue(true);
-            } else {
-                Assert.fail(exp + " is not listed in actual");
-            }
-        }
+        explicitElementClickableWaitByXpath(lst999ColumnFieldNames, 10);
+        scrollToElementsAndCompare2Lists(fieldsList999, lst999ColumnFieldNames);
     }
 
     public void verifyUserAbleToView999ColumnFieldsSearchBoxes() {
-        List<WebElement> SearchBoxes999 = findElementsByXpath(lst999ColumnSearchFields);
-        for (WebElement searchBox : SearchBoxes999) {
-            scrollIntoView(searchBox, driver);
-            Assert.assertTrue(isDisplayed(searchBox));
-        }
+        scrollToElementsAndValidateDisplayStatus(lst999ColumnSearchFields);
     }
 
     //    Scenario: Validate pagination functionality in '999 Files' tab
@@ -833,7 +747,7 @@ public class FilesPage extends SeleniumUtils {
     //    Scenario Outline: Verify color code for Status View under 999 files tab
     public void verify999StatusViewColorCoding(String status, String colorCode999Exp) throws InterruptedException {
         explicitElementClickableWaitByXpath(txt999Status, 5).sendKeys(status);
-        threadSleep(4000);
+        explicitTextToBePresentInElementLocatedWait(By.xpath(lbl999StatusType), 10, status);
         String colorCode999Act = getColorCodeForBackground(lbl999StatusColor);
         System.out.println("999 color code status is: " + colorCode999Act);
         Assert.assertEquals(colorCode999Exp, colorCode999Act);
@@ -841,39 +755,17 @@ public class FilesPage extends SeleniumUtils {
 
     //    Scenario: Verify column fields in '277CA' tab
     public void clickOn277CAFilesTab() throws InterruptedException {
+        explicitInvisibilityOfElementWithTextWait(By.xpath(tab277CA), 60, "277CA () ");
         explicitElementClickableWaitByXpath(tab277CA, 5).click();
-        threadSleep(4000);
     }
 
     public void verifyUserAbleToSee277CAColumnFields(DataTable fieldsList277CA) throws InterruptedException {
-        List<String> fieldsList277CAExp = fieldsList277CA.asList();
-        List<WebElement> fields277CA = findElementsByXpath(lst277CAColumnFieldNames);
-        List<String> fieldsList277CAAct = new ArrayList<>();
-        for (WebElement column : fields277CA) {
-            threadSleep(1000);
-            scrollIntoView(column, driver);
-            String text = column.getText();
-            fieldsList277CAAct.add(text);
-        }
-        System.out.println("277CA column names actual size: " + fieldsList277CAAct.size());
-        System.out.println("277CA column names expected size: " + fieldsList277CAExp.size());
-        System.out.println("277CA actual column names: " + fieldsList277CAAct);
-        System.out.println("277CA expected column names: " + fieldsList277CAExp);
-        for (String exp : fieldsList277CAExp) {
-            if (fieldsList277CAAct.contains(exp)) {
-                Assert.assertTrue(true);
-            } else {
-                Assert.fail(exp + " is not listed in actual");
-            }
-        }
+        explicitElementClickableWaitByXpath(lst277CAColumnFieldNames, 10);
+        scrollToElementsAndCompare2Lists(fieldsList277CA, lst277CAColumnFieldNames);
     }
 
     public void verifyUserAbleToView277CAColumnFieldsSearchBoxes() {
-        List<WebElement> SearchBoxes277CA = findElementsByXpath(lst277CAColumnSearchFields);
-        for (WebElement searchBox : SearchBoxes277CA) {
-            scrollIntoView(searchBox, driver);
-            Assert.assertTrue(isDisplayed(searchBox));
-        }
+        scrollToElementsAndValidateDisplayStatus(lst277CAColumnSearchFields);
     }
 
     //    Scenario: Validate pagination functionality in '277CA Files' tab
@@ -904,7 +796,7 @@ public class FilesPage extends SeleniumUtils {
     //    Scenario Outline: Verify color code for Status View under 277CA files tab
     public void verify277CAStatusViewColorCoding(String status, String colorCode277CAExp) throws InterruptedException {
         explicitElementClickableWaitByXpath(txt277CAStatus, 5).sendKeys(status);
-        threadSleep(4000);
+        explicitTextToBePresentInElementLocatedWait(By.xpath(lbl277CAStatusType), 10, status);
         String colorCode277CAAct = getColorCodeForBackground(lbl277CAStatusColor);
         System.out.println("277CA color code status is: " + colorCode277CAAct);
         Assert.assertEquals(colorCode277CAExp, colorCode277CAAct);
@@ -912,9 +804,9 @@ public class FilesPage extends SeleniumUtils {
 
     //    Scenario: Validate pagination functionality in '835' tab
     public void clickOn835FilesTab() throws InterruptedException {
+        explicitInvisibilityOfElementWithTextWait(By.xpath(tab837PFiles), 40, "835 () ");
         explicitElementClickableWaitByXpath(tab835, 5);
         moveToElement(tab835).click().perform();
-        threadSleep(4000);
     }
     public void validateTheDataExceedsTheDefinedPageSizeUnder835FilesTab()
     {
@@ -945,7 +837,7 @@ public class FilesPage extends SeleniumUtils {
     public void verify835StatusViewColorCoding(String status, String colorCode835Exp) throws InterruptedException {
         scrollToElement(txt835Status);
         explicitElementClickableWaitByXpath(txt835Status, 5).sendKeys(status);
-        threadSleep(4000);
+        explicitTextToBePresentInElementLocatedWait(By.xpath(lbl835StatusType), 10, status);
         String colorCode835Act = getColorCodeForBackground(lbl835StatusColor);
         System.out.println("835 color code status is: " + colorCode835Act);
         Assert.assertEquals(colorCode835Exp, colorCode835Act);
@@ -953,34 +845,12 @@ public class FilesPage extends SeleniumUtils {
 
     //    Scenario: Verify column fields in '835' tab
     public void verifyUserAbleToSee835ColumnFields(DataTable fieldsList835) throws InterruptedException {
-        List<String> fieldsList835Exp = fieldsList835.asList();
-        List<WebElement> fields835 = findElementsByXpath(lst835ColumnFieldNames);
-        List<String> fieldsList835Act = new ArrayList<>();
-        for (WebElement column : fields835) {
-            threadSleep(1000);
-            scrollIntoView(column, driver);
-            String text = column.getText();
-            fieldsList835Act.add(text);
-        }
-        System.out.println("835 column names actual size: " + fieldsList835Act.size());
-        System.out.println("835 column names expected size: " + fieldsList835Exp.size());
-        System.out.println("835 actual column names: " + fieldsList835Act);
-        System.out.println("835 expected column names: " + fieldsList835Exp);
-        for (String exp : fieldsList835Exp) {
-            if (fieldsList835Act.contains(exp)) {
-                Assert.assertTrue(true);
-            } else {
-                Assert.fail(exp + " is not listed in actual");
-            }
-        }
+        explicitElementClickableWaitByXpath(lst835ColumnFieldNames, 10);
+        scrollToElementsAndCompare2Lists(fieldsList835, lst835ColumnFieldNames);
     }
     public void verifyUserAbleToView835ColumnFieldsSearchBoxes()
     {
-        List<WebElement> SearchBoxes835 = findElementsByXpath(lst835ColumnSearchFields);
-        for (WebElement searchBox : SearchBoxes835) {
-            scrollIntoView(searchBox, driver);
-            Assert.assertTrue(isDisplayed(searchBox));
-        }
+        scrollToElementsAndValidateDisplayStatus(lst835ColumnSearchFields);
     }
 
 
