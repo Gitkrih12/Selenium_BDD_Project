@@ -67,6 +67,7 @@ Feature: Fee Schedule
       | Team SURG               |
       | PHYS SUPV               |
       | DIAG Imaging Family IND |
+    And user able to view the field values in Payment Policy Indicators screen
 
   #60586-As an adjudicator, when I click on the “RVU” from ‘See Fee Schedules’ So that, I can be able to see the RVU Indicators details.
   @TC_63186
@@ -89,6 +90,7 @@ Feature: Fee Schedule
       | Facility PE RVU                  |
       | MP RVU                           |
       | Non-FAC PE Used for OPPS PMT AMT |
+    And user able to view the field values in RVU screen
 
   #60589-As an adjudicator, when I click on the “Geographic Practice Cost” from ‘See Fee Schedules’ So that, I can be able to see the Geographic Practice Cost Indicators details.
   @TC_70959
@@ -107,6 +109,7 @@ Feature: Fee Schedule
       | GPCI Work            |
       | GPCI PE              |
       | GPCI MP              |
+    And user able to view the field values in Geographic Practice Cost screen
 
 
 

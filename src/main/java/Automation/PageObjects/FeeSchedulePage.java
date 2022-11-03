@@ -25,9 +25,10 @@ public class FeeSchedulePage extends SeleniumUtils {
     String lstRVUColumnFields="(//div[@class='ag-header-row ag-header-row-column'])[8]//div[@role='columnheader']";
     String tabGeographicPracticeCost="//button[contains(text(),'Geographic Practice Cost')]";
     String lstGeographicPracticeCostColumnFields="(//div[@class='ag-header-row ag-header-row-column'])[11]//div[@role='columnheader']";
-    String lstFeeSchedulesFieldValues="(//div[contains(@class,'ag-row-even ag-row ag-row-level-0')])[2]//div";
-
-
+    String lstFeeSchedulesFieldValues="(//div[contains(@class,'ag-row-even ag-row-no-focus ag-row ag-row-level-0')])[2]//div[text()]";
+    String lstPaymentPolicyIndicatorsFieldValues="(//div[contains(@class,'ag-row-even ag-row-no-focus ag-row ag-row-level-0')])[5]//div[text()]";
+    String lstRVUFieldValues="(//div[contains(@class,'ag-row-even ag-row-no-focus ag-row ag-row-level-0')])[8]//div[text()]";
+    String lstGeographicPracticeCostFieldValues="(//div[contains(@class,'ag-row-even ag-row-no-focus ag-row ag-row-level-0')])[11]//div";
 
 
     private static String expClaimNumber = "";
@@ -98,35 +99,16 @@ public class FeeSchedulePage extends SeleniumUtils {
     }
 
     public void verifyFeeSchedulesColumnFields(DataTable columnList) throws InterruptedException {
-        List<String> expColumnList = columnList.asList();
-        List<WebElement> actColumnFields = findElementsByXpath(lstFeeSchedulesColumnFields);
-        List<String> actualColumnFieldsForCompare = new ArrayList<>();
-        for (WebElement column : actColumnFields) {
-            threadSleep(1000);
-            scrollIntoView(column, driver);
-            String text = column.getText();
-            actualColumnFieldsForCompare.add(text);
-        }
-        System.out.println("actual column fields " + actualColumnFieldsForCompare);
-        System.out.println("expected column fields " + expColumnList);
-        for (String expColumn : expColumnList) {
-            if (actualColumnFieldsForCompare.contains(expColumn)) {
-                Assert.assertTrue(true);
-            } else {
-                Assert.fail(expColumn + " column is not as expected");
-            }
-        }
-        //compare2Lists(columnList, lstFeeSchedulesColumnFields);
+        compare2Lists(columnList, lstFeeSchedulesColumnFields);
     }
 
     public void verifyFieldValuesInFeeSchedules(){
-       // scrollToElementsAndValidateDisplayStatus(lstFeeSchedulesFieldValues);
-
+       scrollToElementsAndValidateDisplayStatus(lstFeeSchedulesFieldValues);
     }
 
     //Scenario: Verify column fields in Payment Policy Indicators tab
     public void clickPaymentPolicyIndicators(){
-        explicitTextToBePresentInElementLocatedWait(By.xpath(tabPaymentPolicyIndicators), 10, "Payment Policy Indicators");
+        explicitElementClickableWaitByXpath(tabPaymentPolicyIndicators, 10);
         clickElement(tabPaymentPolicyIndicators);
     }
     public void verifyPaymentPolicyIndicatorsColumnFields(DataTable columnList) throws InterruptedException {
@@ -134,7 +116,7 @@ public class FeeSchedulePage extends SeleniumUtils {
         List<WebElement> actColumnFields = findElementsByXpath(lstPaymentPolicyIndicatorsColumnFields);
         List<String> actualColumnFieldsForCompare = new ArrayList<>();
         for (WebElement column : actColumnFields) {
-            threadSleep(1000);
+            threadSleep(5000);
             scrollIntoView(column, driver);
             String text = column.getText();
             actualColumnFieldsForCompare.add(text);
@@ -148,6 +130,10 @@ public class FeeSchedulePage extends SeleniumUtils {
                 Assert.fail(expColumn + " column is not as expected");
             }
         }
+    }
+    public void verifyFieldValuesInPaymentPolicyIndicator(){
+        explicitElementClickableWaitByXpath(lstPaymentPolicyIndicatorsFieldValues, 10);
+        scrollToElementsAndValidateDisplayStatus(lstPaymentPolicyIndicatorsFieldValues);
     }
 
     //Scenario: Verify user navigates to Payment Policy Indicators tab
@@ -159,7 +145,7 @@ public class FeeSchedulePage extends SeleniumUtils {
 
     //Scenario: Verify user navigates to RVU tab
     public void clickOnRVU(){
-        explicitTextToBePresentInElementLocatedWait(By.xpath(tabRVU), 10, "RVU");
+        explicitElementClickableWaitByXpath(tabRVU, 20);
         clickElement(tabRVU);
     }
 
@@ -189,6 +175,11 @@ public class FeeSchedulePage extends SeleniumUtils {
                 Assert.fail(expColumn + " column is not as expected");
             }
         }
+       //compare2Lists(columnList, lstRVUColumnFields);
+    }
+    public void verifyFieldValuesInRVU(){
+        explicitElementClickableWaitByXpath(lstRVUFieldValues, 10);
+        scrollToElementsAndValidateDisplayStatus(lstRVUFieldValues);
     }
 
     //Scenario: Verify user navigates to Geographic Practice Cost tab
@@ -224,8 +215,9 @@ public class FeeSchedulePage extends SeleniumUtils {
             }
         }
     }
-
-
-
+    public void verifyFieldValuesInGeographicPracticeCost(){
+        explicitElementClickableWaitByXpath(lstGeographicPracticeCostFieldValues, 10);
+        scrollToElementsAndValidateDisplayStatus(lstGeographicPracticeCostFieldValues);
+    }
 
 }

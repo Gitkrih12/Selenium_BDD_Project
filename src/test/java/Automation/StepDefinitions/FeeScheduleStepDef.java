@@ -71,6 +71,11 @@ public class FeeScheduleStepDef extends FeeSchedulePage {
     public void user_should_able_to_see_below_mentioned_fields_in_payment_policy_indicators_screen(DataTable columnList) throws InterruptedException {
         verifyPaymentPolicyIndicatorsColumnFields(columnList);
     }
+    @Then("user able to view the field values in Payment Policy Indicators screen")
+    public void user_able_to_view_the_field_values_in_payment_policy_indicators_screen() {
+        verifyFieldValuesInPaymentPolicyIndicator();
+    }
+
 
     //Scenario: Verify user navigates to RVU tab
     @When("user clicks on RVU tab")
@@ -82,6 +87,10 @@ public class FeeScheduleStepDef extends FeeSchedulePage {
     @Then("user should able to see below mentioned fields in RVU screen")
     public void user_should_able_to_see_below_mentioned_fields_in_rvu_screen(DataTable columnList) throws InterruptedException {
         verifyRVUColumnFields(columnList);
+    }
+    @Then("user able to view the field values in RVU screen")
+    public void user_able_to_view_the_field_values_in_rvu_screen() {
+        verifyFieldValuesInRVU();
     }
 
     //Scenario: Verify user navigates to Geographic Practice Cost tab
@@ -95,6 +104,12 @@ public class FeeScheduleStepDef extends FeeSchedulePage {
     public void user_should_able_to_see_below_mentioned_fields_in_geographic_practice_cost_screen(DataTable columnList) throws InterruptedException {
         verifyGeographicPracticeCostColumnFields(columnList);
     }
+
+    @Then("user able to view the field values in Geographic Practice Cost screen")
+    public void user_able_to_view_the_field_values_in_geographic_practice_cost_screen() {
+        verifyFieldValuesInGeographicPracticeCost();
+    }
+
 
 
 
