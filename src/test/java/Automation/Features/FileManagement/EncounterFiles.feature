@@ -58,7 +58,7 @@ Feature: Encounter files
     When user enters encounter age days under age days search box
     Then user should be able to see encounter age days details under results section
 
-  @68296-5
+  @68296-6
   Scenario: Verify user should be able to get results for applying filter on "Claim Type" column under Encounter files tab
     When user enters encounter claim type under claim type search box
     Then user should be able to see encounter claim type details under results section
