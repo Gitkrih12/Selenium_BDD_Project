@@ -337,6 +337,36 @@ Feature: CAP Institutional
     When user clicks on claim number and navigates to Notes section
     Then user should able see the added note in the Notes section
 
+  @TC_72863
+  Scenario: Verify error message when user enters Category and Description fields and Title field should leave as empty
+    When user clicks on Paid bucket
+    And user enters Batch Id in search criteria
+    Then user should see the Add Note button for given batch id
+    When user click on the Add Note button
+    When user enters values in the Category and Description fields
+    And user click on the Add button
+    Then user should able to see error message as "Please enter Title" message
+
+  @TC_72864
+  Scenario: Verify error message when user enters Title and Description fields and Category field should leave as empty
+    When user clicks on Paid bucket
+    And user enters Batch Id in search criteria
+    Then user should see the Add Note button for given batch id
+    When user click on the Add Note button
+    When user enters values in the Title and Description fields
+    And user click on the Add button
+    Then user should able to see error message as "Please select Category" message
+
+  @TC_72865
+  Scenario: Verify error message when user enters Title and Category fields and Description field should leave as empty
+    When user clicks on Paid bucket
+    And user enters Batch Id in search criteria
+    Then user should see the Add Note button for given batch id
+    When user click on the Add Note button
+    When user enters values in the Title and Category fields
+    And user click on the Add button
+    Then user should able to see error message as "Please enter Description" message
+
 
 
 
