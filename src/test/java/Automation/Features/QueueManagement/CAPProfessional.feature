@@ -272,7 +272,7 @@ Feature: CAP Professional
     Then user should able to see Check Type as "ReIssue"
 
   @TC_68575
-  Scenario: Then user able to view the check void information of that batch in Check Info page
+  Scenario: Verify user able to view the check void information in Check Info page
     When user clicks on CAP Professional in left navigation menu
     Then the user should navigate to the CAP Professional page
     When user clicks on Paid bucket
@@ -281,7 +281,7 @@ Feature: CAP Professional
     And user clicks on the Check Info tab
     Then user should able to see Check Type as "Void" for voided batch
 
-  @TC_51996 @Sanity @beta
+  @TC_51996 @Sanity
   Scenario: Verify user able to navigate to the History Doc tab on clicking History Doc tab
     When user clicks on CAP Professional in left navigation menu
     Then the user should navigate to the CAP Professional page

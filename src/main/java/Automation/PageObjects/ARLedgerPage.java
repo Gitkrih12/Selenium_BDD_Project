@@ -6,10 +6,7 @@ import org.junit.Assert;
 import org.openqa.selenium.WebElement;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class ARLedgerPage extends SeleniumUtils {
 
@@ -27,7 +24,7 @@ public class ARLedgerPage extends SeleniumUtils {
     String txtCreatedOn = "//input[@aria-label='Created On Filter Input']";
     String lnkVendorId = "(//*[@class = 'ag-cell-value']//a)[1]";
     String txtTransactionType = "//*[@aria-label = 'Transaction Type Filter Input']";
-    String lstARTransactionValues = "(//*[@id='arTransacrtionsResultId']//div[@role='rowgroup'])[2]//span";
+    String lstARTransactionValues = "(//*[@id='arTransacrtionsResultId']//div[@role='rowgroup'])[2]//span[@class = 'ag-cell-value' and text()]";
     String txtTransactionDate = "//*[@aria-label = 'Transaction Date Filter Input']";
     String txtTransactionAmount = "//*[@aria-label = 'Transaction Amount ($) Filter Input']";
     String txtRunningBalance = "//*[@aria-label = 'Running Balance ($) Filter Input']";
@@ -108,44 +105,11 @@ public class ARLedgerPage extends SeleniumUtils {
     }
 
     public void verifyAppropriateResults() {
-        HashMap<String, String> testValues = new HashMap<String, String>();
-        testValues.put("Vendor ID", "V0000000029");
-        testValues.put("Vendor Name", "ELENA NORCH");
-        testValues.put("Tax ID/SSN", "182228535");
-        testValues.put("Amount($)", "37.83");
-        testValues.put("Created On", "02/27/2022");
-
-        HashMap<String, String> uatValues = new HashMap<>();
-        uatValues.put("Vendor ID", "V0000000005");
-        uatValues.put("Vendor Name", "SAFAR AIDA");
-        uatValues.put("Tax ID/SSN", "020737147");
-        uatValues.put("Amount($)", "400");
-        uatValues.put("Created On", "07/27/2022");
-
-        if (environment.contains("test")) {
-            List<String> fieldsExp = testValues.values().stream().collect(Collectors.toList());
-            List<String> actValues = findElementsByXpath(lstARLedgerValues)
-                    .stream().map((e) -> e.getText().trim()).collect(Collectors.toList());
-            System.out.println("Size:" + actValues.size());
-            for (String exp : fieldsExp) {
-                if (actValues.contains(exp)) {
-                    Assert.assertTrue(true);
-                } else {
-                    Assert.fail(exp + " is not listed in actual list");
-                }
-            }
-        } else {
-            List<String> fieldsExp = uatValues.values().stream().collect(Collectors.toList());
-            List<String> actValues = findElementsByXpath(lstARLedgerValues)
-                    .stream().map((e) -> e.getText().trim()).collect(Collectors.toList());
-            System.out.println("Size:" + actValues.size());
-            for (String exp : fieldsExp) {
-                if (actValues.contains(exp)) {
-                    Assert.assertTrue(true);
-                } else {
-                    Assert.fail(exp + " is not listed in actual list");
-                }
-            }
+        List<WebElement> arLedgerValues = findElementsByXpath(lstARLedgerValues);
+        System.out.println("Size:" + arLedgerValues.size());
+        for (WebElement value : arLedgerValues) {
+            Assert.assertTrue(isDisplayed(value));
+            System.out.println("Value is displayed: " + isDisplayed(value));
         }
     }
 
@@ -213,52 +177,11 @@ public class ARLedgerPage extends SeleniumUtils {
     }
 
     public void verifyAppropriateResultsInARTransaction() {
-        HashMap<String, String> testValues = new HashMap<String, String>();
-        testValues.put("Transaction Type", "Credit/Overpaid");
-        testValues.put("Transaction Date", "09/06/2022");
-        testValues.put("Transaction Amount ($)", "0.08");
-        testValues.put("Running Balance ($)", "0.08");
-        testValues.put("Transacted By", "System");
-        testValues.put("Claim Number", "P0120123000063");
-        testValues.put("Recovery Claim Number", "");
-        testValues.put("Remarks", "Interest reversal of $0.08 for claim P0020123000063");
-
-        HashMap<String, String> uatValues = new HashMap<>();
-        uatValues.put("Transaction Type", "Debit/Underpaid");
-        uatValues.put("Transaction Date", "10/20/2020");
-        uatValues.put("Transaction Amount ($)", "15.66");
-        uatValues.put("Running Balance ($)", "0.00");
-        uatValues.put("Transacted By", "ravikumar@mirrahealthcare.com");
-        uatValues.put("Claim Number", "I0020101000085");
-        uatValues.put("Recovery Claim Number", "");
-        uatValues.put("Remarks", "RECOVERY OF $15.66 FOR CLAIM I0020101000085");
-
-        if (environment.contains("test")) {
-            List<String> fieldsExp = testValues.values().stream().collect(Collectors.toList());
-            List<String> actValues = findElementsByXpath(lstARTransactionValues)
-                    .stream().map((e) -> e.getText().trim()).collect(Collectors.toList());
-            System.out.println("Size:" + actValues.size());
-            int expValue = 2;
-            Assert.assertEquals(expValue, Collections.frequency(actValues, "0.08"));
-            for (String exp : fieldsExp) {
-                if (actValues.contains(exp)) {
-                    Assert.assertTrue(true);
-                } else {
-                    Assert.fail(exp + " is not listed in actual list");
-                }
-            }
-        } else {
-            List<String> fieldsExp = uatValues.values().stream().collect(Collectors.toList());
-            List<String> actValues = findElementsByXpath(lstARTransactionValues)
-                    .stream().map((e) -> e.getText().trim()).collect(Collectors.toList());
-            System.out.println("Size:" + actValues.size());
-            for (String exp : fieldsExp) {
-                if (actValues.contains(exp)) {
-                    Assert.assertTrue(true);
-                } else {
-                    Assert.fail(exp + " is not listed in actual list");
-                }
-            }
+        List<WebElement> arTransactionValues = findElementsByXpath(lstARTransactionValues);
+        System.out.println("Size:" + arTransactionValues.size());
+        for (WebElement value : arTransactionValues) {
+            Assert.assertTrue(isDisplayed(value));
+            System.out.println("Value is displayed: " + isDisplayed(value));
         }
     }
 

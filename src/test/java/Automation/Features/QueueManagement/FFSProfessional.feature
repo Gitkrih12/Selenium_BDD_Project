@@ -88,7 +88,7 @@ Feature: FFS Professional
   Scenario: Verify user able to navigate through pages by using Pagination functionality
     When user clicks on FFS Professional in left navigation menu
     Then the user should navigate to the FFS Professional page
-    When user clicks on On Hold bucket
+    When user clicks on Hold bucket
     And user should be able to view the page numbers at bottom of the page in FFS Professional page
     When user tries to click on next arrow symbol in FFS Professional
     And user allow to navigates to next page in FFS Professional
@@ -282,7 +282,7 @@ Feature: FFS Professional
     Then user should able to see Check Type as "Regular" for Normal Check
 
 
-  @TC_52016 @beta
+  @TC_52016
   Scenario: Verify user able to navigate to the History Doc page on clicking History Doc tab
     When user clicks on FFS Professional in left navigation menu
     Then the user should navigate to the FFS Professional page

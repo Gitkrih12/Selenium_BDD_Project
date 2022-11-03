@@ -8,7 +8,7 @@ Feature: Files tab
     When the user enters the valid username and password and click on login button
 
 #    57922, As a tester, i want to automate 837P Files tab on the Files page
-  @45795 @Sanity
+  @45795 @Sanity @beta
   Scenario: Verify column fields in '837P Files' tab
     Given the user is on the "Files" page
     When the user clicks on the 837P Files tab
@@ -150,7 +150,7 @@ Feature: Files tab
       | Processed | #0E8D00 |
       | Rejected  | #BA0000 |
 
-  @45908 @Sanity
+  @45908 @Sanity @beta
   Scenario: Verify column fields in '837I Files' tab
     Given the user is on the "Files" page
     When the user clicks on the 837I Files tab
@@ -166,7 +166,7 @@ Feature: Files tab
     And user should be able to view the 837I column fields search boxes
 
 #  57944, As a tester, I want to automate the 837D tab on the Files page
-  @46385 @Sanity
+  @46385 @Sanity @beta
   Scenario: Verify column fields in '837D Files' tab
     Given the user is on the "Files" page
     When the user clicks on the 837D Files tab
@@ -201,7 +201,7 @@ Feature: Files tab
       | Processed | #0E8D00 |
 #      | Rejected  | #BA0000 |
 
-  @46459 @Sanity
+  @46459 @Sanity @beta
   Scenario: Verify column fields in '999' tab
     Given the user is on the "Files" page
     When the user clicks on the 999 tab
@@ -236,7 +236,7 @@ Feature: Files tab
       | Processed | #0E8D00 |
 #      | Rejected  | #BA0000 |
 
-  @46676 @Sanity
+  @46676 @Sanity @beta
   Scenario: Verify column fields in '277CA' tab
     Given the user is on the "Files" page
     When the user clicks on the 277CA tab
@@ -271,7 +271,7 @@ Feature: Files tab
       | Processed | #0E8D00 |
 #      | Rejected  | #BA0000 |
 
-  @46692 @Sanity
+  @46692 @Sanity @beta
   Scenario: Verify column fields in '835' tab
     Given the user is on the "Files" page
     When the user clicks on the 835 tab

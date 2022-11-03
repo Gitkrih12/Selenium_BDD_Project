@@ -10,7 +10,7 @@ Feature: Provider Details
     And user clicks on the Provider Details tab
     Then user navigates to the Provider Details tab
 
-   @39953 @beta
+  @39953 @beta
   Scenario: Verify user able to view the Pay to Provider Details and Group/Rendering Provider Details section under Provider Details tab
     When user clicking on Claim Number in Global Search page
     And user clicks on the Provider Details tab
@@ -19,7 +19,7 @@ Feature: Provider Details
       | Group/Rendering Provider Details |
 
   @39958 @beta
-#  @Sanity
+  @Sanity
   Scenario: Verify user able to view all the fields under Pay to Provider Details section
     When user clicking on Claim Number in Global Search page
     And user clicks on the Provider Details tab
@@ -38,7 +38,7 @@ Feature: Provider Details
     And user able to view all the field values under Pay to Provider Details section
 
   @39961 @beta
-#  @Sanity
+  @Sanity
   Scenario: Verify user able to view all the fields under Group/Rendering Provider Details section
     When user clicking on Claim Number in Global Search page
     And user clicks on the Provider Details tab
@@ -69,7 +69,7 @@ Feature: Provider Details
       | Deactivate        |
 
   @48990
-#  @Sanity
+  @Sanity
   Scenario: Verify the user able to navigate to the A/R Transactions page on clicking Vendor ID in Provider details tab view
     When user clicking on Claim Number in Global Search page
     And user clicks on the Provider Details tab
@@ -104,3 +104,290 @@ Feature: Provider Details
     And user clicks on the Provider Details tab
     When clicking on Vendor ID in Provider Details
     Then user able to view the search box for all the column on AR Transactions grid
+
+  @60783
+  Scenario: Verify user able to view Map Pay To Provider button for ONHOLD Claims only
+    Given the user is in FFS Professional page
+    Then the user should navigate to the FFS Professional page
+    When user clicks on Hold bucket
+    And user clicks on Hold claim number in FFS Institutional page
+    And user clicks on the Provider Details tab
+    Then user able to view the "Map Pay To Provider" button
+
+  @60789
+  Scenario: Verify user able to view the Map Pay to Provider side drawer on clicking the Map Pay To Provider button
+    Given the user is in FFS Professional page
+    Then the user should navigate to the FFS Professional page
+    When user clicks on Hold bucket
+    And user clicks on Hold claim number in FFS Institutional page
+    And user clicks on the Provider Details tab
+    When user clicks on Map Pay To Provider button
+    Then user navigates to the Map Pay To Provider side drawer
+
+  @60810
+  Scenario: Verify user able to view all the fields in Map Pay To Provider Side drawer
+    Given the user is in FFS Professional page
+    Then the user should navigate to the FFS Professional page
+    When user clicks on Hold bucket
+    And user clicks on Hold claim number in FFS Institutional page
+    And user clicks on the Provider Details tab
+    When user clicks on Map Pay To Provider button
+    Then user able to view the below headers under Map Pay To Provider side drawer
+      | Tax ID          |
+      | Pay to Provider |
+      | Default Vendor  |
+    And user able to view the below fields under Map Pay To Provider
+      | Vendor ID   |
+      | Pay To Name |
+      | NPI         |
+      | Address     |
+
+  @60830
+  Scenario: Verify user should not be able to view the select option and Green bar should display for the default Vendor ID
+    Given the user is in FFS Professional page
+    Then the user should navigate to the FFS Professional page
+    When user clicks on Hold bucket
+    And user clicks on Hold Multiple Vendor claim number in FFS Institutional page
+    And user clicks on the Provider Details tab
+    When user clicks on Map Pay To Provider button
+    When user views the multiple Vendors for the claim
+    Then user able to view the "Select" button for all the Vendor IDs other than selected Vendor
+    And green bar should display for the default Vendor ID
+
+  @60846
+  Scenario: Verify user able to select the default Vendor ID on clicking the Select button
+    Given the user is in FFS Professional page
+    Then the user should navigate to the FFS Professional page
+    When user clicks on Hold bucket
+    And user clicks on Hold claim number in FFS Institutional page
+    And user clicks on the Provider Details tab
+    When user clicks on Map Pay To Provider button
+    And user clicks on Select button for the other Vendor ID
+    Then user able to view the Vendor ID by default after selected
+
+#  @60848
+  Scenario: Verify user able to view the pagination, cancel and close buttons for Map Pay To Provider Side Drawer
+    Given the user is in FFS Professional page
+    Then the user should navigate to the FFS Professional page
+    When user clicks on Hold bucket
+    And user clicks on Hold claim number in FFS Institutional page
+    And user clicks on the Provider Details tab
+    When user clicks on Map Pay To Provider button
+    Then user able to view the "Cancel", "Close" buttons at the bottom and top of the side drawer
+    And user able to view the Pagination buttons
+
+  @60855
+  Scenario: Verify user able to perform click functionality on cancel and close buttons
+    Given the user is in FFS Professional page
+    Then the user should navigate to the FFS Professional page
+    When user clicks on Hold bucket
+    And user clicks on Hold claim number in FFS Institutional page
+    And user clicks on the Provider Details tab
+    When user clicks on Map Pay To Provider button
+    And user clicks on Close button
+    Then user navigates back to the Provider details
+    When user clicks on Map Pay To Provider button
+    And user clicks on Select button for the other Vendor ID
+    And user clicks on Cancel button
+    Then user navigates back to the Provider details
+
+  @55147
+  Scenario: Verify user should navigate to Provider window on clicking Provider ID under Group/Rendering Provider Details table
+    When user clicking on Claim Number in Global Search page
+    And user clicks on the Provider Details tab
+    When user clicks on Provider ID under Group Rendering Provider Details
+    Then user should navigate to Provider window
+
+  @55149
+  Scenario: Verify user should able to see sub-tabs in provider window
+    When user clicking on Claim Number in Global Search page
+    And user clicks on the Provider Details tab
+    When user clicks on Provider ID under Group Rendering Provider Details
+    Then user able to see the following sub tabs
+      | Basic Information    |
+      | Location Information |
+      | Contract Information |
+      | Alias Information    |
+
+  @55150
+  Scenario: Verify Basic Information tab in Provider details screen
+    When user clicking on Claim Number in Global Search page
+    And user clicks on the Provider Details tab
+    When user clicks on Provider ID under Group Rendering Provider Details
+    Then user navigates to Basic Information sub tab by default
+    And user able to view the below mentioned fields under Provider Basic Information subtab
+      | Provider ID   |
+      | Provider Type |
+      | Provider Name |
+
+  @55167
+  Scenario: Verify Facility Name section in Basic Information tab
+    When user clicking on Claim Number in Global Search page
+    And user clicks on the Provider Details tab
+    When user clicks on Provider ID under Group Rendering Provider Details
+    Then user able to view "Facility Name" and Speciality Fields
+    Then user able to view the following fields under Facility Name
+      | NPI           |
+      | Medicare      |
+      | Facility Type |
+
+  @55168
+  Scenario: Verify Adverse Actions section in Basic Information tab
+    When user clicking on Claim Number in Global Search page
+    And user clicks on the Provider Details tab
+    When user clicks on Provider ID under Group Rendering Provider Details
+    Then user able to view the following fields under Adverse Actions section
+      | Effective Date  |
+      | Term Date       |
+      | Adverse Action  |
+      | Action on Claim |
+      | Status          |
+      | Reason          |
+
+  @55170
+  Scenario: Verify Comments section in Basic Information tab
+    When user clicking on Claim Number in Global Search page
+    And user clicks on the Provider Details tab
+    When user clicks on Provider ID under Group Rendering Provider Details
+    Then user able to view the following fields under Comments section
+      | Added On |
+      | Added By |
+      | Comments |
+
+  @55475
+  Scenario: Verify user should navigate to Contract Name window on clicking contract name hyperlink in Provider Details tab
+    When user clicking on Claim Number in Global Search page
+    And user clicks on the Provider Details tab
+    When user clicks on Contract Name under Group Rendering Provider Details
+    Then user should navigate to Contract Name window
+
+  @55489
+  Scenario: Verify Pay Class and Exceptions sections in contract window
+    When user clicking on Claim Number in Global Search page
+    And user clicks on the Provider Details tab
+    When user clicks on Contract Name under Group Rendering Provider Details
+    Then user should be able to view Pay Class and Exception sections
+
+  @55532
+  Scenario: Verify Pay class section fields in contract window
+    When user clicking on Claim Number in Global Search page
+    And user clicks on the Provider Details tab
+    When user clicks on Contract Name under Group Rendering Provider Details
+    Then user should be able to view the following fields in Pay Class section
+      | FFS Percentage           |
+      | Medicare Allowable Rate* |
+      | Service                  |
+      | Diagnostics              |
+      | Lab                      |
+      | DME                      |
+      | Injections               |
+      | Immunizations            |
+      | AWP Pricer               |
+      | ASP Pricer               |
+
+  @55533
+  Scenario: Verify Exceptions CPT fields in contract window
+    When user clicking on Claim Number in Global Search page
+    And user clicks on the Provider Details tab
+    When user clicks on Contract Name under Group Rendering Provider Details
+    Then user should be able to view the following fields in CPT Section
+      | CPT Start         |
+      | CPT End           |
+      | CPT Type          |
+      | Type Of Bill      |
+      | Contract Language |
+      | Rate              |
+      | Effective Date    |
+      | Term Date         |
+
+  @55534
+  Scenario: Verify Exceptions Revenue Code fields in contract window
+    When user clicking on Claim Number in Global Search page
+    And user clicks on the Provider Details tab
+    When user clicks on Contract Name under Group Rendering Provider Details
+    And user clicks on Revenue Code Section
+    Then user should be able to view the following fields in Revenue Code Section
+      | Revenue Code Start |
+      | Revenue Code End   |
+      | CPT Code Start     |
+      | CPT Code End       |
+      | Revenue Code Type  |
+      | Type Of Bill       |
+      | Contract Language  |
+      | Rate               |
+      | Effective Date     |
+      | Term Date          |
+
+  @55171
+  Scenario: Verify Location Information tab in Provider Details screen
+    When user clicking on Claim Number in Global Search page
+    And user clicks on the Provider Details tab
+    When user clicks on Provider ID under Group Rendering Provider Details
+    And user clicks on Location Information subtab
+    Then user navigates to "Location Information" subtab
+    And user able to view the following fields under Practice Location List
+      | Effective Date    |
+      | Term Date         |
+      | Practice Name     |
+      | Practice Location |
+      | City              |
+      | ST                |
+      | ZIP               |
+      | County            |
+      | Status            |
+
+  @55205
+  Scenario: Verify Contract Information tab in Provider Details screen
+    When user clicking on Claim Number in Global Search page
+    And user clicks on the Provider Details tab
+    When user clicks on Provider ID under Group Rendering Provider Details
+    And user clicks on Contract Information subtab
+    Then user navigates to the "Contract Information" subtab
+    And user able to view the following fields under Contract List
+      | Effective Date       |
+      | Term                 |
+      | Tax ID               |
+      | Plan                 |
+      | Network ID           |
+      | Contract             |
+      | Sequestration        |
+      | Provider Type        |
+      | Timely Flling (Days) |
+      | Status               |
+
+  @55212
+  Scenario: Verify Alias Information tab in Provider Details screen
+    When user clicking on Claim Number in Global Search page
+    And user clicks on the Provider Details tab
+    When user clicks on Provider ID under Group Rendering Provider Details
+    And user clicks on Alias Information subtab
+    Then user navigated to the "Alias Information" subtab
+    And user able to view the below list of fields under Provider Alias List
+      | Alias Type        |
+      | Alias Information |
+      | Status            |
+
+  @55434
+  Scenario: Verify user should be able to navigate Map Provider window on clicking Map Provider button in Provider Details tab
+    Given the user is in FFS Professional page
+    Then the user should navigate to the FFS Professional page
+    When user clicks on Hold bucket
+    And user clicks on Hold claim number in FFS Institutional page
+    And user clicks on the Provider Details tab
+    When user clicks on Map Provider button
+    Then user navigates to the "Map Rendering Provider" pop-up window
+
+  @55435
+  Scenario: Verify user should able to validate Tax ID/SSN in Map Provider window
+    Given the user is in FFS Professional page
+    Then the user should navigate to the FFS Professional page
+    When user clicks on Hold bucket
+    And user clicks on Hold claim number in FFS Institutional page
+    And user clicks on the Provider Details tab
+    When user clicks on Map Provider button
+    Then user should be able to validate "Tax ID" and "Rendering Provider" fields
+    And user able to view all the below mentioned fields under Rendering Provider
+      | Provider ID   |
+      | Provider Name |
+      | NPI           |
+      | Address       |

@@ -60,7 +60,7 @@ public class CheckRegisterStepDef extends CheckRegisterPage {
 
     //  Scenario: Verify user should get result on selecting dates from the Date of Service From and To values
     @When("user select dates from Date of Service From and To dropdown field")
-    public void user_select_dates_from_date_of_service_from_and_to_dropdown_field() throws InterruptedException {
+    public void user_select_dates_from_date_of_service_from_and_to_dropdown_field() {
         userSelectsValuesFromDateOfServiceFromField();
         userSelectsValuesFromDateOfServiceToField();
     }
