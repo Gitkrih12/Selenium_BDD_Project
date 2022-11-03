@@ -17,7 +17,7 @@ Feature: Fee Schedule
   Scenario: Verify user able to view the Fee schedules side drawer when clicking on See Fee Schedule in Pricing screen
      Then user should navigates to "Fee Schedules" screen
 
-  @TC_63175
+  @TC_73701
   Scenario: Verify user able to view the respective tabs under Fee Schedules side drawer
     Then user should navigates to "Fee Schedules" screen
     And user should be able to see below tabs in Fee Schedules screen
@@ -28,7 +28,7 @@ Feature: Fee Schedule
 
   #60546-As an adjudicator, when I click on the “Fee Schedules” from ‘See Fee Schedule screen So that, I can be able to see the fee schedule details.
   @TC_63175
-  Scenario: Verify user able to view the respective tabs under Fee Schedules side drawer
+  Scenario: Verify column fields in Fee Schedules tab
     Then user should navigates to "Fee Schedules" screen
     And user should be able to see below column fields in Fee Schedules screen
       | S.No                |
@@ -40,6 +40,8 @@ Feature: Fee Schedule
       | Rate ($)            |
       | Unit Count          |
       | Eligible Amount ($) |
+    And user able to view the field values in Fee Schedules screen
+
 
   #60579-As an adjudicator, when I click on the “Payment Policy Indicators” from ‘See Fee Schedules screen’ So that, I can be able to see the Payment Policy Indicators details.
   @TC_63190
@@ -80,13 +82,13 @@ Feature: Fee Schedule
     Then user should able to see below mentioned fields in RVU screen
       | HCPCS Code                       |
       | Modifier                         |
-      | Status                           |
+      | Stat                             |
       | Not Used For Medicare            |
       | Work RVU                         |
       | Non-Fac PE RVU                   |
       | Facility PE RVU                  |
       | MP RVU                           |
-      | Non-FAC PE Used for OOPS PMT AMT |
+      | Non-FAC PE Used for OPPS PMT AMT |
 
   #60589-As an adjudicator, when I click on the “Geographic Practice Cost” from ‘See Fee Schedules’ So that, I can be able to see the Geographic Practice Cost Indicators details.
   @TC_70959

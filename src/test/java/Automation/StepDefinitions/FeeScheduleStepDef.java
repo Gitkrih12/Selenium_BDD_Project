@@ -43,6 +43,11 @@ public class FeeScheduleStepDef extends FeeSchedulePage {
     public void user_should_be_able_to_see_below_column_fields_in_fee_schedules_screen(DataTable columnList) throws InterruptedException {
         verifyFeeSchedulesColumnFields(columnList);
     }
+    @Then("user able to view the field values in Fee Schedules screen")
+    public void user_able_to_view_the_field_values_in_fee_schedules_screen() {
+        verifyFieldValuesInFeeSchedules();
+    }
+
 
     //Scenario: Verify user navigates to Payment Policy Indicators tab
     @Then("user navigated to {string} tab successfully")

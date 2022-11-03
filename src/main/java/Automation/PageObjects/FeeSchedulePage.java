@@ -25,6 +25,8 @@ public class FeeSchedulePage extends SeleniumUtils {
     String lstRVUColumnFields="(//div[@class='ag-header-row ag-header-row-column'])[8]//div[@role='columnheader']";
     String tabGeographicPracticeCost="//button[contains(text(),'Geographic Practice Cost')]";
     String lstGeographicPracticeCostColumnFields="(//div[@class='ag-header-row ag-header-row-column'])[11]//div[@role='columnheader']";
+    String lstFeeSchedulesFieldValues="(//div[contains(@class,'ag-row-even ag-row ag-row-level-0')])[2]//div";
+
 
 
 
@@ -114,10 +116,17 @@ public class FeeSchedulePage extends SeleniumUtils {
                 Assert.fail(expColumn + " column is not as expected");
             }
         }
+        //compare2Lists(columnList, lstFeeSchedulesColumnFields);
+    }
+
+    public void verifyFieldValuesInFeeSchedules(){
+       // scrollToElementsAndValidateDisplayStatus(lstFeeSchedulesFieldValues);
+
     }
 
     //Scenario: Verify column fields in Payment Policy Indicators tab
     public void clickPaymentPolicyIndicators(){
+        explicitTextToBePresentInElementLocatedWait(By.xpath(tabPaymentPolicyIndicators), 10, "Payment Policy Indicators");
         clickElement(tabPaymentPolicyIndicators);
     }
     public void verifyPaymentPolicyIndicatorsColumnFields(DataTable columnList) throws InterruptedException {
