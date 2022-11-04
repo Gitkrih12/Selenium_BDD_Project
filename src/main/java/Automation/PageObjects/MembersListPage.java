@@ -68,24 +68,8 @@ public class MembersListPage extends SeleniumUtils {
     }
 
     public void verifyFieldsUnderMembersList(DataTable expFields){
-        List<String> columnListExp = expFields.asList();
-        List<WebElement> actColumnFields = findElementsByXpath(lstMembersListFields);
-        List<String> columnFieldsForCompare = new ArrayList<>();
-        System.out.println("Size " + actColumnFields.size());
-        for (WebElement column : actColumnFields) {
-            scrollIntoView(column, driver);
-            String text = column.getText();
-            columnFieldsForCompare.add(text);
-        }
-        System.out.println("Fields in Members List section :" + columnFieldsForCompare);
-        System.out.println("Expected fields are : " + columnListExp);
-        for (String exp : columnListExp) {
-            if (columnFieldsForCompare.contains(exp)) {
-                Assert.assertTrue(true);
-            } else {
-                Assert.fail(exp + " is not listed in actual list");
-            }
-        }
+        explicitElementClickableWaitByXpath(lstMembersListFields, 30);
+        scrollToElementsAndCompare2Lists(expFields, lstMembersListFields);
     }
 
     public void userEntersMemberIDInSearchCriteria() throws InterruptedException {
@@ -96,12 +80,7 @@ public class MembersListPage extends SeleniumUtils {
     }
 
     public void verifyAppropriateResultsOnMembersListScreen(){
-        List<WebElement> membersListValues = findElementsByXpath(lstMemberListValues);
-        System.out.println("Size:" + membersListValues.size());
-        for (WebElement value : membersListValues) {
-            isDisplayed(value);
-            System.out.println("Value is displayed: " + isDisplayed(value));
-        }
+        scrollToElementsAndValidateDisplayStatus(lstMemberListValues);
     }
 
     public void userEntersLastNameInSearchCriteria() throws InterruptedException {
