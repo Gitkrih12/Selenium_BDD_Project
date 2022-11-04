@@ -3,9 +3,8 @@ package Automation.PageObjects;
 import Automation.Utilities.SeleniumUtils;
 import io.cucumber.datatable.DataTable;
 import org.junit.Assert;
+import org.openqa.selenium.WebElement;
 
-import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -40,52 +39,12 @@ public class MoopPage extends SeleniumUtils {
         Assert.assertEquals(fieldsExp, ActFields);
     }
 
-    public void verifyFieldValuesUnderMoopTab() throws InterruptedException {
-        threadSleep(2000);
-        HashMap<String, String> testValues = new HashMap<String, String>();
-        testValues.put("Year", "2022");
-        testValues.put("Co-pay($)", "0.00");
-        testValues.put("Co-Insurance($)", "149.61");
-        testValues.put("Deductible($)", "233.00");
-        testValues.put("Total($)", "382.61");
-        testValues.put("Max Limit($)", "0.00");
-
-        HashMap<String, String> uatValues = new HashMap<>();
-        uatValues.put("Year", "2021");
-        uatValues.put("Co-pay($)", "0.00");
-        uatValues.put("Co-Insurance($)", "155.98");
-        uatValues.put("Deductible($)", "203.00");
-        uatValues.put("Total($)", "358.98");
-        uatValues.put("Max Limit($)", "0.00");
-
-        if (environment.contains("test")) {
-            List<String> fieldsExp = testValues.values().stream().collect(Collectors.toList());
-            List<String> ActValues = findElementsByXpath(lstMoopValues)
-                    .stream().map((e) -> e.getText().trim()).collect(Collectors.toList());
-            System.out.println("Size:" + ActValues.size());
-            int expValue = 2;
-            Assert.assertEquals(expValue, Collections.frequency(ActValues, "0.00"));
-            for (String exp : fieldsExp) {
-                if (ActValues.contains(exp)) {
-                    Assert.assertTrue(true);
-                } else {
-                    Assert.fail(exp + " is not listed in actual list");
-                }
-            }
-        } else {
-            List<String> fieldsExp = uatValues.values().stream().collect(Collectors.toList());
-            List<String> ActValues = findElementsByXpath(lstMoopValues)
-                    .stream().map((e) -> e.getText().trim()).collect(Collectors.toList());
-            System.out.println("Size:" + ActValues.size());
-            int expValue = 2;
-            Assert.assertEquals(expValue, Collections.frequency(ActValues, "0.00"));
-            for (String exp : fieldsExp) {
-                if (ActValues.contains(exp)) {
-                    Assert.assertTrue(true);
-                } else {
-                    Assert.fail(exp + " is not listed in actual list");
-                }
-            }
+    public void verifyFieldValuesUnderMoopTab() {
+        List<WebElement> serviceDetailsValues = findElementsByXpath(lstMoopValues);
+        System.out.println("Size:" + serviceDetailsValues.size());
+        for (WebElement value : serviceDetailsValues) {
+            Assert.assertTrue(isDisplayed(value));
+            System.out.println("Value is displayed: " + isDisplayed(value));
         }
     }
 

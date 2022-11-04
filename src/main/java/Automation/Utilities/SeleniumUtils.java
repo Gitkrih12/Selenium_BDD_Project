@@ -1,5 +1,6 @@
 package Automation.Utilities;
 
+import io.cucumber.datatable.DataTable;
 import org.junit.Assert;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
@@ -144,14 +145,11 @@ public class SeleniumUtils extends Driver {
         }
     }
 
-    public void rightClick(WebElement element)
-    {
-        try
-        {
-            Actions act= new Actions(driver);
+    public void rightClick(WebElement element) {
+        try {
+            Actions act = new Actions(driver);
             act.moveToElement(element).contextClick().perform();
-        }catch (Exception e)
-        {
+        } catch (Exception e) {
             Assert.fail("Element not found " + element + "Error - " + e);
         }
     }
@@ -176,30 +174,24 @@ public class SeleniumUtils extends Driver {
         }
     }
 
-    public Actions moveToElement(String xpath)
-    {
-        try
-        {
+    public Actions moveToElement(String xpath) {
+        try {
             WebElement element = driver.findElement(By.xpath(xpath));
             Actions act = new Actions(driver);
             Actions ele = act.moveToElement(element);
             return ele;
-        }catch (Exception e)
-        {
+        } catch (Exception e) {
             e.printStackTrace();
             return null;
         }
     }
 
-    public Actions moveToElement(WebElement element)
-    {
-        try
-        {
+    public Actions moveToElement(WebElement element) {
+        try {
             Actions act = new Actions(driver);
             Actions ele = act.moveToElement(element);
             return ele;
-        }catch (Exception e)
-        {
+        } catch (Exception e) {
             e.printStackTrace();
             return null;
         }
@@ -465,7 +457,6 @@ public class SeleniumUtils extends Driver {
     // ************* End of Alert related methods **************** //
 
 
-
     //************ Wait related methods *************//
     /*
     -In case of direct locators convert them to Web Elements and use these methods to pass Web Element
@@ -559,7 +550,7 @@ public class SeleniumUtils extends Driver {
     public WebElement explicitElementClickableWait(WebElement element, int duration) {
         try {
             WebElement element1 = new WebDriverWait(driver, Duration.ofSeconds(duration)).
-            until(ExpectedConditions.elementToBeClickable(element));
+                    until(ExpectedConditions.elementToBeClickable(element));
             return element1;
         } catch (Exception e) {
             Assert.fail("Element not found :" + element + "|Error - " + e);
@@ -581,7 +572,7 @@ public class SeleniumUtils extends Driver {
     public WebElement explicitVisibilityOfElementLocatedWaitByID(String id, int duration) {
         try {
             WebElement element = new WebDriverWait(driver, Duration.ofSeconds(duration)).
-            until(ExpectedConditions.visibilityOfElementLocated(By.id(id)));
+                    until(ExpectedConditions.visibilityOfElementLocated(By.id(id)));
             return element;
         } catch (Exception e) {
             Assert.fail("Element not found :" + id + "|Error - " + e);
@@ -647,7 +638,7 @@ public class SeleniumUtils extends Driver {
     public boolean explicitTextToBePresentInElementWait(WebElement element, int duration, String text) {
         try {
             boolean status = new WebDriverWait(driver, Duration.ofSeconds(duration)).
-            until(ExpectedConditions.textToBePresentInElement(element, text));
+                    until(ExpectedConditions.textToBePresentInElement(element, text));
             return status;
         } catch (Exception e) {
             Assert.fail("Element not found :" + element + "|Error - " + e);
@@ -699,33 +690,14 @@ public class SeleniumUtils extends Driver {
         }
     }
 
-    public void explicitElementClassChangesWait(String xpath, int duration, String classValue)
-    {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(duration));
-        wait.until(new ExpectedCondition<Boolean>()
-        {
-            public Boolean apply(WebDriver driver)
-                {
-                    WebElement element = driver.findElement(By.xpath(xpath));
-                    String classValueInApp = element.getAttribute("class");
-                    System.out.println("class: " + classValue);
-                    if(classValueInApp.equals(classValue))
-                        return true;
-                    else
-                        return false;
-                }
-        });
-    }
-
-    public void explicitCountChangesWait(String xpath, int duration)
-    {
+    public void explicitElementClassChangesWait(String xpath, int duration, String classValue) {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(duration));
         wait.until(new ExpectedCondition<Boolean>() {
-            public Boolean apply(WebDriver driver)
-            {
-                int elementCount = driver.findElements(By.xpath(xpath)).size();
-                System.out.println("Elements count: " + elementCount);
-                if (elementCount>1)
+            public Boolean apply(WebDriver driver) {
+                WebElement element = driver.findElement(By.xpath(xpath));
+                String classValueInApp = element.getAttribute("class");
+                System.out.println("class: " + classValue);
+                if (classValueInApp.equals(classValue))
                     return true;
                 else
                     return false;
@@ -733,12 +705,24 @@ public class SeleniumUtils extends Driver {
         });
     }
 
-    public void explicitCountBecome1Or2Wait(String xpath, int duration)
-    {
+    public void explicitCountChangesWait(String xpath, int duration) {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(duration));
         wait.until(new ExpectedCondition<Boolean>() {
-            public Boolean apply(WebDriver driver)
-            {
+            public Boolean apply(WebDriver driver) {
+                int elementCount = driver.findElements(By.xpath(xpath)).size();
+                System.out.println("Elements count: " + elementCount);
+                if (elementCount > 1)
+                    return true;
+                else
+                    return false;
+            }
+        });
+    }
+
+    public void explicitCountBecome1Or2Wait(String xpath, int duration) {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(duration));
+        wait.until(new ExpectedCondition<Boolean>() {
+            public Boolean apply(WebDriver driver) {
                 int elementCount = driver.findElements(By.xpath(xpath)).size();
                 System.out.println("Elements count: " + elementCount);
                 if (elementCount == 1 || elementCount == 2)
@@ -751,7 +735,7 @@ public class SeleniumUtils extends Driver {
 
     public List<WebElement> explicitPresenceOfAllElementsLocatedByWait(By element, int duration) {
         try {
-            List <WebElement> elements = new WebDriverWait(driver, Duration.ofSeconds(duration)).
+            List<WebElement> elements = new WebDriverWait(driver, Duration.ofSeconds(duration)).
                     until(ExpectedConditions.presenceOfAllElementsLocatedBy(element));
             return elements;
         } catch (Exception e) {
@@ -804,8 +788,7 @@ public class SeleniumUtils extends Driver {
     }
 
     public void explicitFrameWait(WebElement element, int duration) throws Exception {
-        try
-        {
+        try {
             System.out.println("Navigated to switchToFrameWithFrameNumber (Int) method");
             WebDriverWait wdWait = new WebDriverWait(driver, Duration.ofSeconds(duration));
             wdWait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(element));
@@ -814,25 +797,19 @@ public class SeleniumUtils extends Driver {
         }
     }
 
-    public void switchToDefaultContent()
-    {
-        try
-        {
+    public void switchToDefaultContent() {
+        try {
             driver.switchTo().defaultContent();
-        }catch (Exception e)
-        {
+        } catch (Exception e) {
             Assert.fail("Exception in switching to default content" + e);
             e.printStackTrace();
         }
     }
 
-    public void switchToParentFrame()
-    {
-        try
-        {
+    public void switchToParentFrame() {
+        try {
             driver.switchTo().parentFrame();
-        }catch (Exception e)
-        {
+        } catch (Exception e) {
             Assert.fail("Exception in switching to parent frame" + e);
             e.printStackTrace();
         }
@@ -843,8 +820,7 @@ public class SeleniumUtils extends Driver {
     public void threadSleep(long duration) throws InterruptedException {
         try {
             Thread.sleep(duration);
-        }catch (Exception e)
-        {
+        } catch (Exception e) {
             Assert.fail("Element not found" + "|Error - " + e);
         }
     }
@@ -870,7 +846,6 @@ public class SeleniumUtils extends Driver {
         }
     }
     //************ End of Wait related methods *************//
-
 
 
     // ******************* Conditional related methods ***************** //
@@ -1364,26 +1339,28 @@ public class SeleniumUtils extends Driver {
         }
     }
 
-    public String getColorCodeForBackground(String xpath){
+    public String getColorCodeForBackground(String xpath) {
         try {
             String cssValue = findElementByXpath(xpath).getCssValue("background-color");
             String colorCode = Color.fromString(cssValue).asHex().toUpperCase(Locale.ROOT);
             return colorCode;
-        }catch(Exception e) {
+        } catch (Exception e) {
             System.out.println("Element not found " + xpath + "|Error - " + e);
             return null;
         }
     }
-    public String getColorCodeForText(String xpath){
+
+    public String getColorCodeForText(String xpath) {
         try {
             String cssValue = findElementByXpath(xpath).getCssValue("color");
             String colorCode = Color.fromString(cssValue).asHex().toUpperCase(Locale.ROOT);
             return colorCode;
-        }catch(Exception e) {
+        } catch (Exception e) {
             System.out.println("Element not found " + xpath + "|Error - " + e);
             return null;
         }
     }
+
     // ************** End of Get related methods **************** //
 
 
@@ -1412,16 +1389,13 @@ public class SeleniumUtils extends Driver {
     }
 
     //This method is used to upload files in headless mode
-    public void uploadFileWithJavaScriptAndSendKeys(String xpath, String filePath)
-    {
-        try
-        {
+    public void uploadFileWithJavaScriptAndSendKeys(String xpath, String filePath) {
+        try {
             WebElement element = driver.findElement(By.xpath(xpath));
             JavascriptExecutor js = (JavascriptExecutor) driver;
             js.executeScript("arguments[0].style.display='block';", element);
             driver.findElement(By.xpath(xpath)).sendKeys(filePath);
-        }catch (Exception e)
-        {
+        } catch (Exception e) {
             Assert.fail("The file could not be uploaded");
         }
     }
@@ -1470,19 +1444,107 @@ public class SeleniumUtils extends Driver {
         }
     }
 
-    public void printStatementInGreenColor(String text, String result)
-    {
-        try
-        {
+    public void printStatementInGreenColor(String text, String result) {
+        try {
             System.out.println(ANSI_GREEN + text + ": " + result + ANSI_RESET);
-        }catch (Exception e)
-        {
+        } catch (Exception e) {
             Assert.fail("Unable to print statement in required color");
         }
     }
 
-    // ****************** End of Generic methods  *********************//
+    public void printStatementInGreenColor(String text, boolean result) {
+        try {
+            System.out.println(ANSI_GREEN + text + ": " + result + ANSI_RESET);
+        } catch (Exception e) {
+            Assert.fail("Unable to print statement in required color");
+        }
+    }
 
+    public void printStatementInGreenColor(String text, int result) {
+        try {
+            System.out.println(ANSI_GREEN + text + ": " + result + ANSI_RESET);
+        } catch (Exception e) {
+            Assert.fail("Unable to print statement in required color");
+        }
+    }
+
+    public void printStatementInGreenColor(String text, List<String> result) {
+        try {
+            System.out.println(ANSI_GREEN + text + ": " + result + ANSI_RESET);
+        } catch (Exception e) {
+            Assert.fail("Unable to print statement in required color");
+        }
+    }
+
+    /*
+    -Compare cucumber data table and list of values from xpath
+    -Cucumber data table would be converted to "String List"
+    -xpath web elements would be converted to "String list" using lambda expressions
+    */
+    public void compare2Lists(DataTable dataTable, String xpath) {
+        List<String> fieldsExp = dataTable.asList();
+        List<String> fieldsAct = findElementsByXpath(xpath).
+                stream().map(element -> element.getText().trim()).toList();
+        printStatementInGreenColor("Fields size actual", fieldsAct.size());
+        printStatementInGreenColor("Fields size expected", fieldsExp.size());
+        printStatementInGreenColor("Fields actual", fieldsAct);
+        printStatementInGreenColor("Fields expected", fieldsExp);
+        Assert.assertEquals(fieldsExp, fieldsAct);
+    }
+
+    /*
+    -Compare cucumber data table and list of values from xpath
+    -Cucumber data table would be converted to "String List"
+    -Would be scrolled till the elements and both the lists would be compared
+    */
+    public void scrollToElementsAndCompare2Lists(DataTable dataTable, String xpath) {
+        List<String> fieldsExp = dataTable.asList();
+        List<WebElement> fields = driver.findElements(By.xpath(xpath));
+        List<String> fieldsAct = new ArrayList<>();
+        for (WebElement field : fields) {
+            scrollIntoView(field, driver);
+            explicitElementClickableWait(field, 10);
+            fieldsAct.add(field.getText());
+        }
+        printStatementInGreenColor("Fields size actual", fieldsAct.size());
+        printStatementInGreenColor("Fields size expected", fieldsExp.size());
+        printStatementInGreenColor("Fields actual", fieldsAct);
+        printStatementInGreenColor("Fields expected", fieldsExp);
+        Assert.assertEquals(fieldsExp, fieldsAct);
+    }
+
+    /*
+    -This method is used to perform different display validations
+     For example, Fields, field values, Search boxes etc.
+     */
+    public void elementsDisplayValidation(String xpath) {
+        List<WebElement> fieldValues = findElementsByXpath(xpath);
+        printStatementInGreenColor("Fields size", fieldValues.size());
+        for (WebElement fieldValue : fieldValues) {
+            boolean status = isDisplayed(fieldValue);
+            printStatementInGreenColor("Field status is", status);
+            Assert.assertTrue(status);
+        }
+    }
+
+    /*
+    -This method is used to perform different display validations
+    For example, Fields, field values, Search boxes etc.
+    -Would be scrolled to elements and validates element display status
+    */
+    public void scrollToElementsAndValidateDisplayStatus(String xpath) {
+        List<WebElement> fieldValues = findElementsByXpath(xpath);
+        printStatementInGreenColor("Fields size", fieldValues.size());
+        for (WebElement fieldValue : fieldValues) {
+            scrollIntoView(fieldValue, driver);
+            explicitElementClickableWait(fieldValue, 10);
+            boolean status = isDisplayed(fieldValue);
+            printStatementInGreenColor("Field status is", status);
+            Assert.assertTrue(status);
+        }
+    }
+
+    // ****************** End of Generic methods  *********************//
 
 
     //**************** Locator methods ***************************//
@@ -1566,9 +1628,9 @@ public class SeleniumUtils extends Driver {
         }
     }
 
-    public List <WebElement> findElementsByID(String ID) {
+    public List<WebElement> findElementsByID(String ID) {
         try {
-            List <WebElement>  elements = new ArrayList<WebElement>();
+            List<WebElement> elements = new ArrayList<WebElement>();
             elements = driver.findElements(By.id(ID));
             return elements;
         } catch (Exception e) {
@@ -1577,9 +1639,9 @@ public class SeleniumUtils extends Driver {
         }
     }
 
-    public List <WebElement> findElementsByName(String Name) {
+    public List<WebElement> findElementsByName(String Name) {
         try {
-            List <WebElement>  elements = new ArrayList<WebElement>();
+            List<WebElement> elements = new ArrayList<WebElement>();
             elements = driver.findElements(By.name(Name));
             return elements;
         } catch (Exception e) {
@@ -1591,7 +1653,7 @@ public class SeleniumUtils extends Driver {
 
     public List<WebElement> findElementsByClass(String ClassName) {
         try {
-            List <WebElement>  elements = new ArrayList<WebElement>();
+            List<WebElement> elements = new ArrayList<WebElement>();
             elements = driver.findElements(By.className(ClassName));
             return elements;
         } catch (Exception e) {
@@ -1602,7 +1664,7 @@ public class SeleniumUtils extends Driver {
 
     public List<WebElement> findElementsByTagName(String TagName) {
         try {
-            List <WebElement>  elements = new ArrayList<WebElement>();
+            List<WebElement> elements = new ArrayList<WebElement>();
             elements = driver.findElements(By.tagName(TagName));
             return elements;
         } catch (Exception e) {
@@ -1613,7 +1675,7 @@ public class SeleniumUtils extends Driver {
 
     public List<WebElement> findElementsByCSS(String CSSSelector) {
         try {
-            List <WebElement>  elements = new ArrayList<WebElement>();
+            List<WebElement> elements = new ArrayList<WebElement>();
             elements = driver.findElements(By.cssSelector(CSSSelector));
             return elements;
         } catch (Exception e) {
@@ -1624,7 +1686,7 @@ public class SeleniumUtils extends Driver {
 
     public List<WebElement> findElementsByLinkText(String LinkText) {
         try {
-            List <WebElement>  elements = new ArrayList<WebElement>();
+            List<WebElement> elements = new ArrayList<WebElement>();
             elements = driver.findElements(By.linkText(LinkText));
             return elements;
         } catch (Exception e) {
@@ -1635,7 +1697,7 @@ public class SeleniumUtils extends Driver {
 
     public List<WebElement> findElementsByPartialLink(String PartialLinkText) {
         try {
-            List <WebElement>  elements = new ArrayList<WebElement>();
+            List<WebElement> elements = new ArrayList<WebElement>();
             elements = driver.findElements(By.partialLinkText(PartialLinkText));
             return elements;
         } catch (Exception e) {
@@ -1646,7 +1708,7 @@ public class SeleniumUtils extends Driver {
 
     public List<WebElement> findElementsByXpath(String xpath) {
         try {
-            List <WebElement>  elements = new ArrayList<WebElement>();
+            List<WebElement> elements = new ArrayList<WebElement>();
             elements = driver.findElements(By.xpath(xpath));
             return elements;
         } catch (Exception e) {
@@ -1726,7 +1788,7 @@ public class SeleniumUtils extends Driver {
      * @param argument : String :  Locator of the element
      */
     public List<WebElement> findElementsByAnyLocator(String locator) {
-        List <WebElement> elements = null;
+        List<WebElement> elements = null;
         try {
             elements = new ArrayList<>();
             if (driver.findElement(By.id(locator)).isDisplayed()) {
@@ -1790,7 +1852,6 @@ public class SeleniumUtils extends Driver {
         return null;
     }
     // **************** End of Locator methods *********************  //
-
 
 
     // *********** JavascriptExecutor utility methods *********** //
@@ -2017,71 +2078,58 @@ public class SeleniumUtils extends Driver {
     // *********** End of JavascriptExecutor utility methods *********** //
 
 
-
     // *********** Date and Time utility methods *********** //
-    public String getCurrentDate(String formatReq)
-    {
-        try
-        {
+    public String getCurrentDate(String formatReq) {
+        try {
             LocalDate ld = LocalDate.now();
             DateTimeFormatter dtf = DateTimeFormatter.ofPattern(formatReq);
             String formattedDate = dtf.format(ld);
             System.out.println("Current date is : " + formattedDate);
             return formattedDate;
-        }catch (Exception e)
-        {
+        } catch (Exception e) {
             System.out.println("Exception in 'getCurrentDate' method");
             e.printStackTrace();
             return null;
         }
     }
 
-    public String getCurrentTime(String formatReq)
-    {
-        try
-        {
+    public String getCurrentTime(String formatReq) {
+        try {
             LocalTime lt = LocalTime.now();
             DateTimeFormatter dtf = DateTimeFormatter.ofPattern(formatReq);
             String formattedTime = dtf.format(lt);
             System.out.println("Current time is : " + formattedTime);
             return formattedTime;
-        }catch (Exception e)
-        {
+        } catch (Exception e) {
             System.out.println("Exception in 'getCurrentTime' method");
             e.printStackTrace();
             return null;
         }
     }
 
-    public String getCurrentDateAndTime(String formatReq)
-    {
-        try
-        {
+    public String getCurrentDateAndTime(String formatReq) {
+        try {
             LocalDateTime ldt = LocalDateTime.now();
             DateTimeFormatter dtf = DateTimeFormatter.ofPattern(formatReq);
             String formattedDateTime = dtf.format(ldt);
             System.out.println("Current date and time is : " + formattedDateTime);
             return formattedDateTime;
-        }catch (Exception e)
-        {
+        } catch (Exception e) {
             System.out.println("Exception in 'getCurrentDateAndTime' method");
             e.printStackTrace();
             return null;
         }
     }
 
-    public String addDaysToCurrentDateAndGetFutureDate(String formatReq, int days)
-    {
-        try
-        {
+    public String addDaysToCurrentDateAndGetFutureDate(String formatReq, int days) {
+        try {
             LocalDate ld = LocalDate.now();
             LocalDate currentPlusDays = ld.plusDays(days);
             DateTimeFormatter dtf = DateTimeFormatter.ofPattern(formatReq);
             String formattedDate = dtf.format(currentPlusDays);
             System.out.println("Date after adding " + days + " days to current date : " + formattedDate);
             return formattedDate;
-        }catch (Exception e)
-        {
+        } catch (Exception e) {
             System.out.println("Exception in 'addDaysToCurrentDateAndGetFutureDate' method");
             e.printStackTrace();
             return null;
@@ -2104,10 +2152,8 @@ public class SeleniumUtils extends Driver {
 
     }
 
-    public String addDaysToSpecificDateAndGetFutureDate(String formatReq, String date, int days)
-    {
-        try
-        {
+    public String addDaysToSpecificDateAndGetFutureDate(String formatReq, String date, int days) {
+        try {
             DateTimeFormatter dtf = DateTimeFormatter.ofPattern(formatReq);
             LocalDate ld = LocalDate.parse(date, dtf);
             LocalDate specificDatePlusDays = ld.plusDays(days);
@@ -2116,18 +2162,15 @@ public class SeleniumUtils extends Driver {
             String formattedDate = dtf.format(specificDatePlusDays);
             System.out.println("Date after adding " + days + " days to given specific date: " + formattedDate);
             return formattedDate;
-        }catch (Exception e)
-        {
+        } catch (Exception e) {
             System.out.println("Exception in 'addDaysToSpecificDateAndGetFutureDate' method");
             e.printStackTrace();
             return null;
         }
     }
 
-    public String subtractDaysFromSpecificDateAndGetPastDate(String formatReq, String date, int days)
-    {
-        try
-        {
+    public String subtractDaysFromSpecificDateAndGetPastDate(String formatReq, String date, int days) {
+        try {
             DateTimeFormatter dtf = DateTimeFormatter.ofPattern(formatReq);
             LocalDate ld = LocalDate.parse(date, dtf);
             LocalDate specificDateMinusDays = ld.minusDays(days);
@@ -2136,8 +2179,7 @@ public class SeleniumUtils extends Driver {
             String formattedDate = dtf.format(specificDateMinusDays);
             System.out.println("Date after subtracting " + days + " days from given specific date: " + formattedDate);
             return formattedDate;
-        }catch (Exception e)
-        {
+        } catch (Exception e) {
             System.out.println("Exception in 'subtractDaysFromSpecificDateAndGetPastDate' method");
             e.printStackTrace();
             return null;
@@ -2158,16 +2200,13 @@ public class SeleniumUtils extends Driver {
         }
     }
 
-    public LocalDate convertStringToDate(String formatReq, String date)
-    {
-        try
-        {
+    public LocalDate convertStringToDate(String formatReq, String date) {
+        try {
             DateTimeFormatter dtf = DateTimeFormatter.ofPattern(formatReq);
             LocalDate stringToDate = LocalDate.parse(date, dtf);
             System.out.println("Date after converting from String to Date : " + stringToDate);
             return stringToDate;
-        }catch (Exception e)
-        {
+        } catch (Exception e) {
             System.out.println("Exception in convertStringtoDate method");
             e.printStackTrace();
             return null;
@@ -2175,11 +2214,9 @@ public class SeleniumUtils extends Driver {
 
     }
 
-    public boolean verifyIfADateIsInGivenRange(String dateFormat, String startDate, String endDate, String compareDate)
-    {
+    public boolean verifyIfADateIsInGivenRange(String dateFormat, String startDate, String endDate, String compareDate) {
         boolean compareValue = false;
-        try
-        {
+        try {
             DateTimeFormatter dtf = DateTimeFormatter.ofPattern(dateFormat);
 
             LocalDate startDate1 = LocalDate.parse(startDate, dtf);
@@ -2189,19 +2226,15 @@ public class SeleniumUtils extends Driver {
             boolean isAfter = compareDate1.isAfter(startDate1);
             boolean isBefore = compareDate1.isBefore(endDate1);
 
-            if(isAfter == true && isBefore == true)
-            {
+            if (isAfter == true && isBefore == true) {
                 System.out.println("Compared date is within the date range");
                 compareValue = true;
-            }
-            else
-            {
+            } else {
                 System.out.println("Compared date is not within the date range");
                 compareValue = false;
             }
 
-        }catch (Exception e)
-        {
+        } catch (Exception e) {
             System.out.println("Exception in verifyIfADateIsInGivenRange method");
             e.printStackTrace();
             compareValue = false;
@@ -2209,46 +2242,38 @@ public class SeleniumUtils extends Driver {
         return compareValue;
     }
 
-    public String addMinsToSpecificDateAndGetDateAndTime(String formatReq, String date, int mins)
-    {
-        try
-        {
+    public String addMinsToSpecificDateAndGetDateAndTime(String formatReq, String date, int mins) {
+        try {
             DateTimeFormatter dtf = DateTimeFormatter.ofPattern(formatReq);
             LocalDateTime ldt = LocalDateTime.parse(date, dtf);
             LocalDateTime specificDatePlusMins = ldt.plusMinutes(mins);
             String formattedDate = dtf.format(specificDatePlusMins);
             System.out.println("Date after adding " + mins + " minutes from given specific date: " + formattedDate);
             return formattedDate;
-        }catch (Exception e)
-        {
+        } catch (Exception e) {
             System.out.println("Exception in 'addMinsToSpecificDateAndGetDateAndTime' method");
             e.printStackTrace();
             return null;
         }
     }
 
-    public String addMinsToCurrentDateAndGetDateAndTime(String formatReq, int mins)
-    {
-        try
-        {
+    public String addMinsToCurrentDateAndGetDateAndTime(String formatReq, int mins) {
+        try {
             LocalDateTime ldt = LocalDateTime.now();
             LocalDateTime currentDatePlusMins = ldt.plusMinutes(mins);
             DateTimeFormatter dtf = DateTimeFormatter.ofPattern(formatReq);
             String formattedDate = dtf.format(currentDatePlusMins);
             System.out.println("Date after adding " + mins + " minutes from given specific date: " + formattedDate);
             return formattedDate;
-        }catch (Exception e)
-        {
+        } catch (Exception e) {
             System.out.println("Exception in 'addMinsToCurrentDateAndGetDateAndTime' method");
             e.printStackTrace();
             return null;
         }
     }
 
-    public String getDateAndTimeInPreferredTimeZone(String formatReq, String timeZone)
-    {
-        try
-        {
+    public String getDateAndTimeInPreferredTimeZone(String formatReq, String timeZone) {
+        try {
             DateTimeFormatter dtf = DateTimeFormatter.ofPattern(formatReq);
             ZonedDateTime zdt = ZonedDateTime.now();
             String formattedLocalTime = dtf.format(zdt);
@@ -2258,8 +2283,7 @@ public class SeleniumUtils extends Driver {
             String userTimeZone1 = dtf.format(userTimeZone);
             System.out.println("Date and Time for " + timeZone + " timezone is : " + userTimeZone1);
             return userTimeZone1;
-        }catch (Exception e)
-        {
+        } catch (Exception e) {
             System.out.println("Exception in getDateAndTimeInPreferredTimeZone method");
             e.printStackTrace();
             return null;
@@ -2267,10 +2291,8 @@ public class SeleniumUtils extends Driver {
 
     }
 
-    public String convertDateFromDBToOtherFormat(String formatReq, String dateToBeConverted, String dateFormat)
-    {
-        try
-        {
+    public String convertDateFromDBToOtherFormat(String formatReq, String dateToBeConverted, String dateFormat) {
+        try {
             DateTimeFormatter dtf = DateTimeFormatter.ofPattern(formatReq);
             DateTimeFormatter convertableDtf = DateTimeFormatter.ofPattern(dateFormat);
 
@@ -2279,8 +2301,7 @@ public class SeleniumUtils extends Driver {
             System.out.println("Actual date is : " + dateToBeConverted);
             System.out.println("Date after conversion is : " + formattedDate);
             return formattedDate;
-        }catch (Exception e)
-        {
+        } catch (Exception e) {
             System.out.println("Exception in convertDateFromDBToOtherFormat method");
             e.printStackTrace();
             return null;

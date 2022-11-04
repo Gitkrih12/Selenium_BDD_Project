@@ -10,9 +10,9 @@ Feature: Upload Files
     Given the user is on the "Upload Files" tab
     Then user should navigate to Upload files screen successfully and view message "Drag Files Here or Choose File"
 
-  @56662
-  Scenario: Verify user navigates to Upload files section on clicking Upload Files in Left Navigation Menu
-# The steps are covered under background section already
+#  @56662
+#  Scenario: Verify user navigates to Upload files section on clicking Upload Files in Left Navigation Menu
+## The steps are covered under background section already
 
   @56663 @Sanity
   Scenario: Verify user should see Drag Files Here (or) Choose File option and able to select files
