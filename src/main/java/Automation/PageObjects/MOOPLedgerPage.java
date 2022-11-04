@@ -124,7 +124,7 @@ public class MOOPLedgerPage extends SeleniumUtils {
         List<WebElement> moopTransactionValues = findElementsByXpath(lstMoopTransactionFieldValues);
         System.out.println("Size:" + moopTransactionValues.size());
         for (WebElement value : moopTransactionValues) {
-            isDisplayed(value);
+            Assert.assertTrue(isDisplayed(value));
             System.out.println("Value is displayed: " + isDisplayed(value));
         }
     }

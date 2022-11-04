@@ -65,7 +65,7 @@ public class ActivityLoggerPage extends SeleniumUtils {
         List<WebElement> activityLoggerValues = findElementsByXpath(lstActivityLoggerValues);
         System.out.println("Size:" + activityLoggerValues.size());
         for (WebElement value : activityLoggerValues) {
-            isDisplayed(value);
+            Assert.assertTrue(isDisplayed(value));
             System.out.println("Value is displayed: " + isDisplayed(value));
         }
     }

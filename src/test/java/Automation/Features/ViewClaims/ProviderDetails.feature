@@ -10,7 +10,7 @@ Feature: Provider Details
     And user clicks on the Provider Details tab
     Then user navigates to the Provider Details tab
 
-   @39953 @beta
+  @39953 @beta
   Scenario: Verify user able to view the Pay to Provider Details and Group/Rendering Provider Details section under Provider Details tab
     When user clicking on Claim Number in Global Search page
     And user clicks on the Provider Details tab
@@ -69,7 +69,7 @@ Feature: Provider Details
       | Deactivate        |
 
   @48990
-#  @Sanity
+  @Sanity
   Scenario: Verify the user able to navigate to the A/R Transactions page on clicking Vendor ID in Provider details tab view
     When user clicking on Claim Number in Global Search page
     And user clicks on the Provider Details tab
@@ -165,7 +165,7 @@ Feature: Provider Details
     And user clicks on Select button for the other Vendor ID
     Then user able to view the Vendor ID by default after selected
 
-  @60848
+#  @60848
   Scenario: Verify user able to view the pagination, cancel and close buttons for Map Pay To Provider Side Drawer
     Given the user is in FFS Professional page
     Then the user should navigate to the FFS Professional page
@@ -225,8 +225,8 @@ Feature: Provider Details
     When user clicking on Claim Number in Global Search page
     And user clicks on the Provider Details tab
     When user clicks on Provider ID under Group Rendering Provider Details
+    Then user able to view "Facility Name" and Speciality Fields
     Then user able to view the following fields under Facility Name
-      | Speciality    |
       | NPI           |
       | Medicare      |
       | Facility Type |
@@ -277,7 +277,7 @@ Feature: Provider Details
       | FFS Percentage           |
       | Medicare Allowable Rate* |
       | Service                  |
-      | Diagnostis               |
+      | Diagnostics              |
       | Lab                      |
       | DME                      |
       | Injections               |
@@ -297,7 +297,7 @@ Feature: Provider Details
       | Type Of Bill      |
       | Contract Language |
       | Rate              |
-      | Effective Dtae    |
+      | Effective Date    |
       | Term Date         |
 
   @55534
@@ -317,3 +317,77 @@ Feature: Provider Details
       | Rate               |
       | Effective Date     |
       | Term Date          |
+
+  @55171
+  Scenario: Verify Location Information tab in Provider Details screen
+    When user clicking on Claim Number in Global Search page
+    And user clicks on the Provider Details tab
+    When user clicks on Provider ID under Group Rendering Provider Details
+    And user clicks on Location Information subtab
+    Then user navigates to "Location Information" subtab
+    And user able to view the following fields under Practice Location List
+      | Effective Date    |
+      | Term Date         |
+      | Practice Name     |
+      | Practice Location |
+      | City              |
+      | ST                |
+      | ZIP               |
+      | County            |
+      | Status            |
+
+  @55205
+  Scenario: Verify Contract Information tab in Provider Details screen
+    When user clicking on Claim Number in Global Search page
+    And user clicks on the Provider Details tab
+    When user clicks on Provider ID under Group Rendering Provider Details
+    And user clicks on Contract Information subtab
+    Then user navigates to the "Contract Information" subtab
+    And user able to view the following fields under Contract List
+      | Effective Date       |
+      | Term                 |
+      | Tax ID               |
+      | Plan                 |
+      | Network ID           |
+      | Contract             |
+      | Sequestration        |
+      | Provider Type        |
+      | Timely Flling (Days) |
+      | Status               |
+
+  @55212
+  Scenario: Verify Alias Information tab in Provider Details screen
+    When user clicking on Claim Number in Global Search page
+    And user clicks on the Provider Details tab
+    When user clicks on Provider ID under Group Rendering Provider Details
+    And user clicks on Alias Information subtab
+    Then user navigated to the "Alias Information" subtab
+    And user able to view the below list of fields under Provider Alias List
+      | Alias Type        |
+      | Alias Information |
+      | Status            |
+
+  @55434
+  Scenario: Verify user should be able to navigate Map Provider window on clicking Map Provider button in Provider Details tab
+    Given the user is in FFS Professional page
+    Then the user should navigate to the FFS Professional page
+    When user clicks on Hold bucket
+    And user clicks on Hold claim number in FFS Institutional page
+    And user clicks on the Provider Details tab
+    When user clicks on Map Provider button
+    Then user navigates to the "Map Rendering Provider" pop-up window
+
+  @55435
+  Scenario: Verify user should able to validate Tax ID/SSN in Map Provider window
+    Given the user is in FFS Professional page
+    Then the user should navigate to the FFS Professional page
+    When user clicks on Hold bucket
+    And user clicks on Hold claim number in FFS Institutional page
+    And user clicks on the Provider Details tab
+    When user clicks on Map Provider button
+    Then user should be able to validate "Tax ID" and "Rendering Provider" fields
+    And user able to view all the below mentioned fields under Rendering Provider
+      | Provider ID   |
+      | Provider Name |
+      | NPI           |
+      | Address       |

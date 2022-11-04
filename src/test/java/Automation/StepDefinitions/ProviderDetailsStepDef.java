@@ -144,7 +144,7 @@ public class ProviderDetailsStepDef extends ProviderDetailsPage {
     }
 
     @Then("user able to view the Vendor ID by default after selected")
-    public void user_able_to_view_the_vendor_id_by_default_after_selected() {
+    public void user_able_to_view_the_vendor_id_by_default_after_selected() throws InterruptedException {
         verifyVendorShouldBeDefaultAfterSelected();
     }
 
@@ -204,6 +204,12 @@ public class ProviderDetailsStepDef extends ProviderDetailsPage {
     }
 
     //  Scenario: Verify Facility Name section in Basic Information tab
+
+    @Then("user able to view {string} and Speciality Fields")
+    public void user_able_to_view_and_speciality_fields(String expFacilityName) {
+        verifySpecialityAndFacilityNameFields(expFacilityName);
+    }
+
     @Then("user able to view the following fields under Facility Name")
     public void user_able_to_view_the_following_fields_under_facility_name(DataTable expFields) {
         verifyFieldsUnderFacilityName(expFields);
@@ -259,5 +265,75 @@ public class ProviderDetailsStepDef extends ProviderDetailsPage {
     @Then("user should be able to view the following fields in Revenue Code Section")
     public void user_should_be_able_to_view_the_following_fields_in_revenue_code_section(DataTable expFields) {
         verifyFieldsInRevenueCode(expFields);
+    }
+
+    //  Scenario: Verify Location Information tab in Provider Details screen
+    @When("user clicks on Location Information subtab")
+    public void user_clicks_on_location_information_subtab() {
+        userClicksOnLocationInfo();
+    }
+
+    @Then("user navigates to {string} subtab")
+    public void user_navigates_to_subtab(String expSubtab) {
+        userNavigatesToLocationInfoSubtab(expSubtab);
+    }
+
+    @Then("user able to view the following fields under Practice Location List")
+    public void user_able_to_view_the_following_fields_under_practice_location_list(DataTable expFields) {
+        verifyPracticeLocationList(expFields);
+    }
+
+    //  Scenario: Verify Contract Information tab in Provider Details screen
+    @When("user clicks on Contract Information subtab")
+    public void user_clicks_on_contract_information_subtab() {
+        userClicksOnContractInfo();
+    }
+
+    @Then("user navigates to the {string} subtab")
+    public void user_navigates_to_the_subtab(String expSubtab) {
+        userNavigatesToContractInfoSubtab(expSubtab);
+    }
+
+    @Then("user able to view the following fields under Contract List")
+    public void user_able_to_view_the_following_fields_under_contract_list(DataTable expFields) {
+        verifyFieldsUnderContractList(expFields);
+    }
+
+    //  Scenario: Verify Alias Information tab in Provider Details screen
+    @When("user clicks on Alias Information subtab")
+    public void user_clicks_on_alias_information_subtab() {
+        userClicksOnAliasInfo();
+    }
+
+    @Then("user navigated to the {string} subtab")
+    public void user_navigated_to_the_subtab(String expSubtab) {
+        verifyUserNavigatesToAliasInfo(expSubtab);
+    }
+
+    @Then("user able to view the below list of fields under Provider Alias List")
+    public void user_able_to_view_the_below_list_of_fields_under_provider_alias_list(DataTable expFields) {
+        verifyProviderAliasList(expFields);
+    }
+
+    //  Scenario: Verify user should be able to navigate Map Provider window on clicking Map Provider button in Provider Details tab
+    @When("user clicks on Map Provider button")
+    public void user_clicks_on_map_provider_button() {
+        userClicksOnMapProviderButton();
+    }
+
+    @Then("user navigates to the {string} pop-up window")
+    public void user_navigates_to_the_pop_up_window(String expWindow) {
+        verifyUserNavigatesToMapPayProvider(expWindow);
+    }
+
+    //  Scenario: Verify user should able to validate Tax ID/SSN in Map Provider window
+    @Then("user should be able to validate {string} and {string} fields")
+    public void user_should_be_able_to_validate_and_fields(String expField1, String expField2) {
+        verifyFields(expField1, expField2);
+    }
+
+    @Then("user able to view all the below mentioned fields under Rendering Provider")
+    public void user_able_to_view_all_the_below_mentioned_fields_under_rendering_provider(DataTable expFields) {
+        verifyRenderingProvider(expFields);
     }
 }

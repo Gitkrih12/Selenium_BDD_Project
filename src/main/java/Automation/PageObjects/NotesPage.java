@@ -43,7 +43,7 @@ public class NotesPage extends SeleniumUtils {
         List<WebElement> notesValues = findElementsByXpath(lstNotesValues);
         System.out.println("Size:" + notesValues.size());
         for (WebElement value : notesValues) {
-            isDisplayed(value);
+            Assert.assertTrue(isDisplayed(value));
             System.out.println("Value is displayed: " + isDisplayed(value));
         }
     }

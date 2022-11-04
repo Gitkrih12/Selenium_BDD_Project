@@ -482,6 +482,7 @@ public class FFSProfessionalPage extends SeleniumUtils {
 
     //Scenario: Verify user able to navigate through pages by using Pagination functionality
     public void clickOnOnHold(){
+        explicitInvisibilityOfElementWithTextWait(By.xpath(tabOnHold), 60, "On Hold ()");
         clickElement(tabOnHold);
     }
     public void verifyPageNumbersAtBottomOfPage() throws InterruptedException {
