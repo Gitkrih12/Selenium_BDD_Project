@@ -814,7 +814,6 @@ public class FFSProfessionalPage extends SeleniumUtils {
     public void selectCategory() {
         category = prop.getProperty("Category");
         explicitVisibilityOfWait(findElementByXpath(txtCategory), 5);
-        clickElement(txtCategory);
         selectDropdownByVisibleText(txtCategory, category);
     }
 

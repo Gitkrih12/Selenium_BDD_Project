@@ -74,8 +74,6 @@ Feature: FFS Professional
 
   @TC_39435 @Sanity
   Scenario: Verify user able to navigate through pages by using Pagination functionality
-    When user clicks on FFS Professional in left navigation menu
-    Then the user should navigate to the FFS Professional page
     When user clicks on Hold bucket
     And user should be able to view the page numbers at bottom of the page in FFS Professional page
     When user tries to click on next arrow symbol in FFS Professional

@@ -279,7 +279,7 @@ Feature: CAP Professional
   @TC_72837 @Sanity
   Scenario: Verify error message when user enters Category and Description fields and Title field should leave as empty
     When user clicks on Paid bucket
-    And user enters Batch Id in search criteria
+    And user enters Batch Id in search criteria for Normal Check in CAP Professional page
     Then user should see the Add Note button for given batch id
     When user click on the Add Note button
     When user enters values in the Category and Description fields
@@ -289,7 +289,7 @@ Feature: CAP Professional
   @TC_72838 @Sanity
   Scenario: Verify error message when user enters Title and Description fields and Category field should leave as empty
     When user clicks on Paid bucket
-    And user enters Batch Id in search criteria
+    And user enters Batch Id in search criteria for Normal Check in CAP Professional page
     Then user should see the Add Note button for given batch id
     When user click on the Add Note button
     When user enters values in the Title and Description fields
@@ -299,7 +299,7 @@ Feature: CAP Professional
   @TC_72840 @Sanity
   Scenario: Verify error message when user enters Title and Category fields and Description field should leave as empty
     When user clicks on Paid bucket
-    And user enters Batch Id in search criteria
+    And user enters Batch Id in search criteria for Normal Check in CAP Professional page
     Then user should see the Add Note button for given batch id
     When user click on the Add Note button
     When user enters values in the Title and Category fields
