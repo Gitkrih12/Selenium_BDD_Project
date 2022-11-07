@@ -239,12 +239,13 @@ public class ClaimDetailsStepDef extends ClaimDetailsPage {
     public void user_clicks_on_button(String string) {
         clickSelfAssignButton();
     }
-    @Then("user should able to see validation message as {string}")
-    public void user_should_able_to_see_validation_message_as(String validationMsg) {
-        verifySuccessValidation(validationMsg);
+    @Then("user should able to see validation message as {string} and  {string}")
+    public void user_should_able_to_see_validation_message_as_and(String validationMsg1, String validationMsg2) {
+        verifySuccessValidation(validationMsg1,validationMsg2);
     }
+
     @Then("user should able to see Assigned To value should updated to respective user")
     public void user_should_able_to_see_assigned_to_value_should_updated_to_respective_user() {
-
+        verifyAssignedUser();
     }
 }

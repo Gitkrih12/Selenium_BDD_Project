@@ -316,5 +316,5 @@ Feature: Claim Details
     When user clicks on the Claim Number
     Then user navigates to the "Claim Summary" page
     When user clicks on "Self Assign" button
-    Then user should able to see validation message as "Claim updated successfully Claim Assigned"
+    Then user should able to see validation message as "CLAIM UPDATED SUCCESSFULLY" and  "CLAIM ASSIGNED"
     And user should able to see Assigned To value should updated to respective user
