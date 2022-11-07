@@ -54,6 +54,8 @@ public class ClaimDetailsPage extends SeleniumUtils {
     String lblClaimSubmissionCorrected = "//*[contains(text(), '7 - CORRECTED')]";
     String eleClaimSubmission = "//*[@id='nav-claim-details']//div[4]/div[2]/b";
     String tabPend = "//button[@id='nav-pend-details-tab']";
+    String eleSuccessMessage = "//div[contains(@class,'toastr toast-success')]";
+
 
     private static String expClaimNumber = "";
     private static String expClaimSubmission = "";
@@ -521,5 +523,17 @@ public class ClaimDetailsPage extends SeleniumUtils {
     public void verifyClaimSubmissionType(String type){
         explicitTextToBePresentInElementLocatedWait(By.xpath(eleClaimSubmission), 30, type);
         Assert.assertEquals(type, findElementByXpath(eleClaimSubmission).getText());
+    }
+
+    //Scenario: Verify self assign claim functionality
+    public void clickSelfAssignButton(){
+        clickElement(btnSelfAssign);
+    }
+
+    public void verifySuccessValidation(String validationMsg){
+        explicitVisibilityOfWait(findElementByXpath(eleSuccessMessage), 5);
+        String actMsg = getText(eleSuccessMessage);
+        System.out.println(" actual msg "+actMsg);
+
     }
 }

@@ -308,3 +308,13 @@ Feature: Claim Details
       | I00MR220725009 | 7-CORRECTED                |
       | I0021122300001 | 8-VOID/CANCEL              |
       | I00MR220113003 | 9-FINAL CLAIM              |
+
+  #71368-As an Adjudicator when I click on “Self-Assign” on the Claim details tab then the claim should assign to me. So that I can be able to handle/assign the claim.
+  @73992
+  Scenario: Verify self assign claim functionality
+    Given the user is in FFS Professional page
+    When user clicks on the Claim Number
+    Then user navigates to the "Claim Summary" page
+    When user clicks on "Self Assign" button
+    Then user should able to see validation message as "Claim updated successfully Claim Assigned"
+    And user should able to see Assigned To value should updated to respective user
