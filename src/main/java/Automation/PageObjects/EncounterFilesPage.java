@@ -134,7 +134,7 @@ public class EncounterFilesPage extends SeleniumUtils {
     //    Scenario: Verify user should be able to get results for applying filter on "Age(Days)" column under Encounter files tab
     public void enterAgeDaysUnderEncounterAgeDaysSearchBox()
     {
-        encounterAgeDaysRecordExp = getText(eleEncounterAgeDays);
+        encounterAgeDaysRecordExp = explicitElementClickableWaitByXpath(eleEncounterAgeDays, 10).getText();
         explicitElementClickableWaitByXpath(txtEncounterAgeDays, 10).sendKeys(encounterAgeDaysRecordExp);
     }
     public void verifyUserAbleToViewEncounterAgeDaysUnderResultsSection()
