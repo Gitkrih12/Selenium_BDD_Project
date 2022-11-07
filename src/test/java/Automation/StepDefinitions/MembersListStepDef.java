@@ -12,9 +12,9 @@ public class MembersListStepDef extends MembersListPage {
         userClicksOnMembersList();
     }
 
-    @Then("user navigates to Members List page")
-    public void user_navigates_to_members_list_page() {
-        verifyUserNavigatesToMembersListPage();
+    @Then("user navigates to {string} page")
+    public void user_navigates_to_page(String expTab) {
+        verifyUserNavigatesToMembersListPage(expTab);
     }
 
     @Then("user able to view all the below mentioned columns under Members List")
