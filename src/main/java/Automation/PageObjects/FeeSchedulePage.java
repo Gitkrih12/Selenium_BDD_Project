@@ -27,20 +27,14 @@ public class FeeSchedulePage extends SeleniumUtils {
     String lstGeographicPracticeCostColumnFields="(//div[@class='ag-header-row ag-header-row-column'])[11]//div[@role='columnheader']";
     String lstFeeSchedulesFieldValues="(//div[contains(@class,'ag-row-even ag-row-no-focus ag-row ag-row-level-0')])[2]//div[text()]";
     String lstPaymentPolicyIndicatorsFieldValues="(//div[contains(@class,'ag-row-even ag-row-no-focus ag-row ag-row-level-0')])[5]//div[text()]";
-    String lstRVUFieldValues="(//div[contains(@class,'ag-row-even ag-row-no-focus ag-row ag-row-level-0')])[8]//div[text()]";
+    String lstRVUFieldValues="((//div[@id='nav-contact']//div[@ref='eContainer'])[2]//div[@role='row'])[1]//div[text()]";
     String lstGeographicPracticeCostFieldValues="(//div[contains(@class,'ag-row-even ag-row-no-focus ag-row ag-row-level-0')])[11]//div";
 
 
     private static String expClaimNumber = "";
 
     //Scenario: Verify user able to view the Fee schedules side drawer when clicking on See Fee Schedule in Pricing screen
-    public void clickOnGlobalSearch() {
-        explicitVisibilityOfWait(findElementByXpath(lnkGlobalSearch), 5);
-        clickElement(lnkGlobalSearch);
-    }
-
     public void enterClaimNumberInSearchField() throws InterruptedException {
-        threadSleep(1000);
         expClaimNumber = prop.getProperty("claimNumberForFeeSchedule");
         findElementAndSendKeys(findElementByXpath(inputClaimNumber), expClaimNumber);
         threadSleep(1000);
@@ -50,29 +44,31 @@ public class FeeSchedulePage extends SeleniumUtils {
     public void clickOnClaimNumber() throws InterruptedException {
         explicitTextToBePresentInElementLocatedWait(By.xpath(eleClaimNumber), 20, expClaimNumber);
         clickElement(eleClaimNumber);
-        threadSleep(1000);
     }
 
     public void clickOnServiceLine(){
+        scrollPageDown(driver);
+        explicitElementClickableWaitByXpath(lnkServiceLine, 20);
         clickElement(lnkServiceLine);
     }
 
-    public void verifyPricingScreen(String expPricingText){
-        explicitTextToBePresentInElementLocatedWait(By.xpath(elePricingScreen), 20, "Pricing");
-        String pricingText = findElementByXpath(elePricingScreen).getText();
-        String[] actPricingText = pricingText.split(" ");
-        Assert.assertEquals(expPricingText, actPricingText[0]);
-    }
-
     public void clickOnSeeFeeSchedule(){
+        scrollPageUp(driver);
         explicitTextToBePresentInElementLocatedWait(By.xpath(lnkSeeFeeSchedule), 20, "See Fee Schedule");
         clickElement(lnkSeeFeeSchedule);
     }
 
-    public void verifyFeeSchedules(String expFeeScheduleText){
-        explicitTextToBePresentInElementLocatedWait(By.xpath(eleFeeSchedules), 20, "Fee Schedules");
-        String actFeeScheduleText = findElementByXpath(eleFeeSchedules).getText();
-        Assert.assertEquals(expFeeScheduleText, actFeeScheduleText);
+    public void verifyUserNavigatesPricingAndFeeScheduleScreens(String expText){
+        if(expText.contains("Pricing")){
+            explicitTextToBePresentInElementLocatedWait(By.xpath(elePricingScreen), 20, "Pricing");
+            String pricingText = findElementByXpath(elePricingScreen).getText();
+            String[] actPricingText = pricingText.split(" ");
+            Assert.assertEquals(expText, actPricingText[0]);
+        }else if(expText.contains("Fee Schedules")){
+            explicitTextToBePresentInElementLocatedWait(By.xpath(eleFeeSchedules), 20, "Fee Schedules");
+            String actFeeScheduleText = findElementByXpath(eleFeeSchedules).getText();
+            Assert.assertEquals(expText, actFeeScheduleText);
+        }
     }
 
     //Scenario: Verify user able to view the respective tabs under Fee Schedules side drawer
@@ -103,23 +99,28 @@ public class FeeSchedulePage extends SeleniumUtils {
     }
 
     //Scenario: Verify user navigates to Payment Policy Indicators tab
-    public void verifyPaymentPolicyIndicators(String expPaymentPolicyIndicatorsText){
-        explicitTextToBePresentInElementLocatedWait(By.xpath(tabPaymentPolicyIndicators), 10, "Payment Policy Indicators");
-        String actPaymentPolicyIndicators = findElementByXpath(tabPaymentPolicyIndicators).getText();
-        Assert.assertEquals(expPaymentPolicyIndicatorsText, actPaymentPolicyIndicators);
+    public void verifyUserNavigatesToPaymentPolicyIndicatorsRVUAndGeographicScreens(String expText){
+        if(expText.contains("Payment")){
+            explicitTextToBePresentInElementLocatedWait(By.xpath(tabPaymentPolicyIndicators), 10, "Payment Policy Indicators");
+            String actPaymentPolicyIndicators = findElementByXpath(tabPaymentPolicyIndicators).getText();
+            Assert.assertEquals(expText, actPaymentPolicyIndicators);
+        }else if(expText.contains("RVU")){
+            explicitTextToBePresentInElementLocatedWait(By.xpath(tabRVU), 10, "RVU");
+            String actRVU = findElementByXpath(tabRVU).getText();
+            Assert.assertEquals(expText, actRVU);
+        } else if(expText.contains("Geographic")){
+            explicitTextToBePresentInElementLocatedWait(By.xpath(tabGeographicPracticeCost), 10, "Geographic");
+            String actRVU = findElementByXpath(tabGeographicPracticeCost).getText();
+            Assert.assertEquals(expText, actRVU);
+        }
+
     }
 
     //Scenario: Verify user navigates to RVU tab
     public void clickOnRVU(){
+        explicitTextToBePresentInElementLocatedWait(By.xpath(tabRVU), 10, "RVU");
         explicitElementClickableWaitByXpath(tabRVU, 20);
-        explicitTextToBePresentInElementLocatedWait(By.xpath(tabRVU), 10, "RVU");
         clickElement(tabRVU);
-    }
-
-    public void verifyRVU(String expRVUText){
-        explicitTextToBePresentInElementLocatedWait(By.xpath(tabRVU), 10, "RVU");
-        String actRVU = findElementByXpath(tabRVU).getText();
-        Assert.assertEquals(expRVUText, actRVU);
     }
 
     //Scenario: Verify column fields in RVU tab
@@ -134,12 +135,6 @@ public class FeeSchedulePage extends SeleniumUtils {
     public void clickOnGeographicPracticeCost(){
         explicitTextToBePresentInElementLocatedWait(By.xpath(tabGeographicPracticeCost), 10, "Geographic");
         clickElement(tabGeographicPracticeCost);
-    }
-
-    public void verifyGeographicPracticeCost(String expRVUText){
-        explicitTextToBePresentInElementLocatedWait(By.xpath(tabGeographicPracticeCost), 10, "Geographic");
-        String actRVU = findElementByXpath(tabGeographicPracticeCost).getText();
-        Assert.assertEquals(expRVUText, actRVU);
     }
 
     //Scenario: Verify column fields in Geographic Practice Cost tab

@@ -10,7 +10,6 @@ public class FeeScheduleStepDef extends FeeSchedulePage {
    //Scenario: Verify user able to view the Fee schedules side drawer when clicking on See Fee Schedule in Pricing screen
    @When("user clicking on Claim Number in Global Search page for Fee Schedule")
    public void user_clicking_on_claim_number_in_global_search_page_for_fee_schedule() throws InterruptedException {
-       clickOnGlobalSearch();
        enterClaimNumberInSearchField();
        clickOnClaimNumber();
    }
@@ -20,11 +19,7 @@ public class FeeScheduleStepDef extends FeeSchedulePage {
     }
     @Then("user should navigates to {string} screen")
     public void user_should_navigates_to_screen(String expText) {
-       if(expText.contains("Pricing")){
-           verifyPricingScreen(expText);
-       }else if(expText.contains("Fee Schedules")){
-           verifyFeeSchedules(expText);
-       }
+        verifyUserNavigatesPricingAndFeeScheduleScreens(expText);
     }
 
     @When("user clicks on See Fee Schedule link")
@@ -52,14 +47,7 @@ public class FeeScheduleStepDef extends FeeSchedulePage {
     //Scenario: Verify user navigates to Payment Policy Indicators tab
     @Then("user navigated to {string} tab successfully")
     public void user_navigated_to_tab_successfully(String expText) {
-        if(expText.contains("Payment")){
-            verifyPaymentPolicyIndicators(expText);
-        }else if(expText.contains("RVU")){
-            verifyRVU(expText);
-        } else if(expText.contains("Geographic")){
-            verifyGeographicPracticeCost(expText);
-        }
-
+        verifyUserNavigatesToPaymentPolicyIndicatorsRVUAndGeographicScreens(expText);
     }
 
     //Scenario: Verify column fields in Payment Policy Indicators tab
