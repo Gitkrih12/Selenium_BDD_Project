@@ -235,8 +235,8 @@ public class ClaimDetailsStepDef extends ClaimDetailsPage {
     }
 
     //Scenario: Verify self assign claim functionality
-    @When("user clicks on {string} button")
-    public void user_clicks_on_button(String string) {
+    @When("user clicks on Self Assign button")
+    public void user_clicks_on_self_assign_button() {
         clickSelfAssignButton();
     }
     @Then("user should able to see validation message as {string} and  {string}")

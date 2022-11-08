@@ -315,6 +315,6 @@ Feature: Claim Details
     Given the user is in FFS Professional page
     When user clicks on the Claim Number
     Then user navigates to the "Claim Summary" page
-    When user clicks on "Self Assign" button
+    When user clicks on Self Assign button
     Then user should able to see validation message as "CLAIM UPDATED SUCCESSFULLY" and  "CLAIM ASSIGNED"
     And user should able to see Assigned To value should updated to respective user
