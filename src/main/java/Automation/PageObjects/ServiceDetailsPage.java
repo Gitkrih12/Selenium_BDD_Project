@@ -51,9 +51,8 @@ public class ServiceDetailsPage extends SeleniumUtils {
     }
 
     public void clickOnServiceDetails() throws InterruptedException {
-        threadSleep(2000);
+        explicitElementClickableWaitByXpath(tabServiceDetails, 20);
         clickElement(tabServiceDetails);
-        threadSleep(1000);
     }
 
     public void userViewsAllColumnFieldsInServiceDetails(DataTable columnList) {
