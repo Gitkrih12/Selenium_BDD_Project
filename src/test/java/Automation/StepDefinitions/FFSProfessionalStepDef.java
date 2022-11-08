@@ -427,6 +427,86 @@ public class FFSProfessionalStepDef extends FFSProfessionalPage {
         verify835File(fileName);
     }
 
+    //Scenario: Verify Add Note button in Paid Bucket
+    @Then("user should see the Add Note button for given batch id")
+    public void user_should_see_the_add_note_button_for_given_batch_id() {
+        verifyAddNoteButton();
+    }
+
+    //  Scenario: Verify fields in Add Note window
+    @When("user click on the Add Note button")
+    public void user_click_on_the_add_note_button() {
+        clickOnAddNoteButton();
+    }
+    @Then("user should see the {string} {string} and {string} fields")
+    public void user_should_see_the_and_fields(String title, String category, String description) {
+        verifyTitle(title);
+        verifyCategory(category);
+        verifyDescription(description);
+    }
+
+    @Then("user should see the {string} and {string} buttons")
+    public void user_should_see_the_and_buttons(String add, String cancel) {
+        verifyAddButton(add);
+        verifyCancelButton(cancel);
+    }
+
+    //Scenario: Verify user should be able to view all the Claim notes that are updated for that specific Batch results
+    @When("user enters values in the Title Category and Description fields")
+    public void user_enters_values_in_the_title_category_and_description_fields() {
+        enterTitle();
+        selectCategory();
+        enterDescription();
+    }
+    @When("user click on the Add button")
+    public void user_click_on_the_add_button() {
+        clickAdd();
+    }
+    @Then("user should able to see {string} message")
+    public void user_should_able_to_see_message(String toasterMsg) throws InterruptedException {
+        verifyAddNoteSuccessfullyMsg(toasterMsg);
+    }
+
+    @When("user clicks on claim number and navigates to Notes section")
+    public void user_clicks_on_claim_number_and_navigates_to_notes_section() {
+        clickOnClaimNumber();
+        NavigateToNotesScreen();
+    }
+    @Then("user should able see the added note in the Notes section")
+    public void user_should_able_see_the_added_note_in_the_notes_section() throws InterruptedException {
+        verifyNotesAddedInNotesSection();
+    }
+
+    //Scenario: Verify error message when user enters Category and Description fields and Title field should leave as empty
+    @When("user enters values in the Category and Description fields")
+    public void user_enters_values_in_the_category_and_description_fields() {
+        selectCategory();
+        enterDescription();
+    }
+    @Then("user should able to see error message as {string} message")
+    public void user_should_able_to_see_error_message_as_message(String toasterMsg) throws InterruptedException {
+        verifyErrorMsg(toasterMsg);
+    }
+
+    //Scenario: Verify error message when user enters Title and Description fields and Category field should leave as empty
+    @When("user enters values in the Title and Description fields")
+    public void user_enters_values_in_the_title_and_description_fields() {
+        enterTitle();
+        enterDescription();
+    }
+
+    //Scenario: Verify error message when user enters Title and Category fields and Description field should leave as empty
+    @When("user enters values in the Title and Category fields")
+    public void user_enters_values_in_the_title_and_category_fields() {
+        enterTitle();
+        selectCategory();
+    }
+
+
+
+
+
+
 
 
 
