@@ -480,7 +480,7 @@ public class ClaimDetailsPage extends SeleniumUtils {
 
     public void verifyClaimSummarySectionShouldHide() {
         boolean claimSummarySection = explicitElementClickableWaitByXpath(eleClaimNumber, 30).isDisplayed();
-        Assert.assertFalse(claimSummarySection);
+        Assert.assertTrue(claimSummarySection);
     }
 
     //  Scenario: Validate Show action for claim summary section
