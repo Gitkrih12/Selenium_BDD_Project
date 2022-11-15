@@ -502,6 +502,41 @@ public class FFSProfessionalStepDef extends FFSProfessionalPage {
         selectCategory();
     }
 
+    //Scenario: Validate user able to view all the column fields under On Hold bucket in FFS Professional screen
+    @Then("user able to view following column fields in On Hold bucket")
+    public void user_able_to_view_following_column_fields_in_on_hold_bucket(DataTable columnList) {
+        verifyFFSProfessionalOnHoldColumnFields(columnList);
+    }
+
+    //Scenario: Validate user able to view all the column fields under Payer Review bucket in FFS Professional screen
+    @Then("user able to view following column fields in Payer Review bucket")
+    public void user_able_to_view_following_column_fields_in_payer_review_bucket(DataTable columnList) {
+        verifyFFSProfessionalPayerReviewColumnFields(columnList);
+    }
+
+    //Scenario: Validate user able to view all the column fields under Management Review bucket in FFS Professional screen
+    @Then("user able to view following column fields in Management Review bucket")
+    public void user_able_to_view_following_column_fields_in_management_review_bucket(DataTable columnList) {
+        verifyFFSProfessionalManagementReviewColumnFields(columnList);
+    }
+
+    //Scenario: Validate user able to view all the column fields under Approved bucket in FFS Professional screen
+    @Then("user able to view following column fields in Approved bucket")
+    public void user_able_to_view_following_column_fields_in_approved_bucket(DataTable columnList) {
+        verifyFFSProfessionalApprovedColumnFields(columnList);
+    }
+
+    //Scenario: Validate user able to view all the column fields under Denied bucket in FFS Professional screen
+    @Then("user able to view following column fields in Denied bucket")
+    public void user_able_to_view_following_column_fields_in_denied_bucket(DataTable columnList) {
+        verifyFFSProfessionalDeniedColumnFields(columnList);
+    }
+
+    //Scenario: Validate user able to view all the column fields under Pre-Batch bucket in FFS Professional screen
+    @Then("user able to view following column fields in Pre Batch bucket")
+    public void user_able_to_view_following_column_fields_in_pre_batch_bucket(DataTable columnList) {
+        verifyFFSProfessionalPreBatchColumnFields(columnList);
+    }
 
 
 

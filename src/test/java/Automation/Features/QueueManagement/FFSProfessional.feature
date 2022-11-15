@@ -308,6 +308,119 @@ Feature: FFS Professional
     And user click on the Add button
     Then user should able to see error message as "Please enter Description" message
 
+  #41470-As an adjudicator, I should be able to view On Hold tab of FFS professional claims page with all claims details data
+  @TC_74133
+  Scenario: Validate user able to view all the column fields under On Hold bucket in FFS Professional screen
+    When user clicks on Hold bucket
+    Then user able to view following column fields in On Hold bucket
+      | Claim Number           |
+      | Patient                |
+      | Member ID              |
+      | Billing Provider       |
+      | Rendering Provider     |
+      | Rendering Provider NPI |
+      | DOS From               |
+      | DOS To                 |
+      | Total Charges($)       |
+      | Net Pay Amt($)         |
+      | Received Date          |
+      | Age                    |
+      | Assigned To            |
+
+  #41741-As an adjudicator, I should be able to view Payer Review tab of FFS professional claims page with all claims details data
+  @TC_74139
+  Scenario: Validate user able to view all the column fields under Payer Review bucket in FFS Professional screen
+    When user clicks on Payer Review bucket
+    Then user able to view following column fields in Payer Review bucket
+      | Claim Number           |
+      | Patient                |
+      | Member ID              |
+      | Billing Provider       |
+      | Rendering Provider     |
+      | Rendering Provider NPI |
+      | DOS From               |
+      | DOS To                 |
+      | Total Charges($)       |
+      | Net Pay Amt($)         |
+      | Received Date          |
+      | Age                    |
+      | Assigned To            |
+
+  #41742-As an adjudicator, I should be able to view Management Review tab of FFS professional claims page with all claims details data
+  @TC_74142
+  Scenario: Validate user able to view all the column fields under Management Review bucket in FFS Professional screen
+    When user clicks on Management Review bucket
+    Then user able to view following column fields in Management Review bucket
+      | Claim Number           |
+      | Patient                |
+      | Member ID              |
+      | Billing Provider       |
+      | Rendering Provider     |
+      | Rendering Provider NPI |
+      | DOS From               |
+      | DOS To                 |
+      | Total Charges($)       |
+      | Net Pay Amt($)         |
+      | Received Date          |
+      | Age                    |
+      | Assigned To            |
+
+  #41743-As an adjudicator, I should be able to view Approved tab of FFS professional claims page with all claims details data
+  @TC_74143
+  Scenario: Validate user able to view all the column fields under Approved bucket in FFS Professional screen
+    When user clicks on Approved bucket
+    Then user able to view following column fields in Approved bucket
+      | Claim Number           |
+      | Patient                |
+      | Member ID              |
+      | Billing Provider       |
+      | Rendering Provider     |
+      | Rendering Provider NPI |
+      | DOS From               |
+      | DOS To                 |
+      | Total Charges($)       |
+      | Net Pay Amt($)         |
+      | Received Date          |
+      | Age                    |
+      | Assigned To            |
+
+  #41744-As an adjudicator, I should be able to view Denied tab of FFS professional claims page with all claims details data
+  @TC_74145
+  Scenario: Validate user able to view all the column fields under Denied bucket in FFS Professional screen
+    When user clicks on Denied bucket
+    Then user able to view following column fields in Denied bucket
+      | Claim Number           |
+      | Patient                |
+      | Member ID              |
+      | Billing Provider       |
+      | Rendering Provider     |
+      | Rendering Provider NPI |
+      | DOS From               |
+      | DOS To                 |
+      | Total Charges($)       |
+      | Net Pay Amt($)         |
+      | Received Date          |
+      | Age                    |
+      | Assigned To            |
+
+  #41933-As an adjudicator, I should be able to view Pre Batch tab of FFS professional claims page with all claims details data
+  @TC_74146
+  Scenario: Validate user able to view all the column fields under Pre-Batch bucket in FFS Professional screen
+    When user clicks on Pre Batch bucket
+    Then user able to view following column fields in Pre Batch bucket
+      | Claim Number           |
+      | Patient                |
+      | Member ID              |
+      | Billing Provider       |
+      | Rendering Provider     |
+      | Rendering Provider NPI |
+      | DOS From               |
+      | DOS To                 |
+      | Total Charges($)       |
+      | Net Pay Amt($)         |
+      | Received Date          |
+      | Age                    |
+      | Assigned To            |
 
 
 

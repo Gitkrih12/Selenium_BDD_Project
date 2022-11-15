@@ -100,6 +100,15 @@ public class FFSProfessionalPage extends SeleniumUtils {
     String tabNotes = "//button[@id='nav-notes-tab']";
     String eleNotes = "(//div[@col-id='title'])[2]/..";
     String eleErrorMsg = "(//div[@id='toast-container']//div//div)[1]";
+    String lstOnHoldColumnFields = "//ag-grid-angular[@id='onHoldGrid']//div[@class='ag-header-cell-label']//span[text()]";
+    String lstPayerReviewColumnFields = "//ag-grid-angular[@id='payerReviewGrid']//div[@class='ag-header-cell-label']//span[text()]";
+    String lstManagementReviewColumnFields = "//ag-grid-angular[@id='mangementReviewGrid']//div[@class='ag-header-cell-label']//span[text()]";
+    String lstApprovedColumnFields = "//ag-grid-angular[@id='approvedGrid']//div[@class='ag-header-cell-label']//span[text()]";
+    String lstDeniedColumnFields = "//ag-grid-angular[@id='deniedGrid']//div[@class='ag-header-cell-label']//span[text()]";
+    String lstPreBatchColumnFields = "//ag-grid-angular[@id='prebatchdGrid']//div[@class='ag-header-cell-label']//span[text()]";
+    String btnPreBatchPay = "//button[text()='Pre-Batch Pay']";
+    String chkClaimNumber = "(//*[@id='approvedGrid']//div[contains(@class,'ag-cell-last-left-pinned')]//div[@class='ag-selection-checkbox'])[1]";
+
 
 
     private static String expClaimNumber = "";
@@ -869,5 +878,34 @@ public class FFSProfessionalPage extends SeleniumUtils {
         Assert.assertEquals(expToasterMsg, actToasterMsg);
     }
 
+    //Scenario: Validate user able to view all the column fields under On Hold bucket in FFS Professional screen
+    public void verifyFFSProfessionalOnHoldColumnFields(DataTable columnList){
+        scrollToElementsAndCompare2Lists(columnList,lstOnHoldColumnFields);
+    }
+
+    //Scenario: Validate user able to view all the column fields under Payer Review bucket in FFS Professional screen
+    public void verifyFFSProfessionalPayerReviewColumnFields(DataTable columnList){
+        scrollToElementsAndCompare2Lists(columnList,lstPayerReviewColumnFields);
+    }
+
+    //Scenario: Validate user able to view all the column fields under Management Review bucket in FFS Professional screen
+    public void verifyFFSProfessionalManagementReviewColumnFields(DataTable columnList){
+        scrollToElementsAndCompare2Lists(columnList,lstManagementReviewColumnFields);
+    }
+
+    //Scenario: Validate user able to view all the column fields under Approved bucket in FFS Professional screen
+    public void verifyFFSProfessionalApprovedColumnFields(DataTable columnList){
+        scrollToElementsAndCompare2Lists(columnList,lstApprovedColumnFields);
+    }
+
+    //Scenario: Validate user able to view all the column fields under Denied bucket in FFS Professional screen
+    public void verifyFFSProfessionalDeniedColumnFields(DataTable columnList){
+        scrollToElementsAndCompare2Lists(columnList,lstDeniedColumnFields);
+    }
+
+    //Scenario: Validate user able to view all the column fields under Pre-Batch bucket in FFS Professional screen
+    public void verifyFFSProfessionalPreBatchColumnFields(DataTable columnList){
+        scrollToElementsAndCompare2Lists(columnList,lstPreBatchColumnFields);
+    }
 
 }
