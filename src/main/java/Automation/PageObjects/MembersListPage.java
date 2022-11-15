@@ -35,6 +35,7 @@ public class MembersListPage extends SeleniumUtils {
     String txtAddress = "//*[@aria-label = 'Address Filter Input']";
     String txtStatus = "//*[@aria-label = 'Status Filter Input']";
     String lastName = "(//*[@col-id = 'lastName']//span)[1]";
+    String innerScrollBarMemberList = "//div[@class='ag-body-horizontal-scroll-viewport']";
 
 
     private static String expMemberID = "";
@@ -54,7 +55,7 @@ public class MembersListPage extends SeleniumUtils {
     private static String expStatus = "";
 
 
-    public void userClicksOnMembersList() throws InterruptedException {
+    public void userClicksOnMembersList() {
         explicitVisibilityOfWait(findElementByXpath(lnkMemberManagement), 20);
         clickElement(lnkMemberManagement);
         explicitVisibilityOfWait(findElementByXpath(lnkMembersList), 20);
@@ -62,14 +63,35 @@ public class MembersListPage extends SeleniumUtils {
         explicitVisibilityOfWait(findElementByXpath(lastName), 50);
     }
 
-    public void verifyUserNavigatesToMembersListPage(String expTab){
+    public void verifyUserNavigatesToMembersListPage(String expTab) {
         explicitElementClickableWaitByXpath(titleMembersList, 30);
         Assert.assertEquals(expTab, findElementByXpath(titleMembersList).getText());
     }
 
-    public void verifyFieldsUnderMembersList(DataTable expFields){
+    public void verifyFieldsUnderMembersList(DataTable expFields) {
         explicitElementClickableWaitByXpath(lstMembersListFields, 30);
-        scrollToElementsAndCompare2Lists(expFields, lstMembersListFields);
+        List<String> fieldsExp = expFields.asList();
+        List<WebElement> fields = driver.findElements(By.xpath(lstMembersListFields));
+        List<String> fieldsAct = new ArrayList<>();
+        for (WebElement field : fields) {
+            scrollIntoView(field, driver);
+            explicitElementClickableWait(field, 20);
+            fieldsAct.add(field.getText());
+        }
+        explicitVisibilityOfElementLocatedWaitByXpath(innerScrollBarMemberList, 10);
+        WebElement ele = findElementByXpath(innerScrollBarMemberList);
+        ele.click();
+        moveToElement(ele).clickAndHold().moveByOffset(100, 0).release().perform();
+        String abc = explicitElementClickableWaitByXpath("//span[text()='Status']", 10).getText();
+        fieldsAct.add(abc);
+        printStatementInGreenColor("Fields size actual", fieldsAct.size());
+        printStatementInGreenColor("Fields size expected", fieldsExp.size());
+        printStatementInGreenColor("Fields actual", fieldsAct);
+        printStatementInGreenColor("Fields expected", fieldsExp);
+        Assert.assertEquals(fieldsExp, fieldsAct);
+
+//        explicitElementClickableWaitByXpath(lstMembersListFields, 30);
+//        scrollToElementsAndCompare2Lists(expFields, lstMembersListFields);
     }
 
     public void userEntersMemberIDInSearchCriteria() {
@@ -77,7 +99,7 @@ public class MembersListPage extends SeleniumUtils {
         findElementAndSendKeys(findElementByXpath(txtMemberId), expMemberID);
     }
 
-    public void verifyAppropriateResultsOnMembersListScreen(){
+    public void verifyAppropriateResultsOnMembersListScreen() {
         explicitElementClickableWaitByXpath(lstMemberListValues, 50);
         scrollToElementsAndValidateDisplayStatus(lstMemberListValues);
     }
@@ -164,7 +186,6 @@ public class MembersListPage extends SeleniumUtils {
     }
 
     public void userEntersStatusInSearchCriteria() {
-        driver.findElement(By.xpath(txtAddress)).clear();
         expStatus = prop.getProperty("membersListStatus");
         explicitElementClickableWaitByID(txtStatus, 30);
         scrollIntoView(findElementByXpath(txtStatus), driver);
