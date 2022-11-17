@@ -908,4 +908,30 @@ public class FFSProfessionalPage extends SeleniumUtils {
         scrollToElementsAndCompare2Lists(columnList,lstPreBatchColumnFields);
     }
 
+    //Scenario: Verify Pre Batch Pay button when select claim number from Approved bucket
+    public void verifyPreBatchPayButtonInDisabledMode(){
+        String attribute = getAttribute(btnPreBatchPay,"disabled");
+        if(attribute.contains("true")){
+            Assert.assertTrue(true);
+        }else{
+            Assert.assertTrue(false);
+        }
+
+    }
+
+    public void clickClaimNumberChkBox(){
+        explicitElementClickableWaitByXpath(chkClaimNumber, 20);
+        clickElement(chkClaimNumber);
+    }
+    public void verifyPreBatchPayButtonInEnabledMode(){
+        String attribute = getAttribute(btnPreBatchPay,"disabled");
+        if(attribute==null){
+            Assert.assertTrue(true);
+        }else{
+            Assert.assertTrue(false);
+        }
+    }
+
+
+
 }

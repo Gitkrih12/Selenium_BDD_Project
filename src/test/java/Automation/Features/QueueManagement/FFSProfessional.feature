@@ -422,6 +422,16 @@ Feature: FFS Professional
       | Age                    |
       | Assigned To            |
 
+   #57586-As an adjudicator, when I select the claim from Approved bucket and click on the 'Pre-Batch Pay' button so that the claim will be moved from Approved to Pre Batch
+  @TC_74406
+  Scenario: Verify Pre Batch Pay button when select claim number from Approved bucket
+    When user clicks on Approved bucket
+    Then user should able to see Pre Batch Pay button in disabled mode
+    When user selects claim number
+    Then user should able to see Pre Batch Pay button in enabled mode
+    When user un selects claim number
+    Then user should able to see Pre Batch Pay button in disabled mode
+
 
 
 

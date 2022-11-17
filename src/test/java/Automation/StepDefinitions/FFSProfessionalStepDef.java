@@ -538,6 +538,26 @@ public class FFSProfessionalStepDef extends FFSProfessionalPage {
         verifyFFSProfessionalPreBatchColumnFields(columnList);
     }
 
+    //Scenario: Verify Pre Batch Pay button when select claim number from Approved bucket
+    @Then("user should able to see Pre Batch Pay button in disabled mode")
+    public void user_should_able_to_see_pre_batch_pay_button_in_disabled_mode() {
+        verifyPreBatchPayButtonInDisabledMode();
+    }
+    @When("user selects claim number")
+    public void user_selects_claim_number() {
+        clickClaimNumberChkBox();
+    }
+    @Then("user should able to see Pre Batch Pay button in enabled mode")
+    public void user_should_able_to_see_pre_batch_pay_button_in_enabled_mode() {
+        verifyPreBatchPayButtonInEnabledMode();
+    }
+
+    @When("user un selects claim number")
+    public void user_un_selects_claim_number() {
+        clickClaimNumberChkBox();
+    }
+
+
 
 
 
