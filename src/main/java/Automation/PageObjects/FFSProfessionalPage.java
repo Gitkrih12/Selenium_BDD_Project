@@ -836,7 +836,7 @@ public class FFSProfessionalPage extends SeleniumUtils {
     }
 
     public void verifyAddNoteSuccessfullyMsg(String expToasterMsg) throws InterruptedException {
-        explicitTextToBePresentInElementLocatedWait(By.xpath(eleAddNoteToasterMsg), 15, expToasterMsg);
+        explicitTextToBePresentInElementLocatedWait(By.xpath(eleAddNoteToasterMsg), 20, expToasterMsg);
         String actToasterMsg = findElementByXpath(eleAddNoteToasterMsg).getText();
         System.out.println("expected toaster msg :" + expToasterMsg);
         System.out.println("actual toaster msg :" + actToasterMsg);

@@ -268,12 +268,12 @@ Feature: FFS Professional
   @TC_71709 @Sanity
   Scenario: Verify user should be able to view all the Claim notes that are updated for that specific Batch results
     When user clicks on Paid bucket
-    And user enters Batch Id in search criteria
+    And user enters Batch Id in search criteria for Normal Check
     Then user should see the Add Note button for given batch id
     When user click on the Add Note button
     When user enters values in the Title Category and Description fields
     And user click on the Add button
-    Then user should able to see "Add note save successfully" message
+    Then user should able to see "Added note saved successfully" message
     And user clicks on Batch Id
     When user clicks on claim number and navigates to Notes section
     Then user should able see the added note in the Notes section
