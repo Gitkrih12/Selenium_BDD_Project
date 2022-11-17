@@ -38,9 +38,20 @@ public class ClaimDetailsStepDef extends ClaimDetailsPage {
 
 
     //  Scenario: Verify column fields in Claim Summary details page
+
+    @When("user clicks on the Claim Number in Universal Search")
+    public void user_clicks_on_the_claim_number_in_universal_search() throws InterruptedException {
+        enterClaimNumberInSearchField();
+    }
+
     @Then("user should be able to view all the column fields in Claim Summary Details page")
     public void user_should_be_able_to_view_all_the_column_fields_in_claim_summary_details_page(DataTable columnList) {
         userViewsAllColumnFieldsInClaimSummaryDetails(columnList);
+    }
+
+    @Then("user able to view all the field values in Claim Summary Details page")
+    public void user_able_to_view_all_the_field_values_in_claim_summary_details_page() throws InterruptedException {
+        verifyFieldValuesInClaimSummaryDetailsPage();
     }
 
     //  Scenario: Verify Claim Information section
@@ -72,10 +83,20 @@ public class ClaimDetailsStepDef extends ClaimDetailsPage {
         userViewsClaimInformationFields(claimInfoFields);
     }
 
+    @Then("user able to view all the field values under claim information section")
+    public void user_able_to_view_all_the_field_values_under_claim_information_section() {
+        verifyFieldValuesUnderClaimInfoSection();
+    }
+
     //  Scenario: Validate Payment Information section
     @Then("user able to view the below fields under Payment Information section")
     public void user_able_to_view_the_below_fields_under_payment_information_section(DataTable paymentInfoFields) {
         userViewsPaymentInformationFields(paymentInfoFields);
+    }
+
+    @Then("user able to view all the field values under Payment Information section")
+    public void user_able_to_view_all_the_field_values_under_payment_information_section() {
+        verifyFieldValuesUnderPaymentInfoSection();
     }
 
     //  Scenario: Validate Clean status
@@ -96,10 +117,20 @@ public class ClaimDetailsStepDef extends ClaimDetailsPage {
         verifyFieldsUnderMemberInformationSection(memberInfoSection);
     }
 
+    @Then("user able to view all the field values under Member Information section")
+    public void user_able_to_view_all_the_field_values_under_member_information_section() {
+        verifyFieldValuesUnderMemberInfoSection();
+    }
+
     //  Scenario: Validate Rendering Provider Information section
     @Then("user able to view the below fields under Rendering Provider information section")
     public void user_able_to_view_the_below_fields_under_rendering_provider_information_section(DataTable renderingProviderInfoSection) {
         verifyFieldsUnderRenderingProviderInformationSection(renderingProviderInfoSection);
+    }
+
+    @Then("user able to view all the field values under Rendering Provider Information section")
+    public void user_able_to_view_all_the_field_values_under_rendering_provider_information_section() {
+        verifyFieldValuesUnderRenderingProviderInfoSection();
     }
 
 
@@ -109,16 +140,31 @@ public class ClaimDetailsStepDef extends ClaimDetailsPage {
         verifyFieldsUnderBillingProviderInformationSection(billingProviderInfoSection);
     }
 
+    @Then("user able to view all the field values under Billing Provider Information section")
+    public void user_able_to_view_all_the_field_values_under_billing_provider_information_section() {
+        verifyFieldValuesUnderBillingProviderInfoSection();
+    }
+
     //  Scenario: Validate Payer section
     @Then("user able to view the below fields under Payer section")
     public void user_able_to_view_the_below_fields_under_payer_section(DataTable payerSection) {
         verifyFieldsUnderPayerSection(payerSection);
     }
 
+    @Then("user able to view all the field values under Payer section")
+    public void user_able_to_view_all_the_field_values_under_payer_section() {
+        verifyFieldValuesUnderPayerSection();
+    }
+
     //  Scenario: Validate Date of Service section
     @Then("user able to view the below fields under Date of Service section")
     public void user_able_to_view_the_below_fields_under_date_of_service_section(DataTable dateOfServiceSection) {
         verifyFieldsUnderDateOfServiceSection(dateOfServiceSection);
+    }
+
+    @Then("user able to view all the field values under Date of Service section")
+    public void user_able_to_view_all_the_field_values_under_date_of_service_section() {
+        verifyFieldValuesUnderDateOfServiceSection();
     }
 
     // Scenario: Validate Is Patient Condition Related To section
@@ -157,5 +203,49 @@ public class ClaimDetailsStepDef extends ClaimDetailsPage {
     @Then("user able to view the Claim Summary section")
     public void user_able_to_view_the_claim_summary_section() {
         verifyUserViewsClaimSummarySection();
+    }
+
+    //  Scenario: Verify user able to view 1-New Claim Submission type in Claim details page
+    @Then("user views Claim Submission type as New")
+    public void user_views_claim_submission_type_as_new() {
+        verifyClaimSubmissionTypeAsNew();
+    }
+
+    //  Scenario: Verify user able to view 7-Corrected claim submission type in Claim Details page
+    @Then("user views Claim Submission type as Corrected")
+    public void user_views_claim_submission_type_as_corrected() {
+        verifyClaimSubmissionTypeAsCorrected();
+    }
+
+    //  Scenario: Verify user able to view different types of claim submission from FFS Institutional page
+    @When("user enters and clicks on the {string} in FFS Institutional Universal Search")
+    public void user_enters_and_clicks_on_the_in_ffs_institutional_universal_search(String claimNumber) {
+        userEntersAndClicksOnClaimNumber(claimNumber);
+    }
+
+    @Then("user views the Claim Submission {string}")
+    public void user_views_the_claim_submission(String type) {
+        verifyClaimSubmissionType(type);
+    }
+
+    //  Scenario: Verify user able to view different types of claim submission from CAP Institutional page
+    @When("user enters and clicks on the {string} in CAP Institutional Universal Search")
+    public void user_enters_and_clicks_on_the_in_cap_institutional_universal_search(String claimNumber) {
+        userEntersAndClicksOnClaimNumber(claimNumber);
+    }
+
+    //Scenario: Verify self assign claim functionality
+    @When("user clicks on Self Assign button")
+    public void user_clicks_on_self_assign_button() {
+        clickSelfAssignButton();
+    }
+    @Then("user should able to see validation message as {string} and  {string}")
+    public void user_should_able_to_see_validation_message_as_and(String validationMsg1, String validationMsg2) {
+        verifySuccessValidation(validationMsg1,validationMsg2);
+    }
+
+    @Then("user should able to see Assigned To value should updated to respective user")
+    public void user_should_able_to_see_assigned_to_value_should_updated_to_respective_user() {
+        verifyAssignedUser();
     }
 }
