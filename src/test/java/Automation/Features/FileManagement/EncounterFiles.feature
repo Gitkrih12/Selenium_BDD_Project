@@ -20,7 +20,7 @@ Feature: Encounter files
       | File Name     |
       | Sender        |
       | Receiver      |
-      | Date Recieved |
+      | Date Received |
       | Age(Days)     |
       | Claim Type    |
 
