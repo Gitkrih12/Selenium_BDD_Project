@@ -31,4 +31,3 @@ Feature: Activity Logger
       | Deny              |
       | Approve           |
       | Update Auth       |
-      | Deactivate        |

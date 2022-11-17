@@ -23,7 +23,6 @@ Feature: Documents
       | Deny              |
       | Approve           |
       | Update Auth       |
-      | Deactivate        |
 
   @49610
   @Sanity @beta
