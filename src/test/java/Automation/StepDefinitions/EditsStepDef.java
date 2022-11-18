@@ -13,8 +13,8 @@ public class EditsStepDef extends EditsPage {
         clickOnEditsTab();
     }
 
-    @Then("user navigates to the {string} tab")
-    public void user_navigates_to_the_tab(String expTab) {
+    @Then("user navigates to {string} tab in View page")
+    public void user_navigates_to_tab_in_view_page(String expTab) {
         verifyUserNavigatesToEditsTab(expTab);
     }
 
@@ -31,9 +31,21 @@ public class EditsStepDef extends EditsPage {
     }
 
     //  Scenario: Verify Service Level Edits Sub tab functionality
+    @When("user clicking on Edits Claim Number in Global Search page")
+    public void user_clicking_on_edits_claim_number_in_global_search_page() throws InterruptedException {
+        clickOnGlobalSearch();
+        enterClaimNumberInSearchField();
+        clickOnClaimNumber();
+    }
+
     @Then("user should be able to view below columns in Service Level Edits")
     public void user_should_be_able_to_view_below_columns_in_service_level_edits(DataTable columnFields) {
-        userViewsServiceLevelEditsTab(columnFields);
+        userViewsServiceLevelEditsFields(columnFields);
+    }
+
+    @Then("user able to view all the field values in Service Level Edits")
+    public void user_able_to_view_all_the_field_values_in_service_level_edits() {
+        verifyFieldValuesUnderServiceLevelEditsTab();
     }
 
     //  Scenario: Verify Edit & Delete functionality in Service Level Edits Sub tab
@@ -55,6 +67,11 @@ public class EditsStepDef extends EditsPage {
 
     @Then("user should be able to view below columns in Claim Level Edits")
     public void user_should_be_able_to_view_below_columns_in_claim_level_edits(DataTable editLevelColumnFields) {
-        userViewsClaimLevelEditsTab(editLevelColumnFields);
+        userViewsClaimLevelEditsFields(editLevelColumnFields);
+    }
+
+    @Then("user able to view all the field values in Claim Level Edits")
+    public void user_able_to_view_all_the_field_values_in_claim_level_edits() {
+        verifyFieldValuesUnderClaimLevelEditsTab();
     }
 }
