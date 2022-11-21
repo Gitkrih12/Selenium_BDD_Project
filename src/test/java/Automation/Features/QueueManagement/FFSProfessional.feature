@@ -268,12 +268,12 @@ Feature: FFS Professional
   @TC_71709 @Sanity
   Scenario: Verify user should be able to view all the Claim notes that are updated for that specific Batch results
     When user clicks on Paid bucket
-    And user enters Batch Id in search criteria
+    And user enters Batch Id in search criteria for Normal Check
     Then user should see the Add Note button for given batch id
     When user click on the Add Note button
     When user enters values in the Title Category and Description fields
     And user click on the Add button
-    Then user should able to see "Add note save successfully" message
+    Then user should able to see "Added note saved successfully" message
     And user clicks on Batch Id
     When user clicks on claim number and navigates to Notes section
     Then user should able see the added note in the Notes section
@@ -308,6 +308,129 @@ Feature: FFS Professional
     And user click on the Add button
     Then user should able to see error message as "Please enter Description" message
 
+  #41470-As an adjudicator, I should be able to view On Hold tab of FFS professional claims page with all claims details data
+  @TC_74133
+  Scenario: Validate user able to view all the column fields under On Hold bucket in FFS Professional screen
+    When user clicks on Hold bucket
+    Then user able to view following column fields in On Hold bucket
+      | Claim Number           |
+      | Patient                |
+      | Member ID              |
+      | Billing Provider       |
+      | Rendering Provider     |
+      | Rendering Provider NPI |
+      | DOS From               |
+      | DOS To                 |
+      | Total Charges($)       |
+      | Net Pay Amt($)         |
+      | Received Date          |
+      | Age                    |
+      | Assigned To            |
+
+  #41741-As an adjudicator, I should be able to view Payer Review tab of FFS professional claims page with all claims details data
+  @TC_74139
+  Scenario: Validate user able to view all the column fields under Payer Review bucket in FFS Professional screen
+    When user clicks on Payer Review bucket
+    Then user able to view following column fields in Payer Review bucket
+      | Claim Number           |
+      | Patient                |
+      | Member ID              |
+      | Billing Provider       |
+      | Rendering Provider     |
+      | Rendering Provider NPI |
+      | DOS From               |
+      | DOS To                 |
+      | Total Charges($)       |
+      | Net Pay Amt($)         |
+      | Received Date          |
+      | Age                    |
+      | Assigned To            |
+
+  #41742-As an adjudicator, I should be able to view Management Review tab of FFS professional claims page with all claims details data
+  @TC_74142
+  Scenario: Validate user able to view all the column fields under Management Review bucket in FFS Professional screen
+    When user clicks on Management Review bucket
+    Then user able to view following column fields in Management Review bucket
+      | Claim Number           |
+      | Patient                |
+      | Member ID              |
+      | Billing Provider       |
+      | Rendering Provider     |
+      | Rendering Provider NPI |
+      | DOS From               |
+      | DOS To                 |
+      | Total Charges($)       |
+      | Net Pay Amt($)         |
+      | Received Date          |
+      | Age                    |
+      | Assigned To            |
+
+  #41743-As an adjudicator, I should be able to view Approved tab of FFS professional claims page with all claims details data
+  @TC_74143
+  Scenario: Validate user able to view all the column fields under Approved bucket in FFS Professional screen
+    When user clicks on Approved bucket
+    Then user able to view following column fields in Approved bucket
+      | Claim Number           |
+      | Patient                |
+      | Member ID              |
+      | Billing Provider       |
+      | Rendering Provider     |
+      | Rendering Provider NPI |
+      | DOS From               |
+      | DOS To                 |
+      | Total Charges($)       |
+      | Net Pay Amt($)         |
+      | Received Date          |
+      | Age                    |
+      | Assigned To            |
+
+  #41744-As an adjudicator, I should be able to view Denied tab of FFS professional claims page with all claims details data
+  @TC_74145
+  Scenario: Validate user able to view all the column fields under Denied bucket in FFS Professional screen
+    When user clicks on Denied bucket
+    Then user able to view following column fields in Denied bucket
+      | Claim Number           |
+      | Patient                |
+      | Member ID              |
+      | Billing Provider       |
+      | Rendering Provider     |
+      | Rendering Provider NPI |
+      | DOS From               |
+      | DOS To                 |
+      | Total Charges($)       |
+      | Net Pay Amt($)         |
+      | Received Date          |
+      | Age                    |
+      | Assigned To            |
+
+  #41933-As an adjudicator, I should be able to view Pre Batch tab of FFS professional claims page with all claims details data
+  @TC_74146
+  Scenario: Validate user able to view all the column fields under Pre-Batch bucket in FFS Professional screen
+    When user clicks on Pre Batch bucket
+    Then user able to view following column fields in Pre Batch bucket
+      | Claim Number           |
+      | Patient                |
+      | Member ID              |
+      | Billing Provider       |
+      | Rendering Provider     |
+      | Rendering Provider NPI |
+      | DOS From               |
+      | DOS To                 |
+      | Total Charges($)       |
+      | Net Pay Amt($)         |
+      | Received Date          |
+      | Age                    |
+      | Assigned To            |
+
+   #57586-As an adjudicator, when I select the claim from Approved bucket and click on the 'Pre-Batch Pay' button so that the claim will be moved from Approved to Pre Batch
+  @TC_74406
+  Scenario: Verify Pre Batch Pay button when select claim number from Approved bucket
+    When user clicks on Approved bucket
+    Then user should able to see Pre Batch Pay button in disabled mode
+    When user selects claim number
+    Then user should able to see Pre Batch Pay button in enabled mode
+    When user un selects claim number
+    Then user should able to see Pre Batch Pay button in disabled mode
 
 
 

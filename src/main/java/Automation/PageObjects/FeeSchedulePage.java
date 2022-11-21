@@ -26,9 +26,12 @@ public class FeeSchedulePage extends SeleniumUtils {
     String tabGeographicPracticeCost="//button[contains(text(),'Geographic Practice Cost')]";
     String lstGeographicPracticeCostColumnFields="(//div[@class='ag-header-row ag-header-row-column'])[11]//div[@role='columnheader']";
     String lstFeeSchedulesFieldValues="(//div[contains(@class,'ag-row-even ag-row-no-focus ag-row ag-row-level-0')])[2]//div[text()]";
-    String lstPaymentPolicyIndicatorsFieldValues="(//div[contains(@class,'ag-row-even ag-row-no-focus ag-row ag-row-level-0')])[5]//div[text()]";
+    String lstPaymentPolicyIndicatorsFieldValues="((//div[@id='nav-profile']//div[@ref='eContainer'])[2]//div[@role='row'])[1]//div[text()]";
     String lstRVUFieldValues="((//div[@id='nav-contact']//div[@ref='eContainer'])[2]//div[@role='row'])[1]//div[text()]";
-    String lstGeographicPracticeCostFieldValues="(//div[contains(@class,'ag-row-even ag-row-no-focus ag-row ag-row-level-0')])[11]//div";
+    String lstGeographicPracticeCostFieldValues="((//div[@id='nav-expiry']//div[@ref='eContainer'])[2]//div[@role='row'])[1]//div[text()]";
+    String elePaymentPolicyIndicatorCPTCode="(((//div[@id='nav-profile']//div[@ref='eContainer'])[2]//div[@role='row'])[1]//div[text()])[1]";
+    String eleGeographicPracticeCostMACLocality="(((//div[@id='nav-expiry']//div[@ref='eContainer'])[2]//div[@role='row'])[1]//div[text()])[1]";
+
 
 
     private static String expClaimNumber = "";
@@ -95,6 +98,7 @@ public class FeeSchedulePage extends SeleniumUtils {
         scrollToElementsAndCompare2Lists(columnList,lstPaymentPolicyIndicatorsColumnFields);
     }
     public void verifyFieldValuesInPaymentPolicyIndicator(){
+        explicitElementClickableWaitByXpath(elePaymentPolicyIndicatorCPTCode,20);
         scrollToElementsAndValidateDisplayStatus(lstPaymentPolicyIndicatorsFieldValues);
     }
 
@@ -143,6 +147,7 @@ public class FeeSchedulePage extends SeleniumUtils {
     }
 
     public void verifyFieldValuesInGeographicPracticeCost(){
+        explicitElementClickableWaitByXpath(eleGeographicPracticeCostMACLocality,20);
         scrollToElementsAndValidateDisplayStatus(lstGeographicPracticeCostFieldValues);
     }
 
