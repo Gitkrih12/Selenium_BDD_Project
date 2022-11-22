@@ -72,7 +72,7 @@ public class ProviderDetailsPage extends SeleniumUtils {
     String lstRenderingProvider = "//*[@id = 'resultsGridRenderingprovider']//span[@ref = 'eText' and text()]";
     String eleFacilityName = "//*[@id = 'nav-basic-details']//h6[contains(@class, 'columnFont')]";
     String eleSpeciality = "//*[contains(text(), 'Speciality')]";
-    String eleValidated = "//div//b[contains(text(),'Validated')]";
+    String eleValidated = "(//*[contains(text(),'Validated')])[2]";
     String lstSelectButton = "//div[@col-id='uniquePayToId']//button";
     String elePayToProvider = "//span[contains(text(),'Pay to Provider')]";
 

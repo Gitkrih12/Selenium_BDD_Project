@@ -502,6 +502,61 @@ public class FFSProfessionalStepDef extends FFSProfessionalPage {
         selectCategory();
     }
 
+    //Scenario: Validate user able to view all the column fields under On Hold bucket in FFS Professional screen
+    @Then("user able to view following column fields in On Hold bucket")
+    public void user_able_to_view_following_column_fields_in_on_hold_bucket(DataTable columnList) {
+        verifyFFSProfessionalOnHoldColumnFields(columnList);
+    }
+
+    //Scenario: Validate user able to view all the column fields under Payer Review bucket in FFS Professional screen
+    @Then("user able to view following column fields in Payer Review bucket")
+    public void user_able_to_view_following_column_fields_in_payer_review_bucket(DataTable columnList) {
+        verifyFFSProfessionalPayerReviewColumnFields(columnList);
+    }
+
+    //Scenario: Validate user able to view all the column fields under Management Review bucket in FFS Professional screen
+    @Then("user able to view following column fields in Management Review bucket")
+    public void user_able_to_view_following_column_fields_in_management_review_bucket(DataTable columnList) {
+        verifyFFSProfessionalManagementReviewColumnFields(columnList);
+    }
+
+    //Scenario: Validate user able to view all the column fields under Approved bucket in FFS Professional screen
+    @Then("user able to view following column fields in Approved bucket")
+    public void user_able_to_view_following_column_fields_in_approved_bucket(DataTable columnList) {
+        verifyFFSProfessionalApprovedColumnFields(columnList);
+    }
+
+    //Scenario: Validate user able to view all the column fields under Denied bucket in FFS Professional screen
+    @Then("user able to view following column fields in Denied bucket")
+    public void user_able_to_view_following_column_fields_in_denied_bucket(DataTable columnList) {
+        verifyFFSProfessionalDeniedColumnFields(columnList);
+    }
+
+    //Scenario: Validate user able to view all the column fields under Pre-Batch bucket in FFS Professional screen
+    @Then("user able to view following column fields in Pre Batch bucket")
+    public void user_able_to_view_following_column_fields_in_pre_batch_bucket(DataTable columnList) {
+        verifyFFSProfessionalPreBatchColumnFields(columnList);
+    }
+
+    //Scenario: Verify Pre Batch Pay button when select claim number from Approved bucket
+    @Then("user should able to see Pre Batch Pay button in disabled mode")
+    public void user_should_able_to_see_pre_batch_pay_button_in_disabled_mode() {
+        verifyPreBatchPayButtonInDisabledMode();
+    }
+    @When("user selects claim number")
+    public void user_selects_claim_number() {
+        clickClaimNumberChkBox();
+    }
+    @Then("user should able to see Pre Batch Pay button in enabled mode")
+    public void user_should_able_to_see_pre_batch_pay_button_in_enabled_mode() {
+        verifyPreBatchPayButtonInEnabledMode();
+    }
+
+    @When("user un selects claim number")
+    public void user_un_selects_claim_number() {
+        clickClaimNumberChkBox();
+    }
+
 
 
 
