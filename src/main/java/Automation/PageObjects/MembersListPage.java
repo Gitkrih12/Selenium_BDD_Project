@@ -97,8 +97,8 @@ public class MembersListPage extends SeleniumUtils {
         WebElement ele = findElementByXpath(innerScrollBarMemberList);
         ele.click();
         moveToElement(ele).clickAndHold().moveByOffset(100, 0).release().perform();
-        String abc = explicitElementClickableWaitByXpath(lstStatus, 10).getText();
-        fieldsAct.add(abc);
+        String fieldName = explicitElementClickableWaitByXpath(lstStatus, 10).getText();
+        fieldsAct.add(fieldName);
         printStatementInGreenColor("Fields size actual", fieldsAct.size());
         printStatementInGreenColor("Fields size expected", fieldsExp.size());
         printStatementInGreenColor("Fields actual", fieldsAct);
@@ -261,8 +261,12 @@ public class MembersListPage extends SeleniumUtils {
     //  Scenario: Verify user able to Search Member in the Search Box for Status
     public void userEntersStatusInSearchCriteria() {
         expStatus = prop.getProperty("membersListStatus");
-        explicitElementClickableWaitByID(txtStatus, 30);
-        scrollIntoView(findElementByXpath(txtStatus), driver);
+        explicitVisibilityOfElementLocatedWaitByXpath(innerScrollBarMemberList, 10);
+        WebElement ele = findElementByXpath(innerScrollBarMemberList);
+        ele.click();
+        moveToElement(ele).clickAndHold().moveByOffset(100, 0).release().perform();
+        scrollToElement(txtStatus);
+        explicitElementClickableWaitByXpath(txtStatus, 30);
         findElementAndSendKeys(findElementByXpath(txtStatus), expStatus);
     }
 
