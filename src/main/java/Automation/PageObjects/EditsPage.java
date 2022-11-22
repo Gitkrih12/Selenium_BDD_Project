@@ -16,15 +16,19 @@ public class EditsPage extends SeleniumUtils {
     String tabServiceLevel = "//button[contains(text(), 'Service Level Edits')]";
     String tabClaimLevel = "//button[contains(text(), 'Claim Level Edits')]";
     String btnFooterSection = "//*[@class='footer footer-flex']/button";
-    String lstServiceLevelEdits = "//*[@id = 'nav-serviceleveledits-details']//span[@ref='eText']";
-    String lstClaimLevelEdits = "//*[@id = 'nav-claimleveledits-details']//span[@ref='eText']";
-    String btnDelete = "//button[@title = 'Delete']/img";
-    String btnEdit = "//button[@title = 'Edit']/img";
+    String lstServiceLevelEdits = "(//div[@id='nav-serviceleveledits-details']//div[@class='ag-header-cell-label']//span[text()])[not(position()=7)]";
+    String lstClaimLevelEdits = "(//div[@id = 'nav-claimleveledits-details']//div[@class='ag-header-cell-label']//span[text()])[not(position()=7)]";
+    String btnDeleteServiceLevel = "//*[@id='nav-serviceleveledits-details']//button[@title = 'Delete']/img";
+    String btnDeleteClaimLevel = "//*[@id = 'nav-claimleveledits-details']//button[@title = 'Delete']/img";
+    String btnEditServiceLevel = "//*[@id='nav-serviceleveledits-details']//button[@title = 'Edit']/img";
+    String btnEditClaimLevel = "//*[@id = 'nav-claimleveledits-details']//button[@title = 'Edit']/img";
     String lstClaimLevelEditsFieldValues = "//*[@id = 'nav-claimleveledits-details']//span[@class = 'ag-cell-value' and text()]";
     String lnkGlobalSearch = "(//div[contains(text(),'Global Search')])[1]";
     String inputClaimNumber = "//input[@aria-label='Claim Number Filter Input']";
     String eleClaimNumber = "(//div[@class='ag-pinned-left-cols-container']//a)[1]";
     String lstServiceLevelEditsFieldValues = "(//*[@id = 'nav-serviceleveledits-details']//span[@class = 'ag-cell-value']//span)[1] | (//*[@id = 'nav-serviceleveledits-details']//span[@class = 'ag-cell-value' and text()])";
+    String txtServiceLevelEdits = "//*[@id='nav-serviceleveledits-details']//input[@type = 'text']";
+    String txtClaimLevelEdits = "//*[@id='nav-claimleveledits-details']//input[@type = 'text']";
 
     private static String expClaimNumber = "";
 
@@ -32,7 +36,7 @@ public class EditsPage extends SeleniumUtils {
     public void clickOnEditsTab() {
         explicitElementClickableWaitByXpath(tabEdits, 20);
         clickElement(tabEdits);
-        explicitElementClickableWaitByXpath(tabEdits, 30);
+//        explicitElementClickableWaitByXpath(tabEdits, 30);
     }
 
     public void verifyUserNavigatesToEditsTab(String expTab) {
@@ -73,10 +77,9 @@ public class EditsPage extends SeleniumUtils {
         sendKeysUsingKeyboardInput(inputClaimNumber);
     }
 
-    public void clickOnClaimNumber() throws InterruptedException {
+    public void clickOnClaimNumber() {
         explicitTextToBePresentInElementLocatedWait(By.xpath(eleClaimNumber), 20, expClaimNumber);
         clickElement(eleClaimNumber);
-        threadSleep(1000);
     }
 
     public void userViewsServiceLevelEditsFields(DataTable columnFields) {
@@ -84,30 +87,43 @@ public class EditsPage extends SeleniumUtils {
         scrollToElementsAndCompare2Lists(columnFields, lstServiceLevelEdits);
     }
 
-    public void verifyFieldValuesUnderServiceLevelEditsTab(){
+    public void verifyFieldValuesUnderServiceLevelEditsTab() {
         scrollToElementsAndValidateDisplayStatus(lstServiceLevelEditsFieldValues);
     }
 
+    public void verifySearchBoxInServiceLevelEdits(){
+        scrollToElementsAndValidateDisplayStatus(txtServiceLevelEdits);
+    }
+
     //  Scenario: Verify Edit & Delete functionality in Service Level Edits Sub tab
-    public void userViewsDeleteButton() {
-        List<WebElement> deleteExp = findElementsByXpath(btnDelete);
-        for (WebElement button : deleteExp) {
-            if (button.isEnabled()) {
-                Assert.assertTrue(true);
-            } else {
-                Assert.fail(button + "delete buttons are not displayed");
-            }
+
+    public void userViewsDeleteButtonUnderServiceLevelTab(){
+        scrollToElement(btnDeleteServiceLevel);
+        userViewsDeleteButton(btnDeleteServiceLevel);
+    }
+
+    //Generic method to validate delete button
+    public void userViewsDeleteButton(String deleteXpath) {
+        explicitElementClickableWaitByXpath(deleteXpath, 20);
+        WebElement deleteExp = findElementByXpath(deleteXpath);
+        if (deleteExp.isDisplayed()) {
+            Assert.assertTrue(true);
+        } else {
+            Assert.fail("delete button is not displayed");
         }
     }
 
-    public void userViewsEditButton() {
-        List<WebElement> editExp = findElementsByXpath(btnEdit);
-        for (WebElement button : editExp) {
-            if (button.isEnabled()) {
-                Assert.assertTrue(true);
-            } else {
-                Assert.fail(button + "edit buttons are not displayed");
-            }
+    public void userViewsEditButtonUnderServiceLevelTab(){
+        userViewsEditButton(btnEditServiceLevel);
+    }
+
+    public void userViewsEditButton(String editXpath) {
+        explicitElementClickableWaitByXpath(editXpath, 20);
+        WebElement editExp = findElementByXpath(editXpath);
+        if (editExp.isDisplayed()) {
+            Assert.assertTrue(true);
+        } else {
+            Assert.fail(editExp + "edit buttons are not displayed");
         }
     }
 
@@ -122,7 +138,19 @@ public class EditsPage extends SeleniumUtils {
         scrollToElementsAndCompare2Lists(editLevelColumnFields, lstClaimLevelEdits);
     }
 
-    public void verifyFieldValuesUnderClaimLevelEditsTab(){
+    public void verifyFieldValuesUnderClaimLevelEditsTab() {
         scrollToElementsAndValidateDisplayStatus(lstClaimLevelEditsFieldValues);
+    }
+
+    public void verifySearchBoxInClaimLevelEdits(){
+        scrollToElementsAndValidateDisplayStatus(txtClaimLevelEdits);
+    }
+
+    public void userViewsDeleteButtonUnderClaimLevelTab(){
+        userViewsDeleteButton(btnDeleteClaimLevel);
+    }
+
+    public void userViewsEditButtonUnderClaimLevelTab(){
+        userViewsEditButton(btnEditClaimLevel);
     }
 }

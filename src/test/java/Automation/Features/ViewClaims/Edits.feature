@@ -39,6 +39,7 @@ Feature: Edits
       | Added By      |
       | Overridden By |
     And user able to view all the field values in Service Level Edits
+    And user able to view the search box for all the columns in Service Level Edits
 
   @44556
   Scenario: Verify Edit & Delete functionality in Service Level Edits Sub tab
@@ -63,11 +64,12 @@ Feature: Edits
       | Added By      |
       | Overridden By |
     And user able to view all the field values in Claim Level Edits
+    And user able to view the search box for all the columns in Claim Level Edits
 
   @44561
   Scenario: Verify Edit & Delete functionality in Claim Level Edits Sub tab
     When user clicking on Claim Number in Global Search page
     And user clicks on Edits tab
     And user clicks on Claim Level Edits tab
-    Then user should be able to view Delete action item
-    And user should be able to view Edit action item
+    Then user should be able to view Delete action item in Claim Level Edits
+    And user should be able to view Edit action item in Claim Level Edits

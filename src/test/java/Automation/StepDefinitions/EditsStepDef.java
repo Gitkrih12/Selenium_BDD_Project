@@ -48,15 +48,20 @@ public class EditsStepDef extends EditsPage {
         verifyFieldValuesUnderServiceLevelEditsTab();
     }
 
+    @Then("user able to view the search box for all the columns in Service Level Edits")
+    public void user_able_to_view_the_search_box_for_all_the_columns_in_service_level_edits() {
+        verifySearchBoxInServiceLevelEdits();
+    }
+
     //  Scenario: Verify Edit & Delete functionality in Service Level Edits Sub tab
     @Then("user should be able to view Delete action item")
     public void user_should_be_able_to_view_delete_action_item() {
-        userViewsDeleteButton();
+        userViewsDeleteButtonUnderServiceLevelTab();
     }
 
     @Then("user should be able to view Edit action item")
     public void user_should_be_able_to_view_edit_action_item() {
-        userViewsEditButton();
+        userViewsEditButtonUnderServiceLevelTab();
     }
 
     // Scenario: Verify Claim Level Edits Sub-tab
@@ -73,5 +78,20 @@ public class EditsStepDef extends EditsPage {
     @Then("user able to view all the field values in Claim Level Edits")
     public void user_able_to_view_all_the_field_values_in_claim_level_edits() {
         verifyFieldValuesUnderClaimLevelEditsTab();
+    }
+
+    @Then("user able to view the search box for all the columns in Claim Level Edits")
+    public void user_able_to_view_the_search_box_for_all_the_columns_in_claim_level_edits() {
+        verifySearchBoxInClaimLevelEdits();
+    }
+
+    @Then("user should be able to view Delete action item in Claim Level Edits")
+    public void user_should_be_able_to_view_delete_action_item_in_claim_level_edits() {
+        userViewsDeleteButtonUnderClaimLevelTab();
+    }
+
+    @Then("user should be able to view Edit action item in Claim Level Edits")
+    public void user_should_be_able_to_view_edit_action_item_in_claim_level_edits() {
+        userViewsEditButtonUnderClaimLevelTab();
     }
 }
