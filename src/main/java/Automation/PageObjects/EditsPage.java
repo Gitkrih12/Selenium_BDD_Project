@@ -117,6 +117,7 @@ public class EditsPage extends SeleniumUtils {
         userViewsEditButton(btnEditServiceLevel);
     }
 
+    //Generic method to validate edit button
     public void userViewsEditButton(String editXpath) {
         explicitElementClickableWaitByXpath(editXpath, 20);
         WebElement editExp = findElementByXpath(editXpath);
