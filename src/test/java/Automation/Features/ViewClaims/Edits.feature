@@ -4,7 +4,7 @@ Feature: Edits
     Given the user is in CA Login screen
     When the user enters the valid username and password and click on login button
 
-  @44549
+  @44549 @Sanity
   Scenario: Verify user able to navigate to Edits tab from Global Search and validate the fields
     When user clicking on Claim Number in Global Search page
     And user clicks on Edits tab
@@ -24,7 +24,7 @@ Feature: Edits
       | Approve           |
       | Update Auth       |
 
-  @44553
+  @44553 @Sanity
   Scenario: Verify Service Level Edits Sub tab functionality
     When user clicking on Edits Claim Number in Global Search page
     And user clicks on Edits tab
@@ -48,7 +48,7 @@ Feature: Edits
     Then user should be able to view Delete action item
     And user should be able to view Edit action item
 
-  @44558
+  @44558 @Sanity
   Scenario: Verify Claim Level Edits Sub-tab
     When user clicking on Edits Claim Number in Global Search page
     And user clicks on Edits tab
