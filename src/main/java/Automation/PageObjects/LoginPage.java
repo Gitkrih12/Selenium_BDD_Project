@@ -46,7 +46,7 @@ public class LoginPage extends SeleniumUtils {
     String userLoginText;
     String adminUsername;
     boolean imageStatus;
-    String username;
+    public static String username=null;
     String nonDsnpAdjUsername;
     String nonDsnpAdminUsername;
     boolean mirraImage;
@@ -109,7 +109,7 @@ public class LoginPage extends SeleniumUtils {
         explicitVisibilityOfElementLocatedWaitByXpath(txtUsername, 30).sendKeys(prop.getProperty("dsnpAdjUsername"));
         explicitVisibilityOfElementLocatedWaitByXpath(txtPassword, 10).sendKeys(prop.getProperty("dsnpAdjPassword"));
         explicitElementClickableWaitByXpath(btnLogin, 10).click();
-        username = explicitElementClickableWaitByID(lnkUsername, 60).getText();
+        username = explicitElementClickableWaitByID(lnkUsername, 70).getText();
         System.out.println("User logged in as : " + username);
     }
 

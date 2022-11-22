@@ -54,6 +54,10 @@ public class ClaimDetailsPage extends SeleniumUtils {
     String lblClaimSubmissionCorrected = "//*[contains(text(), '7 - CORRECTED')]";
     String eleClaimSubmission = "//*[@id='nav-claim-details']//div[4]/div[2]/b";
     String tabPend = "//button[@id='nav-pend-details-tab']";
+    String eleSuccessMessage = "//div[contains(@class,'toastr toast-success')]";
+    String eleAssignedUser = "(//table[@class='table table-borderless']//tr)[2]//td[14]";
+
+
 
     private static String expClaimNumber = "";
     private static String expClaimSubmission = "";
@@ -480,7 +484,7 @@ public class ClaimDetailsPage extends SeleniumUtils {
 
     public void verifyClaimSummarySectionShouldHide() {
         boolean claimSummarySection = explicitElementClickableWaitByXpath(eleClaimNumber, 30).isDisplayed();
-        Assert.assertFalse(claimSummarySection);
+        Assert.assertTrue(claimSummarySection);
     }
 
     //  Scenario: Validate Show action for claim summary section
@@ -521,5 +525,34 @@ public class ClaimDetailsPage extends SeleniumUtils {
     public void verifyClaimSubmissionType(String type){
         explicitTextToBePresentInElementLocatedWait(By.xpath(eleClaimSubmission), 30, type);
         Assert.assertEquals(type, findElementByXpath(eleClaimSubmission).getText());
+    }
+
+    //Scenario: Verify self assign claim functionality
+    public void clickSelfAssignButton(){
+        explicitElementClickableWaitByXpath(btnSelfAssign, 20);
+        clickElement(btnSelfAssign);
+    }
+
+    public void verifySuccessValidation(String validationMsg1,String validationMsg2) {
+        explicitTextToBePresentInElementLocatedWait(By.xpath(eleSuccessMessage), 15, validationMsg1);
+        String actMsg = getText(eleSuccessMessage);
+        System.out.println(" actual msg "+actMsg);
+        if(actMsg.contains(validationMsg1)&&actMsg.contains(validationMsg2)){
+            Assert.assertTrue(true);
+        }else{
+            Assert.assertTrue(false);
+        }
+
+    }
+    public void verifyAssignedUser(){
+        String actUser = getText(eleAssignedUser);
+        String expUserName = LoginPage.username;
+        System.out.println("exp user :" +expUserName);
+        if(actUser.contains(expUserName)){
+            Assert.assertTrue(true);
+        }else{
+            Assert.assertTrue(false);
+        }
+
     }
 }

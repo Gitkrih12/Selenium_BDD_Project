@@ -69,7 +69,7 @@ public class GreatPlainsPage extends SeleniumUtils {
         Assert.assertEquals(greatPlainsExp, greatPlainsAct);
     }
     public void verifyUserIsOnGeneratedTabByDefault() throws InterruptedException {
-        explicitInvisibilityOfElementWithTextWait(By.xpath(tabGenerated), 10, "Generated()");
+        explicitInvisibilityOfElementWithTextWait(By.xpath(tabGenerated), 20, "Generated()");
         clickElement(tabGenerated);
         String generatedText = getAttribute(tabGenerated, "class");
         System.out.println("Generated tab actual text is: " + generatedText);
