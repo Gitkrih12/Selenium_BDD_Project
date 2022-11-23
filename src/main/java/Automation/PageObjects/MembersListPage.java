@@ -37,20 +37,20 @@ public class MembersListPage extends SeleniumUtils {
     String lastName = "(//*[@col-id = 'lastName']//span)[1]";
     String innerScrollBarMemberList = "//div[@class='ag-body-horizontal-scroll-viewport']";
     String lstStatus = "//span[text()='Status']";
-    String txtMemberIdValue = "(//app-view-claim-render//a)[1]";
-    String txtLastNameValue = "(//*[@col-id = 'lastName']//span[@class = 'ag-cell-value'])[1]";
-    String txtFirstNameValue = "(//*[@col-id = 'firstName']//span[@class = 'ag-cell-value'])[1]";
-    String txtMiddleNameValue = "(//*[@col-id = 'middleName']//span[@class = 'ag-cell-value'])[1]";
-    String txtDOBValue = "(//*[@col-id = 'dateofBirth']//span[@class = 'ag-cell-value'])[1]";
-    String txtGenderValue = "(//*[@col-id = 'gender']//span[@class = 'ag-cell-value'])[1]";
-    String txtMbiValue = "(//*[@col-id = 'mbi']//span[@class = 'ag-cell-value'])[1]";
-    String txtProviderIdValue = "(//*[@col-id = 'providerId']//span[@class = 'ag-cell-value'])[1]";
-    String txtPCPValue = "(//*[@col-id = 'pcp']//span[@class = 'ag-cell-value'])[1]";
-    String txtPlanValue = "(//*[@col-id = 'planName']//span[@class = 'ag-cell-value'])[1]";
-    String txtEffDateValue = "(//*[@col-id = 'planEffectiveDate']//span[@class = 'ag-cell-value'])[1]";
-    String txtTermDateValue = "(//*[@col-id = 'planTerminationDate']//span[@class = 'ag-cell-value'])[1]";
-    String txtAddressValue = "(//*[@col-id = 'addressLine1']//span[@class = 'ag-cell-value'])[1]";
-    String txtStatusValue = "(//*[@col-id = 'status']//span[@class = 'ag-cell-value'])[1]";
+    String eleMemberIdValue = "(//app-view-claim-render//a)[1]";
+    String eleLastNameValue = "(//*[@col-id = 'lastName']//span[@class = 'ag-cell-value'])[1]";
+    String eleFirstNameValue = "(//*[@col-id = 'firstName']//span[@class = 'ag-cell-value'])[1]";
+    String eleMiddleNameValue = "(//*[@col-id = 'middleName']//span[@class = 'ag-cell-value'])[1]";
+    String eleDOBValue = "(//*[@col-id = 'dateofBirth']//span[@class = 'ag-cell-value'])[1]";
+    String eleGenderValue = "(//*[@col-id = 'gender']//span[@class = 'ag-cell-value'])[1]";
+    String eleMbiValue = "(//*[@col-id = 'mbi']//span[@class = 'ag-cell-value'])[1]";
+    String eleProviderIdValue = "(//*[@col-id = 'providerId']//span[@class = 'ag-cell-value'])[1]";
+    String elePCPValue = "(//*[@col-id = 'pcp']//span[@class = 'ag-cell-value'])[1]";
+    String elePlanValue = "(//*[@col-id = 'planName']//span[@class = 'ag-cell-value'])[1]";
+    String eleEffDateValue = "(//*[@col-id = 'planEffectiveDate']//span[@class = 'ag-cell-value'])[1]";
+    String eleTermDateValue = "(//*[@col-id = 'planTerminationDate']//span[@class = 'ag-cell-value'])[1]";
+    String eleAddressValue = "(//*[@col-id = 'addressLine1']//span[@class = 'ag-cell-value'])[1]";
+    String eleStatusValue = "(//*[@col-id = 'status']//span[@class = 'ag-cell-value'])[1]";
 
 
     private static String expMemberID = "";
@@ -113,8 +113,8 @@ public class MembersListPage extends SeleniumUtils {
     }
 
     public void verifyAppropriateResultsWithMemberID(){
-        explicitElementClickableWaitByXpath(txtMemberIdValue, 10);
-        elementsDisplayValidation(txtMemberIdValue);
+        explicitTextToBePresentInElementLocatedWait(By.xpath(eleMemberIdValue), 30, expMemberID);
+        Assert.assertEquals(expMemberID, findElementByXpath(eleMemberIdValue).getText());
     }
 
     //  Verify user able to Search Member in the Search Box for Last Name
@@ -124,8 +124,8 @@ public class MembersListPage extends SeleniumUtils {
     }
 
     public void verifyAppropriateResultsWithLastName(){
-        explicitElementClickableWaitByXpath(txtLastNameValue, 10);
-        elementsDisplayValidation(txtLastNameValue);
+        explicitTextToBePresentInElementLocatedWait(By.xpath(eleLastNameValue), 30, expLastName);
+        Assert.assertEquals(expLastName, findElementByXpath(eleLastNameValue).getText());
     }
 
     //  Verify user able to Search Member in the Search Box for First Name
@@ -135,8 +135,8 @@ public class MembersListPage extends SeleniumUtils {
     }
 
     public void verifyAppropriateResultsWithFirstName(){
-        explicitElementClickableWaitByXpath(txtFirstNameValue, 10);
-        elementsDisplayValidation(txtFirstNameValue);
+        explicitTextToBePresentInElementLocatedWait(By.xpath(eleFirstNameValue), 30, expFirstName);
+        Assert.assertEquals(expFirstName, findElementByXpath(eleFirstNameValue).getText());
     }
 
     //  Scenario: Verify user able to Search Member in the Search Box for Middle Name
@@ -146,8 +146,8 @@ public class MembersListPage extends SeleniumUtils {
     }
 
     public void verifyAppropriateResultsWithMiddleName(){
-        explicitElementClickableWaitByXpath(txtMiddleNameValue, 10);
-        elementsDisplayValidation(txtMiddleNameValue);
+        explicitTextToBePresentInElementLocatedWait(By.xpath(eleMiddleNameValue), 30, expMiddleName);
+        Assert.assertEquals(expMiddleName, findElementByXpath(eleMiddleNameValue).getText());
     }
 
     //  Scenario: Verify user able to Search Member in the Search Box for DOB
@@ -157,8 +157,8 @@ public class MembersListPage extends SeleniumUtils {
     }
 
     public void verifyAppropriateResultsWithDOB(){
-        explicitElementClickableWaitByXpath(txtDOBValue, 10);
-        elementsDisplayValidation(txtDOBValue);
+        explicitTextToBePresentInElementLocatedWait(By.xpath(eleDOBValue), 30, expDOB);
+        Assert.assertEquals(expDOB, findElementByXpath(eleDOBValue).getText());
     }
 
     //  Scenario: Verify user able to Search Member in the Search Box for Gender
@@ -168,8 +168,8 @@ public class MembersListPage extends SeleniumUtils {
     }
 
     public void verifyAppropriateResultsWithGender(){
-        explicitElementClickableWaitByXpath(txtGenderValue, 10);
-        elementsDisplayValidation(txtGenderValue);
+        explicitTextToBePresentInElementLocatedWait(By.xpath(eleGenderValue), 30, expGender);
+        Assert.assertEquals(expGender, findElementByXpath(eleGenderValue).getText());
     }
 
     //  Scenario: Verify user able to Search Member in the Search Box for MBI
@@ -179,8 +179,8 @@ public class MembersListPage extends SeleniumUtils {
     }
 
     public void verifyAppropriateResultsWithMBI(){
-        explicitElementClickableWaitByXpath(txtMbiValue, 10);
-        elementsDisplayValidation(txtMbiValue);
+        explicitTextToBePresentInElementLocatedWait(By.xpath(eleMbiValue), 30, expMBI);
+        Assert.assertEquals(expMBI, findElementByXpath(eleMbiValue).getText());
     }
 
     //  Scenario: Verify user able to Search Member in the Search Box for Provider ID
@@ -190,8 +190,8 @@ public class MembersListPage extends SeleniumUtils {
     }
 
     public void verifyAppropriateResultsWithProviderId(){
-        explicitElementClickableWaitByXpath(txtProviderIdValue, 10);
-        elementsDisplayValidation(txtProviderIdValue);
+        explicitTextToBePresentInElementLocatedWait(By.xpath(eleProviderIdValue), 30, expProviderID);
+        Assert.assertEquals(expProviderID, findElementByXpath(eleProviderIdValue).getText());
     }
 
     //  Scenario: Verify user able to Search Member in the Search Box for PCP
@@ -202,8 +202,8 @@ public class MembersListPage extends SeleniumUtils {
     }
 
     public void verifyAppropriateResultsWithPCP(){
-        explicitElementClickableWaitByXpath(txtPCPValue, 10);
-        elementsDisplayValidation(txtPCPValue);
+        explicitTextToBePresentInElementLocatedWait(By.xpath(elePCPValue), 30, expPCP);
+        Assert.assertEquals(expPCP, findElementByXpath(elePCPValue).getText());
     }
 
     //  Scenario: Verify user able to Search Member in the Search Box for Plan
@@ -215,8 +215,8 @@ public class MembersListPage extends SeleniumUtils {
     }
 
     public void verifyAppropriateResultsWithPlan(){
-        explicitElementClickableWaitByXpath(txtPlanValue, 10);
-        elementsDisplayValidation(txtPlanValue);
+        explicitTextToBePresentInElementLocatedWait(By.xpath(elePlanValue), 30, expPlan);
+        Assert.assertEquals(expPlan, findElementByXpath(elePlanValue).getText());
     }
 
     //  Scenario: Verify user able to Search Member in the Search Box for Eff Date
@@ -228,8 +228,8 @@ public class MembersListPage extends SeleniumUtils {
     }
 
     public void verifyAppropriateResultsWithEffDate(){
-        explicitElementClickableWaitByXpath(txtEffDateValue, 10);
-        elementsDisplayValidation(txtEffDateValue);
+        explicitTextToBePresentInElementLocatedWait(By.xpath(eleEffDateValue), 30, expEffDate);
+        Assert.assertEquals(expEffDate, findElementByXpath(eleEffDateValue).getText());
     }
 
     //  Scenario: Verify user able to Search Member in the Search Box for Term Date
@@ -241,8 +241,8 @@ public class MembersListPage extends SeleniumUtils {
     }
 
     public void verifyAppropriateResultsWithTermDate(){
-        explicitElementClickableWaitByXpath(txtTermDateValue, 10);
-        elementsDisplayValidation(txtTermDateValue);
+        explicitTextToBePresentInElementLocatedWait(By.xpath(eleTermDateValue), 30, expTermDate);
+        Assert.assertEquals(expTermDate, findElementByXpath(eleTermDateValue).getText());
     }
 
     //  Scenario: Verify user able to Search Member in the Search Box for Address
@@ -254,8 +254,8 @@ public class MembersListPage extends SeleniumUtils {
     }
 
     public void verifyAppropriateResultsWithAddress(){
-        explicitElementClickableWaitByXpath(txtAddressValue, 10);
-        elementsDisplayValidation(txtAddressValue);
+        explicitTextToBePresentInElementLocatedWait(By.xpath(eleAddressValue), 30, expAddress);
+        Assert.assertEquals(expAddress, findElementByXpath(eleAddressValue).getText());
     }
 
     //  Scenario: Verify user able to Search Member in the Search Box for Status
@@ -271,7 +271,7 @@ public class MembersListPage extends SeleniumUtils {
     }
 
     public void verifyAppropriateResultsWithStatus(){
-        explicitElementClickableWaitByXpath(txtStatusValue, 10);
-        elementsDisplayValidation(txtStatusValue);
+        explicitTextToBePresentInElementLocatedWait(By.xpath(eleStatusValue), 30, expStatus);
+        Assert.assertEquals(expStatus, findElementByXpath(eleStatusValue).getText());
     }
 }

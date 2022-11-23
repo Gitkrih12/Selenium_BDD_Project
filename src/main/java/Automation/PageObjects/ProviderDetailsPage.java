@@ -67,8 +67,8 @@ public class ProviderDetailsPage extends SeleniumUtils {
     String lstAliasInfo = "//*[@id = 'nav-alias-info']//tr//th";
     String btnMapProvider = "//*[contains(text(), 'Map Provider')]";
     String titleMapRenderingProvider = "//*[contains(text(), 'Map Rendering Provider')]";
-    String eleTaxID = "//mat-dialog-container//p[contains(text(), 'Tax ID')]";
-    String eleRenderingProvider = "//mat-dialog-container//p[contains(text(), 'Rendering Provider')]";
+    String eleTaxID = "//mat-dialog-container//*[contains(text(), 'Tax ID')]";
+    String eleRenderingProvider = "(//mat-dialog-container//*[contains(text(), 'Rendering Provider')])[2]";
     String lstRenderingProvider = "//*[@id = 'resultsGridRenderingprovider']//span[@ref = 'eText' and text()]";
     String eleFacilityName = "//*[@id = 'nav-basic-details']//h6[contains(@class, 'columnFont')]";
     String eleSpeciality = "//*[contains(text(), 'Speciality')]";
@@ -303,7 +303,7 @@ public class ProviderDetailsPage extends SeleniumUtils {
         expMultipleVendorClaimNumber = prop.getProperty("onHoldMultipleVendorClaimNumber");
         findElementAndSendKeys(findElementByXpath(txtOnHoldClaimNumber), expMultipleVendorClaimNumber);
         sendKeysUsingKeyboardInput(txtOnHoldClaimNumber);
-        explicitTextToBePresentInElementLocatedWait(By.xpath(eleOnHoldClaimNumber), 10, expMultipleVendorClaimNumber);
+        explicitTextToBePresentInElementLocatedWait(By.xpath(eleOnHoldClaimNumber), 20, expMultipleVendorClaimNumber);
         clickElement(eleOnHoldClaimNumber);
     }
 
