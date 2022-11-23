@@ -31,7 +31,7 @@ public class FilesPage extends SeleniumUtils {
     String lst837PSenderRecords = "//div[@id='nav-837p-details']//div[@col-id='sender']//span[@class='ag-cell-value']";
     String txt837PStatus = "//div[@id='nav-837p-details']//input[@aria-label='Status Filter Input']";
     String lbl837PStatusColor = "(//div[@id='nav-837p-details']//div[@col-id='status']//span[contains(@style,'color')])[1]";
-    String lbl837PStatusType = "(//div[@id='nav-837p-details']//div[@col-id='status']//span[contains(@style,'Roboto')])[1]";
+    String lbl837PStatusType = "(//div[@id='nav-837p-details']//div[@col-id='status']//span[@class='statusFont'])[1]";
     String lbl837PSender = "//div[@id='nav-837p-details']//span[contains(text(),'Sender')]";
     String lst837PReceiverRecords = "//div[@id='nav-837p-details']//div[@col-id='receiver']//span[@class='ag-cell-value']";
     String lbl837PReceiver = "//div[@id='nav-837p-details']//span[contains(text(),'Receiver')]";
@@ -59,7 +59,7 @@ public class FilesPage extends SeleniumUtils {
     String btn837INext = "//div[@id='nav-837i-details']//span[@class='ag-icon ag-icon-next']";
     String btn837IPrevious = "//div[@id='nav-837i-details']//span[@class='ag-icon ag-icon-previous']";
     String lbl837IStatusColor = "(//div[@id='nav-837i-details']//div[@col-id='status']//span[contains(@style,'color')])[1]";
-    String lbl837IStatusType = "(//div[@id='nav-837i-details']//div[@col-id='status']//span[contains(@style,'Roboto')])[1]";
+    String lbl837IStatusType = "(//div[@id='nav-837i-details']//div[@col-id='status']//span[@class='statusFont'])[1]";
     String txt837IStatus = "//div[@id='nav-837i-details']//input[@aria-label='Status Filter Input']";
     String lbl837IFileName = "//div[@id='nav-837i-details']//span[contains(text(),'File Name')]";
     String lst837IFileNameRecords = "//div[@id='nav-837i-details']//div[@col-id='fileName']//span[@class='ag-cell-value']";
@@ -118,7 +118,7 @@ public class FilesPage extends SeleniumUtils {
     String btn999Next = "//div[@id='nav-999-details']//span[@class='ag-icon ag-icon-next']";
     String btn999Previous = "//div[@id='nav-999-details']//span[@class='ag-icon ag-icon-previous']";
     String lbl999StatusColor = "(//div[@id='nav-999-details']//div[@col-id='status']//span[contains(@style,'color')])[1]";
-    String lbl999StatusType = "(//div[@id='nav-999-details']//div[@col-id='status']//span[contains(@style,'Roboto')])[1]";
+    String lbl999StatusType = "(//div[@id='nav-999-details']//div[@col-id='status']//span[@class='statusFont'])[1]";
     String txt999Status = "//div[@id='nav-999-details']//input[@aria-label='Status Filter Input']";
     String lbl999FileName = "//div[@id='nav-999-details']//span[contains(text(),'File Name')]";
     String lst999FileNameRecords = "//div[@id='nav-999-details']//div[@col-id='fileName']//span[@class='ag-cell-value']";
@@ -148,7 +148,7 @@ public class FilesPage extends SeleniumUtils {
     String btn277CANext = "//div[@id='nav-277ca-details']//span[@class='ag-icon ag-icon-next']";
     String btn277CAPrevious = "//div[@id='nav-277ca-details']//span[@class='ag-icon ag-icon-previous']";
     String lbl277CAStatusColor = "(//div[@id='nav-277ca-details']//div[@col-id='status']//span[contains(@style,'color')])[1]";
-    String lbl277CAStatusType = "(//div[@id='nav-277ca-details']//div[@col-id='status']//span[contains(@style,'Roboto')])[1]";
+    String lbl277CAStatusType = "(//div[@id='nav-277ca-details']//div[@col-id='status']//span[@class='statusFont'])[1]";
     String txt277CAStatus = "//div[@id='nav-277ca-details']//input[@aria-label='Status Filter Input']";
     String lbl277CAFileName = "//div[@id='nav-277ca-details']//span[contains(text(),'File Name')]";
     String lst277CAFileNameRecords = "//div[@id='nav-277ca-details']//div[@col-id='fileName']//span[@class='ag-cell-value']";
@@ -180,7 +180,7 @@ public class FilesPage extends SeleniumUtils {
     String btn835Next = "//div[@id='nav-835-details']//span[@class='ag-icon ag-icon-next']";
     String btn835Previous = "//div[@id='nav-835-details']//span[@class='ag-icon ag-icon-previous']";
     String lbl835StatusColor = "(//div[@id='nav-835-details']//div[@col-id='status']//span[contains(@style,'color')])[1]";
-    String lbl835StatusType = "(//div[@id='nav-835-details']//div[@col-id='status']//span[contains(@style,'Roboto')])[1]";
+    String lbl835StatusType = "(//div[@id='nav-835-details']//div[@col-id='status']//span[@class='statusFont'])[1]";
     String txt835Status = "//div[@id='nav-835-details']//input[@aria-label='Status Filter Input']";
     String lbl835FileName = "//div[@id='nav-835-details']//span[contains(text(),'File Name')]";
     String lst835FileNameRecords = "//div[@id='nav-835-details']//div[@col-id='fileName']//span[@class='ag-cell-value']";
