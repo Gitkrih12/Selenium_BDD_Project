@@ -264,8 +264,7 @@ public class MembersListPage extends SeleniumUtils {
         explicitVisibilityOfElementLocatedWaitByXpath(innerScrollBarMemberList, 10);
         WebElement ele = findElementByXpath(innerScrollBarMemberList);
         ele.click();
-        moveToElement(ele).clickAndHold().moveByOffset(100, 0).release().perform();
-        scrollToElement(txtStatus);
+        moveToElement(ele).clickAndHold().moveByOffset(250, 0).release().perform();
         explicitElementClickableWaitByXpath(txtStatus, 30);
         findElementAndSendKeys(findElementByXpath(txtStatus), expStatus);
     }
