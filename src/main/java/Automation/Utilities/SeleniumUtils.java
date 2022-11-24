@@ -1503,7 +1503,7 @@ public class SeleniumUtils extends Driver {
         List<String> fieldsAct = new ArrayList<>();
         for (WebElement field : fields) {
             scrollIntoView(field, driver);
-            explicitElementClickableWait(field, 10);
+            explicitElementClickableWait(field, 20);
             fieldsAct.add(field.getText());
         }
         printStatementInGreenColor("Fields size actual", fieldsAct.size());

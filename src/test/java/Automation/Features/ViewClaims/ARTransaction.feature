@@ -31,4 +31,3 @@ Feature: AR Transaction
       | Deny              |
       | Approve           |
       | Update Auth       |
-      | Deactivate        |
