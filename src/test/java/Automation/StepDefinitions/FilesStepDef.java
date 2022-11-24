@@ -199,6 +199,56 @@ public class FilesStepDef extends FilesPage {
         verify837PControlNumberColumnRecordsInAscendingOrder();
     }
 
+    //    Scenario: Verify user should be able to get results by applying filter on "File Name" column under 837P files tab
+    @When("user enters 837P file name record under file name search box")
+    public void user_enters_837p_file_name_record_under_file_name_search_box() {
+        verifyUserEnters837PFileNameUnderSearchBox();
+    }
+    @Then("user should be able to view 837P file name record under results section")
+    public void user_should_be_able_to_view_837p_file_name_record_under_results_section() {
+        verifyUserAbleToView837PFileNameRecordsUnderSearchResultsSection();
+    }
+
+    //    Scenario: Verify user should be able to get results by applying filter on "Sender" column under 837P files tab
+    @When("user enters 837P sender record under sender search box")
+    public void user_enters_837p_sender_record_under_sender_search_box() {
+        verifyUserEnters837PSenderNameUnderSearchBox();
+    }
+    @Then("user should be able to view 837P sender record under results section")
+    public void user_should_be_able_to_view_837p_sender_record_under_results_section() {
+        verifyUserAbleToView837PSenderRecordsUnderSearchResultsSection();
+    }
+
+    //    Scenario: Verify user should be able to get results by applying filter on "Receiver" column under 837P files tab
+    @When("user enters 837P receiver record under receiver search box")
+    public void user_enters_837p_receiver_record_under_receiver_search_box() {
+        verifyUserEnters837PReceiverNameUnderSearchBox();
+    }
+    @Then("user should be able to view 837P receiver record under results section")
+    public void user_should_be_able_to_view_837p_receiver_record_under_results_section() {
+        verifyUserAbleToView837PReceiverRecordsUnderSearchResultsSection();
+    }
+
+    //    Scenario: Verify user should be able to get results by applying filter on "Age(Days)" column under 837P files tab
+    @When("user enters 837P age days under age days search box")
+    public void user_enters_837p_age_days_under_age_days_search_box() {
+        verifyUserEnters837PAgeDaysUnderSearchBox();
+    }
+    @Then("user should be able to view 837P age days under results section")
+    public void user_should_be_able_to_view_837p_age_days_under_results_section() {
+        verifyUserAbleToView837PAgeDaysUnderSearchResultsSection();
+    }
+
+    //    Scenario: Verify user should be able to get results by applying filter on "File Type" column under 837P files tab
+    @When("user enters 837P file type under file type search box")
+    public void user_enters_837p_file_type_under_file_type_search_box() {
+        verifyUserEnters837PFileTypeUnderSearchBox();
+    }
+    @Then("user should be able to view 837P file type under results section")
+    public void user_should_be_able_to_view_837p_file_type_under_results_section() {
+        verifyUserAbleToView837PFileTypeUnderSearchResultsSection();
+    }
+
     //    Scenario: Verify column fields in '837I Files' tab
     @When("the user clicks on the 837I Files tab")
     public void the_user_clicks_on_the_837i_files_tab() throws InterruptedException {
@@ -211,6 +261,56 @@ public class FilesStepDef extends FilesPage {
     @Then("user should be able to view the 837I column fields search boxes")
     public void user_should_be_able_to_view_the_837i_column_fields_search_boxes() {
         verifyUserAbleToView837IColumnFieldsSearchBoxes();
+    }
+
+    //    Scenario: Verify user should be able to get results by applying filter on "File Name" column under 837I files tab
+    @When("user enters 837I file name record under file name search box")
+    public void user_enters_837i_file_name_record_under_file_name_search_box() {
+        verifyUserEnters837IFileNameUnderSearchBox();
+    }
+    @Then("user should be able to view 837I file name record under results section")
+    public void user_should_be_able_to_view_837i_file_name_record_under_results_section() {
+        verifyUserAbleToView837IFileNameRecordsUnderSearchResultsSection();
+    }
+
+    //    Scenario: Verify user should be able to get results by applying filter on "Sender" column under 837I files tab
+    @When("user enters 837I sender record under sender search box")
+    public void user_enters_837i_sender_record_under_sender_search_box() {
+        verifyUserEnters837ISenderNameUnderSearchBox();
+    }
+    @Then("user should be able to view 837I sender record under results section")
+    public void user_should_be_able_to_view_837i_sender_record_under_results_section() {
+        verifyUserAbleToView837ISenderRecordsUnderSearchResultsSection();
+    }
+
+    //    Scenario: Verify user should be able to get results by applying filter on "Receiver" column under 837I files tab
+    @When("user enters 837I receiver record under receiver search box")
+    public void user_enters_837i_receiver_record_under_receiver_search_box() {
+        verifyUserEnters837IReceiverNameUnderSearchBox();
+    }
+    @Then("user should be able to view 837I receiver record under results section")
+    public void user_should_be_able_to_view_837i_receiver_record_under_results_section() {
+        verifyUserAbleToView837IReceiverRecordsUnderSearchResultsSection();
+    }
+
+    //    Scenario: Verify user should be able to get results by applying filter on "Age(Days)" column under 837I files tab
+    @When("user enters 837I age days under age days search box")
+    public void user_enters_837i_age_days_under_age_days_search_box() {
+        verifyUserEnters837IAgeDaysUnderSearchBox();
+    }
+    @Then("user should be able to view 837I age days under results section")
+    public void user_should_be_able_to_view_837i_age_days_under_results_section() {
+        verifyUserAbleToView837IAgeDaysUnderSearchResultsSection();
+    }
+
+    //    Scenario: Verify user should be able to get results by applying filter on "File Type" column under 837I files tab
+    @When("user enters 837I file type under file type search box")
+    public void user_enters_837i_file_type_under_file_type_search_box() {
+        verifyUserEnters837IFileTypeUnderSearchBox();
+    }
+    @Then("user should be able to view 837I file type under results section")
+    public void user_should_be_able_to_view_837i_file_type_under_results_section() {
+        verifyUserAbleToView837IFileTypeUnderSearchResultsSection();
     }
 
     //    Scenario: Validate pagination functionality in '837I Files' tab
@@ -257,6 +357,56 @@ public class FilesStepDef extends FilesPage {
         verifyUserAbleToView837DColumnFieldsSearchBoxes();
     }
 
+    //    Scenario: Verify user should be able to get results by applying filter on "File Name" column under 837D files tab
+    @When("user enters 837D file name record under file name search box")
+    public void user_enters_837d_file_name_record_under_file_name_search_box() {
+        verifyUserEnters837DFileNameUnderSearchBox();
+    }
+    @Then("user should be able to view 837D file name record under results section")
+    public void user_should_be_able_to_view_837d_file_name_record_under_results_section() {
+        verifyUserAbleToView837DFileNameRecordsUnderSearchResultsSection();
+    }
+
+    //    Scenario: Verify user should be able to get results by applying filter on "Sender" column under 837D files tab
+    @When("user enters 837D sender record under sender search box")
+    public void user_enters_837d_sender_record_under_sender_search_box() {
+        verifyUserEnters837DSenderNameUnderSearchBox();
+    }
+    @Then("user should be able to view 837D sender record under results section")
+    public void user_should_be_able_to_view_837d_sender_record_under_results_section() {
+        verifyUserAbleToView837DSenderRecordsUnderSearchResultsSection();
+    }
+
+    //    Scenario: Verify user should be able to get results by applying filter on "Receiver" column under 837D files tab
+    @When("user enters 837D receiver record under receiver search box")
+    public void user_enters_837d_receiver_record_under_receiver_search_box() {
+        verifyUserEnters837DReceiverNameUnderSearchBox();
+    }
+    @Then("user should be able to view 837D receiver record under results section")
+    public void user_should_be_able_to_view_837d_receiver_record_under_results_section() {
+        verifyUserAbleToView837DReceiverRecordsUnderSearchResultsSection();
+    }
+
+    //    Scenario: Verify user should be able to get results by applying filter on "Age(Days)" column under 837D files tab
+    @When("user enters 837D age days under age days search box")
+    public void user_enters_837d_age_days_under_age_days_search_box() {
+        verifyUserEnters837DAgeDaysUnderSearchBox();
+    }
+    @Then("user should be able to view 837D age days under results section")
+    public void user_should_be_able_to_view_837d_age_days_under_results_section() {
+        verifyUserAbleToView837DAgeDaysUnderSearchResultsSection();
+    }
+
+    //    Scenario: Verify user should be able to get results by applying filter on "File Type" column under 837D files tab
+    @When("user enters 837D file type under file type search box")
+    public void user_enters_837d_file_type_under_file_type_search_box() {
+        verifyUserEnters837DFileTypeUnderSearchBox();
+    }
+    @Then("user should be able to view 837D file type under results section")
+    public void user_should_be_able_to_view_837d_file_type_under_results_section() {
+        verifyUserAbleToView837DFileTypeUnderSearchResultsSection();
+    }
+
     //    Scenario: Verify column fields in '999' tab
     @When("the user clicks on the 999 tab")
     public void the_user_clicks_on_the_999_tab() throws InterruptedException {
@@ -269,6 +419,56 @@ public class FilesStepDef extends FilesPage {
     @Then("user should be able to view the 999 column fields search boxes")
     public void user_should_be_able_to_view_the_999_column_fields_search_boxes() {
         verifyUserAbleToView999ColumnFieldsSearchBoxes();
+    }
+
+    //    Scenario: Verify user should be able to get results by applying filter on "File Name" column under 999 files tab
+    @When("user enters 999 file name record under file name search box")
+    public void user_enters_999_file_name_record_under_file_name_search_box() {
+        verifyUserEnters999FileNameUnderSearchBox();
+    }
+    @Then("user should be able to view 999 file name record under results section")
+    public void user_should_be_able_to_view_999_file_name_record_under_results_section() {
+        verifyUserAbleToView999FileNameRecordsUnderSearchResultsSection();
+    }
+
+    //    Scenario: Verify user should be able to get results by applying filter on "Sender" column under 999 files tab
+    @When("user enters 999 sender record under sender search box")
+    public void user_enters_999_sender_record_under_sender_search_box() {
+        verifyUserEnters999SenderNameUnderSearchBox();
+    }
+    @Then("user should be able to view 999 sender record under results section")
+    public void user_should_be_able_to_view_999_sender_record_under_results_section() {
+        verifyUserAbleToView999SenderRecordsUnderSearchResultsSection();
+    }
+
+    //    Scenario: Verify user should be able to get results by applying filter on "Receiver" column under 999 files tab
+    @When("user enters 999 receiver record under receiver search box")
+    public void user_enters_999_receiver_record_under_receiver_search_box() {
+        verifyUserEnters999ReceiverNameUnderSearchBox();
+    }
+    @Then("user should be able to view 999 receiver record under results section")
+    public void user_should_be_able_to_view_999_receiver_record_under_results_section() {
+        verifyUserAbleToView999ReceiverRecordsUnderSearchResultsSection();
+    }
+
+    //    Scenario: Verify user should be able to get results by applying filter on "Age(Days)" column under 999 files tab
+    @When("user enters 999 age days under age days search box")
+    public void user_enters_999_age_days_under_age_days_search_box() {
+        verifyUserEnters999AgeDaysUnderSearchBox();
+    }
+    @Then("user should be able to view 999 age days under results section")
+    public void user_should_be_able_to_view_999_age_days_under_results_section() {
+        verifyUserAbleToView999AgeDaysUnderSearchResultsSection();
+    }
+
+    //    Scenario: Verify user should be able to get results by applying filter on "Claim Type" column under 999 files tab
+    @When("user enters 999 claim type under claim type search box")
+    public void user_enters_999_claim_type_under_claim_type_search_box() {
+        verifyUserEnters999ClaimTypeUnderSearchBox();
+    }
+    @Then("user should be able to view 999 claim type under results section")
+    public void user_should_be_able_to_view_999_claim_type_under_results_section() {
+        verifyUserAbleToView999ClaimTypeUnderSearchResultsSection();
     }
 
     //    Scenario: Validate pagination functionality in '999 Files' tab
@@ -309,6 +509,46 @@ public class FilesStepDef extends FilesPage {
     @Then("user should be able to view the 277CA column fields search boxes")
     public void user_should_be_able_to_view_the_277ca_column_fields_search_boxes() {
         verifyUserAbleToView277CAColumnFieldsSearchBoxes();
+    }
+
+    //    Scenario: Verify user should be able to get results by applying filter on "File Name" column under 277CA files tab
+    @When("user enters 277CA file name record under file name search box")
+    public void user_enters_277CA_file_name_record_under_file_name_search_box() {
+        verifyUserEnters277CAFileNameUnderSearchBox();
+    }
+    @Then("user should be able to view 277CA file name record under results section")
+    public void user_should_be_able_to_view_277CA_file_name_record_under_results_section() {
+        verifyUserAbleToView277CAFileNameRecordsUnderSearchResultsSection();
+    }
+
+    //    Scenario: Verify user should be able to get results by applying filter on "Sender" column under 277CA files tab
+    @When("user enters 277CA sender record under sender search box")
+    public void user_enters_277CA_sender_record_under_sender_search_box() {
+        verifyUserEnters277CASenderNameUnderSearchBox();
+    }
+    @Then("user should be able to view 277CA sender record under results section")
+    public void user_should_be_able_to_view_277CA_sender_record_under_results_section() {
+        verifyUserAbleToView277CASenderRecordsUnderSearchResultsSection();
+    }
+
+    //    Scenario: Verify user should be able to get results by applying filter on "Receiver" column under 277CA files tab
+    @When("user enters 277CA receiver record under receiver search box")
+    public void user_enters_277CA_receiver_record_under_receiver_search_box() {
+        verifyUserEnters277CAReceiverNameUnderSearchBox();
+    }
+    @Then("user should be able to view 277CA receiver record under results section")
+    public void user_should_be_able_to_view_277CA_receiver_record_under_results_section() {
+        verifyUserAbleToView277CAReceiverRecordsUnderSearchResultsSection();
+    }
+
+    //    Scenario: Verify user should be able to get results by applying filter on "Age(Days)" column under 999 files tab
+    @When("user enters 277CA age days under age days search box")
+    public void user_enters_277CA_age_days_under_age_days_search_box() {
+        verifyUserEnters277CAAgeDaysUnderSearchBox();
+    }
+    @Then("user should be able to view 277CA age days under results section")
+    public void user_should_be_able_to_view_277CA_age_days_under_results_section() {
+        verifyUserAbleToView277CAAgeDaysUnderSearchResultsSection();
     }
 
     //    Scenario: Validate pagination functionality in '277CA Files' tab
@@ -376,6 +616,66 @@ public class FilesStepDef extends FilesPage {
     @Then("user should be able to view the 835 column fields search boxes")
     public void user_should_be_able_to_view_the_835_column_fields_search_boxes() {
         verifyUserAbleToView835ColumnFieldsSearchBoxes();
+    }
+
+    //    Scenario: Verify user should be able to get results by applying filter on "Cheque date" column under 999 files tab
+    @When("user enters 835 cheque date record under cheque date search box")
+    public void user_enters_835_cheque_date_record_under_cheque_date_search_box() {
+        verifyUserEnters835ChequeDateUnderSearchBox();
+    }
+    @Then("user should be able to view 835 cheque date record under results section")
+    public void user_should_be_able_to_view_835_cheque_date_record_under_results_section() {
+        verifyUserAbleToView835ChequeDateRecordsUnderSearchResultsSection();
+    }
+
+    //    Scenario: Verify user should be able to get results by applying filter on "File Name" column under 835 files tab
+    @When("user enters 835 file name record under file name search box")
+    public void user_enters_835_file_name_record_under_file_name_search_box() {
+        verifyUserEnters835FileNameUnderSearchBox();
+    }
+    @Then("user should be able to view 835 file name record under results section")
+    public void user_should_be_able_to_view_835_file_name_record_under_results_section() {
+        verifyUserAbleToView835FileNameRecordsUnderSearchResultsSection();
+    }
+
+    //    Scenario: Verify user should be able to get results by applying filter on "Sender" column under 999 files tab
+    @When("user enters 835 sender record under sender search box")
+    public void user_enters_835_sender_record_under_sender_search_box() {
+        verifyUserEnters835SenderNameUnderSearchBox();
+    }
+    @Then("user should be able to view 835 sender record under results section")
+    public void user_should_be_able_to_view_835_sender_record_under_results_section() {
+        verifyUserAbleToView835SenderRecordsUnderSearchResultsSection();
+    }
+
+    //    Scenario: Verify user should be able to get results by applying filter on "Receiver" column under 835 files tab
+    @When("user enters 835 receiver record under receiver search box")
+    public void user_enters_835_receiver_record_under_receiver_search_box() {
+        verifyUserEnters835ReceiverNameUnderSearchBox();
+    }
+    @Then("user should be able to view 835 receiver record under results section")
+    public void user_should_be_able_to_view_835_receiver_record_under_results_section() {
+        verifyUserAbleToView835ReceiverRecordsUnderSearchResultsSection();
+    }
+
+    //    Scenario: Verify user should be able to get results by applying filter on "Transaction" column under 835 files tab
+    @When("user enters 835 transaction record under transaction search box")
+    public void user_enters_835_transaction_record_under_age_days_search_box() {
+        verifyUserEnters835TransactionUnderSearchBox();
+    }
+    @Then("user should be able to view 835 transaction record under results section")
+    public void user_should_be_able_to_view_835_transaction_record_under_results_section() {
+        verifyUserAbleToView835TransactionUnderSearchResultsSection();
+    }
+
+    //    Scenario: Verify user should be able to get results by applying filter on "Age(Days)" column under 835 files tab
+    @When("user enters 835 age days under age days search box")
+    public void user_enters_835_age_days_under_age_days_search_box() {
+        verifyUserEnters835AgeDaysUnderSearchBox();
+    }
+    @Then("user should be able to view 835 age days under results section")
+    public void user_should_be_able_to_view_835_age_days_under_results_section() {
+        verifyUserAbleToView835AgeDaysUnderSearchResultsSection();
     }
 
 
