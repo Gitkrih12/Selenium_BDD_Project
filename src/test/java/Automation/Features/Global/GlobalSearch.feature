@@ -254,7 +254,7 @@ Feature: Global Search
       | State            |
       | Provider         |
       | Provider NPI     |
-      | BPNPI            |
+      | BP NPI           |
       | Tax ID           |
       | Total Charge     |
       | Net Pay Amount   |

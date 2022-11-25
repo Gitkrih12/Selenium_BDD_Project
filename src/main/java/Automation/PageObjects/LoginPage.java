@@ -46,7 +46,7 @@ public class LoginPage extends SeleniumUtils {
     String userLoginText;
     String adminUsername;
     boolean imageStatus;
-    String username;
+    public static String username=null;
     String nonDsnpAdjUsername;
     String nonDsnpAdminUsername;
     boolean mirraImage;
