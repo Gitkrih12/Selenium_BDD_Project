@@ -89,3 +89,126 @@ Feature: Prior Authorization
       | PCP PH   |
       | PCP FAX  |
     And user able to view all the field values under Member Information section in Authorization summary
+
+  @74738
+  Scenario: Verify user able to view all the fields under Auth Details section
+    When user enters the Authorization number and clicks on the Search button
+    And user clicks on Authorization number
+    Then user able to view the below fields under Auth Details section
+      | POS               |
+      | REQ               |
+      | AUTH              |
+      | TYPE OF CARE      |
+      | RECD              |
+      | MODE              |
+      | NEXT REV DT       |
+      | EXPECTED DOS/DOA  |
+      | REVIEW            |
+      | ROOM              |
+      | DRG               |
+      | DRG DESC          |
+      | MDC CODE          |
+      | MDC DESC          |
+      | CONCURRENT STATUS |
+    And user able to view all the field values under Auth Details section
+
+  @74742
+  Scenario: Verify user able to view all the fields mentioned under Requesting Provider (IN) Section
+    When user enters the Authorization number and clicks on the Search button
+    And user clicks on Authorization number
+    Then user able to view the below fields under Requesting Provider section
+      | FIRST NAME   |
+      | LAST NAME    |
+      | TAX ID/NPI   |
+      | PH           |
+      | FAX          |
+      | SPECIALITY   |
+      | TYPE         |
+      | CONTACT NAME |
+    And user able to view all the field values under Requesting Provider section
+
+  @74749
+  Scenario: Verify user able to view all the fields under Attending Provider (IN) section
+    When user enters the Authorization number and clicks on the Search button
+    And user clicks on Authorization number
+    Then user able to view the below fields under Attending Provider section
+      | FIRST NAME   |
+      | LAST NAME    |
+      | TAX ID/NPI   |
+      | PH           |
+      | FAX          |
+      | SPECIALITY   |
+      | TYPE         |
+      | CONTACT NAME |
+    And user able to view all the field values under Attending Provider section
+
+  @74752
+  Scenario: Verify user able to view all the fields under Admitting Provider (IN)
+    When user enters the Authorization number and clicks on the Search button
+    And user clicks on Authorization number
+    Then user able to view the below fields under Admitting Provider section
+      | FIRST NAME   |
+      | LAST NAME    |
+      | TAX ID/NPI   |
+      | PH           |
+      | FAX          |
+      | SPECIALITY   |
+      | TYPE         |
+      | CONTACT NAME |
+    And user able to view all the field values under Admitting Provider section
+
+  @74751
+  Scenario: Verify user able to view all the fields under Facility (IN) section
+    When user enters the Authorization number and clicks on the Search button
+    And user clicks on Authorization number
+    Then user able to view the below fields under Facility section
+      | FACILITY NAME |
+      | TAX ID/NPI    |
+      | PH            |
+      | FAX           |
+      | FACILITY TYPE |
+      | CONTACT NAME  |
+    And user able to view all the field values under Facility section
+
+  @74755
+  Scenario: Verify user able to view all the fields under Admission/DC Dates
+    When user enters the Authorization number and clicks on the Search button
+    And user clicks on Authorization number
+    Then user able to view the below fields under Admission DC Dates section
+      | RECEIVED DATE  |
+      | FROM DATE      |
+      | AUTH TO DATE   |
+      | APPROVED DAYS  |
+      | EXPECTED DC DT |
+      | TO DATE        |
+    And user able to view all the field values under Admission DC Dates section
+
+  @74758
+  Scenario: Verify user able to view all the fields under Length Of Stay section
+    When user enters the Authorization number and clicks on the Search button
+    And user clicks on Authorization number
+    Then user able to view the below fields under Length Of Stay section
+      | REQUESTED LOS |
+      | ACTUAL LOS    |
+    And user able to view all the field values under Length Of Stay section
+
+  @74759
+  Scenario: Verify user able to view all the fields under Primary ICD Details and CPT/HCPCS Code Table
+    When user enters the Authorization number and clicks on the Search button
+    And user clicks on Authorization number
+    Then user able to view the below fields under Primary ICD Details and CPT HCPCS Code table
+      | PRIMARY Dx  |
+      | DESCRIPTION |
+      | CPT/HCPCS   |
+      | DESCRIPTION |
+    And user able to view all the field values under Primary ICD Details and CPT HCPCS Code table
+
+  @74759-1
+  Scenario: Verify user able to view all the fields under Documents Table
+    When user enters the Authorization number and clicks on the Search button
+    And user clicks on Authorization number
+    Then user able to view the below fields under Documents table
+      | FILE NAME |
+      | VIEW      |
+      | DOWNLOAD  |
+    And user able to view all the field values under Documents table
