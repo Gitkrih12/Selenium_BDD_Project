@@ -13,7 +13,7 @@ Feature: EOB consolidated Letters
   Scenario: Verify user navigates to EOB Consolidated screen
     Then user should be able to view the EOB Consolidated screen
 
-  @43661-1 @Sanity
+  @43661-1 @Sanity @beta
   Scenario: Verify columns fields in EOB Consolidated screen
     Then the user should be able to view the following column fields under EOB consolidated letters tab
       | Member ID            |
@@ -23,7 +23,7 @@ Feature: EOB consolidated Letters
       | Date of Creation     |
       | Mailing Date         |
 
-  @43661-2 @Sanity
+  @43661-2 @Sanity @beta
   Scenario: Verify column search fields in EOB consolidated letters screen
     And user should be able to view EOB consolidated letters column fields search boxes
 
@@ -39,7 +39,7 @@ Feature: EOB consolidated Letters
   Scenario: Verify results of Member rows count next to "EOB-Consolidated letters" tab name
     Then user should be able to see the results of rows count next to EOB consolidated letters Tab
 
-  @77074
+  @77074 @Sanity @beta
   Scenario: Verify user should be able to get results by applying filter on "Member ID" column under EOB-Consolidated tab
     When user enters EOB consolidated member id record under member id search box
     Then user should be able to view EOB consolidated member id under results section
@@ -59,7 +59,7 @@ Feature: EOB consolidated Letters
     When user enters EOB consolidated member share amount under member share amount search box
     Then user should be able to view EOB consolidated member share amount under results section
 
-  @77375
+  @77375 @Sanity @beta
   Scenario: Verify user should be able to get results by applying filter on "Date of creation" column under EOB-Consolidated tab
     When user enters EOB consolidated created date under date of creation search box
     Then user should be able to view EOB consolidated created date under results section

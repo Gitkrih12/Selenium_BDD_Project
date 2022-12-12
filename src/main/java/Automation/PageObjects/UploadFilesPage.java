@@ -96,8 +96,8 @@ public class UploadFilesPage extends SeleniumUtils {
         System.out.println(ANSI_GREEN + "UI plan received date is: " + text + ANSI_RESET);
     }
     public void clickOnUploadFileButton() {
-        explicitVisibilityOfElementLocatedWaitByXpath(btnUploadFile, 5).click();
-        String fileUploadToasterMessageAct = explicitVisibilityOfElementLocatedWaitByXpath(msgFileUploadToaster, 30).getText();
+        explicitVisibilityOfElementLocatedWaitByXpath(btnUploadFile, 10).click();
+        String fileUploadToasterMessageAct = explicitVisibilityOfElementLocatedWaitByXpath(msgFileUploadToaster, 60).getText();
         System.out.println(ANSI_GREEN + "File upload actual message is: " + fileUploadToasterMessageAct + ANSI_RESET);
         Assert.assertEquals(fileUploadSuccessfulMessageExp, fileUploadToasterMessageAct);
     }
