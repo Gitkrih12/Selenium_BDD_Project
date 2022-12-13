@@ -23,7 +23,7 @@ public class FFSProfessionalPage extends SeleniumUtils {
     String elePatientNameColorCode = "((//div[contains(@class,'ag-cell ag-cell-not-inline-editing ag-cell-normal-height') and @col-id='memberFullName'])[1]//span)[3]";
     String eleCOBInMemberHouseInfoTopGrid = "//span[@class='ColorBall_COBInMemberHouse']//following::span[contains(text(),'COB (In Member House)')]";
     String eleCOBNotInMemberHouseInfoTopGrid = "//span[@class='ColorBall_COB_NoninMemberHouse']//following::span[contains(text(),'COB (Not in Member House)')]";
-    String lstColumnFields = "//ag-grid-angular[@id='pendGrid']//div[@class='ag-header-cell-label']//span[text()]";
+    String lstColumnFields = "//ag-grid-angular[@id='Pend_FFS_Professional']//div[@class='ag-header-cell-label']//span[text()]";
     String tabPendState = "(//button[@class='nav-link active'])[1]";
     String lstQueues = "//div[@id='nav-tab']//button";
     String elePendQueuePage = "(//span[@class='ag-cell-value']//app-view-claim-render)[1]";
@@ -54,11 +54,11 @@ public class FFSProfessionalPage extends SeleniumUtils {
     String eleClaimSummary = "//div//a[@class='link-primary ms-1']";
     String tabFFSProfessionalDefault = "//div[@class='col ng-star-inserted default-tab' and contains(text(),'FFS Professional')]";
     String tabViewClaimDefault = "//div[@class='col ng-star-inserted default-tab' and contains(text(),'View')]";
-    String txtMemberId = "//*[@id='pendGrid']//input[@aria-label='Member ID Filter Input']";
-    String eleMemberId = "(//*[@id='pendGrid']//div[@col-id='subscriberId']//span[@class='ag-cell-value'])[1]";
-    String eleTotalMemberIdRecords = "//*[@id='pendGrid']//div[@col-id='subscriberId']//span[@class='ag-cell-value']";
-    String eleTotalResults = "//*[@id='pendGrid']//span[@class='ag-paging-row-summary-panel']";
-    String elePaginationDescription = "//*[@id='pendGrid']//span[@class='ag-paging-description']";
+    String txtMemberId = "//*[@id='Pend_FFS_Professional']//input[@aria-label='Member ID Filter Input']";
+    String eleMemberId = "(//*[@id='Pend_FFS_Professional']//div[@col-id='subscriberId']//span[@class='ag-cell-value'])[1]";
+    String eleTotalMemberIdRecords = "//*[@id='Pend_FFS_Professional']//div[@col-id='subscriberId']//span[@class='ag-cell-value']";
+    String eleTotalResults = "//*[@id='Pend_FFS_Professional']//span[@class='ag-paging-row-summary-panel']";
+    String elePaginationDescription = "//*[@id='Pend_FFS_Professional']//span[@class='ag-paging-description']";
     String tabOnHold = "//button[@id='nav-onhold-details-tab']";
     String eleOnHoldPaginationDescription = "//*[@id='onHoldGrid']//span[@class='ag-paging-description']";
     String btnNextPage = "//*[@id='onHoldGrid']//span[@class='ag-icon ag-icon-next']";
@@ -822,16 +822,20 @@ public class FFSProfessionalPage extends SeleniumUtils {
 
     public void selectCategory() {
         category = prop.getProperty("Category");
-        explicitVisibilityOfWait(findElementByXpath(txtCategory), 5);
+       // explicitVisibilityOfWait(findElementByXpath(txtCategory), 5);
+        explicitElementClickableWaitByXpath(txtCategory, 20);
         selectDropdownByVisibleText(txtCategory, category);
     }
 
     public void enterDescription() {
         description = prop.getProperty("Description");
+        explicitElementClickableWaitByXpath(txtDescription, 20);
         findElementAndSendKeys(findElementByXpath(txtDescription), description);
     }
 
     public void clickAdd() {
+        explicitTextToBePresentInElementLocatedWait(By.xpath(btnAdd), 20, "Add");
+        explicitElementClickableWaitByXpath(btnAdd, 20);
         clickElement(btnAdd);
     }
 
