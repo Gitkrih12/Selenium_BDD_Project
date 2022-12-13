@@ -221,4 +221,194 @@ public class PriorAuthorizationStepDef extends PriorAuthorizationPage {
     public void user_able_to_view_all_the_field_values_under_documents_table() {
         verifyFieldValuesUnderDocuments();
     }
+
+    //  Scenario: Verify user able to clear the Authorization number entered in search criteria by clicking on cancel button
+    @When("user enters the Authorization number and clicks on the Clear button")
+    public void user_enters_the_authorization_number_and_clicks_on_the_clear_button() {
+        userEntersAuthorizationNumberAndClicksOnClear();
+    }
+
+    @Then("user able to clear the entered Authorization number successfully")
+    public void user_able_to_clear_the_entered_authorization_number_successfully() {
+        verifyAuthorizationNumberCleared();
+    }
+
+    //  Scenario: Verify user able to clear the Member ID entered in search criteria by clicking on cancel button
+    @When("user enters the Member ID and clicks on Clear button")
+    public void user_enters_the_member_id_and_clicks_on_clear_button() {
+        userEntersMemberIdAndClicksOnClear();
+    }
+
+    @Then("user able to clear the entered Member ID")
+    public void user_able_to_clear_the_entered_member_id() {
+        verifyMemberIdCleared();
+    }
+
+    //  Scenario: Verify user able to clear the Member Name entered in search criteria by clicking on cancel button
+    @When("user enters the Member Name and clicks on Clear button")
+    public void user_enters_the_member_name_and_clicks_on_clear_button() {
+        userEntersMemberNameAndClicksOnClear();
+    }
+
+    @Then("user able to clear the entered Member Name")
+    public void user_able_to_clear_the_entered_member_name() {
+        verifyMemberNameCleared();
+    }
+
+    //  Scenario: Verify user able to clear the From Date (DOS) entered in search criteria by clicking on cancel button
+    @When("user enters the From Date and clicks on Clear button")
+    public void user_enters_the_from_date_and_clicks_on_clear_button() {
+        userEntersFromDateAndClicksOnClear();
+    }
+
+    @Then("user able to clear the entered From Date")
+    public void user_able_to_clear_the_entered_from_date() {
+        verifyFromDateCleared();
+    }
+
+    //  Scenario: Verify user able to clear the To Date (DOS) entered in search criteria by clicking on cancel button
+    @When("user enters the To Date and clicks on Clear button")
+    public void user_enters_the_to_date_and_clicks_on_clear_button() {
+        userEntersToDateAndClicksOnClear();
+    }
+
+    @Then("user able to clear the entered To Date")
+    public void user_able_to_clear_the_entered_to_date() {
+        verifyToDateCleared();
+    }
+
+    //  Scenario: Verify user able to clear the Status entered in search criteria by clicking on cancel button
+    @When("user enters the Status and clicks on Clear button")
+    public void user_enters_the_status_and_clicks_on_clear_button() {
+        userEntersStatusAndClicksOnClear();
+    }
+
+    @Then("user able to clear the entered Status")
+    public void user_able_to_clear_the_entered_status() {
+        verifyStatusCleared();
+    }
+
+    //  Scenario: Verify the result criteria fields should display when user searches in any of the fields in Prior Authorization
+    @Then("user able to view the below mentioned fields under result criteria")
+    public void user_able_to_view_the_below_mentioned_fields_under_result_criteria(DataTable expResultsFields) {
+        verifyFieldsResultsCriteria(expResultsFields);
+    }
+
+    @When("user enters the Auth number and clicks on the Search button")
+    public void user_enters_the_auth_number_and_clicks_on_the_search_button() {
+        userEntersTheAuthNumberAndClicksSearchButton();
+    }
+
+    //  Scenario: Verify user able to search the criteria for Authorization number results fields
+    @When("user able to enter the Auth number in the results search criteria")
+    public void user_able_to_enter_the_auth_number_in_the_results_search_criteria() {
+        userEntersAuthNumberInResultsSearchCriteria();
+    }
+
+    //  Scenario: Verify user able to search the criteria for Subscriber ID results fields
+    @When("user able to enter the Subscriber Id in the results search criteria")
+    public void user_able_to_enter_the_subscriber_id_in_the_results_search_criteria() {
+        userEntersSubscriberIdInResultsSearchCriteria();
+    }
+
+    //  Scenario: Verify user able to search the criteria for Member Name results fields
+    @When("user able to enter the Member Name in the results search criteria")
+    public void user_able_to_enter_the_member_name_in_the_results_search_criteria() {
+        userEntersTheMemberNameInResultsSearchCriteria();
+    }
+
+    //  Scenario: Verify user able to search the criteria for Provider NPI results fields
+    @When("user able to enter the Provider NPI in the results search criteria")
+    public void user_able_to_enter_the_provider_npi_in_the_results_search_criteria() {
+        userEntersProviderNPIInResultsSearchCriteria();
+    }
+
+    @Then("user able to view the Provider NPI field value under Prior Authorization")
+    public void user_able_to_view_the_provider_npi_field_value_under_prior_authorization() {
+        verifyProviderNPIFieldValue();
+    }
+
+    //  Scenario: Verify user able to search the criteria for Tax ID results fields
+    @When("user able to enter the Tax ID in the results search criteria")
+    public void user_able_to_enter_the_tax_id_in_the_results_search_criteria() {
+        userEntersTaxIDInResultsSearchCriteria();
+    }
+
+    @Then("user able to view the Tax ID field value under Prior Authorization")
+    public void user_able_to_view_the_tax_id_field_value_under_prior_authorization() {
+        verifyTaxIDFieldValue();
+    }
+
+    //  Scenario: Verify user able to search the criteria for Provider Name results fields
+    @When("user able to enter the Provider Name in the results search criteria")
+    public void user_able_to_enter_the_provider_name_in_the_results_search_criteria() {
+        userEntersProviderNameInResultsSearchCriteria();
+    }
+
+    @Then("user able to view the Provider Name field value under Prior Authorization")
+    public void user_able_to_view_the_provider_name_field_value_under_prior_authorization() {
+        verifyProviderNameFieldValue();
+    }
+
+    //  Scenario: Verify user able to search the criteria for CPT Units results fields
+    @When("user able to enter the CPT Units in the results search criteria")
+    public void user_able_to_enter_the_cpt_units_in_the_results_search_criteria() {
+        userEntersCPTUnitsInResultsSearchCriteria();
+    }
+
+    @Then("user able to view the CPT Units field value under Prior Authorization")
+    public void user_able_to_view_the_cpt_units_field_value_under_prior_authorization() {
+        verifyCPTUnitsFieldValue();
+    }
+
+    //  Scenario: Verify user able to search the criteria for ICD Code results fields
+    @When("user able to enter the ICD Code in the results search criteria")
+    public void user_able_to_enter_the_icd_code_in_the_results_search_criteria() {
+        userEntersICDCodeInResultsSearchCriteria();
+    }
+
+    @Then("user able to view the ICD Code field value under Prior Authorization")
+    public void user_able_to_view_the_icd_code_field_value_under_prior_authorization() {
+        verifyICDCodeFieldValue();
+    }
+
+    //  Scenario: Verify user able to search the criteria for From Date results fields
+    @When("user able to enter the From Date in the results search criteria")
+    public void user_able_to_enter_the_from_date_in_the_results_search_criteria() {
+        userEntersFromDateInResultsSearchCriteria();
+    }
+
+    //  Scenario: Verify user able to search the criteria for To Date results fields
+    @When("user able to enter the To Date in the results search criteria")
+    public void user_able_to_enter_the_to_date_in_the_results_search_criteria() {
+        userEntersToDateInResultsSearchCriteria();
+    }
+
+    //  Scenario: Verify user able to search the criteria for Received Date results fields
+    @When("user able to enter the Received Date in the results search criteria")
+    public void user_able_to_enter_the_received_date_in_the_results_search_criteria() {
+        userEntersReceivedDateInResultsSearchCriteria();
+    }
+
+    @Then("user able to view the Received Date field value under Prior Authorization")
+    public void user_able_to_view_the_received_date_field_value_under_prior_authorization() {
+        verifyReceivedDateFieldValue();
+    }
+
+    //  Scenario: Verify user able to search the criteria for POS results fields
+    @When("user able to enter the POS in the results search criteria")
+    public void user_able_to_enter_the_pos_in_the_results_search_criteria() {
+        userEntersPOSInResultsSearchCriteria();
+    }
+
+    @Then("user able to view the POS field value under Prior Authorization")
+    public void user_able_to_view_the_pos_field_value_under_prior_authorization() {
+        verifyPOSFieldValue();
+    }
+
+    //  Scenario: Verify user able to search the criteria for Status results fields
+    @When("user able to enter the Status in the results search criteria")
+    public void user_able_to_enter_the_status_in_the_results_search_criteria() {
+        userEntersStatusInResultsSearchCriteria();
+    }
 }

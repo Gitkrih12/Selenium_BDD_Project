@@ -212,3 +212,129 @@ Feature: Prior Authorization
       | VIEW      |
       | DOWNLOAD  |
     And user able to view all the field values under Documents table
+
+  @79405
+  Scenario: Verify user able to clear the Authorization number entered in search criteria by clicking on cancel button
+    When user enters the Authorization number and clicks on the Clear button
+    Then user able to clear the entered Authorization number successfully
+
+  @79405-1
+  Scenario: Verify user able to clear the Member ID entered in search criteria by clicking on cancel button
+    When user enters the Member ID and clicks on Clear button
+    Then user able to clear the entered Member ID
+
+  @79405-2
+  Scenario: Verify user able to clear the Member Name entered in search criteria by clicking on cancel button
+    When user enters the Member Name and clicks on Clear button
+    Then user able to clear the entered Member Name
+
+  @79405-3
+  Scenario: Verify user able to clear the From Date (DOS) entered in search criteria by clicking on cancel button
+    When user enters the From Date and clicks on Clear button
+    Then user able to clear the entered From Date
+
+  @79405-4
+  Scenario: Verify user able to clear the To Date (DOS) entered in search criteria by clicking on cancel button
+    When user enters the To Date and clicks on Clear button
+    Then user able to clear the entered To Date
+
+  @79405-5
+  Scenario: Verify user able to clear the Status entered in search criteria by clicking on cancel button
+    When user enters the Status and clicks on Clear button
+    Then user able to clear the entered Status
+
+  @79401
+  Scenario: Verify the result criteria fields should display when user searches in any of the fields in Prior Authorization
+    When user enters the Authorization number and clicks on the Search button
+    Then user able to view the below mentioned fields under result criteria
+    | Authorization Number |
+    | Subscriber ID        |
+    | Member Name          |
+    | Provider NPI         |
+    | Tax ID               |
+    | Provider Name        |
+    | CPT-Units            |
+    | ICD Code             |
+    | From Date            |
+    | To Date              |
+    | Received Date        |
+    | POS                  |
+    | Status               |
+
+  @79419
+  Scenario: Verify user able to search the criteria for Authorization number results fields
+    When user enters the Auth number and clicks on the Search button
+    And user able to enter the Auth number in the results search criteria
+    Then user able to view the Authorization field value under Prior Authorization
+
+  @79419-1
+  Scenario: Verify user able to search the criteria for Subscriber ID results fields
+    When user enters the Auth number and clicks on the Search button
+    And user able to enter the Subscriber Id in the results search criteria
+    Then user able to view the Member ID field value under Prior Authorization
+
+  @79419-2
+  Scenario: Verify user able to search the criteria for Member Name results fields
+    When user enters the Auth number and clicks on the Search button
+    And user able to enter the Member Name in the results search criteria
+    Then user able to view the Member Name field value under Prior Authorization
+
+  @79419-3
+  Scenario: Verify user able to search the criteria for Provider NPI results fields
+    When user enters the Auth number and clicks on the Search button
+    And user able to enter the Provider NPI in the results search criteria
+    Then user able to view the Provider NPI field value under Prior Authorization
+
+  @79419-4
+  Scenario: Verify user able to search the criteria for Tax ID results fields
+    When user enters the Auth number and clicks on the Search button
+    And user able to enter the Tax ID in the results search criteria
+    Then user able to view the Tax ID field value under Prior Authorization
+
+  @79419-5
+  Scenario: Verify user able to search the criteria for Provider Name results fields
+    When user enters the Auth number and clicks on the Search button
+    And user able to enter the Provider Name in the results search criteria
+    Then user able to view the Provider Name field value under Prior Authorization
+
+  @79419-6
+  Scenario: Verify user able to search the criteria for CPT Units results fields
+    When user enters the Auth number and clicks on the Search button
+    And user able to enter the CPT Units in the results search criteria
+    Then user able to view the CPT Units field value under Prior Authorization
+
+  @79419-7
+  Scenario: Verify user able to search the criteria for ICD Code results fields
+    When user enters the Auth number and clicks on the Search button
+    And user able to enter the ICD Code in the results search criteria
+    Then user able to view the ICD Code field value under Prior Authorization
+
+  @79419-8
+  Scenario: Verify user able to search the criteria for From Date results fields
+    When user enters the Auth number and clicks on the Search button
+    And user able to enter the From Date in the results search criteria
+    Then user able to view the From Date field value under Prior Authorization
+
+  @79419-9
+  Scenario: Verify user able to search the criteria for To Date results fields
+    When user enters the Auth number and clicks on the Search button
+    And user able to enter the To Date in the results search criteria
+    Then user able to view the To Date field value under Prior Authorization
+
+  @79419-10
+  Scenario: Verify user able to search the criteria for Received Date results fields
+    When user enters the Auth number and clicks on the Search button
+    And user able to enter the Received Date in the results search criteria
+    Then user able to view the Received Date field value under Prior Authorization
+
+  @79419-11
+  Scenario: Verify user able to search the criteria for POS results fields
+    When user enters the Auth number and clicks on the Search button
+    And user able to enter the POS in the results search criteria
+    Then user able to view the POS field value under Prior Authorization
+
+  @79419-12
+  Scenario: Verify user able to search the criteria for Status results fields
+    When user enters the Auth number and clicks on the Search button
+    And user able to enter the Status in the results search criteria
+    Then user able to view the Status field value under Prior Authorization

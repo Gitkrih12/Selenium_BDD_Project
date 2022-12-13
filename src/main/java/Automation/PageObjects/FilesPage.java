@@ -27,20 +27,30 @@ public class FilesPage extends SeleniumUtils {
     String btn837PNext = "//div[@id='nav-837p-details']//span[@class='ag-icon ag-icon-next']";
     String btn837PPrevious = "//div[@id='nav-837p-details']//span[@class='ag-icon ag-icon-previous']";
     String lbl837PFileName = "//div[@id='nav-837p-details']//span[contains(text(),'File Name')]";
+    String txt837PFileName = "//div[@id='nav-837p-details']//input[@aria-label='File Name Filter Input']";
+    String ele837PFileName = "(//div[@id='nav-837p-details']//div[@col-id='fileName']//span[@class='ag-cell-value'])[1]";
     String lst837PFileNameRecords = "//div[@id='nav-837p-details']//div[@col-id='fileName']//span[@class='ag-cell-value']";
     String lst837PSenderRecords = "//div[@id='nav-837p-details']//div[@col-id='sender']//span[@class='ag-cell-value']";
+    String txt837PSender = "//div[@id='nav-837p-details']//input[@aria-label='Sender Filter Input']";
+    String ele837PSender = "(//div[@id='nav-837p-details']//div[@col-id='sender']//span[@class='ag-cell-value'])[1]";
     String txt837PStatus = "//div[@id='nav-837p-details']//input[@aria-label='Status Filter Input']";
     String lbl837PStatusColor = "(//div[@id='nav-837p-details']//div[@col-id='status']//span[contains(@style,'color')])[1]";
-    String lbl837PStatusType = "(//div[@id='nav-837p-details']//div[@col-id='status']//span[contains(@style,'Roboto')])[1]";
+    String lbl837PStatusType = "(//div[@id='nav-837p-details']//div[@col-id='status']//span[@class='statusFont'])[1]";
     String lbl837PSender = "//div[@id='nav-837p-details']//span[contains(text(),'Sender')]";
     String lst837PReceiverRecords = "//div[@id='nav-837p-details']//div[@col-id='receiver']//span[@class='ag-cell-value']";
     String lbl837PReceiver = "//div[@id='nav-837p-details']//span[contains(text(),'Receiver')]";
+    String txt837PReceiver = "//div[@id='nav-837p-details']//input[@aria-label='Receiver Filter Input']";
+    String ele837PReceiver = "(//div[@id='nav-837p-details']//div[@col-id='receiver']//span[@class='ag-cell-value'])[1]";
     String lst837PDateReceivedRecords = "//div[@id='nav-837p-details']//div[@col-id='dateReceived']//span[@class='ag-cell-value']";
+    String ele837PAgeDays = "(//div[@id='nav-837p-details']//div[@col-id='ageInDays']//span[@class='ag-cell-value'])[1]";
+    String txt837PAgeDays = "//div[@id='nav-837p-details']//input[@aria-label='Age(Days) Filter Input']";
     String lst837PAgeDaysRecords = "//div[@id='nav-837p-details']//div[@col-id='ageInDays']//span[@class='ag-cell-value']";
     String lbl837PStatus = "//div[@id='nav-837p-details']//span[contains(text(),'Status')]";
     String lst837PStatusRecords = "//div[@id='nav-837p-details']//div[@col-id='status']//span[@class='ag-cell-value']//span[2]";
     String lbl837PFileType = "//div[@id='nav-837p-details']//span[contains(text(),'File Type')]";
     String lst837PFileTypeRecords = "//div[@id='nav-837p-details']//div[@col-id='fileType']//span[@class='ag-cell-value']";
+    String txt837PFileType = "(//div[@col-id='dateReceived']//following::input[@aria-label='File Type Filter Input'])[1]";
+    String ele837PFileType = "(//div[@id='nav-837p-details']//div[@col-id='fileType']//span[@class='ag-cell-value'])[1]";
     String txt837PDateReceived = "(//div[@col-id='dateReceived']//following::input[@aria-label='Date Received Filter Input'])[1]";
     String ele837PDateReceived = "(//div[@id='nav-837p-details']//div[@col-id='dateReceived']//span[@class='ag-cell-value'])[1]";
     String lst837PControlNumberRecords = "//div[@id='nav-837p-details']//div[@col-id='controlNumber']//span[@class='ag-cell-value']";
@@ -59,22 +69,32 @@ public class FilesPage extends SeleniumUtils {
     String btn837INext = "//div[@id='nav-837i-details']//span[@class='ag-icon ag-icon-next']";
     String btn837IPrevious = "//div[@id='nav-837i-details']//span[@class='ag-icon ag-icon-previous']";
     String lbl837IStatusColor = "(//div[@id='nav-837i-details']//div[@col-id='status']//span[contains(@style,'color')])[1]";
-    String lbl837IStatusType = "(//div[@id='nav-837i-details']//div[@col-id='status']//span[contains(@style,'Roboto')])[1]";
+    String lbl837IStatusType = "(//div[@id='nav-837i-details']//div[@col-id='status']//span[@class='statusFont'])[1]";
     String txt837IStatus = "//div[@id='nav-837i-details']//input[@aria-label='Status Filter Input']";
     String lbl837IFileName = "//div[@id='nav-837i-details']//span[contains(text(),'File Name')]";
     String lst837IFileNameRecords = "//div[@id='nav-837i-details']//div[@col-id='fileName']//span[@class='ag-cell-value']";
+    String txt837IFileName = "//div[@id='nav-837i-details']//input[@aria-label='File Name Filter Input']";
+    String ele837IFileName = "//div[@id='nav-837i-details']//div[@col-id='fileName']//span[@class='ag-cell-value']";
     String lbl837ISender = "//div[@id='nav-837i-details']//span[contains(text(),'Sender')]";
     String lst837ISenderRecords = "//div[@id='nav-837i-details']//div[@col-id='sender']//span[@class='ag-cell-value']";
+    String txt837ISender = "//div[@id='nav-837i-details']//input[@aria-label='Sender Filter Input']";
+    String ele837ISender = "(//div[@id='nav-837i-details']//div[@col-id='sender']//span[@class='ag-cell-value'])[1]";
     String lbl837IReceiver = "//div[@id='nav-837i-details']//span[contains(text(),'Receiver')]";
     String lst837IReceiverRecords = "//div[@id='nav-837i-details']//div[@col-id='receiver']//span[@class='ag-cell-value']";
+    String txt837IReceiver = "//div[@id='nav-837i-details']//input[@aria-label='Receiver Filter Input']";
+    String ele837IReceiver = "(//div[@id='nav-837i-details']//div[@col-id='receiver']//span[@class='ag-cell-value'])[1]";
     String lst837IDateReceivedRecords = "//div[@id='nav-837i-details']//div[@col-id='dateReceived']//span[@class='ag-cell-value']";
     String txt837IDateReceived = "(//div[@col-id='dateReceived']//following::input[@aria-label='Date Received Filter Input'])[2]";
     String ele837IDateReceived = "(//div[@id='nav-837i-details']//div[@col-id='dateReceived']//span[@class='ag-cell-value'])[1]";
     String lst837IAgeDaysRecords = "//div[@id='nav-837i-details']//div[@col-id='ageInDays']//span[@class='ag-cell-value']";
+    String ele837IAgeDays = "(//div[@id='nav-837i-details']//div[@col-id='ageInDays']//span[@class='ag-cell-value'])[1]";
+    String txt837IAgeDays = "(//div[@col-id='dateReceived']//following::input[@aria-label='Age(Days) Filter Input'])[2]";
     String lbl837IStatus = "//div[@id='nav-837i-details']//span[contains(text(),'Status')]";
     String lst837IStatusRecords = "//div[@id='nav-837i-details']//div[@col-id='status']//span[@class='ag-cell-value']//span[2]";
     String lbl837IFileType = "//div[@id='nav-837i-details']//span[contains(text(),'File Type')]";
     String lst837IFileTypeRecords = "//div[@id='nav-837i-details']//div[@col-id='fileType']//span[@class='ag-cell-value']";
+    String ele837IFileType = "(//div[@id='nav-837i-details']//div[@col-id='fileType']//span[@class='ag-cell-value'])[1]";
+    String txt837IFileType = "(//div[@col-id='dateReceived']//following::input[@aria-label='File Type Filter Input'])[2]";
     String lst837IControlNumberRecords = "//div[@id='nav-837i-details']//div[@col-id='controlNumber']//span[@class='ag-cell-value']";
     String lbl837IControlNumber = "//div[@id='nav-837i-details']//span[contains(text(),'Control Number')]";
 
@@ -92,18 +112,28 @@ public class FilesPage extends SeleniumUtils {
     String txt837DStatus = "//div[@id='nav-837d-details']//input[@aria-label='Status Filter Input']";
     String lbl837DFileName = "//div[@id='nav-837d-details']//span[contains(text(),'File Name')]";
     String lst837DFileNameRecords = "//div[@id='nav-837d-details']//div[@col-id='fileName']//span[@class='ag-cell-value']";
+    String ele837DFileName = "//div[@id='nav-837d-details']//div[@col-id='fileName']//span[@class='ag-cell-value']";
+    String txt837DFileName = "//div[@id='nav-837d-details']//input[@aria-label='File Name Filter Input']";
     String lbl837DSender = "//div[@id='nav-837d-details']//span[contains(text(),'Sender')]";
     String lst837DSenderRecords = "//div[@id='nav-837d-details']//div[@col-id='sender']//span[@class='ag-cell-value']";
+    String ele837DSender = "(//div[@id='nav-837d-details']//div[@col-id='sender']//span[@class='ag-cell-value'])[1]";
+    String txt837DSender = "//div[@id='nav-837d-details']//input[@aria-label='Sender Filter Input']";
     String lbl837DReceiver = "//div[@id='nav-837d-details']//span[contains(text(),'Receiver')]";
+    String ele837DReceiver = "(//div[@id='nav-837d-details']//div[@col-id='receiver']//span[@class='ag-cell-value'])[1]";
+    String txt837DReceiver = "//div[@id='nav-837d-details']//input[@aria-label='Receiver Filter Input']";
     String lst837DReceiverRecords = "//div[@id='nav-837d-details']//div[@col-id='receiver']//span[@class='ag-cell-value']";
     String lst837DDateReceivedRecords = "//div[@id='nav-837d-details']//div[@col-id='dateReceived']//span[@class='ag-cell-value']";
     String txt837DDateReceived = "(//div[@col-id='dateReceived']//following::input[@aria-label='Date Received Filter Input'])[3]";
     String ele837DDateReceived = "(//div[@id='nav-837d-details']//div[@col-id='dateReceived']//span[@class='ag-cell-value'])[1]";
     String lst837DAgeDaysRecords = "//div[@id='nav-837d-details']//div[@col-id='ageInDays']//span[@class='ag-cell-value']";
+    String ele837DAgeDays = "(//div[@id='nav-837d-details']//div[@col-id='ageInDays']//span[@class='ag-cell-value'])[1]";
+    String txt837DAgeDays = "(//div[@col-id='dateReceived']//following::input[@aria-label='Age(Days) Filter Input'])[3]";
     String lbl837DStatus = "//div[@id='nav-837d-details']//span[contains(text(),'Status')]";
     String lst837DStatusRecords = "//div[@id='nav-837d-details']//div[@col-id='status']//span[@class='ag-cell-value']//span[2]";
     String lbl837DFileType = "//div[@id='nav-837d-details']//span[contains(text(),'File Type')]";
     String lst837DFileTypeRecords = "//div[@id='nav-837d-details']//div[@col-id='fileType']//span[@class='ag-cell-value']";
+    String ele837DFileType = "(//div[@id='nav-837d-details']//div[@col-id='fileType']//span[@class='ag-cell-value'])[1]";
+    String txt837DFileType = "(//div[@col-id='dateReceived']//following::input[@aria-label='File Type Filter Input'])[3]";
     String lst837DControlNumberRecords = "//div[@id='nav-837d-details']//div[@col-id='controlNumber']//span[@class='ag-cell-value']";
     String lbl837DControlNumber = "//div[@id='nav-837d-details']//span[contains(text(),'Control Number')]";
 
@@ -118,22 +148,32 @@ public class FilesPage extends SeleniumUtils {
     String btn999Next = "//div[@id='nav-999-details']//span[@class='ag-icon ag-icon-next']";
     String btn999Previous = "//div[@id='nav-999-details']//span[@class='ag-icon ag-icon-previous']";
     String lbl999StatusColor = "(//div[@id='nav-999-details']//div[@col-id='status']//span[contains(@style,'color')])[1]";
-    String lbl999StatusType = "(//div[@id='nav-999-details']//div[@col-id='status']//span[contains(@style,'Roboto')])[1]";
+    String lbl999StatusType = "(//div[@id='nav-999-details']//div[@col-id='status']//span[@class='statusFont'])[1]";
     String txt999Status = "//div[@id='nav-999-details']//input[@aria-label='Status Filter Input']";
     String lbl999FileName = "//div[@id='nav-999-details']//span[contains(text(),'File Name')]";
     String lst999FileNameRecords = "//div[@id='nav-999-details']//div[@col-id='fileName']//span[@class='ag-cell-value']";
+    String ele999FileName = "(//div[@id='nav-999-details']//div[@col-id='fileName']//span[@class='ag-cell-value'])[1]";
+    String txt999FileName = "//div[@id='nav-999-details']//input[@aria-label='File Name Filter Input']";
     String lbl999Sender = "//div[@id='nav-999-details']//span[contains(text(),'Sender')]";
     String lst999SenderRecords = "//div[@id='nav-999-details']//div[@col-id='sender']//span[@class='ag-cell-value']";
+    String ele999Sender = "(//div[@id='nav-999-details']//div[@col-id='sender']//span[@class='ag-cell-value'])[1]";
+    String txt999Sender = "//div[@id='nav-999-details']//input[@aria-label='Sender Filter Input']";
     String lbl999Receiver = "//div[@id='nav-999-details']//span[contains(text(),'Receiver')]";
     String lst999ReceiverRecords = "//div[@id='nav-999-details']//div[@col-id='receiver']//span[@class='ag-cell-value']";
+    String ele999Receiver = "(//div[@id='nav-999-details']//div[@col-id='receiver']//span[@class='ag-cell-value'])[1]";
+    String txt999Receiver = "//div[@id='nav-999-details']//input[@aria-label='Receiver Filter Input']";
     String lst999DateOfCreationRecords = "//div[@id='nav-999-details']//div[@col-id='dateReceived']//span[@class='ag-cell-value']";
     String txt999DateOfCreation = "(//div[@col-id='dateReceived']//following::input[@aria-label='Date of Creation Filter Input'])[1]";
     String ele999DateOfCreation = "(//div[@id='nav-999-details']//div[@col-id='dateReceived']//span[@class='ag-cell-value'])[1]";
     String lst999AgeDaysRecords = "//div[@id='nav-999-details']//div[@col-id='ageInDays']//span[@class='ag-cell-value']";
+    String ele999AgeDays = "(//div[@id='nav-999-details']//div[@col-id='ageInDays']//span[@class='ag-cell-value'])[1]";
+    String txt999AgeDays = "//div[@id='nav-999-details']//input[@aria-label='Age(Days) Filter Input']";
     String lbl999Status = "//div[@id='nav-999-details']//span[contains(text(),'Status')]";
     String lst999StatusRecords = "//div[@id='nav-999-details']//div[@col-id='status']//span[@class='ag-cell-value']//span[2]";
     String lbl999ClaimType = "//div[@id='nav-999-details']//span[contains(text(),'Claim Type')]";
     String lst999ClaimTypeRecords = "//div[@id='nav-999-details']//div[@col-id='claimType']//span[@class='ag-cell-value']";
+    String ele999ClaimType = "(//div[@id='nav-999-details']//div[@col-id='claimType']//span[@class='ag-cell-value'])[1]";
+    String txt999ClaimType = "//div[@id='nav-999-details']//input[@aria-label='Claim Type Filter Input']";
     String lst999ControlNumberRecords = "//div[@id='nav-999-details']//div[@col-id='controlNumber']//span[@class='ag-cell-value']";
     String lbl999ControlNumber = "//div[@id='nav-999-details']//span[contains(text(),'Control Number')]";
 
@@ -148,18 +188,26 @@ public class FilesPage extends SeleniumUtils {
     String btn277CANext = "//div[@id='nav-277ca-details']//span[@class='ag-icon ag-icon-next']";
     String btn277CAPrevious = "//div[@id='nav-277ca-details']//span[@class='ag-icon ag-icon-previous']";
     String lbl277CAStatusColor = "(//div[@id='nav-277ca-details']//div[@col-id='status']//span[contains(@style,'color')])[1]";
-    String lbl277CAStatusType = "(//div[@id='nav-277ca-details']//div[@col-id='status']//span[contains(@style,'Roboto')])[1]";
+    String lbl277CAStatusType = "(//div[@id='nav-277ca-details']//div[@col-id='status']//span[@class='statusFont'])[1]";
     String txt277CAStatus = "//div[@id='nav-277ca-details']//input[@aria-label='Status Filter Input']";
     String lbl277CAFileName = "//div[@id='nav-277ca-details']//span[contains(text(),'File Name')]";
     String lst277CAFileNameRecords = "//div[@id='nav-277ca-details']//div[@col-id='fileName']//span[@class='ag-cell-value']";
+    String txt277CAFileName = "//div[@id='nav-277ca-details']//input[@aria-label='File Name Filter Input']";
+    String ele277CAFileName = "(//div[@id='nav-277ca-details']//div[@col-id='fileName']//span[@class='ag-cell-value'])[1]";
     String lbl277CASender = "//div[@id='nav-277ca-details']//span[contains(text(),'Sender')]";
     String lst277CASenderRecords = "//div[@id='nav-277ca-details']//div[@col-id='sender']//span[@class='ag-cell-value']";
+    String txt277CASender = "//div[@id='nav-277ca-details']//input[@aria-label='Sender Filter Input']";
+    String ele277CASender = "(//div[@id='nav-277ca-details']//div[@col-id='sender']//span[@class='ag-cell-value'])[1]";
     String lbl277CAReceiver = "//div[@id='nav-277ca-details']//span[contains(text(),'Receiver')]";
     String lst277CAReceiverRecords = "//div[@id='nav-277ca-details']//div[@col-id='receiver']//span[@class='ag-cell-value']";
+    String txt277CAReceiver = "//div[@id='nav-277ca-details']//input[@aria-label='Receiver Filter Input']";
+    String ele277CAReceiver = "(//div[@id='nav-277ca-details']//div[@col-id='receiver']//span[@class='ag-cell-value'])[1]";
     String lst277CADateOfCreationRecords = "//div[@id='nav-277ca-details']//div[@col-id='dateReceived']//span[@class='ag-cell-value']";
     String txt277CADateOfCreation = "(//div[@col-id='dateReceived']//following::input[@aria-label='Date Of Creation Filter Input'])[1]";
     String ele277CADateOfCreation = "(//div[@id='nav-277ca-details']//div[@col-id='dateReceived']//span[@class='ag-cell-value'])[1]";
     String lst277CAAgeDaysRecords = "//div[@id='nav-277ca-details']//div[@col-id='ageInDays']//span[@class='ag-cell-value']";
+    String txt277CAAgeDays = "//div[@id='nav-277ca-details']//input[@aria-label='Age(Days) Filter Input']";
+    String ele277CAAgeDays = "(//div[@id='nav-277ca-details']//div[@col-id='ageInDays']//span[@class='ag-cell-value'])[1]";
     String lbl277CAStatus = "//div[@id='nav-277ca-details']//span[contains(text(),'Status')]";
     String lst277CAStatusRecords = "//div[@id='nav-277ca-details']//div[@col-id='status']//span[@class='ag-cell-value']//span[2]";
     String lbl277CAClaimType = "//div[@id='nav-277ca-details']//span[contains(text(),'Claim Type')]";
@@ -177,25 +225,37 @@ public class FilesPage extends SeleniumUtils {
     String ele835ControlNumber = "(//div[@id='nav-835-details']//div[@col-id='controlNumber']//span[@class='ag-cell-value'])[1]";
     String lbl835ChequeDate = "//div[@id='nav-835-details']//span[contains(text(),'Cheque Date')]";
     String lst835ChequeDateRecords = "//div[@id='nav-835-details']//div[@col-id='chequeIssueDate']//span[@class='ag-cell-value']";
+    String txt835ChequeDate = "//div[@id='nav-835-details']//input[@aria-label='Cheque Date Filter Input']";
+    String ele835ChequeDate = "(//div[@id='nav-835-details']//div[@col-id='chequeIssueDate']//span[@class='ag-cell-value'])[1]";
     String btn835Next = "//div[@id='nav-835-details']//span[@class='ag-icon ag-icon-next']";
     String btn835Previous = "//div[@id='nav-835-details']//span[@class='ag-icon ag-icon-previous']";
     String lbl835StatusColor = "(//div[@id='nav-835-details']//div[@col-id='status']//span[contains(@style,'color')])[1]";
-    String lbl835StatusType = "(//div[@id='nav-835-details']//div[@col-id='status']//span[contains(@style,'Roboto')])[1]";
+    String lbl835StatusType = "(//div[@id='nav-835-details']//div[@col-id='status']//span[@class='statusFont'])[1]";
     String txt835Status = "//div[@id='nav-835-details']//input[@aria-label='Status Filter Input']";
     String lbl835FileName = "//div[@id='nav-835-details']//span[contains(text(),'File Name')]";
     String lst835FileNameRecords = "//div[@id='nav-835-details']//div[@col-id='fileName']//span[@class='ag-cell-value']";
+    String txt835FileName = "//div[@id='nav-835-details']//input[@aria-label='File Name Filter Input']";
+    String ele835FileName = "(//div[@id='nav-835-details']//div[@col-id='fileName']//span[@class='ag-cell-value'])[1]";
     String lbl835Sender = "//div[@id='nav-835-details']//span[contains(text(),'Sender')]";
     String lst835SenderRecords = "//div[@id='nav-835-details']//div[@col-id='sender']//span[@class='ag-cell-value']";
+    String txt835Sender = "//div[@id='nav-835-details']//input[@aria-label='Sender Filter Input']";
+    String ele835Sender = "(//div[@id='nav-835-details']//div[@col-id='sender']//span[@class='ag-cell-value'])[1]";
     String lbl835Receiver = "//div[@id='nav-835-details']//span[contains(text(),'Receiver')]";
     String lst835ReceiverRecords = "//div[@id='nav-835-details']//div[@col-id='receiver']//span[@class='ag-cell-value']";
+    String txt835Receiver = "//div[@id='nav-835-details']//input[@aria-label='Receiver Filter Input']";
+    String ele835Receiver = "(//div[@id='nav-835-details']//div[@col-id='receiver']//span[@class='ag-cell-value'])[1]";
     String lst835DateOfCreationRecords = "//div[@id='nav-835-details']//div[@col-id='dateReceived']//span[@class='ag-cell-value']";
     String txt835DateOfCreation = "(//div[@col-id='dateReceived']//following::input[@aria-label='Date of Creation Filter Input'])[2]";
     String ele835DateOfCreation = "(//div[@id='nav-835-details']//div[@col-id='dateReceived']//span[@class='ag-cell-value'])[1]";
     String lst835AgeDaysRecords = "//div[@id='nav-835-details']//div[@col-id='ageInDays']//span[@class='ag-cell-value']";
+    String txt835AgeDays = "//div[@id='nav-835-details']//input[@aria-label='Age(Days) Filter Input']";
+    String ele835AgeDays = "(//div[@id='nav-835-details']//div[@col-id='ageInDays']//span[@class='ag-cell-value'])[1]";
     String lbl835Status = "//div[@id='nav-835-details']//span[contains(text(),'Status')]";
     String lst835StatusRecords = "//div[@id='nav-835-details']//div[@col-id='status']//span[@class='ag-cell-value']//span[2]";
     String lbl835Transaction = "//div[@id='nav-835-details']//span[contains(text(),'Transaction')]";
     String lst835TransactionRecords = "//div[@id='nav-835-details']//div[@col-id='transaction']//span[@class='ag-cell-value']";
+    String txt835Transaction = "//div[@id='nav-835-details']//input[@aria-label='Transaction Filter Input']";
+    String ele835Transaction = "(//div[@id='nav-835-details']//div[@col-id='transaction']//span[@class='ag-cell-value'])[1]";
     String lst835ControlNumberRecords = "//div[@id='nav-835-details']//div[@col-id='controlNumber']//span[@class='ag-cell-value']";
     String lbl835ControlNumber = "//div[@id='nav-835-details']//span[contains(text(),'Control Number')]";
 
@@ -211,6 +271,36 @@ public class FilesPage extends SeleniumUtils {
     private static ArrayList<String> fileTypeRecords837P;
     private static String receivedDate837PSortExp;
     private static ArrayList<String> controlNumberRecords837P;
+    private static String fileNameSearchRecord837PExp;
+    private static String senderSearchRecord837PExp;
+    private static String receiverSearchRecord837PExp;
+    private static String ageDaysSearchRecord837PExp;
+    private static String fileTypeSearchRecord837PExp;
+    private static String fileNameSearchRecord837IExp;
+    private static String senderSearchRecord837IExp;
+    private static String receiverSearchRecord837IExp;
+    private static String ageDaysSearchRecord837IExp;
+    private static String fileTypeSearchRecord837IExp;
+    private static String fileNameSearchRecord837DExp;
+    private static String senderSearchRecord837DExp;
+    private static String receiverSearchRecord837DExp;
+    private static String ageDaysSearchRecord837DExp;
+    private static String fileTypeSearchRecord837DExp;
+    private static String fileNameSearchRecord999Exp;
+    private static String senderSearchRecord999Exp;
+    private static String receiverSearchRecord999Exp;
+    private static String ageDaysSearchRecord999Exp;
+    private static String fileTypeSearchRecord999Exp;
+    private static String fileNameSearchRecord277CAExp;
+    private static String senderSearchRecord277CAExp;
+    private static String receiverSearchRecord277CAExp;
+    private static String ageDaysSearchRecord277CAExp;
+    private static String chequeDateSearchRecord835Exp;
+    private static String fileNameSearchRecord835Exp;
+    private static String senderSearchRecord835Exp;
+    private static String receiverSearchRecord835Exp;
+    private static String transactionSearchRecord835Exp;
+    private static String ageDaysSearchRecord835Exp;
 
 
     //    Scenario: Verify column fields in '837P Files' tab
@@ -284,15 +374,12 @@ public class FilesPage extends SeleniumUtils {
 
     //Generic method to validate the data exceeds the defined page size 50
     public String[] validateTheDataExceedsTheDefinedPageSize(String recordsBarXpath) {
-        int totalRowsExp= 0;
+        int totalRowsExp = 0;
         String[] paginationRecordsExp = explicitElementClickableWaitByXpath(recordsBarXpath, 5).getText().split(" ");
-        if(paginationRecordsExp[4].contains(","))
-        {
+        if (paginationRecordsExp[4].contains(",")) {
             String totalRowsString = paginationRecordsExp[4].replace(",", "");
             totalRowsExp = Integer.parseInt(totalRowsString);
-        }
-        else
-        {
+        } else {
             totalRowsExp = Integer.parseInt(paginationRecordsExp[4]);
         }
         System.out.println("total row count is: " + totalRowsExp);
@@ -377,13 +464,10 @@ public class FilesPage extends SeleniumUtils {
         String[] paginationRecordsExp = explicitElementClickableWaitByXpath(recordsBarXpath, 10).getText().split(" ");
         String[] paginationPagesExp = explicitElementClickableWaitByXpath(pageBarXpath, 10).getText().split(" ");
 
-        String totalRowsExp=null;
-        if(paginationRecordsExp[4].contains(","))
-        {
+        String totalRowsExp = null;
+        if (paginationRecordsExp[4].contains(",")) {
             totalRowsExp = paginationRecordsExp[4].replace(",", "");
-        }
-        else
-        {
+        } else {
             totalRowsExp = paginationRecordsExp[4];
         }
         double pageCount = Math.ceil(Double.parseDouble(totalRowsExp) / 50);
@@ -397,19 +481,16 @@ public class FilesPage extends SeleniumUtils {
     public void validateRowCountNextToFilesTab(String fileTabXpath, String recordsBarXpath) throws InterruptedException {
         String recordsBarText = explicitElementClickableWaitByXpath(fileTabXpath, 5).getText();
         String rowCountAct = recordsBarText.substring(recordsBarText.indexOf("(") + 1, recordsBarText.indexOf(")"));
-        printStatementInGreenColor("Actual row count is" , rowCountAct);
+        printStatementInGreenColor("Actual row count is", rowCountAct);
         scrollToElement(recordsBarXpath);
         String[] records = explicitElementClickableWaitByXpath(recordsBarXpath, 5).getText().split(" ");
         String rowCountExp;
-        if(records[4].contains(","))
-        {
+        if (records[4].contains(",")) {
             rowCountExp = records[4].replace(",", "");
-        }
-        else
-        {
+        } else {
             rowCountExp = records[4];
         }
-        printStatementInGreenColor("Expected row count is" , rowCountExp);
+        printStatementInGreenColor("Expected row count is", rowCountExp);
         Assert.assertEquals(rowCountExp, rowCountAct);
     }
 
@@ -626,6 +707,65 @@ public class FilesPage extends SeleniumUtils {
             Assert.fail("837P control number records are not in sorted order");
         }
     }
+    //    Scenario: Verify user should be able to get results by applying filter on "File Name" column under 837P files tab
+    public void verifyUserEnters837PFileNameUnderSearchBox() {
+        fileNameSearchRecord837PExp = prop.getProperty("837PFileName");
+        explicitElementClickableWaitByXpath(txt837PFileName, 10).sendKeys(fileNameSearchRecord837PExp);
+    }
+
+    public void verifyUserAbleToView837PFileNameRecordsUnderSearchResultsSection() {
+        verifyUserAbleToViewRequiredRecordsUnderSearchResultsSection(ele837PFileName, fileNameSearchRecord837PExp);
+    }
+
+    //    Scenario: Verify user should be able to get results by applying filter on "Sender" column under 837P files tab
+    public void verifyUserEnters837PSenderNameUnderSearchBox() {
+        senderSearchRecord837PExp = prop.getProperty("837PSender");
+        explicitElementClickableWaitByXpath(txt837PSender, 10).sendKeys(senderSearchRecord837PExp);
+    }
+
+    public void verifyUserAbleToView837PSenderRecordsUnderSearchResultsSection() {
+        verifyUserAbleToViewRequiredRecordsUnderSearchResultsSection(ele837PSender, senderSearchRecord837PExp);
+    }
+
+    //    Scenario: Verify user should be able to get results by applying filter on "Receiver" column under 837P files tab
+    public void verifyUserEnters837PReceiverNameUnderSearchBox() {
+        receiverSearchRecord837PExp = prop.getProperty("837PReceiver");
+        explicitElementClickableWaitByXpath(txt837PReceiver, 10).sendKeys(receiverSearchRecord837PExp);
+    }
+
+    public void verifyUserAbleToView837PReceiverRecordsUnderSearchResultsSection() {
+        verifyUserAbleToViewRequiredRecordsUnderSearchResultsSection(ele837PReceiver, receiverSearchRecord837PExp);
+    }
+
+    //    Scenario: Verify user should be able to get results by applying filter on "Age(Days)" column under 837P files tab
+    public void verifyUserEnters837PAgeDaysUnderSearchBox() {
+        ageDaysSearchRecord837PExp = explicitElementClickableWaitByXpath(ele837PAgeDays, 20).getText();
+        explicitElementClickableWaitByXpath(txt837PAgeDays, 10).sendKeys(ageDaysSearchRecord837PExp);
+    }
+
+    public void verifyUserAbleToView837PAgeDaysUnderSearchResultsSection() {
+        verifyUserAbleToViewRequiredRecordsUnderSearchResultsSection(ele837PAgeDays, ageDaysSearchRecord837PExp);
+    }
+
+    //    Scenario: Verify user should be able to get results by applying filter on "File Type" column under 837P files tab
+    public void verifyUserEnters837PFileTypeUnderSearchBox() {
+        fileTypeSearchRecord837PExp = prop.getProperty("837PFileType");
+        scrollToElement(txt837PFileType);
+        explicitElementClickableWaitByXpath(txt837PFileType, 10).sendKeys(fileTypeSearchRecord837PExp);
+    }
+
+    public void verifyUserAbleToView837PFileTypeUnderSearchResultsSection() {
+        verifyUserAbleToViewRequiredRecordsUnderSearchResultsSection(ele837PFileType, fileTypeSearchRecord837PExp);
+    }
+
+    //Generic method to search required record under search results section
+    public void verifyUserAbleToViewRequiredRecordsUnderSearchResultsSection(String recordXpath, String recordExp) {
+        explicitTextToBePresentInElementLocatedWait(By.xpath(recordXpath), 10, recordExp);
+        String recordAct = getText(recordXpath);
+        printStatementInGreenColor("Actual record", recordAct);
+        printStatementInGreenColor("Expected record", recordExp);
+        Assert.assertEquals(recordExp, recordAct);
+    }
 
     //    Scenario: Verify column fields in '837I Files' tab
     public void clickOn837IFilesTab() throws InterruptedException {
@@ -641,6 +781,57 @@ public class FilesPage extends SeleniumUtils {
 
     public void verifyUserAbleToView837IColumnFieldsSearchBoxes() {
         scrollToElementsAndValidateDisplayStatus(lst837IColumnSearchFields);
+    }
+
+    //        Scenario: Verify user should be able to get results by applying filter on "File Name" column under 837I files tab
+    public void verifyUserEnters837IFileNameUnderSearchBox() {
+        fileNameSearchRecord837IExp = prop.getProperty("837IFileName");
+        explicitElementClickableWaitByXpath(txt837IFileName, 10).sendKeys(fileNameSearchRecord837IExp);
+    }
+
+    public void verifyUserAbleToView837IFileNameRecordsUnderSearchResultsSection() {
+        verifyUserAbleToViewRequiredRecordsUnderSearchResultsSection(ele837IFileName, fileNameSearchRecord837IExp);
+    }
+
+    //    Scenario: Verify user should be able to get results by applying filter on "Sender" column under 837I files tab
+    public void verifyUserEnters837ISenderNameUnderSearchBox() {
+        senderSearchRecord837IExp = prop.getProperty("837ISender");
+        explicitElementClickableWaitByXpath(txt837ISender, 10).sendKeys(senderSearchRecord837IExp);
+    }
+
+    public void verifyUserAbleToView837ISenderRecordsUnderSearchResultsSection() {
+        verifyUserAbleToViewRequiredRecordsUnderSearchResultsSection(ele837ISender, senderSearchRecord837IExp);
+    }
+
+    //    Scenario: Verify user should be able to get results by applying filter on "Receiver" column under 837I files tab
+    public void verifyUserEnters837IReceiverNameUnderSearchBox() {
+        receiverSearchRecord837IExp = prop.getProperty("837IReceiver");
+        explicitElementClickableWaitByXpath(txt837IReceiver, 10).sendKeys(receiverSearchRecord837IExp);
+    }
+
+    public void verifyUserAbleToView837IReceiverRecordsUnderSearchResultsSection() {
+        verifyUserAbleToViewRequiredRecordsUnderSearchResultsSection(ele837IReceiver, receiverSearchRecord837IExp);
+    }
+
+    //    Scenario: Verify user should be able to get results by applying filter on "Age(Days)" column under 837I files tab
+    public void verifyUserEnters837IAgeDaysUnderSearchBox() {
+        ageDaysSearchRecord837IExp = explicitElementClickableWaitByXpath(ele837IAgeDays, 10).getText();
+        explicitElementClickableWaitByXpath(txt837IAgeDays, 10).sendKeys(ageDaysSearchRecord837IExp);
+    }
+
+    public void verifyUserAbleToView837IAgeDaysUnderSearchResultsSection() {
+        verifyUserAbleToViewRequiredRecordsUnderSearchResultsSection(ele837IAgeDays, ageDaysSearchRecord837IExp);
+    }
+
+    //    Scenario: Verify user should be able to get results by applying filter on "File Type" column under 837I files tab
+    public void verifyUserEnters837IFileTypeUnderSearchBox() {
+        fileTypeSearchRecord837IExp = prop.getProperty("837IFileType");
+        scrollToElement(txt837IFileType);
+        explicitElementClickableWaitByXpath(txt837IFileType, 10).sendKeys(fileTypeSearchRecord837IExp);
+    }
+
+    public void verifyUserAbleToView837IFileTypeUnderSearchResultsSection() {
+        verifyUserAbleToViewRequiredRecordsUnderSearchResultsSection(ele837IFileType, fileTypeSearchRecord837IExp);
     }
 
     //    Scenario: Validate pagination functionality in '837I Files' tab
@@ -699,8 +890,60 @@ public class FilesPage extends SeleniumUtils {
         explicitElementClickableWaitByXpath(lst837DColumnFieldNames, 10);
         scrollToElementsAndCompare2Lists(fieldsList837D, lst837DColumnFieldNames);
     }
+
     public void verifyUserAbleToView837DColumnFieldsSearchBoxes() {
         scrollToElementsAndValidateDisplayStatus(lst837DColumnSearchFields);
+    }
+
+    //        Scenario: Verify user should be able to get results by applying filter on "File Name" column under 837D files tab
+    public void verifyUserEnters837DFileNameUnderSearchBox() {
+        fileNameSearchRecord837DExp = prop.getProperty("837DFileName");
+        explicitElementClickableWaitByXpath(txt837DFileName, 10).sendKeys(fileNameSearchRecord837DExp);
+    }
+
+    public void verifyUserAbleToView837DFileNameRecordsUnderSearchResultsSection() {
+        verifyUserAbleToViewRequiredRecordsUnderSearchResultsSection(ele837DFileName, fileNameSearchRecord837DExp);
+    }
+
+    //    Scenario: Verify user should be able to get results by applying filter on "Sender" column under 837D files tab
+    public void verifyUserEnters837DSenderNameUnderSearchBox() {
+        senderSearchRecord837DExp = prop.getProperty("837DSender");
+        explicitElementClickableWaitByXpath(txt837DSender, 10).sendKeys(senderSearchRecord837DExp);
+    }
+
+    public void verifyUserAbleToView837DSenderRecordsUnderSearchResultsSection() {
+        verifyUserAbleToViewRequiredRecordsUnderSearchResultsSection(ele837DSender, senderSearchRecord837DExp);
+    }
+
+    //    Scenario: Verify user should be able to get results by applying filter on "Receiver" column under 837D files tab
+    public void verifyUserEnters837DReceiverNameUnderSearchBox() {
+        receiverSearchRecord837DExp = prop.getProperty("837DReceiver");
+        explicitElementClickableWaitByXpath(txt837DReceiver, 10).sendKeys(receiverSearchRecord837DExp);
+    }
+
+    public void verifyUserAbleToView837DReceiverRecordsUnderSearchResultsSection() {
+        verifyUserAbleToViewRequiredRecordsUnderSearchResultsSection(ele837DReceiver, receiverSearchRecord837DExp);
+    }
+
+    //    Scenario: Verify user should be able to get results by applying filter on "Age(Days)" column under 837I files tab
+    public void verifyUserEnters837DAgeDaysUnderSearchBox() {
+        ageDaysSearchRecord837DExp = explicitElementClickableWaitByXpath(ele837DAgeDays, 10).getText();
+        explicitElementClickableWaitByXpath(txt837DAgeDays, 10).sendKeys(ageDaysSearchRecord837DExp);
+    }
+
+    public void verifyUserAbleToView837DAgeDaysUnderSearchResultsSection() {
+        verifyUserAbleToViewRequiredRecordsUnderSearchResultsSection(ele837DAgeDays, ageDaysSearchRecord837DExp);
+    }
+
+    //    Scenario: Verify user should be able to get results by applying filter on "File Type" column under 837D files tab
+    public void verifyUserEnters837DFileTypeUnderSearchBox() {
+        fileTypeSearchRecord837DExp = prop.getProperty("837DFileType");
+        scrollToElement(txt837DFileType);
+        explicitElementClickableWaitByXpath(txt837DFileType, 10).sendKeys(fileTypeSearchRecord837DExp);
+    }
+
+    public void verifyUserAbleToView837DFileTypeUnderSearchResultsSection() {
+        verifyUserAbleToViewRequiredRecordsUnderSearchResultsSection(ele837DFileType, fileTypeSearchRecord837DExp);
     }
 
     //    Scenario: Verify column fields in '999' tab
@@ -717,6 +960,57 @@ public class FilesPage extends SeleniumUtils {
 
     public void verifyUserAbleToView999ColumnFieldsSearchBoxes() {
         scrollToElementsAndValidateDisplayStatus(lst999ColumnSearchFields);
+    }
+
+    //    Scenario: Verify user should be able to get results by applying filter on "File Name" column under 999 files tab
+    public void verifyUserEnters999FileNameUnderSearchBox() {
+        fileNameSearchRecord999Exp = prop.getProperty("999FileName");
+        explicitElementClickableWaitByXpath(txt999FileName, 10).sendKeys(fileNameSearchRecord999Exp);
+    }
+
+    public void verifyUserAbleToView999FileNameRecordsUnderSearchResultsSection() {
+        verifyUserAbleToViewRequiredRecordsUnderSearchResultsSection(ele999FileName, fileNameSearchRecord999Exp);
+    }
+
+    //    Scenario: Verify user should be able to get results by applying filter on "Sender" column under 999 files tab
+    public void verifyUserEnters999SenderNameUnderSearchBox() {
+        senderSearchRecord999Exp = prop.getProperty("999Sender");
+        explicitElementClickableWaitByXpath(txt999Sender, 10).sendKeys(senderSearchRecord999Exp);
+    }
+
+    public void verifyUserAbleToView999SenderRecordsUnderSearchResultsSection() {
+        verifyUserAbleToViewRequiredRecordsUnderSearchResultsSection(ele999Sender, senderSearchRecord999Exp);
+    }
+
+    //    Scenario: Verify user should be able to get results by applying filter on "Receiver" column under 999 files tab
+    public void verifyUserEnters999ReceiverNameUnderSearchBox() {
+        receiverSearchRecord999Exp = prop.getProperty("999Receiver");
+        explicitElementClickableWaitByXpath(txt999Receiver, 10).sendKeys(receiverSearchRecord999Exp);
+    }
+
+    public void verifyUserAbleToView999ReceiverRecordsUnderSearchResultsSection() {
+        verifyUserAbleToViewRequiredRecordsUnderSearchResultsSection(ele999Receiver, receiverSearchRecord999Exp);
+    }
+
+    //    Scenario: Verify user should be able to get results by applying filter on "Age(Days)" column under 999 files tab
+    public void verifyUserEnters999AgeDaysUnderSearchBox() {
+        ageDaysSearchRecord999Exp = explicitElementClickableWaitByXpath(ele999AgeDays, 10).getText();
+        explicitElementClickableWaitByXpath(txt999AgeDays, 10).sendKeys(ageDaysSearchRecord999Exp);
+    }
+
+    public void verifyUserAbleToView999AgeDaysUnderSearchResultsSection() {
+        verifyUserAbleToViewRequiredRecordsUnderSearchResultsSection(ele999AgeDays, ageDaysSearchRecord999Exp);
+    }
+
+    //    Scenario: Verify user should be able to get results by applying filter on "Claim Type" column under 999 files tab
+    public void verifyUserEnters999ClaimTypeUnderSearchBox() {
+        fileTypeSearchRecord999Exp = prop.getProperty("999ClaimType");
+        scrollToElement(txt999ClaimType);
+        explicitElementClickableWaitByXpath(txt999ClaimType, 10).sendKeys(fileTypeSearchRecord999Exp);
+    }
+
+    public void verifyUserAbleToView999ClaimTypeUnderSearchResultsSection() {
+        verifyUserAbleToViewRequiredRecordsUnderSearchResultsSection(ele999ClaimType, fileTypeSearchRecord999Exp);
     }
 
     //    Scenario: Validate pagination functionality in '999 Files' tab
@@ -768,6 +1062,47 @@ public class FilesPage extends SeleniumUtils {
         scrollToElementsAndValidateDisplayStatus(lst277CAColumnSearchFields);
     }
 
+    //    Scenario: Verify user should be able to get results by applying filter on "File Name" column under 277CA files tab
+    public void verifyUserEnters277CAFileNameUnderSearchBox() {
+        fileNameSearchRecord277CAExp = prop.getProperty("277CAFileName");
+        explicitElementClickableWaitByXpath(txt277CAFileName, 10).sendKeys(fileNameSearchRecord277CAExp);
+    }
+
+    public void verifyUserAbleToView277CAFileNameRecordsUnderSearchResultsSection() {
+        verifyUserAbleToViewRequiredRecordsUnderSearchResultsSection(ele277CAFileName, fileNameSearchRecord277CAExp);
+    }
+
+    //    Scenario: Verify user should be able to get results by applying filter on "Sender" column under 277CA files tab
+    public void verifyUserEnters277CASenderNameUnderSearchBox() {
+        senderSearchRecord277CAExp = prop.getProperty("277CASender");
+        explicitElementClickableWaitByXpath(txt277CASender, 10).sendKeys(senderSearchRecord277CAExp);
+    }
+
+    public void verifyUserAbleToView277CASenderRecordsUnderSearchResultsSection() {
+        verifyUserAbleToViewRequiredRecordsUnderSearchResultsSection(ele277CASender, senderSearchRecord277CAExp);
+    }
+
+    //    Scenario: Verify user should be able to get results by applying filter on "Receiver" column under 999 files tab
+    public void verifyUserEnters277CAReceiverNameUnderSearchBox() {
+        receiverSearchRecord277CAExp = prop.getProperty("277CAReceiver");
+        explicitElementClickableWaitByXpath(txt277CAReceiver, 10).sendKeys(receiverSearchRecord277CAExp);
+    }
+
+    public void verifyUserAbleToView277CAReceiverRecordsUnderSearchResultsSection() {
+        verifyUserAbleToViewRequiredRecordsUnderSearchResultsSection(ele277CAReceiver, receiverSearchRecord277CAExp);
+    }
+
+    //    Scenario: Verify user should be able to get results by applying filter on "Age(Days)" column under 277CA files tab
+    public void verifyUserEnters277CAAgeDaysUnderSearchBox() {
+        ageDaysSearchRecord277CAExp = explicitElementClickableWaitByXpath(ele277CAAgeDays, 20).getText();
+        explicitElementClickableWaitByXpath(txt277CAAgeDays, 10).sendKeys(ageDaysSearchRecord277CAExp);
+    }
+
+    public void verifyUserAbleToView277CAAgeDaysUnderSearchResultsSection() {
+        verifyUserAbleToViewRequiredRecordsUnderSearchResultsSection(ele277CAAgeDays, ageDaysSearchRecord277CAExp);
+    }
+
+
     //    Scenario: Validate pagination functionality in '277CA Files' tab
     public void validateTheDataExceedsTheDefinedPageSizeUnder277CAFilesTab() {
         validateTheDataExceedsTheDefinedPageSize(lst277CARecordsBar);
@@ -805,31 +1140,31 @@ public class FilesPage extends SeleniumUtils {
     //    Scenario: Validate pagination functionality in '835' tab
     public void clickOn835FilesTab() throws InterruptedException {
         explicitInvisibilityOfElementWithTextWait(By.xpath(tab837PFiles), 40, "835 () ");
-        explicitElementClickableWaitByXpath(tab835, 5);
+        explicitElementClickableWaitByXpath(tab835, 10);
         moveToElement(tab835).click().perform();
     }
-    public void validateTheDataExceedsTheDefinedPageSizeUnder835FilesTab()
-    {
+
+    public void validateTheDataExceedsTheDefinedPageSizeUnder835FilesTab() {
         validateTheDataExceedsTheDefinedPageSize(lst835RecordsBar);
     }
-    public void verify835ForwardNavigationThroughPages()
-    {
+
+    public void verify835ForwardNavigationThroughPages() {
         verifyForwardNavigationThroughPages(btn835Next, lst835PageBar);
     }
-    public void verify835BackwardNavigationThroughPages()
-    {
+
+    public void verify835BackwardNavigationThroughPages() {
         verifyBackwardNavigationThroughPages(btn835Previous, lst835PageBar);
     }
-    public void verify835ForwardNavigationPageSizeAtTheBottomOfTheGrid()
-    {
+
+    public void verify835ForwardNavigationPageSizeAtTheBottomOfTheGrid() {
         verifyForwardNavigationPageSizeAtTheBottomOfTheGrid(btn835Next, lst835RecordsBar);
     }
-    public void verify835BackwardNavigationPageSizeAtTheBottomOfTheGrid()
-    {
+
+    public void verify835BackwardNavigationPageSizeAtTheBottomOfTheGrid() {
         verifyBackwardNavigationPageSizeAtTheBottomOfTheGrid(btn835Previous, lst835RecordsBar);
     }
-    public void verify835TotalNumberOfPagesBasedOnThePerPageRecordCount()
-    {
+
+    public void verify835TotalNumberOfPagesBasedOnThePerPageRecordCount() {
         verifyTotalNumberOfPagesBasedOnThePerPageRecordCount(lst835RecordsBar, lst835PageBar);
     }
 
@@ -848,9 +1183,71 @@ public class FilesPage extends SeleniumUtils {
         explicitElementClickableWaitByXpath(lst835ColumnFieldNames, 10);
         scrollToElementsAndCompare2Lists(fieldsList835, lst835ColumnFieldNames);
     }
-    public void verifyUserAbleToView835ColumnFieldsSearchBoxes()
-    {
+
+    public void verifyUserAbleToView835ColumnFieldsSearchBoxes() {
         scrollToElementsAndValidateDisplayStatus(lst835ColumnSearchFields);
+    }
+
+    //    Scenario: Verify user should be able to get results by applying filter on "Cheque date" column under 999 files tab
+    public void verifyUserEnters835ChequeDateUnderSearchBox() {
+        chequeDateSearchRecord835Exp = prop.getProperty("835ChequeDate");
+        explicitElementClickableWaitByXpath(txt835ChequeDate, 20).sendKeys(chequeDateSearchRecord835Exp);
+    }
+
+    public void verifyUserAbleToView835ChequeDateRecordsUnderSearchResultsSection() {
+        verifyUserAbleToViewRequiredRecordsUnderSearchResultsSection(ele835ChequeDate, chequeDateSearchRecord835Exp);
+    }
+
+    //    Scenario: Verify user should be able to get results by applying filter on "File Name" column under 835 files tab
+    public void verifyUserEnters835FileNameUnderSearchBox() {
+        fileNameSearchRecord835Exp = prop.getProperty("835FileName");
+        explicitElementClickableWaitByXpath(txt835FileName, 10).sendKeys(fileNameSearchRecord835Exp);
+    }
+
+    public void verifyUserAbleToView835FileNameRecordsUnderSearchResultsSection() {
+        verifyUserAbleToViewRequiredRecordsUnderSearchResultsSection(ele835FileName, fileNameSearchRecord835Exp);
+    }
+
+    //    Scenario: Verify user should be able to get results by applying filter on "Sender" column under 835 files tab
+    public void verifyUserEnters835SenderNameUnderSearchBox() {
+        senderSearchRecord835Exp = prop.getProperty("835Sender");
+        explicitElementClickableWaitByXpath(txt835Sender, 10).sendKeys(senderSearchRecord835Exp);
+    }
+
+    public void verifyUserAbleToView835SenderRecordsUnderSearchResultsSection() {
+        verifyUserAbleToViewRequiredRecordsUnderSearchResultsSection(ele835Sender, senderSearchRecord835Exp);
+    }
+
+    //    Scenario: Verify user should be able to get results by applying filter on "Receiver" column under 835 files tab
+    public void verifyUserEnters835ReceiverNameUnderSearchBox() {
+        receiverSearchRecord835Exp = prop.getProperty("835Receiver");
+        explicitElementClickableWaitByXpath(txt835Receiver, 10).sendKeys(receiverSearchRecord835Exp);
+    }
+
+    public void verifyUserAbleToView835ReceiverRecordsUnderSearchResultsSection() {
+        verifyUserAbleToViewRequiredRecordsUnderSearchResultsSection(ele835Receiver, receiverSearchRecord835Exp);
+    }
+
+    //    Scenario: Verify user should be able to get results by applying filter on "Transaction" column under 835 files tab
+    public void verifyUserEnters835TransactionUnderSearchBox() {
+        transactionSearchRecord835Exp = prop.getProperty("835Transaction");
+        explicitElementClickableWaitByXpath(txt835Transaction, 10).sendKeys(transactionSearchRecord835Exp);
+    }
+
+    public void verifyUserAbleToView835TransactionUnderSearchResultsSection() {
+        verifyUserAbleToViewRequiredRecordsUnderSearchResultsSection(ele835Transaction, transactionSearchRecord835Exp);
+    }
+
+    //    Scenario: Verify user should be able to get results by applying filter on "Age(Days)" column under 835 files tab
+    public void verifyUserEnters835AgeDaysUnderSearchBox()
+    {
+        ageDaysSearchRecord835Exp = explicitElementClickableWaitByXpath(ele835AgeDays, 10).getText();
+        explicitElementClickableWaitByXpath(txt835AgeDays, 10).sendKeys(ageDaysSearchRecord835Exp);
+    }
+
+    public void verifyUserAbleToView835AgeDaysUnderSearchResultsSection()
+    {
+        verifyUserAbleToViewRequiredRecordsUnderSearchResultsSection(ele835AgeDays, ageDaysSearchRecord835Exp);
     }
 
 
