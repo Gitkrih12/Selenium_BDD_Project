@@ -82,7 +82,7 @@ Feature: FFS Professional
     Then user should allow to navigates to back page in FFS Professional
 
   #40714-As an adjudicator, I should be able to click on any Claim number from FFS Professional queue and get navigated to appropriate claims details page
-  @TC_46665 @Sanity @beta
+  @TC_46665 @Sanity
   Scenario:Verify user able to navigate to claim summary screen on clicking claim number in FFS Professional Queue page
     When user clicks on claim number in FFS Professional page
     Then user should be able to navigate to View Claim Details page

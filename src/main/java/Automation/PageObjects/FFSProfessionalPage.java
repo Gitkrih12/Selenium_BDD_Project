@@ -644,7 +644,7 @@ public class FFSProfessionalPage extends SeleniumUtils {
 
     public void enterBatchId() throws InterruptedException {
         expBatchID = prop.getProperty("ffsProfessionalBatchID");
-        explicitVisibilityOfElementLocatedWaitByXpath(txtBatchID, 10);
+        explicitVisibilityOfElementLocatedWaitByXpath(txtBatchID, 20);
         findElementAndSendKeys(findElementByXpath(txtBatchID), expBatchID);
         explicitTextToBePresentInElementLocatedWait(By.xpath(eleBatchID), 15, expBatchID);
     }
