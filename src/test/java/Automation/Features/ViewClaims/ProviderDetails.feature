@@ -66,7 +66,6 @@ Feature: Provider Details
       | Deny              |
       | Approve           |
       | Update Auth       |
-      | Deactivate        |
 
   @48990
   @Sanity
