@@ -569,6 +569,17 @@ public class SeleniumUtils extends Driver {
         }
     }
 
+    public WebElement explicitDropdownElementsWait(int duration,  String ParentXpath, String tagName ) {
+        try {
+            WebElement element = new WebDriverWait(driver, Duration.ofSeconds(duration)).
+                    until(ExpectedConditions.presenceOfNestedElementLocatedBy(By.xpath(ParentXpath),By.tagName(tagName)));
+            return element;
+        } catch (Exception e) {
+            Assert.fail("Element not found | Error - " + e);
+            return null;
+        }
+    }
+
     public WebElement explicitVisibilityOfElementLocatedWaitByID(String id, int duration) {
         try {
             WebElement element = new WebDriverWait(driver, Duration.ofSeconds(duration)).

@@ -7,7 +7,11 @@ import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.Color;
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.time.Duration;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -68,6 +72,8 @@ public class FFSProfessionalPage extends SeleniumUtils {
     String lstTabsInBatchID = "//div[@id='nav-tab']//button";
     String txtBatchID = "(//input[@aria-label='Batch ID Filter Input'])[5]";
     String eleBatchID = "(//*[@id='paidGrid']//div[@col-id='batchCode']//a)[1]";
+    String eleBatchID2 = "(//*[@id='paidGrid']//div[@col-id='batchCode']//a)[2]";
+    String eleNetPaidAmountForVoid = "(//div[@col-id='totalPaymentAmount'])[2]";
     String tabClaimListState = "(//button[@class='nav-link active'])[1]";
     String lstClaimList = "//div[@col-id='claimNumber']//a";
     String tabClaimList = "//button[@id='nav-view-claim-list-details-tab']";
@@ -649,6 +655,23 @@ public class FFSProfessionalPage extends SeleniumUtils {
         explicitTextToBePresentInElementLocatedWait(By.xpath(tabDownloads), 20, "Downloads");
         threadSleep(1000);
     }
+    public void clickOnBatchIdForCheckVoid() throws InterruptedException {
+        String netPaidAmount = getText(eleNetPaidAmountForVoid);
+        if(netPaidAmount.contains("-")){
+            explicitElementClickableWaitByXpath(eleBatchID2, 10).click();
+            explicitInvisibilityOfElementWithTextWait(By.xpath(tabHistoryDoc), 60, "History Doc ()");
+            explicitTextToBePresentInElementLocatedWait(By.xpath(tabDownloads), 20, "Downloads");
+            threadSleep(1000);
+        }else{
+            explicitElementClickableWaitByXpath(eleBatchID, 10).click();
+            explicitInvisibilityOfElementWithTextWait(By.xpath(tabHistoryDoc), 60, "History Doc ()");
+            explicitTextToBePresentInElementLocatedWait(By.xpath(tabDownloads), 20, "Downloads");
+            threadSleep(1000);
+        }
+
+    }
+
+
 
     public void verifyTabsInBatchIDInFFSProfessional(DataTable tabList) throws InterruptedException {
         List<String> expTabList = tabList.asList();
@@ -867,11 +890,13 @@ public class FFSProfessionalPage extends SeleniumUtils {
         findElementAndSendKeys(findElementByXpath(txtTitle), title);
     }
 
-    public void selectCategory() {
+    public void selectCategory() throws InterruptedException {
         category = prop.getProperty("Category");
-       // explicitVisibilityOfWait(findElementByXpath(txtCategory), 5);
-        explicitElementClickableWaitByXpath(txtCategory, 20);
+        explicitDropdownElementsWait(20,txtCategory,"Option");
+//        WebDriverWait wait= new WebDriverWait(driver, Duration.ofSeconds(20));
+//        wait.until(ExpectedConditions.presenceOfNestedElementLocatedBy(By.xpath(txtCategory),By.tagName("option")));
         selectDropdownByVisibleText(txtCategory, category);
+        explicitTextToBePresentInElementLocatedWait(By.xpath(txtCategory), 20, "512");
     }
 
     public void enterDescription() {

@@ -219,7 +219,7 @@ Feature: FFS Professional
   Scenario: Verify user able to view the check void information in Check Info page
     When user clicks on Paid bucket
     And user enters Batch Id in search criteria for Check Void
-    And user clicks on Batch Id
+    And user clicks on Batch Id for check void
     And user clicks on the Check Info tab
     Then user should able to see Check Type as "Void" for voided batch
 

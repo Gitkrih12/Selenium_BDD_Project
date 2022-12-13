@@ -311,6 +311,11 @@ public class FFSProfessionalStepDef extends FFSProfessionalPage {
     public void user_clicks_on_batch_id() throws InterruptedException {
         clickOnBatchId();
     }
+    @When("user clicks on Batch Id for check void")
+    public void user_clicks_on_batch_id_for_check_void() throws InterruptedException {
+        clickOnBatchIdForCheckVoid();
+    }
+
     @Then("user views Claim List tab by default should be {string}")
     public void user_views_claim_list_tab_by_default_should_be(String state) throws InterruptedException {
         verifyClaimListByDefault(state);
@@ -445,7 +450,7 @@ public class FFSProfessionalStepDef extends FFSProfessionalPage {
 
     //Scenario: Verify user should be able to view all the Claim notes that are updated for that specific Batch results
     @When("user enters values in the Title Category and Description fields")
-    public void user_enters_values_in_the_title_category_and_description_fields() {
+    public void user_enters_values_in_the_title_category_and_description_fields() throws InterruptedException {
         enterTitle();
         selectCategory();
         enterDescription();
@@ -471,7 +476,7 @@ public class FFSProfessionalStepDef extends FFSProfessionalPage {
 
     //Scenario: Verify error message when user enters Category and Description fields and Title field should leave as empty
     @When("user enters values in the Category and Description fields")
-    public void user_enters_values_in_the_category_and_description_fields() {
+    public void user_enters_values_in_the_category_and_description_fields() throws InterruptedException {
         selectCategory();
         enterDescription();
     }
@@ -489,7 +494,7 @@ public class FFSProfessionalStepDef extends FFSProfessionalPage {
 
     //Scenario: Verify error message when user enters Title and Category fields and Description field should leave as empty
     @When("user enters values in the Title and Category fields")
-    public void user_enters_values_in_the_title_and_category_fields() {
+    public void user_enters_values_in_the_title_and_category_fields() throws InterruptedException {
         enterTitle();
         selectCategory();
     }
