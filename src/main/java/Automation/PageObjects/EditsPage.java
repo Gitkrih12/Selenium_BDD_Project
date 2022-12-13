@@ -60,7 +60,7 @@ public class EditsPage extends SeleniumUtils {
     //  Scenario: Validate buttons functionality of Edits tab
     public void userViewsFooterSectionInEditsPage(DataTable footerSection) {
         explicitElementClickableWaitByXpath(btnFooterSection, 20);
-        scrollToElementsAndCompare2Lists(footerSection, btnFooterSection);
+        compare2Lists(footerSection, btnFooterSection);
     }
 
     //  Scenario: Verify Service Level Edits Sub tab functionality

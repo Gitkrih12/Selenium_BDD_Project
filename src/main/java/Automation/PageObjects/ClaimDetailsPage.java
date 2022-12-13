@@ -26,15 +26,15 @@ public class ClaimDetailsPage extends SeleniumUtils {
     String paymentInformationFields = "//*[@id='nav-claim-details']/div[2]/div[1]/div | //*[@id='nav-claim-details']/div[3]/div[1]/div | " +
             "//*[@id='nav-claim-details']/div[4]/div[1]/div";
     String memberInformationFields = "//*[@id='nav-claim-details']/div[5]/div[1]/div | //*[@id='nav-claim-details']/div[6]/div[1]/div | " +
-            "//*[@id='nav-claim-details']/div[7]/div[1]/div | //*[@id='nav-claim-details']/div[8]/div[1]/div";
-    String renderingProviderInformationFields = "//*[@id='nav-claim-details']/div[9]/div[1]/div";
+            "//*[@id='nav-claim-details']/div[7]/div[1]/div";
+    String renderingProviderInformationFields = "//*[@id='nav-claim-details']/div[8]/div[1]/div";
     String eleCleanStatus = "(//*[@ng-reflect-model = 'true'])[1]";
     String eleUncleanStatus = "(//*[@ng-reflect-model = 'false'])[1]";
-    String billingProviderInformationFields = "//*[@id='nav-claim-details']/div[10]/div[1]/div | //*[@id='nav-claim-details']/div[11]" +
-            "/div[1]/div | //*[@id='nav-claim-details']/div[12]/div[1]/div";
-    String payerFields = "//*[@id='nav-claim-details']/div[13]/div[1]/div | //*[@id='nav-claim-details']/div[14]/div[1]/div";
-    String dateOfServiceFields = "//*[@id='nav-claim-details']/div[15]/div[1]/div[1]/div";
-    String isPatientConditionRelatedToField = "//*[@id='nav-claim-details']/div[15]/div[2]//div/b";
+    String billingProviderInformationFields = "//*[@id='nav-claim-details']/div[9]/div[1]/div | //*[@id='nav-claim-details']/div[10]" +
+            "/div[1]/div | //*[@id='nav-claim-details']/div[11]/div[1]/div";
+    String payerFields = "//*[@id='nav-claim-details']/div[12]/div[1]/div | //*[@id='nav-claim-details']/div[13]/div[1]/div";
+    String dateOfServiceFields = "//*[@id='nav-claim-details']/div[14]/div[1]/div[1]/div";
+    String isPatientConditionRelatedToField = "//*[@id='nav-claim-details']/div[14]/div[2]//div/b";
     String lnkShowOption = "//*[contains(text(), '(Show)')]";
     String eleClaimNumber = "(//*[contains(text(), 'Claim Number')])[1]";
     String checkboxFields = "//*[@id='nav-claim-details']/div[15]/div[2]//input";
@@ -86,7 +86,7 @@ public class ClaimDetailsPage extends SeleniumUtils {
 
     //  Scenario: Verify View Claim in CMS 1500 and Self Assign buttons in Claim Summary details page
     public void userViewsCMSButton(String expViewClaimValue) {
-        explicitVisibilityOfWait(findElementByXpath(btnViewClaim), 30);
+        explicitVisibilityOfWait(findElementByXpath(btnViewClaim), 40);
         Assert.assertEquals(expViewClaimValue, findElementByXpath(btnViewClaim).getText());
     }
 
@@ -499,7 +499,7 @@ public class ClaimDetailsPage extends SeleniumUtils {
 
     public void verifyUserViewsClaimSummarySection() {
         boolean claimSummarySection = findElementByXpath(eleClaimNumber).isDisplayed();
-        Assert.assertTrue(claimSummarySection);
+        Assert.assertFalse(claimSummarySection);
     }
 
     //  Scenario: Verify user able to view 1-New Claim Submission type in Claim details page

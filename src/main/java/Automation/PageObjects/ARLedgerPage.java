@@ -185,51 +185,40 @@ public class ARLedgerPage extends SeleniumUtils {
         }
     }
 
-    public void userEntersTransactionDateInSearchCriteria() throws InterruptedException {
+    public void userEntersTransactionDateInSearchCriteria() {
+        clearTextBox(txtTransactionType);
         expTransactionDate = prop.getProperty("transactionDate");
         findElementAndSendKeys(findElementByXpath(txtTransactionDate), expTransactionDate);
-        threadSleep(1000);
-        sendKeysUsingKeyboardInput(txtTransactionDate);
-        threadSleep(5000);
     }
 
-    public void userEntersTransactionAmountInSearchCriteria() throws InterruptedException {
+    public void userEntersTransactionAmountInSearchCriteria() {
+        clearTextBox(txtTransactionDate);
         expTransactionAmount = prop.getProperty("transactionAmount");
         findElementAndSendKeys(findElementByXpath(txtTransactionAmount), expTransactionAmount);
-        threadSleep(1000);
-        sendKeysUsingKeyboardInput(txtTransactionAmount);
-        threadSleep(5000);
     }
 
-    public void userEntersRunningBalanceInSearchCriteria() throws InterruptedException {
+    public void userEntersRunningBalanceInSearchCriteria() {
+        clearTextBox(txtTransactionAmount);
         expRunningBalance = prop.getProperty("runningBalance");
         findElementAndSendKeys(findElementByXpath(txtRunningBalance), expRunningBalance);
-        threadSleep(1000);
-        sendKeysUsingKeyboardInput(txtRunningBalance);
-        threadSleep(5000);
     }
 
-    public void userEntersTransactedByInSearchCriteria() throws InterruptedException {
+    public void userEntersTransactedByInSearchCriteria() {
+        clearTextBox(txtRunningBalance);
         expTransactedBy = prop.getProperty("transactedBy");
         findElementAndSendKeys(findElementByXpath(txtTransactedBy), expTransactedBy);
-        threadSleep(1000);
-        sendKeysUsingKeyboardInput(txtTransactedBy);
-        threadSleep(5000);
     }
 
-    public void userEntersClaimNumberInSearchCriteria() throws InterruptedException {
+    public void userEntersClaimNumberInSearchCriteria() {
+        clearTextBox(txtTransactedBy);
         expClaimNumber = prop.getProperty("claimNumberARTransaction");
         findElementAndSendKeys(findElementByXpath(txtClaimNumber), expClaimNumber);
-        threadSleep(1000);
-        sendKeysUsingKeyboardInput(txtClaimNumber);
-        threadSleep(5000);
     }
 
-    public void userEntersRemarksInSearchCriteria() throws InterruptedException {
+    public void userEntersRemarksInSearchCriteria() {
+        clearTextBox(txtClaimNumber);
+        scrollToElement(txtRemarks);
         expRemarks = prop.getProperty("remarks");
         findElementAndSendKeys(findElementByXpath(txtRemarks), expRemarks);
-        threadSleep(1000);
-        sendKeysUsingKeyboardInput(txtRemarks);
-        threadSleep(5000);
     }
 }

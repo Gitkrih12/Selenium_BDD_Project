@@ -14,7 +14,7 @@ import java.util.stream.Collectors;
 public class ProviderDetailsPage extends SeleniumUtils {
 
     String tabProviderDetails = "//button[@id='nav-provider-details-tab']";
-    String lstProviderDetails = "(//div[@class='ng-star-inserted'])[3]//h6";
+    String lstProviderDetails = "//app-providerdetails//div//h6";
     String lstPayToProviderDetails = "//app-providerdetails//div[contains(@class, 'columnFont')]//div";
     String lstGroupRenderingProviderDetails = "//*[@class='table table-striped']//tr//th[position()<last()]";
     String btnFooterSection = "//*[@class='footer footer-flex']//button";
@@ -105,13 +105,8 @@ public class ProviderDetailsPage extends SeleniumUtils {
 
     //  Scenario: Verify user able to view the Pay to Provider Details and Group/Rendering Provider Details section under Provider Details tab
     public void userShouldViewProviderDetailsSection(DataTable providerDetailsSection) {
-        List<String> sectionsExp = providerDetailsSection.asList();
-        List<String> actFields = findElementsByXpath(lstProviderDetails)
-                .stream().map((e) -> e.getText().trim()).collect(Collectors.toList());
-        System.out.println("Size: " + actFields.size());
-        System.out.println("Pay to Provider fields and Group/Rendering Provider details are displayed:" + actFields);
-        System.out.println("Expected fields are: " + sectionsExp);
-        Assert.assertEquals(sectionsExp, actFields);
+        explicitElementClickableWaitByXpath(lstProviderDetails, 30);
+        scrollToElementsAndCompare2Lists(providerDetailsSection, lstProviderDetails);
     }
 
     //  Scenario: Verify user able to view all the fields under Pay to Provider Details section

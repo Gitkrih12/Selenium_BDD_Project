@@ -76,7 +76,7 @@ public class ServiceDetailsPage extends SeleniumUtils {
     //  Scenario: Verify footer section available in Service details tab
     public void userViewsFooterSectionInServiceDetails(DataTable footerFields) {
         explicitElementClickableWaitByXpath(btnFooterFields, 20);
-        scrollToElementsAndCompare2Lists(footerFields, btnFooterFields);
+        compare2Lists(footerFields, btnFooterFields);
     }
 
     //  Scenario: Verify user able to navigate to Pricing page upon clicking Line number
