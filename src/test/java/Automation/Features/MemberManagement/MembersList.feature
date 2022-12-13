@@ -5,7 +5,7 @@ Feature: Members List
     When the user enters the valid username and password and click on login button
     When user clicks on Members List under Member Management
 
-  @52275
+  @52275 @Sanity @beta
   Scenario: Verify user able to view all the columns on clicking Members List from Member Management
     Then user navigates to "Members List" page
     And user able to view all the below mentioned columns under Members List

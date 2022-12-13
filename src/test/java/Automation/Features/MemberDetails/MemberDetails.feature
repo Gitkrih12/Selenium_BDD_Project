@@ -10,7 +10,7 @@ Feature: Member Details
     And user clicks on the Patient ID or MBR ID
     Then user navigates to the Member Details page
 
-  @52213
+  @52213 @Sanity @beta
   Scenario: Verify fields in the Member Details page
     When user clicking on Claim Number in Global Search page
     And user clicks on the Patient ID or MBR ID
@@ -41,7 +41,7 @@ Feature: Member Details
       | Status        |
     And user able to view all the field values under Member Details page
 
-  @52214
+  @52214 @Sanity @beta
   Scenario: Verify Member Details tabs
     When user clicking on Claim Number in Global Search page
     And user clicks on the Patient ID or MBR ID
@@ -61,7 +61,7 @@ Feature: Member Details
     And user clicks on the Patient ID or MBR ID
     Then user navigates to the Provider Details tab by default should be "active"
 
-  @52346
+  @52346 @Sanity @beta
   Scenario: Verify column fields in Provider Details tab
     When user clicking on Claim Number in Global Search page
     And user clicks on the Patient ID or MBR ID
@@ -84,7 +84,7 @@ Feature: Member Details
     When user clicks on Address subtab in Member Details page
     Then user navigates to the "Address" subtab successfully
 
-  @52370
+  @52370 @Sanity @beta
   Scenario: Verify column fields in Address sub tab in Member Details page
     When user clicking on Claim Number in Global Search page
     And user clicks on the Patient ID or MBR ID
@@ -108,7 +108,7 @@ Feature: Member Details
     When user clicks on Membership Information subtab in Member Details page
     Then user should be able to navigate to "Membership Information" subtab
 
-  @52390
+  @52390 @Sanity @beta
   Scenario: Verify column fields in Membership Information tab
     When user clicking on Membership Claim Number in Global Search page
     And user clicks on the Patient ID or MBR ID
@@ -130,7 +130,7 @@ Feature: Member Details
     And user able to view the search criteria for all the columns in Membership Information subtab
     And user able to view all the field values under Membership Information subtab
 
-  @52392
+  @52392 @Sanity @beta
   Scenario: Verify user should able to see Membership History column fields
     When user clicking on Claim Number in Global Search page
     And user clicks on the Patient ID or MBR ID
@@ -152,7 +152,7 @@ Feature: Member Details
     And user able to view the search criteria for all the columns in Membership History subtab
     And user able to view all the field values under Membership History subtab
 
-  @52405
+  @52405 @Sanity @beta
   Scenario: Verify column fields in Claims subtab
     When user clicking on Claim Number in Global Search page
     And user clicks on the Patient ID or MBR ID
@@ -182,7 +182,7 @@ Feature: Member Details
     When user clicks on Claims subtab
     Then the user should be able to view the Search Criteria in Claim fields
 
-  @52442
+  @52442 @Sanity @beta
   Scenario: Verify user should navigate to COB tab and view column fields in Member Details page
     When user clicking on Claim Number in Global Search page
     And user clicks on the Patient ID or MBR ID
@@ -198,7 +198,7 @@ Feature: Member Details
     And user able to view the search criteria for all the columns in COB subtab
 #    And user able to view all the field values under COB subtab
 
-  @52454
+  @52454 @Sanity @beta
   Scenario: Verify user should navigate to MOOP tab and view column fields in Member Details page
     When user clicking on Claim Number in Global Search page
     And user clicks on the Patient ID or MBR ID
@@ -214,7 +214,7 @@ Feature: Member Details
     And user able to view the search criteria for all the columns in Moop subtab
     And user able to view all the field values under Moop subtab
 
-  @52589
+  @52589 @Sanity @beta
   Scenario: Verify user should navigate to Instructions tab and view column fields in Member Details page
     When user clicking on Claim Number in Global Search page
     And user clicks on the Patient ID or MBR ID
@@ -234,7 +234,7 @@ Feature: Member Details
     And user able to view the search criteria for all the columns in Instructions subtab
 #    And user able to view all the field values under Instructions subtab
 
-  @52592
+  @52592 @Sanity @beta
   Scenario: Verify user should navigate to HOSPICE tab and view column fields in Member Details page
     When user clicking on Claim Number in Global Search page
     And user clicks on the Patient ID or MBR ID
