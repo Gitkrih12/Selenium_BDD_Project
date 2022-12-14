@@ -51,7 +51,7 @@ public class ServiceDetailsPage extends SeleniumUtils {
     }
 
     public void clickOnServiceDetails() throws InterruptedException {
-        explicitElementClickableWaitByXpath(tabServiceDetails, 20);
+        explicitElementClickableWaitByXpath(tabServiceDetails, 30);
         clickElement(tabServiceDetails);
     }
 

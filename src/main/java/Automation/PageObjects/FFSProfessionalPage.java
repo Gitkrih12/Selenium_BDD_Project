@@ -653,7 +653,6 @@ public class FFSProfessionalPage extends SeleniumUtils {
         explicitElementClickableWaitByXpath(eleBatchID, 10).click();
         explicitInvisibilityOfElementWithTextWait(By.xpath(tabHistoryDoc), 60, "History Doc ()");
         explicitTextToBePresentInElementLocatedWait(By.xpath(tabDownloads), 20, "Downloads");
-        threadSleep(1000);
     }
     public void clickOnBatchIdForCheckVoid() throws InterruptedException {
         String netPaidAmount = getText(eleNetPaidAmountForVoid);
@@ -661,12 +660,10 @@ public class FFSProfessionalPage extends SeleniumUtils {
             explicitElementClickableWaitByXpath(eleBatchID2, 10).click();
             explicitInvisibilityOfElementWithTextWait(By.xpath(tabHistoryDoc), 60, "History Doc ()");
             explicitTextToBePresentInElementLocatedWait(By.xpath(tabDownloads), 20, "Downloads");
-            threadSleep(1000);
         }else{
             explicitElementClickableWaitByXpath(eleBatchID, 10).click();
             explicitInvisibilityOfElementWithTextWait(By.xpath(tabHistoryDoc), 60, "History Doc ()");
             explicitTextToBePresentInElementLocatedWait(By.xpath(tabDownloads), 20, "Downloads");
-            threadSleep(1000);
         }
 
     }
