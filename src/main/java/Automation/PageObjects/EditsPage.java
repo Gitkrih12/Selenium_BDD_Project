@@ -29,6 +29,8 @@ public class EditsPage extends SeleniumUtils {
     String lstServiceLevelEditsFieldValues = "(//*[@id = 'nav-serviceleveledits-details']//span[@class = 'ag-cell-value']//span)[1] | (//*[@id = 'nav-serviceleveledits-details']//span[@class = 'ag-cell-value' and text()])";
     String txtServiceLevelEdits = "//*[@id='nav-serviceleveledits-details']//input[@type = 'text']";
     String txtClaimLevelEdits = "//*[@id='nav-claimleveledits-details']//input[@type = 'text']";
+    String innerScrollBarMemberList = "//div[@class='ag-body-horizontal-scroll-viewport']";
+
 
     private static String expClaimNumber = "";
 
@@ -98,7 +100,9 @@ public class EditsPage extends SeleniumUtils {
     //  Scenario: Verify Edit & Delete functionality in Service Level Edits Sub tab
 
     public void userViewsDeleteButtonUnderServiceLevelTab(){
-        scrollToElement(btnDeleteServiceLevel);
+        WebElement ele = findElementByXpath(innerScrollBarMemberList);
+        ele.click();
+        moveToElement(ele).clickAndHold().moveByOffset(250, 0).release().perform();
         userViewsDeleteButton(btnDeleteServiceLevel);
     }
 

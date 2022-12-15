@@ -37,7 +37,7 @@ Feature: MOOP Ledger
       | Remarks               |
       | Type Of Coverage      |
       | Network Affiliation   |
-      | Deductible            |
+      | Deductible ($)        |
       | Copay ($)             |
       | Coinsurance ($)       |
       | Total Amount ($)      |
