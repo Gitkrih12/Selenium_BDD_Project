@@ -322,7 +322,7 @@ public class PriorAuthorizationPage extends SeleniumUtils {
 
     public void verifyAuthorizationNumberCleared() {
         explicitElementClickableWaitByXpath(txtAuthNumber, 20);
-        Assert.assertEquals(expValue, findElementByXpath(txtAuthNumber).getText());
+        Assert.assertEquals(expValue, findElementByXpath(txtAuthNumber).getAttribute("value"));
     }
 
     //  Scenario: Verify user able to clear the Member ID entered in search criteria by clicking on cancel button
@@ -336,7 +336,7 @@ public class PriorAuthorizationPage extends SeleniumUtils {
 
     public void verifyMemberIdCleared() {
         explicitElementClickableWaitByXpath(txtMemberID, 20);
-        Assert.assertEquals(expValue, findElementByXpath(txtMemberID).getText());
+        Assert.assertEquals(expValue, findElementByXpath(txtMemberID).getAttribute("value"));
     }
 
     //  Scenario: Verify user able to clear the Member Name entered in search criteria by clicking on cancel button
@@ -350,7 +350,7 @@ public class PriorAuthorizationPage extends SeleniumUtils {
 
     public void verifyMemberNameCleared() {
         explicitElementClickableWaitByXpath(txtMemberName, 20);
-        Assert.assertEquals(expValue, findElementByXpath(txtMemberName).getText());
+        Assert.assertEquals(expValue, findElementByXpath(txtMemberName).getAttribute("value"));
     }
 
     //  Scenario: Verify user able to clear the From Date (DOS) entered in search criteria by clicking on cancel button
@@ -364,7 +364,7 @@ public class PriorAuthorizationPage extends SeleniumUtils {
 
     public void verifyFromDateCleared() {
         explicitElementClickableWaitByXpath(txtFromDate, 20);
-        Assert.assertEquals(expValue, findElementByXpath(txtFromDate).getText());
+        Assert.assertEquals(expValue, findElementByXpath(txtFromDate).getAttribute("value"));
     }
 
     //  Scenario: Verify user able to clear the To Date (DOS) entered in search criteria by clicking on cancel button
@@ -378,7 +378,7 @@ public class PriorAuthorizationPage extends SeleniumUtils {
 
     public void verifyToDateCleared() {
         explicitElementClickableWaitByXpath(txtToDate, 20);
-        Assert.assertEquals(expValue, findElementByXpath(txtToDate).getText());
+        Assert.assertEquals(expValue, findElementByXpath(txtToDate).getAttribute("value"));
     }
 
     //  Scenario: Verify user able to clear the Status entered in search criteria by clicking on cancel button
@@ -392,7 +392,7 @@ public class PriorAuthorizationPage extends SeleniumUtils {
 
     public void verifyStatusCleared() {
         explicitElementClickableWaitByXpath(txtStatus, 20);
-        Assert.assertEquals(expValue, findElementByXpath(txtStatus).getText());
+        Assert.assertEquals(expValue, findElementByXpath(txtStatus).getAttribute("value"));
     }
 
     //  Scenario: Verify the result criteria fields should display when user searches in any of the fields in Prior Authorization
@@ -409,10 +409,9 @@ public class PriorAuthorizationPage extends SeleniumUtils {
         explicitVisibilityOfElementLocatedWaitByXpath(innerScrollBarMemberList, 10);
         WebElement ele = findElementByXpath(innerScrollBarMemberList);
         ele.click();
-        moveToElement(ele).clickAndHold().moveByOffset(150, 0).release().perform();
+        moveToElement(ele).clickAndHold().moveByOffset(250, 0).release().perform();
         String fieldName = explicitElementClickableWaitByXpath(lstPOS, 10).getText();
         fieldsAct.add(fieldName);
-        moveToElement(ele).clickAndHold().moveByOffset(150, 0).release().perform();
         String statusFieldName = explicitElementClickableWaitByXpath(lstStatus, 10).getText();
         fieldsAct.add(statusFieldName);
         printStatementInGreenColor("Fields size actual", fieldsAct.size());
@@ -519,9 +518,7 @@ public class PriorAuthorizationPage extends SeleniumUtils {
 
     //  Scenario: Verify user able to search the criteria for To Date results fields
     public void userEntersToDateInResultsSearchCriteria() {
-        WebElement ele = findElementByXpath(innerScrollBarMemberList);
-        ele.click();
-        moveToElement(ele).clickAndHold().moveByOffset(200, 0).release().perform();
+        scrollToElement(txtPriorToDate);
         explicitElementClickableWaitByXpath(txtPriorToDate, 20);
         expToDate = prop.getProperty("priorToDate");
         findElementAndSendKeys(findElementByXpath(txtPriorToDate), expToDate);
@@ -529,9 +526,7 @@ public class PriorAuthorizationPage extends SeleniumUtils {
 
     //  Scenario: Verify user able to search the criteria for Received Date results fields
     public void userEntersReceivedDateInResultsSearchCriteria() {
-        WebElement ele = findElementByXpath(innerScrollBarMemberList);
-        ele.click();
-        moveToElement(ele).clickAndHold().moveByOffset(200, 0).release().perform();
+        scrollToElement(txtReceivedDate);
         explicitElementClickableWaitByXpath(txtReceivedDate, 20);
         expReceivedDate = prop.getProperty("receivedDate");
         findElementAndSendKeys(findElementByXpath(txtReceivedDate), expReceivedDate);
