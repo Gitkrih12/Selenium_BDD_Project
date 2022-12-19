@@ -21,5 +21,25 @@ Feature: Validation History
 
   @82285
   Scenario: Verify user able to view the search criteria for Date and Time
-    When user searches for Date and Time field
-    Then user able to view the search criteria for Date and Time
+    When user searches for Date and Time in the field
+    Then user able to view the Date and Time field value
+
+  @82285-1
+  Scenario: Verify user able to view the search criteria for Service Line No.
+    When user searches for Service Line No in the field
+    Then user able to view the Service Line No field value
+
+  @82285-2
+  Scenario: Verify user able to view the search criteria for Activity
+    When user searches for Activity in the field
+    Then user able to view the Activity field value
+
+  @82285-3
+  Scenario: Verify user able to view the search criteria for Description
+    When user searches for Description in the field
+    Then user able to view the Description field value
+
+  @82285-4
+  Scenario: Verify user able to view the search criteria for Performed By
+    When user searches for Performed By in the field
+    Then user able to view the Performed By field value

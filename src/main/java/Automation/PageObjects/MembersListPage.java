@@ -261,7 +261,7 @@ public class MembersListPage extends SeleniumUtils {
     //  Scenario: Verify user able to Search Member in the Search Box for Status
     public void userEntersStatusInSearchCriteria() {
         expStatus = prop.getProperty("membersListStatus");
-        explicitVisibilityOfElementLocatedWaitByXpath(innerScrollBarMemberList, 10);
+        explicitVisibilityOfElementLocatedWaitByXpath(innerScrollBarMemberList, 20);
         WebElement ele = findElementByXpath(innerScrollBarMemberList);
         ele.click();
         moveToElement(ele).clickAndHold().moveByOffset(250, 0).release().perform();

@@ -39,7 +39,7 @@ public class MOOPLedgerPage extends SeleniumUtils {
     public void userClickOnMoopLedger() throws InterruptedException {
         explicitVisibilityOfWait(findElementByXpath(lnkMOOPLedger), 20);
         clickElement(lnkMOOPLedger);
-        threadSleep(1000);
+        threadSleep(2000);
     }
 
     public void userNavigatesToMoopLedgerPage(String expTab) {
@@ -98,7 +98,9 @@ public class MOOPLedgerPage extends SeleniumUtils {
     }
 
     public void verifyFieldsUnderMoopTransaction(DataTable expFields) {
-        List<String> columnListExp = expFields.asList();
+        explicitElementClickableWaitByXpath(lstMoopTransactionFields, 20);
+        scrollToElementsAndCompare2Lists(expFields, lstMoopTransactionFields);
+        /*List<String> columnListExp = expFields.asList();
         List<WebElement> actColumnFields = findElementsByXpath(lstMoopTransactionFields);
         List<String> columnFieldsForCompare = new ArrayList<>();
         System.out.println("Size " + actColumnFields.size());
@@ -117,16 +119,17 @@ public class MOOPLedgerPage extends SeleniumUtils {
             } else {
                 Assert.fail(exp + " is not listed in actual list");
             }
-        }
+        }*/
     }
 
     public void verifyFieldValuesUnderMoopTransaction() {
-        List<WebElement> moopTransactionValues = findElementsByXpath(lstMoopTransactionFieldValues);
+        elementsDisplayValidation(lstMoopTransactionFieldValues);
+        /*List<WebElement> moopTransactionValues = findElementsByXpath(lstMoopTransactionFieldValues);
         System.out.println("Size:" + moopTransactionValues.size());
         for (WebElement value : moopTransactionValues) {
             Assert.assertTrue(isDisplayed(value));
             System.out.println("Value is displayed: " + isDisplayed(value));
-        }
+        }*/
     }
 
     public void verifySearchCriteriaInMoopTransaction() {
