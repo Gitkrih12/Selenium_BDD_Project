@@ -86,6 +86,7 @@ public class ValidationHistoryStepDef extends ValidationHistoryPage {
         verifyPerformedByFieldValue();
     }
 
+    //  Scenario: Verify footer section available in Validation History tab
     @Then("user views the footer section in Validation History tab")
     public void user_views_the_footer_section_in_validation_history_tab(DataTable expFields) {
         verifyFooterFieldsInValidationHistory(expFields);

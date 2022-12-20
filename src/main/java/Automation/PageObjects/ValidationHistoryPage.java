@@ -130,6 +130,7 @@ public class ValidationHistoryPage extends SeleniumUtils {
         Assert.assertEquals(expPerformedBy, findElementByXpath(elePerformedBy).getText());
     }
 
+    //  Scenario: Verify footer section available in Validation History tab
     public void verifyFooterFieldsInValidationHistory(DataTable expFields){
        compare2Lists(expFields, btnFooterFields);
     }
