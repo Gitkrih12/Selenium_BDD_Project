@@ -85,4 +85,9 @@ public class ValidationHistoryStepDef extends ValidationHistoryPage {
     public void user_able_to_view_the_performed_by_field_value() {
         verifyPerformedByFieldValue();
     }
+
+    @Then("user views the footer section in Validation History tab")
+    public void user_views_the_footer_section_in_validation_history_tab(DataTable expFields) {
+        verifyFooterFieldsInValidationHistory(expFields);
+    }
 }

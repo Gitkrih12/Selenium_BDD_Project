@@ -22,6 +22,7 @@ public class ValidationHistoryPage extends SeleniumUtils {
     String eleDescription = "//*[@col-id = 'subCategory']//span[@class = 'ag-cell-value']";
     String txtPerformedBy = "//*[@aria-label = 'Performed By Filter Input']";
     String elePerformedBy = "(//*[@col-id = 'userId']//span[@class = 'ag-cell-value'])[1]";
+    String btnFooterFields = "//*[@class='footer footer-flex']/button";
 
     private static String expClaimNumber = "";
     private static String expDateAndTime = "";
@@ -127,5 +128,9 @@ public class ValidationHistoryPage extends SeleniumUtils {
     public void verifyPerformedByFieldValue() {
         explicitElementClickableWaitByXpath(elePerformedBy, 20);
         Assert.assertEquals(expPerformedBy, findElementByXpath(elePerformedBy).getText());
+    }
+
+    public void verifyFooterFieldsInValidationHistory(DataTable expFields){
+       compare2Lists(expFields, btnFooterFields);
     }
 }

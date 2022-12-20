@@ -43,3 +43,13 @@ Feature: Validation History
   Scenario: Verify user able to view the search criteria for Performed By
     When user searches for Performed By in the field
     Then user able to view the Performed By field value
+
+  @82902
+  Scenario: Verify footer section available in Validation History tab
+    Then user views the footer section in Validation History tab
+      | On Hold           |
+      | Payer Review      |
+      | Management Review |
+      | Deny              |
+      | Approve           |
+      | Update Auth       |
