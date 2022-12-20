@@ -540,6 +540,7 @@ public class PriorAuthorizationPage extends SeleniumUtils {
     //  Scenario: Verify user able to search the criteria for POS results fields
     public void userEntersPOSInResultsSearchCriteria() {
         WebElement ele = findElementByXpath(innerScrollBarMemberList);
+        explicitElementClickableWaitByXpath(innerScrollBarMemberList, 30);
         ele.click();
         moveToElement(ele).clickAndHold().moveByOffset(250, 0).release().perform();
         explicitElementClickableWaitByXpath(txtPOS, 20);
@@ -555,6 +556,7 @@ public class PriorAuthorizationPage extends SeleniumUtils {
     //  Scenario: Verify user able to search the criteria for Status results fields
     public void userEntersStatusInResultsSearchCriteria() {
         WebElement ele = findElementByXpath(innerScrollBarMemberList);
+        explicitElementClickableWaitByXpath(innerScrollBarMemberList, 30);
         ele.click();
         moveToElement(ele).clickAndHold().moveByOffset(400, 0).release().perform();
         explicitVisibilityOfElementLocatedWaitByXpath(txtPriorStatus, 30);

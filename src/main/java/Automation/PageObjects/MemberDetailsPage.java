@@ -63,8 +63,9 @@ public class MemberDetailsPage extends SeleniumUtils {
 
 
     //  Scenario: Verify user should navigates to Member Details screen on clicking Patient ID/MBR ID
-    public void userClicksOnPatientID() {
+    public void userClicksOnPatientID() throws InterruptedException {
         explicitElementClickableWaitByXpath(lnkPatientID, 50);
+        threadSleep(1000);
         clickElement(lnkPatientID);
         explicitTextToBePresentInElementLocatedWait(By.xpath(tabProviderDetails), 20, "Provider Details");
     }
