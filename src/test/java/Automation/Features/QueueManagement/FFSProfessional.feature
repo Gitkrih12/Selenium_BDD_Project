@@ -620,28 +620,28 @@ Feature: FFS Professional
     When user clicks on Batch To Pay bucket
     And user is on "To Be Signed Off" tab
     And user clicks on Batch Id in To Be Signed Off tab
-    Then user should be able to see "Claim List" for the selected Batch Id
+    Then user should be able to see "Claim List in the Selected Batch - " for the selected Batch Id
 
   @TC_80481
   Scenario: Verify user should be able to see Claims List on clicking on Batch Id in Signed Off tab
     When user clicks on Batch To Pay bucket
     And user clicks on Signed Off tab
     And user clicks on Batch Id in Signed Off tab
-    Then user should be able to see "Claim List" for the selected Batch Id
+    Then user should be able to see "Claim List in the Selected Batch - " for the selected Batch Id
 
   @TC_80483
   Scenario: Verify user should be able to see Claims List on clicking on Batch Id in Sent for Payment tab
     When user clicks on Batch To Pay bucket
     And user clicks on Sent for Payment tab
     And user clicks on Batch Id in Sent for Payment tab
-    Then user should be able to see "Claim List" for the selected Batch Id
+    Then user should be able to see "Claim List in the Selected Batch - " for the selected Batch Id
 
   @TC_80485
   Scenario: Verify user should be able to see Claims List on clicking on Batch Id in EFT Payment tab
     When user clicks on Batch To Pay bucket
     And user clicks on EFT Payment tab
     And user clicks on Batch Id in EFT Payment tab
-    Then user should be able to see "Claim List" for the selected Batch Id
+    Then user should be able to see "Claim List in the Selected Batch - " for the selected Batch Id
 
   #80502-As an adjudicator, I should be able to view Paid tab of FFS professional claims page with all claims details data
   @TC_80503 @beta

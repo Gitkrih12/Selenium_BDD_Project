@@ -751,7 +751,7 @@ public class FFSProfessionalStepDef extends FFSProfessionalPage {
 
     @Then("user should be able to see Re Generate EFT button in enabled mode")
     public void user_should_be_able_to_see_re_generate_eft_button_in_enabled_mode() {
-        verifyReGenerateButtonInDisabledMode();
+        verifyReGenerateButtonInEnabledMode();
     }
 
     @When("user selects Batch ID in EFT Payment tab")

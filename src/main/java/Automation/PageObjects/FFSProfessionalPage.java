@@ -114,12 +114,12 @@ public class FFSProfessionalPage extends SeleniumUtils {
     String lstPreBatchColumnFields = "//ag-grid-angular[@id='prebatchdGrid']//div[@class='ag-header-cell-label']//span[text()]";
     String btnBatchClaimsToPay = "//button[text()='Batch Claims To Pay']";
     String chkClaimNumberPreBatchBucket = "(//*[@id='prebatchdGrid']//div[contains(@class,'ag-cell-last-left-pinned')]//div[@class='ag-selection-checkbox'])[1]";
-    String selectAllChkClaimNumberPreBatchBucket = "(//*[@id='prebatchdGrid']//div[contains(@class,'select-all')])[3]";
+    String chkClaimNumberPreBatchBucketSelectAll = "(//*[@id='prebatchdGrid']//div[contains(@class,'select-all')])[3]";
     String btnPreBatchPay = "//button[text()='Pre-Batch Pay']";
     String chkClaimNumberApprovedBucket = "(//*[@id='approvedGrid']//div[contains(@class,'ag-cell-last-left-pinned')]//div[@class='ag-selection-checkbox'])[1]";
-    String selectAllChkClaimNumberApprovedBucket = "(//*[@id='approvedGrid']//div[contains(@class,'select-all')])[3]";
+    String chkClaimNumberApprovedBucketSelectAll = "(//*[@id='approvedGrid']//div[contains(@class,'select-all')])[3]";
     String chkClaimNumberDeniedBucket = "(//*[@id='deniedGrid']//div[contains(@class,'ag-cell-last-left-pinned')]//div[@class='ag-selection-checkbox'])[1]";
-    String selectAllChkClaimNumberDeniedBucket = "(//*[@id='deniedGrid']//div[contains(@class,'select-all')])[3]";
+    String chkClaimNumberDeniedBucketSelectAll = "(//*[@id='deniedGrid']//div[contains(@class,'select-all')])[3]";
     String btnPreBatchDeny = "//button[text()='Pre-Batch Deny']";
     String eleValidatingClaims = "//div//p[contains(text(),'Validating claims')]";
     String tabPreBatchToPayValidation = "//div[contains(text(),'PreBatch To Pay Validation')]";
@@ -172,6 +172,7 @@ public class FFSProfessionalPage extends SeleniumUtils {
     private static String title = "";
     private static String category = "";
     private static String description = "";
+    private static String getBatchId="";
 
 
     //Scenario: Verify user should navigates to FFS Professional screen
@@ -492,28 +493,16 @@ public class FFSProfessionalPage extends SeleniumUtils {
         List<WebElement> actQueueFields = findElementsByXpath(lstQueues);
         List<String> actualQueueFieldsForCompare = new ArrayList<>();
         for (WebElement column : actQueueFields) {
-            threadSleep(1000);
+            explicitElementClickableWait(column,10);
             scrollIntoView(column, driver);
             String text = column.getText();
             String[] queueData = text.split(" ");
-            if (queueData.length == 2) {
-                actualQueueFieldsForCompare.add(queueData[0]);
-            } else if (queueData.length == 3) {
-                actualQueueFieldsForCompare.add(queueData[0] + " " + queueData[1]);
-            } else if (queueData.length == 4) {
-                actualQueueFieldsForCompare.add(queueData[0] + " " + queueData[1] + " " + queueData[2]);
-            }
+            String data = text.substring(0, text.indexOf("(")).trim();
+            actualQueueFieldsForCompare.add(data);
         }
         System.out.println("actual queue fields " + actualQueueFieldsForCompare);
         System.out.println("expected queue fields " + expQueueList);
-        for (String expQueue : expQueueList) {
-            if (actualQueueFieldsForCompare.contains(expQueue)) {
-                Assert.assertTrue(true);
-            } else {
-                Assert.fail(expQueue + " queue is not as expected");
-            }
-        }
-
+        Assert.assertEquals(expQueueList,actualQueueFieldsForCompare);
     }
 
     //Scenario: Verify by default user should be in the Pend state in FFS Professional screen
@@ -890,8 +879,6 @@ public class FFSProfessionalPage extends SeleniumUtils {
     public void selectCategory() throws InterruptedException {
         category = prop.getProperty("Category");
         explicitDropdownElementsWait(20,txtCategory,"Option");
-//        WebDriverWait wait= new WebDriverWait(driver, Duration.ofSeconds(20));
-//        wait.until(ExpectedConditions.presenceOfNestedElementLocatedBy(By.xpath(txtCategory),By.tagName("option")));
         selectDropdownByVisibleText(txtCategory, category);
         explicitTextToBePresentInElementLocatedWait(By.xpath(txtCategory), 20, "512");
     }
@@ -928,7 +915,6 @@ public class FFSProfessionalPage extends SeleniumUtils {
 
     public void verifyNotesAddedInNotesSection() throws InterruptedException {
         explicitElementClickableWaitByXpath(eleNotes, 20);
-        //explicitVisibilityOfWait(findElementByXpath(eleNotes), 10);
         String actNotesText = findElementByXpath(eleNotes).getText();
         System.out.println("Actual Notes :" + actNotesText);
         String[] actNotes = actNotesText.split("\n");
@@ -984,13 +970,7 @@ public class FFSProfessionalPage extends SeleniumUtils {
 
     //Scenario: Verify Batch Claims To Pay button when select claim number from Prebatch bucket
     public void verifyBatchClaimsToPayButtonInDisabledMode() {
-        String attribute = getAttribute(btnBatchClaimsToPay, "disabled");
-        if (attribute.contains("true")) {
-            Assert.assertTrue(true);
-        } else {
-            Assert.assertTrue(false);
-        }
-
+        Assert.assertFalse(isEnabled(btnBatchClaimsToPay));
     }
 
     public void clickClaimNumberChkBoxOnPreBatchBucket() {
@@ -999,28 +979,17 @@ public class FFSProfessionalPage extends SeleniumUtils {
     }
 
     public void verifyBatchClaimsToPayButtonInEnabledMode() {
-        String attribute = getAttribute(btnBatchClaimsToPay, "disabled");
-        if (attribute == null) {
-            Assert.assertTrue(true);
-        } else {
-            Assert.assertTrue(false);
-        }
+        Assert.assertTrue(isEnabled(btnBatchClaimsToPay));
     }
 
     public void clickSelectAllClaimNumberChkBoxOnPreBatchBucket() {
-        explicitElementClickableWaitByXpath(selectAllChkClaimNumberPreBatchBucket, 20);
-        clickElement(selectAllChkClaimNumberPreBatchBucket);
+        explicitElementClickableWaitByXpath(chkClaimNumberPreBatchBucketSelectAll, 20);
+        clickElement(chkClaimNumberPreBatchBucketSelectAll);
     }
 
     //Scenario: Verify Pre Batch Pay button when select claim number from Approved bucket
     public void verifyPreBatchPayButtonInDisabledMode() {
-        String attribute = getAttribute(btnPreBatchPay, "disabled");
-        if (attribute.contains("true")) {
-            Assert.assertTrue(true);
-        } else {
-            Assert.assertTrue(false);
-        }
-
+        Assert.assertFalse(isEnabled(btnPreBatchPay));
     }
 
     public void clickClaimNumberChkBoxOnApprovedBucket() {
@@ -1029,18 +998,13 @@ public class FFSProfessionalPage extends SeleniumUtils {
     }
 
     public void verifyPreBatchPayButtonInEnabledMode() {
-        String attribute = getAttribute(btnPreBatchPay, "disabled");
-        if (attribute == null) {
-            Assert.assertTrue(true);
-        } else {
-            Assert.assertTrue(false);
-        }
+        Assert.assertTrue(isEnabled(btnPreBatchPay));
     }
 
     //Scenario: Verify Pre batch Pay button when select multiple claim numbers from Approved bucket
     public void clickSelectAllClaimNumberChkBox() {
-        explicitElementClickableWaitByXpath(selectAllChkClaimNumberApprovedBucket, 20);
-        clickElement(selectAllChkClaimNumberApprovedBucket);
+        explicitElementClickableWaitByXpath(chkClaimNumberApprovedBucketSelectAll, 20);
+        clickElement(chkClaimNumberApprovedBucketSelectAll);
     }
 
     //Scenario: Verify user should be able to see  PreBatch To Pay Validation screen on clicking Pre Batch Pay button
@@ -1067,33 +1031,25 @@ public class FFSProfessionalPage extends SeleniumUtils {
 
     public void verifyTabsInPreBatchToPayValidationInFFSProfessional(DataTable tabList) throws InterruptedException {
         List<String> expTabList = tabList.asList();
-        Thread.sleep(5000);
-        explicitTextToBePresentInElementLocatedWait(By.xpath(tabValid), 30, "Valid");
+        explicitInvisibilityOfElementWithTextWait(By.xpath(tabValid), 120, "Valid ()");
+        explicitInvisibilityOfElementWithTextWait(By.xpath(tabInvalid), 120, "Invalid ()");
         List<WebElement> actTabFields = findElementsByXpath(lstTabsInPreBatchToPayValidation);
-
         List<String> actualQueueFieldsForCompare = new ArrayList<>();
         for (WebElement column : actTabFields) {
             explicitVisibilityOfWait(column, 5);
             String text = column.getText();
-            String[] queueData = text.split(" ");
-            if (queueData.length == 1 || queueData.length == 2) {
-                actualQueueFieldsForCompare.add(queueData[0]);
-            }
+            String data = text.substring(0, text.indexOf("(")).trim();
+            actualQueueFieldsForCompare.add(data);
         }
         System.out.println("actual tab fields " + actualQueueFieldsForCompare);
         System.out.println("expected tab fields " + expTabList);
-        for (String expQueue : expTabList) {
-            if (actualQueueFieldsForCompare.contains(expQueue)) {
-                Assert.assertTrue(true);
-            } else {
-                Assert.fail(expQueue + " tab is not as expected");
-            }
-        }
+        Assert.assertEquals(expTabList,actualQueueFieldsForCompare);
 
     }
 
     //Scenario: Verify buttons in Valid tab under PreBatch To Pay Validation screen
     public void verifyValidTab(String expText) {
+        explicitInvisibilityOfElementWithTextWait(By.xpath(tabValid), 120, "Valid ()");
         String actText = getText(tabValid);
         System.out.println("actText :" + actText);
         if (actText.contains(expText)) {
@@ -1105,58 +1061,32 @@ public class FFSProfessionalPage extends SeleniumUtils {
     }
 
     public void verifyRemoveAndConfirmPreBatchPayButtons(String expRemove, String expConfirmPreBatchPay) {
-        String actRemoveText = getText(btnRemove);
-        if (actRemoveText.contains(expRemove)) {
-            Assert.assertTrue(true);
-        } else {
-            Assert.assertTrue(false);
-        }
-        String actConfirmPreBatchText = getText(btnConfirmPreBatchPay);
-        if (actConfirmPreBatchText.contains(expConfirmPreBatchPay)) {
-            Assert.assertTrue(true);
-        } else {
-            Assert.assertTrue(false);
-        }
+        String actRemoveText = getText(btnRemove).trim();
+        Assert.assertEquals(expRemove,actRemoveText);
 
-
+        String actConfirmPreBatchText = getText(btnConfirmPreBatchPay).trim();
+        Assert.assertEquals(expConfirmPreBatchPay,actConfirmPreBatchText);
     }
 
     public void clickOnInvalidTab() throws InterruptedException {
-        Thread.sleep(5000);
+        explicitInvisibilityOfElementWithTextWait(By.xpath(tabInvalid), 120, "Invalid ()");
         clickElement(tabInvalid);
     }
 
     public void verifyPendOnHoldAndManagementReviewButtons(String expPend, String expOnHold, String expManagementReview) {
-        String actRemoveText = getText(btnPend);
-        if (actRemoveText.contains(expPend)) {
-            Assert.assertTrue(true);
-        } else {
-            Assert.assertTrue(false);
-        }
-        String actConfirmPreBatchText = getText(btnOnHold);
-        if (actConfirmPreBatchText.contains(expOnHold)) {
-            Assert.assertTrue(true);
-        } else {
-            Assert.assertTrue(false);
-        }
+        String actPendText = getText(btnPend).trim();
+        Assert.assertEquals(expPend,actPendText);
+
+        String actOnHoldText = getText(btnOnHold);
+        Assert.assertEquals(expOnHold,actOnHoldText);
 
         String actManagementReviewText = getText(btnManagementReview);
-        if (actManagementReviewText.contains(expManagementReview)) {
-            Assert.assertTrue(true);
-        } else {
-            Assert.assertTrue(false);
-        }
+        Assert.assertEquals(expManagementReview,actManagementReviewText);
     }
 
     //Scenario: Verify Pre batch Deny button when select claim number from Denied bucket
     public void verifyPreBatchDenyButtonInDisabledMode() {
-        String attribute = getAttribute(btnPreBatchDeny, "disabled");
-        if (attribute.contains("true")) {
-            Assert.assertTrue(true);
-        } else {
-            Assert.assertTrue(false);
-        }
-
+        Assert.assertFalse(isEnabled(btnPreBatchDeny));
     }
 
     public void clickClaimNumberChkBoxOnDeniedBucket() {
@@ -1175,8 +1105,8 @@ public class FFSProfessionalPage extends SeleniumUtils {
 
     //Scenario: Verify Pre batch Pay button when select multiple claim numbers from Denied bucket
     public void clickSelectAllClaimNumberChkBoxOnDeniedBucket() {
-        explicitElementClickableWaitByXpath(selectAllChkClaimNumberDeniedBucket, 20);
-        clickElement(selectAllChkClaimNumberDeniedBucket);
+        explicitElementClickableWaitByXpath(chkClaimNumberDeniedBucketSelectAll, 20);
+        clickElement(chkClaimNumberDeniedBucketSelectAll);
     }
 
     public void clickOnBatchToPayBucket() {
@@ -1190,26 +1120,12 @@ public class FFSProfessionalPage extends SeleniumUtils {
         for (WebElement column : actTabFields) {
             threadSleep(1000);
             String text = column.getText();
-            String[] queueData = text.split(" ");
-            if (queueData.length == 1 || queueData.length == 2) {
-                actualQueueFieldsForCompare.add(queueData[0]);
-            } else if (queueData.length == 3) {
-                actualQueueFieldsForCompare.add(queueData[0] + " " + queueData[1]);
-            } else if (queueData.length == 4) {
-                actualQueueFieldsForCompare.add(queueData[0] + " " + queueData[1] + " " + queueData[2]);
-            } else if (queueData.length == 5) {
-                actualQueueFieldsForCompare.add(queueData[0] + " " + queueData[1] + " " + queueData[2] + " " + queueData[3]);
-            }
+            String data = text.substring(0, text.indexOf("(")).trim();
+            actualQueueFieldsForCompare.add(data);
         }
         System.out.println("actual tab fields " + actualQueueFieldsForCompare);
         System.out.println("expected tab fields " + expTabList);
-        for (String expQueue : expTabList) {
-            if (actualQueueFieldsForCompare.contains(expQueue)) {
-                Assert.assertTrue(true);
-            } else {
-                Assert.fail(expQueue + " tab is not as expected");
-            }
-        }
+        Assert.assertEquals(expTabList,actualQueueFieldsForCompare);
     }
 
     public void verifyToBeSignedOffTab(String expText) {
@@ -1224,38 +1140,20 @@ public class FFSProfessionalPage extends SeleniumUtils {
     }
 
     public void verifyFFSProfessionalToBeSignedOffColumnFields(DataTable columnList) {
-        scrollToElementsAndCompare2Lists(columnList, lstToBeSingedOffColumnFields);
+        compare2Lists(columnList, lstToBeSingedOffColumnFields);
     }
 
     //Scenario: Verify buttons in To Be Signed Off tab under Batch To Pay bucket
     public void verifyUnBatchButtonInDisabledMode() {
-        String attribute = getAttribute(btnUnBatch, "disabled");
-        if (attribute.contains("true")) {
-            Assert.assertTrue(true);
-        } else {
-            Assert.assertTrue(false);
-        }
-
+        Assert.assertFalse(isEnabled(btnUnBatch));
     }
 
     public void verifyEFTPaymentButtonInDisabledMode() {
-        String attribute = getAttribute(btnEFTPayment, "disabled");
-        if (attribute.contains("true")) {
-            Assert.assertTrue(true);
-        } else {
-            Assert.assertTrue(false);
-        }
-
+        Assert.assertFalse(isEnabled(btnEFTPayment));
     }
 
     public void verifySignOffButtonInDisabledMode() {
-        String attribute = getAttribute(btnSignOff, "disabled");
-        if (attribute.contains("true")) {
-            Assert.assertTrue(true);
-        } else {
-            Assert.assertTrue(false);
-        }
-
+        Assert.assertFalse(isEnabled(btnSignOff));
     }
 
     public void clickOnBatchIdCheckBox() {
@@ -1263,32 +1161,16 @@ public class FFSProfessionalPage extends SeleniumUtils {
     }
 
     public void verifyUnBatchButtonInEnabledMode() {
-        String attribute = getAttribute(btnUnBatch, "disabled");
-        if (attribute == null) {
-            Assert.assertTrue(true);
-        } else {
-            Assert.assertTrue(false);
-        }
+        Assert.assertTrue(isEnabled(btnUnBatch));
     }
 
     public void verifyEFTPaymentButtonInEnabledMode() {
-        String attribute = getAttribute(btnEFTPayment, "disabled");
-        if (attribute == null) {
-            Assert.assertTrue(true);
-        } else {
-            Assert.assertTrue(false);
-        }
+        Assert.assertTrue(isEnabled(btnEFTPayment));
     }
 
     public void verifySignOffButtonInEnabledMode() {
-        String attribute = getAttribute(btnSignOff, "disabled");
-        if (attribute == null) {
-            Assert.assertTrue(true);
-        } else {
-            Assert.assertTrue(false);
-        }
+        Assert.assertTrue(isEnabled(btnSignOff));
     }
-
 
     //Scenario: Validate user able to view all the column fields in Signed Off under Batch To Pay bucket in FFS Professional screen
     public void clickOnSignedOffTab() {
@@ -1310,7 +1192,7 @@ public class FFSProfessionalPage extends SeleniumUtils {
         scrollToElementsAndCompare2Lists(columnList, lstSentForPaymentColumnFields);
     }
 
-    //Scenario: Verify user should able to see Upload Great Plains File button in Sent for Payment tab under Batch to Pay bucket
+    //Scenario: Verify user should be able to see Upload Great Plains File button in Sent for Payment tab under Batch to Pay bucket
     public void verifyUploadGreatPlainsFileButton(String expText) {
         explicitTextToBePresentInElementLocatedWait(By.xpath(btnUploadGreatPlainsFile), 15, expText);
         String actText = getText(btnUploadGreatPlainsFile);
@@ -1334,33 +1216,15 @@ public class FFSProfessionalPage extends SeleniumUtils {
 
     //Scenario: Verify buttons in EFT Payment tab under Batch To Pay bucket
     public void verifyMoveToPaidButtonInDisabledMode() {
-        String attribute = getAttribute(btnMoveToPaid, "disabled");
-        if (attribute.contains("true")) {
-            Assert.assertTrue(true);
-        } else {
-            Assert.assertTrue(false);
-        }
-
+        Assert.assertFalse(isEnabled(btnMoveToPaid));
     }
 
     public void verifyToBeSignedOffButtonInDisabledMode() {
-        String attribute = getAttribute(btnToBeSignedOff, "disabled");
-        if (attribute.contains("true")) {
-            Assert.assertTrue(true);
-        } else {
-            Assert.assertTrue(false);
-        }
-
+        Assert.assertFalse(isEnabled(btnToBeSignedOff));
     }
 
-    public void verifyReGenerateButtonInDisabledMode() {
-        String attribute = getAttribute(btnReGenerateEFT, "disabled");
-        if (attribute == null) {
-            Assert.assertTrue(true);
-        } else {
-            Assert.assertTrue(false);
-        }
-
+    public void verifyReGenerateButtonInEnabledMode() {
+        Assert.assertTrue(isEnabled(btnReGenerateEFT));
     }
 
     public void clickOnBatchIdCheckBoxInEFTPayment() {
@@ -1369,54 +1233,47 @@ public class FFSProfessionalPage extends SeleniumUtils {
     }
 
     public void verifyMoveToPaidButtonInEnabledMode() {
-        String attribute = getAttribute(btnMoveToPaid, "disabled");
-        if (attribute == null) {
-            Assert.assertTrue(true);
-        } else {
-            Assert.assertTrue(false);
-        }
+        Assert.assertTrue(isEnabled(btnMoveToPaid));
     }
 
     public void verifyToBeSignedOffButtonInEnabledMode() {
-        String attribute = getAttribute(btnToBeSignedOff, "disabled");
-        if (attribute == null) {
-            Assert.assertTrue(true);
-        } else {
-            Assert.assertTrue(false);
-        }
+        Assert.assertTrue(isEnabled(btnToBeSignedOff));
     }
 
     //Scenario: Verify user should be able to see Claims List on clicking on Batch Id in To Be Signed Off tab
     public void clickOnBatchIdToBeSignedOffTab() {
         explicitElementClickableWaitByXpath(lnkBatchIdToBeSignedOff, 20);
+        getBatchId= getText(lnkBatchIdToBeSignedOff);
+        System.out.println("Batch id "+getBatchId);
         clickElement(lnkBatchIdToBeSignedOff);
+
     }
 
     public void verifyClaimListInBatchID(String expText) {
         String actText = getText(eleClaimListInBatchId);
-        if (actText.contains(expText)) {
-            Assert.assertTrue(true);
-        } else {
-            Assert.assertTrue(false);
-        }
-
+        String expText1=expText+getBatchId;
+        System.out.println("text "+expText1);
+        Assert.assertEquals(expText1,actText);
     }
 
     //Scenario: Verify user should be able to see Claims List on clicking on Batch Id in Signed Off tab
     public void clickOnBatchIdSignedOffTab() {
         explicitElementClickableWaitByXpath(lnkBatchIdSignedOff, 20);
+        getBatchId= getText(lnkBatchIdSignedOff);
         clickElement(lnkBatchIdSignedOff);
     }
 
     //Scenario: Verify user should be able to see Claims List on clicking on Batch Id in Sent for Payment tab
     public void clickOnBatchIdSentForPaymentTab() {
         explicitElementClickableWaitByXpath(lnkBatchIdSentForPayment, 20);
+        getBatchId= getText(lnkBatchIdSentForPayment);
         clickElement(lnkBatchIdSentForPayment);
     }
 
     //Scenario: Verify user should be able to see Claims List on clicking on Batch Id in EFT Payment tab
     public void clickOnBatchIdEFTPaymentTab() {
         explicitElementClickableWaitByXpath(lnkBatchIdEFTPayment, 20);
+        getBatchId= getText(lnkBatchIdEFTPayment);
         clickElement(lnkBatchIdEFTPayment);
     }
 
