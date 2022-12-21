@@ -375,7 +375,7 @@ public class FilesPage extends SeleniumUtils {
     //Generic method to validate the data exceeds the defined page size 50
     public String[] validateTheDataExceedsTheDefinedPageSize(String recordsBarXpath) {
         int totalRowsExp = 0;
-        String[] paginationRecordsExp = explicitElementClickableWaitByXpath(recordsBarXpath, 5).getText().split(" ");
+        String[] paginationRecordsExp = explicitElementClickableWaitByXpath(recordsBarXpath, 20).getText().split(" ");
         if (paginationRecordsExp[4].contains(",")) {
             String totalRowsString = paginationRecordsExp[4].replace(",", "");
             totalRowsExp = Integer.parseInt(totalRowsString);
