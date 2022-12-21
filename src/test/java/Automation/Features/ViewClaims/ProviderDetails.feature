@@ -66,7 +66,6 @@ Feature: Provider Details
       | Deny              |
       | Approve           |
       | Update Auth       |
-      | Deactivate        |
 
   @48990
   @Sanity
@@ -165,7 +164,7 @@ Feature: Provider Details
     And user clicks on Select button for the other Vendor ID
     Then user able to view the Vendor ID by default after selected
 
-#  @60848
+  @60848
   Scenario: Verify user able to view the pagination, cancel and close buttons for Map Pay To Provider Side Drawer
     Given the user is in FFS Professional page
     Then the user should navigate to the FFS Professional page

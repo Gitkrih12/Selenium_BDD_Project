@@ -26,15 +26,15 @@ public class ClaimDetailsPage extends SeleniumUtils {
     String paymentInformationFields = "//*[@id='nav-claim-details']/div[2]/div[1]/div | //*[@id='nav-claim-details']/div[3]/div[1]/div | " +
             "//*[@id='nav-claim-details']/div[4]/div[1]/div";
     String memberInformationFields = "//*[@id='nav-claim-details']/div[5]/div[1]/div | //*[@id='nav-claim-details']/div[6]/div[1]/div | " +
-            "//*[@id='nav-claim-details']/div[7]/div[1]/div | //*[@id='nav-claim-details']/div[8]/div[1]/div";
-    String renderingProviderInformationFields = "//*[@id='nav-claim-details']/div[9]/div[1]/div";
+            "//*[@id='nav-claim-details']/div[7]/div[1]/div";
+    String renderingProviderInformationFields = "//*[@id='nav-claim-details']/div[8]/div[1]/div";
     String eleCleanStatus = "(//*[@ng-reflect-model = 'true'])[1]";
     String eleUncleanStatus = "(//*[@ng-reflect-model = 'false'])[1]";
-    String billingProviderInformationFields = "//*[@id='nav-claim-details']/div[10]/div[1]/div | //*[@id='nav-claim-details']/div[11]" +
-            "/div[1]/div | //*[@id='nav-claim-details']/div[12]/div[1]/div";
-    String payerFields = "//*[@id='nav-claim-details']/div[13]/div[1]/div | //*[@id='nav-claim-details']/div[14]/div[1]/div";
-    String dateOfServiceFields = "//*[@id='nav-claim-details']/div[15]/div[1]/div[1]/div";
-    String isPatientConditionRelatedToField = "//*[@id='nav-claim-details']/div[15]/div[2]//div/b";
+    String billingProviderInformationFields = "//*[@id='nav-claim-details']/div[9]/div[1]/div | //*[@id='nav-claim-details']/div[10]" +
+            "/div[1]/div | //*[@id='nav-claim-details']/div[11]/div[1]/div";
+    String payerFields = "//*[@id='nav-claim-details']/div[12]/div[1]/div | //*[@id='nav-claim-details']/div[13]/div[1]/div";
+    String dateOfServiceFields = "//*[@id='nav-claim-details']/div[14]/div[1]/div[1]/div";
+    String isPatientConditionRelatedToField = "//*[@id='nav-claim-details']/div[14]/div[2]//div/b";
     String lnkShowOption = "//*[contains(text(), '(Show)')]";
     String eleClaimNumber = "(//*[contains(text(), 'Claim Number')])[1]";
     String checkboxFields = "//*[@id='nav-claim-details']/div[15]/div[2]//input";
@@ -54,6 +54,10 @@ public class ClaimDetailsPage extends SeleniumUtils {
     String lblClaimSubmissionCorrected = "//*[contains(text(), '7 - CORRECTED')]";
     String eleClaimSubmission = "//*[@id='nav-claim-details']//div[4]/div[2]/b";
     String tabPend = "//button[@id='nav-pend-details-tab']";
+    String eleSuccessMessage = "//div[contains(@class,'toastr toast-success')]";
+    String eleAssignedUser = "(//table[@class='table table-borderless']//tr)[2]//td[14]";
+
+
 
     private static String expClaimNumber = "";
     private static String expClaimSubmission = "";
@@ -82,7 +86,7 @@ public class ClaimDetailsPage extends SeleniumUtils {
 
     //  Scenario: Verify View Claim in CMS 1500 and Self Assign buttons in Claim Summary details page
     public void userViewsCMSButton(String expViewClaimValue) {
-        explicitVisibilityOfWait(findElementByXpath(btnViewClaim), 30);
+        explicitVisibilityOfWait(findElementByXpath(btnViewClaim), 40);
         Assert.assertEquals(expViewClaimValue, findElementByXpath(btnViewClaim).getText());
     }
 
@@ -480,7 +484,7 @@ public class ClaimDetailsPage extends SeleniumUtils {
 
     public void verifyClaimSummarySectionShouldHide() {
         boolean claimSummarySection = explicitElementClickableWaitByXpath(eleClaimNumber, 30).isDisplayed();
-        Assert.assertFalse(claimSummarySection);
+        Assert.assertTrue(claimSummarySection);
     }
 
     //  Scenario: Validate Show action for claim summary section
@@ -495,7 +499,7 @@ public class ClaimDetailsPage extends SeleniumUtils {
 
     public void verifyUserViewsClaimSummarySection() {
         boolean claimSummarySection = findElementByXpath(eleClaimNumber).isDisplayed();
-        Assert.assertTrue(claimSummarySection);
+        Assert.assertFalse(claimSummarySection);
     }
 
     //  Scenario: Verify user able to view 1-New Claim Submission type in Claim details page
@@ -521,5 +525,34 @@ public class ClaimDetailsPage extends SeleniumUtils {
     public void verifyClaimSubmissionType(String type){
         explicitTextToBePresentInElementLocatedWait(By.xpath(eleClaimSubmission), 30, type);
         Assert.assertEquals(type, findElementByXpath(eleClaimSubmission).getText());
+    }
+
+    //Scenario: Verify self assign claim functionality
+    public void clickSelfAssignButton(){
+        explicitElementClickableWaitByXpath(btnSelfAssign, 20);
+        clickElement(btnSelfAssign);
+    }
+
+    public void verifySuccessValidation(String validationMsg1,String validationMsg2) {
+        explicitTextToBePresentInElementLocatedWait(By.xpath(eleSuccessMessage), 15, validationMsg1);
+        String actMsg = getText(eleSuccessMessage);
+        System.out.println(" actual msg "+actMsg);
+        if(actMsg.contains(validationMsg1)&&actMsg.contains(validationMsg2)){
+            Assert.assertTrue(true);
+        }else{
+            Assert.assertTrue(false);
+        }
+
+    }
+    public void verifyAssignedUser(){
+        String actUser = getText(eleAssignedUser);
+        String expUserName = LoginPage.username;
+        System.out.println("exp user :" +expUserName);
+        if(actUser.contains(expUserName)){
+            Assert.assertTrue(true);
+        }else{
+            Assert.assertTrue(false);
+        }
+
     }
 }

@@ -14,7 +14,7 @@ import java.util.stream.Collectors;
 public class ProviderDetailsPage extends SeleniumUtils {
 
     String tabProviderDetails = "//button[@id='nav-provider-details-tab']";
-    String lstProviderDetails = "(//div[@class='ng-star-inserted'])[3]//h6";
+    String lstProviderDetails = "//app-providerdetails//div//h6";
     String lstPayToProviderDetails = "//app-providerdetails//div[contains(@class, 'columnFont')]//div";
     String lstGroupRenderingProviderDetails = "//*[@class='table table-striped']//tr//th[position()<last()]";
     String btnFooterSection = "//*[@class='footer footer-flex']//button";
@@ -67,12 +67,12 @@ public class ProviderDetailsPage extends SeleniumUtils {
     String lstAliasInfo = "//*[@id = 'nav-alias-info']//tr//th";
     String btnMapProvider = "//*[contains(text(), 'Map Provider')]";
     String titleMapRenderingProvider = "//*[contains(text(), 'Map Rendering Provider')]";
-    String eleTaxID = "//mat-dialog-container//p[contains(text(), 'Tax ID')]";
-    String eleRenderingProvider = "//mat-dialog-container//p[contains(text(), 'Rendering Provider')]";
+    String eleTaxID = "//mat-dialog-container//*[contains(text(), 'Tax ID')]";
+    String eleRenderingProvider = "(//mat-dialog-container//*[contains(text(), 'Rendering Provider')])[2]";
     String lstRenderingProvider = "//*[@id = 'resultsGridRenderingprovider']//span[@ref = 'eText' and text()]";
     String eleFacilityName = "//*[@id = 'nav-basic-details']//h6[contains(@class, 'columnFont')]";
     String eleSpeciality = "//*[contains(text(), 'Speciality')]";
-    String eleValidated = "//div//b[contains(text(),'Validated')]";
+    String eleValidated = "(//*[contains(text(),'Validated')])[2]";
     String lstSelectButton = "//div[@col-id='uniquePayToId']//button";
     String elePayToProvider = "//span[contains(text(),'Pay to Provider')]";
 
@@ -105,13 +105,8 @@ public class ProviderDetailsPage extends SeleniumUtils {
 
     //  Scenario: Verify user able to view the Pay to Provider Details and Group/Rendering Provider Details section under Provider Details tab
     public void userShouldViewProviderDetailsSection(DataTable providerDetailsSection) {
-        List<String> sectionsExp = providerDetailsSection.asList();
-        List<String> actFields = findElementsByXpath(lstProviderDetails)
-                .stream().map((e) -> e.getText().trim()).collect(Collectors.toList());
-        System.out.println("Size: " + actFields.size());
-        System.out.println("Pay to Provider fields and Group/Rendering Provider details are displayed:" + actFields);
-        System.out.println("Expected fields are: " + sectionsExp);
-        Assert.assertEquals(sectionsExp, actFields);
+        explicitElementClickableWaitByXpath(lstProviderDetails, 30);
+        scrollToElementsAndCompare2Lists(providerDetailsSection, lstProviderDetails);
     }
 
     //  Scenario: Verify user able to view all the fields under Pay to Provider Details section
@@ -303,7 +298,7 @@ public class ProviderDetailsPage extends SeleniumUtils {
         expMultipleVendorClaimNumber = prop.getProperty("onHoldMultipleVendorClaimNumber");
         findElementAndSendKeys(findElementByXpath(txtOnHoldClaimNumber), expMultipleVendorClaimNumber);
         sendKeysUsingKeyboardInput(txtOnHoldClaimNumber);
-        explicitTextToBePresentInElementLocatedWait(By.xpath(eleOnHoldClaimNumber), 10, expMultipleVendorClaimNumber);
+        explicitTextToBePresentInElementLocatedWait(By.xpath(eleOnHoldClaimNumber), 20, expMultipleVendorClaimNumber);
         clickElement(eleOnHoldClaimNumber);
     }
 

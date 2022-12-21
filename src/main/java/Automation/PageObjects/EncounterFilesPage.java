@@ -17,7 +17,7 @@ public class EncounterFilesPage extends SeleniumUtils {
     String txtEncounterFileName = "//div[@id='encounterFilesGrid']//input[@aria-label='File Name Filter Input']";
     String txtEncounterSender = "//div[@id='encounterFilesGrid']//input[@aria-label='Sender Filter Input']";
     String txtEncounterReceiver = "//div[@id='encounterFilesGrid']//input[@aria-label='Receiver Filter Input']";
-    String txtEncounterDateReceived = "//div[@id='encounterFilesGrid']//input[@aria-label='Date Recieved Filter Input']";
+    String txtEncounterDateReceived = "//div[@id='encounterFilesGrid']//input[@aria-label='Date Received Filter Input']";
     String txtEncounterAgeDays = "//div[@id='encounterFilesGrid']//input[@aria-label='Age(Days) Filter Input']";
     String txtEncounterClaimType = "//div[@id='encounterFilesGrid']//input[@aria-label='Claim Type Filter Input']";
     String eleEncounterFileName = "(//div[@id='encounterFilesGrid']//div[@col-id='fileName']//span[@class='ag-cell-value'])[1]";
@@ -120,7 +120,7 @@ public class EncounterFilesPage extends SeleniumUtils {
     public void enterReceivedDateUnderEncounterDateReceivedSearchBox()
     {
         encounterDateReceivedRecordExp = prop.getProperty("encounterDateReceived");
-        explicitElementClickableWaitByXpath(txtEncounterDateReceived, 10).sendKeys(encounterDateReceivedRecordExp);
+        explicitElementClickableWaitByXpath(txtEncounterDateReceived, 20).sendKeys(encounterDateReceivedRecordExp);
     }
     public void verifyUserAbleToViewEncounterReceivedDateUnderResultsSection()
     {
@@ -134,7 +134,7 @@ public class EncounterFilesPage extends SeleniumUtils {
     //    Scenario: Verify user should be able to get results for applying filter on "Age(Days)" column under Encounter files tab
     public void enterAgeDaysUnderEncounterAgeDaysSearchBox()
     {
-        encounterAgeDaysRecordExp = getText(eleEncounterAgeDays);
+        encounterAgeDaysRecordExp = explicitElementClickableWaitByXpath(eleEncounterAgeDays, 10).getText();
         explicitElementClickableWaitByXpath(txtEncounterAgeDays, 10).sendKeys(encounterAgeDaysRecordExp);
     }
     public void verifyUserAbleToViewEncounterAgeDaysUnderResultsSection()

@@ -17,7 +17,7 @@ public class ServiceDetailsPage extends SeleniumUtils {
     String eleClaimNumber = "(//div[@class='ag-pinned-left-cols-container']//a)[1]";
     String tabServiceDetails = "//*[contains(text(), 'Service Details')]";
     String lstServiceDetailsColumnFields = "//*[@id='nav-service-details']//div[contains(@class, 'columnFont')]//div";
-    String tblServiceLineFields = "//table[@class='table table-striped ng-star-inserted']//tr//th[(node())]";
+    String tblServiceLineFields = "(//table[@class='table table-striped ng-star-inserted']//tr//th[(node())])[not(position()=4)]";
     String btnFooterFields = "//*[@class='footer footer-flex']/button";
     String lnkLineNumber = "(//*[@class='gridData ng-star-inserted']//a)[1]";
     String tabPricing = "//*[contains(text(),'Pricing')]";
@@ -51,101 +51,37 @@ public class ServiceDetailsPage extends SeleniumUtils {
     }
 
     public void clickOnServiceDetails() throws InterruptedException {
-        threadSleep(2000);
+        explicitElementClickableWaitByXpath(tabServiceDetails, 20);
         clickElement(tabServiceDetails);
-        threadSleep(1000);
     }
 
     public void userViewsAllColumnFieldsInServiceDetails(DataTable columnList) {
-        List<String> columnListExp = columnList.asList();
-        List<WebElement> ActColumnFields = findElementsByXpath(lstServiceDetailsColumnFields);
-        List<String> columnFieldsForCompare = new ArrayList<>();
-        System.out.println("Size " + ActColumnFields.size());
-        for (WebElement column : ActColumnFields) {
-            scrollIntoView(column, driver);
-            String text = column.getText();
-            columnFieldsForCompare.add(text);
-        }
-        System.out.println("Fields in Service Details section :" + columnFieldsForCompare);
-        System.out.println("Expected fields are : " + columnListExp);
-        for (String exp : columnListExp) {
-            if (columnFieldsForCompare.contains(exp)) {
-                Assert.assertTrue(true);
-            } else {
-                Assert.fail(exp + " is not listed in actual list");
-            }
-        }
+        scrollToElementsAndCompare2Lists(columnList, lstServiceDetailsColumnFields);
     }
 
     public void verifyUserViewsFieldValuesInServiceDetails() {
-        List<WebElement> serviceDetailsValues = findElementsByXpath(lstServiceDetailsValues);
-        System.out.println("Size:" + serviceDetailsValues.size());
-        for (WebElement value : serviceDetailsValues) {
-            Assert.assertTrue(isDisplayed(value));
-            System.out.println("Value is displayed: " + isDisplayed(value));
-        }
+        scrollToElementsAndValidateDisplayStatus(lstServiceDetailsValues);
     }
 
     //  Scenario: Verify Service Lines fields
     public void userViewsServiceLineFields(DataTable serviceLineFields) {
-        List<String> serviceLineFieldsExp = serviceLineFields.asList();
-        List<WebElement> ActColumnFields = findElementsByXpath(tblServiceLineFields);
-        List<String> columnFieldsForCompare = new ArrayList<>();
-        System.out.println("Size " + ActColumnFields.size());
-        for (WebElement column : ActColumnFields) {
-            scrollIntoView(column, driver);
-            String text = column.getText();
-            columnFieldsForCompare.add(text);
-        }
-        int expValue = 2;
-        Assert.assertEquals(expValue, Collections.frequency(columnFieldsForCompare, "A"));
-        Assert.assertEquals(expValue, Collections.frequency(columnFieldsForCompare, "B"));
-        Assert.assertEquals(expValue, Collections.frequency(columnFieldsForCompare, "C"));
-        Assert.assertEquals(expValue, Collections.frequency(columnFieldsForCompare, "D"));
-        System.out.println("Fields in Service Line Fields section :" + columnFieldsForCompare);
-        System.out.println("Expected fields are : " + serviceLineFieldsExp);
-        for (String exp : serviceLineFieldsExp) {
-            if (columnFieldsForCompare.contains(exp)) {
-                Assert.assertTrue(true);
-            } else {
-                Assert.fail(exp + " is not listed in actual list");
-            }
-        }
+        explicitElementClickableWaitByXpath(tblServiceLineFields, 20);
+        scrollToElementsAndCompare2Lists(serviceLineFields, tblServiceLineFields);
     }
 
     public void userViewsServiceLineFieldValues() {
-        List<WebElement> serviceLineFieldValues = findElementsByXpath(lstServiceLineFieldValues);
-        System.out.println("Size:" + serviceLineFieldValues.size());
-        for (WebElement value : serviceLineFieldValues) {
-            isDisplayed(value);
-            System.out.println("Value is displayed: " + isDisplayed(value));
-        }
+        scrollToElementsAndValidateDisplayStatus(lstServiceLineFieldValues);
     }
 
     //  Scenario: Verify footer section available in Service details tab
     public void userViewsFooterSectionInServiceDetails(DataTable footerFields) {
-        List<String> footerFieldsExp = footerFields.asList();
-        List<WebElement> ActFooterFields = findElementsByXpath(btnFooterFields);
-        List<String> fieldsForCompare = new ArrayList<>();
-        System.out.println("Size" + ActFooterFields.size());
-        for (WebElement column : ActFooterFields) {
-            scrollIntoView(column, driver);
-            String text = column.getText();
-            fieldsForCompare.add(text);
-        }
-        System.out.println("Footer fields in Service Details page :" + fieldsForCompare);
-        System.out.println("Expected fields are : " + footerFieldsExp);
-        for (String exp : footerFieldsExp) {
-            if (fieldsForCompare.contains(exp)) {
-                Assert.assertTrue(true);
-            } else {
-                Assert.fail(exp + " is not listed in actual list");
-            }
-        }
+        explicitElementClickableWaitByXpath(btnFooterFields, 20);
+        compare2Lists(footerFields, btnFooterFields);
     }
 
     //  Scenario: Verify user able to navigate to Pricing page upon clicking Line number
     public void clickOnLineNumber() {
+        explicitElementClickableWaitByXpath(lnkLineNumber, 20);
         clickElement(lnkLineNumber);
     }
 

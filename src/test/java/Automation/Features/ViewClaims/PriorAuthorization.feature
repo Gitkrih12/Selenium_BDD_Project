@@ -49,4 +49,3 @@ Feature: Prior Authorization
       | Deny              |
       | Approve           |
       | Update Auth       |
-      | Deactivate        |
