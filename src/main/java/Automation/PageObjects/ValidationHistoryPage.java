@@ -131,7 +131,7 @@ public class ValidationHistoryPage extends SeleniumUtils {
     }
 
     //  Scenario: Verify footer section available in Validation History tab
-    public void verifyFooterFieldsInValidationHistory(DataTable expFields){
-       compare2Lists(expFields, btnFooterFields);
+    public void verifyFooterFieldsInValidationHistory(DataTable expFields) {
+        compare2Lists(expFields, btnFooterFields);
     }
 }
