@@ -46,10 +46,10 @@ public class ValidationHistoryPage extends SeleniumUtils {
         sendKeysUsingKeyboardInput(inputClaimNumber);
     }
 
-    public void clickOnClaimNumber() throws InterruptedException {
+    public void clickOnClaimNumber() {
         explicitTextToBePresentInElementLocatedWait(By.xpath(eleClaimNumber), 20, expClaimNumber);
         clickElement(eleClaimNumber);
-        threadSleep(1000);
+        explicitElementClickableWaitByXpath(tabValidationHistory, 20);
     }
 
     public void clickOnValidationHistory() {
@@ -66,11 +66,11 @@ public class ValidationHistoryPage extends SeleniumUtils {
     }
 
     //  Scenario: Verify user able to view the search criteria for Date and Time
-    public void userEntersDateAndTime() throws InterruptedException {
+    public void userEntersDateAndTime() {
         expDateAndTime = prop.getProperty("dateAndTime");
         explicitElementClickableWaitByXpath(txtDateAndTime, 20);
         findElementAndSendKeys(findElementByXpath(txtDateAndTime), expDateAndTime);
-        threadSleep(1000);
+        explicitTextToBePresentInElementLocatedWait(By.xpath(eleDateAndTime), 10, expDateAndTime);
     }
 
     public void verifyDateAndTimeFieldValue() {
@@ -79,11 +79,11 @@ public class ValidationHistoryPage extends SeleniumUtils {
     }
 
     //  Scenario: Verify user able to view the search criteria for Service Line No.
-    public void userEntersServiceLineNo() throws InterruptedException {
+    public void userEntersServiceLineNo() {
         expServiceLineNo = prop.getProperty("serviceLineNo");
         explicitElementClickableWaitByXpath(txtServiceLineNo, 20);
         findElementAndSendKeys(findElementByXpath(txtServiceLineNo), expServiceLineNo);
-        threadSleep(1000);
+        explicitTextToBePresentInElementLocatedWait(By.xpath(eleServiceLineNo), 10, expServiceLineNo);
     }
 
     public void verifyServiceLineNoFieldValue() {
@@ -92,11 +92,11 @@ public class ValidationHistoryPage extends SeleniumUtils {
     }
 
     //  Scenario: Verify user able to view the search criteria for Activity
-    public void userEntersActivity() throws InterruptedException {
+    public void userEntersActivity() {
         expActivity = prop.getProperty("activity");
         explicitElementClickableWaitByXpath(txtActivity, 20);
         findElementAndSendKeys(findElementByXpath(txtActivity), expActivity);
-        threadSleep(1000);
+        explicitTextToBePresentInElementLocatedWait(By.xpath(eleActivity), 10, expActivity);
     }
 
     public void verifyActivityFieldValue() {
@@ -105,11 +105,11 @@ public class ValidationHistoryPage extends SeleniumUtils {
     }
 
     //  Scenario: Verify user able to view the search criteria for Description
-    public void userEntersDescription() throws InterruptedException {
+    public void userEntersDescription() {
         expDescription = prop.getProperty("description");
         explicitElementClickableWaitByXpath(txtDescription, 20);
         findElementAndSendKeys(findElementByXpath(txtDescription), expDescription);
-        threadSleep(1000);
+        explicitTextToBePresentInElementLocatedWait(By.xpath(eleDescription), 10, expDescription);
     }
 
     public void verifyDescriptionFieldValue() {
@@ -118,11 +118,11 @@ public class ValidationHistoryPage extends SeleniumUtils {
     }
 
     //  Scenario: Verify user able to view the search criteria for Performed By
-    public void userEntersPerformedBy() throws InterruptedException {
+    public void userEntersPerformedBy() {
         expPerformedBy = prop.getProperty("performedBy");
         explicitElementClickableWaitByXpath(txtPerformedBy, 20);
         findElementAndSendKeys(findElementByXpath(txtPerformedBy), expPerformedBy);
-        threadSleep(1000);
+        explicitTextToBePresentInElementLocatedWait(By.xpath(elePerformedBy), 10, expPerformedBy);
     }
 
     public void verifyPerformedByFieldValue() {

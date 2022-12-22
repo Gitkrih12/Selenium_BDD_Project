@@ -33,7 +33,7 @@ public class ValidationHistoryStepDef extends ValidationHistoryPage {
 
     //  Scenario: Verify user able to view the search criteria for Date and Time
     @When("user searches for Date and Time in the field")
-    public void user_searches_for_date_and_time_in_the_field() throws InterruptedException {
+    public void user_searches_for_date_and_time_in_the_field() {
         userEntersDateAndTime();
     }
 
@@ -44,7 +44,7 @@ public class ValidationHistoryStepDef extends ValidationHistoryPage {
 
     //  Scenario: Verify user able to view the search criteria for Service Line No.
     @When("user searches for Service Line No in the field")
-    public void user_searches_for_service_line_no_in_the_field() throws InterruptedException {
+    public void user_searches_for_service_line_no_in_the_field() {
         userEntersServiceLineNo();
     }
 
@@ -55,7 +55,7 @@ public class ValidationHistoryStepDef extends ValidationHistoryPage {
 
     //  Scenario: Verify user able to view the search criteria for Activity
     @When("user searches for Activity in the field")
-    public void user_searches_for_activity_in_the_field() throws InterruptedException {
+    public void user_searches_for_activity_in_the_field() {
         userEntersActivity();
     }
 
@@ -66,7 +66,7 @@ public class ValidationHistoryStepDef extends ValidationHistoryPage {
 
     //  Scenario: Verify user able to view the search criteria for Description
     @When("user searches for Description in the field")
-    public void user_searches_for_description_in_the_field() throws InterruptedException {
+    public void user_searches_for_description_in_the_field() {
         userEntersDescription();
     }
 
@@ -77,7 +77,7 @@ public class ValidationHistoryStepDef extends ValidationHistoryPage {
 
     //  Scenario: Verify user able to view the search criteria for Performed By
     @When("user searches for Performed By in the field")
-    public void user_searches_for_performed_by_in_the_field() throws InterruptedException {
+    public void user_searches_for_performed_by_in_the_field() {
         userEntersPerformedBy();
     }
 
