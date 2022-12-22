@@ -10,7 +10,7 @@ public class MemberDetailsStepDef extends MemberDetailsPage {
 
     //  Scenario: Verify user should navigates to Member Details screen on clicking Patient ID/MBR ID
     @When("user clicks on the Patient ID or MBR ID")
-    public void user_clicks_on_the_patient_id_or_mbr_id() throws InterruptedException {
+    public void user_clicks_on_the_patient_id_or_mbr_id() {
         userClicksOnPatientID();
     }
 

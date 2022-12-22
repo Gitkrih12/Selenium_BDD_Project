@@ -56,6 +56,7 @@ public class ClaimDetailsPage extends SeleniumUtils {
     String tabPend = "//button[@id='nav-pend-details-tab']";
     String eleSuccessMessage = "//div[contains(@class,'toastr toast-success')]";
     String eleAssignedUser = "(//table[@class='table table-borderless']//tr)[2]//td[14]";
+    String eleState = "(//*[contains(text(), 'State')])[1]";
 
 
 
@@ -498,8 +499,8 @@ public class ClaimDetailsPage extends SeleniumUtils {
     }
 
     public void verifyUserViewsClaimSummarySection() {
-        boolean claimSummarySection = findElementByXpath(eleClaimNumber).isDisplayed();
-        Assert.assertFalse(claimSummarySection);
+        boolean claimSummarySection = findElementByXpath(eleState).isDisplayed();
+        Assert.assertTrue(claimSummarySection);
     }
 
     //  Scenario: Verify user able to view 1-New Claim Submission type in Claim details page

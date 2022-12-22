@@ -101,8 +101,7 @@ public class EditsPage extends SeleniumUtils {
 
     public void userViewsDeleteButtonUnderServiceLevelTab(){
         WebElement ele = findElementByXpath(innerScrollBarMemberList);
-        ele.click();
-        moveToElement(ele).clickAndHold().moveByOffset(250, 0).release().perform();
+        moveToElement(ele).clickAndHold().moveByOffset(300, 0).release().perform();
         userViewsDeleteButton(btnDeleteServiceLevel);
     }
 
