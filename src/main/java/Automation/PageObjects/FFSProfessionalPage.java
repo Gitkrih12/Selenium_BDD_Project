@@ -629,6 +629,7 @@ public class FFSProfessionalPage extends SeleniumUtils {
     //Scenario: Verify all tabs should display when clicking on Batch ID under Paid tab in FFS Professional page
     public void clickOnPaidBucket() {
         clickElement(tabPaid);
+        explicitInvisibilityOfElementWithTextWait(By.xpath(tabPaid), 90, "Paid ()");
     }
 
     public void enterBatchId() throws InterruptedException {
@@ -878,9 +879,9 @@ public class FFSProfessionalPage extends SeleniumUtils {
 
     public void selectCategory() throws InterruptedException {
         category = prop.getProperty("Category");
-        explicitDropdownElementsWait(20,txtCategory,"Option");
+        moveToElement(txtCategory).perform();
+        explicitDropdownElementsWait(20,txtCategory,"option");
         selectDropdownByVisibleText(txtCategory, category);
-        explicitTextToBePresentInElementLocatedWait(By.xpath(txtCategory), 20, "512");
     }
 
     public void enterDescription() {
