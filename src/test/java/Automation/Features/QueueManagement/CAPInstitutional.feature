@@ -243,7 +243,7 @@ Feature: CAP Institutional
   @TC_69634 @Sanity
   Scenario: Verify user able to navigate to the Downloads tab on clicking Downloads tab and verify the files when there are any files
     When user clicks on Paid bucket
-    And user enters Batch Id in search criteria for Check Void in CAP Institutional page
+    And user enters Batch Id in search criteria for issued check in CAP Institutional page
     And user clicks on Batch Id
     And user clicks on Downloads
     Then user able to view the "Download EOP Letter" and "Download 835 File"
