@@ -879,11 +879,9 @@ public class FFSProfessionalPage extends SeleniumUtils {
 
     public void selectCategory() throws InterruptedException {
         category = prop.getProperty("Category");
-        clickElement(txtTitle);
-        explicitDropdownElementsWait(20,txtCategory,"Option");
-        threadSleep(1000);
+        moveToElement(txtCategory).perform();
+        explicitDropdownElementsWait(20,txtCategory,"option");
         selectDropdownByVisibleText(txtCategory, category);
-        explicitTextToBePresentInElementLocatedWait(By.xpath(txtCategory), 20, "512");
     }
 
     public void enterDescription() {
