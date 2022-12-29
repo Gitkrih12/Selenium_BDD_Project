@@ -39,7 +39,7 @@ public class GlobalSearchPage extends SeleniumUtils {
     String txtDOSTo = "//input[@aria-label='DOS To Filter Input']";
     String eleDOSTo = "(//div[@col-id='dosTo']//span[@class='ag-cell-value'])[1]";
     String btnExportResult = "//button[text()='Export Result']";
-    String btnReprocess = "(//button[@title='Reprocess']//img)[1]";
+    String btnReprocess = "(//button//img[contains(@src,'Reprocess')])[1]";
     String txtUniversalSearchBar = "//input[@type='text' and @formcontrolname='searchName']";
     String imgSearchIcon = "//a//img[@class='SearchIcon']";
     String eleViewClaimTab = "//div[contains(@class,'active-tab')]";
