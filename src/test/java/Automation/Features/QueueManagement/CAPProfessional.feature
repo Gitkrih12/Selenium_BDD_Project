@@ -80,7 +80,7 @@ Feature: CAP Professional
     Then user should allow to navigates to back page in CAP Professional
 
     #40715-As an adjudicator, I should be able to click on any Claim number from CAP Professional queue and get navigated to appropriate claims details page
-  @TC_37332 @Sanity @beta
+  @TC_37332 @Sanity
   Scenario: Verify user able to navigate to claim summary screen on clicking claim number
     When user clicks on claim number in CAP Professional page
     Then user should be able to navigate to View Claim Details page
@@ -178,7 +178,7 @@ Feature: CAP Professional
       | History Doc   |
       | Downloads     |
 
-  @TC_51980 @Sanity @beta
+  @TC_51980 @Sanity
   Scenario: Verify by default user navigates to the View Claims List page
     When user clicks on Paid bucket
     And user enters Batch Id in search criteria in CAP Professional page
