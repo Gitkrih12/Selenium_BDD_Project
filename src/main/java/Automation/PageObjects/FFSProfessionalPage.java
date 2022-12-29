@@ -7,7 +7,11 @@ import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.Color;
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.time.Duration;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -68,6 +72,8 @@ public class FFSProfessionalPage extends SeleniumUtils {
     String lstTabsInBatchID = "//div[@id='nav-tab']//button";
     String txtBatchID = "(//input[@aria-label='Batch ID Filter Input'])[5]";
     String eleBatchID = "(//*[@id='paidGrid']//div[@col-id='batchCode']//a)[1]";
+    String eleBatchID2 = "(//*[@id='paidGrid']//div[@col-id='batchCode']//a)[2]";
+    String eleNetPaidAmountForVoid = "(//div[@col-id='totalPaymentAmount'])[2]";
     String tabClaimListState = "(//button[@class='nav-link active'])[1]";
     String lstClaimList = "//div[@col-id='claimNumber']//a";
     String tabClaimList = "//button[@id='nav-view-claim-list-details-tab']";
@@ -106,9 +112,55 @@ public class FFSProfessionalPage extends SeleniumUtils {
     String lstApprovedColumnFields = "//ag-grid-angular[@id='approvedGrid']//div[@class='ag-header-cell-label']//span[text()]";
     String lstDeniedColumnFields = "//ag-grid-angular[@id='deniedGrid']//div[@class='ag-header-cell-label']//span[text()]";
     String lstPreBatchColumnFields = "//ag-grid-angular[@id='prebatchdGrid']//div[@class='ag-header-cell-label']//span[text()]";
+    String btnBatchClaimsToPay = "//button[text()='Batch Claims To Pay']";
+    String chkClaimNumberPreBatchBucket = "(//*[@id='prebatchdGrid']//div[contains(@class,'ag-cell-last-left-pinned')]//div[@class='ag-selection-checkbox'])[1]";
+    String chkClaimNumberPreBatchBucketSelectAll = "(//*[@id='prebatchdGrid']//div[contains(@class,'select-all')])[3]";
     String btnPreBatchPay = "//button[text()='Pre-Batch Pay']";
-    String chkClaimNumber = "(//*[@id='approvedGrid']//div[contains(@class,'ag-cell-last-left-pinned')]//div[@class='ag-selection-checkbox'])[1]";
-
+    String chkClaimNumberApprovedBucket = "(//*[@id='approvedGrid']//div[contains(@class,'ag-cell-last-left-pinned')]//div[@class='ag-selection-checkbox'])[1]";
+    String chkClaimNumberApprovedBucketSelectAll = "(//*[@id='approvedGrid']//div[contains(@class,'select-all')])[3]";
+    String chkClaimNumberDeniedBucket = "(//*[@id='deniedGrid']//div[contains(@class,'ag-cell-last-left-pinned')]//div[@class='ag-selection-checkbox'])[1]";
+    String chkClaimNumberDeniedBucketSelectAll = "(//*[@id='deniedGrid']//div[contains(@class,'select-all')])[3]";
+    String btnPreBatchDeny = "//button[text()='Pre-Batch Deny']";
+    String eleValidatingClaims = "//div//p[contains(text(),'Validating claims')]";
+    String tabPreBatchToPayValidation = "//div[contains(text(),'PreBatch To Pay Validation')]";
+    String lstPreBatchToPayValidationColumnFields = "//ag-grid-angular[@id='validGrid']//div[@class='ag-header-cell-label']//span[text()]";
+    String lstTabsInPreBatchToPayValidation = "//div[@id='nav-tab']//button[@role='tab']";
+    String tabValid = "//button[contains(text(),'Valid')]";
+    String btnRemove = "//button[contains(text(),'Remove')]";
+    String btnConfirmPreBatchPay = "//button[contains(text(),'Confirm Pre-Batch Pay')]";
+    String tabInvalid = "//button[contains(text(),'Invalid')]";
+    String btnPend = "//button[contains(text(),'Pend')]";
+    String btnOnHold = "//button[contains(text(),'On Hold')]";
+    String btnManagementReview = "//button[contains(text(),'Management Review')]";
+    String tabBatchToPay = "//button[@id='nav-batchtopay-details-tab']";
+    String lstTabsInBatchToPay = "//div[@id='nav-tab-batchtopay']//button[@role='tab']";
+    String tabToBeSingedOff = "//button[@id='nav-tobesignedoff-details-tab']";
+    String lstToBeSingedOffColumnFields = "//ag-grid-angular[@id='toBeSignedOffGrid']//div[@class='ag-header-cell-label']//span[text()]";
+    String lstSingedOffColumnFields = "//ag-grid-angular[@id='signedOffGrid']//div[@class='ag-header-cell-label']//span[text()]";
+    String tabSingedOff = "//button[@id='nav-signedoff-details-tab']";
+    String tabSentForPayment = "//button[@id='nav-sentforpayment-details-tab']";
+    String lstSentForPaymentColumnFields = "//ag-grid-angular[@id='sentForPaymentGrid']//div[@class='ag-header-cell-label']//span[text()]";
+    String btnUploadGreatPlainsFile = "//button[contains(text(),'Upload Great Plains File')]";
+    String tabEFTPayment = "//button[@id='nav-eftpayment-details-tab']";
+    String lstEFTPaymentColumnFields = "//ag-grid-angular[@id='eftPaymentGrid']//div[@class='ag-header-cell-label']//span[text()]";
+    String btnUnBatch = "//button[text()='Unbatch']";
+    String btnEFTPayment = "//button[text()='EFT Payment']";
+    String btnSignOff = "//button[text()='Sign Off']";
+    String chkBatchIDToBeSignedOffTab = "(//*[@id='toBeSignedOffGrid']//div[@ref='eCheckbox'])[1]";
+    String chkBatchIDEFTPaymentTab = "(//*[@id='eftPaymentGrid']//div[@ref='eCheckbox'])[1]";
+    String btnMoveToPaid = "//button[text()='Move To Paid']";
+    String btnToBeSignedOff = "//button[text()='To Be signed Off']";
+    String btnReGenerateEFT = "//button[text()='Re-Generate EFT']";
+    String lnkBatchIdToBeSignedOff = "(//ag-grid-angular[@id='toBeSignedOffGrid']//div[@col-id='batchCode']//a)[1]";
+    String eleClaimListInBatchId = "(//div[@id='nav-view-claim-list-details']//span)[1]";
+    String lnkBatchIdSignedOff = "(//ag-grid-angular[@id='signedOffGrid']//div[@col-id='batchCode']//a)[1]";
+    String lnkBatchIdSentForPayment = "(//ag-grid-angular[@id='sentForPaymentGrid']//div[@col-id='batchCode']//a)[1]";
+    String lnkBatchIdEFTPayment = "(//ag-grid-angular[@id='eftPaymentGrid']//div[@col-id='batchCode']//a)[1]";
+    String lstPaidColumnFields = "//ag-grid-angular[@id='paidGrid']//div[@class='ag-header-cell-label']//span[text()]";
+    String tabDraft = "//button[@id='nav-draft-details-tab']";
+    String lstDraftColumnFields = "//ag-grid-angular[@id='draftGrid']//div[@class='ag-header-cell-label']//span[text()]";
+    String tabReject = "//button[@id='nav-rejected-details-tab']";
+    String lstRejectColumnFields = "//ag-grid-angular[@id='rejectGrid']//div[@class='ag-header-cell-label']//span[text()]";
 
 
     private static String expClaimNumber = "";
@@ -120,6 +172,7 @@ public class FFSProfessionalPage extends SeleniumUtils {
     private static String title = "";
     private static String category = "";
     private static String description = "";
+    private static String getBatchId="";
 
 
     //Scenario: Verify user should navigates to FFS Professional screen
@@ -378,6 +431,7 @@ public class FFSProfessionalPage extends SeleniumUtils {
 
     //Scenario: Verify colour coding for Unclean status claims under Pre Batch bucket in FFS professional page
     public void clickOnPreBatchBucket() {
+        explicitVisibilityOfWait(findElementByXpath(tabPreBatch), 5);
         clickElement(tabPreBatch);
     }
 
@@ -439,28 +493,16 @@ public class FFSProfessionalPage extends SeleniumUtils {
         List<WebElement> actQueueFields = findElementsByXpath(lstQueues);
         List<String> actualQueueFieldsForCompare = new ArrayList<>();
         for (WebElement column : actQueueFields) {
-            threadSleep(1000);
+            explicitElementClickableWait(column,10);
             scrollIntoView(column, driver);
             String text = column.getText();
             String[] queueData = text.split(" ");
-            if (queueData.length == 2) {
-                actualQueueFieldsForCompare.add(queueData[0]);
-            } else if (queueData.length == 3) {
-                actualQueueFieldsForCompare.add(queueData[0] + " " + queueData[1]);
-            } else if (queueData.length == 4) {
-                actualQueueFieldsForCompare.add(queueData[0] + " " + queueData[1] + " " + queueData[2]);
-            }
+            String data = text.substring(0, text.indexOf("(")).trim();
+            actualQueueFieldsForCompare.add(data);
         }
         System.out.println("actual queue fields " + actualQueueFieldsForCompare);
         System.out.println("expected queue fields " + expQueueList);
-        for (String expQueue : expQueueList) {
-            if (actualQueueFieldsForCompare.contains(expQueue)) {
-                Assert.assertTrue(true);
-            } else {
-                Assert.fail(expQueue + " queue is not as expected");
-            }
-        }
-
+        Assert.assertEquals(expQueueList,actualQueueFieldsForCompare);
     }
 
     //Scenario: Verify by default user should be in the Pend state in FFS Professional screen
@@ -522,7 +564,7 @@ public class FFSProfessionalPage extends SeleniumUtils {
 
     //Scenario: Verify user able to navigate through pages by using Pagination functionality
 
-    public void clickOnOnHold(){
+    public void clickOnOnHold() {
         explicitInvisibilityOfElementWithTextWait(By.xpath(tabOnHold), 60, "On Hold ()");
         clickElement(tabOnHold);
     }
@@ -591,7 +633,7 @@ public class FFSProfessionalPage extends SeleniumUtils {
 
     public void enterBatchId() throws InterruptedException {
         expBatchID = prop.getProperty("ffsProfessionalBatchID");
-        explicitVisibilityOfElementLocatedWaitByXpath(txtBatchID, 10);
+        explicitVisibilityOfElementLocatedWaitByXpath(txtBatchID, 20);
         findElementAndSendKeys(findElementByXpath(txtBatchID), expBatchID);
         explicitTextToBePresentInElementLocatedWait(By.xpath(eleBatchID), 15, expBatchID);
     }
@@ -600,8 +642,22 @@ public class FFSProfessionalPage extends SeleniumUtils {
         explicitElementClickableWaitByXpath(eleBatchID, 10).click();
         explicitInvisibilityOfElementWithTextWait(By.xpath(tabHistoryDoc), 60, "History Doc ()");
         explicitTextToBePresentInElementLocatedWait(By.xpath(tabDownloads), 20, "Downloads");
-        threadSleep(1000);
     }
+    public void clickOnBatchIdForCheckVoid() throws InterruptedException {
+        String netPaidAmount = getText(eleNetPaidAmountForVoid);
+        if(netPaidAmount.contains("-")){
+            explicitElementClickableWaitByXpath(eleBatchID2, 10).click();
+            explicitInvisibilityOfElementWithTextWait(By.xpath(tabHistoryDoc), 60, "History Doc ()");
+            explicitTextToBePresentInElementLocatedWait(By.xpath(tabDownloads), 20, "Downloads");
+        }else{
+            explicitElementClickableWaitByXpath(eleBatchID, 10).click();
+            explicitInvisibilityOfElementWithTextWait(By.xpath(tabHistoryDoc), 60, "History Doc ()");
+            explicitTextToBePresentInElementLocatedWait(By.xpath(tabDownloads), 20, "Downloads");
+        }
+
+    }
+
+
 
     public void verifyTabsInBatchIDInFFSProfessional(DataTable tabList) throws InterruptedException {
         List<String> expTabList = tabList.asList();
@@ -820,11 +876,11 @@ public class FFSProfessionalPage extends SeleniumUtils {
         findElementAndSendKeys(findElementByXpath(txtTitle), title);
     }
 
-    public void selectCategory() {
+    public void selectCategory() throws InterruptedException {
         category = prop.getProperty("Category");
-       // explicitVisibilityOfWait(findElementByXpath(txtCategory), 5);
-        explicitElementClickableWaitByXpath(txtCategory, 20);
+        explicitDropdownElementsWait(20,txtCategory,"Option");
         selectDropdownByVisibleText(txtCategory, category);
+        explicitTextToBePresentInElementLocatedWait(By.xpath(txtCategory), 20, "512");
     }
 
     public void enterDescription() {
@@ -859,7 +915,6 @@ public class FFSProfessionalPage extends SeleniumUtils {
 
     public void verifyNotesAddedInNotesSection() throws InterruptedException {
         explicitElementClickableWaitByXpath(eleNotes, 20);
-        //explicitVisibilityOfWait(findElementByXpath(eleNotes), 10);
         String actNotesText = findElementByXpath(eleNotes).getText();
         System.out.println("Actual Notes :" + actNotesText);
         String[] actNotes = actNotesText.split("\n");
@@ -883,59 +938,366 @@ public class FFSProfessionalPage extends SeleniumUtils {
     }
 
     //Scenario: Validate user able to view all the column fields under On Hold bucket in FFS Professional screen
-    public void verifyFFSProfessionalOnHoldColumnFields(DataTable columnList){
-        scrollToElementsAndCompare2Lists(columnList,lstOnHoldColumnFields);
+    public void verifyFFSProfessionalOnHoldColumnFields(DataTable columnList) {
+        scrollToElementsAndCompare2Lists(columnList, lstOnHoldColumnFields);
     }
 
     //Scenario: Validate user able to view all the column fields under Payer Review bucket in FFS Professional screen
-    public void verifyFFSProfessionalPayerReviewColumnFields(DataTable columnList){
-        scrollToElementsAndCompare2Lists(columnList,lstPayerReviewColumnFields);
+    public void verifyFFSProfessionalPayerReviewColumnFields(DataTable columnList) {
+        scrollToElementsAndCompare2Lists(columnList, lstPayerReviewColumnFields);
     }
 
     //Scenario: Validate user able to view all the column fields under Management Review bucket in FFS Professional screen
-    public void verifyFFSProfessionalManagementReviewColumnFields(DataTable columnList){
-        scrollToElementsAndCompare2Lists(columnList,lstManagementReviewColumnFields);
+    public void verifyFFSProfessionalManagementReviewColumnFields(DataTable columnList) {
+        scrollToElementsAndCompare2Lists(columnList, lstManagementReviewColumnFields);
     }
 
     //Scenario: Validate user able to view all the column fields under Approved bucket in FFS Professional screen
-    public void verifyFFSProfessionalApprovedColumnFields(DataTable columnList){
-        scrollToElementsAndCompare2Lists(columnList,lstApprovedColumnFields);
+    public void verifyFFSProfessionalApprovedColumnFields(DataTable columnList) {
+        scrollToElementsAndCompare2Lists(columnList, lstApprovedColumnFields);
     }
 
     //Scenario: Validate user able to view all the column fields under Denied bucket in FFS Professional screen
-    public void verifyFFSProfessionalDeniedColumnFields(DataTable columnList){
-        scrollToElementsAndCompare2Lists(columnList,lstDeniedColumnFields);
+    public void verifyFFSProfessionalDeniedColumnFields(DataTable columnList) {
+        scrollToElementsAndCompare2Lists(columnList, lstDeniedColumnFields);
     }
 
     //Scenario: Validate user able to view all the column fields under Pre-Batch bucket in FFS Professional screen
-    public void verifyFFSProfessionalPreBatchColumnFields(DataTable columnList){
-        scrollToElementsAndCompare2Lists(columnList,lstPreBatchColumnFields);
+    public void verifyFFSProfessionalPreBatchColumnFields(DataTable columnList) {
+        explicitVisibilityOfWait(findElementByXpath(lstPreBatchColumnFields), 5);
+        scrollToElementsAndCompare2Lists(columnList, lstPreBatchColumnFields);
+    }
+
+    //Scenario: Verify Batch Claims To Pay button when select claim number from Prebatch bucket
+    public void verifyBatchClaimsToPayButtonInDisabledMode() {
+        Assert.assertFalse(isEnabled(btnBatchClaimsToPay));
+    }
+
+    public void clickClaimNumberChkBoxOnPreBatchBucket() {
+        explicitElementClickableWaitByXpath(chkClaimNumberPreBatchBucket, 20);
+        clickElement(chkClaimNumberPreBatchBucket);
+    }
+
+    public void verifyBatchClaimsToPayButtonInEnabledMode() {
+        Assert.assertTrue(isEnabled(btnBatchClaimsToPay));
+    }
+
+    public void clickSelectAllClaimNumberChkBoxOnPreBatchBucket() {
+        explicitElementClickableWaitByXpath(chkClaimNumberPreBatchBucketSelectAll, 20);
+        clickElement(chkClaimNumberPreBatchBucketSelectAll);
     }
 
     //Scenario: Verify Pre Batch Pay button when select claim number from Approved bucket
-    public void verifyPreBatchPayButtonInDisabledMode(){
-        String attribute = getAttribute(btnPreBatchPay,"disabled");
-        if(attribute.contains("true")){
+    public void verifyPreBatchPayButtonInDisabledMode() {
+        Assert.assertFalse(isEnabled(btnPreBatchPay));
+    }
+
+    public void clickClaimNumberChkBoxOnApprovedBucket() {
+        explicitElementClickableWaitByXpath(chkClaimNumberApprovedBucket, 20);
+        clickElement(chkClaimNumberApprovedBucket);
+    }
+
+    public void verifyPreBatchPayButtonInEnabledMode() {
+        Assert.assertTrue(isEnabled(btnPreBatchPay));
+    }
+
+    //Scenario: Verify Pre batch Pay button when select multiple claim numbers from Approved bucket
+    public void clickSelectAllClaimNumberChkBox() {
+        explicitElementClickableWaitByXpath(chkClaimNumberApprovedBucketSelectAll, 20);
+        clickElement(chkClaimNumberApprovedBucketSelectAll);
+    }
+
+    //Scenario: Verify user should be able to see  PreBatch To Pay Validation screen on clicking Pre Batch Pay button
+    public void clickOnPreBachPayButton() {
+        clickElement(btnPreBatchPay);
+    }
+
+    public void verifyPreBatchPayValidationScreen(String expPreBatchToPayValidation) {
+        explicitInvisibilityOfElementWithTextWait(By.xpath(eleValidatingClaims), 120, "Validating claims");
+        String actPrBatchToPayValidation = getText(tabPreBatchToPayValidation);
+        System.out.println("act text :" + actPrBatchToPayValidation);
+        if (actPrBatchToPayValidation.contains(expPreBatchToPayValidation)) {
             Assert.assertTrue(true);
-        }else{
+        } else {
             Assert.assertTrue(false);
         }
 
     }
 
-    public void clickClaimNumberChkBox(){
-        explicitElementClickableWaitByXpath(chkClaimNumber, 20);
-        clickElement(chkClaimNumber);
+    //Scenario: Validate user able to view all the column fields under PreBatch Pay validation bucket in FFS Professional screen
+    public void verifyFFSProfessionalPreBatchToPayValidationColumnFields(DataTable columnList) {
+        scrollToElementsAndCompare2Lists(columnList, lstPreBatchToPayValidationColumnFields);
     }
-    public void verifyPreBatchPayButtonInEnabledMode(){
-        String attribute = getAttribute(btnPreBatchPay,"disabled");
-        if(attribute==null){
+
+    public void verifyTabsInPreBatchToPayValidationInFFSProfessional(DataTable tabList) throws InterruptedException {
+        List<String> expTabList = tabList.asList();
+        explicitInvisibilityOfElementWithTextWait(By.xpath(tabValid), 120, "Valid ()");
+        explicitInvisibilityOfElementWithTextWait(By.xpath(tabInvalid), 120, "Invalid ()");
+        List<WebElement> actTabFields = findElementsByXpath(lstTabsInPreBatchToPayValidation);
+        List<String> actualQueueFieldsForCompare = new ArrayList<>();
+        for (WebElement column : actTabFields) {
+            explicitVisibilityOfWait(column, 5);
+            String text = column.getText();
+            String data = text.substring(0, text.indexOf("(")).trim();
+            actualQueueFieldsForCompare.add(data);
+        }
+        System.out.println("actual tab fields " + actualQueueFieldsForCompare);
+        System.out.println("expected tab fields " + expTabList);
+        Assert.assertEquals(expTabList,actualQueueFieldsForCompare);
+
+    }
+
+    //Scenario: Verify buttons in Valid tab under PreBatch To Pay Validation screen
+    public void verifyValidTab(String expText) {
+        explicitInvisibilityOfElementWithTextWait(By.xpath(tabValid), 120, "Valid ()");
+        String actText = getText(tabValid);
+        System.out.println("actText :" + actText);
+        if (actText.contains(expText)) {
             Assert.assertTrue(true);
-        }else{
+        } else {
+            Assert.assertTrue(false);
+        }
+
+    }
+
+    public void verifyRemoveAndConfirmPreBatchPayButtons(String expRemove, String expConfirmPreBatchPay) {
+        String actRemoveText = getText(btnRemove).trim();
+        Assert.assertEquals(expRemove,actRemoveText);
+
+        String actConfirmPreBatchText = getText(btnConfirmPreBatchPay).trim();
+        Assert.assertEquals(expConfirmPreBatchPay,actConfirmPreBatchText);
+    }
+
+    public void clickOnInvalidTab() throws InterruptedException {
+        explicitInvisibilityOfElementWithTextWait(By.xpath(tabInvalid), 120, "Invalid ()");
+        clickElement(tabInvalid);
+    }
+
+    public void verifyPendOnHoldAndManagementReviewButtons(String expPend, String expOnHold, String expManagementReview) {
+        String actPendText = getText(btnPend).trim();
+        Assert.assertEquals(expPend,actPendText);
+
+        String actOnHoldText = getText(btnOnHold);
+        Assert.assertEquals(expOnHold,actOnHoldText);
+
+        String actManagementReviewText = getText(btnManagementReview);
+        Assert.assertEquals(expManagementReview,actManagementReviewText);
+    }
+
+    //Scenario: Verify Pre batch Deny button when select claim number from Denied bucket
+    public void verifyPreBatchDenyButtonInDisabledMode() {
+        Assert.assertFalse(isEnabled(btnPreBatchDeny));
+    }
+
+    public void clickClaimNumberChkBoxOnDeniedBucket() {
+        explicitElementClickableWaitByXpath(chkClaimNumberDeniedBucket, 20);
+        clickElement(chkClaimNumberDeniedBucket);
+    }
+
+    public void verifyPreBatchDenyButtonInEnabledMode() {
+        String attribute = getAttribute(btnPreBatchDeny, "disabled");
+        if (attribute == null) {
+            Assert.assertTrue(true);
+        } else {
             Assert.assertTrue(false);
         }
     }
 
+    //Scenario: Verify Pre batch Pay button when select multiple claim numbers from Denied bucket
+    public void clickSelectAllClaimNumberChkBoxOnDeniedBucket() {
+        explicitElementClickableWaitByXpath(chkClaimNumberDeniedBucketSelectAll, 20);
+        clickElement(chkClaimNumberDeniedBucketSelectAll);
+    }
+
+    public void clickOnBatchToPayBucket() {
+        clickElement(tabBatchToPay);
+    }
+
+    public void verifyTabsInBatchBatchToPayInFFSProfessional(DataTable tabList) throws InterruptedException {
+        List<String> expTabList = tabList.asList();
+        List<WebElement> actTabFields = findElementsByXpath(lstTabsInBatchToPay);
+        List<String> actualQueueFieldsForCompare = new ArrayList<>();
+        for (WebElement column : actTabFields) {
+            threadSleep(1000);
+            String text = column.getText();
+            String data = text.substring(0, text.indexOf("(")).trim();
+            actualQueueFieldsForCompare.add(data);
+        }
+        System.out.println("actual tab fields " + actualQueueFieldsForCompare);
+        System.out.println("expected tab fields " + expTabList);
+        Assert.assertEquals(expTabList,actualQueueFieldsForCompare);
+    }
+
+    public void verifyToBeSignedOffTab(String expText) {
+        explicitTextToBePresentInElementLocatedWait(By.xpath(tabToBeSingedOff), 15, expText);
+        String actText = getText(tabToBeSingedOff);
+        if (actText.contains(expText)) {
+            Assert.assertTrue(true);
+        } else {
+            Assert.assertTrue(false);
+        }
+
+    }
+
+    public void verifyFFSProfessionalToBeSignedOffColumnFields(DataTable columnList) {
+        compare2Lists(columnList, lstToBeSingedOffColumnFields);
+    }
+
+    //Scenario: Verify buttons in To Be Signed Off tab under Batch To Pay bucket
+    public void verifyUnBatchButtonInDisabledMode() {
+        Assert.assertFalse(isEnabled(btnUnBatch));
+    }
+
+    public void verifyEFTPaymentButtonInDisabledMode() {
+        Assert.assertFalse(isEnabled(btnEFTPayment));
+    }
+
+    public void verifySignOffButtonInDisabledMode() {
+        Assert.assertFalse(isEnabled(btnSignOff));
+    }
+
+    public void clickOnBatchIdCheckBox() {
+        clickElement(chkBatchIDToBeSignedOffTab);
+    }
+
+    public void verifyUnBatchButtonInEnabledMode() {
+        Assert.assertTrue(isEnabled(btnUnBatch));
+    }
+
+    public void verifyEFTPaymentButtonInEnabledMode() {
+        Assert.assertTrue(isEnabled(btnEFTPayment));
+    }
+
+    public void verifySignOffButtonInEnabledMode() {
+        Assert.assertTrue(isEnabled(btnSignOff));
+    }
+
+    //Scenario: Validate user able to view all the column fields in Signed Off under Batch To Pay bucket in FFS Professional screen
+    public void clickOnSignedOffTab() {
+        explicitElementClickableWaitByXpath(tabSingedOff, 20);
+        clickElement(tabSingedOff);
+    }
+
+    public void verifyFFSProfessionalSignedOffColumnFields(DataTable columnList) {
+        scrollToElementsAndCompare2Lists(columnList, lstSingedOffColumnFields);
+    }
+
+    //Scenario: Validate user able to view all the column fields in Sent for Payment under Batch To Pay bucket in FFS Professional screen
+    public void clickOnSentForPaymentTab() {
+        explicitElementClickableWaitByXpath(tabSentForPayment, 20);
+        clickElement(tabSentForPayment);
+    }
+
+    public void verifyFFSProfessionalSentForPaymentColumnFields(DataTable columnList) {
+        scrollToElementsAndCompare2Lists(columnList, lstSentForPaymentColumnFields);
+    }
+
+    //Scenario: Verify user should be able to see Upload Great Plains File button in Sent for Payment tab under Batch to Pay bucket
+    public void verifyUploadGreatPlainsFileButton(String expText) {
+        explicitTextToBePresentInElementLocatedWait(By.xpath(btnUploadGreatPlainsFile), 15, expText);
+        String actText = getText(btnUploadGreatPlainsFile);
+        if (actText.contains(expText)) {
+            Assert.assertTrue(true);
+        } else {
+            Assert.assertTrue(false);
+        }
+
+    }
+
+    //Scenario: Validate user able to view all the column fields in EFT Payment under Batch To Pay bucket in FFS Professional screen
+    public void clickOnEFTPaymentTab() {
+        explicitElementClickableWaitByXpath(tabEFTPayment, 20);
+        clickElement(tabEFTPayment);
+    }
+
+    public void verifyFFSProfessionalEFTPaymentColumnFields(DataTable columnList) {
+        scrollToElementsAndCompare2Lists(columnList, lstEFTPaymentColumnFields);
+    }
+
+    //Scenario: Verify buttons in EFT Payment tab under Batch To Pay bucket
+    public void verifyMoveToPaidButtonInDisabledMode() {
+        Assert.assertFalse(isEnabled(btnMoveToPaid));
+    }
+
+    public void verifyToBeSignedOffButtonInDisabledMode() {
+        Assert.assertFalse(isEnabled(btnToBeSignedOff));
+    }
+
+    public void verifyReGenerateButtonInEnabledMode() {
+        Assert.assertTrue(isEnabled(btnReGenerateEFT));
+    }
+
+    public void clickOnBatchIdCheckBoxInEFTPayment() {
+        explicitElementClickableWaitByXpath(chkBatchIDEFTPaymentTab, 20);
+        clickElement(chkBatchIDEFTPaymentTab);
+    }
+
+    public void verifyMoveToPaidButtonInEnabledMode() {
+        Assert.assertTrue(isEnabled(btnMoveToPaid));
+    }
+
+    public void verifyToBeSignedOffButtonInEnabledMode() {
+        Assert.assertTrue(isEnabled(btnToBeSignedOff));
+    }
+
+    //Scenario: Verify user should be able to see Claims List on clicking on Batch Id in To Be Signed Off tab
+    public void clickOnBatchIdToBeSignedOffTab() {
+        explicitElementClickableWaitByXpath(lnkBatchIdToBeSignedOff, 20);
+        getBatchId= getText(lnkBatchIdToBeSignedOff);
+        System.out.println("Batch id "+getBatchId);
+        clickElement(lnkBatchIdToBeSignedOff);
+
+    }
+
+    public void verifyClaimListInBatchID(String expText) {
+        String actText = getText(eleClaimListInBatchId);
+        String expText1=expText+getBatchId;
+        System.out.println("text "+expText1);
+        Assert.assertEquals(expText1,actText);
+    }
+
+    //Scenario: Verify user should be able to see Claims List on clicking on Batch Id in Signed Off tab
+    public void clickOnBatchIdSignedOffTab() {
+        explicitElementClickableWaitByXpath(lnkBatchIdSignedOff, 20);
+        getBatchId= getText(lnkBatchIdSignedOff);
+        clickElement(lnkBatchIdSignedOff);
+    }
+
+    //Scenario: Verify user should be able to see Claims List on clicking on Batch Id in Sent for Payment tab
+    public void clickOnBatchIdSentForPaymentTab() {
+        explicitElementClickableWaitByXpath(lnkBatchIdSentForPayment, 20);
+        getBatchId= getText(lnkBatchIdSentForPayment);
+        clickElement(lnkBatchIdSentForPayment);
+    }
+
+    //Scenario: Verify user should be able to see Claims List on clicking on Batch Id in EFT Payment tab
+    public void clickOnBatchIdEFTPaymentTab() {
+        explicitElementClickableWaitByXpath(lnkBatchIdEFTPayment, 20);
+        getBatchId= getText(lnkBatchIdEFTPayment);
+        clickElement(lnkBatchIdEFTPayment);
+    }
+
+    public void verifyFFSProfessionalPaidColumnFields(DataTable columnList) {
+        scrollToElementsAndCompare2Lists(columnList, lstPaidColumnFields);
+    }
+
+    //Scenario: Validate user able to view all the column fields under Draft bucket in FFS Professional screen
+    public void clickOnDraftBucket() {
+        clickElement(tabDraft);
+    }
+
+    public void verifyFFSProfessionalDraftColumnFields(DataTable columnList) {
+        scrollToElementsAndCompare2Lists(columnList, lstDraftColumnFields);
+    }
+
+    //Scenario: Validate user able to view all the column fields under Draft bucket in FFS Professional screen
+    public void clickOnRejectBucket() {
+        clickElement(tabReject);
+    }
+
+    public void verifyFFSProfessionalRejectColumnFields(DataTable columnList) {
+        scrollToElementsAndCompare2Lists(columnList, lstRejectColumnFields);
+    }
 
 
 }

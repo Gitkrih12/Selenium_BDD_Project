@@ -569,6 +569,17 @@ public class SeleniumUtils extends Driver {
         }
     }
 
+    public WebElement explicitDropdownElementsWait(int duration,  String ParentXpath, String tagName ) {
+        try {
+            WebElement element = new WebDriverWait(driver, Duration.ofSeconds(duration)).
+                    until(ExpectedConditions.presenceOfNestedElementLocatedBy(By.xpath(ParentXpath),By.tagName(tagName)));
+            return element;
+        } catch (Exception e) {
+            Assert.fail("Element not found | Error - " + e);
+            return null;
+        }
+    }
+
     public WebElement explicitVisibilityOfElementLocatedWaitByID(String id, int duration) {
         try {
             WebElement element = new WebDriverWait(driver, Duration.ofSeconds(duration)).
@@ -845,6 +856,23 @@ public class SeleniumUtils extends Driver {
             System.out.println("Element is not attached to the page document" + e.getStackTrace());
         }
     }
+
+    /*
+        -Use this method to wait for the certain number of web elements to be displayed on a web page
+        -Accepts parameters xpath, duration and count
+        -Xpath should contain multiple web elements address
+     */
+    public List<WebElement> explicitCountToBeWait(String xpath, int duration, int count) {
+        List<WebElement> elements = null;
+        try {
+            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(duration));
+            elements = wait.until(ExpectedConditions.numberOfElementsToBe(By.xpath(xpath), count));
+        } catch (Exception e) {
+            Assert.fail("Unable to wait for the given count");
+        }
+        return elements;
+    }
+
     //************ End of Wait related methods *************//
 
 
