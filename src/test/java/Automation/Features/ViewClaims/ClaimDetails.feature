@@ -93,14 +93,14 @@ Feature: Claim Details
     When user clicks on the Claim Number in Universal Search
     Then user navigates to the "Claim Summary" page
     And user able to view the below fields under claim information section
-      | Claim Number         |
-      | Reference Number     |
-      | State                |
-      | Claim Status         |
-      | Claim Type           |
-      | Form Type            |
-      | Claim Submission     |
-      | Clean/Unclean Status |
+      | Claim Number           |
+      | Reference Number       |
+      | State                  |
+      | Claim Status           |
+      | Claim Type             |
+      | Form Type              |
+      | Claim Submission       |
+      | Clean / Unclean Status |
     And user able to view all the field values under claim information section
 
   @37405 @beta

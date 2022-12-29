@@ -49,7 +49,7 @@ public class DocumentStepDef extends DocumentsPage {
     }
 
     @Then("user able to view the field values under Attachments sub tab")
-    public void user_able_to_view_the_field_values_under_attachments_sub_tab() throws InterruptedException {
+    public void user_able_to_view_the_field_values_under_attachments_sub_tab() {
         verifyFieldValuesUnderAttachments();
     }
 
