@@ -18,7 +18,7 @@ public class DocumentsPage extends SeleniumUtils {
     String lstAttachments = "//app-documents//*[@id = 'resultsGrid1']//span[@ref = 'eText']";
     String lstEdiFilesValues = "(//app-documents//div[@aria-label = 'Press SPACE to select this row.'])[4]//span[@class = 'ag-cell-value']";
     String lstEdiFilesValuesUat = "(//*[@id='nav-edifiles-details']//div[@aria-label = 'Press SPACE to select this row.'])[5]//span[@class = 'ag-cell-value']";
-    String lstAttachmentValues = "(//*[@id = 'nav-attachments-details']//div[@aria-label = 'Press SPACE to select this row.'])[4]//span[@class = 'ag-cell-value']";
+    String lstAttachmentValues = "//*[@id = 'nav-attachments-details']//span[@ref='eText']";
     String lstEdiFilesHeaderName = "//*[@id = 'resultsGrid']//span[contains(text(), '$HeaderName^')]";
     String lnkGlobalSearch = "(//div[contains(text(),'Global Search')])[1]";
     String inputClaimNumber = "//input[@aria-label='Claim Number Filter Input']";
@@ -99,12 +99,7 @@ public class DocumentsPage extends SeleniumUtils {
     }
 
     public void verifyFieldValuesUnderAttachments() {
-        List<WebElement> attachmentValues = findElementsByXpath(lstAttachmentValues);
-        System.out.println("Size:" + attachmentValues.size());
-        for (WebElement value : attachmentValues) {
-            Assert.assertTrue(isDisplayed(value));
-            System.out.println("Value is displayed: " + isDisplayed(value));
-        }
+        elementsDisplayValidation(lstAttachmentValues);
     }
 
     //  Scenario: Verify column fields in EDI files sub tab

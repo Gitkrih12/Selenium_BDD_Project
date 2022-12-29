@@ -480,6 +480,7 @@ public class ClaimDetailsPage extends SeleniumUtils {
 
     //  Scenario: Validate Hide action for claim summary section
     public void userClicksOnHideLink() {
+        explicitVisibilityOfElementLocatedWaitByXpath(lnkHideOption, 20);
         clickElement(lnkHideOption);
     }
 
