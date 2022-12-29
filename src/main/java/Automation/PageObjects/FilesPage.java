@@ -307,7 +307,7 @@ public class FilesPage extends SeleniumUtils {
     public void verifyUserIsOnFilesTab(String filesTabTextExp) throws InterruptedException {
         clickElement(mnuFileManagement);
         explicitElementClickableWaitByXpath(mnuFiles, 10).click();
-        explicitTextToBePresentInElementLocatedWait(By.xpath(tabFiles), 10, "Files");
+        explicitTextToBePresentInElementLocatedWait(By.xpath(tabFiles), 10, "Files ");
         String[] filesTabText = getText(tabFiles).split(" ");
         String filesTabTextAct = filesTabText[0];
         System.out.println("Actual files tab text is: " + filesTabTextAct);
@@ -316,7 +316,7 @@ public class FilesPage extends SeleniumUtils {
     }
 
     public void clickOn837PFilesTab() throws InterruptedException {
-        explicitInvisibilityOfElementWithTextWait(By.xpath(tab837PFiles), 40, "837P Files() ");
+        explicitInvisibilityOfElementWithTextWait(By.xpath(tab837PFiles), 40, "837P Files()");
         explicitElementClickableWaitByXpath(tab837PFiles, 10);
         moveToElement(tab837PFiles).click().perform();
     }
@@ -508,10 +508,11 @@ public class FilesPage extends SeleniumUtils {
     public void enter837PControlNumberUnderSearchField() throws InterruptedException {
         controlNumber837PSortExp = prop.getProperty("837PSortControlNumber");
         explicitElementClickableWaitByXpath(txt837PControlNumber, 10).sendKeys(controlNumber837PSortExp);
+        explicitTextToBePresentInElementLocatedWait(By.xpath(ele837PControlNumber), 10, controlNumber837PSortExp);
+        explicitCountToBeWait(lst837PControlNumberRecords, 20, 6);
     }
 
     public void verify837PControlNumbersForGivenRecord() throws InterruptedException {
-        explicitTextToBePresentInElementLocatedWait(By.xpath(ele837PControlNumber), 10, controlNumber837PSortExp);
         String controlNumber837PSortAct = explicitElementClickableWaitByXpath(ele837PControlNumber, 5).getText();
         System.out.println("837P control number is: " + controlNumber837PSortAct);
         Assert.assertEquals(controlNumber837PSortExp, controlNumber837PSortAct);
@@ -542,6 +543,7 @@ public class FilesPage extends SeleniumUtils {
 
     //  Scenario: Verify Sorting functionality for "Sender" column under "837P Files" tab
     public void get837PSenderRecordsBeforeSort() {
+        explicitTextToBePresentInElementLocatedWait(By.xpath(ele837PSender), 10, prop.getProperty("837PSender"));
         senderRecords837P = getAllElementsToArrayList(lst837PSenderRecords);
         System.out.println("837P sender records before sort: " + senderRecords837P);
         Collections.sort(senderRecords837P);
