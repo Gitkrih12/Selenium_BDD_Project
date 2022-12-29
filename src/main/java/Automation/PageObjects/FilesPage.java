@@ -543,7 +543,6 @@ public class FilesPage extends SeleniumUtils {
 
     //  Scenario: Verify Sorting functionality for "Sender" column under "837P Files" tab
     public void get837PSenderRecordsBeforeSort() {
-        explicitTextToBePresentInElementLocatedWait(By.xpath(ele837PSender), 10, prop.getProperty("837PSender"));
         senderRecords837P = getAllElementsToArrayList(lst837PSenderRecords);
         System.out.println("837P sender records before sort: " + senderRecords837P);
         Collections.sort(senderRecords837P);
