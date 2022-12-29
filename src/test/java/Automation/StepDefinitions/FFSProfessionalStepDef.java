@@ -311,6 +311,11 @@ public class FFSProfessionalStepDef extends FFSProfessionalPage {
     public void user_clicks_on_batch_id() throws InterruptedException {
         clickOnBatchId();
     }
+    @When("user clicks on Batch Id for check void")
+    public void user_clicks_on_batch_id_for_check_void() throws InterruptedException {
+        clickOnBatchIdForCheckVoid();
+    }
+
     @Then("user views Claim List tab by default should be {string}")
     public void user_views_claim_list_tab_by_default_should_be(String state) throws InterruptedException {
         verifyClaimListByDefault(state);
@@ -392,14 +397,6 @@ public class FFSProfessionalStepDef extends FFSProfessionalPage {
         verifyCheckType(checkType);
     }
 
-    @Then("user should able to see Check Type as {string} for issued batch")
-    public void user_should_able_to_see_check_type_as_for_issued_batch(String string) {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
-    }
-
-
-
     //Scenario: Verify user able to navigate to the History Doc page on clicking History Doc tab
     @When("user clicks on History Doc")
     public void user_clicks_on_history_doc() {
@@ -453,7 +450,7 @@ public class FFSProfessionalStepDef extends FFSProfessionalPage {
 
     //Scenario: Verify user should be able to view all the Claim notes that are updated for that specific Batch results
     @When("user enters values in the Title Category and Description fields")
-    public void user_enters_values_in_the_title_category_and_description_fields() {
+    public void user_enters_values_in_the_title_category_and_description_fields() throws InterruptedException {
         enterTitle();
         selectCategory();
         enterDescription();
@@ -479,7 +476,7 @@ public class FFSProfessionalStepDef extends FFSProfessionalPage {
 
     //Scenario: Verify error message when user enters Category and Description fields and Title field should leave as empty
     @When("user enters values in the Category and Description fields")
-    public void user_enters_values_in_the_category_and_description_fields() {
+    public void user_enters_values_in_the_category_and_description_fields() throws InterruptedException {
         selectCategory();
         enterDescription();
     }
@@ -497,7 +494,7 @@ public class FFSProfessionalStepDef extends FFSProfessionalPage {
 
     //Scenario: Verify error message when user enters Title and Category fields and Description field should leave as empty
     @When("user enters values in the Title and Category fields")
-    public void user_enters_values_in_the_title_and_category_fields() {
+    public void user_enters_values_in_the_title_and_category_fields() throws InterruptedException {
         enterTitle();
         selectCategory();
     }
@@ -538,6 +535,28 @@ public class FFSProfessionalStepDef extends FFSProfessionalPage {
         verifyFFSProfessionalPreBatchColumnFields(columnList);
     }
 
+    //Scenario: Verify Batch Claims To Pay button when select claim number from Prebatch bucket
+    @Then("user should able to see Batch Claims To Pay button in disabled mode")
+    public void user_should_able_to_see_batch_claims_to_pay_button_in_disabled_mode() {
+        verifyBatchClaimsToPayButtonInDisabledMode();
+    }
+    @When("user selects claim number in Pre Batch bucket")
+    public void user_selects_claim_number_in_pre_batch_bucket() {
+        clickClaimNumberChkBoxOnPreBatchBucket();
+    }
+
+    @Then("user should able to see Batch Claims To Pay button in enabled mode")
+    public void user_should_able_to_see_batch_claims_to_pay_button_in_enabled_mode() {
+        verifyBatchClaimsToPayButtonInEnabledMode();
+    }
+
+    //Scenario: Verify Batch Claims To Pay button when select multiple claim numbers from Pre Batch bucket
+    @When("user selects all claim numbers in Pre Batch bucket")
+    public void user_selects_all_claim_numbers_in_pre_batch_bucket() {
+        clickSelectAllClaimNumberChkBoxOnPreBatchBucket();
+    }
+
+
     //Scenario: Verify Pre Batch Pay button when select claim number from Approved bucket
     @Then("user should able to see Pre Batch Pay button in disabled mode")
     public void user_should_able_to_see_pre_batch_pay_button_in_disabled_mode() {
@@ -545,7 +564,7 @@ public class FFSProfessionalStepDef extends FFSProfessionalPage {
     }
     @When("user selects claim number")
     public void user_selects_claim_number() {
-        clickClaimNumberChkBox();
+        clickClaimNumberChkBoxOnApprovedBucket();
     }
     @Then("user should able to see Pre Batch Pay button in enabled mode")
     public void user_should_able_to_see_pre_batch_pay_button_in_enabled_mode() {
@@ -554,8 +573,264 @@ public class FFSProfessionalStepDef extends FFSProfessionalPage {
 
     @When("user un selects claim number")
     public void user_un_selects_claim_number() {
-        clickClaimNumberChkBox();
+        clickClaimNumberChkBoxOnApprovedBucket();
     }
+
+    //Scenario: Verify Pre batch Pay button when select multiple claim numbers from Approved bucket
+    @When("user selects all claim numbers")
+    public void user_selects_all_claim_numbers() {
+        clickSelectAllClaimNumberChkBox();
+    }
+    @When("user un selects all claim numbers")
+    public void user_un_selects_all_claim_numbers() {
+        clickSelectAllClaimNumberChkBox();
+    }
+
+    //Scenario: Verify user should be able to see  PreBatch To Pay Validation screen on clicking Pre Batch Pay button
+    @When("user clicks on Pre Batch Pay button")
+    public void user_clicks_on_pre_batch_pay_button() {
+        clickOnPreBachPayButton();
+    }
+    @Then("user should able to see {string} screen")
+    public void user_should_able_to_see_screen(String preBatchToPayValidation) {
+        verifyPreBatchPayValidationScreen(preBatchToPayValidation);
+    }
+
+    //Scenario: Verify buttons in Valid tab under PreBatch To Pay Validation screen
+    @When("user is in {string} tab")
+    public void user_is_in_tab(String expText) {
+        verifyValidTab(expText);
+    }
+
+    @Then("user should able to see {string} and {string} buttons")
+    public void user_should_able_to_see_and_buttons(String expRemove, String expConfirmPreBatchPay) {
+        verifyRemoveAndConfirmPreBatchPayButtons(expRemove,expConfirmPreBatchPay);
+    }
+
+    //Scenario: Verify buttons in Invalid tab under PreBatch To Pay Validation screen
+    @When("user clicks on Invalid tab")
+    public void user_clicks_on_invalid_tab() throws InterruptedException {
+       clickOnInvalidTab();
+    }
+    @Then("user should able to see {string} {string} and {string} buttons")
+    public void user_should_able_to_see_and_buttons(String expPend, String expOnHold, String expManagementReview) {
+        verifyPendOnHoldAndManagementReviewButtons(expPend, expOnHold, expManagementReview);
+    }
+
+
+
+    //Scenario: Validate user able to view all the column fields under PreBatch Pay validation bucket in FFS Professional screen
+    @Then("user able to view following column fields in PreBatch To Pay Validation bucket")
+    public void user_able_to_view_following_column_fields_in_pre_batch_to_pay_validation_bucket(DataTable columnList) {
+        verifyFFSProfessionalPreBatchToPayValidationColumnFields(columnList);
+    }
+
+    //Scenario: Verify tabs in PreBatch To Pay Validation screen
+    @Then("user should able to see following tabs in PreBatch To Pay Validation screen")
+    public void user_should_able_to_see_following_tabs_in_pre_batch_to_pay_validation_screen(DataTable tabList) throws InterruptedException {
+        verifyTabsInPreBatchToPayValidationInFFSProfessional(tabList);
+    }
+
+
+
+    //Scenario: Verify Pre batch Deny button when select claim number from Denied bucket
+    @Then("user should able to see Pre Batch Deny button in disabled mode")
+    public void user_should_able_to_see_pre_batch_deny_button_in_disabled_mode() {
+        verifyPreBatchDenyButtonInDisabledMode();
+    }
+
+    @When("user selects claim number in Denied bucket")
+    public void user_selects_claim_number_in_denied_bucket() {
+        clickClaimNumberChkBoxOnDeniedBucket();
+    }
+
+    @Then("user should able to see Pre Batch Deny button in enabled mode")
+    public void user_should_able_to_see_pre_batch_deny_button_in_enabled_mode() {
+        verifyPreBatchDenyButtonInEnabledMode();
+    }
+
+    @When("user un selects claim number in Denied bucket")
+    public void user_un_selects_claim_number_in_denied_bucket() {
+        clickClaimNumberChkBoxOnDeniedBucket();
+    }
+
+
+    //Scenario: Verify Pre batch Pay button when select multiple claim numbers from Denied bucket
+    @When("user selects all claim numbers in Denied bucket")
+    public void user_selects_all_claim_numbers_in_denied_bucket() {
+        clickSelectAllClaimNumberChkBoxOnDeniedBucket();
+    }
+    @When("user un selects all claim numbers in Denied bucket")
+    public void user_un_selects_all_claim_numbers_in_denied_bucket() {
+        clickSelectAllClaimNumberChkBoxOnDeniedBucket();
+    }
+
+    //Scenario: Verify tabs in Batch To Pay Validation screen
+    @When("user clicks on Batch To Pay bucket")
+    public void user_clicks_on_batch_to_pay_bucket() {
+        clickOnBatchToPayBucket();
+    }
+    @Then("user should be able to see following tabs in Batch To Pay bucket")
+    public void user_should_be_able_to_see_following_tabs_in_batch_to_pay_bucket(DataTable tabList) throws InterruptedException {
+        verifyTabsInBatchBatchToPayInFFSProfessional(tabList);
+    }
+
+    //Scenario: Validate user able to view all the column fields in To Be Signed Off under Batch To Pay bucket in FFS Professional screen
+    @When("user is on {string} tab")
+    public void user_is_on_bucket(String expText) {
+        verifyToBeSignedOffTab(expText);
+    }
+
+    @Then("user should be see following column fields in To Be Signed Off")
+    public void user_should_be_see_following_column_fields_in_to_be_signed_off(DataTable columnList) {
+        verifyFFSProfessionalToBeSignedOffColumnFields(columnList);
+    }
+
+    //Scenario: Verify buttons in To Be Signed Off tab under Batch To Pay bucket
+    @Then("user should able to see Unbatch EFT Payment Signed Off buttons in disabled mode")
+    public void user_should_able_to_see_unbatch_eft_payment_signed_off_buttons_in_disabled_mode() {
+        verifyUnBatchButtonInDisabledMode();
+        verifyEFTPaymentButtonInDisabledMode();
+        verifySignOffButtonInDisabledMode();
+    }
+    @When("user selects Batch ID")
+    public void user_selects_batch_id() {
+        clickOnBatchIdCheckBox();
+    }
+    @Then("user should able to see Unbatch EFT Payment Signed Off buttons in enabled mode")
+    public void user_should_able_to_see_unbatch_eft_payment_signed_off_buttons_in_enabled_mode() {
+        verifyUnBatchButtonInEnabledMode();
+        verifyEFTPaymentButtonInEnabledMode();
+        verifySignOffButtonInEnabledMode();
+    }
+
+
+    //Scenario: Validate user able to view all the column fields in Signed Off under Batch To Pay bucket in FFS Professional screen
+    @When("user clicks on Signed Off tab")
+    public void user_clicks_on_signed_off_tab() {
+        clickOnSignedOffTab();
+    }
+    @Then("user should be see following column fields in Signed Off")
+    public void user_should_be_see_following_column_fields_in_signed_off(DataTable columnList) {
+        verifyFFSProfessionalSignedOffColumnFields(columnList);
+    }
+
+    //Scenario: Validate user able to view all the column fields in Sent for Payment under Batch To Pay bucket in FFS Professional screen
+    @When("user clicks on Sent for Payment tab")
+    public void user_clicks_on_sent_for_payment_tab() {
+        clickOnSentForPaymentTab();
+    }
+    @Then("user should be see following column fields in Sent for Payment")
+    public void user_should_be_see_following_column_fields_in_sent_for_payment(DataTable columnList) {
+        verifyFFSProfessionalSentForPaymentColumnFields(columnList);
+    }
+
+    //Scenario: Verify user should be able to see Upload Great Plains File button in Sent for Payment tab under Batch to Pay bucket
+    @Then("user should able to see {string} button")
+    public void user_should_able_to_see_button(String expText) {
+        verifyUploadGreatPlainsFileButton(expText);
+    }
+
+    //Scenario: Validate user able to view all the column fields in EFT Payment under Batch To Pay bucket in FFS Professional screen
+    @When("user clicks on EFT Payment tab")
+    public void user_clicks_on_eft_payment_tab() {
+        clickOnEFTPaymentTab();
+    }
+
+    @Then("user should be see following column fields in EFT Payment")
+    public void user_should_be_see_following_column_fields_in_eft_payment(DataTable columnList) {
+        verifyFFSProfessionalEFTPaymentColumnFields(columnList);
+    }
+
+    //Scenario: Verify buttons in EFT Payment tab under Batch To Pay bucket
+    @Then("user should be able to see Move To Paid and To Be Signed Off buttons in disabled mode")
+    public void user_should_be_able_to_see_move_to_paid_and_to_be_signed_off_buttons_in_disabled_mode() {
+        verifyMoveToPaidButtonInDisabledMode();
+        verifyToBeSignedOffButtonInDisabledMode();
+    }
+
+    @Then("user should be able to see Re Generate EFT button in enabled mode")
+    public void user_should_be_able_to_see_re_generate_eft_button_in_enabled_mode() {
+        verifyReGenerateButtonInEnabledMode();
+    }
+
+    @When("user selects Batch ID in EFT Payment tab")
+    public void user_selects_batch_id_in_eft_payment_tab() {
+        clickOnBatchIdCheckBoxInEFTPayment();
+    }
+
+    @Then("user should be able to see Move To Paid and To Be Signed Off buttons in enabled mode")
+    public void user_should_be_able_to_see_move_to_paid_and_to_be_signed_off_buttons_in_enabled_mode() {
+        verifyMoveToPaidButtonInEnabledMode();
+        verifyToBeSignedOffButtonInEnabledMode();
+    }
+
+    //Scenario: Verify user should be able to see Claims List on clicking on Batch Id in To Be Signed Off tab
+    @When("user clicks on Batch Id in To Be Signed Off tab")
+    public void user_clicks_on_batch_id_in_to_be_signed_off_tab() {
+        clickOnBatchIdToBeSignedOffTab();
+    }
+
+    @Then("user should be able to see {string} for the selected Batch Id")
+    public void user_should_be_able_to_see_for_the_selected_batch_id(String expText) {
+        verifyClaimListInBatchID(expText);
+    }
+
+    //Scenario: Verify user should be able to see Claims List on clicking on Batch Id in Signed Off tab
+    @When("user clicks on Batch Id in Signed Off tab")
+    public void user_clicks_on_batch_id_in_signed_off_tab() {
+        clickOnBatchIdSignedOffTab();
+    }
+
+    //Scenario: Verify user should be able to see Claims List on clicking on Batch Id in Sent for Payment tab
+    @When("user clicks on Batch Id in Sent for Payment tab")
+    public void user_clicks_on_batch_id_in_sent_for_payment_tab() {
+        clickOnBatchIdSentForPaymentTab();
+    }
+
+    //Scenario: Verify user should be able to see Claims List on clicking on Batch Id in EFT Payment tab
+    @When("user clicks on Batch Id in EFT Payment tab")
+    public void user_clicks_on_batch_id_in_eft_payment_tab() {
+        clickOnBatchIdEFTPaymentTab();
+    }
+
+    //Scenario: Validate user able to view all the column fields under Paid bucket in FFS Professional screen
+    @Then("user able to view following column fields in Paid bucket")
+    public void user_able_to_view_following_column_fields_in_paid_bucket(DataTable columnList) {
+        verifyFFSProfessionalPaidColumnFields(columnList);
+    }
+
+    //Scenario: Validate user able to view all the column fields under Draft bucket in FFS Professional screen
+    @When("user clicks on Draft bucket")
+    public void user_clicks_on_draft_bucket() {
+        clickOnDraftBucket();
+    }
+    @Then("user able to view following column fields in Draft bucket")
+    public void user_able_to_view_following_column_fields_in_draft_bucket(DataTable columnList) {
+        verifyFFSProfessionalDraftColumnFields(columnList);
+    }
+
+    //Scenario: Validate user able to view all the column fields under Draft bucket in FFS Professional screen
+    @When("user clicks on Reject bucket")
+    public void user_clicks_on_reject_bucket() {
+        clickOnRejectBucket();
+    }
+    @Then("user able to view following column fields in Reject bucket")
+    public void user_able_to_view_following_column_fields_in_reject_bucket(DataTable columnList) {
+        verifyFFSProfessionalRejectColumnFields(columnList);
+    }
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

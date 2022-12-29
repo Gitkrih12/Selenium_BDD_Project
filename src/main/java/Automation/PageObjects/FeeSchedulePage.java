@@ -123,7 +123,7 @@ public class FeeSchedulePage extends SeleniumUtils {
     //Scenario: Verify user navigates to RVU tab
     public void clickOnRVU(){
         explicitTextToBePresentInElementLocatedWait(By.xpath(tabRVU), 10, "RVU");
-        explicitElementClickableWaitByXpath(tabRVU, 20);
+        explicitElementClickableWaitByXpath(tabRVU, 30);
         clickElement(tabRVU);
     }
 
