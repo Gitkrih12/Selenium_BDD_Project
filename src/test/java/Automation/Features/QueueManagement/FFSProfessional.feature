@@ -98,21 +98,21 @@ Feature: FFS Professional
     And  User should see "Hide" option with Claim summary
 
     #41481- As an adjudicator, I should be able to view Corrected colour codings in the FFS Professional page so that I can easily identify the corrected claims details
-  @TC_42519 @Sanity
+  @TC_42519
   Scenario: Verify color code for corrected claims in FFS Professional page
     When user enters Corrected claim in FFS Professional search criteria
     Then user should able to view corrected claim in FFS Professional Grid
     And user should able to see vertical line beside claim number with color code "#AD71FF" in FFS Professional page
     And color indication information should be available on top of grid in FFS Professional page
 
-  @TC_42549 @Sanity
+  @TC_42549
   Scenario: Verify color code for COB In Member House in FFS Professional page
     When user enters COB In Member House claim in search criteria
     Then user should able to view COB In Member House claim
     And user should able to view patient name with color code "#008000" in FFS Professional page
     And color indication information for COB In Member House should be available on top of grid
 
-  @TC_42606 @Sanity
+  @TC_42606
   Scenario: Verify color code for COB Not In Member House in FFS Professional page
     When user enters COB Not In Member House claim in search criteria
     Then user should able to view COB Not In Member House claim
@@ -120,7 +120,7 @@ Feature: FFS Professional
     And color indication information for COB Not In Member House should be available on top of grid
 
     #53039-As an Adjudicator, When the claim is in Unclean status I want the claim to be displayed and highlighted in the Orange bar.
-  @TC_53451 @Sanity
+  @TC_53451
   Scenario: Verify colour coding for Unclean status claims under Pend bucket in FFS professional page
     When user enters Unclean status claim in search criteria in Pend bucket
     Then user should able to view Unclean status claim in FFS Professional Grid
@@ -256,7 +256,7 @@ Feature: FFS Professional
     And user enters Batch Id in search criteria
     Then user should see the Add Note button for given batch id
 
-  @TC_71362 @Sanity @beta
+  @TC_71362  @beta
   Scenario: Verify fields in Add Note window
     When user clicks on Paid bucket
     And user enters Batch Id in search criteria
@@ -265,7 +265,7 @@ Feature: FFS Professional
     Then user should see the "Title" "Category" and "Description" fields
     And user should see the "Add" and "Cancel" buttons
 
-  @TC_71709 @Sanity
+  @TC_71709
   Scenario: Verify user should be able to view all the Claim notes that are updated for that specific Batch results
     When user clicks on Paid bucket
     And user enters Batch Id in search criteria for Normal Check
@@ -278,7 +278,7 @@ Feature: FFS Professional
     When user clicks on claim number and navigates to Notes section
     Then user should able see the added note in the Notes section
 
-  @TC_72736 @Sanity
+  @TC_72736
   Scenario: Verify error message when user enters Category and Description fields and Title field should leave as empty
     When user clicks on Paid bucket
     And user enters Batch Id in search criteria
@@ -288,7 +288,7 @@ Feature: FFS Professional
     And user click on the Add button
     Then user should able to see error message as "Please enter Title" message
 
-  @TC_72756 @Sanity
+  @TC_72756
   Scenario: Verify error message when user enters Title and Description fields and Category field should leave as empty
     When user clicks on Paid bucket
     And user enters Batch Id in search criteria
@@ -298,7 +298,7 @@ Feature: FFS Professional
     And user click on the Add button
     Then user should able to see error message as "Please select Category" message
 
-  @TC_72765 @Sanity
+  @TC_72765
   Scenario: Verify error message when user enters Title and Category fields and Description field should leave as empty
     When user clicks on Paid bucket
     And user enters Batch Id in search criteria
@@ -309,7 +309,7 @@ Feature: FFS Professional
     Then user should able to see error message as "Please enter Description" message
 
   #41470-As an adjudicator, I should be able to view On Hold tab of FFS professional claims page with all claims details data
-  @TC_74133 @beta
+  @TC_74133 @beta @Sanity
   Scenario: Validate user able to view all the column fields under On Hold bucket in FFS Professional screen
     When user clicks on Hold bucket
     Then user able to view following column fields in On Hold bucket
@@ -328,7 +328,7 @@ Feature: FFS Professional
       | Assigned To            |
 
   #41741-As an adjudicator, I should be able to view Payer Review tab of FFS professional claims page with all claims details data
-  @TC_74139 @beta
+  @TC_74139 @beta @Sanity
   Scenario: Validate user able to view all the column fields under Payer Review bucket in FFS Professional screen
     When user clicks on Payer Review bucket
     Then user able to view following column fields in Payer Review bucket
@@ -347,7 +347,7 @@ Feature: FFS Professional
       | Assigned To            |
 
   #41742-As an adjudicator, I should be able to view Management Review tab of FFS professional claims page with all claims details data
-  @TC_74142 @beta
+  @TC_74142 @beta @Sanity
   Scenario: Validate user able to view all the column fields under Management Review bucket in FFS Professional screen
     When user clicks on Management Review bucket
     Then user able to view following column fields in Management Review bucket
@@ -366,7 +366,7 @@ Feature: FFS Professional
       | Assigned To            |
 
   #41743-As an adjudicator, I should be able to view Approved tab of FFS professional claims page with all claims details data
-  @TC_74143 @beta
+  @TC_74143 @beta @Sanity
   Scenario: Validate user able to view all the column fields under Approved bucket in FFS Professional screen
     When user clicks on Approved bucket
     Then user able to view following column fields in Approved bucket
@@ -385,7 +385,7 @@ Feature: FFS Professional
       | Assigned To            |
 
   #41744-As an adjudicator, I should be able to view Denied tab of FFS professional claims page with all claims details data
-  @TC_74145 @beta
+  @TC_74145 @beta @Sanity
   Scenario: Validate user able to view all the column fields under Denied bucket in FFS Professional screen
     When user clicks on Denied bucket
     Then user able to view following column fields in Denied bucket
@@ -404,7 +404,7 @@ Feature: FFS Professional
       | Assigned To            |
 
   #41933-As an adjudicator, I should be able to view Pre Batch tab of FFS professional claims page with all claims details data
-  @TC_74146 @beta
+  @TC_74146 @beta @Sanity
   Scenario: Validate user able to view all the column fields under Pre-Batch bucket in FFS Professional screen
     When user clicks on Pre Batch bucket
     Then user able to view following column fields in Pre Batch bucket
@@ -422,14 +422,14 @@ Feature: FFS Professional
       | Age                    |
       | Assigned To            |
 
-  @TC_78146
+  @TC_78146 @Sanity
   Scenario: Verify Batch Claims To Pay button when select claim number from Pre Batch bucket
     When user clicks on Pre Batch bucket
     Then user should able to see Batch Claims To Pay button in disabled mode
     When user selects claim number in Pre Batch bucket
     Then user should able to see Batch Claims To Pay button in enabled mode
 
-  @TC_78176
+  @TC_78176 @Sanity
   Scenario: Verify Batch Claims To Pay button when select multiple claim numbers from Pre Batch bucket
     When user clicks on Pre Batch bucket
     Then user should able to see Batch Claims To Pay button in disabled mode
@@ -438,7 +438,7 @@ Feature: FFS Professional
 
 
    #57586-As an adjudicator, when I select the claim from Approved bucket and click on the 'Pre-Batch Pay' button so that the claim will be moved from Approved to Pre Batch
-  @TC_74406
+  @TC_74406 @Sanity
   Scenario: Verify Pre Batch Pay button when select claim number from Approved bucket
     When user clicks on Approved bucket
     Then user should able to see Pre Batch Pay button in disabled mode
@@ -447,7 +447,7 @@ Feature: FFS Professional
     When user un selects claim number
     Then user should able to see Pre Batch Pay button in disabled mode
 
-  @TC_74409
+  @TC_74409 @Sanity
   Scenario: Verify Pre batch Pay button when select multiple claim numbers from Approved bucket
     When user clicks on Approved bucket
     Then user should able to see Pre Batch Pay button in disabled mode
@@ -456,14 +456,14 @@ Feature: FFS Professional
     When user un selects all claim numbers
     Then user should able to see Pre Batch Pay button in disabled mode
 
-  @TC_77166
+  @TC_77166 @Sanity
   Scenario: Verify user should be able to see  PreBatch To Pay Validation screen on clicking Pre Batch Pay button
     When user clicks on Approved bucket
     When user selects claim number
     When user clicks on Pre Batch Pay button
     Then user should able to see "PreBatch To Pay Validation" screen
 
-  @TC_77347
+  @TC_77347 @Sanity
   Scenario: Validate user able to view all the column fields under PreBatch Pay validation bucket in FFS Professional screen
     When user clicks on Approved bucket
     Then user should able to see Pre Batch Pay button in disabled mode
@@ -482,7 +482,7 @@ Feature: FFS Professional
       | Received Date          |
       | Validation Description |
 
-  @TC_77379
+  @TC_77379 @Sanity
   Scenario: Verify tabs in PreBatch To Pay Validation screen
     When user clicks on Approved bucket
     And user selects claim number
@@ -492,7 +492,7 @@ Feature: FFS Professional
       | Valid   |
       | Invalid |
 
-  @TC_77680
+  @TC_77680 @Sanity
   Scenario: Verify buttons in Valid tab under PreBatch To Pay Validation screen
     When user clicks on Approved bucket
     When user selects claim number
@@ -501,7 +501,7 @@ Feature: FFS Professional
     When user is in "Valid" tab
     Then user should able to see "Remove" and "Confirm Pre-Batch Pay" buttons
 
-  @TC_77743
+  @TC_77743 @Sanity
   Scenario: Verify buttons in Invalid tab under PreBatch To Pay Validation screen
     When user clicks on Approved bucket
     When user selects claim number
@@ -511,7 +511,7 @@ Feature: FFS Professional
     Then user should able to see "Pend" "On Hold" and "Management Review" buttons
 
   #57606-As Claims Adjudicator, I should have the ability to select a claim or set of claims in denied status and add to pre-batch list, so that claims can be batched together for pay out.
-  @TC_76460
+  @TC_76460 @Sanity
   Scenario: Verify Pre batch Deny button when select claim number from Denied bucket
     When user clicks on Denied bucket
     Then user should able to see Pre Batch Deny button in disabled mode
@@ -520,7 +520,7 @@ Feature: FFS Professional
     When user un selects claim number in Denied bucket
     Then user should able to see Pre Batch Deny button in disabled mode
 
-  @TC_76463
+  @TC_76463 @Sanity
   Scenario: Verify Pre batch Pay button when select multiple claim numbers from Denied bucket
     When user clicks on Denied bucket
     Then user should able to see Pre Batch Deny button in disabled mode
@@ -530,7 +530,7 @@ Feature: FFS Professional
     Then user should able to see Pre Batch Deny button in disabled mode
 
   #78180-As an adjudicator, I should be able to view Batch To Pay tab of FFS professional claims page with all claims details data
-  @TC_78184 @beta
+  @TC_78184 @beta @Sanity
   Scenario: Verify tabs in Batch To Pay Validation screen
     When user clicks on Batch To Pay bucket
     Then user should be able to see following tabs in Batch To Pay bucket
@@ -539,7 +539,7 @@ Feature: FFS Professional
       | Sent for Payment |
       | EFT Payment      |
 
-  @TC_78220 @beta
+  @TC_78220 @beta @Sanity
   Scenario: Validate user able to view all the column fields in To Be Signed Off under Batch To Pay bucket in FFS Professional screen
     When user clicks on Batch To Pay bucket
     And user is on "To Be Signed Off" tab
@@ -551,7 +551,7 @@ Feature: FFS Professional
       | Net Paid Amount($)     |
       | Total Billed Amount($) |
 
-  @TC_79439 @beta
+  @TC_79439 @beta @Sanity
   Scenario: Verify buttons in To Be Signed Off tab under Batch To Pay bucket
     When user clicks on Batch To Pay bucket
     And user is on "To Be Signed Off" tab
@@ -560,7 +560,7 @@ Feature: FFS Professional
     Then user should able to see Unbatch EFT Payment Signed Off buttons in enabled mode
 
 
-  @TC_78246 @beta
+  @TC_78246 @beta @Sanity
   Scenario: Validate user able to view all the column fields in Signed Off under Batch To Pay bucket in FFS Professional screen
     When user clicks on Batch To Pay bucket
     And user clicks on Signed Off tab
@@ -573,7 +573,7 @@ Feature: FFS Professional
       | Total Billed Amount($) |
       | Signed Off Date        |
 
-  @TC_78266 @beta
+  @TC_78266 @beta @Sanity
   Scenario: Validate user able to view all the column fields in Sent for Payment under Batch To Pay bucket in FFS Professional screen
     When user clicks on Batch To Pay bucket
     And user clicks on Sent for Payment tab
@@ -586,13 +586,13 @@ Feature: FFS Professional
       | Total Billed Amount($) |
       | Date Sent To Acc.      |
 
-  @TC_78836
+  @TC_78836 @Sanity
   Scenario: Verify user should be able to see Upload Great Plains File button in Sent for Payment tab under Batch to Pay bucket
     When user clicks on Batch To Pay bucket
     And user clicks on Sent for Payment tab
     Then user should able to see "Upload Great Plains File" button
 
-  @TC_79016 @beta
+  @TC_79016 @beta @Sanity
   Scenario: Validate user able to view all the column fields in EFT Payment under Batch To Pay bucket in FFS Professional screen
     When user clicks on Batch To Pay bucket
     And user clicks on EFT Payment tab
@@ -605,7 +605,7 @@ Feature: FFS Professional
       | Check Number       |
       | Check Issue Date   |
 
-  @79485
+  @79485 @Sanity
   Scenario: Verify buttons in EFT Payment tab under Batch To Pay bucket
     When user clicks on Batch To Pay bucket
     And user clicks on EFT Payment tab
@@ -615,28 +615,28 @@ Feature: FFS Professional
     Then user should be able to see Move To Paid and To Be Signed Off buttons in enabled mode
 
   #75147-As an adjudicator, When I click on the 'Batch ID' from Batch to Pay tab(To Be Signed Off, Signed Off, Sent for Payment, EFT Payment) for FFS professional So I can be able to View the Claims list  for Batch Tab
-  @TC_80366
+  @TC_80366 @Sanity
   Scenario: Verify user should be able to see Claims List on clicking on Batch Id in To Be Signed Off tab
     When user clicks on Batch To Pay bucket
     And user is on "To Be Signed Off" tab
     And user clicks on Batch Id in To Be Signed Off tab
     Then user should be able to see "Claim List in the Selected Batch - " for the selected Batch Id
 
-  @TC_80481
+  @TC_80481 @Sanity
   Scenario: Verify user should be able to see Claims List on clicking on Batch Id in Signed Off tab
     When user clicks on Batch To Pay bucket
     And user clicks on Signed Off tab
     And user clicks on Batch Id in Signed Off tab
     Then user should be able to see "Claim List in the Selected Batch - " for the selected Batch Id
 
-  @TC_80483
+  @TC_80483  @Sanity
   Scenario: Verify user should be able to see Claims List on clicking on Batch Id in Sent for Payment tab
     When user clicks on Batch To Pay bucket
     And user clicks on Sent for Payment tab
     And user clicks on Batch Id in Sent for Payment tab
     Then user should be able to see "Claim List in the Selected Batch - " for the selected Batch Id
 
-  @TC_80485
+  @TC_80485  @Sanity
   Scenario: Verify user should be able to see Claims List on clicking on Batch Id in EFT Payment tab
     When user clicks on Batch To Pay bucket
     And user clicks on EFT Payment tab
@@ -644,7 +644,7 @@ Feature: FFS Professional
     Then user should be able to see "Claim List in the Selected Batch - " for the selected Batch Id
 
   #80502-As an adjudicator, I should be able to view Paid tab of FFS professional claims page with all claims details data
-  @TC_80503 @beta
+  @TC_80503 @beta @Sanity
   Scenario: Validate user able to view all the column fields under Paid bucket in FFS Professional screen
     When user clicks on Paid bucket
     Then user able to view following column fields in Paid bucket
@@ -658,7 +658,7 @@ Feature: FFS Professional
       | Action             |
 
   #80509-As an adjudicator, I should be able to view Draft tab of FFS professional claims page with all claims details data
-  @TC_80513 @beta
+  @TC_80513 @beta @Sanity
   Scenario: Validate user able to view all the column fields under Draft bucket in FFS Professional screen
     When user clicks on Draft bucket
     Then user able to view following column fields in Draft bucket
@@ -677,7 +677,7 @@ Feature: FFS Professional
       | Assigned To            |
 
   #80592- As an adjudicator, I should be able to view Rejected tab of FFS professional claims page with all claims details data
-  @TC_80596 @beta
+  @TC_80596 @beta @Sanity
   Scenario: Validate user able to view all the column fields under Rejected bucket in FFS Professional screen
     When user clicks on Reject bucket
     Then user able to view following column fields in Reject bucket

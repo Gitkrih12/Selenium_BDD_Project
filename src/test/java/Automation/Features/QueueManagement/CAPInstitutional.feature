@@ -72,7 +72,7 @@ Feature: CAP Institutional
     When user get the total records for the search criteria in CAP Institutional page
     Then user see the page numbers as per the no of data divided by pages size in CAP Institutional page
 
-  @TC_65393 @Sanity
+  @TC_65393
   Scenario: Verify user able to navigate through pages by using Pagination functionality
     When user clicks on On Hold bucket in CAP Institutional
     And user should be able to view the page numbers at bottom of the page in CAP Institutional page
@@ -82,13 +82,13 @@ Feature: CAP Institutional
     Then user should allow to navigates to back page in CAP Institutional
 
   #40717-As an adjudicator, I should be able to click on any Claim number from CAP Institutional queue and get navigated to the appropriate claims details page
-  @TC_45942 @Sanity
+  @TC_45942
   Scenario: Verify user should navigates to Claim Details page on clicking claim number from CAP Institutional page
     When user clicks on claim number in CAP Institutional page
     Then user should be able to navigate to View Claim Details page
     And  User should see "Hide" option with Claim summary
 
-  @TC_65569 @Sanity
+  @TC_65569
   Scenario: Verify user able to navigate to claim summary screen only once when performed multiple clicks on Claim number
     When user searches for claim number in pend bucket in CAP Institutional
     And user clicks on claim number
@@ -98,21 +98,21 @@ Feature: CAP Institutional
     And  User should see "Hide" option with Claim summary
 
   #41737-As an adjudicator, I should be able to view Corrected colour codings in the CAP Institutional page so that I can easily identify the corrected claims details
-  @TC_43401 @Sanity
+  @TC_43401
   Scenario: Verify color code for corrected claims in CAP Institutional page
     When user enters Corrected claim in CAP Institutional search criteria
     Then user should able to view corrected claim in CAP Institutional Grid
     And user should able to see vertical line beside claim number with color code "#AD71FF" in CAP Institutional page
     And color indication information should be available on top of grid in CAP Institutional page
 
-  @TC_43399 @Sanity
+  @TC_43399
   Scenario: Verify color code for COB In Member House in CAP Institutional page
     When user enters COB In Member House claim in search criteria in CAP Institutional page
     Then user should able to view COB In Member House claim in CAP Institutional page
     And user should able to view patient name with color code "#008000" in CAP Institutional page
     And color indication information for COB In Member House should be available on top of grid in CAP Institutional page
 
-  @TC_43400 @Sanity
+  @TC_43400
   Scenario: Verify color code for COB Not In Member House in CAP Institutional page
     When user enters COB Not In Member House claim in search criteria in CAP Institutional page
     Then user should able to view COB Not In Member House claim in CAP Institutional page
@@ -120,7 +120,7 @@ Feature: CAP Institutional
     And color indication information for COB Not In Member House should be available on top of grid in CAP Institutional page
 
   #65683-As an Adjudicator, When the claim is in Unclean status I want the claim to be displayed and highlighted in the Orange bar.
-  @TC_65684 @Sanity
+  @TC_65684
   Scenario: Verify colour coding for Unclean status claims under Pend bucket in CAP Institutional page
     When user enters Unclean status claim in search criteria in Pend bucket in CAP Institutional
     Then user should able to view Unclean status claim in CAP Institutional Grid
@@ -168,7 +168,7 @@ Feature: CAP Institutional
     And color indication information for Unclean should be available on top of grid in CAP Institutional
 
   #50888-As an adjudicator, When I click on the 'Batch ID' from Paid tab for CAP Institutional So I can be able to View the Claims list, Provider List, Check Info, History Doc, and Downloads sub-tabs under Claims for Batch Tab
-  @TC_69535 @Sanity
+  @TC_69535
   Scenario: Verify all tabs should display when clicking on Batch ID under Paid tab in CAP Institutional page
     When user clicks on Paid bucket
     And user enters Batch Id in search criteria in CAP Institutional page
@@ -180,7 +180,7 @@ Feature: CAP Institutional
       | History Doc   |
       | Downloads     |
 
-  @TC_69563 @Sanity
+  @TC_69563
   Scenario: Verify by default user navigates to the View Claims List page
     When user clicks on Paid bucket
     And user enters Batch Id in search criteria in CAP Institutional page
@@ -198,7 +198,7 @@ Feature: CAP Institutional
     And displays all the list of provider list for that Batch ID
     And user should be able to see "Providers in the Selected Batch" label in Provider List screen
 
-  @TC_69581 @Sanity
+  @TC_69581
   Scenario: Then user navigates to the check Info page successfully along with the check information of that batch
     When user clicks on Paid bucket
     And user enters Batch Id in search criteria in CAP Institutional page
@@ -240,7 +240,7 @@ Feature: CAP Institutional
     And displays all the list of History Doc for that Batch ID
     And user should be able to see "History Of Doc in the Selected Batch" label in History Doc screen
 
-  @TC_69634 @Sanity
+  @TC_69634
   Scenario: Verify user able to navigate to the Downloads tab on clicking Downloads tab and verify the files when there are any files
     When user clicks on Paid bucket
     And user enters Batch Id in search criteria for issued check in CAP Institutional page
