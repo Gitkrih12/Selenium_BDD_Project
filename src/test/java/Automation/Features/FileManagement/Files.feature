@@ -29,7 +29,7 @@ Feature: Files tab
     When the user clicks on the 837P Files tab
     Then user should be able to see the results of rows count next to the 837PFiles Tab
 
-  @45837 @Sanity
+  @45837 @Sanity @test
   Scenario: Validate pagination functionality in '837P Files' tab
     When the user clicks on the 837P Files tab
     Given the user applies a filter to any field in the 837P Files tab
@@ -38,7 +38,7 @@ Feature: Files tab
     And Page size can be defined by the User as per the given option at the bottom of the grid under 837P files tab
     And the user should be able to see the page numbers as per the number of data divided by page size under 837P files tab
 
-  @45853 @Sanity
+  @45853 @Sanity @test
   Scenario Outline: Verify color code for Status View under '837P Files' tab
     When the user clicks on the 837P Files tab
     Then the user should be able to see 837P "<status>" results with the "<color>" indication
@@ -159,7 +159,7 @@ Feature: Files tab
     And Page size can be defined by the User as per the given option at the bottom of the grid under 837I files tab
     And the user should be able to see the page numbers as per the number of data divided by page size under 837I files tab
 
-  @45911 @Sanity
+  @45911 @Sanity @test
   Scenario Outline: Verify color code for Status View under 837I files tab
     When the user clicks on the 837I Files tab
     Then the user should be able to see 837I "<status>" results with the "<color>" indication

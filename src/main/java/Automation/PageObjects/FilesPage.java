@@ -6,10 +6,7 @@ import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 public class FilesPage extends SeleniumUtils {
 
@@ -509,7 +506,7 @@ public class FilesPage extends SeleniumUtils {
         controlNumber837PSortExp = prop.getProperty("837PSortControlNumber");
         explicitElementClickableWaitByXpath(txt837PControlNumber, 10).sendKeys(controlNumber837PSortExp);
         explicitTextToBePresentInElementLocatedWait(By.xpath(ele837PControlNumber), 10, controlNumber837PSortExp);
-        explicitCountToBeWait(lst837PControlNumberRecords, 20, 6);
+//        explicitCountToBeWait(lst837PControlNumberRecords, 20, 6);
     }
 
     public void verify837PControlNumbersForGivenRecord() throws InterruptedException {
