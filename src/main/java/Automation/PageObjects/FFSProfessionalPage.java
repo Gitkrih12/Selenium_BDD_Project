@@ -791,7 +791,7 @@ public class FFSProfessionalPage extends SeleniumUtils {
     }
 
     public void verifyHistoryDocCount() throws InterruptedException {
-        explicitTextToBePresentInElementLocatedWait(By.xpath(eleHistoryDoc), 20, "History Of Doc");
+        explicitTextToBePresentInElementLocatedWait(By.xpath(eleHistoryDoc), 30, "History Of Doc");
         validateRowCountInBatchIDTabs(tabHistoryDoc, lstHistoryDoc);
     }
 
