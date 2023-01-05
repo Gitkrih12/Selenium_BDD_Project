@@ -9,7 +9,7 @@ public class ProviderDetailsStepDef extends ProviderDetailsPage {
 
     // Scenario: Verify user able to navigate to the Provider details tab in the View Claims Form page
     @When("user clicks on the Provider Details tab")
-    public void user_clicks_on_the_provider_details_tab() throws InterruptedException {
+    public void user_clicks_on_the_provider_details_tab() {
         clickOnProviderDetails();
     }
 
