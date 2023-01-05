@@ -33,6 +33,7 @@ Feature: Documents
     Then user able to view the below column fields under Attachments sub tab
       | File Name   |
       | Title       |
+      | Description |
       | Uploaded By |
       | Uploaded On |
     And user able to view the field values under Attachments sub tab

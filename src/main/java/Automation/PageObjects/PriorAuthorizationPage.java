@@ -451,7 +451,7 @@ public class PriorAuthorizationPage extends SeleniumUtils {
 
     //  Scenario: Verify user able to search the criteria for Provider NPI results fields
     public void userEntersProviderNPIInResultsSearchCriteria() {
-        explicitElementClickableWaitByXpath(txtProviderNpi, 20);
+        explicitElementClickableWaitByXpath(txtProviderNpi, 40);
         expProviderNpi = prop.getProperty("providerNPI");
         findElementAndSendKeys(findElementByXpath(txtProviderNpi), expProviderNpi);
     }
@@ -539,9 +539,9 @@ public class PriorAuthorizationPage extends SeleniumUtils {
 
     //  Scenario: Verify user able to search the criteria for POS results fields
     public void userEntersPOSInResultsSearchCriteria() {
+        explicitVisibilityOfElementLocatedWaitByXpath(eleAuthorizationNumber, 30);
         WebElement ele = findElementByXpath(innerScrollBarMemberList);
         explicitElementClickableWaitByXpath(innerScrollBarMemberList, 30);
-//        ele.click();
         moveToElement(ele).clickAndHold().moveByOffset(350, 0).release().perform();
         explicitElementClickableWaitByXpath(txtPOS, 20);
         expPOS = prop.getProperty("priorPos");
@@ -555,11 +555,10 @@ public class PriorAuthorizationPage extends SeleniumUtils {
 
     //  Scenario: Verify user able to search the criteria for Status results fields
     public void userEntersStatusInResultsSearchCriteria() {
+        explicitVisibilityOfElementLocatedWaitByXpath(eleAuthorizationNumber, 30);
         WebElement ele = findElementByXpath(innerScrollBarMemberList);
-//        ele.click();
         moveToElement(ele).clickAndHold().moveByOffset(450, 0).release().perform();
-        explicitVisibilityOfElementLocatedWaitByXpath(txtPriorStatus, 30);
-        explicitElementClickableWaitByXpath(txtPriorStatus, 30);
+        explicitElementClickableWaitByXpath(txtPriorStatus, 40);
         expStatus = prop.getProperty("priorStatus");
         findElementAndSendKeys(findElementByXpath(txtPriorStatus), expStatus);
     }

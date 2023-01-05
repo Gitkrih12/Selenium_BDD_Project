@@ -89,13 +89,8 @@ public class DocumentsPage extends SeleniumUtils {
     }
 
     public void verifyUserViewsColumnsUnderAttachmentsSection(DataTable columnsUnderAttachments) {
-        List<String> fieldsExp = columnsUnderAttachments.asList();
-        List<String> ActFields = findElementsByXpath(lstAttachments)
-                .stream().map((e) -> e.getText().trim()).collect(Collectors.toList());
-        System.out.println("Size :" + ActFields.size());
-        System.out.println("Attachments Columns should display:" + ActFields);
-        System.out.println("Expected fields are: " + fieldsExp);
-        Assert.assertEquals(fieldsExp, ActFields);
+        explicitElementClickableWaitByXpath(lstAttachments, 20);
+        scrollToElementsAndCompare2Lists(columnsUnderAttachments, lstAttachments);
     }
 
     public void verifyFieldValuesUnderAttachments() {
@@ -104,21 +99,11 @@ public class DocumentsPage extends SeleniumUtils {
 
     //  Scenario: Verify column fields in EDI files sub tab
     public void verifyUserViewsColumnsUnderEdiFilesSection(DataTable columnFields) {
-        List<String> fieldsExp = columnFields.asList();
-        List<String> ActFields = findElementsByXpath(lstEdiFiles)
-                .stream().map((e) -> e.getText().trim()).collect(Collectors.toList());
-        System.out.println("Size :" + ActFields.size());
-        System.out.println("EDI Files Columns should display:" + ActFields);
-        System.out.println("Expected fields are: " + fieldsExp);
-        Assert.assertEquals(fieldsExp, ActFields);
+        explicitElementClickableWaitByXpath(lstEdiFiles, 20);
+        scrollToElementsAndCompare2Lists(columnFields, lstEdiFiles);
     }
 
     public void verifyFieldValuesUnderEdiFiles() {
-        List<WebElement> ediFileValues = findElementsByXpath(lstEdiFilesValues);
-        System.out.println("Size:" + ediFileValues.size());
-        for (WebElement value : ediFileValues) {
-            Assert.assertTrue(isDisplayed(value));
-            System.out.println("Value is displayed: " + isDisplayed(value));
-        }
+        elementsDisplayValidation(lstEdiFiles);
     }
 }
