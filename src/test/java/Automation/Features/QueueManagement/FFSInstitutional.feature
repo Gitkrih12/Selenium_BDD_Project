@@ -105,14 +105,14 @@ Feature: FFS Institutional
     And user should able to see vertical line beside claim number with color code "#AD71FF" in FFS Institutional page
     And color indication information should be available on top of grid in FFS Institutional page
 
-  @TC_43409 @Sanity
+  @TC_43409
   Scenario: Verify user can Identify COB In Member House from FFS Institutional page
     When user enters COB In Member House claim in search criteria in FFS Institutional page
     Then user should able to view COB In Member House claim in FFS Institutional page
     And user should able to view patient name with color code "#008000" in FFS Institutional page
     And color indication information for COB In Member House should be available on top of grid in FFS Institutional page
 
-  @TC_43410 @Sanity
+  @TC_43410
   Scenario: Verify user can Identify COB Not In Member House from FFS Institutional page
     When user enters COB Not In Member House claim in search criteria in FFS Institutional page
     Then user should able to view COB Not In Member House claim in FFS Institutional page
@@ -120,7 +120,7 @@ Feature: FFS Institutional
     And color indication information for COB Not In Member House should be available on top of grid in FFS Institutional page
 
   #64462-As an Adjudicator, When the claim is in Unclean status I want the claim to be displayed and highlighted in the Orange bar.
-  @TC_64463 @Sanity
+  @TC_64463
   Scenario: Verify colour coding for Unclean status claims under Pend bucket in FFS Institutional page
     When user enters Unclean status claim in search criteria in Pend bucket in FFS Institutional
     Then user should able to view Unclean status claim in FFS Institutional Grid
@@ -168,7 +168,7 @@ Feature: FFS Institutional
     And color indication information for Unclean should be available on top of grid in FFS Institutional
 
   #50887-As an adjudicator, When I click on the 'Batch ID' from Paid tab for FFS Institutional So I can be able to View the Claims list, Provider List, Check Info, History Doc, and Downloads sub-tabs under Claims for Batch Tab
-  @TC_52060 @Sanity
+  @TC_52060
   Scenario: Verify all tabs should display when clicking on Batch ID under Paid tab in FFS Institutional page
     When user clicks on Paid bucket
     And user enters Batch Id in search criteria in FFS Institutional page
@@ -180,7 +180,7 @@ Feature: FFS Institutional
       | History Doc   |
       | Downloads     |
 
-  @TC_52157 @Sanity
+  @TC_52157
   Scenario: Verify by default user navigates to the View Claims List page
     When user clicks on Paid bucket
     And user enters Batch Id in search criteria in FFS Institutional page
@@ -198,7 +198,7 @@ Feature: FFS Institutional
     And displays all the list of provider list for that Batch ID
     And user should be able to see "Providers in the Selected Batch" label in Provider List screen
 
-  @TC_69483 @Sanity
+  @TC_69483
   Scenario: Verify user should navigates to the Check Info page on clicking Check Info tab
     When user clicks on Paid bucket
     And user enters Batch Id in search criteria in FFS Institutional page
@@ -231,7 +231,7 @@ Feature: FFS Institutional
     And user clicks on the Check Info tab
     Then user should able to see Check Type as "Void" for voided batch
 
-  @TC_52159 @Sanity
+  @TC_52159
   Scenario: Verify user able to navigate to the History Doc page on clicking History Doc tab
     When user clicks on Paid bucket
     And user enters Batch Id in search criteria for issued check in FFS Institutional page
@@ -240,7 +240,7 @@ Feature: FFS Institutional
     And displays all the list of History Doc for that Batch ID
     And user should be able to see "History Of Doc in the Selected Batch" label in History Doc screen
 
-  @TC_52158 @Sanity
+  @TC_52158
   Scenario: Verify user able to navigate to the Downloads tab on clicking Downloads tab and verify the files when there are any files
     When user clicks on Paid bucket
     And user enters Batch Id in search criteria for Normal Check in FFS Institutional page

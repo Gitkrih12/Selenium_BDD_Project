@@ -56,7 +56,7 @@ Feature: CAP Professional
   Scenario: Verify user able to view the search fields under each columns in the CAP Professional screen
     And user able to view the Search fields under each column in CAP Professional page
 
-  @TC_39228 @Sanity
+  @TC_39228
   Scenario: Verify Pagination in CAP Professional page
     When user enters the member id in the search field in CAP Professional page
     Then user able to view the claim details for given member id in CAP Professional page
@@ -70,7 +70,7 @@ Feature: CAP Professional
     When user get the total records for the search criteria in CAP Professional page
     Then user see the page numbers as per the no of data divided by pages size in CAP Professional page
 
-  @TC_60884 @Sanity
+  @TC_60884
   Scenario: Verify user able to navigate through pages by using Pagination functionality
     When user clicks on On Hold bucket in CAP Professional
     And user should be able to view the page numbers at bottom of the page in CAP Professional page
@@ -80,13 +80,13 @@ Feature: CAP Professional
     Then user should allow to navigates to back page in CAP Professional
 
     #40715-As an adjudicator, I should be able to click on any Claim number from CAP Professional queue and get navigated to appropriate claims details page
-  @TC_37332 @Sanity
+  @TC_37332
   Scenario: Verify user able to navigate to claim summary screen on clicking claim number
     When user clicks on claim number in CAP Professional page
     Then user should be able to navigate to View Claim Details page
     And  User should see "Hide" option with Claim summary
 
-  @TC_46249 @Sanity
+  @TC_46249
   Scenario: Verify user able to navigate to claim summary screen only once when performed multiple clicks on Claim number
     When user searches for claim number in pend bucket in CAP Professional
     And user clicks on claim number
@@ -96,21 +96,21 @@ Feature: CAP Professional
     And  User should see "Hide" option with Claim summary
 
   #41736-As an adjudicator, I should be able to view Corrected colour codings in the CAP Professional page so that I can easily identify the corrected claims details
-  @TC_45620 @Sanity
+  @TC_45620
   Scenario: Verify color code for corrected claims in CAP Professional page
     When user enters Corrected claim in CAP Professional search criteria
     Then user should able to view corrected claim in CAP Professional Grid
     And user should able to see vertical line beside claim number with color code "#AD71FF" in CAP Professional page
     And color indication information should be available on top of grid in CAP Professional page
 
-  @TC_45617 @Sanity
+  @TC_45617
   Scenario: Verify color code for COB In Member House in CAP Professional page
     When user enters COB In Member House claim in search criteria in CAP Professional page
     Then user should able to view COB In Member House claim in CAP Professional page
     And user should able to view patient name with color code "#008000" in CAP Professional page
     And color indication information for COB In Member House should be available on top of grid in CAP Professional page
 
-  @TC_45618 @Sanity
+  @TC_45618
   Scenario: Verify color code for COB Not In Member House in CAP Professional page
     When user enters COB Not In Member House claim in search criteria in CAP Professional page
     Then user should able to view COB Not In Member House claim in CAP Professional page
@@ -118,7 +118,7 @@ Feature: CAP Professional
     And color indication information for COB Not In Member House should be available on top of grid in CAP Professional page
 
    #60637-As an Adjudicator, When the claim is in Unclean status I want the claim to be displayed and highlighted in the Orange bar.
-  @TC_60653 @Sanity
+  @TC_60653
   Scenario: Verify colour coding for Unclean status claims under Pend bucket in CAP professional page
     When user enters Unclean status claim in search criteria in Pend bucket in CAP Professional
     Then user should able to view Unclean status claim in CAP Professional Grid
@@ -178,7 +178,7 @@ Feature: CAP Professional
       | History Doc   |
       | Downloads     |
 
-  @TC_51980 @Sanity
+  @TC_51980
   Scenario: Verify by default user navigates to the View Claims List page
     When user clicks on Paid bucket
     And user enters Batch Id in search criteria in CAP Professional page
@@ -197,7 +197,7 @@ Feature: CAP Professional
     And user should be able to see "Providers in the Selected Batch" label in Provider List screen
 
 
-  @TC_67897 @Sanity @beta
+  @TC_67897  @beta
   Scenario: Verify user should navigates to the Check Info page on clicking Check Info tab
     When user clicks on Paid bucket
     And user enters Batch Id in search criteria in CAP Professional page
@@ -230,7 +230,7 @@ Feature: CAP Professional
     And user clicks on the Check Info tab
     Then user should able to see Check Type as "Void" for voided batch
 
-  @TC_51996 @Sanity
+  @TC_51996
   Scenario: Verify user able to navigate to the History Doc tab on clicking History Doc tab
     When user clicks on Paid bucket
     And user enters Batch Id in search criteria for issued check in CAP Professional page
@@ -239,7 +239,7 @@ Feature: CAP Professional
     And displays all the list of History Doc for that Batch ID
     And user should be able to see "History Of Doc in the Selected Batch" label in History Doc screen
 
-  @TC_51998 @Sanity @beta
+  @TC_51998  @beta
   Scenario: Verify user able to navigate to the Downloads tab on clicking Downloads tab and verify the files when there are any files
     When user clicks on Paid bucket
     And user enters Batch Id in search criteria for Check Void in CAP Professional page
@@ -254,7 +254,7 @@ Feature: CAP Professional
     And user enters Batch Id in search criteria for Normal Check in CAP Professional page
     Then user should see the Add Note button for given batch id
 
-  @TC_71865 @Sanity
+  @TC_71865
   Scenario: Verify fields in Add Note window
     When user clicks on Paid bucket
     And user enters Batch Id in search criteria for Normal Check in CAP Professional page
@@ -263,7 +263,7 @@ Feature: CAP Professional
     Then user should see the "Title" "Category" and "Description" fields
     And user should see the "Add" and "Cancel" buttons
 
-  @TC_71868 @Sanity
+  @TC_71868
   Scenario: Verify user should be able to view all the Claim notes that are updated for that specific Batch results
     When user clicks on Paid bucket
     And user enters Batch Id in search criteria for Normal Check in CAP Professional page
@@ -276,7 +276,7 @@ Feature: CAP Professional
     When user clicks on claim number and navigates to Notes section
     Then user should able see the added note in the Notes section
 
-  @TC_72837 @Sanity
+  @TC_72837
   Scenario: Verify error message when user enters Category and Description fields and Title field should leave as empty
     When user clicks on Paid bucket
     And user enters Batch Id in search criteria for Normal Check in CAP Professional page
@@ -286,7 +286,7 @@ Feature: CAP Professional
     And user click on the Add button
     Then user should able to see error message as "Please enter Title" message
 
-  @TC_72838 @Sanity
+  @TC_72838
   Scenario: Verify error message when user enters Title and Description fields and Category field should leave as empty
     When user clicks on Paid bucket
     And user enters Batch Id in search criteria for Normal Check in CAP Professional page
@@ -296,7 +296,7 @@ Feature: CAP Professional
     And user click on the Add button
     Then user should able to see error message as "Please select Category" message
 
-  @TC_72840 @Sanity
+  @TC_72840
   Scenario: Verify error message when user enters Title and Category fields and Description field should leave as empty
     When user clicks on Paid bucket
     And user enters Batch Id in search criteria for Normal Check in CAP Professional page
