@@ -99,6 +99,7 @@ public class EobConsolidatedLettersPage extends SeleniumUtils {
 
     //    Scenario: Verify results of Member rows count next to "EOB-Consolidated letters" tab name
     public void validateRowCountNextToEobConsolidatedLettersTab() throws InterruptedException {
+        explicitInvisibilityOfElementWithTextWait(By.xpath(tabEobConsolidated), 50, "EOB-Consolidated ()");
         fp.validateRowCountNextToFilesTab(tabEobConsolidated, lstEobConsolidatedLettersRecordsBar);
     }
 
