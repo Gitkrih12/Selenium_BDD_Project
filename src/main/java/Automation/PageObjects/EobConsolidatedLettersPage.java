@@ -45,7 +45,8 @@ public class EobConsolidatedLettersPage extends SeleniumUtils {
         clickElement(mnuFileManagement);
         moveToElement(mnuLetters).perform();
         clickElement(mnuLetters);
-        clickElement(tabLetters);
+        explicitTextToBePresentInElementLocatedWait(By.xpath(tabLetters), 20, "Letters");
+        explicitElementClickableWaitByXpath(tabLetters, 20);
         String[] letters = getText(tabLetters).split(" ");
         String lettersAct = letters[0];
         Assert.assertEquals(lettersExp, lettersAct);
