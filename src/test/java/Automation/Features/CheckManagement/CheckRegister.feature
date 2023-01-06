@@ -49,7 +49,7 @@ Feature: Check Register
     Then user able to view the result for the Created Date dropdown search criteria
 
   @60711
-  @Sanity
+  @Sanity @test
   Scenario: Verify user should get result on selecting dates from the Date of Service From and To values
     When user clicks on Check Register under Check Management
     And user select dates from Date of Service From and To dropdown field
