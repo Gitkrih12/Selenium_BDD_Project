@@ -306,4 +306,394 @@ Feature: CAP Professional
     And user click on the Add button
     Then user should able to see error message as "Please enter Description" message
 
+  #41943- As an adjudicator, I should be able to view On Hold tab of CAP professional claims page with all claims details data
+  @TC_81009
+  Scenario: Validate user able to view all the column fields under On Hold bucket in CAP Professional screen
+    When user clicks on On Hold bucket in CAP Professional
+    Then user able to view following column fields in On Hold bucket
+      | Claim Number           |
+      | Patient                |
+      | Member ID              |
+      | Billing Provider       |
+      | Rendering Provider     |
+      | Rendering Provider NPI |
+      | DOS From               |
+      | DOS To                 |
+      | Total Charges($)       |
+      | Net Pay Amt($)         |
+      | Received Date          |
+      | Age                    |
+      | Assigned To            |
+
+  #41946-As an adjudicator, I should be able to view Payer Review tab of CAP professional claims page with all claims details data
+  @TC_81010
+  Scenario: Validate user able to view all the column fields under Payer Review bucket in CAP Professional screen
+    When user clicks on Payer Review bucket in CAP Professional page
+    Then user able to view following column fields in Payer Review bucket
+      | Claim Number           |
+      | Patient                |
+      | Member ID              |
+      | Billing Provider       |
+      | Rendering Provider     |
+      | Rendering Provider NPI |
+      | DOS From               |
+      | DOS To                 |
+      | Total Charges($)       |
+      | Net Pay Amt($)         |
+      | Received Date          |
+      | Age                    |
+      | Assigned To            |
+
+  #41949-As an adjudicator, I should be able to view Management Review tab of CAP professional claims page with all claims details data
+  @TC_81011
+  Scenario: Validate user able to view all the column fields under Management Review bucket in CAP Professional screen
+    When user clicks on Management Review bucket in CAP Professional page
+    Then user able to view following column fields in Management Review bucket
+      | Claim Number           |
+      | Patient                |
+      | Member ID              |
+      | Billing Provider       |
+      | Rendering Provider     |
+      | Rendering Provider NPI |
+      | DOS From               |
+      | DOS To                 |
+      | Total Charges($)       |
+      | Net Pay Amt($)         |
+      | Received Date          |
+      | Age                    |
+      | Assigned To            |
+
+  #41952-As an adjudicator, I should be able to view Approved tab of CAP professional claims page with all claims details data
+  @TC_81012
+  Scenario: Validate user able to view all the column fields under Approved bucket in CAP Professional screen
+    When user clicks on Approved bucket in CAP Professional page
+    Then user able to view following column fields in Approved bucket
+      | Claim Number           |
+      | Patient                |
+      | Member ID              |
+      | Billing Provider       |
+      | Rendering Provider     |
+      | Rendering Provider NPI |
+      | DOS From               |
+      | DOS To                 |
+      | Total Charges($)       |
+      | Net Pay Amt($)         |
+      | Received Date          |
+      | Age                    |
+      | Assigned To            |
+
+  #41955- As an adjudicator, I should be able to view Denied tab of CAP professional claims page with all claims details data
+  @TC_81013
+  Scenario: Validate user able to view all the column fields under Denied bucket in CAP Professional screen
+    When user clicks on Denied bucket in CAP Professional page
+    Then user able to view following column fields in Denied bucket
+      | Claim Number           |
+      | Patient                |
+      | Member ID              |
+      | Billing Provider       |
+      | Rendering Provider     |
+      | Rendering Provider NPI |
+      | DOS From               |
+      | DOS To                 |
+      | Total Charges($)       |
+      | Net Pay Amt($)         |
+      | Received Date          |
+      | Age                    |
+      | Assigned To            |
+
+  #41958- As an adjudicator, I should be able to view Pre Batch tab of CAP professional claims page with all claims details data
+  @TC-81014
+  Scenario: Validate user able to view all the column fields under Pre-Batch bucket in CAP Professional screen
+    When user clicks on Pre Batch bucket in CAP Professional page
+    Then user able to view following column fields in Pre Batch bucket
+      | Claim Number           |
+      | Patient                |
+      | Member ID              |
+      | Billing Provider       |
+      | Rendering Provider     |
+      | Rendering Provider NPI |
+      | DOS From               |
+      | DOS To                 |
+      | Total Charges($)       |
+      | Net Pay Amt($)         |
+      | Received Date          |
+      | Age                    |
+      | Assigned To            |
+
+  @TC_81015
+  Scenario: Verify Batch Claims To Pay button when select claim number from Pre Batch bucket
+    When user clicks on Pre Batch bucket in CAP Professional page
+    Then user should able to see Batch Claims To Pay button in disabled mode
+    When user selects claim number in Pre Batch bucket
+    Then user should able to see Batch Claims To Pay button in enabled mode
+
+  @TC_81016
+  Scenario: Verify Batch Claims To Pay button when select multiple claim numbers from Pre Batch bucket
+    When user clicks on Pre Batch bucket in CAP Professional page
+    Then user should able to see Batch Claims To Pay button in disabled mode
+    When user selects all claim numbers in Pre Batch bucket
+    Then user should able to see Batch Claims To Pay button in enabled mode
+
+  #81017 - As an adjudicator, when I select the claim from Approved bucket and click on the 'Pre-Batch Pay' button so that the claim will be moved from Approved to Pre Batch
+  @TC_81018
+  Scenario: Verify Pre batch Pay button when select claim number from Approved bucket
+    When user clicks on Approved bucket in CAP Professional page
+    Then user should able to see Pre Batch Pay button in disabled mode
+    When user selects claim number
+    Then user should able to see Pre Batch Pay button in enabled mode
+    When user un selects claim number
+    Then user should able to see Pre Batch Pay button in disabled mode
+
+  @TC_81019
+  Scenario: Verify Pre batch Pay button when select multiple claim numbers from Approved bucket
+    When user clicks on Approved bucket in CAP Professional page
+    Then user should able to see Pre Batch Pay button in disabled mode
+    When user selects all claim numbers
+    Then user should able to see Pre Batch Pay button in enabled mode
+    When user un selects all claim numbers
+    Then user should able to see Pre Batch Pay button in disabled mode
+
+  @TC_81020
+  Scenario: Verify user should be able to see  PreBatch To Pay Validation screen on clicking Pre Batch Pay button
+    When user clicks on Approved bucket in CAP Professional page
+    When user selects claim number
+    When user clicks on Pre Batch Pay button
+    Then user should able to see "PreBatch To Pay Validation" screen
+
+  @TC_81021
+  Scenario: Validate user able to view all the column fields under PreBatch Pay validation bucket in CAP Professional screen
+    When user clicks on Approved bucket in CAP Professional page
+    Then user should able to see Pre Batch Pay button in disabled mode
+    When user selects claim number
+    Then user should able to see Pre Batch Pay button in enabled mode
+    When user clicks on Pre Batch Pay button
+    Then user should able to see "PreBatch To Pay Validation" screen
+    And user able to view following column fields in PreBatch To Pay Validation bucket
+      | Claim Number           |
+      | Member ID              |
+      | Rendering Provider NPI |
+      | DOS From               |
+      | DOS To                 |
+      | Total Charges($)       |
+      | Net Pay Amt($)         |
+      | Received Date          |
+      | Validation Description |
+
+  @TC_81022
+  Scenario: Verify tabs in PreBatch To Pay Validation screen
+    When user clicks on Approved bucket in CAP Professional page
+    And user selects claim number
+    When user clicks on Pre Batch Pay button
+    Then user should able to see "PreBatch To Pay Validation" screen
+    And user should able to see following tabs in PreBatch To Pay Validation screen
+      | Valid   |
+      | Invalid |
+
+  @TC_81023
+  Scenario: Verify buttons in Valid tab under PreBatch To Pay Validation screen
+    When user clicks on Approved bucket in CAP Professional page
+    When user selects claim number
+    When user clicks on Pre Batch Pay button
+    Then user should able to see "PreBatch To Pay Validation" screen
+    When user is in "Valid" tab
+    Then user should able to see "Remove" and "Confirm Pre-Batch Pay" buttons
+
+  @TC_81024
+  Scenario: Verify buttons in Invalid tab under PreBatch To Pay Validation screen
+    When user clicks on Approved bucket in CAP Professional page
+    When user selects claim number
+    When user clicks on Pre Batch Pay button
+    Then user should able to see "PreBatch To Pay Validation" screen
+    When user clicks on Invalid tab
+    Then user should able to see "Pend" "On Hold" and "Management Review" buttons
+
+  #81025- As Claims Adjudicator, I should have the ability to select a claim or set of claims in denied status and add to pre-batch list, so that claims can be batched together for pay out.
+  @TC_81026
+  Scenario: Verify Pre batch Deny button when select claim number from Denied bucket
+    When user clicks on Denied bucket in CAP Professional page
+    Then user should able to see Pre Batch Deny button in disabled mode
+    When user selects claim number in Denied bucket
+    Then user should able to see Pre Batch Deny button in enabled mode
+    When user un selects claim number in Denied bucket
+    Then user should able to see Pre Batch Deny button in disabled mode
+
+  @TC_81027
+  Scenario: Verify Pre batch Pay button when select multiple claim numbers from Denied bucket
+    When user clicks on Denied bucket in CAP Professional page
+    Then user should able to see Pre Batch Deny button in disabled mode
+    When user selects all claim numbers in Denied bucket
+    Then user should able to see Pre Batch Deny button in enabled mode
+    When user un selects all claim numbers in Denied bucket
+    Then user should able to see Pre Batch Deny button in disabled mode
+
+  #81297-As an adjudicator, I should be able to view Batch To Pay tab of CAP professional claims page with all claims details data
+  @TC_81298
+  Scenario: Verify tabs in Batch To Pay Validation screen
+    When user clicks on Batch To Pay bucket
+    Then user should be able to see following tabs in Batch To Pay bucket
+      | To Be Signed Off |
+      | Signed Off       |
+      | Sent for Payment |
+      | EFT Payment      |
+
+  @TC_81317
+  Scenario: Validate user able to view all the column fields in To Be Signed Off under Batch To Pay bucket in CAP Professional screen
+    When user clicks on Batch To Pay bucket
+    And user is on "To Be Signed Off" tab
+    Then user should be see following column fields in To Be Signed Off
+      | Batch ID               |
+      | Payee ID               |
+      | Payee                  |
+      | Payer                  |
+      | Net Paid Amount($)     |
+      | Total Billed Amount($) |
+
+  @TC_81318
+  Scenario: Verify buttons in To Be Signed Off tab under Batch To Pay bucket
+    When user clicks on Batch To Pay bucket
+    And user is on "To Be Signed Off" tab
+    Then user should able to see Unbatch EFT Payment Signed Off buttons in disabled mode
+    When user selects Batch ID
+    Then user should able to see Unbatch EFT Payment Signed Off buttons in enabled mode
+
+  @TC_81319
+  Scenario: Validate user able to view all the column fields in Signed Off under Batch To Pay bucket in CAP Professional screen
+    When user clicks on Batch To Pay bucket
+    And user clicks on Signed Off tab
+    Then user should be see following column fields in Signed Off
+      | Batch ID               |
+      | Payee ID               |
+      | Payee                  |
+      | Payer                  |
+      | Net Paid Amount($)     |
+      | Total Billed Amount($) |
+      | Signed Off Date        |
+
+  @TC_81320
+  Scenario: Validate user able to view all the column fields in Sent for Payment under Batch To Pay bucket in CAP Professional screen
+    When user clicks on Batch To Pay bucket
+    And user clicks on Sent for Payment tab
+    Then user should be see following column fields in Sent for Payment
+      | Batch ID               |
+      | Payee ID               |
+      | Payee                  |
+      | Payer                  |
+      | Net Paid Amount($)     |
+      | Total Billed Amount($) |
+      | Date Sent To Acc.      |
+
+  @TC_81321
+  Scenario: Verify user should be able to see Upload Great Plains File button in Sent for Payment tab under Batch to Pay bucket
+    When user clicks on Batch To Pay bucket
+    And user clicks on Sent for Payment tab
+    Then user should able to see "Upload Great Plains File" button
+
+  @TC_81323
+  Scenario: Validate user able to view all the column fields in EFT Payment under Batch To Pay bucket in CAP Professional screen
+    When user clicks on Batch To Pay bucket
+    And user clicks on EFT Payment tab
+    Then user should be see following column fields in EFT Payment
+      | Batch ID           |
+      | Payee ID           |
+      | Payee              |
+      | Payer              |
+      | Net Paid Amount($) |
+      | Check Number       |
+      | Check Issue Date   |
+
+  @TC_85235
+  Scenario: Verify buttons in EFT Payment tab under Batch To Pay bucket
+    When user clicks on Batch To Pay bucket
+    And user clicks on EFT Payment tab
+    Then user should be able to see Move To Paid and To Be Signed Off buttons in disabled mode
+    And user should be able to see Re Generate EFT button in enabled mode
+    When user selects Batch ID in EFT Payment tab
+    Then user should be able to see Move To Paid and To Be Signed Off buttons in enabled mode
+
+  #79189-As an adjudicator, When I click on the 'Batch ID' from Batch to Pay tab(To Be Signed Off, Signed Off, Sent for Payment, EFT Payment) for CAP professional So I can be able to View the Claims list  for Batch Tab
+  @TC_85236
+  Scenario: Verify user should be able to see Claims List on clicking on Batch Id in To Be Signed Off tab
+    When user clicks on Batch To Pay bucket
+    And user is on "To Be Signed Off" tab
+    And user clicks on Batch Id in To Be Signed Off tab
+    Then user should be able to see "Claim List in the Selected Batch - " for the selected Batch Id
+
+  @TC_85237
+  Scenario: Verify user should be able to see Claims List on clicking on Batch Id in Signed Off tab
+    When user clicks on Batch To Pay bucket
+    And user clicks on Signed Off tab
+    And user clicks on Batch Id in Signed Off tab
+    Then user should be able to see "Claim List in the Selected Batch - " for the selected Batch Id
+
+  @TC_85240
+  Scenario: Verify user should be able to see Claims List on clicking on Batch Id in Sent for Payment tab
+    When user clicks on Batch To Pay bucket
+    And user clicks on Sent for Payment tab
+    And user clicks on Batch Id in Sent for Payment tab
+    Then user should be able to see "Claim List in the Selected Batch - " for the selected Batch Id
+
+  @TC_85241
+  Scenario: Verify user should be able to see Claims List on clicking on Batch Id in EFT Payment tab
+    When user clicks on Batch To Pay bucket
+    And user clicks on EFT Payment tab
+    And user clicks on Batch Id in EFT Payment tab
+    Then user should be able to see "Claim List in the Selected Batch - " for the selected Batch Id
+
+  #85788-As an adjudicator, I should be able to view Paid tab of CAP professional claims page with all claims details data
+  @TC_85789
+  Scenario: Validate user able to view all the column fields under Paid bucket in CAP Professional screen
+    When user clicks on Paid bucket
+    Then user able to view following column fields in Paid bucket
+      | Batch ID           |
+      | Payee ID           |
+      | Payee              |
+      | Payer              |
+      | Net Paid Amount($) |
+      | Check Number       |
+      | Check Issue Date   |
+      | Action             |
+
+  #85791-As an adjudicator, I should be able to view Draft tab of CAP professional claims page with all claims details data
+  @TC_85792
+  Scenario: Validate user able to view all the column fields under Draft bucket in CAP Professional screen
+    When user clicks on Draft bucket
+    Then user able to view following column fields in Draft bucket
+      | Claim Number           |
+      | Patient                |
+      | Member ID              |
+      | Billing Provider       |
+      | Rendering Provider     |
+      | Rendering Provider NPI |
+      | DOS From               |
+      | DOS To                 |
+      | Total Charges($)       |
+      | Net Pay Amt($)         |
+      | Received Date          |
+      | Age                    |
+      | Assigned To            |
+
+  #85802-As an adjudicator, I should be able to view Rejected tab of CAP professional claims page with all claims details data
+  @TC_85976
+  Scenario: Validate user able to view all the column fields under Rejected bucket in CAP Professional screen
+    When user clicks on Reject bucket
+    Then user able to view following column fields in Reject bucket
+      | Claim Number           |
+      | Patient                |
+      | Member ID              |
+      | Billing Provider       |
+      | Rendering Provider     |
+      | Rendering Provider NPI |
+      | DOS From               |
+      | DOS To                 |
+      | Total Charges($)       |
+      | Net Pay Amt($)         |
+      | Received Date          |
+      | Age                    |
+      | Assigned To            |
+
+
+
+
+
+
 
