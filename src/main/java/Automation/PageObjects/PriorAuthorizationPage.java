@@ -457,6 +457,7 @@ public class PriorAuthorizationPage extends SeleniumUtils {
     }
 
     public void verifyProviderNPIFieldValue() {
+        explicitVisibilityOfElementLocatedWaitByXpath(eleProviderNpi, 30);
         explicitElementClickableWaitByXpath(eleProviderNpi, 40);
         Assert.assertEquals(expProviderNpi, findElementByXpath(eleProviderNpi).getText());
     }
@@ -539,7 +540,7 @@ public class PriorAuthorizationPage extends SeleniumUtils {
 
     //  Scenario: Verify user able to search the criteria for POS results fields
     public void userEntersPOSInResultsSearchCriteria() {
-        explicitVisibilityOfElementLocatedWaitByXpath(eleAuthorizationNumber, 30);
+        explicitVisibilityOfElementLocatedWaitByXpath(eleAuthorizationNumber, 40);
         WebElement ele = findElementByXpath(innerScrollBarMemberList);
         explicitElementClickableWaitByXpath(innerScrollBarMemberList, 30);
         moveToElement(ele).clickAndHold().moveByOffset(350, 0).release().perform();

@@ -94,7 +94,7 @@ public class ProviderDetailsPage extends SeleniumUtils {
 
     // Scenario: Verify user able to navigate to the Provider details tab in the View Claims Form page
     public void clickOnProviderDetails() {
-        explicitElementClickableWaitByXpath(tabProviderDetails, 30);
+        explicitVisibilityOfElementLocatedWaitByXpath(tabProviderDetails, 40);
         clickElement(tabProviderDetails);
         explicitTextToBePresentInElementLocatedWait(By.xpath(eleValidated), 60, "Validated");
     }
@@ -224,6 +224,7 @@ public class ProviderDetailsPage extends SeleniumUtils {
     }
 
     public void verifyUserNavigatesToMapPayToProvider() {
+        explicitVisibilityOfElementLocatedWaitByXpath(titleMapPayToProvider, 30);
         expMapPayProviderSideDrawer = prop.getProperty("expMapPayToProviderSideDrawer");
         Assert.assertEquals(expMapPayProviderSideDrawer, findElementByXpath(titleMapPayToProvider).getText());
     }
