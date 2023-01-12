@@ -47,6 +47,7 @@ Feature: Validation History
   @82902
   Scenario: Verify footer section available in Validation History tab
     Then user views the footer section in Validation History tab
+      | Pend              |
       | On Hold           |
       | Payer Review      |
       | Management Review |
