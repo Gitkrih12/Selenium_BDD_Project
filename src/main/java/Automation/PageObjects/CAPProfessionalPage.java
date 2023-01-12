@@ -14,7 +14,7 @@ public class CAPProfessionalPage extends SeleniumUtils {
     String tabCAPProfessional = "(//div[contains(text(),'CAP Professional')])[2]";
     String elePendQueuePage = "(//span[@class='ag-cell-value']//app-view-claim-render)[1]";
     String eleClaimList = "//div//*[text()='Claim List']";
-    String lstColumnFields = "//ag-grid-angular[@id='Pend_CAP_Professional']//div[@class='ag-header-cell-label']//span[text()]";
+    String lstColumnFields = "//ag-grid-angular[contains(@id,'pend')]//div[@class='ag-header-cell-label']//span[text()]";
     String tabPendState = "(//button[@class='nav-link active'])[1]";
     String lstQueues = "//div[@id='nav-tab']//button";
     String txtSearchFields = "//ag-grid-angular[@id='pendGrid']//div[@class='ag-header-cell-label']//span[text()]//following::div[1]//input[@type='text']";
@@ -48,11 +48,11 @@ public class CAPProfessionalPage extends SeleniumUtils {
     String txtPreBatchClaimNumber = "(//input[@aria-label='Claim Number Filter Input'])[7]";
     String elePreBatchClaimNumber="//*[@id='prebatchdGrid']//div[contains(@class,'ag-cell-last-left-pinned')]//a";
     String eleVerticalColorForUncleanPreBatchClaim = "(//*[@id='prebatchdGrid']//div[contains(@class,'ag-cell-normal-height')]//span)[4]";
-    String txtMemberId = "//*[@id='Pend_CAP_Professional']//input[@aria-label='Member ID Filter Input']";
-    String eleMemberId = "(//*[@id='Pend_CAP_Professional']//div[@col-id='subscriberId']//span[@class='ag-cell-value'])[1]";
-    String eleTotalMemberIdRecords = "//*[@id='Pend_CAP_Professional']//div[@col-id='subscriberId']//span[@class='ag-cell-value']";
-    String eleTotalResults = "//*[@id='Pend_CAP_Professional']//span[@class='ag-paging-row-summary-panel']";
-    String elePaginationDescription = "//*[@id='Pend_CAP_Professional']//span[@class='ag-paging-description']";
+    String txtMemberId = "//*[contains(@id,'pend')]//input[@aria-label='Member ID Filter Input']";
+    String eleMemberId = "(//*[contains(@id,'pend')]//div[@col-id='subscriberId']//span[@class='ag-cell-value'])[1]";
+    String eleTotalMemberIdRecords = "//*[contains(@id,'pend')]//div[@col-id='subscriberId']//span[@class='ag-cell-value']";
+    String eleTotalResults = "//*[contains(@id,'pend')]//span[@class='ag-paging-row-summary-panel']";
+    String elePaginationDescription = "//*[contains(@id,'pend')]//span[@class='ag-paging-description']";
     String tabOnHold = "//button[@id='nav-onhold-details-tab']";
     String eleOnHoldPaginationDescription = "//*[@id='onHoldGrid']//span[@class='ag-paging-description']";
     String btnNextPage = "//*[@id='onHoldGrid']//span[@class='ag-icon ag-icon-next']";

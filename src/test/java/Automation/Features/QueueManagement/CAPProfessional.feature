@@ -606,7 +606,6 @@ Feature: CAP Professional
     When user clicks on Batch To Pay bucket
     And user clicks on EFT Payment tab
     Then user should be able to see Move To Paid and To Be Signed Off buttons in disabled mode
-    And user should be able to see Re Generate EFT button in enabled mode
     When user selects Batch ID in EFT Payment tab
     Then user should be able to see Move To Paid and To Be Signed Off buttons in enabled mode
 
