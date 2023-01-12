@@ -476,7 +476,7 @@ public class FilesPage extends SeleniumUtils {
 
     //Generic method to verify row count next to 837P, 837I, 837D, 999, 277CA and 835
     public void validateRowCountNextToFilesTab(String fileTabXpath, String recordsBarXpath) throws InterruptedException {
-        String recordsBarText = explicitElementClickableWaitByXpath(fileTabXpath, 5).getText();
+        String recordsBarText = explicitElementClickableWaitByXpath(fileTabXpath, 10).getText();
         String rowCountAct = recordsBarText.substring(recordsBarText.indexOf("(") + 1, recordsBarText.indexOf(")"));
         printStatementInGreenColor("Actual row count is", rowCountAct);
         scrollToElement(recordsBarXpath);
