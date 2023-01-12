@@ -93,7 +93,7 @@ public class ProviderDetailsPage extends SeleniumUtils {
 
 
     // Scenario: Verify user able to navigate to the Provider details tab in the View Claims Form page
-    public void clickOnProviderDetails() throws InterruptedException {
+    public void clickOnProviderDetails() {
         explicitElementClickableWaitByXpath(tabProviderDetails, 30);
         clickElement(tabProviderDetails);
         explicitTextToBePresentInElementLocatedWait(By.xpath(eleValidated), 60, "Validated");
@@ -111,33 +111,12 @@ public class ProviderDetailsPage extends SeleniumUtils {
 
     //  Scenario: Verify user able to view all the fields under Pay to Provider Details section
     public void userViewsFieldsUnderPayToProviderDetailsSection(DataTable fieldsUnderPayToProviderDetails) {
-        List<String> fieldsExp = fieldsUnderPayToProviderDetails.asList();
-        List<WebElement> ActFields = findElementsByXpath(lstPayToProviderDetails);
-        List<String> fieldsForCompare = new ArrayList<>();
-        System.out.println("Size" + ActFields.size());
-        for (WebElement column : ActFields) {
-            scrollIntoView(column, driver);
-            String text = column.getText();
-            fieldsForCompare.add(text);
-        }
-        System.out.println("Fields in Payment Information section :" + fieldsForCompare);
-        System.out.println("Expected fields are : " + fieldsExp);
-        for (String exp : fieldsExp) {
-            if (fieldsForCompare.contains(exp)) {
-                Assert.assertTrue(true);
-            } else {
-                Assert.fail(exp + " is not listed in actual list");
-            }
-        }
+        explicitElementClickableWaitByXpath(lstPayToProviderDetails, 20);
+        scrollToElementsAndCompare2Lists(fieldsUnderPayToProviderDetails, lstPayToProviderDetails);
     }
 
     public void userViewsFieldValuesUnderPayToProviderDetails() {
-        List<WebElement> payToProviderValues = findElementsByXpath(lstPayToProviderDetailsValues);
-        System.out.println("Size:" + payToProviderValues.size());
-        for (WebElement value : payToProviderValues) {
-            Assert.assertTrue(isDisplayed(value));
-            System.out.println("Value is displayed: " + isDisplayed(value));
-        }
+        elementsDisplayValidation(lstPayToProviderDetailsValues);
     }
 
     //  Scenario: Verify user able to view all the fields under Group/Rendering Provider Details section
@@ -251,45 +230,13 @@ public class ProviderDetailsPage extends SeleniumUtils {
 
     //  Scenario: Verify user able to view all the fields in Map Pay To Provider Side drawer
     public void verifyHeadersUnderMapPayToProvider(DataTable expHeaders) {
-        List<String> headersExp = expHeaders.asList();
-        List<WebElement> actColumnHeaders = findElementsByXpath(lstHeadersMapPayToProvider);
-        List<String> columnHeadersForCompare = new ArrayList<>();
-        System.out.println("Size " + actColumnHeaders.size());
-        for (WebElement column : actColumnHeaders) {
-            scrollIntoView(column, driver);
-            String text = column.getText();
-            columnHeadersForCompare.add(text);
-        }
-        System.out.println("Headers under Map Pay To Provider section :" + columnHeadersForCompare);
-        System.out.println("Expected fields are : " + headersExp);
-        for (String exp : headersExp) {
-            if (columnHeadersForCompare.contains(exp)) {
-                Assert.assertTrue(true);
-            } else {
-                Assert.fail(exp + " is not listed in actual list");
-            }
-        }
+        explicitElementClickableWaitByXpath(lstHeadersMapPayToProvider, 20);
+        scrollToElementsAndCompare2Lists(expHeaders, lstHeadersMapPayToProvider);
     }
 
     public void verifyFieldsUnderMapPayToProvider(DataTable expFields) {
-        List<String> fieldsExp = expFields.asList();
-        List<WebElement> actColumnFields = findElementsByXpath(lstFieldsMapPayToProvider);
-        List<String> columnFieldsForCompare = new ArrayList<>();
-        System.out.println("Size " + actColumnFields.size());
-        for (WebElement column : actColumnFields) {
-            scrollIntoView(column, driver);
-            String text = column.getText();
-            columnFieldsForCompare.add(text);
-        }
-        System.out.println("Fields under Map Pay To Provider section :" + columnFieldsForCompare);
-        System.out.println("Expected Fields are : " + fieldsExp);
-        for (String exp : fieldsExp) {
-            if (columnFieldsForCompare.contains(exp)) {
-                Assert.assertTrue(true);
-            } else {
-                Assert.fail(exp + " is not listed in actual list");
-            }
-        }
+        explicitElementClickableWaitByXpath(lstFieldsMapPayToProvider, 20);
+        scrollToElementsAndCompare2Lists(expFields, lstFieldsMapPayToProvider);
     }
 
     //  Scenario: Verify user should not be able to view the select option and Green bar should display for the default Vendor ID

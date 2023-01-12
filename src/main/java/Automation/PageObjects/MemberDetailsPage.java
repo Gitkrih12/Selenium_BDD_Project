@@ -65,7 +65,7 @@ public class MemberDetailsPage extends SeleniumUtils {
     //  Scenario: Verify user should navigates to Member Details screen on clicking Patient ID/MBR ID
     public void userClicksOnPatientID() {
         explicitElementClickableWaitByXpath(lnkPatientID, 50);
-        explicitTextToBePresentInElementLocatedWait(By.xpath(lnkPatientID), 20, "2193336VF");
+        explicitVisibilityOfElementLocatedWaitByXpath(lnkPatientID, 30);
         clickElement(lnkPatientID);
         explicitTextToBePresentInElementLocatedWait(By.xpath(tabProviderDetails), 20, "Provider Details");
     }
@@ -172,7 +172,7 @@ public class MemberDetailsPage extends SeleniumUtils {
     //  Scenario: Verify column fields in Membership Information tab
     public void userViewMemberShipInfoColumns(DataTable expFields) {
         explicitElementClickableWaitByXpath(lstMemberShipInfoFields, 40);
-        compare2Lists(expFields, lstMemberShipInfoFields);
+        scrollToElementsAndCompare2Lists(expFields, lstMemberShipInfoFields);
     }
 
     public void verifySearchCriteriaInMembershipInfo(){
@@ -186,7 +186,7 @@ public class MemberDetailsPage extends SeleniumUtils {
     //  Scenario: Verify user should able to see Membership History column fields
     public void userViewMemberShipHistoryColumns(DataTable expMemberShipHistoryColumns) {
         explicitElementClickableWaitByXpath(lstMemberShipHistory, 30);
-        compare2Lists(expMemberShipHistoryColumns, lstMemberShipHistory);
+        scrollToElementsAndCompare2Lists(expMemberShipHistoryColumns, lstMemberShipHistory);
     }
 
     public void verifySearchCriteriaInMembershipHistory(){

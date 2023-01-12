@@ -18,6 +18,7 @@ public class ARTransactionPage extends SeleniumUtils {
 
     //  Scenario: Verify user able to Navigate to the A/R Transaction tab from Global Search
     public void userClicksOnARTransaction() throws InterruptedException {
+        explicitElementClickableWaitByXpath(tabArTransaction, 20);
         clickElement(tabArTransaction);
         threadSleep(1000);
     }

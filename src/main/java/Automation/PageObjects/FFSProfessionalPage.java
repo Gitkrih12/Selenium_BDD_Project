@@ -791,7 +791,7 @@ public class FFSProfessionalPage extends SeleniumUtils {
     }
 
     public void verifyHistoryDocCount() throws InterruptedException {
-        explicitTextToBePresentInElementLocatedWait(By.xpath(eleHistoryDoc), 20, "History Of Doc");
+        explicitTextToBePresentInElementLocatedWait(By.xpath(eleHistoryDoc), 30, "History Of Doc");
         validateRowCountInBatchIDTabs(tabHistoryDoc, lstHistoryDoc);
     }
 
@@ -1096,12 +1096,7 @@ public class FFSProfessionalPage extends SeleniumUtils {
     }
 
     public void verifyPreBatchDenyButtonInEnabledMode() {
-        String attribute = getAttribute(btnPreBatchDeny, "disabled");
-        if (attribute == null) {
-            Assert.assertTrue(true);
-        } else {
-            Assert.assertTrue(false);
-        }
+        Assert.assertTrue(isEnabled(btnPreBatchDeny));
     }
 
     //Scenario: Verify Pre batch Pay button when select multiple claim numbers from Denied bucket
@@ -1119,7 +1114,7 @@ public class FFSProfessionalPage extends SeleniumUtils {
         List<WebElement> actTabFields = findElementsByXpath(lstTabsInBatchToPay);
         List<String> actualQueueFieldsForCompare = new ArrayList<>();
         for (WebElement column : actTabFields) {
-            threadSleep(1000);
+            explicitElementClickableWait(column,20);
             String text = column.getText();
             String data = text.substring(0, text.indexOf("(")).trim();
             actualQueueFieldsForCompare.add(data);
