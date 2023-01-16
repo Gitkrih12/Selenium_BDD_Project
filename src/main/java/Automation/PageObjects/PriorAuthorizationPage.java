@@ -482,7 +482,7 @@ public class PriorAuthorizationPage extends SeleniumUtils {
     }
 
     public void verifyProviderNameFieldValue() {
-        explicitElementClickableWaitByXpath(eleProviderName, 40);
+        explicitVisibilityOfElementLocatedWaitByXpath(eleProviderName, 50);
         Assert.assertEquals(expProviderName, findElementByXpath(eleProviderName).getText());
     }
 

@@ -54,3 +54,5 @@ Feature: Validation History
       | Deny              |
       | Approve           |
       | Update Auth       |
+      | PreBatch-Pay      |
+      | PreBatch-Deny     |

@@ -224,7 +224,7 @@ public class ProviderDetailsPage extends SeleniumUtils {
     }
 
     public void verifyUserNavigatesToMapPayToProvider() {
-        explicitVisibilityOfElementLocatedWaitByXpath(titleMapPayToProvider, 30);
+        explicitVisibilityOfElementLocatedWaitByXpath(titleMapPayToProvider, 50);
         expMapPayProviderSideDrawer = prop.getProperty("expMapPayToProviderSideDrawer");
         Assert.assertEquals(expMapPayProviderSideDrawer, findElementByXpath(titleMapPayToProvider).getText());
     }
