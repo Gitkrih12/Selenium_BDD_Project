@@ -49,3 +49,38 @@ Feature: Documents
       | Uploaded By |
       | Uploaded On |
     And user able to view the field values under EDI Files sub tab
+
+  @89486
+  @Sanity
+  Scenario: Verify user should navigate to the Upload Document window on clicking Upload Document button
+    When user clicking on Attachments Claim Number in Global Search page
+    And user clicks on the Documents tab
+    And user clicks on Attachments sub tab
+    When user clicks on Upload Document button in Attachments section
+    Then user navigates to the "Upload Document" window
+
+  @89502
+  @Sanity
+  Scenario: Verify user should be able to view all the fields in upload document window
+    When user clicking on Attachments Claim Number in Global Search page
+    And user clicks on the Documents tab
+    And user clicks on Attachments sub tab
+    When user clicks on Upload Document button in Attachments section
+    Then user able to view the below mentioned fields under Upload Document window
+      | Title       |
+      | Category    |
+      | Description |
+    And user able to view the below buttons under Upload Document window
+      | Cancel      |
+      | Upload      |
+
+  @89503
+  @Sanity
+  Scenario: Verify user able to upload the document successfully by entering all the required fields
+    When user clicking on Attachments Claim Number in Global Search page
+    And user clicks on the Documents tab
+    And user clicks on Attachments sub tab
+    When user clicks on Upload Document button in Attachments section
+    When user enters all the required fields and click on upload button
+    Then user able to view the toaster message "Success! File saved successfully"
+    And user able to display the added document with all the details in the Attachments screen

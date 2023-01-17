@@ -23,6 +23,11 @@ public class DocumentsPage extends SeleniumUtils {
     String lnkGlobalSearch = "(//div[contains(text(),'Global Search')])[1]";
     String inputClaimNumber = "//input[@aria-label='Claim Number Filter Input']";
     String eleClaimNumber = "(//div[@class='ag-pinned-left-cols-container']//a)[1]";
+    String btnUploadDocument = "//button[contains(text(), 'Upload Document')]";
+    String titleUploadDocument = "//h2[contains(text(), 'Upload Document')]";
+    String lstUploadDocumentFields = "//*[contains(@class, 'row columnFont')]//span";
+    String btnCancelAndUpload = "//mat-dialog-actions//button";
+    String btnUpload = "//button[text() = 'Upload']";
 
     private static String expClaimNumber = "";
 
@@ -105,5 +110,31 @@ public class DocumentsPage extends SeleniumUtils {
 
     public void verifyFieldValuesUnderEdiFiles() {
         elementsDisplayValidation(lstEdiFiles);
+    }
+
+    public void userClicksOnUploadDocumentButton(){
+        explicitVisibilityOfElementLocatedWaitByXpath(btnUploadDocument, 20);
+        clickElement(btnUploadDocument);
+    }
+
+    public void verifyUserNavigatesToUploadDocumentWindow(String expWindow){
+        Assert.assertEquals(expWindow, findElementByXpath(titleUploadDocument).getText());
+    }
+
+    public void verifyUploadDocumentFields(DataTable expFields){
+        scrollToElementsAndCompare2Lists(expFields, lstUploadDocumentFields);
+    }
+
+    public void verifyButtonsUnderUploadDocument(DataTable expButtons){
+        compare2Lists(expButtons, btnCancelAndUpload);
+    }
+
+    public void userEntersAllRequiredFields(){
+
+    }
+
+    public void clickOnUploadButton(){
+        explicitVisibilityOfElementLocatedWaitByXpath(btnUpload, 30);
+        clickElement(btnUpload);
     }
 }

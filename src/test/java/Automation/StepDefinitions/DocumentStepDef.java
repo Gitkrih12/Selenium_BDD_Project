@@ -63,4 +63,40 @@ public class DocumentStepDef extends DocumentsPage {
     public void user_able_to_view_the_field_values_under_edi_files_sub_tab() {
         verifyFieldValuesUnderEdiFiles();
     }
+
+    @When("user clicks on Upload Document button in Attachments section")
+    public void user_clicks_on_upload_document_button_in_attachments_section() {
+        userClicksOnUploadDocumentButton();
+    }
+
+    @Then("user navigates to the {string} window")
+    public void user_navigates_to_the_window(String expWindow) {
+        verifyUserNavigatesToUploadDocumentWindow(expWindow);
+    }
+
+    @Then("user able to view the below mentioned fields under Upload Document window")
+    public void user_able_to_view_the_below_mentioned_fields_under_upload_document_window(DataTable expFields) {
+       verifyUploadDocumentFields(expFields);
+    }
+
+    @Then("user able to view the below buttons under Upload Document window")
+    public void user_able_to_view_the_below_buttons_under_upload_document_window(DataTable expButtons) {
+        verifyButtonsUnderUploadDocument(expButtons);
+    }
+
+    @When("user enters all the required fields and click on upload button")
+    public void user_enters_all_the_required_fields_and_click_on_upload_button() {
+        userEntersAllRequiredFields();
+        clickOnUploadButton();
+    }
+
+    @Then("user able to view the toaster message {string}")
+    public void user_able_to_view_the_toaster_message(String expToasterMsg) {
+
+    }
+
+    @Then("user able to display the added document with all the details in the Attachments screen")
+    public void user_able_to_display_the_added_document_with_all_the_details_in_the_attachments_screen() {
+
+    }
 }
