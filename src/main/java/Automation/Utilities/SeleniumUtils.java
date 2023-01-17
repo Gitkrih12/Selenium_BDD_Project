@@ -2338,4 +2338,27 @@ public class SeleniumUtils extends Driver {
     }
     // *********** End of Date and Time related methods *********** //
 
+    // *********** Random String *************** //
+    public String getRandomString(int size) {
+        String SALTCHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890";
+        StringBuilder salt = new StringBuilder();
+        Random rnd = new Random();
+        while (salt.length() < size) { // length of the random string.
+            int index = (int) (rnd.nextFloat() * SALTCHARS.length());
+            salt.append(SALTCHARS.charAt(index));
+        }
+        return salt.toString();
+    }
+
+    public String getRandomSubject(String xpath) {
+        List<WebElement> elements = findElementsByXpath(xpath);
+        List<String> subjects = new ArrayList<>();
+        Random rnd = new Random();
+        for (WebElement element : elements) {
+            scrollToElement(xpath);
+            subjects.add(element.getText().trim());
+        }
+        return subjects.get(rnd.nextInt(subjects.size()));
+    }
+
 }   //Class ends here

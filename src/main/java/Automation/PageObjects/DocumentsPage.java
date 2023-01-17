@@ -3,6 +3,7 @@ package Automation.PageObjects;
 import Automation.Utilities.SeleniumUtils;
 import io.cucumber.datatable.DataTable;
 import org.junit.Assert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
 import java.util.List;
@@ -28,6 +29,11 @@ public class DocumentsPage extends SeleniumUtils {
     String lstUploadDocumentFields = "//*[contains(@class, 'row columnFont')]//span";
     String btnCancelAndUpload = "//mat-dialog-actions//button";
     String btnUpload = "//button[text() = 'Upload']";
+    String inputTitle = "//input[@name = 'Title']";
+    String dropdownCategory = "//*[contains(@class,'mat-select-arrow-wrapper')]";
+    String dropdownSelectCategory = "(//*[contains(@class,'mat-option-text')])[3]";
+    String txtDescription = "//textarea[@id='description']";
+    String txtFileUpload = "//input[@type='file']";
 
     private static String expClaimNumber = "";
 
@@ -130,7 +136,14 @@ public class DocumentsPage extends SeleniumUtils {
     }
 
     public void userEntersAllRequiredFields(){
-
+        String randomText = getRandomString(6);
+        findElementAndSendKeys(findElementByXpath(inputTitle), randomText);
+        explicitElementClickableWaitByXpath(dropdownCategory, 20);
+        clickElement(dropdownCategory);
+        clickElement(dropdownSelectCategory);
+        findElementAndSendKeys(findElementByXpath(txtDescription), getRandomString(4));
+        String filePath = basePath + prop.getProperty("invalidPayerIdFilePath");
+        uploadFileWithJavaScriptAndSendKeys(txtFileUpload, filePath);
     }
 
     public void clickOnUploadButton(){
