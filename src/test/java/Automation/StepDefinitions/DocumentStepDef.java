@@ -92,11 +92,42 @@ public class DocumentStepDef extends DocumentsPage {
 
     @Then("user able to view the toaster message {string}")
     public void user_able_to_view_the_toaster_message(String expToasterMsg) {
-
+        verifyToasterMessage(expToasterMsg);
     }
 
     @Then("user able to display the added document with all the details in the Attachments screen")
     public void user_able_to_display_the_added_document_with_all_the_details_in_the_attachments_screen() {
+        verifyAddedDocumentInAttachmentsSection();
+    }
 
+    @When("Title is not entered in the Upload Document window")
+    public void title_is_not_entered_in_the_upload_document_window() {
+        clickOnUploadButton();
+    }
+
+    @Then("user throws an error message as {string}")
+    public void user_throws_an_error_message_as(String expErrMsg) {
+       verifyErrorMessage(expErrMsg);
+    }
+
+    @When("Category is not selected in the Upload Document window")
+    public void category_is_not_selected_in_the_upload_document_window() {
+        userEntersTitle();
+        clickOnUploadButton();
+    }
+
+    @When("Description is not entered in the Upload Document window")
+    public void description_is_not_entered_in_the_upload_document_window() {
+        userEntersTitle();
+        userSelectsCategory();
+        clickOnUploadButton();
+    }
+
+    @When("File is not chose in the Upload Document window")
+    public void file_is_not_chose_in_the_upload_document_window() {
+        userEntersTitle();
+        userSelectsCategory();
+        userEntersDescription();
+        clickOnUploadButton();
     }
 }

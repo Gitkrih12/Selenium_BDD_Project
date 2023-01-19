@@ -34,6 +34,7 @@ public class DocumentsPage extends SeleniumUtils {
     String dropdownSelectCategory = "(//*[contains(@class,'mat-option-text')])[3]";
     String txtDescription = "//textarea[@id='description']";
     String txtFileUpload = "//input[@type='file']";
+    String txtToasterMessage = "//*[@id = 'toast-container']";
 
     private static String expClaimNumber = "";
 
@@ -142,12 +143,42 @@ public class DocumentsPage extends SeleniumUtils {
         clickElement(dropdownCategory);
         clickElement(dropdownSelectCategory);
         findElementAndSendKeys(findElementByXpath(txtDescription), getRandomString(4));
-        String filePath = basePath + prop.getProperty("invalidPayerIdFilePath");
+        String filePath = basePath + prop.getProperty("uploadFilePath2");
         uploadFileWithJavaScriptAndSendKeys(txtFileUpload, filePath);
     }
 
     public void clickOnUploadButton(){
         explicitVisibilityOfElementLocatedWaitByXpath(btnUpload, 30);
         clickElement(btnUpload);
+    }
+
+    public void verifyToasterMessage(String expToasterMsg){
+        explicitVisibilityOfElementLocatedWaitByXpath(txtToasterMessage, 20);
+        String actToasterMsg[] = findElementByXpath(txtToasterMessage).getText().split(" ");
+        Assert.assertEquals(expToasterMsg, actToasterMsg[0] + " " + actToasterMsg[1] + " " + actToasterMsg[2]);
+    }
+
+    public void verifyAddedDocumentInAttachmentsSection(){
+
+    }
+
+    public void verifyErrorMessage(String expErrMsg){
+        explicitVisibilityOfElementLocatedWaitByXpath(txtToasterMessage, 20);
+        Assert.assertEquals(expErrMsg, findElementByXpath(txtToasterMessage).getText());
+    }
+
+    public void userEntersTitle(){
+        String randomText = getRandomString(6);
+        findElementAndSendKeys(findElementByXpath(inputTitle), randomText);
+    }
+
+    public void userSelectsCategory(){
+        explicitElementClickableWaitByXpath(dropdownCategory, 20);
+        clickElement(dropdownCategory);
+        clickElement(dropdownSelectCategory);
+    }
+
+    public void userEntersDescription(){
+        findElementAndSendKeys(findElementByXpath(txtDescription), getRandomString(4));
     }
 }

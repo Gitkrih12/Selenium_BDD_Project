@@ -84,3 +84,43 @@ Feature: Documents
     When user enters all the required fields and click on upload button
     Then user able to view the toaster message "Success! File saved successfully"
     And user able to display the added document with all the details in the Attachments screen
+
+  @89504
+  @Sanity
+  Scenario: Verify user throws an error message when Title is not entered
+    When user clicking on Attachments Claim Number in Global Search page
+    And user clicks on the Documents tab
+    And user clicks on Attachments sub tab
+    When user clicks on Upload Document button in Attachments section
+    When Title is not entered in the Upload Document window
+    Then user throws an error message as "Please enter Title"
+
+  @89508
+  @Sanity
+  Scenario: Verify user throws an error message when Category is not selected
+    When user clicking on Attachments Claim Number in Global Search page
+    And user clicks on the Documents tab
+    And user clicks on Attachments sub tab
+    When user clicks on Upload Document button in Attachments section
+    When Category is not selected in the Upload Document window
+    Then user throws an error message as "Please select Category"
+
+  @89513
+  @Sanity
+  Scenario: Verify user throws an error message when Description is not entered in field
+    When user clicking on Attachments Claim Number in Global Search page
+    And user clicks on the Documents tab
+    And user clicks on Attachments sub tab
+    When user clicks on Upload Document button in Attachments section
+    When Description is not entered in the Upload Document window
+    Then user throws an error message as "Please enter Description"
+
+  @89514
+  @Sanity
+  Scenario: Verify user throws an error message when file is not chose
+    When user clicking on Attachments Claim Number in Global Search page
+    And user clicks on the Documents tab
+    And user clicks on Attachments sub tab
+    When user clicks on Upload Document button in Attachments section
+    When File is not chose in the Upload Document window
+    Then user throws an error message as "Please select file Document"
