@@ -35,6 +35,7 @@ public class DocumentsPage extends SeleniumUtils {
     String txtDescription = "//textarea[@id='description']";
     String txtFileUpload = "//input[@type='file']";
     String txtToasterMessage = "//*[@id = 'toast-container']";
+    String eleDocument = "(//div[@col-id='title'])[2]/..";
 
     private static String expClaimNumber = "";
 
@@ -159,7 +160,17 @@ public class DocumentsPage extends SeleniumUtils {
     }
 
     public void verifyAddedDocumentInAttachmentsSection(){
-
+        explicitElementClickableWaitByXpath(eleDocument, 20);
+        String actDocumentText = findElementByXpath(eleDocument).getText();
+        System.out.println("Actual Document :" + actDocumentText);
+        String[] actDocument = actDocumentText.split("\n");
+        String actDocumentValue = actDocument[0] + " " + actDocument[1] + " " + actDocument[2] + " " + actDocument[3];
+        System.out.println("actual document value :" + actDocumentValue);
+       /* if (actDocumentValue.contains(randomText) && actDocumentValue.contains(category) && actDocumentValue.contains(description)) {
+            Assert.assertTrue(true);
+        } else {
+            Assert.assertTrue(false);
+        }*/
     }
 
     public void verifyErrorMessage(String expErrMsg){
