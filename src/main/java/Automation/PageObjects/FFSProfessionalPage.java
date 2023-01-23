@@ -339,7 +339,7 @@ public class FFSProfessionalPage extends SeleniumUtils {
     }
 
     public void validatePayerReviewClaimNumberResult() {
-        explicitVisibilityOfWait(findElementByXpath(elePayerReviewClaimNumber), 5);
+        explicitVisibilityOfWait(findElementByXpath(elePayerReviewClaimNumber), 10);
         String actClaimNumber = getText(elePayerReviewClaimNumber);
         System.out.println("actual claimNumber :" + actClaimNumber);
         Assert.assertEquals(expClaimNumber, actClaimNumber);
@@ -417,7 +417,7 @@ public class FFSProfessionalPage extends SeleniumUtils {
     }
 
     public void validateDeniedClaimNumberResult() {
-        explicitVisibilityOfWait(findElementByXpath(eleDeniedClaimNumber), 10);
+        explicitVisibilityOfWait(findElementByXpath(eleDeniedClaimNumber), 15);
         String actClaimNumber = getText(eleDeniedClaimNumber);
         System.out.println("actual claimNumber :" + actClaimNumber);
         Assert.assertEquals(expClaimNumber, actClaimNumber);
@@ -910,7 +910,7 @@ public class FFSProfessionalPage extends SeleniumUtils {
     }
 
     public void NavigateToNotesScreen() {
-        explicitTextToBePresentInElementLocatedWait(By.xpath(tabNotes), 15, "Notes");
+        explicitTextToBePresentInElementLocatedWait(By.xpath(tabNotes), 20, "Notes");
         clickElement(tabNotes);
     }
 

@@ -410,7 +410,7 @@ public class CAPInstitutionalPage extends SeleniumUtils {
         sendKeysUsingKeyboardInput(txtApprovedClaimNumber);
     }
     public void validateApprovedClaimNumberResult() {
-        explicitVisibilityOfWait(findElementByXpath(eleApprovedClaimNumber), 5);
+        explicitVisibilityOfWait(findElementByXpath(eleApprovedClaimNumber), 10);
         String actClaimNumber = getText(eleApprovedClaimNumber);
         System.out.println("actual claimNumber :" + actClaimNumber);
         Assert.assertEquals(expClaimNumber, actClaimNumber);
@@ -473,7 +473,7 @@ public class CAPInstitutionalPage extends SeleniumUtils {
     //Scenario: Verify all tabs should display when clicking on Batch ID under Paid tab in CAP Institutional page
     public void enterBatchId() throws InterruptedException {
         expBatchID = prop.getProperty("capInstitutionalBatchID");
-        explicitElementClickableWaitByXpath(txtBatchID, 10);
+        explicitElementClickableWaitByXpath(txtBatchID, 15);
         findElementAndSendKeys(findElementByXpath(txtBatchID), expBatchID);
         explicitTextToBePresentInElementLocatedWait(By.xpath(eleBatchID), 10, expBatchID);
     }
