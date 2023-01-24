@@ -49,7 +49,6 @@ Feature: Validation History
     Then user views the footer section in Validation History tab
       | Pend              |
       | On Hold           |
-      | Payer Review      |
       | Management Review |
       | Deny              |
       | Approve           |
