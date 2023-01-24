@@ -94,7 +94,7 @@ public class ProviderDetailsPage extends SeleniumUtils {
 
     // Scenario: Verify user able to navigate to the Provider details tab in the View Claims Form page
     public void clickOnProviderDetails() {
-        explicitVisibilityOfElementLocatedWaitByXpath(tabProviderDetails, 40);
+        explicitVisibilityOfElementLocatedWaitByXpath(tabProviderDetails, 60);
         clickElement(tabProviderDetails);
         explicitTextToBePresentInElementLocatedWait(By.xpath(eleValidated), 60, "Validated");
     }
