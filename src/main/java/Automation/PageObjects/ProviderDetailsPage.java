@@ -28,7 +28,7 @@ public class ProviderDetailsPage extends SeleniumUtils {
     String lstGroupRenderingProviderDetailsValues = "//*[@class='table table-striped']//tr//td//div";
     String eleOnHoldClaimNumber = "(//*[@id = 'onHoldGrid']//div[@class = 'ag-pinned-left-cols-container']//a)[1]";
     String btnMapPayToProvider = "//*[contains(text(), 'Map Pay To Provider')]";
-    String titleMapPayToProvider = "//*[@class = 'map-rendering']//h2";
+    String titleMapPayToProvider = "//*[@class = 'map-btn']//button";
     String lstHeadersMapPayToProvider = "//mat-dialog-container//*[contains(@class, 'label-heading')]";
     String lstFieldsMapPayToProvider = "//*[@id='resultsGridPaytoprovider']//span[@ref = 'eText' and text()]";
     String eleLastRowOnPage = "//*[@id='resultsGridPaytoprovider']//span[@ref = 'lbLastRowOnPage']";

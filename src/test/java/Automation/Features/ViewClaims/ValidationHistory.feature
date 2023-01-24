@@ -53,6 +53,5 @@ Feature: Validation History
       | Management Review |
       | Deny              |
       | Approve           |
-      | Update Auth       |
       | PreBatch-Pay      |
       | PreBatch-Deny     |

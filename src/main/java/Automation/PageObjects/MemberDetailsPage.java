@@ -29,7 +29,7 @@ public class MemberDetailsPage extends SeleniumUtils {
     String lstMemberShipInfoFields = "(//*[@class='grid-membership']//div[@class = 'ag-header-container'])[1]//span[@ref = 'eText']";
     String lstMemberShipHistory = "(//*[@class='grid-membership']//div[@class = 'ag-header-container'])[2]//span[@ref = 'eText']";
     String tabClaims = "//*[@id = 'nav-claims-details-tab']";
-    String lstClaimsFields = "//*[@id = 'resultsGrid']//span[@ref = 'eText']";
+    String lstClaimsFields = "//*[@id = 'nav-claims-details']//span[@ref = 'eText']";
     String txtSearchFields = "//*[@id = 'resultsGrid']//input[@type = 'text']";
     String tabCOB = "//*[@id = 'nav-cob-details-tab']";
     String lstCOBFields = "//*[@id = 'nav-cob-details']//span[@ref = 'eText']";
