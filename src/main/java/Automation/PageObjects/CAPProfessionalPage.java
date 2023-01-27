@@ -361,7 +361,7 @@ public class CAPProfessionalPage extends SeleniumUtils {
         sendKeysUsingKeyboardInput(txtPreBatchClaimNumber);
     }
     public void validatePreBatchClaimNumberResult() {
-        explicitVisibilityOfWait(findElementByXpath(elePreBatchClaimNumber), 10);
+        explicitVisibilityOfWait(findElementByXpath(elePreBatchClaimNumber), 15);
         String actClaimNumber = getText(elePreBatchClaimNumber);
         System.out.println("actual claimNumber :" + actClaimNumber);
         Assert.assertEquals(expClaimNumber, actClaimNumber);
