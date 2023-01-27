@@ -386,7 +386,7 @@ public class CAPInstitutionalPage extends SeleniumUtils {
         sendKeysUsingKeyboardInput(txtManagementReviewClaimNumber);
     }
     public void validateManagementReviewClaimNumberResult() {
-        explicitVisibilityOfWait(findElementByXpath(eleManagementReviewClaimNumber), 5);
+        explicitVisibilityOfWait(findElementByXpath(eleManagementReviewClaimNumber), 15);
         String actClaimNumber = getText(eleManagementReviewClaimNumber);
         System.out.println("actual claimNumber :" + actClaimNumber);
         Assert.assertEquals(expClaimNumber, actClaimNumber);
@@ -410,7 +410,7 @@ public class CAPInstitutionalPage extends SeleniumUtils {
         sendKeysUsingKeyboardInput(txtApprovedClaimNumber);
     }
     public void validateApprovedClaimNumberResult() {
-        explicitVisibilityOfWait(findElementByXpath(eleApprovedClaimNumber), 10);
+        explicitVisibilityOfWait(findElementByXpath(eleApprovedClaimNumber), 15);
         String actClaimNumber = getText(eleApprovedClaimNumber);
         System.out.println("actual claimNumber :" + actClaimNumber);
         Assert.assertEquals(expClaimNumber, actClaimNumber);

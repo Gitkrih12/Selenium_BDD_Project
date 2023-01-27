@@ -339,7 +339,7 @@ public class FFSProfessionalPage extends SeleniumUtils {
     }
 
     public void validatePayerReviewClaimNumberResult() {
-        explicitVisibilityOfWait(findElementByXpath(elePayerReviewClaimNumber), 10);
+        explicitVisibilityOfWait(findElementByXpath(elePayerReviewClaimNumber), 15);
         String actClaimNumber = getText(elePayerReviewClaimNumber);
         System.out.println("actual claimNumber :" + actClaimNumber);
         Assert.assertEquals(expClaimNumber, actClaimNumber);
