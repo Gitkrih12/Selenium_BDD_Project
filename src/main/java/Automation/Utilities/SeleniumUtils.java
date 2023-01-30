@@ -15,6 +15,7 @@ import java.awt.datatransfer.StringSelection;
 import java.awt.event.KeyEvent;
 import java.io.File;
 import java.io.IOException;
+import java.io.RandomAccessFile;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.time.*;
@@ -2359,6 +2360,22 @@ public class SeleniumUtils extends Driver {
             subjects.add(element.getText().trim());
         }
         return subjects.get(rnd.nextInt(subjects.size()));
+    }
+
+    public static void createDummyFile(String fileName, int sizeInBytes) {
+        try {
+            File file = new File("target/" + fileName);
+            if (!file.exists()) {
+                file.createNewFile();
+                RandomAccessFile raf = new RandomAccessFile(file, "rw");
+                raf.setLength(sizeInBytes);
+                raf.close();
+            } else {
+                throw new Exception(String.format("File name (%s) was already existing, No file is created", fileName));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 }   //Class ends here

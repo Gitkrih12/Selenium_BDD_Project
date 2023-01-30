@@ -82,7 +82,7 @@ Feature: Documents
     And user clicks on Attachments sub tab
     When user clicks on Upload Document button in Attachments section
     When user enters all the required fields and click on upload button
-    Then user able to view the toaster message "Success! File saved successfully"
+    Then user able to view the toaster message as "Success! File saved successfully"
     And user able to display the added document with all the details in the Attachments screen
 
   @89504
@@ -103,7 +103,7 @@ Feature: Documents
     And user clicks on Attachments sub tab
     When user clicks on Upload Document button in Attachments section
     When Category is not selected in the Upload Document window
-    Then user throws an error message as "Please select Category"
+    Then user throws an error message as "Please select category"
 
   @89513
   @Sanity
@@ -113,7 +113,7 @@ Feature: Documents
     And user clicks on Attachments sub tab
     When user clicks on Upload Document button in Attachments section
     When Description is not entered in the Upload Document window
-    Then user throws an error message as "Please enter Description"
+    Then user throws an error message as "Please enter description"
 
   @89514
   @Sanity
@@ -123,4 +123,4 @@ Feature: Documents
     And user clicks on Attachments sub tab
     When user clicks on Upload Document button in Attachments section
     When File is not chose in the Upload Document window
-    Then user throws an error message as "Please select file Document"
+    Then user able to view the toaster message as "File Please select file"
