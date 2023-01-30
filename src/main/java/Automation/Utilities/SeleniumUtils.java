@@ -2362,6 +2362,7 @@ public class SeleniumUtils extends Driver {
         return subjects.get(rnd.nextInt(subjects.size()));
     }
 
+    // *********** Create Dummy File *************** //
     public static void createDummyFile(String fileName, int sizeInBytes) {
         try {
             File file = new File("target/" + fileName);
