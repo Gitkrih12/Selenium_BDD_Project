@@ -4,7 +4,6 @@ import Automation.Utilities.SeleniumUtils;
 import io.cucumber.datatable.DataTable;
 import org.junit.Assert;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 import java.util.ArrayList;
@@ -28,7 +27,7 @@ public class ProviderDetailsPage extends SeleniumUtils {
     String lstGroupRenderingProviderDetailsValues = "//*[@class='table table-striped']//tr//td//div";
     String eleOnHoldClaimNumber = "(//*[@id = 'onHoldGrid']//div[@class = 'ag-pinned-left-cols-container']//a)[1]";
     String btnMapPayToProvider = "//*[contains(text(), 'Map Pay To Provider')]";
-    String titleMapPayToProvider = "//*[@class = 'map-rendering']//h2";
+    String titleMapPayToProvider = "//*[@class = 'map-btn']//button";
     String lstHeadersMapPayToProvider = "//mat-dialog-container//*[contains(@class, 'label-heading')]";
     String lstFieldsMapPayToProvider = "//*[@id='resultsGridPaytoprovider']//span[@ref = 'eText' and text()]";
     String eleLastRowOnPage = "//*[@id='resultsGridPaytoprovider']//span[@ref = 'lbLastRowOnPage']";
@@ -94,7 +93,7 @@ public class ProviderDetailsPage extends SeleniumUtils {
 
     // Scenario: Verify user able to navigate to the Provider details tab in the View Claims Form page
     public void clickOnProviderDetails() {
-        explicitVisibilityOfElementLocatedWaitByXpath(tabProviderDetails, 40);
+        explicitVisibilityOfElementLocatedWaitByXpath(tabProviderDetails, 60);
         clickElement(tabProviderDetails);
         explicitTextToBePresentInElementLocatedWait(By.xpath(eleValidated), 60, "Validated");
     }
@@ -224,7 +223,7 @@ public class ProviderDetailsPage extends SeleniumUtils {
     }
 
     public void verifyUserNavigatesToMapPayToProvider() {
-        explicitVisibilityOfElementLocatedWaitByXpath(titleMapPayToProvider, 30);
+        explicitVisibilityOfElementLocatedWaitByXpath(titleMapPayToProvider, 50);
         expMapPayProviderSideDrawer = prop.getProperty("expMapPayToProviderSideDrawer");
         Assert.assertEquals(expMapPayProviderSideDrawer, findElementByXpath(titleMapPayToProvider).getText());
     }

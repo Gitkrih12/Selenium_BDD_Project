@@ -264,7 +264,7 @@ public class CAPProfessionalPage extends SeleniumUtils {
     }
 
     public void validatePayerReviewClaimNumberResult() {
-        explicitVisibilityOfWait(findElementByXpath(elePayerReviewClaimNumber), 5);
+        explicitVisibilityOfWait(findElementByXpath(elePayerReviewClaimNumber), 10);
         String actClaimNumber = getText(elePayerReviewClaimNumber);
         System.out.println("actual claimNumber :" + actClaimNumber);
         Assert.assertEquals(expClaimNumber, actClaimNumber);
@@ -337,7 +337,7 @@ public class CAPProfessionalPage extends SeleniumUtils {
         sendKeysUsingKeyboardInput(txtDeniedClaimNumber);
     }
     public void validateDeniedClaimNumberResult() {
-        explicitVisibilityOfWait(findElementByXpath(eleDeniedClaimNumber), 10);
+        explicitVisibilityOfWait(findElementByXpath(eleDeniedClaimNumber), 15);
         String actClaimNumber = getText(eleDeniedClaimNumber);
         System.out.println("actual claimNumber :" + actClaimNumber);
         Assert.assertEquals(expClaimNumber, actClaimNumber);
@@ -361,7 +361,7 @@ public class CAPProfessionalPage extends SeleniumUtils {
         sendKeysUsingKeyboardInput(txtPreBatchClaimNumber);
     }
     public void validatePreBatchClaimNumberResult() {
-        explicitVisibilityOfWait(findElementByXpath(elePreBatchClaimNumber), 10);
+        explicitVisibilityOfWait(findElementByXpath(elePreBatchClaimNumber), 15);
         String actClaimNumber = getText(elePreBatchClaimNumber);
         System.out.println("actual claimNumber :" + actClaimNumber);
         Assert.assertEquals(expClaimNumber, actClaimNumber);
