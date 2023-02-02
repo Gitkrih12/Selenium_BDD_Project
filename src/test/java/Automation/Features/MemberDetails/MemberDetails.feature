@@ -172,7 +172,6 @@ Feature: Member Details
       | Member Cost      |
       | Date Paid        |
       | Check No         |
-      | EOB              |
     And user able to view all the field values under Claims subtab
 
   @52409
