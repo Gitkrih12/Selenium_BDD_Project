@@ -424,8 +424,9 @@ public class PriorAuthorizationPage extends SeleniumUtils {
     public void userEntersTheAuthNumberAndClicksSearchButton() {
         explicitElementClickableWaitByXpath(txtAuthNumber, 20);
         findElementAndSendKeys(findElementByXpath(txtAuthNumber), "12");
-        explicitElementClickableWaitByXpath(btnSearch, 30);
+        explicitVisibilityOfElementLocatedWaitByXpath(btnSearch, 50);
         clickElement(btnSearch);
+        explicitVisibilityOfElementLocatedWaitByXpath(eleAuthorizationNumber, 60);
     }
 
     //  Scenario: Verify user able to search the criteria for Authorization number results fields
@@ -512,6 +513,7 @@ public class PriorAuthorizationPage extends SeleniumUtils {
 
     //  Scenario: Verify user able to search the criteria for From Date results fields
     public void userEntersFromDateInResultsSearchCriteria() {
+        scrollToElement(txtPriorFromDate);
         explicitElementClickableWaitByXpath(txtPriorFromDate, 20);
         expFromDate = prop.getProperty("priorFromDate");
         findElementAndSendKeys(findElementByXpath(txtPriorFromDate), expFromDate);

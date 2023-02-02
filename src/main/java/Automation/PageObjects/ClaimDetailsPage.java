@@ -18,7 +18,7 @@ public class ClaimDetailsPage extends SeleniumUtils {
     String btnViewClaim = "//*[contains(text(), 'View Claim in CMS 1500')]";
     String btnSelfAssign = "//*[contains(text(), 'Self-Assign')]";
     String columnFields = "//table[@class='table table-borderless']//thead//tr//th";
-    String lstClaimSummaryTab = "//button[@id='nav-claim-details-tab']/..//button";
+    String lstClaimSummaryTab = "(//*[@id='nav-tab'])[1]//button";
     String btnFooterFields = "//*[@class = 'footer footer-flex']//button";
     String eleClaimDetailsTab = "//button[@class='nav-link active']";
     String eleClaimDetailsSection = "(//*[@id='nav-claim-details'])[1]//h6";
@@ -128,36 +128,15 @@ public class ClaimDetailsPage extends SeleniumUtils {
         }
     }
 
-    public void verifyFieldValuesInClaimSummaryDetailsPage() throws InterruptedException {
-        List<WebElement> claimSummaryValues = findElementsByXpath(lstClaimSummaryValues);
-        System.out.println("Size:" + claimSummaryValues.size());
-        for (WebElement value : claimSummaryValues) {
-            Assert.assertTrue(isDisplayed(value));
-            System.out.println("Value is displayed: " + isDisplayed(value));
-        }
+    public void verifyFieldValuesInClaimSummaryDetailsPage() {
+        explicitElementClickableWaitByXpath(lstClaimSummaryValues, 20);
+        scrollToElementsAndValidateDisplayStatus(lstClaimSummaryValues);
     }
 
     //  Scenario: Verify Claim Information section
-    public void userViewsClaimSummaryTabList(DataTable fieldList) throws InterruptedException {
-        List<String> tabsListExp = fieldList.asList();
-        List<WebElement> ActTabsList = findElementsByXpath(lstClaimSummaryTab);
-        List<String> tabsListForCompare = new ArrayList<>();
-        System.out.println("Size " + ActTabsList.size());
-        for (WebElement column : ActTabsList) {
-            threadSleep(30);
-            scrollIntoView(column, driver);
-            String text = column.getText();
-            tabsListForCompare.add(text);
-        }
-        System.out.println("Tabs list in Claim Summary page  : " + tabsListForCompare);
-        System.out.println("Expected fields are : " + tabsListExp);
-        for (String exp : tabsListExp) {
-            if (tabsListForCompare.contains(exp)) {
-                Assert.assertTrue(true);
-            } else {
-                Assert.fail(exp + " is not listed in actual list");
-            }
-        }
+    public void userViewsClaimSummaryTabList(DataTable fieldList) {
+        explicitElementClickableWaitByXpath(lstClaimSummaryTab, 20);
+        scrollToElementsAndCompare2Lists(fieldList, lstClaimSummaryTab);
     }
 
     //  Scenario: Verify footer section in Claim Summary details page

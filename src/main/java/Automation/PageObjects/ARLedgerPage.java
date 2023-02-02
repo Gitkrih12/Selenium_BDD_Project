@@ -177,12 +177,7 @@ public class ARLedgerPage extends SeleniumUtils {
     }
 
     public void verifyAppropriateResultsInARTransaction() {
-        List<WebElement> arTransactionValues = findElementsByXpath(lstARTransactionValues);
-        System.out.println("Size:" + arTransactionValues.size());
-        for (WebElement value : arTransactionValues) {
-            Assert.assertTrue(isDisplayed(value));
-            System.out.println("Value is displayed: " + isDisplayed(value));
-        }
+        scrollToElementsAndValidateDisplayStatus(lstARTransactionValues);
     }
 
     public void userEntersTransactionDateInSearchCriteria() {
