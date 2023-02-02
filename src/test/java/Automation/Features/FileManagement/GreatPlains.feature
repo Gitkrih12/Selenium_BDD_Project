@@ -51,7 +51,7 @@ Feature: Great Plains
     Then user should be able to see generated mail id under results section
 
   @49344-4
-  Scenario: Verify user should be able to get results for applying filter on "Created On" column under generated tab
+  Scenario: Verify user should be able to get results for applying filter on "Generated On" column under generated tab
     When user is on Generated tab by default
     When user enters generated date under generated on search box
     Then user should be able to see generated date under results section
