@@ -46,17 +46,18 @@ Feature: Claim Details
     When user clicks on the Claim Number
     Then user navigates to the "Claim Summary" page
     And user views the Claim Summary Tab list
-      | Claim Details (EDI) |
-      | Service Details     |
-      | Provider Details    |
-      | Edits               |
-      | Documents           |
-      | Notes               |
-      | MOOP                |
-      | Prior Authorization |
-      | Follow-Up           |
-      | Activity Logger     |
-      | AR Transaction      |
+      | Claim Details ( EDI ) |
+      | Service Details       |
+      | Provider Details      |
+      | Edits                 |
+      | Documents             |
+      | Notes                 |
+      | MOOP                  |
+      | Prior Authorization   |
+      | Follow-Up             |
+      | Activity Logger       |
+      | AR Transaction        |
+      | Validation History    |
 
   @37397 @beta
   Scenario: Verify footer section in Claim Summary details page
