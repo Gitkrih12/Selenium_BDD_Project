@@ -168,6 +168,7 @@ public class EopLettersPage extends SeleniumUtils {
     //    Scenario: Verify user should be able to get results by applying filter on "Date of creation" column under EOP tab
     public void verifyUserEntersEopCreatedDateUnderSearchBox() {
         dateOfCreationSearchRecordEopExp = prop.getProperty("EopDateOfCreation");
+        scrollToElement(txtEopDateOfCreation);
         explicitElementClickableWaitByXpath(txtEopDateOfCreation, 10).sendKeys(dateOfCreationSearchRecordEopExp);
     }
 
