@@ -1,6 +1,7 @@
 package Automation.Utilities;
 
 import io.cucumber.datatable.DataTable;
+import org.apache.commons.lang3.RandomStringUtils;
 import org.junit.Assert;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
@@ -15,12 +16,14 @@ import java.awt.datatransfer.StringSelection;
 import java.awt.event.KeyEvent;
 import java.io.File;
 import java.io.IOException;
+import java.io.RandomAccessFile;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.time.*;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.*;
+import java.util.random.RandomGenerator;
 
 public class SeleniumUtils extends Driver {
 
@@ -2337,5 +2340,35 @@ public class SeleniumUtils extends Driver {
 
     }
     // *********** End of Date and Time related methods *********** //
+
+    // *********** Random String *************** //
+    public String getRandomString(int size) {
+        String randomString = "";
+        try{
+            randomString = RandomStringUtils.randomAlphanumeric(size);
+            return randomString;
+        }
+        catch (Exception e){
+            Assert.fail("Unable to generate random string");
+            return null;
+        }
+    }
+
+    // *********** Create Dummy File *************** //
+    public static void createDummyFile(String fileName, int sizeInBytes) {
+        try {
+            File file = new File(basePath + "/src/test/resources/TestData/UploadDocuments/" + fileName);
+            if (!file.exists()) {
+                file.createNewFile();
+                RandomAccessFile raf = new RandomAccessFile(file, "rw");
+                raf.setLength(sizeInBytes);
+                raf.close();
+            } else {
+                throw new Exception(String.format("File name (%s) was already existing, No file is created", fileName));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
 }   //Class ends here
