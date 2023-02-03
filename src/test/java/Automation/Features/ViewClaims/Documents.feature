@@ -71,8 +71,8 @@ Feature: Documents
       | Category    |
       | Description |
     And user able to view the below buttons under Upload Document window
-      | Cancel      |
-      | Upload      |
+      | Cancel |
+      | Upload |
 
   @89503
   @Sanity
@@ -124,3 +124,16 @@ Feature: Documents
     When user clicks on Upload Document button in Attachments section
     When File is not chose in the Upload Document window
     Then user able to view the toaster message as "File Please select file"
+
+  @92195
+  @Sanity
+  Scenario: Verify user should be able to close the Upload Document pop up by clicking on cancel/close buttons
+    When user clicking on Attachments Claim Number in Global Search page
+    And user clicks on the Documents tab
+    And user clicks on Attachments sub tab
+    When user clicks on Upload Document button in Attachments section
+    When user enters all the required fields and click on cancel button
+    Then user navigates back to the "Attachments" tab
+    When user clicks on Upload Document button in Attachments section
+    When user enters all the required fields and click on close button
+    Then user navigates back to the "Attachments" tab

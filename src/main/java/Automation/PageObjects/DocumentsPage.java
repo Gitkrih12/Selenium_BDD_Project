@@ -3,6 +3,7 @@ package Automation.PageObjects;
 import Automation.Utilities.SeleniumUtils;
 import io.cucumber.datatable.DataTable;
 import org.junit.Assert;
+import org.openqa.selenium.By;
 
 import java.io.File;
 import java.util.List;
@@ -25,7 +26,7 @@ public class DocumentsPage extends SeleniumUtils {
     String lstUploadDocumentFields = "//*[contains(@class, 'row columnFont')]//span";
     String btnCancelAndUpload = "//mat-dialog-actions//button";
     String btnUpload = "//button[text() = 'Upload']";
-    String inputTitle = "//input[@name = 'Title']";
+    String inputTitle = "//*[@name = 'Title']";
     String dropdownCategory = "//*[contains(@class,'mat-select-arrow-wrapper')]";
     String dropdownSelectCategory = "(//*[contains(@class,'mat-option-text')])[3]";
     String txtDescription = "//textarea[@id='description']";
@@ -34,6 +35,8 @@ public class DocumentsPage extends SeleniumUtils {
     String txtSuccessMessage = "//*[@role = 'alertdialog']";
     String eleDocument = "(//div[@col-id='title'])[2]/..";
     String tabNotes = "//*[@id = 'nav-notes-tab']";
+    String btnCancel = "//mat-dialog-actions//*[contains(text(),'Cancel')]";
+    String btnClose = "//*[@aria-label = 'Close']";
 
     private static String expClaimNumber = "";
     private static String expTitle = "";
@@ -43,9 +46,8 @@ public class DocumentsPage extends SeleniumUtils {
 
     //  Scenario: Verify user should be able to see attached files and EDI files in Documents tab
     public void userClicksOnDocumentsTab() throws InterruptedException {
-        threadSleep(1000);
+        explicitTextToBePresentInElementLocatedWait(By.xpath(tabDocument), 20, "Documents");
         clickElement(tabDocument);
-        threadSleep(1000);
     }
 
     public void verifyUserNavigatesToDocumentsTab(String expTab) {
@@ -82,7 +84,6 @@ public class DocumentsPage extends SeleniumUtils {
     }
 
     public void enterClaimNumberInSearchField() throws InterruptedException {
-        threadSleep(1000);
         expClaimNumber = prop.getProperty("attachmentClaimNumber");
         findElementAndSendKeys(findElementByXpath(inputClaimNumber), expClaimNumber);
         threadSleep(1000);
@@ -90,16 +91,13 @@ public class DocumentsPage extends SeleniumUtils {
     }
 
     public void clickOnClaimNumber() throws InterruptedException {
-        threadSleep(2000);
-        explicitVisibilityOfWait(findElementByXpath(eleClaimNumber), 10);
+        explicitTextToBePresentInElementLocatedWait(By.xpath(eleClaimNumber), 20, expClaimNumber);
         clickElement(eleClaimNumber);
-        threadSleep(1000);
     }
 
-    public void userClicksOnAttachmentsSubTab() throws InterruptedException {
+    public void userClicksOnAttachmentsSubTab() {
         explicitVisibilityOfWait(findElementByXpath(tabAttachments), 10);
         clickElement(tabAttachments);
-        threadSleep(1000);
     }
 
     public void verifyUserViewsColumnsUnderAttachmentsSection(DataTable columnsUnderAttachments) {
@@ -133,7 +131,7 @@ public class DocumentsPage extends SeleniumUtils {
 
     //  Scenario: Verify user should be able to view all the fields in upload document window
     public void verifyUploadDocumentFields(DataTable expFields) {
-        scrollToElementsAndCompare2Lists(expFields, lstUploadDocumentFields);
+        compare2Lists(expFields, lstUploadDocumentFields);
     }
 
     public void verifyButtonsUnderUploadDocument(DataTable expButtons) {
@@ -153,7 +151,7 @@ public class DocumentsPage extends SeleniumUtils {
         String randomText = getRandomString(4);
         expFileName = randomText + sizeInMb + "mb_File.txt";
         createDummyFile(expFileName, 1000 * 1024 * sizeInMb);
-        String filePath = "target/" + expFileName;
+        String filePath = basePath + "/src/test/resources/TestData/UploadDocuments/" + expFileName;
         File file = new File(filePath);
         uploadFileWithJavaScriptAndSendKeys(txtFileUpload, file.getAbsolutePath());
     }
@@ -220,5 +218,14 @@ public class DocumentsPage extends SeleniumUtils {
     public void userEntersDescription() {
         expDescription = getRandomString(4);
         findElementAndSendKeys(findElementByXpath(txtDescription), expDescription);
+    }
+
+    //  Scenario: Verify user should be able to close the Upload Document pop up by clicking on cancel/close buttons
+    public void clickOnCancelButton() {
+        clickElement(btnCancel);
+    }
+
+    public void clickOnCloseButton() {
+        clickElement(btnClose);
     }
 }

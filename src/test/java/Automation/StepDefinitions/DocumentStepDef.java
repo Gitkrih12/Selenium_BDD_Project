@@ -142,4 +142,26 @@ public class DocumentStepDef extends DocumentsPage {
         userEntersDescription();
         clickOnUploadButton();
     }
+
+    //  Scenario: Verify user should be able to close the Upload Document pop up by clicking on cancel/close buttons
+    @When("user enters all the required fields and click on cancel button")
+    public void user_enters_all_the_required_fields_and_click_on_cancel_button() {
+        userEntersTitle();
+        userSelectsCategory();
+        userEntersDescription();
+        clickOnCancelButton();
+    }
+
+    @Then("user navigates back to the {string} tab")
+    public void user_navigates_back_to_the_tab(String expTab) {
+        verifyUserViewsAttachmentsSubTab(expTab);
+    }
+
+    @When("user enters all the required fields and click on close button")
+    public void user_enters_all_the_required_fields_and_click_on_close_button() {
+        userEntersTitle();
+        userSelectsCategory();
+        userEntersDescription();
+        clickOnCloseButton();
+    }
 }

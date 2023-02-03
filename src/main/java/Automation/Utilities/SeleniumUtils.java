@@ -1,6 +1,7 @@
 package Automation.Utilities;
 
 import io.cucumber.datatable.DataTable;
+import org.apache.commons.lang3.RandomStringUtils;
 import org.junit.Assert;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
@@ -22,6 +23,7 @@ import java.time.*;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.*;
+import java.util.random.RandomGenerator;
 
 public class SeleniumUtils extends Driver {
 
@@ -2341,31 +2343,21 @@ public class SeleniumUtils extends Driver {
 
     // *********** Random String *************** //
     public String getRandomString(int size) {
-        String SALTCHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890";
-        StringBuilder salt = new StringBuilder();
-        Random rnd = new Random();
-        while (salt.length() < size) { // length of the random string.
-            int index = (int) (rnd.nextFloat() * SALTCHARS.length());
-            salt.append(SALTCHARS.charAt(index));
+        String randomString = "";
+        try{
+            randomString = RandomStringUtils.randomAlphanumeric(size);
+            return randomString;
         }
-        return salt.toString();
-    }
-
-    public String getRandomSubject(String xpath) {
-        List<WebElement> elements = findElementsByXpath(xpath);
-        List<String> subjects = new ArrayList<>();
-        Random rnd = new Random();
-        for (WebElement element : elements) {
-            scrollToElement(xpath);
-            subjects.add(element.getText().trim());
+        catch (Exception e){
+            Assert.fail("Unable to generate random string");
+            return null;
         }
-        return subjects.get(rnd.nextInt(subjects.size()));
     }
 
     // *********** Create Dummy File *************** //
     public static void createDummyFile(String fileName, int sizeInBytes) {
         try {
-            File file = new File("target/" + fileName);
+            File file = new File(basePath + "/src/test/resources/TestData/UploadDocuments/" + fileName);
             if (!file.exists()) {
                 file.createNewFile();
                 RandomAccessFile raf = new RandomAccessFile(file, "rw");
