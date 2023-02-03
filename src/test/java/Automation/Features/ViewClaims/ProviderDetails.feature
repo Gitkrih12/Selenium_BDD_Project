@@ -48,7 +48,7 @@ Feature: Provider Details
       | Address          |
       | Effective Date   |
       | Termination Date |
-      | Timely Filling   |
+      | Timely Filing    |
       | Sequestration    |
       | ProviderID       |
       | Contract Name    |
@@ -80,7 +80,7 @@ Feature: Provider Details
     When user clicking on Claim Number in Global Search page
     And user clicks on the Provider Details tab
     When clicking on Vendor ID in Provider Details
-    Then user able to view Credit Overpaid and Debit Underpaid status as "Credit/Overpaid - Added to Account Receivable" "Debit/Underpaid - deducted to Account Receivable"
+    Then user able to view Credit Overpaid and Debit Underpaid status as "Credit/Overpaid - Added To Account Receivable" "Debit/Underpaid - Deducted To Account Receivable"
 
   @47013 @beta
   Scenario: Verify user able to view the available Account Review Transactions and all the columns in the A/R transaction details page
