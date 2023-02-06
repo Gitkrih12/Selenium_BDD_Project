@@ -13,7 +13,7 @@ Feature: EOP Letters
 #  Steps for this test case are already covered under back ground
 
   @43657-2 @Sanity @beta
-  Scenario: Verify columns fields in EOP screen
+  Scenario: Verify columns fields in "EOP letters" screen
     Then the user should be able to view the following column fields under EOP letters tab
       | Batch ID             |
       | Check Number         |
@@ -26,7 +26,7 @@ Feature: EOP Letters
       | Mailing Date         |
 
   @43657-3 @Sanity @beta
-  Scenario: Verify column search fields in EOB consolidated letters screen
+  Scenario: Verify column search fields in "EOP letters" screen
     And user should be able to view EOP letters column fields search boxes
 
   @43657-4
