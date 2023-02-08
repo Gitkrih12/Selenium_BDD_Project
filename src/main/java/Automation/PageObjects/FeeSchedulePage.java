@@ -16,6 +16,7 @@ public class FeeSchedulePage extends SeleniumUtils {
     String lnkServiceLine="(//div[@class='gridData ng-star-inserted']//a)[1]";
     String elePricingScreen="//div[contains(text(),'Pricing')]";
     String lnkSeeFeeSchedule="//button[text()='See Fee Schedule']";
+    String msgLoading="//div//p[contains(text(),'Loading')]";
     String eleFeeSchedules="//div[@class='offcanvas-header']//h5";
     String lstTabsInFeeSchedules= "//h5[@id='offcanvasRightLabel']//following::div[@id='nav-tab']//button";
     String lstFeeSchedulesColumnFields="(//div[@class='ag-header-row ag-header-row-column'])[2]//div[@role='columnheader']";
@@ -55,10 +56,13 @@ public class FeeSchedulePage extends SeleniumUtils {
         clickElement(lnkServiceLine);
     }
 
-    public void clickOnSeeFeeSchedule(){
+    public void clickOnSeeFeeSchedule() throws Exception {
         scrollPageUp(driver);
-        explicitTextToBePresentInElementLocatedWait(By.xpath(lnkSeeFeeSchedule), 20, "See Fee Schedule");
-        clickElement(lnkSeeFeeSchedule);
+        explicitInvisibilityOfElementWithTextWait(By.xpath(msgLoading), 380, "Loading...");
+        explicitElementClickableWaitByXpath(lnkSeeFeeSchedule,100);
+        explicitTextToBePresentInElementLocatedWait(By.xpath(lnkSeeFeeSchedule), 100, "See Fee Schedule");
+        safeJavascriptClick(lnkSeeFeeSchedule);
+        //clickElement(lnkSeeFeeSchedule);
     }
 
     public void verifyUserNavigatesPricingAndFeeScheduleScreens(String expText){
@@ -68,7 +72,7 @@ public class FeeSchedulePage extends SeleniumUtils {
             String[] actPricingText = pricingText.split(" ");
             Assert.assertEquals(expText, actPricingText[0]);
         }else if(expText.contains("Fee Schedules")){
-            explicitTextToBePresentInElementLocatedWait(By.xpath(eleFeeSchedules), 20, "Fee Schedules");
+            explicitTextToBePresentInElementLocatedWait(By.xpath(eleFeeSchedules), 40, "Fee Schedules");
             String actFeeScheduleText = findElementByXpath(eleFeeSchedules).getText();
             Assert.assertEquals(expText, actFeeScheduleText);
         }
