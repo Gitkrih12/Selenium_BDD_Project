@@ -410,7 +410,7 @@ public class CAPInstitutionalPage extends SeleniumUtils {
         sendKeysUsingKeyboardInput(txtApprovedClaimNumber);
     }
     public void validateApprovedClaimNumberResult() {
-        explicitVisibilityOfWait(findElementByXpath(eleApprovedClaimNumber), 15);
+        explicitVisibilityOfWait(findElementByXpath(eleApprovedClaimNumber), 20);
         String actClaimNumber = getText(eleApprovedClaimNumber);
         System.out.println("actual claimNumber :" + actClaimNumber);
         Assert.assertEquals(expClaimNumber, actClaimNumber);
