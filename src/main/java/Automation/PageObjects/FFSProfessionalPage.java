@@ -22,6 +22,7 @@ public class FFSProfessionalPage extends SeleniumUtils {
     String tabFFSProfessional = "(//div[contains(text(),'FFS Professional')])[2]";
     String txtClaimNumber = "(//input[@aria-label='Claim Number Filter Input'])[1]";
     String eleClaimNumber = "(//div[@class='ag-pinned-left-cols-container']//a)[1]";
+    String msgLoadingClaimDetails="//p[contains(text(),' Loading claim details...')]";
     String eleVerticalColorForCorrected = "(//div[@col-id='isCorrected']//span)[6]";
     String eleCorrectedInfoTopGrid = "//div//span[@class='ColorBall']//following::span[contains(text(),'Corrected')]";
     String elePatientNameColorCode = "((//div[contains(@class,'ag-cell ag-cell-not-inline-editing ag-cell-normal-height') and @col-id='memberFullName'])[1]//span)[3]";
@@ -824,7 +825,7 @@ public class FFSProfessionalPage extends SeleniumUtils {
 
     //Generic method to get the Row count next to the tabs
     public void validateRowCountInBatchIDTabs(String fileTabXpath, String lstRecordsXpath) throws InterruptedException {
-        String recordsBarText = explicitElementClickableWaitByXpath(fileTabXpath, 20).getText();
+        String recordsBarText = explicitElementClickableWaitByXpath(fileTabXpath, 30).getText();
         String expRowCount = recordsBarText.substring(recordsBarText.indexOf("(") + 1, recordsBarText.indexOf(")"));
         System.out.println("Expected row count is: " + expRowCount);
         threadSleep(2000);
@@ -905,12 +906,13 @@ public class FFSProfessionalPage extends SeleniumUtils {
     }
 
     public void clickOnClaimNumber() {
+        explicitElementClickableWaitByXpath(eleClaimNumber,20);
         clickElement(eleClaimNumber);
-
+        explicitInvisibilityOfElementWithTextWait(By.xpath(msgLoadingClaimDetails), 380, "Loading claim details");
     }
 
     public void NavigateToNotesScreen() {
-        explicitTextToBePresentInElementLocatedWait(By.xpath(tabNotes), 20, "Notes");
+        explicitTextToBePresentInElementLocatedWait(By.xpath(tabNotes), 60, "Notes");
         clickElement(tabNotes);
     }
 
