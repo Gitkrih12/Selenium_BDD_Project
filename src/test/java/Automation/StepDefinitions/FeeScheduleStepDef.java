@@ -23,7 +23,7 @@ public class FeeScheduleStepDef extends FeeSchedulePage {
     }
 
     @When("user clicks on See Fee Schedule link")
-    public void user_clicks_on_see_fee_schedule_link() {
+    public void user_clicks_on_see_fee_schedule_link() throws Exception {
         clickOnSeeFeeSchedule();
     }
 

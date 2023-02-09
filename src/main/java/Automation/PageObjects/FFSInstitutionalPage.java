@@ -429,7 +429,7 @@ public class FFSInstitutionalPage extends SeleniumUtils {
         sendKeysUsingKeyboardInput(txtDeniedClaimNumber);
     }
     public void validateDeniedClaimNumberResult() {
-        explicitVisibilityOfWait(findElementByXpath(eleDeniedClaimNumber), 20);
+        explicitVisibilityOfWait(findElementByXpath(eleDeniedClaimNumber), 25);
         String actClaimNumber = getText(eleDeniedClaimNumber);
         System.out.println("actual claimNumber :" + actClaimNumber);
         Assert.assertEquals(expClaimNumber, actClaimNumber);

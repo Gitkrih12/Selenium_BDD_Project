@@ -3,8 +3,9 @@ package Automation.PageObjects;
 import Automation.Utilities.SeleniumUtils;
 import io.cucumber.datatable.DataTable;
 import org.junit.Assert;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.By;
 
+import java.io.File;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -16,22 +17,37 @@ public class DocumentsPage extends SeleniumUtils {
     String btnFooterSection = "//*[@class='footer footer-flex']/button";
     String lstEdiFiles = "//app-documents//*[@id = 'resultsGrid']//span[@ref = 'eText']";
     String lstAttachments = "//app-documents//*[@id = 'resultsGrid1']//span[@ref = 'eText']";
-    String lstEdiFilesValues = "(//app-documents//div[@aria-label = 'Press SPACE to select this row.'])[4]//span[@class = 'ag-cell-value']";
-    String lstEdiFilesValuesUat = "(//*[@id='nav-edifiles-details']//div[@aria-label = 'Press SPACE to select this row.'])[5]//span[@class = 'ag-cell-value']";
     String lstAttachmentValues = "//*[@id = 'nav-attachments-details']//span[@ref='eText']";
-    String lstEdiFilesHeaderName = "//*[@id = 'resultsGrid']//span[contains(text(), '$HeaderName^')]";
     String lnkGlobalSearch = "(//div[contains(text(),'Global Search')])[1]";
     String inputClaimNumber = "//input[@aria-label='Claim Number Filter Input']";
     String eleClaimNumber = "(//div[@class='ag-pinned-left-cols-container']//a)[1]";
+    String btnUploadDocument = "//button[contains(text(), 'Upload Document')]";
+    String titleUploadDocument = "//h2[contains(text(), 'Upload Document')]";
+    String lstUploadDocumentFields = "//*[contains(@class, 'row columnFont')]//span";
+    String btnCancelAndUpload = "//mat-dialog-actions//button";
+    String btnUpload = "//button[text() = 'Upload']";
+    String inputTitle = "//*[@name = 'Title']";
+    String dropdownCategory = "//*[contains(@class,'mat-select-arrow-wrapper')]";
+    String dropdownSelectCategory = "(//*[contains(@class,'mat-option-text')])[3]";
+    String txtDescription = "//textarea[@id='description']";
+    String txtFileUpload = "//input[@type='file']";
+    String txtToasterMessage = "(//*[@id='toast-container']//div)[2]";
+    String txtSuccessMessage = "//*[@role = 'alertdialog']";
+    String eleDocument = "(//div[@col-id='title'])[2]/..";
+    String tabNotes = "//*[@id = 'nav-notes-tab']";
+    String btnCancel = "//mat-dialog-actions//*[contains(text(),'Cancel')]";
+    String btnClose = "//*[@aria-label = 'Close']";
 
     private static String expClaimNumber = "";
+    private static String expTitle = "";
+    private static String expDescription = "";
+    private static String expFileName = "";
 
 
     //  Scenario: Verify user should be able to see attached files and EDI files in Documents tab
     public void userClicksOnDocumentsTab() throws InterruptedException {
-        threadSleep(1000);
+        explicitTextToBePresentInElementLocatedWait(By.xpath(tabDocument), 20, "Documents");
         clickElement(tabDocument);
-        threadSleep(1000);
     }
 
     public void verifyUserNavigatesToDocumentsTab(String expTab) {
@@ -68,7 +84,6 @@ public class DocumentsPage extends SeleniumUtils {
     }
 
     public void enterClaimNumberInSearchField() throws InterruptedException {
-        threadSleep(1000);
         expClaimNumber = prop.getProperty("attachmentClaimNumber");
         findElementAndSendKeys(findElementByXpath(inputClaimNumber), expClaimNumber);
         threadSleep(1000);
@@ -76,16 +91,13 @@ public class DocumentsPage extends SeleniumUtils {
     }
 
     public void clickOnClaimNumber() throws InterruptedException {
-        threadSleep(2000);
-        explicitVisibilityOfWait(findElementByXpath(eleClaimNumber), 5);
+        explicitTextToBePresentInElementLocatedWait(By.xpath(eleClaimNumber), 20, expClaimNumber);
         clickElement(eleClaimNumber);
-        threadSleep(1000);
     }
 
-    public void userClicksOnAttachmentsSubTab() throws InterruptedException {
+    public void userClicksOnAttachmentsSubTab() {
         explicitVisibilityOfWait(findElementByXpath(tabAttachments), 10);
         clickElement(tabAttachments);
-        threadSleep(1000);
     }
 
     public void verifyUserViewsColumnsUnderAttachmentsSection(DataTable columnsUnderAttachments) {
@@ -105,5 +117,115 @@ public class DocumentsPage extends SeleniumUtils {
 
     public void verifyFieldValuesUnderEdiFiles() {
         elementsDisplayValidation(lstEdiFiles);
+    }
+
+    //  Scenario: Verify user should navigate to the Upload Document window on clicking Upload Document button
+    public void userClicksOnUploadDocumentButton() {
+        explicitVisibilityOfElementLocatedWaitByXpath(btnUploadDocument, 20);
+        clickElement(btnUploadDocument);
+    }
+
+    public void verifyUserNavigatesToUploadDocumentWindow(String expWindow) {
+        Assert.assertEquals(expWindow, findElementByXpath(titleUploadDocument).getText());
+    }
+
+    //  Scenario: Verify user should be able to view all the fields in upload document window
+    public void verifyUploadDocumentFields(DataTable expFields) {
+        compare2Lists(expFields, lstUploadDocumentFields);
+    }
+
+    public void verifyButtonsUnderUploadDocument(DataTable expButtons) {
+        compare2Lists(expButtons, btnCancelAndUpload);
+    }
+
+    //  Scenario: Verify user able to upload the document successfully by entering all the required fields
+    public void userEntersAllRequiredFields() {
+        userEntersTitle();
+        userSelectsCategory();
+        userEntersDescription();
+        uploadAFile(1);
+    }
+
+
+    public void uploadAFile(int sizeInMb) {
+        String randomText = getRandomString(4);
+        expFileName = randomText + sizeInMb + "mb_File.txt";
+        createDummyFile(expFileName, 1000 * 1024 * sizeInMb);
+        String filePath = basePath + "/src/test/resources/TestData/UploadDocuments/" + expFileName;
+        File file = new File(filePath);
+        uploadFileWithJavaScriptAndSendKeys(txtFileUpload, file.getAbsolutePath());
+    }
+
+    //  Scenario: Verify user throws an error message when Title is not entered
+    public void clickOnUploadButton() {
+        explicitVisibilityOfElementLocatedWaitByXpath(btnUpload, 30);
+        clickElement(btnUpload);
+    }
+
+    public void verifySuccessToasterMessage(String expToasterMsg) {
+        explicitVisibilityOfElementLocatedWaitByXpath(txtToasterMessage, 20);
+        String actToasterMsg = findElementByXpath(txtToasterMessage).getText();
+        String actSuccessMsg[] = findElementByXpath(txtSuccessMessage).getText().split(" ");
+        Assert.assertEquals(expToasterMsg, actToasterMsg + " " + actSuccessMsg[0] + " " + actSuccessMsg[1] + " " + actSuccessMsg[2]);
+    }
+
+    public void verifyToasterMessage(String expToasterMsg) {
+        explicitVisibilityOfElementLocatedWaitByXpath(txtToasterMessage, 20);
+        String actToasterMsg[] = findElementByXpath(txtToasterMessage).getText().split(" ");
+        Assert.assertEquals(expToasterMsg, actToasterMsg[0] + " " + actToasterMsg[1] + " " + actToasterMsg[2]);
+    }
+
+    public void clickOnNotesTab() {
+        explicitVisibilityOfElementLocatedWaitByXpath(tabNotes, 30);
+        clickElement(tabNotes);
+    }
+
+    public void verifyAddedDocumentInAttachmentsSection() throws InterruptedException {
+        clickOnNotesTab();
+        userClicksOnDocumentsTab();
+        userClicksOnAttachmentsSubTab();
+        explicitElementClickableWaitByXpath(eleDocument, 40);
+        String actDocumentText = findElementByXpath(eleDocument).getText();
+        System.out.println("Actual Document :" + actDocumentText);
+        String[] actDocument = actDocumentText.split("\n");
+        String actDocumentValue = actDocument[0] + " " + actDocument[1] + " " + actDocument[2] + " " + actDocument[3];
+        System.out.println("actual document value :" + actDocumentValue);
+        if (actDocumentValue.contains(expFileName) && actDocumentValue.contains(expTitle) && actDocumentValue.contains(expDescription)) {
+            Assert.assertTrue(true);
+        } else {
+            Assert.assertTrue(false);
+        }
+    }
+
+    public void verifyErrorMessage(String expErrMsg) {
+        explicitVisibilityOfElementLocatedWaitByXpath(txtToasterMessage, 20);
+        Assert.assertEquals(expErrMsg, findElementByXpath(txtToasterMessage).getText());
+    }
+
+    //  Scenario: Verify user throws an error message when Category is not selected
+    public void userEntersTitle() {
+        expTitle = getRandomString(6);
+        findElementAndSendKeys(findElementByXpath(inputTitle), expTitle);
+    }
+
+    //  Scenario: Verify user throws an error message when Description is not entered in field
+    public void userSelectsCategory() {
+        explicitElementClickableWaitByXpath(dropdownCategory, 20);
+        clickElement(dropdownCategory);
+        clickElement(dropdownSelectCategory);
+    }
+
+    public void userEntersDescription() {
+        expDescription = getRandomString(4);
+        findElementAndSendKeys(findElementByXpath(txtDescription), expDescription);
+    }
+
+    //  Scenario: Verify user should be able to close the Upload Document pop up by clicking on cancel/close buttons
+    public void clickOnCancelButton() {
+        clickElement(btnCancel);
+    }
+
+    public void clickOnCloseButton() {
+        clickElement(btnClose);
     }
 }
