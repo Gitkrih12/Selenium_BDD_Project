@@ -21,7 +21,7 @@ public class MOOPLedgerPage extends SeleniumUtils {
     String titleMoopTransaction = "(//app-moop-transaction//h6)[1]";
     String lstMoopTransactionFields = "//app-moop-transaction//span[@ref = 'eText']";
     String titleMoopAccumulatorSummary = "(//app-moop-transaction//h6)[2]";
-    String lstMoopTransactionFieldValues = "//*[@class = 'ag-cell-value']";
+    String lstMoopTransactionFieldValues = "//*[@class = 'ag-cell-value' and text()]";
     String txtSearchFieldsForMoopTransaction = "//*[@ref = 'eInput' and @type = 'text']";
 
 
@@ -100,36 +100,11 @@ public class MOOPLedgerPage extends SeleniumUtils {
     public void verifyFieldsUnderMoopTransaction(DataTable expFields) {
         explicitElementClickableWaitByXpath(lstMoopTransactionFields, 20);
         scrollToElementsAndCompare2Lists(expFields, lstMoopTransactionFields);
-        /*List<String> columnListExp = expFields.asList();
-        List<WebElement> actColumnFields = findElementsByXpath(lstMoopTransactionFields);
-        List<String> columnFieldsForCompare = new ArrayList<>();
-        System.out.println("Size " + actColumnFields.size());
-        for (WebElement column : actColumnFields) {
-            scrollIntoView(column, driver);
-            String text = column.getText();
-            columnFieldsForCompare.add(text);
-        }
-        int expValue = 2;
-        Assert.assertEquals(expValue, Collections.frequency(columnFieldsForCompare, "Network Affiliation"));
-        System.out.println("Fields in Moop Transaction and Accumulator summary section :" + columnFieldsForCompare);
-        System.out.println("Expected fields are : " + columnListExp);
-        for (String exp : columnListExp) {
-            if (columnFieldsForCompare.contains(exp)) {
-                Assert.assertTrue(true);
-            } else {
-                Assert.fail(exp + " is not listed in actual list");
-            }
-        }*/
     }
 
     public void verifyFieldValuesUnderMoopTransaction() {
-        elementsDisplayValidation(lstMoopTransactionFieldValues);
-        /*List<WebElement> moopTransactionValues = findElementsByXpath(lstMoopTransactionFieldValues);
-        System.out.println("Size:" + moopTransactionValues.size());
-        for (WebElement value : moopTransactionValues) {
-            Assert.assertTrue(isDisplayed(value));
-            System.out.println("Value is displayed: " + isDisplayed(value));
-        }*/
+        explicitElementClickableWaitByXpath(lstMoopTransactionFieldValues, 30);
+        scrollToElementsAndValidateDisplayStatus(lstMoopTransactionFieldValues);
     }
 
     public void verifySearchCriteriaInMoopTransaction() {

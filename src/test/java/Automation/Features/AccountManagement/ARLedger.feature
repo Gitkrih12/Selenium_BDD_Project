@@ -46,7 +46,7 @@ Feature: AR Ledger
     When user clicks on AR Ledger on the left navigation panel
     And user clicks on Vendor ID in AR Ledger page
     Then user navigates to the AR Transactions page
-    And user able to view Credit Overpaid and Debit Underpaid status as "Credit/Overpaid - Added to Account Receivable" "Debit/Underpaid - deducted to Account Receivable"
+    And user able to view Credit Overpaid and Debit Underpaid status as "Credit/Overpaid - Added To Account Receivable" "Debit/Underpaid - Deducted To Account Receivable"
     Then user able to view all the below mentioned columns in Account Review Transactions page
       | Transaction Type       |
       | Transaction Date       |

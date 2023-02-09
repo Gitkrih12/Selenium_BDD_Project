@@ -138,7 +138,7 @@ public class PriorAuthorizationPage extends SeleniumUtils {
     }
 
     public void verifyMemberIDFieldValueUnderPriorAuthorization() {
-        explicitElementClickableWaitByXpath(eleMemberID, 40);
+        explicitTextToBePresentInElementLocatedWait(By.xpath(eleMemberID), 40, expMemberID);
         Assert.assertEquals(expMemberID, findElementByXpath(eleMemberID).getText());
     }
 
@@ -166,7 +166,7 @@ public class PriorAuthorizationPage extends SeleniumUtils {
 
     //  Scenario: Verify user able to search the criteria in the Prior Authorization for From Date
     public void verifyFromDateFieldValue() {
-        explicitElementClickableWaitByXpath(eleFromDate, 40);
+        explicitTextToBePresentInElementLocatedWait(By.xpath(eleFromDate), 40, expFromDate);
         Assert.assertEquals(expFromDate, findElementByXpath(eleFromDate).getText());
     }
 
@@ -483,7 +483,7 @@ public class PriorAuthorizationPage extends SeleniumUtils {
     }
 
     public void verifyProviderNameFieldValue() {
-        explicitVisibilityOfElementLocatedWaitByXpath(eleProviderName, 50);
+        explicitTextToBePresentInElementLocatedWait(By.xpath(eleProviderName), 40, expProviderName);
         Assert.assertEquals(expProviderName, findElementByXpath(eleProviderName).getText());
     }
 
@@ -495,7 +495,7 @@ public class PriorAuthorizationPage extends SeleniumUtils {
     }
 
     public void verifyCPTUnitsFieldValue() {
-        explicitElementClickableWaitByXpath(eleCptUnits, 40);
+        explicitTextToBePresentInElementLocatedWait(By.xpath(eleCptUnits), 40, expCptUnits);
         Assert.assertEquals(expCptUnits, findElementByXpath(eleCptUnits).getText());
     }
 
@@ -507,7 +507,7 @@ public class PriorAuthorizationPage extends SeleniumUtils {
     }
 
     public void verifyICDCodeFieldValue() {
-        explicitElementClickableWaitByXpath(eleICDCode, 40);
+        explicitTextToBePresentInElementLocatedWait(By.xpath(eleICDCode), 30, expIcdCode);
         Assert.assertEquals(expIcdCode, findElementByXpath(eleICDCode).getText());
     }
 
