@@ -1137,7 +1137,7 @@ public class FilesPage extends SeleniumUtils {
 
     //    Scenario: Validate pagination functionality in '835' tab
     public void clickOn835FilesTab() throws InterruptedException {
-        explicitInvisibilityOfElementWithTextWait(By.xpath(tab837PFiles), 40, "835 () ");
+        explicitInvisibilityOfElementWithTextWait(By.xpath(tab835), 40, "835 ()");
         explicitElementClickableWaitByXpath(tab835, 10);
         moveToElement(tab835).click().perform();
     }
