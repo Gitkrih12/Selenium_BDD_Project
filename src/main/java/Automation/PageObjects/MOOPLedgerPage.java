@@ -21,7 +21,7 @@ public class MOOPLedgerPage extends SeleniumUtils {
     String titleMoopTransaction = "(//app-moop-transaction//h6)[1]";
     String lstMoopTransactionFields = "//app-moop-transaction//span[@ref = 'eText']";
     String titleMoopAccumulatorSummary = "(//app-moop-transaction//h6)[2]";
-    String lstMoopTransactionFieldValues = "//*[@class = 'ag-cell-value']";
+    String lstMoopTransactionFieldValues = "//*[@class = 'ag-cell-value' and text()]";
     String txtSearchFieldsForMoopTransaction = "//*[@ref = 'eInput' and @type = 'text']";
 
 

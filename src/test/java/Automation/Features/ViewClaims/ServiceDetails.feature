@@ -14,12 +14,12 @@ Feature: Service Details
       | Coinsurance            |
       | Copay                  |
       | Total Payment Amount   |
-      | Net Payment Amount     |
       | Recovery Amount        |
       | Interest Paid          |
       | Is A/R Amount Eligible |
       | A/R Balance            |
       | Payable Amount         |
+      | Net Payment Amount     |
       | ICD Indicator          |
       | ICD Codes              |
     And user able to view all the field values in Service Details page
