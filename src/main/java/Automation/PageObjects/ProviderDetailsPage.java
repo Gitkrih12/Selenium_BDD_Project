@@ -74,8 +74,18 @@ public class ProviderDetailsPage extends SeleniumUtils {
     String eleValidated = "(//*[contains(text(),'Validated')])[2]";
     String lstSelectButton = "//div[@col-id='uniquePayToId']//button";
     String elePayToProvider = "//span[contains(text(),'Pay to Provider')]";
-
-
+    String lnkPayToProviderID = "(//*[@id = 'nav-claim-details']//a)[1]";
+    String tab1099Information = "//*[@id = 'nav-1099information-tab']";
+    String lstProviderInfoTabs = "//app-providerinformation//*[@id = 'nav-tab']//button";
+    String lst1099InformationFields = "//*[@id = 'nav-1099information']//div[@role = 'columnheader']";
+    String lst1099InformationFieldValues = "//*[@id = 'nav-1099information']//*[@class = 'ag-cell-value' and text()]";
+    String tabPayToAddresses = "//*[@id = 'nav-paytoaddress-tab']";
+    String titlePayToProviderDetails = "(//*[@id = 'nav-paytoaddress']//b)[1]";
+    String lstPayToAddressesFields = "//*[@id = 'nav-paytoaddress']//div[contains(@class, 'columnFont')]//div";
+    String lstPayToAddressesFieldValues = "//*[@id = 'nav-paytoaddress']//div[@class = 'col-3']//b";
+    String tabAdverseActions = "//*[@id = 'nav-advers-tab']";
+    String lstAdverseActionFields = "//*[@id = 'nav-advers']//*[@ref = 'eText']";
+    String lstAdverseActionFieldValues = "//*[@id = 'nav-advers']//*[@class = 'ag-cell-value' and text()]";
 
     private static String expFirstPage = "";
     private static String expNextPage = "";
@@ -586,5 +596,73 @@ public class ProviderDetailsPage extends SeleniumUtils {
     public void verifyRenderingProvider(DataTable expFields) {
         explicitElementClickableWaitByXpath(lstRenderingProvider, 30);
         compare2Lists(expFields, lstRenderingProvider);
+    }
+
+    //  Scenario: Verify user should navigate to Pay to Provider window on clicking Pay to Provider ID link in Provider Details tab
+    public void clickOnPayToProviderId(){
+        explicitVisibilityOfElementLocatedWaitByXpath(lnkPayToProviderID, 30);
+        clickElement(lnkPayToProviderID);
+    }
+
+    public void verifyUserNavigatesTo1099Information(String expSubTab){
+        explicitTextToBePresentInElementLocatedWait(By.xpath(tab1099Information), 20, expSubTab);
+        Assert.assertEquals(expSubTab, findElementByXpath(tab1099Information).getText());
+    }
+
+    public void verifySubTabs(DataTable expSubTabs){
+        explicitElementClickableWaitByXpath(lstProviderInfoTabs, 30);
+        compare2Lists(expSubTabs, lstProviderInfoTabs);
+    }
+
+    //  Scenario: Verify 1099 Information sub-tab in Pay to Provider window
+    public void verifyFieldsUnderInfoSubTab(DataTable expFields){
+        explicitElementClickableWaitByXpath(lst1099InformationFields, 30);
+        scrollToElementsAndCompare2Lists(expFields, lst1099InformationFields);
+    }
+
+    public void verifyFieldValuesUnderInfoSubTab(){
+        explicitElementClickableWaitByXpath(lst1099InformationFieldValues, 30);
+        scrollToElementsAndValidateDisplayStatus(lst1099InformationFieldValues);
+    }
+
+    //  Scenario: Verify Pay to Addresses sub-tab in Pay to Provider window
+    public void clickOnPayToAddressesSubTab(){
+        explicitTextToBePresentInElementLocatedWait(By.xpath(tabPayToAddresses), 30, "Pay To Addresses");
+        clickElement(tabPayToAddresses);
+    }
+
+    public void verifyUserNavigatesToPayToAddresses(String expSubTab){
+        explicitTextToBePresentInElementLocatedWait(By.xpath(titlePayToProviderDetails), 20, expSubTab);
+        Assert.assertEquals(expSubTab, findElementByXpath(titlePayToProviderDetails).getText());
+    }
+
+    public void verifyFieldsUnderPayToAddresses(DataTable expFields){
+        explicitElementClickableWaitByXpath(lstPayToAddressesFields, 30);
+        compare2Lists(expFields, lstPayToAddressesFields);
+    }
+
+    public void verifyFieldValuesUnderPayToAddresses(){
+        explicitElementClickableWaitByXpath(lstPayToAddressesFieldValues, 30);
+        elementsDisplayValidation(lstPayToAddressesFieldValues);
+    }
+
+    //  Scenario: Verify Adverse Actions sub tab in Pay to Provider window
+    public void clickOnAdverseActions(){
+        explicitTextToBePresentInElementLocatedWait(By.xpath(tabAdverseActions), 20, "Adverse Actions");
+        clickElement(tabAdverseActions);
+    }
+
+    public void verifyUserNavigatesToAdverseActions(String expSubTab){
+        explicitTextToBePresentInElementLocatedWait(By.xpath(tabAdverseActions), 20, expSubTab);
+        Assert.assertEquals(expSubTab, findElementByXpath(tabAdverseActions).getText());
+    }
+
+    public void verifyFieldsUnderAdverseActions(DataTable expFields){
+        explicitElementClickableWaitByXpath(lstAdverseActionFields, 30);
+        compare2Lists(expFields, lstAdverseActionFields);
+    }
+
+    public void verifyFieldValuesUnderAdverseActions(){
+        elementsDisplayValidation(lstAdverseActionFieldValues);
     }
 }

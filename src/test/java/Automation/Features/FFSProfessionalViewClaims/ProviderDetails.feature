@@ -390,3 +390,74 @@ Feature: Provider Details
       | Provider Name |
       | NPI           |
       | Address       |
+
+  @56054
+  Scenario: Verify user should navigate to Pay to Provider window on clicking Pay to Provider ID link in Provider Details tab
+    When user clicking on the Claim Number in Global Search page
+    And user clicks on the Provider Details tab
+    When user clicks on Pay to Provider ID
+    Then user should navigate to "1099 Information" sub tab
+    And user should be able to view the below subtabs
+      | 1099 Information |
+      | Pay To Addresses |
+      | Adverse Actions  |
+
+  @56064
+  Scenario: Verify 1099 Information sub-tab in Pay to Provider window
+    When user clicking on the Claim Number in Global Search page
+    And user clicks on the Provider Details tab
+    When user clicks on Pay to Provider ID
+    Then user able to view the below fields under Information sub tab
+      | Effective Date    |
+      | Termination Date  |
+      | Vendor Legal Name |
+      | TaxID / SSN       |
+      | Address 1         |
+      | Address 2         |
+      | City              |
+      | State             |
+      | ZipCode           |
+      | IsApproved        |
+      | Status            |
+    And user should be able to view the Information sub tab field values
+
+  @56070
+  Scenario: Verify Pay to Addresses sub-tab in Pay to Provider window
+    When user clicking on the Claim Number in Global Search page
+    And user clicks on the Provider Details tab
+    When user clicks on Pay to Provider ID
+    And user clicks on Pay to Addresses sub tab
+    Then user navigates to the "Pay to Provider Details"
+    Then user able to view the below fields under Pay to Addresses sub tab
+      | Pay to ID               |
+      | Pay to Name             |
+      | Effective Date          |
+      | Termination Date        |
+      | Address Line 1 / Street |
+      | Address Line 2 / Suite  |
+      | Zip Code                |
+      | City                    |
+      | State                   |
+      | County                  |
+      | Country                 |
+      | Payment System Status   |
+      | Source                  |
+      | Status                  |
+      | NPI                     |
+    And user able to view the field values under Pay to Addresses sub tab
+
+  @56081
+  Scenario: Verify Adverse Actions sub tab in Pay to Provider window
+    When user clicking on the Claim Number in Global Search page
+    And user clicks on the Provider Details tab
+    When user clicks on Pay to Provider ID
+    And user clicks on Adverse Actions sub tab
+    Then user navigates to the "Adverse Actions" sub tab
+    Then user able to view the below fields under Adverse Actions sub tab
+      | Adverse Action |
+      | Effective Date |
+      | Term Date      |
+      | Action on Claim |
+      | Reason          |
+      | Status          |
+    And user able to view the field values under Adverse Actions sub tab

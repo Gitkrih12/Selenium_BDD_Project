@@ -27,7 +27,7 @@ Feature: Documents
   @49610
   @Sanity @beta
   Scenario: Verify column fields in Attachments sub tab
-    When user clicking on Attachments Claim Number in Global Search page
+    When user clicking on the Claim Number in Global Search page
     And user clicks on the Documents tab
     And user clicks on Attachments sub tab
     Then user able to view the below column fields under Attachments sub tab
@@ -53,7 +53,7 @@ Feature: Documents
   @89486
   @Sanity
   Scenario: Verify user should navigate to the Upload Document window on clicking Upload Document button
-    When user clicking on Attachments Claim Number in Global Search page
+    When user clicking on the Claim Number in Global Search page
     And user clicks on the Documents tab
     And user clicks on Attachments sub tab
     When user clicks on Upload Document button in Attachments section
@@ -62,7 +62,7 @@ Feature: Documents
   @89502
   @Sanity
   Scenario: Verify user should be able to view all the fields in upload document window
-    When user clicking on Attachments Claim Number in Global Search page
+    When user clicking on the Claim Number in Global Search page
     And user clicks on the Documents tab
     And user clicks on Attachments sub tab
     When user clicks on Upload Document button in Attachments section
@@ -77,7 +77,7 @@ Feature: Documents
   @89503
   @Sanity
   Scenario: Verify user able to upload the document successfully by entering all the required fields
-    When user clicking on Attachments Claim Number in Global Search page
+    When user clicking on the Claim Number in Global Search page
     And user clicks on the Documents tab
     And user clicks on Attachments sub tab
     When user clicks on Upload Document button in Attachments section
@@ -88,7 +88,7 @@ Feature: Documents
   @89504
   @Sanity
   Scenario: Verify user throws an error message when Title is not entered
-    When user clicking on Attachments Claim Number in Global Search page
+    When user clicking on the Claim Number in Global Search page
     And user clicks on the Documents tab
     And user clicks on Attachments sub tab
     When user clicks on Upload Document button in Attachments section
@@ -98,7 +98,7 @@ Feature: Documents
   @89508
   @Sanity
   Scenario: Verify user throws an error message when Category is not selected
-    When user clicking on Attachments Claim Number in Global Search page
+    When user clicking on the Claim Number in Global Search page
     And user clicks on the Documents tab
     And user clicks on Attachments sub tab
     When user clicks on Upload Document button in Attachments section
@@ -108,7 +108,7 @@ Feature: Documents
   @89513
   @Sanity
   Scenario: Verify user throws an error message when Description is not entered in field
-    When user clicking on Attachments Claim Number in Global Search page
+    When user clicking on the Claim Number in Global Search page
     And user clicks on the Documents tab
     And user clicks on Attachments sub tab
     When user clicks on Upload Document button in Attachments section
@@ -118,7 +118,7 @@ Feature: Documents
   @89514
   @Sanity
   Scenario: Verify user throws an error message when file is not chose
-    When user clicking on Attachments Claim Number in Global Search page
+    When user clicking on the Claim Number in Global Search page
     And user clicks on the Documents tab
     And user clicks on Attachments sub tab
     When user clicks on Upload Document button in Attachments section
@@ -128,7 +128,7 @@ Feature: Documents
   @92195
   @Sanity
   Scenario: Verify user should be able to close the Upload Document pop up by clicking on cancel/close buttons
-    When user clicking on Attachments Claim Number in Global Search page
+    When user clicking on the Claim Number in Global Search page
     And user clicks on the Documents tab
     And user clicks on Attachments sub tab
     When user clicks on Upload Document button in Attachments section

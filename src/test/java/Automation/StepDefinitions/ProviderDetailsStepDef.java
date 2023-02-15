@@ -336,4 +336,73 @@ public class ProviderDetailsStepDef extends ProviderDetailsPage {
     public void user_able_to_view_all_the_below_mentioned_fields_under_rendering_provider(DataTable expFields) {
         verifyRenderingProvider(expFields);
     }
+
+    //  Scenario: Verify user should navigate to Pay to Provider window on clicking Pay to Provider ID link in Provider Details tab
+    @When("user clicks on Pay to Provider ID")
+    public void user_clicks_on_pay_to_provider_id() {
+        clickOnPayToProviderId();
+    }
+
+    @Then("user should navigate to {string} sub tab")
+    public void user_should_navigate_to_sub_tab(String expSubTab) {
+        verifyUserNavigatesTo1099Information(expSubTab);
+    }
+
+    @Then("user should be able to view the below subtabs")
+    public void user_should_be_able_to_view_the_below_subtabs(DataTable expSubTabs) {
+        verifySubTabs(expSubTabs);
+    }
+
+    //  Scenario: Verify 1099 Information sub-tab in Pay to Provider window
+    @Then("user able to view the below fields under Information sub tab")
+    public void user_able_to_view_the_below_fields_under_information_sub_tab(DataTable expFields) {
+        verifyFieldsUnderInfoSubTab(expFields);
+    }
+
+    @Then("user should be able to view the Information sub tab field values")
+    public void user_should_be_able_to_view_the_information_sub_tab_field_values() {
+        verifyFieldValuesUnderInfoSubTab();
+    }
+
+    //  Scenario: Verify Pay to Addresses sub-tab in Pay to Provider window
+    @When("user clicks on Pay to Addresses sub tab")
+    public void user_clicks_on_pay_to_addresses_sub_tab() {
+        clickOnPayToAddressesSubTab();
+    }
+
+    @Then("user navigates to the {string}")
+    public void user_navigates_to_the(String expSubTab) {
+        verifyUserNavigatesToPayToAddresses(expSubTab);
+    }
+
+    @Then("user able to view the below fields under Pay to Addresses sub tab")
+    public void user_able_to_view_the_below_fields_under_pay_to_addresses_sub_tab(DataTable expFields) {
+        verifyFieldsUnderPayToAddresses(expFields);
+    }
+
+    @Then("user able to view the field values under Pay to Addresses sub tab")
+    public void user_able_to_view_the_field_values_under_pay_to_addresses_sub_tab() {
+        verifyFieldValuesUnderPayToAddresses();
+    }
+
+    //  Scenario: Verify Adverse Actions sub tab in Pay to Provider window
+    @When("user clicks on Adverse Actions sub tab")
+    public void user_clicks_on_adverse_actions_sub_tab() {
+        clickOnAdverseActions();
+    }
+
+    @Then("user navigates to the {string} sub tab")
+    public void user_navigates_to_the_sub_tab(String expSubTab) {
+        verifyUserNavigatesToAdverseActions(expSubTab);
+    }
+
+    @Then("user able to view the below fields under Adverse Actions sub tab")
+    public void user_able_to_view_the_below_fields_under_adverse_actions_sub_tab(DataTable expFields) {
+        verifyFieldsUnderAdverseActions(expFields);
+    }
+
+    @Then("user able to view the field values under Adverse Actions sub tab")
+    public void user_able_to_view_the_field_values_under_adverse_actions_sub_tab() {
+        verifyFieldValuesUnderAdverseActions();
+    }
 }
