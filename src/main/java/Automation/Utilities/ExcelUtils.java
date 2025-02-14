@@ -108,7 +108,7 @@ public class ExcelUtils extends SeleniumUtils {
 
 			/*
 			 * row= sheet1.getRow(rowNum); cell= row.getCell(colNum);
-			 * 
+			 *
 			 * return cell.getStringCellValue();
 			 */
 			return val;
@@ -154,7 +154,7 @@ public class ExcelUtils extends SeleniumUtils {
 		return count;
 
 	}
-	
+
 	/**
 	 * Get Entire Data of Sheet
 	 *
@@ -165,19 +165,19 @@ public class ExcelUtils extends SeleniumUtils {
 	public List<Map<String,String>> readData(String sheetName) {
 		List<Map<String,String>> resultList=new ArrayList<>();
 		int numOfcols = getColumnCount(sheetName);
-		Map<String, String> map = null; 
+		Map<String, String> map = null;
 		Object[][] obj = new Object[getRowCount(sheetName)-1][1];
 		for (int i = 1; i<getRowCount(sheetName); i++) {
 			map = new HashMap<String, String>();
 			for (int j = 0; j<numOfcols; j++) {
 				if(readData(sheetName,i, j).isEmpty()){
-					map.put(readData(sheetName,0, j),"");	
+					map.put(readData(sheetName,0, j),"");
 				}
 				else
 				{
 					map.put(readData(sheetName,0, j),readData(sheetName,i, j));
 				}
-				
+
 			}
 			//obj[i-1][0] = map;
 			resultList.add(map);

@@ -30,7 +30,6 @@ public class Hooks extends Driver {
         {
             openBrowser(browser, URL);
         } catch (Exception e) {
-            System.out.println("Exception in launching browser:    " + e);
             Assert.fail("Exception in launching browser   :" + e);
         }
 
@@ -45,11 +44,11 @@ public class Hooks extends Driver {
             if (isFailed) {
                 SStatus = "Fail";
                 System.out.println(" !!!!! Scenario Name: " + scenario.getName() + "  Status -- " + SStatus + " !!!!!!! ");
-                driver.quit();
+                quitDriver();
             } else {
                 SStatus = "Pass";
                 System.out.println(" !!!!! Scenario Name: " + scenario.getName() + "  Status -- " + SStatus + " !!!!!!! ");
-                 driver.quit();
+                 quitDriver();
 
             }
         } catch (Exception e) {

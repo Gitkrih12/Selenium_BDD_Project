@@ -1,21 +1,39 @@
-# Introduction 
-TODO: Give a short introduction of your project. Let this section explain the objectives or the motivation behind this project. 
+# Introduction
+
+Refer this link for sample BDD cucumber framework with JUnit5
+https://github.com/cucumber/cucumber-java-skeleton/
+
+This framework can be used to automate the test cases using BDD cucumber framework with JUnit5.
+The framework structure contains all the basic components required to start automation testing.
 
 # Getting Started
-TODO: Guide users through getting your code up and running on their own system. In this section you can talk about:
-1. Installation process
-2. Software dependencies
-3. Latest releases
-4. API references
 
+Installation process
+Setup java 18 or above version in your system
+Download IntelliJ IDEA
+Download Maven software
+Download "Cucumber for Java" plugin in IntelliJ IDEA
+Download "Gherkin" plugin in IntelliJ IDEA
+Clone the repository from remote repository
+Open the project in IntelliJ IDEA
+Right-click on the TestRunner class and run the test cases
 
-# Build and Test
-TODO: Describe and show how to build your code and run the tests. 
+# Run tests from command line
 
-# Contribute
-TODO: Explain how other users and developers can contribute to make your code better. 
+To run the tests from command line, use the following command:
+Example commands:
+Run a specific runner class and tags:
+mvn test -Dtest=Automation/TestRunner/JUnitTestRunnerTest -DexcludedGroups="ignore" -Dgroups="smoke | sanity"
+Run another runner class:
+mvn test -Dtest=Automation/TestRunner/JUnitAnotherTestRunnerTest -DexcludedGroups="ignore" -Dgroups="smoke | sanity"
 
-If you want to learn more about creating good readme files then refer the following [guidelines](https://docs.microsoft.com/en-us/azure/devops/repos/git/create-a-readme?view=azure-devops). You can also seek inspiration from the below readme files:
-- [ASP.NET Core](https://github.com/aspnet/Home)
-- [Visual Studio Code](https://github.com/Microsoft/vscode)
-- [Chakra Core](https://github.com/Microsoft/ChakraCore)
+Parallel mechanism:
+By default, the tests are run in parallel. To run the tests in sequence, use the following command:
+mvn test -Dtest=Automation/TestRunner/JUnitTestRunnerTest -DexcludedGroups="ignore" -Dgroups="smoke | sanity"
+-Dcucumber.execution.parallel.enabled=false
+
+Run tests in a specific environment:
+mvn test -Dtest=Automation/TestRunner/JUnitTestRunnerTest -Denv="uat" -Dcucumber.execution.parallel.enabled=false
+
+Retry failed test cases for a specific number of times:
+Refer "rerunFailingTestsCount" tag in POM.xml file to change the retry count for failed test cases.

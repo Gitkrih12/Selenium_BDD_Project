@@ -4,6 +4,7 @@ import io.cucumber.datatable.DataTable;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.junit.Assert;
 import org.openqa.selenium.*;
+import org.openqa.selenium.Point;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.Color;
 import org.openqa.selenium.support.ui.ExpectedCondition;
@@ -17,6 +18,7 @@ import java.awt.event.KeyEvent;
 import java.io.File;
 import java.io.IOException;
 import java.io.RandomAccessFile;
+import java.security.SecureRandom;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.time.*;
@@ -53,19 +55,6 @@ public class SeleniumUtils extends Driver {
             }
         } catch (Exception e) {
             Assert.fail("Window not found" + "| Error - " + e);
-        }
-    }
-
-    public void switchToChildWindow() throws InterruptedException {
-        try {
-            Set<String> list = driver.getWindowHandles();
-            Iterator<String> title = list.iterator();
-            String parent = title.next();
-            String Child = title.next();
-            driver.switchTo().window(Child);
-            Thread.sleep(2000);
-        } catch (Exception e) {
-            Assert.fail("Switch to window failed: " + "|Error is " + e);
         }
     }
 
@@ -242,72 +231,33 @@ public class SeleniumUtils extends Driver {
 
 
     //******************** Select (Dropdown) related methods ************************  //
-    public void selectDropdownByVisibleText(String xpath, String text) {
+    public void selectDropdownByVisibleText(By byLocator, String text) {
         try {
-            WebElement element = driver.findElement(By.xpath(xpath));
+            WebElement element = driver.findElement(byLocator);
             Select dr = new Select(element);
             dr.selectByVisibleText(text);
         } catch (Exception e) {
-            Assert.fail("Element not found " + xpath + "| Error - " + e);
+            Assert.fail("Element not found " + byLocator + "| Error - " + e);
         }
     }
 
-    public void selectDropdownByVisibleText(WebElement element, String text) {
+    public void selectDropdownByValue(By byLocator, String value) {
         try {
-            Select dr = new Select(element);
-            dr.selectByVisibleText(text);
-        } catch (Exception e) {
-            Assert.fail("Element not found " + element + "| Error - " + e);
-        }
-    }
-
-    public void selectDropdownByValue(String xpath, String value) {
-        try {
-            WebElement element = driver.findElement(By.xpath(xpath));
+            WebElement element = driver.findElement(byLocator);
             Select sel = new Select(element);
             sel.selectByValue(value);
         } catch (Exception e) {
-            Assert.fail("Element not found :" + xpath + "|Error - " + e);
+            Assert.fail("Element not found :" + byLocator + "|Error - " + e);
         }
     }
 
-    public void selectDropdownByValue(WebElement element, String value) {
-        try {
-            Select sel = new Select(element);
-            sel.selectByValue(value);
-        } catch (Exception e) {
-            Assert.fail("Element not found :" + element + "|Error - " + e);
-        }
-    }
-
-    public void selectDropdownByIndex(WebElement element, String index) {
+    public void selectDropdownByIndex(By byLocator, String index) {
         try {
             int ind = Integer.parseInt(index);
-            Select sel = new Select(element);
+            Select sel = new Select(driver.findElement(byLocator));
             sel.selectByIndex(ind);
         } catch (Exception e) {
-            Assert.fail("Element not found :" + element + "|Error - " + e);
-        }
-    }
-
-    public void selectDropdownByIndex(String xpath, String index) {
-        try {
-            WebElement element = driver.findElement(By.xpath(xpath));
-            Select sel = new Select(element);
-            int ind = Integer.parseInt(index);
-            sel.selectByIndex(ind);
-        } catch (Exception e) {
-            Assert.fail("Element not found :" + xpath + "|Error - " + e);
-        }
-    }
-
-    public void selectDropdownByIndex(String xpath, int index) {
-        try {
-            WebElement element = driver.findElement(By.xpath(xpath));
-            Select sel = new Select(element);
-            sel.selectByIndex(index);
-        } catch (Exception e) {
-            Assert.fail("Element not found :" + xpath + "|Error - " + e);
+            Assert.fail("Element not found :" + byLocator + "|Error - " + e);
         }
     }
 
@@ -372,40 +322,17 @@ public class SeleniumUtils extends Driver {
         }
     }
 
-    public String getTextOfSelectedOptionFromDropdown(String xpath) {
+    public String getTextOfSelectedOptionFromDropdown(By byLocator) {
         try {
-            WebElement element = driver.findElement(By.xpath(xpath));
-            Select dr = new Select(element);
+            Select dr = new Select(driver.findElement(byLocator));
             WebElement option = dr.getFirstSelectedOption();
             return option.getText();
         } catch (Exception e) {
-            System.out.println("Element not found " + xpath + "|Error - " + e);
+            System.out.println("Element not found " + byLocator + "|Error - " + e);
             return "Unable to get text of selected option from dropdown";
         }
     }
 
-    public String getTextOfSelectedOptionFromDropdown(WebElement element) {
-        try {
-            Select dr = new Select(element);
-            WebElement option = dr.getFirstSelectedOption();
-            return option.getText();
-        } catch (Exception e) {
-            System.out.println("Element not found " + element + "|Error - " + e);
-            return "Unable to get text of selected option from dropdown";
-        }
-    }
-
-    public String getValueOfSelectedOptionFromDropdown(String xpath) {
-        try {
-            WebElement element = driver.findElement(By.xpath(xpath));
-            Select dr = new Select(element);
-            String option = dr.getFirstSelectedOption().getAttribute("value");
-            return option;
-        } catch (Exception e) {
-            System.out.println("Element not found" + xpath + "|Error - " + e);
-            return "Unable to get value of selected option from dropdown";
-        }
-    }
     //******************** End of Select (Dropdown) related methods ************************  //
 
 
@@ -484,65 +411,10 @@ public class SeleniumUtils extends Driver {
         }
     }
 
-    public WebElement explicitElementClickableWaitByID(String id, int duration) {
+    public WebElement explicitElementClickableWait(By byLocator, int duration) {
         try {
             WebElement element = new WebDriverWait(driver, Duration.ofSeconds(duration)).
-                    until(ExpectedConditions.elementToBeClickable(By.id(id)));
-            return element;
-        } catch (Exception e) {
-            Assert.fail("Element not found | Error - " + e);
-            return null;
-        }
-    }
-
-    public WebElement explicitElementClickableWaitByName(String name, int duration) {
-        try {
-            WebElement element = new WebDriverWait(driver, Duration.ofSeconds(duration)).
-                    until(ExpectedConditions.elementToBeClickable(By.name(name)));
-            return element;
-        } catch (Exception e) {
-            Assert.fail("Element not found | Error - " + e);
-            return null;
-        }
-    }
-
-    public WebElement explicitElementClickableWaitByClass(String className, int duration) {
-        try {
-            WebElement element = new WebDriverWait(driver, Duration.ofSeconds(duration)).
-                    until(ExpectedConditions.elementToBeClickable(By.className(className)));
-            return element;
-        } catch (Exception e) {
-            Assert.fail("Element not found | Error - " + e);
-            return null;
-        }
-    }
-
-    public WebElement explicitElementClickableWaitByTagName(String tagName, int duration) {
-        try {
-            WebElement element = new WebDriverWait(driver, Duration.ofSeconds(duration)).
-                    until(ExpectedConditions.elementToBeClickable(By.tagName(tagName)));
-            return element;
-        } catch (Exception e) {
-            Assert.fail("Element not found | Error - " + e);
-            return null;
-        }
-    }
-
-    public WebElement explicitElementClickableWaitByCSSID(String cssId, int duration) {
-        try {
-            WebElement element = new WebDriverWait(driver, Duration.ofSeconds(duration)).
-                    until(ExpectedConditions.elementToBeClickable(By.cssSelector(cssId)));
-            return element;
-        } catch (Exception e) {
-            Assert.fail("Element not found | Error - " + e);
-            return null;
-        }
-    }
-
-    public WebElement explicitElementClickableWaitByXpath(String xpath, int duration) {
-        try {
-            WebElement element = new WebDriverWait(driver, Duration.ofSeconds(duration)).
-                    until(ExpectedConditions.elementToBeClickable(By.xpath(xpath)));
+                    until(ExpectedConditions.elementToBeClickable(byLocator));
             return element;
         } catch (Exception e) {
             Assert.fail("Element not found | Error - " + e);
@@ -552,30 +424,8 @@ public class SeleniumUtils extends Driver {
 
     public WebElement explicitElementClickableWait(WebElement element, int duration) {
         try {
-            WebElement element1 = new WebDriverWait(driver, Duration.ofSeconds(duration)).
+            WebElement ele = new WebDriverWait(driver, Duration.ofSeconds(duration)).
                     until(ExpectedConditions.elementToBeClickable(element));
-            return element1;
-        } catch (Exception e) {
-            Assert.fail("Element not found :" + element + "|Error - " + e);
-            return null;
-        }
-    }
-
-    public WebElement explicitVisibilityOfWait(WebElement element, int duration) {
-        try {
-            WebElement element1 = new WebDriverWait(driver, Duration.ofSeconds(duration)).
-                    until(ExpectedConditions.visibilityOf(element));
-            return element1;
-        } catch (Exception e) {
-            Assert.fail("Element not found :" + element + "|Error - " + e);
-            return null;
-        }
-    }
-
-    public WebElement explicitDropdownElementsWait(int duration,  String ParentXpath, String tagName ) {
-        try {
-            WebElement element = new WebDriverWait(driver, Duration.ofSeconds(duration)).
-                    until(ExpectedConditions.presenceOfNestedElementLocatedBy(By.xpath(ParentXpath),By.tagName(tagName)));
             return element;
         } catch (Exception e) {
             Assert.fail("Element not found | Error - " + e);
@@ -583,123 +433,80 @@ public class SeleniumUtils extends Driver {
         }
     }
 
-    public WebElement explicitVisibilityOfElementLocatedWaitByID(String id, int duration) {
+    public WebElement explicitElementVisibleWait(By byLocator, int duration) {
         try {
-            WebElement element = new WebDriverWait(driver, Duration.ofSeconds(duration)).
-                    until(ExpectedConditions.visibilityOfElementLocated(By.id(id)));
-            return element;
+            WebElement element1 = new WebDriverWait(driver, Duration.ofSeconds(duration)).
+                    until(ExpectedConditions.visibilityOf(driver.findElement(byLocator)));
+            return element1;
         } catch (Exception e) {
-            Assert.fail("Element not found :" + id + "|Error - " + e);
+            Assert.fail("Element not found :" + byLocator + "|Error - " + e);
             return null;
         }
     }
 
-    public WebElement explicitVisibilityOfElementLocatedWaitByName(String name, int duration) {
+    public WebElement explicitDropdownElementsWait(int duration, String ParentXpath, String tagName) {
         try {
             WebElement element = new WebDriverWait(driver, Duration.ofSeconds(duration)).
-                    until(ExpectedConditions.visibilityOfElementLocated(By.name(name)));
+                    until(ExpectedConditions.presenceOfNestedElementLocatedBy(By.xpath(ParentXpath), By.tagName(tagName)));
             return element;
         } catch (Exception e) {
-            Assert.fail("Element not found :" + name + "|Error - " + e);
+            Assert.fail("Element not found | Error - " + e);
             return null;
         }
     }
 
-    public WebElement explicitVisibilityOfElementLocatedWaitByClass(String className, int duration) {
+    public WebElement explicitVisibilityOfElementLocatedWait(By byLocator, int duration) {
         try {
             WebElement element = new WebDriverWait(driver, Duration.ofSeconds(duration)).
-                    until(ExpectedConditions.visibilityOfElementLocated(By.className(className)));
+                    until(ExpectedConditions.visibilityOfElementLocated(byLocator));
             return element;
         } catch (Exception e) {
-            Assert.fail("Element not found :" + className + "|Error - " + e);
+            Assert.fail("Element not found :" + byLocator + "|Error - " + e);
             return null;
         }
     }
 
-    public WebElement explicitVisibilityOfElementLocatedWaitByTagName(String tagName, int duration) {
-        try {
-            WebElement element = new WebDriverWait(driver, Duration.ofSeconds(duration)).
-                    until(ExpectedConditions.visibilityOfElementLocated(By.tagName(tagName)));
-            return element;
-        } catch (Exception e) {
-            Assert.fail("Element not found :" + tagName + "|Error - " + e);
-            return null;
-        }
-    }
-
-    public WebElement explicitVisibilityOfElementLocatedWaitByCSSID(String cssID, int duration) {
-        try {
-            WebElement element = new WebDriverWait(driver, Duration.ofSeconds(duration)).
-                    until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(cssID)));
-            return element;
-        } catch (Exception e) {
-            Assert.fail("Element not found :" + cssID + "|Error - " + e);
-            return null;
-        }
-    }
-
-    public WebElement explicitVisibilityOfElementLocatedWaitByXpath(String xpath, int duration) {
-        try {
-            WebElement element = new WebDriverWait(driver, Duration.ofSeconds(duration)).
-                    until(ExpectedConditions.visibilityOfElementLocated(By.xpath(xpath)));
-            return element;
-        } catch (Exception e) {
-            Assert.fail("Element not found :" + xpath + "|Error - " + e);
-            return null;
-        }
-    }
-
-    public boolean explicitTextToBePresentInElementWait(WebElement element, int duration, String text) {
+    public boolean explicitTextToBePresentInElementWait(By byLocator, int duration, String text) {
         try {
             boolean status = new WebDriverWait(driver, Duration.ofSeconds(duration)).
-                    until(ExpectedConditions.textToBePresentInElement(element, text));
+                    until(ExpectedConditions.textToBePresentInElement(
+                            driver.findElement(byLocator), text));
             return status;
         } catch (Exception e) {
-            Assert.fail("Element not found :" + element + "|Error - " + e);
+            Assert.fail("Element not found :" + byLocator + "|Error - " + e);
             return false;
         }
     }
 
-    public boolean explicitTextToBePresentInElementLocatedWait(By element, int duration, String text) {
+    public boolean explicitElementInvisibilityWait(By byLocator, int duration) {
         try {
             boolean status = new WebDriverWait(driver, Duration.ofSeconds(duration)).
-                    until(ExpectedConditions.textToBePresentInElementLocated(element, text));
+                    until(ExpectedConditions.invisibilityOf(driver.findElement(byLocator)));
             return status;
         } catch (Exception e) {
-            Assert.fail("Element not found :" + element + "|Error - " + e);
+            Assert.fail("Element not found :" + byLocator + "|Error - " + e);
             return false;
         }
     }
 
-    public boolean explicitInvisibilityOfWait(WebElement element, int duration) {
+    public boolean explicitInvisibilityOfElementLocatedWait(By byLocator, int duration) {
         try {
             boolean status = new WebDriverWait(driver, Duration.ofSeconds(duration)).
-                    until(ExpectedConditions.invisibilityOf(element));
+                    until(ExpectedConditions.invisibilityOfElementLocated(byLocator));
             return status;
         } catch (Exception e) {
-            Assert.fail("Element not found :" + element + "|Error - " + e);
+            Assert.fail("Element not found :" + byLocator + "|Error - " + e);
             return false;
         }
     }
 
-    public boolean explicitInvisibilityOfElementLocatedWait(By element, int duration) {
+    public boolean explicitInvisibilityOfElementText(By byLocator, int duration, String text) {
         try {
             boolean status = new WebDriverWait(driver, Duration.ofSeconds(duration)).
-                    until(ExpectedConditions.invisibilityOfElementLocated(element));
+                    until(ExpectedConditions.invisibilityOfElementWithText(byLocator, text));
             return status;
         } catch (Exception e) {
-            Assert.fail("Element not found :" + element + "|Error - " + e);
-            return false;
-        }
-    }
-
-    public boolean explicitInvisibilityOfElementWithTextWait(By element, int duration, String text) {
-        try {
-            boolean status = new WebDriverWait(driver, Duration.ofSeconds(duration)).
-                    until(ExpectedConditions.invisibilityOfElementWithText(element, text));
-            return status;
-        } catch (Exception e) {
-            Assert.fail("Element not found :" + element + "|Error - " + e);
+            Assert.fail("Element not found :" + byLocator + "|Error - " + e);
             return false;
         }
     }
@@ -792,8 +599,6 @@ public class SeleniumUtils extends Driver {
     public void explicitFrameWait(int frameNumber, int duration) throws Exception {
         try {
             System.out.println("Navigated to switchToFrameWithFrameNumber (Int) method");
-//            System.out.println("Number of frame tags :" + driver.findElement(By.tagName("iframe")));
-
             WebDriverWait wdWait = new WebDriverWait(driver, Duration.ofSeconds(duration));
             wdWait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(frameNumber));
         } catch (Exception e) {
@@ -829,6 +634,15 @@ public class SeleniumUtils extends Driver {
         }
     }
 
+    public void switchToFrame(String frameLocator) {
+        try {
+//            WebElement frameEle = driver.findElement(frameLocator);
+            driver.switchTo().frame(frameLocator);
+        } catch (Exception e) {
+            Assert.fail("Exception in switching to frame" + e);
+            e.printStackTrace();
+        }
+    }
 
     //Provide duration in Milli Seconds. Example - 3000
     public void threadSleep(long duration) throws InterruptedException {
@@ -880,181 +694,81 @@ public class SeleniumUtils extends Driver {
 
 
     // ******************* Conditional related methods ***************** //
-    public boolean isElementEditable(String xpath) {
-        try {
-
-            boolean element = driver.findElement(By.xpath(xpath)).isEnabled();
-            if (element == true) {
-                System.out.println("Element is editable");
-                return true;
-            } else {
-                System.out.println("Element is not editable");
-                return false;
-            }
-        } catch (Exception e) {
-            Assert.fail("Element is not found" + xpath + "| Error is " + e);
-            return false;
-        }
-    }
-
-    public boolean isElementDisplayed(String xpath) {
-        try {
-
-            boolean element = driver.findElement(By.xpath(xpath)).isDisplayed();
-            if (element == true) {
-                System.out.println("Element is displayed");
-                return true;
-            } else {
-                System.out.println("Element is not displayed");
-                return false;
-            }
-        } catch (Exception e) {
-            Assert.fail("Element is not found" + xpath + "| Error is " + e);
-            return false;
-        }
-    }
-
-    public boolean isElementSelected(String xpath) {
-        try {
-
-            boolean element = driver.findElement(By.xpath(xpath)).isSelected();
-            if (element == true) {
-                System.out.println("Element is selected");
-                return true;
-            } else {
-                System.out.println("Element is not selected");
-                return false;
-            }
-        } catch (Exception e) {
-            Assert.fail("Element is not found " + xpath + "| Error is " + e);
-            return false;
-        }
-    }
-
-    public boolean isDisplayed(String xpath) {
-        try {
-            boolean element = driver.findElement(By.xpath(xpath)).isDisplayed();
-            return element;
-        } catch (Exception e) {
-            System.out.println("Element not found " + xpath + "|Error - " + e);
-            return false;
-        }
-    }
-
-    public boolean isDisplayed(WebElement element) {
-        try {
-            boolean status = element.isDisplayed();
-            return status;
-        } catch (Exception e) {
-            System.out.println("Element not found " + element + "|Error - " + e);
-            return false;
-        }
-    }
-
-    public boolean isEnabled(String xpath) {
-        try {
-            boolean element = driver.findElement(By.xpath(xpath)).isEnabled();
-            System.out.println("ISEnabled method returned: " + element);
-            return element;
-        } catch (Exception e) {
-            System.out.println("Element not found " + xpath + "|Error - " + e);
-            return false;
-        }
-    }
-
-    public boolean isEnabled(WebElement element) {
-        try {
-            boolean status = element.isEnabled();
-            return status;
-        } catch (Exception e) {
-            System.out.println("Element not found " + element + "|Error - " + e);
-            return false;
-        }
-    }
-
-    public boolean isElementPresent(String xpath, boolean expected) throws Throwable {
+    public boolean isElementDisplayed(By byLocator) {
         boolean status = false;
-        boolean actualStatus = false;
         try {
-            driver.findElement(By.xpath(xpath));
-            status = true;
+            status = driver.findElement(byLocator).isDisplayed();
+            Assert.assertTrue(status);
         } catch (Exception e) {
-            status = false;
-        }
-        if (expected == status) {
-            actualStatus = true;
-        } else {
-            actualStatus = false;
-            System.out.println("IsElement present returned :" + actualStatus);
-        }
-        return actualStatus;
-    }
-
-    public boolean isAttributePresent(String xpath, String attribute) {
-        try {
-            String attributeValue = driver.findElement(By.xpath(xpath)).getAttribute(attribute);
-            System.out.println("IsAttribute present returned : " + attributeValue);
-            if (attributeValue.equals("null")) {
-                return false;
-            } else {
-                return true;
-            }
-        } catch (Exception e) {
-            System.out.println("IsAttribute present returned false");
+            Assert.fail("Element is not found" + byLocator + "| Error is " + e);
             return false;
         }
+        return status;
+    }
+
+    public boolean isElementSelected(By byLocator) {
+        boolean status = false;
+        try {
+
+            status = driver.findElement(byLocator).isSelected();
+            Assert.assertTrue(status);
+        } catch (Exception e) {
+            Assert.fail("Element is not found " + byLocator + "| Error is " + e);
+            return false;
+        }
+        return status;
+    }
+
+    public boolean isDisplayed(By byLocator) {
+        boolean status = false;
+        try {
+            status = driver.findElement(byLocator).isDisplayed();
+        } catch (Exception e) {
+            System.out.println("Element not found " + byLocator + "|Error - " + e);
+            return false;
+        }
+        return status;
+    }
+
+    public boolean isAttributePresent(By byLocator, String attribute) {
+        boolean status = false;
+        try {
+            String attributeValue = driver.findElement(byLocator).getAttribute(attribute);
+            if (attributeValue != null) {
+                status = true;
+            }
+        } catch (Exception e) {
+            Assert.fail("Element not found " + byLocator + "|Error - " + e);
+            return false;
+        }
+        return status;
     }
     // ******************* End of Conditional related methods ***************** //
 
 
     // ************** Element action related methods **************** //
-    public void findElementAndSendKeys(WebElement element, String text) {
+    public void findElementAndSendKeys(By byLocator, String text) {
         try {
-            element.sendKeys(text);
+            driver.findElement(byLocator).sendKeys(text);
         } catch (Exception e) {
-            Assert.fail("element not found " + element + "|Error - " + e);
+            Assert.fail("element not found " + byLocator + "|Error - " + e);
         }
     }
 
     //Use this method by passing xpath as a parameter to click an element
-    public void clickElement(String xpath) {
+    public void clickElement(By byLocator) {
         try {
-            driver.findElement(By.xpath(xpath)).click();
+            driver.findElement(byLocator).click();
         } catch (Exception e) {
-            Assert.fail("Element not found :" + xpath + "|Error - " + e);
+            Assert.fail("Element not found :" + byLocator + "|Error - " + e);
         }
     }
 
-    //Use this method by passing "WebElement" directly as a parameter to click an element
-    public void clickElement(WebElement element) {
+    public void clearTextBox(By byLocator) {
         try {
-            element.click();
+            driver.findElement(byLocator).clear();
         } catch (Exception e) {
-            Assert.fail("Element not found :" + element + "|Error - " + e);
-        }
-    }
-
-    public void clearTextBox(String xpath) {
-        try {
-            driver.findElement(By.xpath(xpath)).clear();
-        } catch (Exception e) {
-            Assert.fail("Element not found :" + xpath + "|Error - " + e);
-        }
-    }
-
-    public void clearTextBox(WebElement element) {
-        try {
-            element.clear();
-        } catch (Exception e) {
-            Assert.fail("Element not found :" + element + "|Error - " + e);
-        }
-    }
-
-    public void clickByClass(String classname) {
-        try {
-            driver.findElement(By.className(classname)).click();
-        } catch (Exception e) {
-            Assert.fail("element not found :" + classname + "|Error - " + e);
+            Assert.fail("Element not found :" + byLocator + "|Error - " + e);
         }
     }
 
@@ -1074,15 +788,14 @@ public class SeleniumUtils extends Driver {
         }
     }
 
-    public void sendKeysUsingKeyboardInput(String xpath) {
+    public void sendKeysUsingKeyboardInput(By byLocator) {
         try {
-            WebElement element = driver.findElement(By.xpath(xpath));
+            WebElement element = driver.findElement(byLocator);
             element.sendKeys((Keys.DOWN), (Keys.ENTER));
         } catch (Exception e) {
-            Assert.fail("Element not found " + xpath + "|Error - " + e);
+            Assert.fail("Element not found " + byLocator + "|Error - " + e);
         }
     }
-
 
     public String getCurrentURL() {
         try {
@@ -1095,38 +808,22 @@ public class SeleniumUtils extends Driver {
         }
     }
 
-    public void findElementWithXpathAndsendKeys(String xpath, String text) {
+    public void clearUsingKeyClass(By byLocator) throws Exception {
         try {
-            driver.findElement(By.xpath(xpath)).sendKeys(text);
+            driver.findElement(byLocator).sendKeys(Keys.chord(Keys.CONTROL, "a"));
+            driver.findElement(byLocator).sendKeys(Keys.DELETE);
         } catch (Exception e) {
-            Assert.fail("element not found" + xpath + "| Error - " + e);
-        }
-    }
-
-    public void clickWithLinkText(String linkText) {
-        try {
-            driver.findElement(By.linkText(linkText)).click();
-        } catch (Exception e) {
-            Assert.fail("Element not found " + linkText + "| Error - " + e);
-        }
-    }
-
-    public void clearUsingKeyClass(String xpath) throws Exception {
-        try {
-            driver.findElement(By.xpath(xpath)).sendKeys(Keys.chord(Keys.CONTROL, "a"));
-            driver.findElement(By.xpath(xpath)).sendKeys(Keys.DELETE);
-        } catch (Exception e) {
-            Assert.fail("Element not found " + xpath + "| Error - " + e);
+            Assert.fail("Element not found " + byLocator + "| Error - " + e);
         }
     }
     // ************** End of Element action related methods **************** //
 
 
     // ************** Get related methods **************** //
-    public List<String> getAllElementsToList(String xpath) {
+    public List<String> getAllElementsToList(By byLocator) {
         try {
             List<String> AllElementsText = new ArrayList<String>();
-            List<WebElement> AllElements = driver.findElements(By.xpath(xpath));
+            List<WebElement> AllElements = driver.findElements(byLocator);
             System.out.println("Size of all elements" + AllElements.size());
             for (int i = 0; i < AllElements.size(); i++) {
                 String aa = AllElements.get(i).getText();
@@ -1142,11 +839,11 @@ public class SeleniumUtils extends Driver {
         }
     }
 
-    public ArrayList<String> getAllElementsToArrayList(String ArrayListXpath) {
+    public ArrayList<String> getAllElementsToArrayList(By byLocator) {
         ArrayList<String> listOfRecords = null;
         try {
             listOfRecords = new ArrayList<>();
-            List<WebElement> listOfElements = findElementsByXpath(ArrayListXpath);
+            List<WebElement> listOfElements = driver.findElements(byLocator);
             for (WebElement record : listOfElements) {
                 listOfRecords.add(record.getText());
             }
@@ -1156,11 +853,11 @@ public class SeleniumUtils extends Driver {
         return listOfRecords;
     }
 
-    public ArrayList<String> scrollAndGetAllElementsToArrayList(String ArrayListXpath) {
+    public ArrayList<String> scrollAndGetAllElementsToArrayList(By byLocator) {
         ArrayList<String> listOfRecords = null;
         try {
             listOfRecords = new ArrayList<>();
-            List<WebElement> listOfElements = findElementsByXpath(ArrayListXpath);
+            List<WebElement> listOfElements = driver.findElements(byLocator);
             for (WebElement record : listOfElements) {
                 scrollIntoView(record, driver);
                 listOfRecords.add(record.getText());
@@ -1171,53 +868,36 @@ public class SeleniumUtils extends Driver {
         return listOfRecords;
     }
 
-    public String getAttribute(WebElement element, String attribute) {
+    public String getAttributeValue(By byLocator, String attributeName) {
+        String attValue = null;
         try {
-            String att = element.getAttribute(attribute);
-            return att;
+            attValue = driver.findElement(byLocator).getAttribute(attributeName);
+            return attValue;
         } catch (Exception e) {
-            Assert.fail("Attribute not found :" + attribute + "|Error - " + e);
+            Assert.fail("Attribute not found :" + attributeName + "|Error - " + e);
             return "No attribute found";
         }
     }
 
-    public String getAttribute(String xpath, String attribute) {
+    public String getText(By byLocator) {
+        String text = null;
         try {
-            String att = driver.findElement(By.xpath(xpath)).getAttribute(attribute);
-            System.out.println("Attribute returned is :" + attribute);
-            return att;
-        } catch (Exception e) {
-            Assert.fail("Attribute not found :" + attribute + "|Error - " + e);
-            return "No attribute found";
-        }
-    }
-
-    public String getText(String xpath) {
-        try {
-            String text = driver.findElement(By.xpath(xpath)).getText();
+            text = driver.findElement(byLocator).getText();
             return text;
         } catch (Exception e) {
-            Assert.fail("Element not found :" + xpath + "|Error - " + e);
+            Assert.fail("Element not found :" + byLocator + "|Error - " + e);
             return "Unable to get string text";
         }
     }
 
-    public String getText(WebElement element) {
+    public Point getElementCoordinates(By byLocator) {
+        Point coordinates = null;
         try {
-            String text = element.getText();
-            return text;
+            coordinates = driver.findElement(byLocator).getLocation();
         } catch (Exception e) {
-            Assert.fail("Element not found :" + element + "|Error - " + e);
-            return "Unable to get string text";
+            Assert.fail("Element not found :" + byLocator + "|Error - " + e);
         }
-    }
-
-    public void getElementCoordinates(WebElement element) {
-        try {
-            System.out.println("Coordinates for element :" + element.getLocation());
-        } catch (Exception e) {
-            Assert.fail("Element not found :" + element + "|Error - " + e);
-        }
+        return coordinates;
     }
 
     public void navigateTo(String URL) {
@@ -1229,132 +909,51 @@ public class SeleniumUtils extends Driver {
     }
 
     public void screenshot(String path, String MethodName) throws SQLException, ClassNotFoundException, IOException {
-        File screenshotFile2 = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+        File screenshotFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
         Date dnow = new Date();
         SimpleDateFormat ft = new SimpleDateFormat("MMddyyyyhhmmss");
-        org.apache.commons.io.FileUtils.copyFile(screenshotFile2, new File(path + "\\Screenshots\\" + MethodName + " - " + ft.format(dnow) + ".jpeg"));
+        org.apache.commons.io.FileUtils.copyFile(screenshotFile, new File(path + "\\Screenshots\\" + MethodName + " - " + ft.format(dnow) + ".jpeg"));
     }
 
-    public List<WebElement> getAllElementsWithXpath(String xpath) {
+    public int getSizeofDropDown(By byLocator) {
         try {
-            List<WebElement> elements = driver.findElements(By.xpath(xpath));
-            return elements;
-        } catch (Exception e) {
-            System.out.println("Elements not found " + xpath + "|Error - " + e);
-            return null;
-        }
-    }
-
-    public String getElementBackgroundColor(String xpath) {
-        try {
-            String color2 = driver.findElement(By.xpath(xpath)).getCssValue("background-color");
-            String[] hexValue = color2.replace("rgba(", "").replace(")", "").split(",");
-
-            int hexValue1 = Integer.parseInt(hexValue[0]);
-            hexValue[1] = hexValue[1].trim();
-            int hexValue2 = Integer.parseInt(hexValue[1]);
-            hexValue[2] = hexValue[2].trim();
-            int hexValue3 = Integer.parseInt(hexValue[2]);
-
-            String actualColor = String.format("#%02x%02x%02x", hexValue1, hexValue2, hexValue3);
-            return actualColor;
-        } catch (Exception e) {
-            System.out.println("Element not found " + xpath + "|Error - " + e);
-            return null;
-        }
-    }
-
-    public WebElement getWebElement(String xpath) {
-        try {
-            WebElement element = driver.findElement(By.xpath(xpath));
-            return element;
-        } catch (Exception e) {
-            Assert.fail("Element not found" + xpath + "|Error - " + e);
-            return null;
-        }
-    }
-
-    public String getTagName(String xpath) {
-        try {
-            String tagName = driver.findElement(By.xpath(xpath)).getTagName();
-            return tagName;
-        } catch (Exception e) {
-            Assert.fail("Element not found " + xpath + "| Error - " + e);
-            return null;
-        }
-    }
-
-    public String getCSSValue(String xpath, String propertyName) {
-        try {
-            String cssValue = driver.findElement(By.xpath(xpath)).getCssValue(propertyName);
-            System.out.println("IsDisplayed returned : " + cssValue);
-            return cssValue;
-        } catch (Exception e) {
-            Assert.fail("Element not found " + xpath);
-            return "Unable to get CSS value";
-        }
-    }
-
-    public int getSizeofDropDown(String xpath) {
-        try {
-            WebElement element = driver.findElement(By.xpath(xpath));
+            WebElement element = driver.findElement(byLocator);
             List<WebElement> options = element.findElements(By.tagName("option"));
             return options.size();
         } catch (Exception e) {
-            System.out.println("Element not found " + xpath + "| Error - " + e);
+            System.out.println("Element not found " + byLocator + "| Error - " + e);
             return 0;
         }
     }
 
-    public int getXcoordinate(String xpath) {
+    public int getXCoordinate(String xpath) {
         try {
-            int xcoordinate = driver.findElement(By.xpath(xpath)).getLocation().getX();
-            return xcoordinate;
+            int xCoordinate = driver.findElement(By.xpath(xpath)).getLocation().getX();
+            return xCoordinate;
         } catch (Exception e) {
             Assert.fail("Element not found " + xpath + "|Error - " + e);
             return 0;
         }
     }
 
-    public int getYcoordinate(String xpath) {
+    public int getYCoordinate(String xpath) {
         try {
-            int ycoordinate = driver.findElement(By.xpath(xpath)).getLocation().getY();
-            return ycoordinate;
+            int yCoordinate = driver.findElement(By.xpath(xpath)).getLocation().getY();
+            return yCoordinate;
         } catch (Exception e) {
             Assert.fail("Element not found " + xpath + "|Error - " + e);
             return 0;
         }
     }
 
-    public int getCountOfAllElementsWithTagName(String xpath, String tagName) {
+    public int getTableRowOrColCount(By byLocator) {
+        int count = 0;
         try {
-            List<WebElement> count = driver.findElement(By.xpath(xpath)).findElements(By.tagName(tagName));
-            System.out.println("Number of elements in getCountOfAllElementsWithTagName " + tagName + "|Size - " + count.size());
-            return count.size();
+            List<WebElement> elements = driver.findElements(byLocator);
+            count = elements.size();
+            return count;
         } catch (Exception e) {
-            Assert.fail("Elemnets not found in getCountOfAllElementsWithTagName " + xpath + "|Error - " + e);
-            return 0;
-        }
-    }
-
-    public int getCountOfElementsWithSameProperty(String xpath) {
-        try {
-            List<WebElement> count = driver.findElements(By.xpath(xpath));
-            System.out.println("Number of elements found in getCountOfElementsWithSameProperty " + count.size());
-            return count.size();
-        } catch (Exception e) {
-            System.out.println("element not found in getCountOfElementsWithSameProperty " + xpath + "Error -" + e);
-            return 0;
-        }
-    }
-
-    public int getTablerowOrColCount(String xpath) {
-        try {
-            List<WebElement> count = driver.findElements(By.xpath(xpath));
-            int size = count.size();
-            return size;
-        } catch (Exception e) {
-            System.out.println("Element not found " + xpath + "|Error - " + e);
+            Assert.fail("Element not found " + byLocator + "|Error - " + e);
             return 0;
         }
     }
@@ -1365,29 +964,30 @@ public class SeleniumUtils extends Driver {
             System.out.println("Title is : " + title);
             return title;
         } catch (Exception e) {
-            System.out.println("Unable to get title");
-            return "Unable to get title";
-        }
-    }
-
-    public String getColorCodeForBackground(String xpath) {
-        try {
-            String cssValue = findElementByXpath(xpath).getCssValue("background-color");
-            String colorCode = Color.fromString(cssValue).asHex().toUpperCase(Locale.ROOT);
-            return colorCode;
-        } catch (Exception e) {
-            System.out.println("Element not found " + xpath + "|Error - " + e);
+            Assert.fail("Unable to get title" + "|Error - " + e);
             return null;
         }
     }
 
-    public String getColorCodeForText(String xpath) {
+    public String getColorCodeForBackground(By byLocator) {
+        String colorCode = null;
         try {
-            String cssValue = findElementByXpath(xpath).getCssValue("color");
+            String cssValue = driver.findElement(byLocator).getCssValue("background-color");
+            colorCode = Color.fromString(cssValue).asHex().toUpperCase(Locale.ROOT);
+            return colorCode;
+        } catch (Exception e) {
+            System.out.println("Element not found " + byLocator + "|Error - " + e);
+            return null;
+        }
+    }
+
+    public String getColorCodeForText(By byLocator) {
+        try {
+            String cssValue = driver.findElement(byLocator).getCssValue("color");
             String colorCode = Color.fromString(cssValue).asHex().toUpperCase(Locale.ROOT);
             return colorCode;
         } catch (Exception e) {
-            System.out.println("Element not found " + xpath + "|Error - " + e);
+            Assert.fail("Unable to get color code for text" + "|Error - " + e);
             return null;
         }
     }
@@ -1408,24 +1008,13 @@ public class SeleniumUtils extends Driver {
         }
     }
 
-    public List<WebElement> getAllDescendantElementsWithSameProperty(String parentElement, String childElement) {
-        try {
-            WebElement rootElement = driver.findElement(By.xpath(parentElement));
-            List<WebElement> childElements = rootElement.findElements(By.xpath(childElement));
-            return childElements;
-        } catch (Exception e) {
-            Assert.fail("Element not found in getAllDescendantElementsWithSameProperty" + parentElement + "|Error - " + e);
-            return null;
-        }
-    }
-
     //This method is used to upload files in headless mode
-    public void uploadFileWithJavaScriptAndSendKeys(String xpath, String filePath) {
+    public void uploadFileWithJavaScriptAndSendKeys(By byLocator, String filePath) {
         try {
-            WebElement element = driver.findElement(By.xpath(xpath));
+            WebElement element = driver.findElement(byLocator);
             JavascriptExecutor js = (JavascriptExecutor) driver;
             js.executeScript("arguments[0].style.display='block';", element);
-            driver.findElement(By.xpath(xpath)).sendKeys(filePath);
+            driver.findElement(byLocator).sendKeys(filePath);
         } catch (Exception e) {
             Assert.fail("The file could not be uploaded");
         }
@@ -1469,7 +1058,6 @@ public class SeleniumUtils extends Driver {
             } else {
                 System.out.println("Failed");
             }
-
         } catch (Exception e) {
             Assert.fail("File not deleted " + filePath + "|Error - " + e);
         }
@@ -1512,9 +1100,9 @@ public class SeleniumUtils extends Driver {
     -Cucumber data table would be converted to "String List"
     -xpath web elements would be converted to "String list" using lambda expressions
     */
-    public void compare2Lists(DataTable dataTable, String xpath) {
+    public void compare2Lists(DataTable dataTable, By byLocator) {
         List<String> fieldsExp = dataTable.asList();
-        List<String> fieldsAct = findElementsByXpath(xpath).
+        List<String> fieldsAct = driver.findElements(byLocator).
                 stream().map(element -> element.getText().trim()).toList();
         printStatementInGreenColor("Fields size actual", fieldsAct.size());
         printStatementInGreenColor("Fields size expected", fieldsExp.size());
@@ -1528,9 +1116,9 @@ public class SeleniumUtils extends Driver {
     -Cucumber data table would be converted to "String List"
     -Would be scrolled till the elements and both the lists would be compared
     */
-    public void scrollToElementsAndCompare2Lists(DataTable dataTable, String xpath) {
+    public void scrollToElementsAndCompare2Lists(DataTable dataTable, By byLocator) {
         List<String> fieldsExp = dataTable.asList();
-        List<WebElement> fields = driver.findElements(By.xpath(xpath));
+        List<WebElement> fields = driver.findElements(byLocator);
         List<String> fieldsAct = new ArrayList<>();
         for (WebElement field : fields) {
             scrollIntoView(field, driver);
@@ -1548,11 +1136,11 @@ public class SeleniumUtils extends Driver {
     -This method is used to perform different display validations
      For example, Fields, field values, Search boxes etc.
      */
-    public void elementsDisplayValidation(String xpath) {
-        List<WebElement> fieldValues = findElementsByXpath(xpath);
+    public void elementsDisplayValidation(By byLocator) {
+        List<WebElement> fieldValues = driver.findElements(byLocator);
         printStatementInGreenColor("Fields size", fieldValues.size());
         for (WebElement fieldValue : fieldValues) {
-            boolean status = isDisplayed(fieldValue);
+            boolean status = fieldValue.isDisplayed();
             printStatementInGreenColor("Field status is", status);
             Assert.assertTrue(status);
         }
@@ -1563,13 +1151,13 @@ public class SeleniumUtils extends Driver {
     For example, Fields, field values, Search boxes etc.
     -Would be scrolled to elements and validates element display status
     */
-    public void scrollToElementsAndValidateDisplayStatus(String xpath) {
-        List<WebElement> fieldValues = findElementsByXpath(xpath);
+    public void scrollToElementsAndValidateDisplayStatus(By byLocator) {
+        List<WebElement> fieldValues = driver.findElements(byLocator);
         printStatementInGreenColor("Fields size", fieldValues.size());
         for (WebElement fieldValue : fieldValues) {
             scrollIntoView(fieldValue, driver);
             explicitElementClickableWait(fieldValue, 10);
-            boolean status = isDisplayed(fieldValue);
+            boolean status = fieldValue.isDisplayed();
             printStatementInGreenColor("Field status is", status);
             Assert.assertTrue(status);
         }
@@ -1579,334 +1167,34 @@ public class SeleniumUtils extends Driver {
 
 
     //**************** Locator methods ***************************//
-    public WebElement findElementByID(String ID) {
-        try {
-            WebElement element = driver.findElement(By.id(ID));
-            return element;
-        } catch (Exception e) {
-            Assert.fail("Element not found | Error - " + e);
-            return null;
-        }
-    }
-
-    public WebElement findElementByName(String Name) {
-        try {
-            WebElement element = driver.findElement(By.name(Name));
-            return element;
-        } catch (Exception e) {
-            Assert.fail("Element not found | Error - " + e);
-            return null;
-        }
-    }
-
-    public WebElement findElementByClass(String Class) {
-        try {
-            WebElement element = driver.findElement(By.className(Class));
-            return element;
-        } catch (Exception e) {
-            Assert.fail("Element not found | Error - " + e);
-            return null;
-        }
-    }
-
-    public WebElement findElementByTagName(String TagName) {
-        try {
-            WebElement element = driver.findElement(By.tagName(TagName));
-            return element;
-        } catch (Exception e) {
-            Assert.fail("Element not found | Error - " + e);
-            return null;
-        }
-    }
-
-    public WebElement findElementByCSS(String CSSSelector) {
-        try {
-            WebElement element = driver.findElement(By.cssSelector(CSSSelector));
-            return element;
-        } catch (Exception e) {
-            Assert.fail("Element not found | Error - " + e);
-            return null;
-        }
-    }
-
-    public WebElement findElementByLinkText(String LinkText) {
-        try {
-            WebElement element = driver.findElement(By.linkText(LinkText));
-            return element;
-        } catch (Exception e) {
-            Assert.fail("Element not found | Error - " + e);
-            return null;
-        }
-    }
-
-    public WebElement findElementByPartialLinkText(String PartialLinkText) {
-        try {
-            WebElement element = driver.findElement(By.partialLinkText(PartialLinkText));
-            return element;
-        } catch (Exception e) {
-            Assert.fail("Element not found | Error - " + e);
-            return null;
-        }
-    }
-
-    public WebElement findElementByXpath(String xpath) {
-        try {
-            WebElement element = driver.findElement(By.xpath(xpath));
-            return element;
-        } catch (Exception e) {
-            Assert.fail("Element not found | Error - " + e);
-            return null;
-        }
-    }
-
-    public List<WebElement> findElementsByID(String ID) {
-        try {
-            List<WebElement> elements = new ArrayList<WebElement>();
-            elements = driver.findElements(By.id(ID));
-            return elements;
-        } catch (Exception e) {
-            Assert.fail("Element not found | Error - " + e);
-            return null;
-        }
-    }
-
-    public List<WebElement> findElementsByName(String Name) {
-        try {
-            List<WebElement> elements = new ArrayList<WebElement>();
-            elements = driver.findElements(By.name(Name));
-            return elements;
-        } catch (Exception e) {
-            Assert.fail("Element not found | Error - " + e);
-            return null;
-        }
-    }
-
-
-    public List<WebElement> findElementsByClass(String ClassName) {
-        try {
-            List<WebElement> elements = new ArrayList<WebElement>();
-            elements = driver.findElements(By.className(ClassName));
-            return elements;
-        } catch (Exception e) {
-            Assert.fail("Element not found | Error - " + e);
-            return null;
-        }
-    }
-
-    public List<WebElement> findElementsByTagName(String TagName) {
-        try {
-            List<WebElement> elements = new ArrayList<WebElement>();
-            elements = driver.findElements(By.tagName(TagName));
-            return elements;
-        } catch (Exception e) {
-            Assert.fail("Element not found | Error - " + e);
-            return null;
-        }
-    }
-
-    public List<WebElement> findElementsByCSS(String CSSSelector) {
-        try {
-            List<WebElement> elements = new ArrayList<WebElement>();
-            elements = driver.findElements(By.cssSelector(CSSSelector));
-            return elements;
-        } catch (Exception e) {
-            Assert.fail("Element not found | Error - " + e);
-            return null;
-        }
-    }
-
-    public List<WebElement> findElementsByLinkText(String LinkText) {
-        try {
-            List<WebElement> elements = new ArrayList<WebElement>();
-            elements = driver.findElements(By.linkText(LinkText));
-            return elements;
-        } catch (Exception e) {
-            Assert.fail("Element not found | Error - " + e);
-            return null;
-        }
-    }
-
-    public List<WebElement> findElementsByPartialLink(String PartialLinkText) {
-        try {
-            List<WebElement> elements = new ArrayList<WebElement>();
-            elements = driver.findElements(By.partialLinkText(PartialLinkText));
-            return elements;
-        } catch (Exception e) {
-            Assert.fail("Element not found | Error - " + e);
-            return null;
-        }
-    }
-
-    public List<WebElement> findElementsByXpath(String xpath) {
-        try {
-            List<WebElement> elements = new ArrayList<WebElement>();
-            elements = driver.findElements(By.xpath(xpath));
-            return elements;
-        } catch (Exception e) {
-            Assert.fail("Element not found | Error - " + e);
-            return null;
-        }
-    }
-
-    public WebElement findElementByAnyLocator(String locator) {
+    public WebElement findElement(By byLocator) {
         WebElement element = null;
         try {
-            if (driver.findElement(By.id(locator)).isDisplayed()) {
-                element = driver.findElement(By.id(locator));
-                return element;
-            }
-        } catch (Exception e) {
-        }
-        try {
-            if (driver.findElement(By.name(locator)).isDisplayed()) {
-                element = driver.findElement(By.name(locator));
-                return element;
-            }
-        } catch (Exception e) {
-        }
-        try {
-            if (driver.findElement(By.className(locator)).isDisplayed()) {
-                element = driver.findElement(By.className(locator));
-                return element;
-            }
-        } catch (Exception e) {
-        }
-        try {
-            if (driver.findElement(By.linkText(locator)).isDisplayed()) {
-                element = driver.findElement(By.linkText(locator));
-                return element;
-            }
-        } catch (Exception e) {
-        }
-        try {
-            if (driver.findElement(By.cssSelector(locator)).isDisplayed()) {
-                element = driver.findElement(By.cssSelector(locator));
-                return element;
-            }
-        } catch (Exception e) {
-        }
-        try {
-            if (driver.findElement(By.partialLinkText(locator)).isDisplayed()) {
-                element = driver.findElement(By.partialLinkText(locator));
-                return element;
-            }
-        } catch (Exception e) {
-        }
-        try {
-            if (driver.findElement(By.xpath(locator)).isDisplayed()) {
-                element = driver.findElement(By.xpath(locator));
-                return element;
-            }
-        } catch (Exception e) {
-
-        }
-        try {
-            if (driver.findElement(By.tagName(locator)).isDisplayed()) {
-                element = driver.findElement(By.tagName(locator));
-                return element;
-            }
+            element = driver.findElement(byLocator);
+            return element;
         } catch (Exception e) {
             Assert.fail("Element not found | Error - " + e);
             return null;
         }
-        if (element == null) {
-            Assert.fail("\n Locator : " + locator + " ************** Not Found");
-        }
-        return null;
     }
 
-    /* Method findWebElements : To return webelements based on locator
-     * @param argument : String :  Locator of the element
-     */
-    public List<WebElement> findElementsByAnyLocator(String locator) {
+    public List<WebElement> findElements(By byLocator) {
         List<WebElement> elements = null;
         try {
-            elements = new ArrayList<>();
-            if (driver.findElement(By.id(locator)).isDisplayed()) {
-                elements = driver.findElements(By.id(locator));
-                return elements;
-            }
+            elements = driver.findElements(byLocator);
+            return elements;
         } catch (Exception e) {
+            Assert.fail("Element not found | Error - " + e);
+            return null;
         }
-        try {
-            if (driver.findElement(By.name(locator)).isDisplayed()) {
-                elements = driver.findElements(By.name(locator));
-                return elements;
-            }
-        } catch (Exception e) {
-        }
-        try {
-            if (driver.findElement(By.className(locator)).isDisplayed()) {
-                elements = driver.findElements(By.className(locator));
-                return elements;
-            }
-        } catch (Exception e) {
-        }
-        try {
-            if (driver.findElement(By.linkText(locator)).isDisplayed()) {
-                elements = driver.findElements(By.linkText(locator));
-                return elements;
-            }
-        } catch (Exception e) {
-        }
-        try {
-            if (driver.findElement(By.cssSelector(locator)).isDisplayed()) {
-                elements = driver.findElements(By.cssSelector(locator));
-                return elements;
-            }
-        } catch (Exception e) {
-        }
-        try {
-            if (driver.findElement(By.partialLinkText(locator)).isDisplayed()) {
-                elements = driver.findElements(By.partialLinkText(locator));
-                return elements;
-            }
-        } catch (Exception e) {
-        }
-        try {
-            if (driver.findElement(By.xpath(locator)).isDisplayed()) {
-                elements = driver.findElements(By.xpath(locator));
-                return elements;
-            }
-        } catch (Exception e) {
-        }
-        try {
-            if (driver.findElement(By.tagName(locator)).isDisplayed()) {
-                elements = driver.findElements(By.tagName(locator));
-                return elements;
-            }
-        } catch (Exception e) {
-        }
-        if (elements == null) {
-            Assert.fail("\n Locator : " + locator + " ************** Not Found");
-        }
-        return null;
     }
     // **************** End of Locator methods *********************  //
 
 
     // *********** JavascriptExecutor utility methods *********** //
 
-    public void flash(WebElement element, WebDriver driver) {
-        JavascriptExecutor js = ((JavascriptExecutor) driver);
-        String bgcolor = element.getCssValue("backgroundColor");
-        for (int i = 0; i < 10; i++) {
-            changeColor("#000000", element, driver);// 1
-            changeColor(bgcolor, element, driver);// 2
-        }
-    }
-
-    public void changeColor(String color, WebElement element, WebDriver driver) {
-        JavascriptExecutor js = ((JavascriptExecutor) driver);
-        js.executeScript("arguments[0].style.backgroundColor = '" + color + "'", element);
-
-        try {
-            Thread.sleep(20);
-        } catch (InterruptedException e) {
-        }
-    }
-
-    public static void drawBorder(WebElement element, WebDriver driver) {
+    public static void drawBorder(By byLocator, WebDriver driver) {
+        WebElement element = driver.findElement(byLocator);
         JavascriptExecutor js = ((JavascriptExecutor) driver);
         js.executeScript("arguments[0].style.border='3px solid red'", element);
     }
@@ -1917,7 +1205,8 @@ public class SeleniumUtils extends Driver {
         return title;
     }
 
-    public static void clickOnElementByJS(WebElement element, WebDriver driver) {
+    public static void clickOnElementByJS(By byLocator, WebDriver driver) {
+        WebElement element = driver.findElement(byLocator);
         JavascriptExecutor js = ((JavascriptExecutor) driver);
         js.executeScript("arguments[0].click();", element);
     }
@@ -1932,10 +1221,9 @@ public class SeleniumUtils extends Driver {
         js.executeScript("history.go(0)");
     }
 
-
-    public void scrollToElement(String xpath) {
+    public void scrollToElement(By byLocator) {
         try {
-            WebElement element = driver.findElement(By.xpath(xpath));
+            WebElement element = driver.findElement(byLocator);
             JavascriptExecutor js = (JavascriptExecutor) driver;
             js.executeScript("arguments[0].scrollIntoView(true);", element);
             System.out.println("<<<< Scrolled till element is visible >>>>");
@@ -1944,31 +1232,32 @@ public class SeleniumUtils extends Driver {
         }
     }
 
-    public void sendKeysUsingJavaScript(String xpath, String text) {
+    public void sendKeysUsingJavaScript(By byLocator, String text) {
         try {
-            WebElement textBox = driver.findElement(By.xpath(xpath));
+            WebElement textBox = driver.findElement(byLocator);
             JavascriptExecutor js = (JavascriptExecutor) driver;
             js.executeScript("arguments[0].value='" + text + "';", textBox);
         } catch (Exception e) {
-            Assert.fail("Element not found " + xpath + "| Error - " + e);
+            Assert.fail("Element not found " + byLocator + "| Error - " + e);
         }
     }
 
-    public void clearUsingJavaScript(String xpath) throws Exception {
+    public void clearUsingJavaScript(By byLocator) throws Exception {
         try {
-            WebElement element = driver.findElement(By.xpath(xpath));
+            WebElement element = driver.findElement(byLocator);
             JavascriptExecutor js = (JavascriptExecutor) driver;
             js.executeScript("arguments[0].value='';", element);
         } catch (Exception e) {
-            Assert.fail("Element not found " + xpath + "| Error - " + e);
+            Assert.fail("Element not found " + byLocator + "| Error - " + e);
         }
     }
 
     public boolean isHorizontalScrollBarPresent() {
+        boolean scrollStatus = false;
         try {
             JavascriptExecutor js = (JavascriptExecutor) driver;
-            Boolean horzscrollstatus = (Boolean) js.executeScript("return document.documentElement.scrollWidth>document.documentElement.clientWidth;");
-            return horzscrollstatus;
+            scrollStatus = (boolean) js.executeScript("return document.documentElement.scrollWidth>document.documentElement.clientWidth;");
+            return scrollStatus;
         } catch (Exception e) {
             System.out.println("Horizontal scroll bar is not present " + e);
             return false;
@@ -1976,10 +1265,11 @@ public class SeleniumUtils extends Driver {
     }
 
     public boolean isVerticalScrollBarPresent() {
+        boolean scrollStatus = false;
         try {
             JavascriptExecutor js = (JavascriptExecutor) driver;
-            Boolean VertScrollStatus = (Boolean) js.executeScript("return document.documentElement.scrollHeight>document.documentElement.clientHeight;");
-            return VertScrollStatus;
+            scrollStatus = (Boolean) js.executeScript("return document.documentElement.scrollHeight>document.documentElement.clientHeight;");
+            return scrollStatus;
         } catch (Exception e) {
             System.out.println("Vertical scroll bar is not present " + e);
             return false;
@@ -1995,37 +1285,22 @@ public class SeleniumUtils extends Driver {
         }
     }
 
-    public String getValueOfJavscriptTextBox(String xpath) {
+    public String getValueOfJavscriptTextBox(By byLocator) {
         try {
-            WebElement textBox = driver.findElement(By.xpath(xpath));
+            WebElement textBox = driver.findElement(byLocator);
             JavascriptExecutor js = (JavascriptExecutor) driver;
             String value = js.executeScript("return arguments[0].value", textBox).toString();
             System.out.println("Value of tex box is " + value);
             return value;
         } catch (Exception e) {
-            Assert.fail("Element not found :" + xpath + "|Error - " + e);
+            Assert.fail("Element not found :" + byLocator + "|Error - " + e);
             return null;
         }
     }
 
-    public void safeJavascriptClick(WebElement element) throws Exception {
+    public void safeJavascriptClick(By byLocator) throws Exception {
         try {
-            if (element.isEnabled() && element.isDisplayed()) {
-                JavascriptExecutor js = (JavascriptExecutor) driver;
-                js.executeScript("arguments[0].click();", element);
-            } else {
-                System.out.println("Unable to click on element");
-            }
-        } catch (StaleElementReferenceException e) {
-            Assert.fail("Element is not attached to the page document :" + e.getStackTrace());
-        } catch (Exception e) {
-            Assert.fail("Element was not found in DM :" + e.getStackTrace());
-        }
-    }
-
-    public void safeJavascriptClick(String xpath) throws Exception {
-        try {
-            WebElement element = driver.findElement(By.xpath(xpath));
+            WebElement element = driver.findElement(byLocator);
             if (element.isEnabled() && element.isDisplayed()) {
                 JavascriptExecutor js = (JavascriptExecutor) driver;
                 js.executeScript("arguments[0].click();", element);
@@ -2066,6 +1341,7 @@ public class SeleniumUtils extends Driver {
         }
     }
 
+    //Leaving this the parameter as WebElement only as this methods is used internally in this class
     public void scrollIntoView(WebElement element, WebDriver driver) {
         try {
             JavascriptExecutor js = ((JavascriptExecutor) driver);
@@ -2076,24 +1352,43 @@ public class SeleniumUtils extends Driver {
     }
 
     public static void zoomPageByJS(WebDriver driver) {
-        JavascriptExecutor js = ((JavascriptExecutor) driver);
-        js.executeScript("document.body.style.zoom='50%'");// zoom out by 100%
+        try {
+            JavascriptExecutor js = ((JavascriptExecutor) driver);
+            js.executeScript("document.body.style.zoom='50%'");// zoom out by 100%
+        } catch (Exception e) {
+            Assert.fail("Unable to zoom page." + "|Error - " + e);
+        }
     }
 
-    public void enterTextByJS(WebDriver driver, WebElement element, String value) {
-        JavascriptExecutor js = ((JavascriptExecutor) driver);
-        js.executeScript("arguments[0].value='" + value + "';", element);
+    public void enterTextByJS(WebDriver driver, By byLocator, String value) {
+        try {
+            WebElement element = driver.findElement(byLocator);
+            JavascriptExecutor js = ((JavascriptExecutor) driver);
+            js.executeScript("arguments[0].value='" + value + "';", element);
+        } catch (Exception e) {
+            Assert.fail("Unable to enter text into textbox." + "|Error - " + e);
+        }
     }
 
     public static String getPageInnerText(WebDriver driver) {
-        JavascriptExecutor js = ((JavascriptExecutor) driver);
-        String pageText = js.executeScript("return document.documentElement.innerText;").toString();
-        return pageText;
+        String pageText = null;
+        try {
+            JavascriptExecutor js = ((JavascriptExecutor) driver);
+            pageText = js.executeScript("return document.documentElement.innerText;").toString();
+            return pageText;
+        } catch (Exception e) {
+            Assert.fail("Element not found" + "|Error - " + e);
+            return null;
+        }
     }
 
     public void selectDropDownByJS(WebDriver driver, WebElement element, String value) {
-        JavascriptExecutor js = ((JavascriptExecutor) driver);
-        js.executeScript("arguments[0].value='" + value + "';", element);
+        try {
+            JavascriptExecutor js = ((JavascriptExecutor) driver);
+            js.executeScript("arguments[0].value='" + value + "';", element);
+        } catch (Exception e) {
+            Assert.fail("Unable to select dropdown value." + "|Error - " + e);
+        }
     }
 
     public String getHiddenElementsText(String arg1) {
@@ -2118,8 +1413,7 @@ public class SeleniumUtils extends Driver {
             System.out.println("Current date is : " + formattedDate);
             return formattedDate;
         } catch (Exception e) {
-            System.out.println("Exception in 'getCurrentDate' method");
-            e.printStackTrace();
+            Assert.fail("Exception in 'getCurrentDate' method" + e);
             return null;
         }
     }
@@ -2132,8 +1426,7 @@ public class SeleniumUtils extends Driver {
             System.out.println("Current time is : " + formattedTime);
             return formattedTime;
         } catch (Exception e) {
-            System.out.println("Exception in 'getCurrentTime' method");
-            e.printStackTrace();
+            Assert.fail("Exception in 'getCurrentTime' method" + e);
             return null;
         }
     }
@@ -2146,8 +1439,7 @@ public class SeleniumUtils extends Driver {
             System.out.println("Current date and time is : " + formattedDateTime);
             return formattedDateTime;
         } catch (Exception e) {
-            System.out.println("Exception in 'getCurrentDateAndTime' method");
-            e.printStackTrace();
+            Assert.fail("Exception in 'getCurrentDateAndTime' method" + e);
             return null;
         }
     }
@@ -2161,8 +1453,7 @@ public class SeleniumUtils extends Driver {
             System.out.println("Date after adding " + days + " days to current date : " + formattedDate);
             return formattedDate;
         } catch (Exception e) {
-            System.out.println("Exception in 'addDaysToCurrentDateAndGetFutureDate' method");
-            e.printStackTrace();
+            Assert.fail("Exception in 'addDaysToCurrentDateAndGetFutureDate' method" + e);
             return null;
         }
     }
@@ -2176,11 +1467,9 @@ public class SeleniumUtils extends Driver {
             System.out.println("Date after subtracting " + days + " days from current date : " + formattedDate);
             return formattedDate;
         } catch (Exception e) {
-            System.out.println("Exception in 'subtractDaysFromCurrentDateAndGetPastDate' method");
-            e.printStackTrace();
+            Assert.fail("Exception in 'subtractDaysFromCurrentDateAndGetPastDate' method");
             return null;
         }
-
     }
 
     public String addDaysToSpecificDateAndGetFutureDate(String formatReq, String date, int days) {
@@ -2189,13 +1478,11 @@ public class SeleniumUtils extends Driver {
             LocalDate ld = LocalDate.parse(date, dtf);
             LocalDate specificDatePlusDays = ld.plusDays(days);
 
-
             String formattedDate = dtf.format(specificDatePlusDays);
             System.out.println("Date after adding " + days + " days to given specific date: " + formattedDate);
             return formattedDate;
         } catch (Exception e) {
-            System.out.println("Exception in 'addDaysToSpecificDateAndGetFutureDate' method");
-            e.printStackTrace();
+            Assert.fail("Exception in 'addDaysToSpecificDateAndGetFutureDate' method" + e);
             return null;
         }
     }
@@ -2206,13 +1493,11 @@ public class SeleniumUtils extends Driver {
             LocalDate ld = LocalDate.parse(date, dtf);
             LocalDate specificDateMinusDays = ld.minusDays(days);
 
-
             String formattedDate = dtf.format(specificDateMinusDays);
             System.out.println("Date after subtracting " + days + " days from given specific date: " + formattedDate);
             return formattedDate;
         } catch (Exception e) {
-            System.out.println("Exception in 'subtractDaysFromSpecificDateAndGetPastDate' method");
-            e.printStackTrace();
+            Assert.fail("Exception in 'subtractDaysFromSpecificDateAndGetPastDate' method" + e);
             return null;
         }
     }
@@ -2225,8 +1510,7 @@ public class SeleniumUtils extends Driver {
             System.out.println("Date after converting from one format to another : " + stringToDate);
             return stringToDate;
         } catch (Exception e) {
-            System.out.println("Exception in convertDateFromOneFormatToAnother method");
-            e.printStackTrace();
+            Assert.fail("Exception in convertDateFromOneFormatToAnother method" + e);
             return null;
         }
     }
@@ -2238,11 +1522,9 @@ public class SeleniumUtils extends Driver {
             System.out.println("Date after converting from String to Date : " + stringToDate);
             return stringToDate;
         } catch (Exception e) {
-            System.out.println("Exception in convertStringtoDate method");
-            e.printStackTrace();
+            Assert.fail("Exception in convertStringtoDate method" + e);
             return null;
         }
-
     }
 
     public boolean verifyIfADateIsInGivenRange(String dateFormat, String startDate, String endDate, String compareDate) {
@@ -2257,18 +1539,14 @@ public class SeleniumUtils extends Driver {
             boolean isAfter = compareDate1.isAfter(startDate1);
             boolean isBefore = compareDate1.isBefore(endDate1);
 
-            if (isAfter == true && isBefore == true) {
+            if (isAfter && isBefore) {
                 System.out.println("Compared date is within the date range");
                 compareValue = true;
             } else {
-                System.out.println("Compared date is not within the date range");
-                compareValue = false;
+                Assert.fail("Compared date is not within the date range");
             }
-
         } catch (Exception e) {
-            System.out.println("Exception in verifyIfADateIsInGivenRange method");
-            e.printStackTrace();
-            compareValue = false;
+            Assert.fail("Exception in verifyIfADateIsInGivenRange method" + e);
         }
         return compareValue;
     }
@@ -2282,8 +1560,7 @@ public class SeleniumUtils extends Driver {
             System.out.println("Date after adding " + mins + " minutes from given specific date: " + formattedDate);
             return formattedDate;
         } catch (Exception e) {
-            System.out.println("Exception in 'addMinsToSpecificDateAndGetDateAndTime' method");
-            e.printStackTrace();
+            Assert.fail("Exception in 'addMinsToSpecificDateAndGetDateAndTime' method" + e);
             return null;
         }
     }
@@ -2297,8 +1574,7 @@ public class SeleniumUtils extends Driver {
             System.out.println("Date after adding " + mins + " minutes from given specific date: " + formattedDate);
             return formattedDate;
         } catch (Exception e) {
-            System.out.println("Exception in 'addMinsToCurrentDateAndGetDateAndTime' method");
-            e.printStackTrace();
+            Assert.fail("Exception in 'addMinsToCurrentDateAndGetDateAndTime' method" + e);
             return null;
         }
     }
@@ -2315,8 +1591,7 @@ public class SeleniumUtils extends Driver {
             System.out.println("Date and Time for " + timeZone + " timezone is : " + userTimeZone1);
             return userTimeZone1;
         } catch (Exception e) {
-            System.out.println("Exception in getDateAndTimeInPreferredTimeZone method");
-            e.printStackTrace();
+            Assert.fail("Exception in getDateAndTimeInPreferredTimeZone method" + e);
             return null;
         }
 
@@ -2333,8 +1608,7 @@ public class SeleniumUtils extends Driver {
             System.out.println("Date after conversion is : " + formattedDate);
             return formattedDate;
         } catch (Exception e) {
-            System.out.println("Exception in convertDateFromDBToOtherFormat method");
-            e.printStackTrace();
+            Assert.fail("Exception in convertDateFromDBToOtherFormat method" + e);
             return null;
         }
 
@@ -2342,13 +1616,12 @@ public class SeleniumUtils extends Driver {
     // *********** End of Date and Time related methods *********** //
 
     // *********** Random String *************** //
-    public String getRandomString(int size) {
+    public String getRandomString(int length) {
         String randomString = "";
-        try{
-            randomString = RandomStringUtils.randomAlphanumeric(size);
+        try {
+            randomString = RandomStringUtils.random(length, 'a', 'z', true, true, null, new SecureRandom());
             return randomString;
-        }
-        catch (Exception e){
+        } catch (Exception e) {
             Assert.fail("Unable to generate random string");
             return null;
         }
@@ -2357,7 +1630,7 @@ public class SeleniumUtils extends Driver {
     // *********** Create Dummy File *************** //
     public static void createDummyFile(String fileName, int sizeInBytes) {
         try {
-            File file = new File(basePath + "/src/test/resources/TestData/UploadDocuments/" + fileName);
+            File file = new File(projectHomeDir + "/src/test/resources/TestData/UploadDocuments/" + fileName);
             if (!file.exists()) {
                 file.createNewFile();
                 RandomAccessFile raf = new RandomAccessFile(file, "rw");
@@ -2367,7 +1640,7 @@ public class SeleniumUtils extends Driver {
                 throw new Exception(String.format("File name (%s) was already existing, No file is created", fileName));
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            Assert.fail("Unable to create dummy file" + e);
         }
     }
 

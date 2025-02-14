@@ -16,7 +16,9 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 import java.awt.*;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.MalformedURLException;
+import java.sql.SQLOutput;
 import java.time.Duration;
 import java.util.Collections;
 import java.util.Properties;
@@ -24,15 +26,21 @@ import java.util.Properties;
 public class Driver {
 
     public Logger log;
+
+    /***
+     * driver will be initially null until openBrowser() method is called.
+     * When openBrowser() method is called from hooks class it sets the
+     * driver instance and assigns it to the threadDriver hence driver is
+     * stored with webdriver instance.
+     */
     public WebDriver driver = getWebDriver();
-    private static DesiredCapabilities capabilities;
     private static ThreadLocal<WebDriver> threadDriver = new ThreadLocal<WebDriver>();
 
     public static PropertyReader prop;
-    protected static String environment;
+    protected static String env;
 
     //  This variable reads project path till home directory
-    public static String basePath = System.getProperty("user.dir");
+    public static String projectHomeDir = System.getProperty("user.dir");
 
     //    Console colors
     public static final String ANSI_RED = "\u001B[31m";
@@ -42,92 +50,92 @@ public class Driver {
     public static final String ANSI_PURPLE = "\u001B[35m";
     public static final String ANSI_CYAN = "\u001B[36m";
 
-    public void readConfig() throws IOException
-    {
-        try
-        {
-            environment = System.getProperty("Environment");
-            if (environment == null)
-            {
-                environment = "test";
-            }
-            String propPath = ".//src/test/resources/Config/" +environment+".properties";
+    public void readConfig() throws IOException {
+        try {
+            env = System.getProperty("env", "qa");
+            String propPath = projectHomeDir + "/src/test/resources/Config/" + env + ".properties";
             System.out.println("Environment path : " + propPath);
             prop = new PropertyReader(propPath);
-        }catch (Exception e)
-        {
+        } catch (Exception e) {
             Assert.fail("Error in loading properties: " + e);
         }
     }
 
 
-    public void openBrowser(String browser, String URL) throws MalformedURLException, AWTException
-    {
-        DesiredCapabilities capabilities;
-        switch (browser)
-        {
-            case ("firefox"):
-                threadDriver.set(setFirefoxDriverLocal());
-                break;
-            case ("chrome"):
-                threadDriver.set(setChromeDriverLocal());
-                break;
-            case ("edge"):
-                threadDriver.set(setEdgeDriverLocal());
-                break;
 
-            default:
-                Assert.fail("Invalid browser [ " + browser + " ] is selected");
-        }
+public void openBrowser(String browser, String URL) throws MalformedURLException, AWTException {
+    switch (browser.toLowerCase()) {
+        case ("firefox"):
+            threadDriver.set(setFirefoxDriverLocal());
+            break;
+        case ("chrome"):
+            threadDriver.set(setChromeDriverLocal());
+            break;
+        case ("edge"):
+            threadDriver.set(setEdgeDriverLocal());
+            break;
+
+        default:
+            Assert.fail("Invalid browser [ " + browser + " ] is selected");
+    }
+    WebDriver driver = getWebDriver();
+    if (driver != null) {
         driver.manage().deleteAllCookies();
         driver.manage().window().maximize();
         driver.get(URL);
     }
+}
 
-    private WebDriver setFirefoxDriverLocal()
-    {
-        FirefoxOptions options = new FirefoxOptions();
-        options.addArguments("-private");
+private WebDriver setFirefoxDriverLocal() {
+    FirefoxOptions options = new FirefoxOptions();
+    options.addArguments("-private");
 
-        WebDriverManager.firefoxdriver().setup();
-        driver = new FirefoxDriver(options);
-        return driver;
-    }
+    WebDriverManager.firefoxdriver().setup();
+    driver = new FirefoxDriver(options);
+    return driver;
+}
 
 
-    private WebDriver setChromeDriverLocal() throws AWTException
-    {
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("--incognito");
+private WebDriver setChromeDriverLocal() throws AWTException {
+    ChromeOptions options = new ChromeOptions();
+    options.addArguments("--incognito");
         options.addArguments("--headless");
-        options.addArguments("window-size=1920,1080");
-        options.addArguments("--disable-features=VizDisplayCompositor");
-        options.addArguments("disable-infobars");
-        options.addArguments("--no-sandbox");
-        options.addArguments("use-fake-ui-for-media-stream=1");
-        options.setExperimentalOption("useAutomationExtension", false);
-        options.setExperimentalOption("excludeSwitches", Collections.singletonList("enable-automation"));
+    options.addArguments("window-size=1920,1080");
+    options.addArguments("--disable-features=VizDisplayCompositor");
+    options.addArguments("disable-infobars");
+    options.addArguments("--no-sandbox");
+    options.addArguments("use-fake-ui-for-media-stream=1");
+    options.setExperimentalOption("useAutomationExtension", false);
+    options.setExperimentalOption("excludeSwitches", Collections.singletonList("enable-automation"));
 
-        WebDriverManager.chromedriver().setup();
-        driver = new ChromeDriver(options);
-        return driver;
+    WebDriverManager.chromedriver().setup();
+
+    driver = new ChromeDriver(options);
+    return driver;
+
+}
+
+public WebDriver setEdgeDriverLocal() throws AWTException {
+    EdgeOptions options = new EdgeOptions();
+    options.addArguments("InPrivate");
+
+    WebDriverManager.edgedriver().setup();
+    driver = new EdgeDriver(options);
+    return driver;
+}
+
+
+public static WebDriver getWebDriver() {
+    System.out.println("WebDriver " + threadDriver.get());
+    return threadDriver.get();
+}
+
+// Adding a method to clean up and quit the driver
+public static void quitDriver() {
+    WebDriver driver = threadDriver.get();
+    if (driver != null) {
+        driver.quit();
+        threadDriver.remove();
     }
-
-    public WebDriver setEdgeDriverLocal() throws AWTException
-    {
-        EdgeOptions options = new EdgeOptions();
-        options.addArguments("InPrivate");
-
-        WebDriverManager.edgedriver().setup();
-        driver = new EdgeDriver(options);
-        return driver;
-    }
-
-
-    public static WebDriver getWebDriver()
-    {
-        System.out.println("WebDriver " + threadDriver.get());
-        return threadDriver.get();
-    }
-
+}
 }
