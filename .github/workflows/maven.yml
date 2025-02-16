@@ -69,8 +69,8 @@ jobs:
       run: mvn -B package --file pom.xml
         
 
-    # - name: Run Tests
-    #   run: mvn test
+    - name: Run Tests
+      run: mvn test
     - name: Run Tests
       env:
         TEMP_USER_DATA_DIR: ${{ runner.temp }}/chrome-user-data
