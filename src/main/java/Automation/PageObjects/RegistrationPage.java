@@ -17,17 +17,17 @@ public class RegistrationPage extends SeleniumUtils {
 //        switchToFrame("0");
         explicitFrameWait(0, 10);
         WebElement firstname1 = explicitElementClickableWait(firstnameTxt, 10);
-        firstname1.sendKeys("mice");
+        firstname1.sendKeys("lice");
 
     }
     public void enter_lastName() throws InterruptedException {
         WebElement lastname1 = explicitElementClickableWait(lastnameTxt, 10);
-        lastname1.sendKeys("joc");
+        lastname1.sendKeys("lvoc");
     }
 
     public void enter_emailAddress() throws InterruptedException {
         WebElement email1 = explicitElementClickableWait(emailTxt, 10);
-        email1.sendKeys("mik@yahoo.com");
+        email1.sendKeys("lvink@yahoo.com");
     }
 
     public void enter_titleName() throws InterruptedException {
