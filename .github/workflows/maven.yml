@@ -69,8 +69,14 @@ jobs:
       run: mvn -B package --file pom.xml
         
 
+    # - name: Run Tests
+    #   run: mvn test
     - name: Run Tests
-      run: mvn test
+      env:
+        TEMP_USER_DATA_DIR: ${{ runner.temp }}/chrome-user-data
+      run: |
+        mkdir -p $TEMP_USER_DATA_DIR
+        mvn test -Dwebdriver.chrome.args="--user-data-dir=$TEMP_USER_DATA_DIR"
 
     # Optional: Uploads the full dependency graph to GitHub to improve the quality of Dependabot alerts this repository can receive
     # - name: Update dependency graph
