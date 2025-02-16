@@ -106,21 +106,11 @@ jobs:
       uses: actions/setup-java@v2
       with:
         java-version: '17'
-
-    - name: Cache Maven packages
-      uses: actions/cache@v2
-      with:
-        path: ~/.m2/repository
-        key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
-        restore-keys: |
-          ${{ runner.os }}-maven-
-
+        distribution: 'temurin'
+        cache: maven
     - name: Build with Maven
       run: mvn -B package --file pom.xml
-
+    - name: Create Unique Directory
+      run: mkdir -p /tmp/selenium-user-data
     - name: Run Tests
-      env:
-        TEMP_USER_DATA_DIR: ${{ runner.temp }}/chrome-user-data-${{ github.run_id }}
-      run: |
-        mkdir -p $TEMP_USER_DATA_DIR
-        mvn test -Dwebdriver.chrome.args="--user-data-dir=$TEMP_USER_DATA_DIR"
+      run: mvn test -Dwebdriver.chrome.args="--user-data-dir=/tmp/selenium-user-data"
