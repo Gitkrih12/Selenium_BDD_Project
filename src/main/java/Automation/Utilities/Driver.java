@@ -118,8 +118,8 @@ private WebDriver setChromeDriverLocal() throws AWTException {
 public WebDriver setEdgeDriverLocal() throws AWTException {
     EdgeOptions options = new EdgeOptions();
     options.addArguments("InPrivate");
-    options.addArguments("--headless");
-    options.addArguments("--user-data-dir=/tmp/selenium-user-data-" + System.currentTimeMillis());
+//    options.addArguments("--headless");
+    //options.addArguments("--user-data-dir=/tmp/selenium-user-data-" + System.currentTimeMillis());
 
     WebDriverManager.edgedriver().setup();
     driver = new EdgeDriver(options);
